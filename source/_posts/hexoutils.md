@@ -14,7 +14,7 @@ comment: 'valine'
 
 # hexo本地文件同步到github
 
-1. github新建分支
+1. github新建分支，必须新建分支，血泪教训
 
 2. 将新分支设置为默认分支
 
