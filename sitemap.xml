@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs2/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs1/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs1/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs2/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/03/hexoutils/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/latexutils/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/latexutils/</loc>
+    <loc>http://lcjoffrey.top/2021/12/03/hexoutils/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/constellation/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/VAT/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -146,7 +146,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/VAT/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/constellation/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/03/Self-Supervised%20Learning/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/Mixmatch/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/Mixmatch/</loc>
+    <loc>http://lcjoffrey.top/2021/12/03/Self-Supervised%20Learning/</loc>
     
     <lastmod>2021-12-06</lastmod>
     
@@ -216,13 +216,6 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/overview/</loc>
-    <lastmod>2021-12-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/tags/signal-processing/</loc>
     <lastmod>2021-12-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -231,6 +224,13 @@
   
   <url>
     <loc>http://lcjoffrey.top/tags/communication/</loc>
+    <lastmod>2021-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/overview/</loc>
     <lastmod>2021-12-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
