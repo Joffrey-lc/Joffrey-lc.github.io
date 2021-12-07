@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="阅读解析MixMatch">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="阅读解析MixMatch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MixMatch文章解读+算法流程+核心代码详解">
+<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/Mixmatch/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="阅读解析MixMatch">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/391a4b60403d99fb826ff03a3e1bf178.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/e89857b0f4f83f2c160402828d2b381d.png">
+<meta property="article:published_time" content="2021-12-04T06:55:39.000Z">
+<meta property="article:modified_time" content="2021-12-06T16:30:29.934Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/391a4b60403d99fb826ff03a3e1bf178.png">
+  
+  <title>MixMatch文章解读+算法流程+核心代码详解 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+<link rel="stylesheet" href="/css/mac.styl.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MixMatch文章解读+算法流程+核心代码详解">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-04 14:55" pubdate>
+        2021年12月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MixMatch文章解读+算法流程+核心代码详解</h1>
+            
+            <div class="markdown-body">
+              <h1 id="MixMatch"><a href="#MixMatch" class="headerlink" title="MixMatch"></a>MixMatch</h1><p><em>本博客仅做算法流程疏导，具体细节请参见原文</em></p>
+<h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.02249">查看原文点这里</a></p>
+<h2 id="Github代码"><a href="#Github代码" class="headerlink" title="Github代码"></a>Github代码</h2><p><a target="_blank" rel="noopener" href="https://github.com/YU1ut/MixMatch-pytorch.git">Github代码点这里</a></p>
+<h2 id="解读"><a href="#解读" class="headerlink" title="解读"></a>解读</h2><p>MixMatch抓住了半监督算法的两个重要观点：第一是<strong>熵最小化</strong>；第二是<strong>一致性正则化</strong>。结合这两个观点的算法就形成了MixMatch。</p>
+<h3 id="熵最小化"><a href="#熵最小化" class="headerlink" title="熵最小化"></a>熵最小化</h3><p>半监督算法的一个常见假设就是分类的决策边界不应该通过数据分布的高密度区域。这句话简单的理解可以想象一个聚类模型，其决策边界一定是在簇与簇之间的稀疏边界上，不可能穿过一个簇的中心（高密度区域）。而实现这一点的一种方法就是要求分类器对未标记数据输出低熵预测。MixMatch中使用一个”sharpening”函数来隐式实现熵最小化。所谓熵最小化、低熵预测，都是指使输出概率分布比较有“偏向性”，而不希望输出一个“平均的预测”。熵在信息论中是不确定度的度量，根据离散模型的熵最大定理，可知在均匀分布时熵取得最大值，换句话说，出现一个确定的分布，即某一类的概率是1，其余类的概率是0时，熵为0。也就是说想要得到熵最小，就得使分类器输出后的模型预测概率集中分配给某一类。后面再介绍“sharpening”函数如何实现这一点。</p>
+<h3 id="一致性正则化"><a href="#一致性正则化" class="headerlink" title="一致性正则化"></a>一致性正则化</h3><p>一致性正则化也是一个常见的半监督假设。<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41380292/article/details/119248049">VAT</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41380292/article/details/119218902">MeanTeacher</a>等其实都或多或少使用了这种假设。其核心在于，我们希望一个样本和其加扰版本（通常图像中称为Augment）通过分类器后，得到相似的输出。其实也就是说分类边界不应该穿过数据分布的高密度区域。如下图，红色点是原始样本，蓝色和绿色为其扰动版本，红色同心圆的虚线圆是我们期望的容差范围，即在这个区间类的都应该认为和其中心数据点为同一类。通过扰动数据点的加入，将决策边界推到合适的位置，使分类器的鲁棒性更强。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/391a4b60403d99fb826ff03a3e1bf178.png" srcset="/img/loading.gif" lazyload alt="Consistency Regularization"></p>
+<p>一般而言，通过对原始样本和其扰动版本的分类器输出进行衡量，即可实现一致性正则化，常见的衡量方式有MSE、KL散度、JS散度等。在MixMatch中通过对图像的标准数据增强(水平翻转、裁剪)实现扰动(Augment)，采用MSE准则方式衡量。</p>
+<p>总得来说，算法有以下步骤：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/e89857b0f4f83f2c160402828d2b381d.png" srcset="/img/loading.gif" lazyload alt="屏幕截图 2021-07-31 154634"></p>
+<p>归结而言有五个步骤：</p>
+<p><strong>第一步</strong>，对数据进行扩增(Augment)。扩增分为对有标记数据集$X$的扩增和对无标记数据集$U$的扩增，分别记为$\hat{X}$和$\hat{U}$。对$X$扩增一次，对$U$扩增$K$次，文章中取$K=2$。因为在取batch时，$Batch Size <em>U = BatchSize_X$，所以扩增后$Batch Size </em>{\hat{U}} = K\cdot BatchSize_{\hat{X}}$。</p>
+<p><strong>第二步</strong>，计算平均预测分布。此步骤仅对数据集$\hat{U}$进行。即通过如下公式计算，其中$(\hat{u_{b,k}},y)$是$\hat{U}$的一个$Batch$：</p>
+<script type="math/tex; mode=display">\bar{q_b}=\frac{1}{K}\sum_kP_{model}(y|\hat{u_{b,k}};\theta)</script><p>值得注意的是，$P<em>{model}(y|\hat{u</em>{b,k}};\theta)$是$Softmax$之后的预测概率分布。</p>
+<p><strong>第三步</strong>，通过$sharpening$函数完成分布的锐化，其计算公式如下：</p>
+<script type="math/tex; mode=display">Sharpen(p,T)_i=\frac{p_i^{\frac{1}{T}}}{\sum^L_{j=1}p_j^{\frac{1}{T}}}</script><p>当超参数$T\to 0$时，$Sharpen(p,T)$趋向于$one-hot$分布，即其中一个类别的概率为1，其余概率为0；锐化后的概率分布作为$\hat{U}$的数据标签(pseudo label)。</p>
+<p><strong>第四步</strong>，通过$MixUp$完成新数据集的构建。先将第一步扩增后的$\hat{X}$和$\hat{U}$进行拼接再打乱顺序，得到$W=Shuffle(Concat(\hat{X},\hat{U}))$，然后再将$W$分为两部分，第一部分大小与$\hat{X}$相同(也与$X$相同)，记为$W_x$；第二部分大小与$\hat{U}$相同(也与$U$相同)，记为$W_u$。然后将$W_x$和$\hat{X}$进行$MixUp$，$W_u$和$\hat{U}$进行$MixUp$，得到$X’$和$U’$。$MixUp$步骤如下：</p>
+<script type="math/tex; mode=display">\lambda\sim Beta(\alpha,\alpha)</script><script type="math/tex; mode=display">\lambda'=max(\lambda,1-\lambda)</script><script type="math/tex; mode=display">x'=\lambda'x_1+(1-\lambda')x_2</script><script type="math/tex; mode=display">p'=\lambda'p_1+(1-\lambda')p_2</script><p><strong>第五步</strong>，计算半监督损失函数，分为在标记数据集$X’$上的损失函数$L_x$和在无标记数据集$U’$上的损失函数$L_u$，公式如下：</p>
+<script type="math/tex; mode=display">L_x=\frac{1}{|X'|}\sum_{x,p\in X'}H(p,P_{model}(y|x;\theta))</script><script type="math/tex; mode=display">L_u=\frac{1}{L|U'|}\sum_{u,q\in U'}||q-P_{model}(y|u;\theta)||^2_2</script><script type="math/tex; mode=display">L=L_x+\lambda_UL_u</script><p>其中$H(\cdot)$是$CorssEntropyLoss$；$L_u$其实就是$MSE$准则下的误差项。</p>
+<p>反向梯度传播即可完成整个MixMatch算法</p>
+<h2 id="核心代码详解"><a href="#核心代码详解" class="headerlink" title="核心代码详解"></a>核心代码详解</h2><p>图像的水平翻转、裁剪实现$Augment$：<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">transform_train <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    dataset<span class="token punctuation">.</span>RandomPadandCrop<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    dataset<span class="token punctuation">.</span>RandomFlip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    dataset<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+transform_val <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    dataset<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><br>这里是在迭代过程中，手动取迭代器中的batch，而不是直接使用Dataloader。这种做法在最近的几篇文章代码复现中都遇见了，其主要目的是为了在一个epoch中可以迭代指定次数，而直接使用Dataloader只能迭代最多$ceil(\frac{样本总数}{BatchSize})$次，其中$ceil(\cdot)$是上取整函数，如果$drop_last$，则只能迭代$\frac{样本总数}{BatchSize}$次。代码中的两个try except是为了保证迭代器完全迭代一次后，重新加载迭代器，继续迭代，直到达到指定次数才跳转下一个epoch。<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> batch_idx <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>args<span class="token punctuation">.</span>train_iteration<span class="token punctuation">)</span><span class="token punctuation">:</span>
+     <span class="token keyword">try</span><span class="token punctuation">:</span>
+         inputs_x<span class="token punctuation">,</span> targets_x <span class="token operator">=</span> labeled_train_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+     <span class="token keyword">except</span><span class="token punctuation">:</span>
+         labeled_train_iter <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span>labeled_trainloader<span class="token punctuation">)</span>
+         inputs_x<span class="token punctuation">,</span> targets_x <span class="token operator">=</span> labeled_train_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+     <span class="token keyword">try</span><span class="token punctuation">:</span>
+         <span class="token punctuation">(</span>inputs_u<span class="token punctuation">,</span> inputs_u2<span class="token punctuation">)</span><span class="token punctuation">,</span> _ <span class="token operator">=</span> unlabeled_train_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+     <span class="token keyword">except</span><span class="token punctuation">:</span>
+         unlabeled_train_iter <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span>unlabeled_trainloader<span class="token punctuation">)</span>
+         <span class="token punctuation">(</span>inputs_u<span class="token punctuation">,</span> inputs_u2<span class="token punctuation">)</span><span class="token punctuation">,</span> _ <span class="token operator">=</span> unlabeled_train_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><br>因为文章中取$K=2$，所以进行两次扩增，求输出概率的均值，其中<strong>output_u</strong>和<strong>output_u2</strong>分别为两次扩增后的模型输出结果：<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">outputs_u <span class="token operator">=</span> model<span class="token punctuation">(</span>inputs_u<span class="token punctuation">)</span>
+outputs_u2 <span class="token operator">=</span> model<span class="token punctuation">(</span>inputs_u2<span class="token punctuation">)</span>
+p <span class="token operator">=</span> <span class="token punctuation">(</span>torch<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>outputs_u<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> torch<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>outputs_u2<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span>  <span class="token comment"># 求两次的平均值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><br>求Sharpening结果:<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">pt <span class="token operator">=</span> p<span class="token operator">**</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span>args<span class="token punctuation">.</span>T<span class="token punctuation">)</span>
+targets_u <span class="token operator">=</span> pt <span class="token operator">/</span> pt<span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> keepdim<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+targets_u <span class="token operator">=</span> targets_u<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><br>完成$MixUp$:<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">all_inputs <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">[</span>inputs_x<span class="token punctuation">,</span> inputs_u<span class="token punctuation">,</span> inputs_u2<span class="token punctuation">]</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+all_targets <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">[</span>targets_x<span class="token punctuation">,</span> targets_u<span class="token punctuation">,</span> targets_u<span class="token punctuation">]</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+l <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>beta<span class="token punctuation">(</span>args<span class="token punctuation">.</span>alpha<span class="token punctuation">,</span> args<span class="token punctuation">.</span>alpha<span class="token punctuation">)</span>
+l <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>l<span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">-</span>l<span class="token punctuation">)</span>
+idx <span class="token operator">=</span> torch<span class="token punctuation">.</span>randperm<span class="token punctuation">(</span>all_inputs<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+input_a<span class="token punctuation">,</span> input_b <span class="token operator">=</span> all_inputs<span class="token punctuation">,</span> all_inputs<span class="token punctuation">[</span>idx<span class="token punctuation">]</span>
+target_a<span class="token punctuation">,</span> target_b <span class="token operator">=</span> all_targets<span class="token punctuation">,</span> all_targets<span class="token punctuation">[</span>idx<span class="token punctuation">]</span>
+mixed_input <span class="token operator">=</span> l <span class="token operator">*</span> input_a <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> l<span class="token punctuation">)</span> <span class="token operator">*</span> input_b
+mixed_target <span class="token operator">=</span> l <span class="token operator">*</span> target_a <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> l<span class="token punctuation">)</span> <span class="token operator">*</span> target_b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><br>然后计算损失函数:<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">logits <span class="token operator">=</span> <span class="token punctuation">[</span>model<span class="token punctuation">(</span>mixed_input<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> <span class="token builtin">input</span> <span class="token keyword">in</span> mixed_input<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    logits<span class="token punctuation">.</span>append<span class="token punctuation">(</span>model<span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># put interleaved samples back</span>
+logits <span class="token operator">=</span> interleave<span class="token punctuation">(</span>logits<span class="token punctuation">,</span> batch_size<span class="token punctuation">)</span>
+logits_x <span class="token operator">=</span> logits<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+logits_u <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span>logits<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+Lx<span class="token punctuation">,</span> Lu<span class="token punctuation">,</span> w <span class="token operator">=</span> criterion<span class="token punctuation">(</span>logits_x<span class="token punctuation">,</span> mixed_target<span class="token punctuation">[</span><span class="token punctuation">:</span>batch_size<span class="token punctuation">]</span><span class="token punctuation">,</span> logits_u<span class="token punctuation">,</span> mixed_target<span class="token punctuation">[</span>batch_size<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">,</span> epoch<span class="token operator">+</span>batch_idx<span class="token operator">/</span>args<span class="token punctuation">.</span>train_iteration<span class="token punctuation">)</span>
+
+loss <span class="token operator">=</span> Lx <span class="token operator">+</span> w <span class="token operator">*</span> Lu<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><br>反向梯度传播，结束。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Semi-Supervised-Learning/">Semi-Supervised Learning</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Deep-Learning/">Deep Learning</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/Mixmatch/">http://lcjoffrey.top/2021/12/04/Mixmatch/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/04/Fixmatch/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">FixMatch文章解读+算法流程+核心代码详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/04/VAT/">
+                        <span class="hidden-mobile">Virtual Adversarial Training文章解读+算法流程+核心代码详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

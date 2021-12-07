@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="阅读解析FixMatch">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="阅读解析FixMatch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FixMatch文章解读+算法流程+核心代码详解">
+<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/Fixmatch/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="阅读解析FixMatch">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4f0c97744f73673206e011210b4495f8.png">
+<meta property="article:published_time" content="2021-12-04T06:55:43.000Z">
+<meta property="article:modified_time" content="2021-12-06T16:30:29.933Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4f0c97744f73673206e011210b4495f8.png">
+  
+  <title>FixMatch文章解读+算法流程+核心代码详解 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+<link rel="stylesheet" href="/css/mac.styl.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="FixMatch文章解读+算法流程+核心代码详解">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-04 14:55" pubdate>
+        2021年12月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">FixMatch文章解读+算法流程+核心代码详解</h1>
+            
+            <div class="markdown-body">
+              <h1 id="FixMatch"><a href="#FixMatch" class="headerlink" title="FixMatch"></a>FixMatch</h1><p><em>本博客仅做算法流程疏导，具体细节请参见原文</em></p>
+<h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2001.07685">查看原文点这里</a></p>
+<h2 id="Github代码"><a href="#Github代码" class="headerlink" title="Github代码"></a>Github代码</h2><p><a target="_blank" rel="noopener" href="https://github.com/kekmodel/FixMatch-pytorch">Github代码点这里</a></p>
+<h2 id="解读"><a href="#解读" class="headerlink" title="解读"></a>解读</h2><p> FixMatch算法抓住了半监督算法的两个重要观点，第一个是一致性正则化，第二个是伪标记。一致性正则化在<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41380292/article/details/119277938?spm=1001.2014.3001.5501">MixMatch</a>中已经介绍过了，在此不再赘述。伪标记是一种常用的半监督算法。</p>
+<h3 id="伪标记"><a href="#伪标记" class="headerlink" title="伪标记"></a>伪标记</h3><p>伪标记（pseudo label）其实算最早的一类半监督算法，代表算法self-training。简单地说就是通过训练的模型对无标记样本打标签，这个标签有对有错，通过一些方法筛选标签后，选择一部分无标记样本和模型打的标签一起送入模型继续训练。伪标记的方法最大问题在于，如何保证伪标记的正确性。因为当模型打的标签提供了较多的错误信息时，会使模型的训练结果更劣。一般常见的筛选方式是将模型输出的预测结果($Softmax$之后)进行阈值判断，其$argmax$的概率大于阈值，才认为是有效标记，否则将此无标记样本丢弃。</p>
+<h3 id="整体算法"><a href="#整体算法" class="headerlink" title="整体算法"></a>整体算法</h3><p>FixMatch算法并不复杂，结合一致性正则化和伪标记两种算法。由其论文中的流程图就可以很好的理解。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4f0c97744f73673206e011210b4495f8.png" srcset="/img/loading.gif" lazyload alt="image-20210802101107656"></p>
+<p>对于有标记样本，进行正常的监督学习，损失函数为$CrossEntropyLoss$，得到$L_s$。其公式表达如下：</p>
+<p>$L<em>s=\frac{1}{B}\sum^B</em>{b=1}H(p_b,p_m(y|\alpha(x_b)))$</p>
+<p>对于无标记样本，参照上图，共四步。</p>
+<p><strong>第一步</strong>，先对无标记样本进行扩增(Augment)，扩增分为强扩增和弱扩增，弱扩增使用标准的旋转和移位；强扩增使用RandAugment和CTAugment两种算法。</p>
+<p><strong>第二步</strong>，对扩增后的样本进行预测。对于弱扩增的样本，输出的预测结果($Softmax$之后的)最高预测概率(即$argmax$的结果)大于阈值(图中的虚线)，则认为是有效的样本，将其预测结果作为标签（这就是pseudo label）。</p>
+<p><strong>第三步</strong>：对强扩增的样本，输出的预测结果和对应弱标记样本得到的标签做$CrossEntropyLoss$，得到损失函数$L_u$。其公式表达为：</p>
+<p>$L<em>u=\frac{1}{\mu B}\sum^{\mu B}</em>{b=1}\mathcal{1}(max(q_b)\geq \tau )H(\hat{q_b},p_m(y|\mathcal{A}(u_b)))$</p>
+<p>简而言之就是选择$max(q_b)\geq \tau$的$H(\hat{q_b},p_m(y|\mathcal{A}(u_b))$作为$L_u$的组成成分，参与反向梯度传播更新。</p>
+<p><strong>第四步</strong>：最终损失函数为$Loss = L_s+\alpha L_u$，$\alpha$是超参数。</p>
+<p>对$Loss$反向梯度传播完成整个算法模型更新。</p>
+<h3 id="核心代码解读"><a href="#核心代码解读" class="headerlink" title="核心代码解读"></a>核心代码解读</h3><p>这里读取一个batch的操作，和前一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41380292/article/details/119277938?spm=1001.2014.3001.5501">MixMatch</a>的代码实现相同，为了读取指定次数的batch，而不通过Dataloader。<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> batch_idx <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>args<span class="token punctuation">.</span>eval_step<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        inputs_x<span class="token punctuation">,</span> targets_x <span class="token operator">=</span> labeled_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> args<span class="token punctuation">.</span>world_size <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
+            labeled_epoch <span class="token operator">+=</span> <span class="token number">1</span>
+            labeled_trainloader<span class="token punctuation">.</span>sampler<span class="token punctuation">.</span>set_epoch<span class="token punctuation">(</span>labeled_epoch<span class="token punctuation">)</span>
+        labeled_iter <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span>labeled_trainloader<span class="token punctuation">)</span>
+        inputs_x<span class="token punctuation">,</span> targets_x <span class="token operator">=</span> labeled_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token punctuation">(</span>inputs_u_w<span class="token punctuation">,</span> inputs_u_s<span class="token punctuation">)</span><span class="token punctuation">,</span> _ <span class="token operator">=</span> unlabeled_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> args<span class="token punctuation">.</span>world_size <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
+            unlabeled_epoch <span class="token operator">+=</span> <span class="token number">1</span>
+            unlabeled_trainloader<span class="token punctuation">.</span>sampler<span class="token punctuation">.</span>set_epoch<span class="token punctuation">(</span>unlabeled_epoch<span class="token punctuation">)</span>
+        unlabeled_iter <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span>unlabeled_trainloader<span class="token punctuation">)</span>
+        <span class="token punctuation">(</span>inputs_u_w<span class="token punctuation">,</span> inputs_u_s<span class="token punctuation">)</span><span class="token punctuation">,</span> _ <span class="token operator">=</span> unlabeled_iter<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><br>得到<strong>strong_augment</strong>样本和<strong>weak_augment</strong>样本，分别为<strong>logits_u_s</strong>和<strong>logits_u_w</strong>。<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">logits <span class="token operator">=</span> model<span class="token punctuation">(</span>inputs<span class="token punctuation">)</span>
+logits <span class="token operator">=</span> de_interleave<span class="token punctuation">(</span>logits<span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span>args<span class="token punctuation">.</span>mu<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+logits_x <span class="token operator">=</span> logits<span class="token punctuation">[</span><span class="token punctuation">:</span>batch_size<span class="token punctuation">]</span>
+logits_u_w<span class="token punctuation">,</span> logits_u_s <span class="token operator">=</span> logits<span class="token punctuation">[</span>batch_size<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>chunk<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div><br>对有标记样本做$CrossEntropyLoss$<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">Lx <span class="token operator">=</span> F<span class="token punctuation">.</span>cross_entropy<span class="token punctuation">(</span>logits_x<span class="token punctuation">,</span> targets_x<span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token string">'mean'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><br>通过<strong>weak_augment</strong>样本计算伪标记<strong>pseudo label</strong>和<strong>mask</strong>，其中，<strong>mask</strong>用来筛选哪些样本最大预测概率超过阈值，可以拿来使用，哪些不能使用<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">pseudo_label <span class="token operator">=</span> torch<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>logits_u_w<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span>args<span class="token punctuation">.</span>T<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+max_probs<span class="token punctuation">,</span> targets_u <span class="token operator">=</span> torch<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span>pseudo_label<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+mask <span class="token operator">=</span> max_probs<span class="token punctuation">.</span>ge<span class="token punctuation">(</span>args<span class="token punctuation">.</span>threshold<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><br>计算无标记样本的损失函数$L_u$，其中通过<strong>mask</strong>进行样本筛选<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">Lu <span class="token operator">=</span> <span class="token punctuation">(</span>F<span class="token punctuation">.</span>cross_entropy<span class="token punctuation">(</span>logits_u_s<span class="token punctuation">,</span> targets_u<span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token string">'none'</span><span class="token punctuation">)</span> <span class="token operator">*</span> mask<span class="token punctuation">)</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><br>完整损失函数如下<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">loss <span class="token operator">=</span> Lx <span class="token operator">+</span> args<span class="token punctuation">.</span>lambda_u <span class="token operator">*</span> Lu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><br>反向梯度更新，完成！~</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Semi-Supervised-Learning/">Semi-Supervised Learning</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Deep-Learning/">Deep Learning</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/Fixmatch/">http://lcjoffrey.top/2021/12/04/Fixmatch/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/04/pythonenvs2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">anaconda+pycharm+pytorch1.7+tensorflow1.14.0+tensorflow2.2.0多种环境共存</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/04/Mixmatch/">
+                        <span class="hidden-mobile">MixMatch文章解读+算法流程+核心代码详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
