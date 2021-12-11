@@ -24,6 +24,7 @@
     "hexo-renderer-kramed": "^0.1.4",
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
+    "hexo-tag-aplayer": "^3.0.4",
     "hexo-theme-fluid": "^1.8.12",
     "hexo-theme-landscape": "^0.0.3"
   }
