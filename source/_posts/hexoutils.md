@@ -8,6 +8,7 @@ tags:
   - hexo
 categories:
   - utils
+  - hexo
 date: 2021-12-03 21:27:54 
 comment: 'valine'
 ---
