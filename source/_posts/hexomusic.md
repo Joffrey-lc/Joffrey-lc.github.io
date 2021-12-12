@@ -1,8 +1,8 @@
 ---
-title: hexomusic
-excerpt: 没有添加摘要
+title: 为hexo博客添加aplayer音乐播放器
+excerpt: 苦中作乐
 index_img: >-
- https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204141222334.png
+ https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204140733338.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
   - hexo
