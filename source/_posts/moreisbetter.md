@@ -15,6 +15,8 @@ hide: false
 date: 2021-12-21 16:52:19
 ---
 
+[原文](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9247526)
+
 ## 简述
 
 作者认为，在**某一个时间点收集的数据集**训练得到的网络在**不同信道条件下的收集的数据集**上表现不佳，是因为同一特征在不同信道条件下的表现不同（learning a channel-distorted fingerprint instead of the pure inherent fingerprint）。所以提出来一种数据增强方式可以模拟原始数据集中没有的信道和噪声变化，从而增强模型的鲁棒性。
