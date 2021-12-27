@@ -75,3 +75,68 @@ u_idx = [4, 2, 3, 1, 0]
 label = [0, 3, 4, 1, 2]
 print([list(x) for x in zip(*sorted(zip(u_idx, label), key=lambda x: x[0]))][1])
 ```
+
+## 绘制混淆矩阵
+
+```python
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+def plot_confusion_matrix(cm, labels, title='Confusion Matrix', cmap=plt.cm.Blues):
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    xlocations = np.array(range(len(labels)))
+    plt.xticks(xlocations, labels, rotation=90)
+    plt.yticks(xlocations, labels)
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+
+
+def showmatrix(y_true, y_pred, labels, titlename):
+    tick_marks = np.array(range(len(labels))) + 0.5
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    plt.rcParams['axes.unicode_minus'] = False
+    cm = confusion_matrix(y_true, y_pred)
+    np.set_printoptions(precision=2)
+    cm_normalized = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    # 混淆矩阵
+    print(cm_normalized)
+    dd = np.zeros(len(cm_normalized))
+    for i in range(len(dd)):
+        dd[i] = cm_normalized[i, i]
+    print(dd)
+    max_c = cm_normalized.max()
+    min_c = cm_normalized.min()
+    print(sum(dd)/len(dd))
+    np.save('result/matrixdata.npy', dd)
+    plt.figure(figsize=(12, 8), dpi=120)
+    ind_array = np.arange(len(labels))
+    x, y = np.meshgrid(ind_array, ind_array)
+    for x_val, y_val in zip(x.flatten(), y.flatten()):
+        c = cm_normalized[y_val][x_val]
+        if c > 0.01:
+            if c > 0.5*(max_c+min_c):
+                plt.text(x_val, y_val, "%0.2f" % (c,), color='white', fontsize=10, va='center', ha='center')
+            else:
+                plt.text(x_val, y_val, "%0.2f" % (c,), color='black', fontsize=10, va='center', ha='center')
+    plt.gca().set_xticks(tick_marks, minor=True)
+    plt.gca().set_yticks(tick_marks, minor=True)
+    plt.gca().xaxis.set_ticks_position('none')
+    plt.gca().yaxis.set_ticks_position('none')
+    plt.grid(True, which='minor', linestyle='-')
+    plt.gcf().subplots_adjust(bottom=0.15)
+    plot_confusion_matrix(cm=cm_normalized, title=titlename, labels=labels)
+    plt.savefig('result/confusionmatrix.svg', format='svg')
+    plt.show()
+
+```
+
+然后在需要绘制的地方
+
+```python
+    showmatrix(val_label.cpu(), y_pred.cpu(), ['1', '2'], 'Confusion matrix')
+```
+
