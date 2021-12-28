@@ -174,3 +174,28 @@ dataset = dict(zip(['training', 'unlabeled', 'valid', 'test'], mysplit_n(dataset
                                                                           ))))
 ```
 
+取出分割的数据
+
+```python
+def make(dataset: Dict[str, np.ndarray]) -> Tuple[np.ndarray, np.ndarray]:
+    xs, ys = [], []
+    nclass = len(dataset.keys())
+    for k, name in enumerate(dataset):
+        xs.append(dataset[name])
+        label = np.zeros((len(dataset[name]), nclass))
+        label[:, k] = 1.0
+        ys.append(label)
+    xs = np.vstack(xs)
+    ys = np.vstack(ys)
+    index = np.arange(len(xs))
+    np.random.shuffle(index)
+    xs = xs[index]
+    ys = ys[index]
+    return xs, ys
+
+labeled_dataset, labeled_label = make(dataset['training'])
+unlabeled_dataset, unlabeled_label = make(dataset['unlabeled'])
+valid_dataset, valid_label = make(dataset['valid'])
+test_dataset, test_label = make(dataset['test'])
+```
+
