@@ -140,3 +140,37 @@ def showmatrix(y_true, y_pred, labels, titlename):
     showmatrix(val_label.cpu(), y_pred.cpu(), ['1', '2'], 'Confusion matrix')
 ```
 
+## 字典数据读取/分割数据集
+
+数据分割，可以根据输入的proportion维度自定义分割组数
+
+```python
+def mysplit_n(dataset: Dict[str, np.ndarray], proportion: Tuple[int, ...]) -> List[Any]:
+    out_list = []
+    for n in range(len(proportion)):
+        exec('dataset_'+str(n)+' = {}')
+        exec('index_'+str(n)+' = np.arange(sum(proportion[:n]), sum(proportion[:n+1]))')
+        exec('out_list.append(dataset_' + str(n)+')')
+    for name in dataset:
+        for n in range(len(proportion)):
+            exec('dataset_' + str(n) + '[name] = dataset[name][index_'+str(n)+']')
+    return out_list
+```
+
+先读取数据：
+
+```python
+dataset = shuffle(dict(np.load(f'./datasets/'+'RML2016_'+str(args.SNR)+'dB_normalize_power.npz', allow_pickle=True)))
+```
+
+再对数据进行划分
+
+```python
+dataset = dict(zip(['training', 'unlabeled', 'valid', 'test'], mysplit_n(dataset,
+                                                                         (args.num_labeled,
+                                                                          args.num_unlabeled,
+                                                                          args.num_valid,
+                                                                          args.num_test
+                                                                          ))))
+```
+
