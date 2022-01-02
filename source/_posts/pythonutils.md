@@ -199,3 +199,14 @@ valid_dataset, valid_label = make(dataset['valid'])
 test_dataset, test_label = make(dataset['test'])
 ```
 
+## 指定返回值类型
+
+```python
+from typing import List, Tuple
+
+
+def test(a: int, b: str) -> Tuple[int, str]:
+    print(a, b)
+    return 1000, '11'
+```
+
