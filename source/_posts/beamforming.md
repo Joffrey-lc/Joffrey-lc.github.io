@@ -19,7 +19,7 @@ date: 2022-01-14 15:05:29
 
 ## 信号数据
 
-因为都要计算自相关矩阵，而不同的信号之间应该是非相干的，噪声之间也是非相干的。所以可以直接用随机数代替信号。并且由于采样率和信号频率之间只决定了快拍数，而信号频率假设已知(因为要计算理想情况下的$$d=\frac{\lambda}{2}$$)，所以采样率也忽略了。
+因为都要计算自相关矩阵，而不同的信号之间应该是非相干的，噪声之间也是非相干的。所以可以直接用随机数代替信号。并且由于采样率和信号频率之间只决定了快拍数，而信号频率假设已知(因为要计算理想情况下的$$d=\frac{\lambda}{2}$$)，所以采样率也忽略了。如果认为噪声的信号为单位1，则信号的功率也为1，所以需要根据snr反算信号的幅度$$A_s$$，得到接收信号。
 
 ```matlab
 M = 40;
@@ -69,6 +69,10 @@ for i=1:length(theta_scan)
 end
 F_abs = 20*log(abs(F));
 ```
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_1.jpg" alt="MVDR_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_2.jpg" alt="MVDR_2" style="zoom: 25%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_1.jpg" alt="LCMV_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_2.jpg" alt="LCMV_2" style="zoom:25%;" />
 
 ### LCMV
 
@@ -155,6 +159,8 @@ end
 
 F_abs = 20*log(abs(F));
 ```
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_1.jpg" alt="RAB_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_2.jpg" alt="RAB_2" style="zoom:25%;" />
 
 ## 画图
 
