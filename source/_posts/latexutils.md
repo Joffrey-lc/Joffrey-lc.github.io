@@ -110,6 +110,18 @@ $$
 \setcounter{secnumdepth}{4} #secnum即section number，表示章节编号的深度
 ```
 
+# 希腊字母加粗
+
+一般加粗使用<code>\textbf{}</code>，希腊字母使用：
+
+```latex
+\boldsymbol{\phi}
+for example:
+\boldsymbol{\phi}||\phi
+```
+
+$$\boldsymbol{\phi}||\phi$$
+
 # vs code open json
 
 [json配置](https://blog.csdn.net/qq_24502469/article/details/114269806)
