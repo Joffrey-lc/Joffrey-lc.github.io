@@ -1,6 +1,6 @@
 ---
-title: 星座图
-excerpt: 没有添加摘要
+title: 知识储备-星座图
+excerpt: 星座图知识整理
 index_img: https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41f4fa54c7dc87329d6f03b81473b78a.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
