@@ -1,5 +1,5 @@
 ---
-title: IRS综述阅读（一）
+title: IRS综述阅读(一)
 excerpt: Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial文章的整理
 index_img: https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307223950922.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
