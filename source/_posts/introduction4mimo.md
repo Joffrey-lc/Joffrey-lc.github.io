@@ -26,7 +26,7 @@ SIMO：Single Input Multi Output：接收端丢一些没关系，只要保证Mul
 
 MIMO：Multi Input Multi Output：利用多天线，复用空间中不同的传输路径并行发送多份不同数据来提升容量（空分复用）
 
-![image-20220228200503468](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228200503468.png)
+![SISO到MIMO](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228200503468.png)
 
 **MIMO的性能受限于短板，即MIMO的最大容量受制于Input和Output端中天线数量少的一端。**
 
@@ -36,7 +36,7 @@ $A \times B $的MIMO，代表基站端有$A$根天线，用户端/手机有$B$�
 
 ## MIMO建模
 
-![image-20220228203934811](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228203934811.png)
+![2 times 2 MIMO示意图](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228203934811.png)
 
 得到一个方程组：
 $$
@@ -89,7 +89,7 @@ $$
 - 如果条件数=1，说明两个信道半斤八两，此时的MIMO系统的容量达到最大。
 - 如果条件数>1，说明两个信道有一定差距，此时系统会将主要资源放在质量好的信道上，此时$2\times 2$的MIMO系统的最大容量就介于$1\sim2$之间。
 
-![image-20220228234827809](introduction4mimo.assets/image-20220228234827809.png)
+![合作通信](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228234827809.png)
 
 基站和用户（手机）之间是合作通信，所以信道信息是可知的，这样就可以让基站进行选择。
 

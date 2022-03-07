@@ -1,23 +1,22 @@
 ---
 title: IRS综述阅读（一）
-excerpt: Intelligent Reflflecting Surface-Aided Wireless Communications: A Tutorial 内容整理
-index_img: >-
-  https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307223950922.png
+excerpt: Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial文章的整理
+index_img: https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307223950922.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
   - IRS
 categories:
   - Paper Reading
-  - Intelligent Reflflecting Surface
+  - Intelligent Reflecting Surface
 comment: valine
 math: true
 hide: false
-date: 2022-03-07 22:38:11
+date: 2022-03-07 14:55:43
 ---
 
 # 介绍
 
-*Intelligent Reflflecting Surface-Aided Wireless Communications: A Tutorial*文章的整理。
+*Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial*文章的整理。
 
 - [x] IRS基础部分及建模
 - [ ] IRS优化
