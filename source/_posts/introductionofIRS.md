@@ -1,6 +1,6 @@
 ---
-title: IRS综述阅读(一)
-excerpt: IRS综述文章整理
+title: IRS综述阅读（一）
+excerpt: IRS综述文章整理（1/3）
 index_img: https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307223950922.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
