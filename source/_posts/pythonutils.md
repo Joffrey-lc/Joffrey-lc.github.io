@@ -210,3 +210,32 @@ def test(a: int, b: str) -> Tuple[int, str]:
     return 1000, '11'
 ```
 
+## 自动给文章建好文件夹并创建.md
+
+```python
+import os
+import glob
+import shutil
+import time
+
+
+def mymkdirs(path_dir):
+    if os.path.exists(path_dir) is False:
+        os.makedirs(path_dir)
+        print(path_dir+'已创建')
+        shutil.move(src=path_dir+'.pdf', dst=os.path.join(path_dir, 'paper.pdf'))
+        with open(path_dir + '\\notes.md', 'a') as f:
+            f.write('Date: ' + time.strftime('%Y.%m.%d  %H:%M', time.localtime(time.time())))
+            f.write('\n')
+            f.write('Author: Joffrey LC')
+            f.write('\n')
+            f.write('\n------------------------------------------------')
+
+
+cwd_path = 'H:\学习\阅读\面向智能反射面数能系统的波形设计\IRS辅助SWIPT'
+for filename in glob.glob(cwd_path+'/*.pdf'):
+    path_dir = filename.split('.pdf')[0].split('\\')[-1]
+    mymkdirs(os.path.join(cwd_path, path_dir))
+
+```
+
