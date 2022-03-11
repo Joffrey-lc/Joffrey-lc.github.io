@@ -1,12 +1,12 @@
 ---
-title: Weighted Sum Power Maximization for Intelligent Reflecting Surface Aided SWIPT-梳理
-excerpt:（武庆庆）IRS辅助SWIPT
+title: IRS辅助SWIPT（一）
+excerpt: 武庆庆-IRS辅助SWIPT（一）
 index_img: >-
   https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220311150044247.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
-  - SWIPT
   - IRS
+  - SWIPT
 categories:
   - Paper Reading
   - Intelligent Reflecting Surface
@@ -15,6 +15,8 @@ math: true
 hide: false
 date: 2022-03-11 15:03:11
 ---
+
+[原文链接](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8941080)
 
 ## 缩写说明
 
