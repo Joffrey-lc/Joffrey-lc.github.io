@@ -1,6 +1,6 @@
 ---
 title: IRS综述阅读（一）
-excerpt: IRS综述文章整理（1/3）
+excerpt: 武庆庆-Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial
 index_img: https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307223950922.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
@@ -13,6 +13,8 @@ math: true
 hide: false
 date: 2022-03-07 14:55:43
 ---
+
+原文[Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial](https://ieeexplore.ieee.org/document/9326394)
 
 # 介绍
 
