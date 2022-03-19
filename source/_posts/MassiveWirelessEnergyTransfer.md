@@ -1,6 +1,6 @@
 ---
 title: 大规模无线能量传输综述（能量信道CSI-Free）
-excerpt: 综述-Onel L. A. López et.al Massive Wireless Energy Transfer: Enabling Sustainable IoT Toward 6G Era 
+excerpt: 综述-Onel L. A. López et.al Massive Wireless Energy Transfer-Enabling Sustainable IoT Toward 6G Era 
 index_img: >-
   https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160750316.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
