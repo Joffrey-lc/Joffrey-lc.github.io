@@ -1,0 +1,849 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="在Ubuntu上配置Anaconda和Pycharm">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="在Ubuntu上配置Anaconda和Pycharm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu+Anaconda+Pycharm从零开始完全配置">
+<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/pythonenvs1/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="在Ubuntu上配置Anaconda和Pycharm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/7ad7fd0e3ef8d2f6d687bcfd8df788d1.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/0b82637d87adf497934bb258f7d7f5b4.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1631340809(1).jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210911141449372.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1631340961(1).jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a0e14eb9a1f248a084b999dc510f88e9.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/04bd7cc833554833be86dc74cecf44e5.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/05003a641be50ccdc7b57c0018d6ed8d.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a193d60e4440b59adbd97316c9c9df40.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/d9590b8b0ea60d2c10685bc4f56959f1.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ee7859717696af99d153d4bd091d212c.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1e4e1225d0a6a518438abc52edaf52eb.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/dbd935507bf7bb03ca2145105b2fa06c.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/fdf81c9f3b4c4e5aa63e37f5c069385c.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3e035a41326e42a867ced8d63acdb9d3.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/72341f4e6e3a4d2fa07aee8d3371cf62.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41762965302b4f21945f9227aaa65584.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/060accad7e28f04cd82ef62f7dffa127.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/7b1ddc722f134c2dab8411f8ad395ad5.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/d6ec3004af3b4496d6181e4c6e224d5a.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/8bf9155f4fc323d6d2522d8919c2b9bd.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/8aeb4c04bedbab3ff66aa2859f4fe64d.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/78c41df3879144a298aab3be46163583.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4299c74e0a568ad2330f3b39e1de792f.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9efd1b042ff6eefc19e7a6605bdb09a0.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/105ec533b9e24e5c9abeb54fd4962ab3.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/48756f63548d3435d9f3444cf6481d95.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/0f51ede49666ebe160f76dffdb621352.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/bd15a253c2837d5bbb8e66d46c4d3c2c.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/cb67c6c1b897ccf02b066d5ac4dba2a7.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/6adfa37ec30141a85239af03bd35cf7d.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/73d98e58baaddd482d8e692f1892fe58.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3b780ae7f968f8a5cc8660fe7f2e0ccd.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a000c5813faf481be8027494ffee14bc.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f9b266960a55dbd98b88d5f04fa38b36.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/e8564be8122306f39d1220160b33fce9.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/44c46c71f28466a08a05445515f58ddd.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1d05a7e0fd993b8f48185336b560f047.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/7b4686cc3e10a564a2e4afaf2ae19ca1.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4622d61c5398e2a0a117908584bdc118.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/24f17f4634fe18a9406ea0ac6c2d18e6.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/df1750433d50f7a00c23b0547be0fbf6.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ac71dda9b9df98464922c6def590ac46.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/394851edbfa2fef606abc4b98908cb28.png">
+<meta property="article:published_time" content="2021-12-04T06:39:11.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.406Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="envs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/7ad7fd0e3ef8d2f6d687bcfd8df788d1.png">
+  
+  <title>Ubuntu+Anaconda+Pycharm从零开始完全配置 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Ubuntu+Anaconda+Pycharm从零开始完全配置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-04 14:39" pubdate>
+        2021年12月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Ubuntu+Anaconda+Pycharm从零开始完全配置</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Ubuntu-Anaconda-Pycharm"><a href="#Ubuntu-Anaconda-Pycharm" class="headerlink" title="Ubuntu+Anaconda+Pycharm"></a>Ubuntu+Anaconda+Pycharm</h1><h2 id="安装VMware"><a href="#安装VMware" class="headerlink" title="安装VMware"></a>安装VMware</h2><p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Kkmc94VEe7eNREiRvFHYkQ">分享我的版本VMware15.5</a></p>
+<p>提取码：3cxe</p>
+<p>一路傻瓜式安装</p>
+<h2 id="下载Ubuntu"><a href="#下载Ubuntu" class="headerlink" title="下载Ubuntu"></a>下载Ubuntu</h2><p>去阿里的镜像源下载更快，<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/ubuntu-releases/">点击这里</a>，我使用的是18.04.5</p>
+<p>下载的时候注意选择64位或者32位（在18.04.5中都是64位的）。并且牢记，这对后面安装java jdk有影响。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/7ad7fd0e3ef8d2f6d687bcfd8df788d1.png" srcset="/img/loading.gif" lazyload alt="image-20210911141018838"></p>
+<h2 id="安装Ubuntu"><a href="#安装Ubuntu" class="headerlink" title="安装Ubuntu"></a>安装Ubuntu</h2><p>打开VMware，选择主页—&gt;创建新的虚拟机</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/0b82637d87adf497934bb258f7d7f5b4.png" srcset="/img/loading.gif" lazyload alt="image-20210911141238134"></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1631340809(1).jpg" srcset="/img/loading.gif" lazyload alt="1631340809(1)" style="zoom:50%;" width="60%" /></p>
+<p>选择自定义，下一步</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210911141449372.png" srcset="/img/loading.gif" lazyload alt="image-20210911141449372" style="zoom: 50%;" width="60%"  /></p>
+<p>默认设置，下一步</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1631340961(1).jpg" srcset="/img/loading.gif" lazyload alt="1631340961(1)" style="zoom:10%;" width="60%" /></p>
+<p>选择稍后安装操作系统</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a0e14eb9a1f248a084b999dc510f88e9.jpg" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<p>选择好客户机操作系统和版本</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/04bd7cc833554833be86dc74cecf44e5.jpg" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<p>选择名字和位置</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/05003a641be50ccdc7b57c0018d6ed8d.png" srcset="/img/loading.gif" lazyload alt="image-20210911141939579"></p>
+<p>处理器配置，这个需要根据个人的业务需求和电脑配置分配</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a193d60e4440b59adbd97316c9c9df40.png" srcset="/img/loading.gif" lazyload alt="image-20210911142028889"></p>
+<p>虚拟机内存，分配大小也需要根据业务需求和电脑配置决定，太小了虚拟机会比较卡</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/d9590b8b0ea60d2c10685bc4f56959f1.png" srcset="/img/loading.gif" lazyload alt="image-20210911142109837"></p>
+<p>网络类型，默认</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ee7859717696af99d153d4bd091d212c.png" srcset="/img/loading.gif" lazyload alt="image-20210911142134408"></p>
+<p>IO默认</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1e4e1225d0a6a518438abc52edaf52eb.png" srcset="/img/loading.gif" lazyload alt="image-20210911142153119"></p>
+<p>磁盘默认</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/dbd935507bf7bb03ca2145105b2fa06c.png" srcset="/img/loading.gif" lazyload alt="image-20210911142213674"><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/fdf81c9f3b4c4e5aa63e37f5c069385c.jpg" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<p>创建新虚拟磁盘</p>
+<p>磁盘大小看个人需求</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3e035a41326e42a867ced8d63acdb9d3.png" srcset="/img/loading.gif" lazyload alt="image-20210911142405386"></p>
+<p>磁盘文件的存储地址，默认即可</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/72341f4e6e3a4d2fa07aee8d3371cf62.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>选择自定义硬件，在新CD/DVD中选择使用ISO映像文件，选择之前下载的Ubuntu操作系统，然后点右下角关闭，点击完成。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41762965302b4f21945f9227aaa65584.jpg" srcset="/img/loading.gif" lazyload alt="请添加图片描述"></p>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><p><strong>安装系统时容易出现安装界面显示不完全，导致continue按钮无法选中，可以按住alt键拖动窗口即可。</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/060accad7e28f04cd82ef62f7dffa127.png" srcset="/img/loading.gif" lazyload alt="image-20210911142826563"></p>
+<p>选择虚拟机，点击开启此虚拟机</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/7b1ddc722f134c2dab8411f8ad395ad5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>建议直接装英文版，中文字符使用不方便。点击Install Ubuntu</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/d6ec3004af3b4496d6181e4c6e224d5a.png" srcset="/img/loading.gif" lazyload alt="image-20210911143054598"></p>
+<p>选择键盘，就选英文键盘或者中文键盘都可以。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/8bf9155f4fc323d6d2522d8919c2b9bd.png" srcset="/img/loading.gif" lazyload alt="image-20210911143209246"></p>
+<p>默认安装一些软件</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/8aeb4c04bedbab3ff66aa2859f4fe64d.png" srcset="/img/loading.gif" lazyload alt="image-20210911143349971"></p>
+<p>选择默认的安装方式，会将磁盘文件中的数据给清楚（磁盘文件指的是安装Ubuntu的那个50G磁盘文件）</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/78c41df3879144a298aab3be46163583.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>continue开始安装，选择城市</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4299c74e0a568ad2330f3b39e1de792f.png" srcset="/img/loading.gif" lazyload alt="image-20210911143642255"></p>
+<p>设置账号密码</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9efd1b042ff6eefc19e7a6605bdb09a0.png" srcset="/img/loading.gif" lazyload alt="image-20210911143701815"></p>
+<p>安装完成后要求重启，完成安装。</p>
+<h2 id="Ubuntu-全屏，VMware-tools安装"><a href="#Ubuntu-全屏，VMware-tools安装" class="headerlink" title="Ubuntu 全屏，VMware tools安装"></a>Ubuntu 全屏，VMware tools安装</h2><p>安装完之后是非全屏的，需要安装VMware tools才能全屏显示</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/105ec533b9e24e5c9abeb54fd4962ab3.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>查看VMware tools的位置</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/48756f63548d3435d9f3444cf6481d95.png" srcset="/img/loading.gif" lazyload alt="image-20210911145415327"></p>
+<p>用Terminal（ctrl+alt+t打开）新建一个文件夹以供VMware tools 解压，建在哪都可以</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">cd Desktop
+mkdir tools<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>然后右键VMware tools 压缩包，解压到新建的文件夹中</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/0f51ede49666ebe160f76dffdb621352.png" srcset="/img/loading.gif" lazyload alt="image-20210911145859028"></p>
+<p>如果显示Not Enough free Space…就先将压缩文件移到tools文件夹中再直接解压。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/bd15a253c2837d5bbb8e66d46c4d3c2c.png" srcset="/img/loading.gif" lazyload alt="image-20210911150013994"></p>
+<p>然后进入解压后的文件夹，在此页面打开Terminal，进入超级用户</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">sudo su<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>然后输入密码，登录超级用户</p>
+<p>然后运行安装程序：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">.&#x2F;vmware-install.pl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>输入yes开始安装，一路回车</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/cb67c6c1b897ccf02b066d5ac4dba2a7.png" srcset="/img/loading.gif" lazyload alt="image-20210911150651319"></p>
+<p>看到Enjoy—the Vmware team就安装完成了，全屏的时候就已经可以自动调整大小了。</p>
+<h2 id="安装java-jdk"><a href="#安装java-jdk" class="headerlink" title="安装java jdk"></a>安装java jdk</h2><p>jdk包括了jre和jvm，分别是Java运行环境和Java虚拟机安装pycharm需要用得到，装pycharm和Anaconda之前先安装这个。</p>
+<p>先在Oracle官网下载对应的jdk，个人觉得jdk8已经够用了，新的无非是多一些新特性，暂时用不上。</p>
+<p><a href="[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-P3hK6zd6-1631348653338">下载地址点这里</a>(C:\Users\joffrey\AppData\Roaming\Typora\typora-user-images\image-20210911151030631.png)][外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-w2Jxy34Q-1631348653339)(C:\Users\joffrey\AppData\Roaming\Typora\typora-user-images\image-20210911151030631.png)])</p>
+<p>注意下载jdk，jdk里面带有jre，不要下错了。另外要注意是64位还是32位，下错了会出现以下错误：<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/6adfa37ec30141a85239af03bd35cf7d.png" srcset="/img/loading.gif" lazyload alt="image-20210910154704281"></p>
+<p>还是用jdk8</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/73d98e58baaddd482d8e692f1892fe58.png" srcset="/img/loading.gif" lazyload alt="image-20210911151144787"></p>
+<p>先新建一个文件夹，存储解压后的文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">cd Desktop
+mkdir jdk<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>然后解压文件到Desktop/jdk文件夹</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">sudo tar zxvf ~&#x2F;Downloads&#x2F;jdk-8u301-linux-x64.tar.gz -C ~&#x2F;Desktop&#x2F;jdk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3b780ae7f968f8a5cc8660fe7f2e0ccd.png" srcset="/img/loading.gif" lazyload alt="image-20210911151920137"></p>
+<p>添加环境变量：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">sudo gedit ~&#x2F;.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>并在打开的文件中输入，第一行路径需要根据个人的解压路径填写</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">export JAVA_HOME&#x3D;&#x2F;home&#x2F;lc&#x2F;Desktop&#x2F;jdk&#x2F;jdk1.8.0_301
+export JRE_HOME&#x3D;$&#123;JAVA_HOME&#125;&#x2F;jre 
+export CLASSPATH&#x3D;:$&#123;JAVA_HOME&#125;&#x2F;lib:$&#123;JRE_HOME&#125;&#x2F;lib 
+export PATH&#x3D;$&#123;JAVA_HOME&#125;&#x2F;bin:$PATH<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>然后使环境变量生效:</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">source ~&#x2F;.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>最后查看是否完成</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">java -version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a000c5813faf481be8027494ffee14bc.png" srcset="/img/loading.gif" lazyload alt="image-20210911152700050"></p>
+<p>有版本信息就说明完成了。</p>
+<h2 id="安装pycharm"><a href="#安装pycharm" class="headerlink" title="安装pycharm"></a>安装pycharm</h2><p><a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/#section=linux">官网下载</a></p>
+<p>解压下载的文件夹到目录，我这里是解压到Pycharm文件夹下：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">mkdir ~&#x2F;Pycharm
+sudo tar zxvf ~&#x2F;Downloads&#x2F;pycharm-professional-2021.2.1.tar.gz -C ~&#x2F;Pycharm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>进入文件夹/home/lc/Pycharm/pycharm-2021.2.1/bin 运行pycharm.sh</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">cd &#x2F;home&#x2F;lc&#x2F;Pycharm&#x2F;pycharm-2021.2.1&#x2F;bin
+sh pycharm.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f9b266960a55dbd98b88d5f04fa38b36.png" srcset="/img/loading.gif" lazyload alt="image-20210911153916643"></p>
+<p>选择continue</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/e8564be8122306f39d1220160b33fce9.png" srcset="/img/loading.gif" lazyload alt="image-20210911153947829"></p>
+<p>初次安装，不导入设置。剩下的就是激活了。网上有很多激活教程，或者免费试用30天，或者学生认证都可以。</p>
+<h3 id="配置快捷按钮"><a href="#配置快捷按钮" class="headerlink" title="配置快捷按钮"></a>配置快捷按钮</h3><p>在/usr/share/applications 创建一个名为pycharm.desktop的文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">cd &#x2F;usr&#x2F;share&#x2F;applications
+sudo gedit pycharm.desktop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>在打开的文件中粘贴</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">[Desktop Entry]
+Version&#x3D;1.0
+Type&#x3D;Application
+Name&#x3D;Pycharm
+Icon&#x3D;&#x2F;home&#x2F;lc&#x2F;Pycharm&#x2F;pycharm-2021.2.1&#x2F;bin&#x2F;pycharm.png
+Exec&#x3D;sh &#x2F;home&#x2F;lc&#x2F;Pycharm&#x2F;pycharm-2021.2.1&#x2F;bin&#x2F;pycharm.sh
+MimeType&#x3D;application&#x2F;x-py;
+Name[en_US]&#x3D;pycharm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>主要注意 Icon是图标，Exec 执行的命令，其中的路径要改。</p>
+<p>保存后就可以在所有的程序中看到pycharm了</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/44c46c71f28466a08a05445515f58ddd.png" srcset="/img/loading.gif" lazyload alt="image-20210911154907027"></p>
+<h2 id="Anaconda-安装"><a href="#Anaconda-安装" class="headerlink" title="Anaconda 安装"></a>Anaconda 安装</h2><p><a target="_blank" rel="noopener" href="https://www.anaconda.com/products/individual#Downloads">官网下载</a></p>
+<p>下载好了执行shell脚本</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">bash Anaconda3-2021.05-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1d05a7e0fd993b8f48185336b560f047.png" srcset="/img/loading.gif" lazyload alt="image-20210911155401162"></p>
+<p>然后一直回车，直到左下角没有—More—</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/7b4686cc3e10a564a2e4afaf2ae19ca1.png" srcset="/img/loading.gif" lazyload alt="image-20210911155458129"></p>
+<p>输入yes，回车</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4622d61c5398e2a0a117908584bdc118.png" srcset="/img/loading.gif" lazyload alt="image-20210911155529304"></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/24f17f4634fe18a9406ea0ac6c2d18e6.png" srcset="/img/loading.gif" lazyload alt="image-20210911155646959"></p>
+<p>添加环境变量，路径根据自己的修改</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">echo &#39;export PATH&#x3D;&quot;&#x2F;home&#x2F;lc&#x2F;anaconda3&#x2F;bin&#x2F;:$PATH&quot;&#39; &gt;&gt; ~&#x2F;.bashrc
+source ~&#x2F;.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>完成后有两个步骤，第一换源，第二做启动图标，第三创建新环境和激活</p>
+<h3 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;cloud&#x2F;conda-forge&#x2F;
+conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;free&#x2F;
+conda config --add channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;main&#x2F;
+conda config --append channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;cloud&#x2F;fastai&#x2F;
+conda config --append channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;cloud&#x2F;pytorch&#x2F;
+conda config --append channels https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;cloud&#x2F;bioconda&#x2F;
+conda config --set show_channel_urls yes
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="启动图标"><a href="#启动图标" class="headerlink" title="启动图标"></a>启动图标</h3><p>类似于pycharm</p>
+<p>创建一个文件：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">cd &#x2F;usr&#x2F;share&#x2F;applications&#x2F;
+sudo gedit anaconda.desktop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p>然后在打开的文件中粘贴如下，注意修改Icon和Exec路径：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">[Desktop Entry]
+Version&#x3D;1.0
+Name&#x3D;Anaconda
+Type&#x3D;Application
+GenericName&#x3D;Anaconda
+Comment&#x3D;Scientific Python Development Environment - Python3
+Exec&#x3D;&#x2F;home&#x2F;lc&#x2F;anaconda3&#x2F;bin&#x2F;anaconda-navigator
+Categories&#x3D;Development;Science;IDE;Qt;Education;
+Icon&#x3D;&#x2F;home&#x2F;lc&#x2F;anaconda3&#x2F;lib&#x2F;python3.8&#x2F;site-packages&#x2F;anaconda_navigator&#x2F;static&#x2F;images&#x2F;anaconda-icon-256x256.png
+Terminal&#x3D;false
+StartupNotify&#x3D;true
+MimeType&#x3D;text&#x2F;x-python;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/df1750433d50f7a00c23b0547be0fbf6.png" srcset="/img/loading.gif" lazyload alt="image-20210911161538078"></p>
+<h3 id="创建新环境并激活"><a href="#创建新环境并激活" class="headerlink" title="创建新环境并激活"></a>创建新环境并激活</h3><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">conda create --name xxx python&#x3D;3.8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>创建一个名字叫做xxx 的python版本为3.8的环境。我创造的环境名叫mytorch</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ac71dda9b9df98464922c6def590ac46.png" srcset="/img/loading.gif" lazyload alt="image-20210911161839275"></p>
+<p>通过如下命令来激活环境</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">conda activate mytorch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/394851edbfa2fef606abc4b98908cb28.png" srcset="/img/loading.gif" lazyload alt="image-20210911161908586"></p>
+<h2 id="Anaconda和Pycharm联合使用"><a href="#Anaconda和Pycharm联合使用" class="headerlink" title="Anaconda和Pycharm联合使用"></a>Anaconda和Pycharm联合使用</h2><p>参考之前的windows系统中的做法。即将pycharm中的编译器选择位anaconda环境的python编译器</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/envs/">envs</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/envs/">envs</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/pythonenvs1/">http://lcjoffrey.top/2021/12/04/pythonenvs1/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/04/MINEstimation/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mutual Information Neural Estimation梳理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/04/cpc/">
+                        <span class="hidden-mobile">Representation Learning with Contrastive Predictive Coding梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

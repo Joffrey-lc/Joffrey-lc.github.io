@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="latex工具箱，持续更新">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="latex工具箱，持续更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="latex工具箱">
+<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/latexutils/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="latex工具箱，持续更新">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/2d320c1a614a4c919702e9c8c95790a2.png">
+<meta property="article:published_time" content="2021-12-04T07:04:21.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.405Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="utils">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/2d320c1a614a4c919702e9c8c95790a2.png">
+  
+  <title>latex工具箱 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="latex工具箱">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-04 15:04" pubdate>
+        2021年12月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">latex工具箱</h1>
+            
+            <div class="markdown-body">
+              <h1 id="行间公式"><a href="#行间公式" class="headerlink" title="行间公式"></a>行间公式</h1><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span><span class="token equation string">
+<span class="token equation-command regex">\begin</span>&#123;aligned&#125;
+    <span class="token equation-command regex">\mathcal</span>&#123;L&#125;_&#123;dif&#125; =&amp; H(f_&#123;<span class="token equation-command regex">\theta</span>_1&#125;(x),f_&#123;<span class="token equation-command regex">\theta</span>_2&#125;(g_1(x)))<span class="token equation-command regex">\\</span>+&amp;H(f_&#123;<span class="token equation-command regex">\theta</span>_2&#125;(x),f_&#123;<span class="token equation-command regex">\theta</span>_1&#125;(g_2(x)))<span class="token equation-command regex">\label</span>&#123;eqn:5&#125;
+<span class="token equation-command regex">\end</span>&#123;aligned&#125;
+</span><span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="插入图片（矢量图推荐-eps）"><a href="#插入图片（矢量图推荐-eps）" class="headerlink" title="插入图片（矢量图推荐.eps）"></a>插入图片（矢量图推荐.eps）</h1><p>python直接保存的svg可以，但visio画的有时候不行，先转pdf再用inkscape转为.eps文件导入。<br>插入eps矢量图先导入两个包<br><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\usepackage</span><span class="token punctuation">&#123;</span><span class="token keyword">graphicx</span><span class="token punctuation">&#125;</span> <span class="token comment">%use graph format</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">&#123;</span><span class="token keyword">epstopdf</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div><br>然后正常的插图图像<br><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">figure</span><span class="token punctuation">&#125;</span><span class="token punctuation">[</span>htbp<span class="token punctuation">&#125;</span>
+<span class="token function selector">\centering</span>
+<span class="token function selector">\includegraphics</span><span class="token punctuation">[</span>width=0.5<span class="token function selector">\textwidth</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span>pic/CLDNN.eps<span class="token punctuation">&#125;</span><span class="token comment">%宽度为页面的50%</span>
+<span class="token function selector">\caption</span><span class="token punctuation">&#123;</span>CLDNN Network<span class="token punctuation">&#125;</span> <span class="token comment">%标注</span>
+<span class="token function selector">\label</span><span class="token punctuation">&#123;</span><span class="token keyword">fig:cldnn</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">figure</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
+<h1 id="IEEE-Conference-作者信息模板"><a href="#IEEE-Conference-作者信息模板" class="headerlink" title="IEEE Conference 作者信息模板"></a>IEEE Conference 作者信息模板</h1><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\author</span><span class="token punctuation">&#123;</span>
+<span class="token function selector">\IEEEauthorblockN</span><span class="token punctuation">&#123;</span>1<span class="token function selector">\textsuperscript</span><span class="token punctuation">&#123;</span>st<span class="token punctuation">&#125;</span> Name1<span class="token punctuation">&#125;</span>
+<span class="token function selector">\IEEEauthorblockA</span><span class="token punctuation">&#123;</span><span class="token function selector">\textit</span><span class="token punctuation">&#123;</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<span class="token punctuation">&#125;</span> <span class="token function selector">\\</span>
+Chengdu, China <span class="token function selector">\\</span>
+xxxxx@qq.com<span class="token punctuation">&#125;</span>
+
+<span class="token function selector">\and</span>
+<span class="token function selector">\IEEEauthorblockN</span><span class="token punctuation">&#123;</span>2<span class="token function selector">\textsuperscript</span><span class="token punctuation">&#123;</span>nd<span class="token punctuation">&#125;</span> Name2<span class="token punctuation">&#125;</span>
+<span class="token function selector">\IEEEauthorblockA</span><span class="token punctuation">&#123;</span><span class="token function selector">\textit</span><span class="token punctuation">&#123;</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<span class="token punctuation">&#125;</span> <span class="token function selector">\\</span>
+Chengdu, China  <span class="token function selector">\\</span>
+xxxxx@qq.con<span class="token punctuation">&#125;</span>
+<span class="token function selector">\and</span>
+
+<span class="token function selector">\IEEEauthorblockN</span><span class="token punctuation">&#123;</span>3<span class="token function selector">\textsuperscript</span><span class="token punctuation">&#123;</span>st<span class="token punctuation">&#125;</span> Name3<span class="token punctuation">&#125;</span>
+<span class="token function selector">\centerline</span>~  <span class="token comment">% 让第三个作者居中</span>
+<span class="token function selector">\IEEEauthorblockA</span><span class="token punctuation">&#123;</span><span class="token function selector">\textit</span><span class="token punctuation">&#123;</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<span class="token punctuation">&#125;</span> <span class="token function selector">\\</span>
+Chengdu, China  <span class="token function selector">\\</span>
+xxxxx@qq.com<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/2d320c1a614a4c919702e9c8c95790a2.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\renewcommand</span><span class="token punctuation">&#123;</span><span class="token function selector">\arraystretch</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>1.3<span class="token punctuation">&#125;</span><span class="token comment">%调行距</span>
+<span class="token comment">%\setlength\tabcolsep&#123;3pt&#125;%调列距</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">table</span><span class="token punctuation">&#125;</span><span class="token punctuation">[</span>htbp<span class="token punctuation">]</span>
+<span class="token function selector">\caption</span><span class="token punctuation">&#123;</span>Comparison of method performance<span class="token punctuation">&#125;</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">center</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">tabular</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>|c|c|c|<span class="token punctuation">&#125;</span>
+<span class="token function selector">\hline</span>
+<span class="token function selector">\textbf</span><span class="token punctuation">&#123;</span>Method<span class="token punctuation">&#125;</span><span class="token punctuation">&amp;</span><span class="token function selector">\textbf</span><span class="token punctuation">&#123;</span>Acc:10+500<span class="token punctuation">&#125;</span> <span class="token punctuation">&amp;</span><span class="token function selector">\textbf</span><span class="token punctuation">&#123;</span>Acc:50+500<span class="token punctuation">&#125;</span><span class="token function selector">\\</span><span class="token function selector">\hline</span>
+FixMatch<span class="token punctuation">&amp;</span>74.18\<span class="token comment">% &amp;83.53\%\\\hline</span>
+SSACGAN-FM<span class="token punctuation">&amp;</span>50.77\<span class="token comment">%&amp;71.00\%\\\hline</span>
+Enhanced DCT<span class="token punctuation">&amp;</span><span class="token function selector">\textbf</span><span class="token punctuation">&#123;</span>80.82<span class="token punctuation">&#125;</span>\<span class="token comment">%&amp;\textbf&#123;87.27&#125;\%\\\hline</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">tabular</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\label</span><span class="token punctuation">&#123;</span><span class="token keyword">tab:1</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">center</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">table</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h1 id="强制符号在下方"><a href="#强制符号在下方" class="headerlink" title="强制符号在下方"></a>强制符号在下方</h1><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\sum</span><span class="token function selector">\limits</span>_<span class="token punctuation">&#123;</span>x=0<span class="token punctuation">&#125;</span>^1
+
+<span class="token function selector">\mathop</span><span class="token punctuation">&#123;</span><span class="token function selector">\mathbb</span><span class="token punctuation">&#123;</span>E<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token function selector">\limits</span>_<span class="token punctuation">&#123;</span>X<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>$\sum\limits_{x=0}^1$</p>
+<p>$\mathop{\mathbb{E}}\limits_{X}$</p>
+<h1 id="大括号公式"><a href="#大括号公式" class="headerlink" title="大括号公式"></a>大括号公式</h1><div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\lambda</span> (t)=<span class="token function selector">\left</span><span class="token function selector">\&#123;</span> <span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">array</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>l<span class="token punctuation">&#125;</span>
+	<span class="token function selector">\lambda</span> _<span class="token punctuation">&#123;</span>max<span class="token punctuation">&#125;</span>exp(-5(<span class="token function selector">\frac</span><span class="token punctuation">&#123;</span>t-T<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>80<span class="token punctuation">&#125;</span>)^2),<span class="token function selector">\quad</span> t<span class="token function selector">\le</span> T<span class="token function selector">\\</span>
+	<span class="token function selector">\lambda</span> _<span class="token punctuation">&#123;</span>max<span class="token punctuation">&#125;</span>,<span class="token function selector">\quad</span> t>T<span class="token function selector">\\</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">array</span><span class="token punctuation">&#125;</span> <span class="token function selector">\right</span>. <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">
+\lambda (t)=\left\{ \begin{array}{l}
+    \lambda _{max}exp(-5(\frac{t-T}{80})^2),\quad t\le T\\
+    \lambda _{max},\quad t>T\\
+\end{array} \right.</script><h1 id="标题深度和目录深度"><a href="#标题深度和目录深度" class="headerlink" title="标题深度和目录深度"></a>标题深度和目录深度</h1><p>默认只到subsubsection。想要显示更深，在导言区加入：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\setcounter</span><span class="token punctuation">&#123;</span>tocdepth<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>3<span class="token punctuation">&#125;</span> # toc即table of content，表示目录显示的深度
+<span class="token function selector">\setcounter</span><span class="token punctuation">&#123;</span>secnumdepth<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>4<span class="token punctuation">&#125;</span> #secnum即section number，表示章节编号的深度<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h1 id="希腊字母加粗"><a href="#希腊字母加粗" class="headerlink" title="希腊字母加粗"></a>希腊字母加粗</h1><p>一般加粗使用<code>\textbf&#123;&#125;</code>，希腊字母使用：</p>
+<div class="code-wrapper"><pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\boldsymbol</span><span class="token punctuation">&#123;</span><span class="token function selector">\phi</span><span class="token punctuation">&#125;</span>
+for example:
+<span class="token function selector">\boldsymbol</span><span class="token punctuation">&#123;</span><span class="token function selector">\phi</span><span class="token punctuation">&#125;</span>||<span class="token function selector">\phi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<script type="math/tex; mode=display">\boldsymbol{\phi}||\phi</script><h1 id="vs-code-open-json"><a href="#vs-code-open-json" class="headerlink" title="vs code open json"></a>vs code open json</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24502469/article/details/114269806">json配置</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/utils/">utils</a>
+                    
+                      <a class="hover-with-bg" href="/categories/utils/latex/">latex</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/utils/">utils</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/latexutils/">http://lcjoffrey.top/2021/12/04/latexutils/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/04/datasetloader/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pytorch的自定义数据集/DataLoader和Dataset重写</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/04/pythonenvs2/">
+                        <span class="hidden-mobile">anaconda+pycharm+pytorch1.7+tensorflow1.14.0+tensorflow2.2.0多种环境共存</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

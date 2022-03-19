@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="python工具箱，持续更新">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="python工具箱，持续更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python工具箱">
+<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/pythonutils/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="python工具箱，持续更新">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-04T06:04:37.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.407Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="utils">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>python工具箱 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="python工具箱">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-04 14:04" pubdate>
+        2021年12月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python工具箱</h1>
+            
+            <div class="markdown-body">
+              <h1 id="记录常用的一些工具代码"><a href="#记录常用的一些工具代码" class="headerlink" title="记录常用的一些工具代码"></a>记录常用的一些工具代码</h1><h2 id="遍历某文件夹下的所有文件路径（递归）"><a href="#遍历某文件夹下的所有文件路径（递归）" class="headerlink" title="遍历某文件夹下的所有文件路径（递归）"></a>遍历某文件夹下的所有文件路径（递归）</h2><p>可以用来对某个数据集进行批量处理。这里只返回所有文件的路径， 并存储到一个list.txt文件中。<br><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_file_path</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> txt<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    dir_path <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> dp <span class="token keyword">in</span> dir_path<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isdir<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> dp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            get_file_path<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> dp<span class="token punctuation">)</span><span class="token punctuation">,</span> txt<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            txt<span class="token punctuation">.</span>append<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> dp<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
+<h2 id="np-savez保存后的读取"><a href="#np-savez保存后的读取" class="headerlink" title="np.savez保存后的读取"></a>np.savez保存后的读取</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">val_set_all <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token string">'savemodel/fine_tune_test_set.npz'</span><span class="token punctuation">,</span> allow_pickle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> name <span class="token keyword">in</span> val_set_all<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    val_set_all<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> val_set_all<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="JS散度"><a href="#JS散度" class="headerlink" title="JS散度"></a>JS散度</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">loss_js</span><span class="token punctuation">(</span>p_output<span class="token punctuation">,</span> q_output<span class="token punctuation">,</span> get_softmax<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    KLDivLoss <span class="token operator">=</span> nn<span class="token punctuation">.</span>KLDivLoss<span class="token punctuation">(</span>reduction<span class="token operator">=</span><span class="token string">'batchmean'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> get_softmax<span class="token punctuation">:</span>
+        p_output <span class="token operator">=</span> F<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>p_output<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+        q_output <span class="token operator">=</span> F<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>q_output<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    mean_output <span class="token operator">=</span> <span class="token punctuation">(</span>p_output <span class="token operator">+</span> q_output<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>KLDivLoss<span class="token punctuation">(</span>p_output<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> mean_output<span class="token punctuation">)</span> <span class="token operator">+</span> KLDivLoss<span class="token punctuation">(</span>q_output<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> mean_output<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="pytorch-设置随机种子"><a href="#pytorch-设置随机种子" class="headerlink" title="pytorch 设置随机种子"></a>pytorch 设置随机种子</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">seed_torch</span><span class="token punctuation">(</span>seed<span class="token operator">=</span><span class="token number">1029</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    random<span class="token punctuation">.</span>seed<span class="token punctuation">(</span>seed<span class="token punctuation">)</span>
+    os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'PYTHONHASHSEED'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>seed<span class="token punctuation">)</span> <span class="token comment"># 为了禁止hash随机化，使得实验可复现</span>
+    np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>seed<span class="token punctuation">(</span>seed<span class="token punctuation">)</span>
+    torch<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span>seed<span class="token punctuation">)</span>
+    torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span>seed<span class="token punctuation">)</span>
+    torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>manual_seed_all<span class="token punctuation">(</span>seed<span class="token punctuation">)</span>  <span class="token comment"># if you are using multi-GPU.</span>
+    torch<span class="token punctuation">.</span>backends<span class="token punctuation">.</span>cudnn<span class="token punctuation">.</span>benchmark <span class="token operator">=</span> <span class="token boolean">False</span>
+    torch<span class="token punctuation">.</span>backends<span class="token punctuation">.</span>cudnn<span class="token punctuation">.</span>deterministic <span class="token operator">=</span> <span class="token boolean">True</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="Pytorch梯度裁剪"><a href="#Pytorch梯度裁剪" class="headerlink" title="Pytorch梯度裁剪"></a>Pytorch梯度裁剪</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+nn<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>clip_grad_norm_<span class="token punctuation">(</span>net1<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> max_norm<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> norm_type<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+nn<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>clip_grad_norm_<span class="token punctuation">(</span>net2<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> max_norm<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> norm_type<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="matplotlib写中文"><a href="#matplotlib写中文" class="headerlink" title="matplotlib写中文"></a>matplotlib写中文</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'font.sans-serif'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'SimHei'</span><span class="token punctuation">]</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'axes.unicode_minus'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<h2 id="多个list按其中一个排序，其余的跟着变"><a href="#多个list按其中一个排序，其余的跟着变" class="headerlink" title="多个list按其中一个排序，其余的跟着变"></a>多个list按其中一个排序，其余的跟着变</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">u_idx <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+label <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">list</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token builtin">sorted</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span>u_idx<span class="token punctuation">,</span> label<span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="绘制混淆矩阵"><a href="#绘制混淆矩阵" class="headerlink" title="绘制混淆矩阵"></a>绘制混淆矩阵</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> confusion_matrix
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+
+<span class="token keyword">def</span> <span class="token function">plot_confusion_matrix</span><span class="token punctuation">(</span>cm<span class="token punctuation">,</span> labels<span class="token punctuation">,</span> title<span class="token operator">=</span><span class="token string">'Confusion Matrix'</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span>plt<span class="token punctuation">.</span>cm<span class="token punctuation">.</span>Blues<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>cm<span class="token punctuation">,</span> interpolation<span class="token operator">=</span><span class="token string">'nearest'</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span>cmap<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span>title<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>colorbar<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    xlocations <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xticks<span class="token punctuation">(</span>xlocations<span class="token punctuation">,</span> labels<span class="token punctuation">,</span> rotation<span class="token operator">=</span><span class="token number">90</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>yticks<span class="token punctuation">(</span>xlocations<span class="token punctuation">,</span> labels<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'True label'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Predicted label'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">showmatrix</span><span class="token punctuation">(</span>y_true<span class="token punctuation">,</span> y_pred<span class="token punctuation">,</span> labels<span class="token punctuation">,</span> titlename<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tick_marks <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">0.5</span>
+    plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'font.sans-serif'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'SimHei'</span><span class="token punctuation">]</span>
+    plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'axes.unicode_minus'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span>
+    cm <span class="token operator">=</span> confusion_matrix<span class="token punctuation">(</span>y_true<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
+    np<span class="token punctuation">.</span>set_printoptions<span class="token punctuation">(</span>precision<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    cm_normalized <span class="token operator">=</span> cm<span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">'float'</span><span class="token punctuation">)</span> <span class="token operator">/</span> cm<span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>newaxis<span class="token punctuation">]</span>
+    <span class="token comment"># 混淆矩阵</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>cm_normalized<span class="token punctuation">)</span>
+    dd <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>cm_normalized<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>dd<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        dd<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> cm_normalized<span class="token punctuation">[</span>i<span class="token punctuation">,</span> i<span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>dd<span class="token punctuation">)</span>
+    max_c <span class="token operator">=</span> cm_normalized<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    min_c <span class="token operator">=</span> cm_normalized<span class="token punctuation">.</span><span class="token builtin">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">sum</span><span class="token punctuation">(</span>dd<span class="token punctuation">)</span><span class="token operator">/</span><span class="token builtin">len</span><span class="token punctuation">(</span>dd<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    np<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">'result/matrixdata.npy'</span><span class="token punctuation">,</span> dd<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dpi<span class="token operator">=</span><span class="token number">120</span><span class="token punctuation">)</span>
+    ind_array <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">=</span> np<span class="token punctuation">.</span>meshgrid<span class="token punctuation">(</span>ind_array<span class="token punctuation">,</span> ind_array<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> x_val<span class="token punctuation">,</span> y_val <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> y<span class="token punctuation">.</span>flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        c <span class="token operator">=</span> cm_normalized<span class="token punctuation">[</span>y_val<span class="token punctuation">]</span><span class="token punctuation">[</span>x_val<span class="token punctuation">]</span>
+        <span class="token keyword">if</span> c <span class="token operator">></span> <span class="token number">0.01</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> c <span class="token operator">></span> <span class="token number">0.5</span><span class="token operator">*</span><span class="token punctuation">(</span>max_c<span class="token operator">+</span>min_c<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                plt<span class="token punctuation">.</span>text<span class="token punctuation">(</span>x_val<span class="token punctuation">,</span> y_val<span class="token punctuation">,</span> <span class="token string">"%0.2f"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>c<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'white'</span><span class="token punctuation">,</span> fontsize<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> va<span class="token operator">=</span><span class="token string">'center'</span><span class="token punctuation">,</span> ha<span class="token operator">=</span><span class="token string">'center'</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                plt<span class="token punctuation">.</span>text<span class="token punctuation">(</span>x_val<span class="token punctuation">,</span> y_val<span class="token punctuation">,</span> <span class="token string">"%0.2f"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>c<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'black'</span><span class="token punctuation">,</span> fontsize<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> va<span class="token operator">=</span><span class="token string">'center'</span><span class="token punctuation">,</span> ha<span class="token operator">=</span><span class="token string">'center'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>set_xticks<span class="token punctuation">(</span>tick_marks<span class="token punctuation">,</span> minor<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>set_yticks<span class="token punctuation">(</span>tick_marks<span class="token punctuation">,</span> minor<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>xaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>yaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">,</span> which<span class="token operator">=</span><span class="token string">'minor'</span><span class="token punctuation">,</span> linestyle<span class="token operator">=</span><span class="token string">'-'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>gcf<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>subplots_adjust<span class="token punctuation">(</span>bottom<span class="token operator">=</span><span class="token number">0.15</span><span class="token punctuation">)</span>
+    plot_confusion_matrix<span class="token punctuation">(</span>cm<span class="token operator">=</span>cm_normalized<span class="token punctuation">,</span> title<span class="token operator">=</span>titlename<span class="token punctuation">,</span> labels<span class="token operator">=</span>labels<span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>savefig<span class="token punctuation">(</span><span class="token string">'result/confusionmatrix.svg'</span><span class="token punctuation">,</span> <span class="token builtin">format</span><span class="token operator">=</span><span class="token string">'svg'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>然后在需要绘制的地方</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">showmatrix<span class="token punctuation">(</span>val_label<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> y_pred<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'2'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Confusion matrix'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="字典数据读取-分割数据集"><a href="#字典数据读取-分割数据集" class="headerlink" title="字典数据读取/分割数据集"></a>字典数据读取/分割数据集</h2><p>数据分割，可以根据输入的proportion维度自定义分割组数</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">mysplit_n</span><span class="token punctuation">(</span>dataset<span class="token punctuation">:</span> Dict<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>ndarray<span class="token punctuation">]</span><span class="token punctuation">,</span> proportion<span class="token punctuation">:</span> Tuple<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>Any<span class="token punctuation">]</span><span class="token punctuation">:</span>
+    out_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> n <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>proportion<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">exec</span><span class="token punctuation">(</span><span class="token string">'dataset_'</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">' = &#123;&#125;'</span><span class="token punctuation">)</span>
+        <span class="token keyword">exec</span><span class="token punctuation">(</span><span class="token string">'index_'</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">' = np.arange(sum(proportion[:n]), sum(proportion[:n+1]))'</span><span class="token punctuation">)</span>
+        <span class="token keyword">exec</span><span class="token punctuation">(</span><span class="token string">'out_list.append(dataset_'</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">')'</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> name <span class="token keyword">in</span> dataset<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> n <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>proportion<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">exec</span><span class="token punctuation">(</span><span class="token string">'dataset_'</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'[name] = dataset[name][index_'</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">']'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> out_list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>先读取数据：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">dataset <span class="token operator">=</span> shuffle<span class="token punctuation">(</span><span class="token builtin">dict</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'./datasets/'</span></span><span class="token operator">+</span><span class="token string">'RML2016_'</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>args<span class="token punctuation">.</span>SNR<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'dB_normalize_power.npz'</span><span class="token punctuation">,</span> allow_pickle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>再对数据进行划分</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">dataset <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'training'</span><span class="token punctuation">,</span> <span class="token string">'unlabeled'</span><span class="token punctuation">,</span> <span class="token string">'valid'</span><span class="token punctuation">,</span> <span class="token string">'test'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> mysplit_n<span class="token punctuation">(</span>dataset<span class="token punctuation">,</span>
+                                                                         <span class="token punctuation">(</span>args<span class="token punctuation">.</span>num_labeled<span class="token punctuation">,</span>
+                                                                          args<span class="token punctuation">.</span>num_unlabeled<span class="token punctuation">,</span>
+                                                                          args<span class="token punctuation">.</span>num_valid<span class="token punctuation">,</span>
+                                                                          args<span class="token punctuation">.</span>num_test
+                                                                          <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>取出分割的数据</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">make</span><span class="token punctuation">(</span>dataset<span class="token punctuation">:</span> Dict<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>ndarray<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Tuple<span class="token punctuation">[</span>np<span class="token punctuation">.</span>ndarray<span class="token punctuation">,</span> np<span class="token punctuation">.</span>ndarray<span class="token punctuation">]</span><span class="token punctuation">:</span>
+    xs<span class="token punctuation">,</span> ys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    nclass <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>dataset<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span> name <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        xs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        label <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>dataset<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nclass<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        label<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> k<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1.0</span>
+        ys<span class="token punctuation">.</span>append<span class="token punctuation">(</span>label<span class="token punctuation">)</span>
+    xs <span class="token operator">=</span> np<span class="token punctuation">.</span>vstack<span class="token punctuation">(</span>xs<span class="token punctuation">)</span>
+    ys <span class="token operator">=</span> np<span class="token punctuation">.</span>vstack<span class="token punctuation">(</span>ys<span class="token punctuation">)</span>
+    index <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>xs<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>shuffle<span class="token punctuation">(</span>index<span class="token punctuation">)</span>
+    xs <span class="token operator">=</span> xs<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+    ys <span class="token operator">=</span> ys<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> xs<span class="token punctuation">,</span> ys
+
+labeled_dataset<span class="token punctuation">,</span> labeled_label <span class="token operator">=</span> make<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token string">'training'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+unlabeled_dataset<span class="token punctuation">,</span> unlabeled_label <span class="token operator">=</span> make<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token string">'unlabeled'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+valid_dataset<span class="token punctuation">,</span> valid_label <span class="token operator">=</span> make<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token string">'valid'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+test_dataset<span class="token punctuation">,</span> test_label <span class="token operator">=</span> make<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span><span class="token string">'test'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="指定返回值类型"><a href="#指定返回值类型" class="headerlink" title="指定返回值类型"></a>指定返回值类型</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> List<span class="token punctuation">,</span> Tuple
+
+
+<span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Tuple<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token string">'11'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="自动给文章建好文件夹并创建-md"><a href="#自动给文章建好文件夹并创建-md" class="headerlink" title="自动给文章建好文件夹并创建.md"></a>自动给文章建好文件夹并创建.md</h2><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">import</span> glob
+<span class="token keyword">import</span> shutil
+<span class="token keyword">import</span> time
+
+
+<span class="token keyword">def</span> <span class="token function">mymkdirs</span><span class="token punctuation">(</span>path_dir<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>path_dir<span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token boolean">False</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>path_dir<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>path_dir<span class="token operator">+</span><span class="token string">'已创建'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">mypaperspace</span><span class="token punctuation">(</span>path_paper<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    shutil<span class="token punctuation">.</span>move<span class="token punctuation">(</span>src<span class="token operator">=</span>path_paper <span class="token operator">+</span> <span class="token string">'.pdf'</span><span class="token punctuation">,</span> dst<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path_paper<span class="token punctuation">,</span> <span class="token string">'paper.pdf'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>path_paper <span class="token operator">+</span> <span class="token string">'\\notes.md'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'Date: '</span> <span class="token operator">+</span> time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y.%m.%d  %H:%M'</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>localtime<span class="token punctuation">(</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'Author: Joffrey LC'</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'\n------------------------------------------------'</span><span class="token punctuation">)</span>
+
+
+cwd_path <span class="token operator">=</span> <span class="token string">'H:\学习\阅读\面向智能反射面数能系统的波形设计\\test'</span>
+mymkdirs<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>cwd_path<span class="token punctuation">,</span> <span class="token string">'文章备份'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> filename <span class="token keyword">in</span> glob<span class="token punctuation">.</span>glob<span class="token punctuation">(</span>cwd_path<span class="token operator">+</span><span class="token string">'/*.pdf'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    shutil<span class="token punctuation">.</span>copy<span class="token punctuation">(</span>src<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>cwd_path<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">,</span> dst<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>cwd_path<span class="token punctuation">,</span> <span class="token string">'文章备份'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    path_dir <span class="token operator">=</span> filename<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'.pdf'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\\'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+    mymkdirs<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>cwd_path<span class="token punctuation">,</span> path_dir<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    mypaperspace<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>cwd_path<span class="token punctuation">,</span> path_dir<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># To do:</span>
+<span class="token comment"># shutil.move 移动文件名较长的文件时会发生错误，有时间的话尝试自己写一个移动文件的代码</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/utils/">utils</a>
+                    
+                      <a class="hover-with-bg" href="/categories/utils/python/">python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/utils/">utils</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/pythonutils/">http://lcjoffrey.top/2021/12/04/pythonutils/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/04/wordlatex2pdf/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">word/latex插入矢量图</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/03/hexoutils/">
+                        <span class="hidden-mobile">hexo 工具箱</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

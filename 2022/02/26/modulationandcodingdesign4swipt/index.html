@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="SWIPT相关阅读">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="SWIPT相关阅读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阅读笔记-Modulation and Coding Design for Simultaneous Wireless Information and Power Transfer">
+<meta property="og:url" content="http://lcjoffrey.top/2022/02/26/modulationandcodingdesign4swipt/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="SWIPT相关阅读">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/149477c0dc394a332caeea51db437e80.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/006b17b4138c9d95b731f764a4715a8e.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/c8ce5d538e20380058d694e86ecafa47.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ce492042e336b8ee78f5d86b0930f953.png">
+<meta property="article:published_time" content="2022-02-26T07:45:41.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.406Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="SWIPT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/149477c0dc394a332caeea51db437e80.png">
+  
+  <title>阅读笔记-Modulation and Coding Design for Simultaneous Wireless Information and Power Transfer - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://img-blog.csdnimg.cn/img_convert/149477c0dc394a332caeea51db437e80.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="阅读笔记-Modulation and Coding Design for Simultaneous Wireless Information and Power Transfer">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-26 15:45" pubdate>
+        2022年2月26日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">阅读笔记-Modulation and Coding Design for Simultaneous Wireless Information and Power Transfer</h1>
+            
+            <div class="markdown-body">
+              <h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><ul>
+<li>WPT: wireless power transfer</li>
+<li>WIT: wireless information transfer</li>
+<li>SWIPT: simultaneous wireless information and power transfer, coordinating WIT and WPT in the same RF spectral band thus yields the research of SWIPT</li>
+</ul>
+<h2 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions"></a>Contributions</h2><ul>
+<li>Introduce the popular transceiver architecture of SWIPT</li>
+<li>unary code and run-length-limited (RLL) code in SWIPT. These two codes can show the trade-off between WIT and WPT performance</li>
+<li>The impact of wireless channels and hardware constraints on the practical modulation design in the SWIPT system is studied for a single user scenario.</li>
+<li>The principle of the modulation design in multi-user SWIPT systems relying on the superposition symbols is introduced.</li>
+<li>Open problems concerning the modulation and coding design in the SWIPT system are envisioned.</li>
+</ul>
+<h2 id="收发机结构"><a href="#收发机结构" class="headerlink" title="收发机结构"></a>收发机结构</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/149477c0dc394a332caeea51db437e80.png" srcset="/img/loading.gif" lazyload alt="trancevier"></p>
+<h2 id="SWIPT接收机"><a href="#SWIPT接收机" class="headerlink" title="SWIPT接收机"></a>SWIPT接收机</h2><p>接收机由两个部分，分别用作WIT和WPT。RF信号被接收机接收后，根据一定规则用作WIT和WPT。现有成果都主要研究收发机结构，很少研究编码和调制的影响。</p>
+<h3 id="非线性整流"><a href="#非线性整流" class="headerlink" title="非线性整流"></a>非线性整流</h3><p>只有当信号功率大于一定<strong>阈值</strong>，才会激活接收机的整流器电路，才会接收能量。</p>
+<h2 id="编码与SWIPT"><a href="#编码与SWIPT" class="headerlink" title="编码与SWIPT"></a>编码与SWIPT</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/006b17b4138c9d95b731f764a4715a8e.png" srcset="/img/loading.gif" lazyload alt="coding with SWIPT"></p>
+<p>结合上图，同一种调制方式2ASK(OOK)，因为编码后的码元不同，导致波形不同，根据上面接收机的设计，携带的能量也不同。给设备充电的能力也不同。<strong>但是要注意能量不宜过高，造成能源浪费，也不宜过低，造成设备能源短缺。</strong></p>
+<p>所以传输能量和信息之间有一个trade-off：</p>
+<ol>
+<li><p>无论传什么信息，编码都是全1，能量达到最大值，但是互信息为0（意味着接收机并不能接受到有用的信息）</p>
+<p>从信息论的角度而言，因为有$H(x)=H(X|Y)+I(X;Y)$</p>
+<p>其中$H(x)$是原本信宿有的信息量，$I(X;Y)=0$，则信道损失熵$H(X|Y)=H(X)$，意味着信息全部丢失。</p>
+</li>
+<li><p>如果完全考虑WIT，则可能不满足WPT的要求，或者说WPT不可控？</p>
+</li>
+</ol>
+<p>基于此，有一些可用的编码方式（这些编码本身也就存在WIT和WPT的trade-off）：</p>
+<p><strong>Compensation Energy Coding:</strong> Dummy binary  bits are directly concatenated behind information bits in order to guarantee that the resultant  codeword has a certain percentage of bit “1.”  This coding approach has the lowest complexity. However, the dummy bits do not carry any  information, which may thus degrade the WIT  performance.<br><strong>Inverse Source Coding:</strong> A classic source  encoder takes non-equi-probable messages to  generate binary sequences having equi-probable  binary bits. By contrast, an inverse source encoder  takes equi-probable messages to generate binary  sequences having certain structures for satisfying  the WPT requirement. However, the asynchronization between the encoder and the decoder imposes difficulties in the efficient decoding design.<br><strong>Constraint Coding:</strong> Some constraint coding  techniques have degrees of freedom to change  the codeword structure for satisfying the WPT  requirement. Since they do not include any  dummy bits, the WIT performance may not suffer  significant degradation. Furthermore, the efficient  symbol-level trellis can be adopted for decoding  the constraint code.</p>
+<p>以及文章中介绍的两种约束编码：</p>
+<p><strong>Unary Code:</strong> The unary encoder maps the j-th input binary  sequence onto a j-bit codeword, which has a  single bit “0” at the end and all the other bits in  front are “1.” For instance, the four-level unary  encoder is capable of encoding four different binary sequences {00, 01, 10, 11}. The first  input sequence ‘00’ is encoded as a codeword  ‘0’, while the fourth input sequence “11” is thus  encoded as a codeword “1110”. Obviously, a  different input binary sequence may be encoded  as a codeword having a different percentage of  energy bit “1.” Therefore, the average percentage of energy bit “1” in unary codewords can be  adjusted by changing the occurrence probabilities  of the input binary sequences, which hence controls the SWIPT performance of the codewords.</p>
+<p><strong>Run-Length-Limited Code</strong>:  Another constraint coding technique is the RLL  code [12]. A type-0 (d, k)-RLL code has the following constraints on a codeword: • The runs of bit “0” have a length of d at least  between successive bit “1.” • The runs of bit “0” have a length of k at most  between successive bit “1.” The run-length of bit “0” may be an arbitrary  value between d and k. For instance, a type-0 (1,  3) RLL code is capable of generating a binary bit  sequence of “10100010010001001 …,” where  the minimum run-length of bit “0” is 1 and its  maximum run-length is 3. Obviously, the average  percentage of energy bit “1” in a type-0 RLL codeword is determined by the occurrence probabilities  of the runs of bit “0” having different lengths. For  instance, if a type-0 (1, 3) RLL encoder increases  the occurrence probability of the runs of bit “0”  having a length of 1, the average percentage of  energy bit “1” can be thus increased. Therefore,  by adjusting the occurrence probabilities of the  runs of bit “0” having different lengths, we may  control the SWIPT performance of the type-0 RLL  codewords. For a type-1 RLL encoder, we should  focus on adjusting the occurrence probabilities of  the runs of bit “1” having different lengths in order  to control its corresponding SWIPT performance.</p>
+<p>都是通过约束0-1出现的百分比，来控制WIT和WPT的权衡。</p>
+<h2 id="Battery-Aware-Design"><a href="#Battery-Aware-Design" class="headerlink" title="Battery-Aware Design"></a>Battery-Aware Design</h2><p>因为编码-调制后，所带有的能量不宜过高，也不宜过低。过高会导致能量溢出，过低会导致设备能源短缺。所以在满足最低的信息传输性能后，需要考虑最小化电池过满概率和下溢概率。</p>
+<h2 id="调制与SWIPT-Single-user"><a href="#调制与SWIPT-Single-user" class="headerlink" title="调制与SWIPT(Single-user)"></a>调制与SWIPT(Single-user)</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/c8ce5d538e20380058d694e86ecafa47.png" srcset="/img/loading.gif" lazyload alt="signal power and threshold"></p>
+<p>因为整流要设置一定阈值，16-PSK全部不能收集能量（如果阈小于平均功率，16-PSK最好），16-QAM有四个符号超过了阈值（红圈）</p>
+<p><strong>高阶调制方案往往具有更好的WPT性能</strong></p>
+<p>另外，一些干扰，例如多径，会降低WIT性能，但是提高WPT性能。</p>
+<h2 id="调制与SWIPT-Multiple-user"><a href="#调制与SWIPT-Multiple-user" class="headerlink" title="调制与SWIPT(Multiple-user)"></a>调制与SWIPT(Multiple-user)</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ce492042e336b8ee78f5d86b0930f953.png" srcset="/img/loading.gif" lazyload alt="constellation rotation"></p>
+<p>通过旋转星座图（如上图（下））来实现多用户时符号的叠加。图（上）的传统叠加方式，与原始符号相比，得到的叠加符号能量损失较大，导致WPT性能下降。而如图（下）的旋转，WPT性能满足，但是会损失一定的WIT性能（因为符号之间的最小欧式距离减小）。</p>
+<h2 id="Future-Challenges"><a href="#Future-Challenges" class="headerlink" title="Future Challenges"></a>Future Challenges</h2><p>The following open problems still need our further investigation.<br><strong>Concatenated Code:</strong> A concatenated encoder  consisting of a source encoder, channel encoder and an energy encoder should be carefully  designed, while a powerful iterative decoder is  also required for processing the sophisticated  concatenated codewords.<br><strong>Coded Modulation:</strong> The bit-to-symbol mapping from the binary bits to the modulated symbols has to be designed by jointly considering the  codeword structure and the modulation characteristic in order to satisfy both the WIT and WPT  requirements.<br><strong>Adaptive Modulation:</strong> In order to exploit the  distinctive WPT and WIT features of a specific  modulation scheme, we should design an adaptive modulation scheme by considering the wireless channel characteristics, the non-linear rectifier  and the diverse SWIPT requirements.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Simultaneous-Wireless-Information-and-Power-Transfer/">Simultaneous Wireless Information and Power Transfer</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SWIPT/">SWIPT</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/02/26/modulationandcodingdesign4swipt/">http://lcjoffrey.top/2022/02/26/modulationandcodingdesign4swipt/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/28/wirechannel/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">知识储备-无线信道</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/19/rule4clash/">
+                        <span class="hidden-mobile">设置CLASH规则</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

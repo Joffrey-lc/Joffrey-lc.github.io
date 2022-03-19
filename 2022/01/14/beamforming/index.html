@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="自适应波束合成MVDR、LCMV、RAB实现">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="自适应波束合成MVDR、LCMV、RAB实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自适应波束合成">
+<meta property="og:url" content="http://lcjoffrey.top/2022/01/14/beamforming/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="自适应波束合成MVDR、LCMV、RAB实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_1.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_2.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_1.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_2.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_1.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_2.jpg">
+<meta property="article:published_time" content="2022-01-14T07:05:29.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.403Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="array signal processing">
+<meta property="article:tag" content="radar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_1.jpg">
+  
+  <title>自适应波束合成 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="自适应波束合成">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-14 15:05" pubdate>
+        2022年1月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">自适应波束合成</h1>
+            
+            <div class="markdown-body">
+              <p>自适应波束合成的<strong>自适应</strong>三个字体现在针对不同数据，波束的合成不仅对期望方向有增益，还对干扰方向有一定的抑制。</p>
+<h2 id="信号数据"><a href="#信号数据" class="headerlink" title="信号数据"></a>信号数据</h2><p>因为都要计算自相关矩阵，而不同的信号之间应该是非相干的，噪声之间也是非相干的。所以可以直接用随机数代替信号。并且由于采样率和信号频率之间只决定了快拍数，而信号频率假设已知(因为要计算理想情况下的<script type="math/tex">d=\frac{\lambda}{2}</script>)，所以采样率也忽略了。如果认为噪声的信号为单位1，则信号的功率也为1，所以需要根据snr反算信号的幅度<script type="math/tex">A_s</script>，得到接收信号。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">M <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">;</span>
+c <span class="token operator">=</span> <span class="token number">3e8</span><span class="token punctuation">;</span>
+N<span class="token operator">=</span><span class="token number">300</span><span class="token punctuation">;</span>
+f <span class="token operator">=</span> <span class="token number">4.5</span><span class="token operator">*</span><span class="token number">1e6</span><span class="token punctuation">;</span>
+lambda <span class="token operator">=</span> c<span class="token operator">./</span>f<span class="token punctuation">;</span>
+SNR <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+R_circ <span class="token operator">=</span> <span class="token number">175</span><span class="token punctuation">;</span>
+thetaK <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+phiK <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">120</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>         
+As <span class="token operator">=</span> <span class="token number">10.</span><span class="token operator">^</span><span class="token punctuation">(</span>SNR<span class="token operator">./</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">.'</span><span class="token punctuation">;</span>
+signal<span class="token operator">=</span><span class="token function">randn</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>thetaK<span class="token punctuation">)</span><span class="token punctuation">,</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>SNR<span class="token punctuation">)</span>
+    <span class="token function">signal</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">signal</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">As</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+noise <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1i</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xn <span class="token operator">=</span> A<span class="token operator">*</span>signal<span class="token operator">+</span>noise<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><h3 id="MVDR"><a href="#MVDR" class="headerlink" title="MVDR"></a>MVDR</h3><p>原理导出都有，简单的说就是使期望方向增益不变的前提下，总功率最小的。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">R <span class="token operator">=</span> xn<span class="token operator">*</span>xn<span class="token operator">'</span><span class="token operator">/</span>N<span class="token punctuation">;</span>
+expect_n<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+noise_n<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+noise_nn<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+A_expect <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> expect_n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+w0 <span class="token operator">=</span> <span class="token function">inv</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token operator">*</span>A_expect<span class="token operator">/</span><span class="token punctuation">(</span>A_expect<span class="token operator">'</span><span class="token operator">*</span><span class="token function">inv</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token operator">*</span>A_expect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+dis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+theta_scan <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>dis<span class="token operator">:</span><span class="token number">90</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+phi_scan <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>dis<span class="token operator">:</span><span class="token number">360</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+
+
+F <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>theta_scan<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">length</span><span class="token punctuation">(</span>phi_scan<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>theta_scan<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token number">j</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>phi_scan<span class="token punctuation">)</span>
+        a <span class="token operator">=</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span><span class="token function">lambda</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">theta_scan</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phi_scan</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token operator">.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">F</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> w0<span class="token operator">'</span><span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+F_abs <span class="token operator">=</span> <span class="token number">20</span><span class="token operator">*</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>F<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_1.jpg" srcset="/img/loading.gif" lazyload alt="MVDR_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_2.jpg" srcset="/img/loading.gif" lazyload alt="MVDR_2" style="zoom: 25%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_1.jpg" srcset="/img/loading.gif" lazyload alt="LCMV_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_2.jpg" srcset="/img/loading.gif" lazyload alt="LCMV_2" style="zoom:25%;" /></p>
+<h3 id="LCMV"><a href="#LCMV" class="headerlink" title="LCMV"></a>LCMV</h3><p>LCMV是MVDR的直接扩展，由一个约束变为多个约束，将约束条件变为让多个方向（一个也可以）的增益不变，另外的干扰方向的增益为0。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">M <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">;</span>
+c <span class="token operator">=</span> <span class="token number">3e8</span><span class="token punctuation">;</span>
+N<span class="token operator">=</span><span class="token number">300</span><span class="token punctuation">;</span>
+f <span class="token operator">=</span> <span class="token number">4.5</span><span class="token operator">*</span><span class="token number">1e6</span><span class="token punctuation">;</span>
+lambda <span class="token operator">=</span> c<span class="token operator">./</span>f<span class="token punctuation">;</span>
+SNR <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+R_circ <span class="token operator">=</span> <span class="token number">175</span><span class="token punctuation">;</span>
+thetaK <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+phiK <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">120</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>         
+As <span class="token operator">=</span> <span class="token number">10.</span><span class="token operator">^</span><span class="token punctuation">(</span>SNR<span class="token operator">./</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">.'</span><span class="token punctuation">;</span>
+signal<span class="token operator">=</span><span class="token function">randn</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>thetaK<span class="token punctuation">)</span><span class="token punctuation">,</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>SNR<span class="token punctuation">)</span>
+    <span class="token function">signal</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">signal</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">As</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+noise <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1i</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xn <span class="token operator">=</span> A<span class="token operator">*</span>signal<span class="token operator">+</span>noise<span class="token punctuation">;</span>
+
+R <span class="token operator">=</span> xn<span class="token operator">*</span>xn<span class="token operator">'</span><span class="token operator">/</span>N<span class="token punctuation">;</span>
+dis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+theta_scan <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>dis<span class="token operator">:</span><span class="token number">90</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+phi_scan <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>dis<span class="token operator">:</span><span class="token number">360</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+C_matrix <span class="token operator">=</span> A<span class="token punctuation">;</span>
+matrix_f <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">.'</span><span class="token punctuation">;</span> <span class="token comment">%约束向量</span>
+F <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>theta_scan<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">length</span><span class="token punctuation">(</span>phi_scan<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+w0 <span class="token operator">=</span> <span class="token function">inv</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token operator">*</span>C_matrix<span class="token operator">/</span><span class="token punctuation">(</span>C_matrix<span class="token operator">'</span><span class="token operator">*</span><span class="token function">inv</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token operator">*</span>C_matrix<span class="token punctuation">)</span><span class="token operator">*</span>matrix_f<span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>theta_scan<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token number">j</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>phi_scan<span class="token punctuation">)</span>
+        a <span class="token operator">=</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span><span class="token function">lambda</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>R_circ<span class="token operator">*</span> <span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">theta_scan</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phi_scan</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token operator">.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">F</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> w0<span class="token operator">'</span><span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+F_abs <span class="token operator">=</span> <span class="token number">20</span><span class="token operator">*</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>F<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="RAB"><a href="#RAB" class="headerlink" title="RAB"></a>RAB</h3><p>RAB是鲁棒自适应波束合成，目的是通过导向矢量在信号-干扰子空间上的投影，得到一个更为精确的导向矢量。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">M <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">;</span>
+c <span class="token operator">=</span> <span class="token number">3e8</span><span class="token punctuation">;</span>
+N<span class="token operator">=</span><span class="token number">300</span><span class="token punctuation">;</span>
+f <span class="token operator">=</span> <span class="token number">4.5</span><span class="token operator">*</span><span class="token number">1e6</span><span class="token punctuation">;</span>
+lambda <span class="token operator">=</span> c<span class="token operator">./</span>f<span class="token punctuation">;</span>
+SNR <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+R_circ <span class="token operator">=</span> <span class="token number">175</span><span class="token punctuation">;</span>
+thetaK <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+phiK <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">120</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>         
+As <span class="token operator">=</span> <span class="token number">10.</span><span class="token operator">^</span><span class="token punctuation">(</span>SNR<span class="token operator">./</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+A <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span>lambda<span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">.'</span><span class="token punctuation">;</span>
+signal<span class="token operator">=</span><span class="token function">randn</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>thetaK<span class="token punctuation">)</span><span class="token punctuation">,</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>SNR<span class="token punctuation">)</span>
+    <span class="token function">signal</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">signal</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">As</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+noise <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1i</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xn <span class="token operator">=</span> A<span class="token operator">*</span>signal<span class="token operator">+</span>noise<span class="token punctuation">;</span>
+R <span class="token operator">=</span> xn<span class="token operator">*</span>xn<span class="token operator">'</span><span class="token operator">/</span>N<span class="token punctuation">;</span>
+dis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment">% 扫描间隔</span>
+theta_scan <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>dis<span class="token operator">:</span><span class="token number">90</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+phi_scan <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>dis<span class="token operator">:</span><span class="token number">360</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span>E_all<span class="token punctuation">,</span> lambda_all<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">eig</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+Es <span class="token operator">=</span> <span class="token function">E_all</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token keyword">end</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token operator">-</span><span class="token function">length</span><span class="token punctuation">(</span>thetaK<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+C_matrix <span class="token operator">=</span> <span class="token function">A</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+F <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>theta_scan<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">length</span><span class="token punctuation">(</span>phi_scan<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+C_matrix <span class="token operator">=</span> Es<span class="token operator">*</span>Es<span class="token operator">'</span><span class="token operator">*</span>C_matrix<span class="token punctuation">;</span>
+w0 <span class="token operator">=</span> <span class="token function">inv</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token operator">*</span>C_matrix<span class="token operator">/</span><span class="token punctuation">(</span>C_matrix<span class="token operator">'</span><span class="token operator">*</span><span class="token function">inv</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token operator">*</span>C_matrix<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>theta_scan<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token number">j</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>phi_scan<span class="token punctuation">)</span>
+        a <span class="token operator">=</span> <span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">/</span><span class="token function">lambda</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>R_circ<span class="token operator">*</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token function">theta_scan</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token function">phi_scan</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token operator">:</span>M<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>M<span class="token punctuation">)</span><span class="token operator">.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">F</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span> <span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> w0<span class="token operator">'</span><span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+F_abs <span class="token operator">=</span> <span class="token number">20</span><span class="token operator">*</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span>F<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_1.jpg" srcset="/img/loading.gif" lazyload alt="RAB_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_2.jpg" srcset="/img/loading.gif" lazyload alt="RAB_2" style="zoom:25%;" /></p>
+<h2 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h2><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% 画图</span>
+<span class="token function">figure</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token function">mesh</span><span class="token punctuation">(</span>phi_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span>theta_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span>F_abs<span class="token punctuation">)</span>
+colorbar<span class="token punctuation">;</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'方位角 \phi °'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'俯仰角 \theta ° '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">zlabel</span><span class="token punctuation">(</span><span class="token string">'波束增益 (dB)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">title</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'M='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span>M<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'阵元 环阵CBF三维视图 来波f='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span>f<span class="token operator">/</span><span class="token number">1e6</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'MHz'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'fontsize'</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">360</span> <span class="token number">0</span> <span class="token number">90</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span>F_abs<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">20</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">max</span><span class="token punctuation">(</span>F_abs<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'XTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">60</span><span class="token operator">:</span><span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'YTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">15</span><span class="token operator">:</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'ZTick'</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span>F_abs<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token number">20</span><span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+expect_n<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+noise_n<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+noise_nn<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token function">figure</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">subplot</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>theta_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token string">'HandleVisibility'</span><span class="token punctuation">,</span> <span class="token string">'off'</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">thetaK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">,</span> <span class="token function">thetaK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold off<span class="token punctuation">;</span>
+<span class="token function">title</span><span class="token punctuation">(</span><span class="token string">'期望方向俯仰角切片'</span><span class="token punctuation">)</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">90</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'XTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">15</span><span class="token operator">:</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'\theta='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'°'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">subplot</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>phi_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token string">'HandleVisibility'</span><span class="token punctuation">,</span> <span class="token string">'off'</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">phiK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">,</span> <span class="token function">phiK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold off<span class="token punctuation">;</span>
+<span class="token function">title</span><span class="token punctuation">(</span><span class="token string">'期望方向方位角切片'</span><span class="token punctuation">)</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">360</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'XTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">60</span><span class="token operator">:</span><span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'\phi='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span>expect_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'°'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token function">subplot</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>theta_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'HandleVisibility'</span><span class="token punctuation">,</span> <span class="token string">'off'</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">,</span> <span class="token function">thetaK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold off<span class="token punctuation">;</span>
+<span class="token function">title</span><span class="token punctuation">(</span><span class="token string">'干扰方向1俯仰角切片'</span><span class="token punctuation">)</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">90</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'XTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">15</span><span class="token operator">:</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'\theta='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'°'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">subplot</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>phi_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'HandleVisibility'</span><span class="token punctuation">,</span> <span class="token string">'off'</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">,</span> <span class="token function">phiK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold off<span class="token punctuation">;</span>
+<span class="token function">title</span><span class="token punctuation">(</span><span class="token string">'干扰方向1方位角切片'</span><span class="token punctuation">)</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">360</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'XTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">60</span><span class="token operator">:</span><span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'\phi='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_n<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'°'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">subplot</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>theta_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'HandleVisibility'</span><span class="token punctuation">,</span> <span class="token string">'off'</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">,</span> <span class="token function">thetaK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold off<span class="token punctuation">;</span>
+<span class="token function">title</span><span class="token punctuation">(</span><span class="token string">'干扰方向2俯仰角切片'</span><span class="token punctuation">)</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">90</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>phi_scan<span class="token operator">==</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'XTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">15</span><span class="token operator">:</span><span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'\theta='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'°'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">subplot</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>phi_scan<span class="token operator">*</span><span class="token number">180</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token punctuation">,</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'HandleVisibility'</span><span class="token punctuation">,</span> <span class="token string">'off'</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">,</span> <span class="token function">phiK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold off<span class="token punctuation">;</span>
+<span class="token function">title</span><span class="token punctuation">(</span><span class="token string">'干扰方向2方位角切片'</span><span class="token punctuation">)</span>
+<span class="token function">axis</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">360</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token function">F_abs</span><span class="token punctuation">(</span>theta_scan<span class="token operator">==</span><span class="token function">thetaK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'XTick'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">60</span><span class="token operator">:</span><span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'\phi='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span><span class="token function">phiK</span><span class="token punctuation">(</span>noise_nn<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'°'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">suptitle</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'M='</span><span class="token punctuation">,</span><span class="token function">num2str</span><span class="token punctuation">(</span>M<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'阵元 环阵CBF二维切片 来波f='</span><span class="token punctuation">,</span> <span class="token function">num2str</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">1e6</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'MHz'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/radar/">radar</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/array-signal-processing/">array signal processing</a>
+                    
+                      <a class="hover-with-bg" href="/tags/radar/">radar</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/01/14/beamforming/">http://lcjoffrey.top/2022/01/14/beamforming/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/19/rule4clash/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">设置CLASH规则</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/21/moreisbetter/">
+                        <span class="hidden-mobile">More is Better 信道建模扩增方法解读</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

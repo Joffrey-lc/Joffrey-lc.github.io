@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="武庆庆-Intelligent Reflecting Surface-Aided Wireless Communications-A Tutorial">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="武庆庆-Intelligent Reflecting Surface-Aided Wireless Communications-A Tutorial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IRS综述阅读（一）">
+<meta property="og:url" content="http://lcjoffrey.top/2022/03/07/introductionofIRS/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="武庆庆-Intelligent Reflecting Surface-Aided Wireless Communications-A Tutorial">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307143040521.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3328208a299ddde470516df2ab995f6.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307220020933.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221743796.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221921769.png">
+<meta property="article:published_time" content="2022-03-07T06:55:43.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.405Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="IRS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307143040521.png">
+  
+  <title>IRS综述阅读（一） - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="IRS综述阅读（一）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-07 14:55" pubdate>
+        2022年3月7日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">IRS综述阅读（一）</h1>
+            
+            <div class="markdown-body">
+              <p>原文<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9326394">Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><em>Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial</em>文章的整理。</p>
+<ul>
+<li>[x] IRS基础部分及建模</li>
+<li>[ ] IRS优化</li>
+<li>[ ] IRS信道估计</li>
+<li>[ ] IRS部署</li>
+<li>[ ] 拓展</li>
+</ul>
+<h2 id="IRS介绍"><a href="#IRS介绍" class="headerlink" title="IRS介绍"></a>IRS介绍</h2><p><strong>IRS</strong>: Intelligent reflecting surface</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>6G存在的需求，例如超高数据速率和能源效率，极高的可靠性和低延迟等</li>
+<li>解决来自用户的时变无线信道</li>
+</ul>
+<h3 id="什么是IRS"><a href="#什么是IRS" class="headerlink" title="什么是IRS"></a>什么是IRS</h3><p>Generally speaking, IRS is a planar surface comprising a large number of <strong>passive reflecting elements</strong>, each of which is able to induce a controllable amplitude and/or phase change to the incident signal independently</p>
+<ul>
+<li>IRS elements 是<strong>无源的</strong>（虽然后面会讲到还是需要一定的能源（用来调整幅度反射和相位反射），但是相比其他设备，这些能源是微乎其微的，还是可以认为是无源的）</li>
+</ul>
+<h3 id="IRS作用及优势"><a href="#IRS作用及优势" class="headerlink" title="IRS作用及优势"></a>IRS作用及优势</h3><p><strong>从概念上：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307143040521.png" srcset="/img/loading.gif" lazyload alt="IRS在无线信道重配置中额主要功能" style="zoom: 33%;" /></p>
+<ul>
+<li>(a): 创建虚拟视距(LoS)链接以通过智能反射面绕过收发器之间的障碍物</li>
+<li>(b): 在期望的方向添加额外的信号路径以提升信道等级条件</li>
+<li>(c): 改善信道分布，例如将瑞利/快衰落转换为Rician/慢衰落以实现超高可靠性</li>
+<li>(d): 抑制一些干扰</li>
+</ul>
+<p><strong>在实施上</strong></p>
+<ul>
+<li>因为是无缘的（仅被动反射信号），所以不需要任何发射射频反射链，硬件要求低（与传统有源中继相比）。</li>
+<li>全双工工作模式，没有任何天线噪声放大和自干扰。</li>
+<li>安装拆除简单</li>
+<li>极大的灵活性和与现有无线系统的兼容性</li>
+</ul>
+<h2 id="IRS挑战"><a href="#IRS挑战" class="headerlink" title="IRS挑战"></a>IRS挑战</h2><ul>
+<li>无源反射原件需要适当设计，实现IRS element之间的协同信号聚焦或干扰消除。考虑与基站、用户的传输联合设计。</li>
+<li>由于IRS没有发射射频链，所以要考虑如何获得IRS与其用户之间的信道状态信息。</li>
+<li>IRS在无线网络中最大化网络容量的最佳部署策略需要重新设计。</li>
+</ul>
+<h2 id="IRS建模"><a href="#IRS建模" class="headerlink" title="IRS建模"></a>IRS建模</h2><p>以<script type="math/tex">x(t)</script>表示等效复值基带发射信号，对于一个有<script type="math/tex">N</script>个反射单元的IRS，以<script type="math/tex">n</script>代表单元，即<script type="math/tex">n\in\{1, \cdots, N\}</script>，用<script type="math/tex">\alpha_{1, n}e^{-j\xi_{1, n}}</script>表示基带信号从发射机到IRS的反射单元$n$的复信道系数，其中<script type="math/tex">\alpha_{1, n}</script>表示幅度衰减（amplitude attenuation），<script type="math/tex">e^{-j\xi_{1,n}}</script>表示窄带系统平坦信道的相移。所以其带通信号（经过上变频）可以表示为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y_{in,n}(t)=Re\{\alpha_{1, n}e^{-j\xi_{1, n}}x(t)e^{j2\pi f_ct}\}
+\end{aligned}</script><p>其中，<script type="math/tex">f_c</script>是载波频率；该单元（第<script type="math/tex">n</script>个单元）的幅度衰减和时间延迟分别用<script type="math/tex">\beta_n\in[0, 1]</script>（因为是无源的）和<script type="math/tex">t_n\in[0, 1/f_c]</script>表示。忽略电路非线性和相位噪声等硬件缺陷，IRS单元<script type="math/tex">n</script>的反射信号表示为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y_{out,n}(t)&=\beta_ny_{in,n}(t-t_n)\\
+&=Re\{\beta_n\alpha_{1,n}e^{-j\xi_{1,n}}x(t-t_n)e^{j2\pi f_c(t-t_n)}\}
+\\&\approx Re\{[\beta_ne^{-j\theta^{'}_n}\alpha_{1,n}e^{-j\xi_{1,n}}x(t)]e^{j2\pi f_ct}\}
+\end{aligned}</script><p>其中，在<script type="math/tex">t_n\leq1/f_c\ll1/B</script>的前提下，假设<script type="math/tex">x(t-t_n)\approx x(t)</script>；并有<script type="math/tex">-\theta_n^{'}\triangleq-2\pi f_ct_n\in[-2\pi,0]</script>是单元<script type="math/tex">n</script>引起的相移。由<script type="math/tex">s_{in,n}(t)\triangleq \alpha_{1, n}e^{-j\xi_{1, n}}x(t)</script>并且有<script type="math/tex">s_{out,n}\triangleq\beta_ne^{-j\theta^{'}_n}\alpha_{1,n}e^{-j\xi_{1,n}}x(t)</script></p>
+<p>进一步，由于<script type="math/tex">\theta^{'}_n</script>是以<script type="math/tex">2\pi</script>为周期的，所以为方便后续部分，取<script type="math/tex">\theta_n\in [0,2\pi]</script>，有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+s_{out,n}(t)=\beta_ne^{-j\theta^{'}_n}s_{in,n}(t)=\beta_ne^{j\theta_n}s_{in,n}(t)
+\end{aligned}</script><p><strong>所以在基带信号模型中，IRS单元<script type="math/tex">n</script>的输出/反射信号是通过将相应的输入/入射信号乘以复反射系数<script type="math/tex">\beta_ne^{-j\theta_n}</script>得到的</strong>。</p>
+<p>再接上从IRS单元<script type="math/tex">n</script>到接收端的信号（与前面相似的等效窄带平坦频率信道），则有接收端的表达式：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y_{r,n}(t)=Re\{[\alpha_{1,n}e^{-j\xi_{1,n}}\beta_ne^{j\theta_n}\alpha_{2,n}e^{-j\xi_{2,n}}x(t)]e^{j2\pi f_ct}\}
+\end{aligned}</script><p>用<script type="math/tex">h^*_{r,n}\triangleq\alpha_{1,n}e^{-j\xi_{1,n}}</script>（发射端到IRS的信道），并用<script type="math/tex">g_n\triangleq\alpha_{2,n}e^{-j\xi_{2,n}}</script>（IRS到接收端的信道），上式变为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y_n(t)=\beta_ne^{j\theta_n}h^*_{r,n}g_nx(t)
+\end{aligned}</script><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3328208a299ddde470516df2ab995f6.jpg" srcset="/img/loading.gif" lazyload alt="IRS模型示意图" style="zoom:33%;" /></p>
+<p>假设没有信号耦合，即所有IRS单元独立地反射入射信号。并忽略多次反射（因为路径损失较大），则有考虑<script type="math/tex">N</script>个单元时，有接收端：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y(t)=(\sum_{n=1}^N\beta_ne^{j\theta_n}h^*_{r,n}g_n)x(t)=\textbf{h}_r^H\Theta\textbf{g}x(t)
+\end{aligned}</script><p>其中<script type="math/tex">\textbf{h}_r^H=[h^*_{r, 1},\cdots,h^*_{r,N}]$，$\textbf{g}=[g_1,\cdots,g_N]^T</script>，<script type="math/tex">\Theta=diag(\beta_1e^{j\theta_1},\cdots,\beta_Ne^{j\theta_N})</script>因为每个IRS单元独立地反射信号，且没有信号耦合，所以$\Theta$是对角阵。</p>
+<h2 id="IRS硬件实现"><a href="#IRS硬件实现" class="headerlink" title="IRS硬件实现"></a>IRS硬件实现</h2><h3 id="硬件结构"><a href="#硬件结构" class="headerlink" title="硬件结构"></a>硬件结构</h3><p>由于发射机、接收机以及周围物体的移动性，信道通常是时变的，因此需要基于信道变化的IRS实时可调。所以需要联网以进行自适应反射。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307220020933.png" srcset="/img/loading.gif" lazyload alt="IRS结构" style="zoom:33%;" /></p>
+<ul>
+<li><p>智能控制器，FPGA，总的控制端</p>
+</li>
+<li><p>第一层，调整层，控制层，也可以布置一些传感器（感知周围感兴趣的无线电信号，以方便智能控制器设计反射系数）</p>
+</li>
+<li>第二层，铜，减少信号能量损失</li>
+<li>第三层，可调整的单元</li>
+</ul>
+<p>为了实现重新配置IRS单元以实现高度可控反射，有三种主要方法被提出：</p>
+<ul>
+<li>机械驱动（机械旋转、平移）</li>
+<li>功能材料（液晶、石墨烯等）</li>
+<li>电子设备（PIN二极管等）</li>
+</ul>
+<p>第三种电子设备（PIN二极管等）是最常用的。</p>
+<h3 id="实际限制"><a href="#实际限制" class="headerlink" title="实际限制"></a>实际限制</h3><h4 id="离散的反射幅度和相移"><a href="#离散的反射幅度和相移" class="headerlink" title="离散的反射幅度和相移"></a>离散的反射幅度和相移</h4><p>用固定的PIN二极管，需要大数量才能控制精细相移，例如<script type="math/tex">\log_28=3</script>，即8级相移需要3个PIN二极管；使用变容二极管则需要更大范围的偏置电压，成本更高。</p>
+<p>顺便提出了两个特殊结构：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221743796.png" srcset="/img/loading.gif" lazyload alt="两种特殊结构" style="zoom: 67%;" /></p>
+<h4 id="耦合的反射幅度和相移"><a href="#耦合的反射幅度和相移" class="headerlink" title="耦合的反射幅度和相移"></a>耦合的反射幅度和相移</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221921769.png" srcset="/img/loading.gif" lazyload alt="实际IRS中反射幅度和相移之间的关系" style="zoom:50%;" /></p>
+<p>有人提出反射的幅度和相移之间存在非线性耦合，所以不能单独调节。</p>
+<p>产生这种现象的原因是因为：<strong>0相移时</strong>，反射电流与单元电流同相（in-phase），电流强度增加，导致<strong>发热增多</strong>，<strong>反射幅度下降</strong>；当<strong>电流反相</strong>时（out-of-phase），电流强度<strong>减弱</strong>，<strong>发热变少</strong>，<strong>反射幅度增加</strong>。</p>
+<p>此外，IRS理论上是无源的（passive），但是例如控制PIN二极管时，需要消耗一部分能量。只是说这部分能量相对较小。</p>
+<h3 id="其他相关内容及未来研究方向"><a href="#其他相关内容及未来研究方向" class="headerlink" title="其他相关内容及未来研究方向"></a>其他相关内容及未来研究方向</h3><ul>
+<li><strong>IRS单元之间的耦合</strong>目前是被忽略的。考虑在增大IRS单元密度以提高性能时，可能会使耦合更严重，以至于不能忽略。<strong>考虑耦合反射系数</strong>或者<strong>开发有效的去耦、隔离技术</strong>。</li>
+<li>目前考虑的模型对信号的<strong>入射角不敏感</strong>。目前的部分实现证明IRS反射系数，特别是相移，对<strong>入射角非常敏感</strong>。同时这也意味着<strong>信道互易假设可能不再有效</strong>，即上行链路的信道估计不再适用于下行链路的信道估计，vice versa。</li>
+<li>对于<strong>宽带信号</strong>的建模以及<strong>频率/时间偏移</strong>、<strong>相位噪声</strong>等。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Intelligent-Reflecting-Surface/">Intelligent Reflecting Surface</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/IRS/">IRS</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/03/07/introductionofIRS/">http://lcjoffrey.top/2022/03/07/introductionofIRS/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/11/IRSaidedSWIPT1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">IRS辅助SWIPT（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/01/introductionofOFDM/">
+                        <span class="hidden-mobile">知识储备-OFDM</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
