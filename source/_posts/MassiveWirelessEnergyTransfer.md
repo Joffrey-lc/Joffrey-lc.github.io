@@ -6,6 +6,7 @@ index_img: >-
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
   - WET
+  - WPT
   - SWIPT
 categories:
   - Paper Reading
