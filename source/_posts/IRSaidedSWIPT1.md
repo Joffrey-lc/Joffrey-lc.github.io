@@ -16,7 +16,7 @@ hide: false
 date: 2022-03-11 15:03:11
 ---
 
-[原文链接](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8941080)
+原文[Weighted Sum Power Maximization for Intelligent Reflflecting Surface Aided SWIPT](https://ieeexplore.ieee.org/document/8941080)
 
 ## 缩写说明
 
