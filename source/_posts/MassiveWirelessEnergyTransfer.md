@@ -27,27 +27,27 @@ date: 2022-03-19 17:01:01
 
 
 
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160826065.png" alt="image-20220319160826065" style="zoom:67%;" />
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160826065.png" alt="WIT和WET结构" style="zoom:67%;" />
 
 **WET系统结构：**WIT和WET/WPT自然而然的会在一起考虑。
 
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160926828.png" alt="image-20220319160926828" style="zoom:67%;" />
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160926828.png" alt="BS和PB实现WIT和WET" style="zoom:67%;" />
 
 并且由于WET的路径损耗大，对功率要求高，所以得需要BS+PB才能达到到WIT Zone范围左右的WET Zone
 
 
 
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161142285.png" alt="image-20220319161142285" style="zoom:67%;" />
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161142285.png" alt="WET和WIT的两种实现结构" style="zoom:67%;" />
 
 设计WIT和WET发射机的两种形式，In-band 和Out-of-band。一般选择In-Band。其实就是**时分复用**和**频分复用**。
 
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161254502.png" alt="image-20220319161254502" style="zoom:67%;" />
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161254502.png" alt="(a)多天线单PB (b)多PBs单天线 (c)多天线多PBs" style="zoom:67%;" />
 
 在只考虑WET的情况下，上图(a)表示一个PB带有M个天线；(b)表示分布式天线，即一个PB只有一根天线，共M个PBs；下方表示的DAS和EB结合的模式，即4个/8个PBs，每个M/4||||M/8根天线。
 
 **实验结果如图：**
 
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161530798.png" alt="image-20220319161530798" style="zoom: 67%;" />
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161530798.png" alt="不同结构性能对比" style="zoom: 67%;" />
 
 - *Single PB (EB):* A PB located at the circle center equipped with *M* antennas.
 
