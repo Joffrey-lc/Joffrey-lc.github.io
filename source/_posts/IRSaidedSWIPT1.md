@@ -1,6 +1,6 @@
 ---
 title: IRS辅助SWIPT（一）
-excerpt: 武庆庆-IRS辅助SWIPT（一）
+excerpt: 武庆庆-Weighted Sum Power Maximization for Intelligent Reflflecting Surface Aided SWIPT
 index_img: >-
   https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220311150044247.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
@@ -22,7 +22,7 @@ date: 2022-03-11 15:03:11
 
 - IDRs: Information Decoding Receivers
 - EHRs: Energy Harvesting Receivers
-- CSCG: Circularly Symmetric Complex Gaussian denoted by $\mathcal{C}\mathcal{N}(x, \sigma^2)$(with mean $x$ and variance $\sigma^2$ )
+- CSCG: Circularly Symmetric Complex Gaussian denoted by $$\mathcal{C}\mathcal{N}(x, \sigma^2)$$(with mean $$x$$ and variance $$\sigma^2$$ )
 
 ## 主要内容
 
