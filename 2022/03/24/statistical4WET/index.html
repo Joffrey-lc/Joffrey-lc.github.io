@@ -13,23 +13,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="雷达通信感知一体化综述">
+  <meta name="description" content="Onel L. A. López-Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="雷达通信感知一体化综述">
+  <meta name="description" content="Onel L. A. López-Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雷达通信频谱共享及一体化：综述与展望">
-<meta property="og:url" content="http://lcjoffrey.top/2022/03/19/radarandcommunication/index.html">
+<meta property="og:title" content="CSI-FREE 统计分析CSI-FREE能量传输结构">
+<meta property="og:url" content="http://lcjoffrey.top/2022/03/24/statistical4WET/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="雷达通信感知一体化综述">
+<meta property="og:description" content="Onel L. A. López-Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-19T10:09:20.407Z">
-<meta property="article:modified_time" content="2022-03-19T10:09:20.407Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324170240238.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173153144.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173429153.png">
+<meta property="article:published_time" content="2022-03-24T09:58:34.000Z">
+<meta property="article:modified_time" content="2022-03-24T10:02:18.775Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Radar">
+<meta property="article:tag" content="CSI Free">
+<meta property="article:tag" content="WET">
+<meta property="article:tag" content="WPT">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324170240238.png">
   
-  <title>雷达通信频谱共享及一体化：综述与展望 - Joffrey&#39;s Blog</title>
+  <title>CSI-FREE 统计分析CSI-FREE能量传输结构 - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -195,7 +201,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="雷达通信频谱共享及一体化：综述与展望">
+            <span class="h2" id="subtitle" title="CSI-FREE 统计分析CSI-FREE能量传输结构">
               
             </span>
 
@@ -205,8 +211,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-19 18:09" pubdate>
-        2022年3月19日 晚上
+      <time datetime="2022-03-24 17:58" pubdate>
+        2022年3月24日 下午
       </time>
     </span>
   
@@ -216,7 +222,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      2k 字
     </span>
   
 
@@ -225,7 +231,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      6 分钟
     </span>
   
 
@@ -262,69 +268,59 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">雷达通信频谱共享及一体化：综述与展望</h1>
+            <h1 style="display: none">CSI-FREE 统计分析CSI-FREE能量传输结构</h1>
             
             <div class="markdown-body">
-              <p><a target="_blank" rel="noopener" href="https://radars.ac.cn/article/doi/10.12000/JR20113?viewType=HTML">原文链接</a></p>
+              <p><strong>Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Transactions on Communications, Oct.  2019</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8760520">pdf</a>)  (Citations <strong>16</strong>)</p>
 <h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><ul>
-<li>RCSS：雷达与通信的频谱共享  Radar and Communication Spectrum Sharing</li>
-<li>RCC：雷达与通信系统的同频共存 Radar-Communication Coexistence</li>
-<li>DFRC：雷达通信一体化系统设计 Dual-Functional Radar-Communication</li>
-<li>V2X：车联网 Vehicle to everything</li>
-<li>GNSS：全球卫星导航系统 Global Navigation Satellite System</li>
-<li>WPS：WiFi室内 定位系统 WiFi-based Positioning System</li>
+<li>PB: Power Beacon</li>
 </ul>
-<h2 id="RCSS研究路径"><a href="#RCSS研究路径" class="headerlink" title="RCSS研究路径"></a>RCSS研究路径</h2><ol>
-<li>雷达与通信频谱共享（RCC）：考虑分立的雷达与通信系统共同用同一频谱</li>
-<li>雷达通信一体化（DFRC）：除了共享同一频谱外，还共用同一硬件平台，如何设计一体化信号处理方案来同时实现通信与雷达感知功能（<strong>重要</strong>：不仅在于对频谱资源利用率的提升，还扩展到包括车联网、室内定位和隐蔽通信在内的多种新兴的民用与军用场景）</li>
-</ol>
-<h2 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h2><ol>
-<li><p>5G车联网毫米波定位</p>
-<p>​    可以预见，5G通信技术能够利用大规模MIMO天线阵列和毫米波频谱赖满足V2X的高分辨率和低时延要求。</p>
-<ul>
-<li>毫米波段具有充裕的可用带宽，不仅可以实现更高的数据传输效率，也可以显著提升距离分辨率。</li>
-<li>大规模MIMO可以形成“铅笔式”的窄波束。补偿毫米波信号的路径损失，同时提高方位角的估计精度。</li>
-<li>由于毫米波的稀疏性，包含的多径分量少，毫米波信道中雷达目标回波受到的杂波干扰小。</li>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+<li>三种CSI-free方案和两种CSI-Based方案在不同条件下的性能对比</li>
+<li>各种意义上的建模和数学推导（WQNNND看不懂啊）</li>
 </ul>
-</li>
-<li><p>WiFi室内定位及动作识别</p>
-<ol>
-<li>根据用户端发射的信号进行TOA或者AOA，利用信号强度和其他信息来获取定位信息。</li>
-<li>WiFi路由能从信道状态信息提取因人体动作所引起的微多普勒频移，从而识别人的行为。</li>
-</ol>
-</li>
-<li><p>无人机感知与通信</p>
-</li>
-<li><p>多功能射频系统</p>
-</li>
-<li><p>雷达辅助的低截获率通信</p>
-</li>
-<li><p>无源雷达</p>
-</li>
-</ol>
-<h2 id="主要研究问题"><a href="#主要研究问题" class="headerlink" title="主要研究问题"></a>主要研究问题</h2><h3 id="RCC"><a href="#RCC" class="headerlink" title="RCC"></a>RCC</h3><ol>
-<li>干扰信道估计：非合作式的干扰信道估计方法</li>
-<li>发射机设计：同时考虑雷达探测与通信的性能指标</li>
-<li>接收抗干扰设计：接收机会同时收到雷达回波和通信信号</li>
-</ol>
-<h2 id="DFRC"><a href="#DFRC" class="headerlink" title="DFRC"></a>DFRC</h2><ol>
-<li>雷达通信一体化信息论</li>
-<li>雷达通信一体化信号处理（<strong>国内外研究重要</strong>）</li>
-<li>雷达通信一体化协议及系统架构设计</li>
-</ol>
-<h2 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h2><h3 id="RCC-1"><a href="#RCC-1" class="headerlink" title="RCC"></a>RCC</h3><ol>
-<li>机会频谱共享：要求次级用户（通信系统）感知频谱，在未占用时进行传输</li>
-<li>干扰信道估计</li>
-<li>具有闭式解的预编码方案</li>
-<li>基于凸优化方法的预编码设计</li>
-<li>接收机设计：接收机在雷达干扰的情况下解调通信信号，或者是在通信干扰的情况下对雷达目标进行估计</li>
-</ol>
-<h3 id="DFRC-1"><a href="#DFRC-1" class="headerlink" title="DFRC"></a>DFRC</h3><ol>
-<li>雷达通信一体化系统的信息论研究</li>
-<li>雷达通信一体化系统的时频域信号处理：设计一种新型复用波形，使之既能携带通信信号，又能用于雷达目标探测</li>
-<li>雷达通信一体化系统的空频域信号处理</li>
-<li>5G时代的雷达通信一体化</li>
-</ol>
+<h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><p>系统模型：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324170240238.png" srcset="/img/loading.gif" lazyload alt="PB多天线ER单天线系统结构" style="zoom: 120%;" /></p>
+<h3 id="CSI-Free-Strategies"><a href="#CSI-Free-Strategies" class="headerlink" title="CSI-Free Strategies"></a>CSI-Free Strategies</h3><p>一般接收端接收信号建模为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\xi^{rf}_j=\varrho_j|\textbf{h}_j^T\sum\limits^l_{k=1}\textbf{w}_kx_k|^2=\varrho_j\sum\limits_{k=1}^l|\textbf{h}_j^T\textbf{w}_k|^2
+\end{aligned}</script><p>其中<script type="math/tex">\varrho_j</script>是发射机到接收机的路径损耗<script type="math/tex">\times</script>总功率，<script type="math/tex">\textbf{w}_k</script>是发射机波束形成（precoding vector， 预编码向量）。</p>
+<p>由于考虑二极管电路的特点，最终收到的能量<script type="math/tex">\xi_j</script>与接收机输入的能量<script type="math/tex">\xi_j^{rf}</script>之间的关系如下：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173153144.png" srcset="/img/loading.gif" lazyload alt="最终能量额接收机输入能量的非线性关系式"></p>
+<p>其中<script type="math/tex">\bar{w}_1</script>代表接收门限；<script type="math/tex">\bar{w}_2</script>代表二极管的击穿电压，在未击穿的时候是线性的；击穿后是恒定的；<script type="math/tex">\eta</script>是能量效率。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173429153.png" srcset="/img/loading.gif" lazyload alt="非线性关系式图解" style="zoom: 33%;" /></p>
+<h4 id="Only-Antenna-OA"><a href="#Only-Antenna-OA" class="headerlink" title="Only Antenna, OA"></a>Only Antenna, OA</h4><p>只有<script type="math/tex">M</script>根天线中的一根天线全功率输出。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\xi_{jOA}=g(\varrho_j|h_i,j|^2)
+\end{aligned}</script><p>其中<script type="math/tex">\textbf{w}</script>只有一个元素是1，其余全为0。</p>
+<h4 id="All-Antenna-at-Once-AA"><a href="#All-Antenna-at-Once-AA" class="headerlink" title="All Antenna at Once, AA"></a>All Antenna at Once, AA</h4><p> 一次性所有<script type="math/tex">M</script>根天线共同输出，总功率不变（每根天线的功率变为OA的1/M）,<script type="math/tex">\textbf{w}=(1/\sqrt{M})\textbf{1}_{M\times1}</script>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\xi_{jAA}=g(\frac{\varrho_j}{M}|\sum\limits_{i=1}^Mh_{i,j}|^2)
+\end{aligned}</script><p>在<script type="math/tex">M</script>根天线中选择<script type="math/tex">K</script>个天线是一种普遍情况，这种普遍情况的性能应该介于OA和AA之间。</p>
+<h4 id="Switching-Antennas-SA"><a href="#Switching-Antennas-SA" class="headerlink" title="Switching Antennas, SA"></a>Switching Antennas, SA</h4><p> 一次一根天线，分<script type="math/tex">M</script>个时间块，每根天线持续1个时间块：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\xi_{jSA}=\frac{1}{M}\sum\limits_{i=1}^Mg(\varrho_j|h_{i,j}|^2)
+\end{aligned}</script><p>其中<script type="math/tex">\textbf{w}</script>在每个时间块与OA相同，但是不同时间块选择不同的天线。等于OA的时变版本。</p>
+<h3 id="CSI-Based"><a href="#CSI-Based" class="headerlink" title="CSI-Based"></a>CSI-Based</h3><h4 id="OA-CSI"><a href="#OA-CSI" class="headerlink" title="OA-CSI"></a>OA-CSI</h4><p>对应于OA，在已知CSI的条件下，从整个集合中选择提供最大<strong>总收获能量</strong>的天线：</p>
+<script type="math/tex; mode=display">
+\sum\limits_{j=1}^{|\mathcal{S}|}\xi_{jOA-CSI}=\max\limits_{i=1,\cdots,M}\sum\limits_{j=1}^{|\mathcal{S}|}g(\varrho_j|h_{i,j}|^2)</script><p>其<script type="math/tex">w</script>和OA的类似，只有一个为1，其余全0。</p>
+<h4 id="AA-CSI"><a href="#AA-CSI" class="headerlink" title="AA-CSI"></a>AA-CSI</h4><p>对应于AA，在一直CSI的条件下，不是在每个天线上以相同的功率进行发送，而是在发送之前通过<script type="math/tex">\textbf{w}_k</script>对信道和EH硬件效应进行预补偿，使得在接收端处的总收获能量被最大化：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum\limits_{j=1}^{|\mathcal{S}|}\xi_{jAA-CSI}=\max\limits_{\textbf{w}_k}\sum\limits_{j=1}^{|\mathcal{S}|}g(\varrho_j\sum\limits_{k=1}^{M}|\textbf{h}_j^T\textbf{w}_k|^2)
+\end{aligned}</script><p><strong>与AA−CSI相比，OA−CSI方案对CSI缺陷的敏感度较低。这是因为OA-CSI仅依赖于通道的功率增益，而AA−CSI需要通道系数的完全表征、包络和相位。</strong></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
+<li>在小阈值的情况下，AA-CSI&gt;OA-CSI&gt;SA&gt;AA&gt;OA</li>
+<li>在大阈值的情况下，AA很好，甚至超过OA-CSI，同样AA-CSI最好</li>
+<li>天线单元之间的空间相关性，在所有天线以相同功率同时发射时，有好处，否则性能会随着相关性增大而降低</li>
+<li>SA策略由最小能量方差，这是很好的。因为我们不仅要最大的均值，也要最小的方差。方差小意味着可预测性强（能够预估收到多少能量）</li>
+<li>在NLOS情况下，SA效果很好，当LOS增大时，天线以相同功率同时发射（AA）效果更好</li>
+<li>随着设备数量的增加，CSI-free性能接近CSI-based</li>
+</ul>
 
             </div>
             <hr>
@@ -336,7 +332,7 @@
                     
                       <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
                     
-                      <a class="hover-with-bg" href="/categories/Paper-Reading/Radar-and-Communication/">Radar and Communication</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Simultaneous-Wireless/">Simultaneous Wireless</a>
                     
                   </div>
                 
@@ -344,7 +340,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Radar/">Radar</a>
+                      <a class="hover-with-bg" href="/tags/CSI-Free/">CSI Free</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WET/">WET</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WPT/">WPT</a>
                     
                   </div>
                 
@@ -358,7 +358,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/03/19/radarandcommunication/">http://lcjoffrey.top/2022/03/19/radarandcommunication/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/03/24/statistical4WET/">http://lcjoffrey.top/2022/03/24/statistical4WET/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -368,18 +368,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/20/CSI-FREE-Transmit-diversity/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CSI_FREE 衰落对能量信号有益-发射分集</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/19/MassiveWirelessEnergyTransfer/">
-                        <span class="hidden-mobile">大规模无线能量传输综述（能量信道CSI-Free）</span>
+                      <a href="/2022/03/20/CSI-FREE-Transmit-diversity/">
+                        <span class="hidden-mobile">CSI_FREE 衰落对能量信号有益-发射分集</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
