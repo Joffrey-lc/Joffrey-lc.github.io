@@ -2,7 +2,7 @@
 title: CSI_FREE 衰落对能量信号有益-发射分集
 excerpt: Bruno Clerckx et.al-On the Beneficial Roles of Fading and Transmit Diversity in Wireless Power Transfer With Nonlinear Energy Harvesting
 index_img: >-
-  https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220320220037589.png
+  https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324180546189.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
   - CSI Free
