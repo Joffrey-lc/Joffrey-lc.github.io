@@ -1,0 +1,681 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Onel L. A. López et.al.-On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="Onel L. A. López et.al.-On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSI-FREE 分析AA-SS&#x2F;AA-IS&#x2F;SA三种结构">
+<meta property="og:url" content="http://lcjoffrey.top/2022/03/27/OnCSIFree/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="Onel L. A. López et.al.-On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327000145442.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101257249.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101409153.png">
+<meta property="article:published_time" content="2022-03-27T14:43:18.000Z">
+<meta property="article:modified_time" content="2022-03-27T14:49:17.493Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="CSI Free">
+<meta property="article:tag" content="WET">
+<meta property="article:tag" content="WPT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327000145442.png">
+  
+  <title>CSI-FREE 分析AA-SS/AA-IS/SA三种结构 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSI-FREE 分析AA-SS/AA-IS/SA三种结构">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-27 22:43" pubdate>
+        2022年3月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSI-FREE 分析AA-SS/AA-IS/SA三种结构</h1>
+            
+            <div class="markdown-body">
+              <p><strong>On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Internet of Things Journal, Jan.1, 1 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9119347">pdf</a>)  (Citations <strong>8</strong>)</p>
+<p>因为论文中设计大量推导以及证明和实验，所以具体内容只整理了部分，其余见<a href=".\OnCSIFree\paper.pdf">我的论文笔记</a>：</p>
+<ul>
+<li>[x] 信道建模、非线性能量转换建模、Preventive Adjustment of Mean Phases</li>
+<li>[ ] AA-SS、AA-IS、SA等等</li>
+<li>[ ] 实验等</li>
+</ul>
+<h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><p>AA-SS: PB所有天线都发射相同的信号，且每根天线功率相同</p>
+<p>AA-IS: PB所有天线发射i. i. d.信号</p>
+<p>SA: M根天线中随机选一根，持续时间1/M</p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li>准静态信道：时间缓慢变换的信道就是准静态信道了，不随时间变化的信道一般就是静态信道。比如在一段时间内，信道是不变化的，那么在这段时间内就可以看成静态信道。多普勒频移的倒数可以看成信道时变性（信道相干时间）的基准，如果符号持续时间远大于相干时间，那么就是个非静态信道如果符号持续时间远小于相干时间，就可以认为是准静态信道了。</li>
+</ul>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>对AA-SS、AA-IS、SA三种结构进行建模分析，得到其接收机入射端的能量的均值和能量方差是一个Trade off。</p>
+<ul>
+<li>近PB（path loss 小），AA-IS好；远PB（path loss 大），SA好（二者性能统计上比较接近，后面分析也是一起分析的）。</li>
+<li>在AA-SS结构中，阵元数（天线数）<script type="math/tex">M</script>也不是越多越好。越多<script type="math/tex">M</script>越多极小值，取到极小值的几率也增大（fig 1(a)）。</li>
+<li>可以通过<script type="math/tex">\pi</script>相移取得AA-SS的较好结果（图fig 2 (b)）:极小值个数不变；最佳增益在<script type="math/tex">|\phi|=\pi/2</script>时；<strong>曲线下面积增大了</strong>。<strong>能量均值严重依赖天线的平均相移</strong>。</li>
+<li>优化AA-SS有两种：<script type="math/tex">AA-SS_{\max E}</script>和<script type="math/tex">AA-SS_{\min Var}</script>，<script type="math/tex">\max E</script>的variance大，<script type="math/tex">\min Var</script>的mean小。</li>
+<li>优化AA-IS发现：能量均值计算时，由于<script type="math/tex">M</script>在分母，而分子的值极小，所以AA-IS<strong>入射能量均值</strong>与<strong>天线数目关系不大</strong>；而<script type="math/tex">M</script>的增大可以<strong>有效减小方差</strong>。</li>
+<li>优化SA没有讲，因为难以建模，但是和AA-IS性能相近。</li>
+<li>非特定空间/方向，选AA-IS or SA；特定空间和方向选择AA-SS</li>
+<li>AA-SS提供最大的能量均值，但是其方差性能差，而且中断概率高。<strong>似乎AA-SS更适合物联网设备积累能量的场景。</strong></li>
+<li>信道相关性对AA-SS是有益的。</li>
+<li>预防性相移可以用来控制最大化能量均值或者最小化能量方差。</li>
+<li>对于AA-SS， LOS并不是总是有益的。甚至<script type="math/tex">\kappa=0dB</script>的中断概率低于<script type="math/tex">\kappa=10dB</script>。</li>
+<li>AA-IS和SA都受益于小的相关性（越小越好），和大的天线数量（越多越好）和LOS</li>
+</ul>
+<h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><h3 id="Channel-Model"><a href="#Channel-Model" class="headerlink" title="Channel Model"></a>Channel Model</h3><p>莱斯信道建模，由<script type="math/tex">\kappa</script>来控制信道是<strong>瑞利衰落信道</strong>（<script type="math/tex">\kappa=0</script>）还是<strong>完全确定LOS信道</strong>（<script type="math/tex">\kappa\to\infin</script>）</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327000145442.png" srcset="/img/loading.gif" lazyload alt="image-20220327000145442" style="zoom: 67%;" /></p>
+<p>其中，<script type="math/tex">\textbf{h}_{los}=\left[\begin{array}11 & e^{i\Phi_1} & \cdots e^{i\Phi_{M-1}}\end{array}\right]</script>是确定LOS信道，并且<script type="math/tex">\Phi_t,t\in\{1,\cdots,M-1\}</script>是第<script type="math/tex">(t+1)</script>个阵元相对于第一个阵元的平均相移。<script type="math/tex">\varphi_0</script>是初相；</p>
+<p>其中，<script type="math/tex">\textbf{h}_{nlos}\sim\mathcal{CN}(\textbf{0,R})</script>表示瑞利信道系数。</p>
+<p>考虑ULA，可以得到：</p>
+<script type="math/tex; mode=display">
+\Phi_t=-t\pi\sin\phi</script><p>其中，<script type="math/tex">t</script>是阵元间隔，<script type="math/tex">\phi</script>是来波（能量信号）和阵元的方向夹角。</p>
+<h3 id="Preventive-Adjustment-of-Mean-Phases"><a href="#Preventive-Adjustment-of-Mean-Phases" class="headerlink" title="Preventive Adjustment of Mean Phases"></a>Preventive Adjustment of Mean Phases</h3><p>做<script type="math/tex">\textbf{h}^*=\Psi\textbf{h}</script>，且有：</p>
+<script type="math/tex; mode=display">
+\Psi=diag(1,e^{i\psi_1},\cdots,e^{i\psi_{M-1}})</script><p>得到：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101257249.png" srcset="/img/loading.gif" lazyload alt="image-20220327101257249" style="zoom: 67%;" /></p>
+<p>证明见<strong>Noteability</strong>。</p>
+<h3 id="EH-Transfer-Function"><a href="#EH-Transfer-Function" class="headerlink" title="EH Transfer Function"></a>EH Transfer Function</h3><p>非线性表达式：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101409153.png" srcset="/img/loading.gif" lazyload alt="image-20220327101409153" style="zoom:67%;" /></p>
+<p><strong>a,b代表什么物理含义？？</strong></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Simultaneous-Wireless-Information-and-Power-Transfer/">Simultaneous Wireless Information and Power Transfer</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CSI-Free/">CSI Free</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WET/">WET</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WPT/">WPT</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/03/27/OnCSIFree/">http://lcjoffrey.top/2022/03/27/OnCSIFree/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/24/statistical4WET/">
+                        <span class="hidden-mobile">CSI-FREE 统计分析CSI-FREE能量传输结构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

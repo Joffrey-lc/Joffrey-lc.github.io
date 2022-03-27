@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lcjoffrey.top/2022/03/27/OnCSIFree/</loc>
+    
+    <lastmod>2022-03-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/2022/03/20/CSI-FREE-Transmit-diversity/</loc>
     
     <lastmod>2022-03-24</lastmod>
@@ -74,15 +83,6 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2022/02/28/wirechannel/</loc>
-    
-    <lastmod>2022-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/2021/12/04/spi-start/</loc>
     
     <lastmod>2022-03-19</lastmod>
@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs3/</loc>
+    <loc>http://lcjoffrey.top/2022/02/28/wirechannel/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -128,6 +128,15 @@
   </url>
   
   <url>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs3/</loc>
+    
+    <lastmod>2022-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/2021/12/04/meanteacher/</loc>
     
     <lastmod>2022-03-19</lastmod>
@@ -155,7 +164,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs2/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs1/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -164,7 +173,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs1/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs2/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -254,15 +263,6 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/VAT/</loc>
-    
-    <lastmod>2022-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/2022/01/14/beamforming/</loc>
     
     <lastmod>2022-03-19</lastmod>
@@ -282,6 +282,15 @@
   
   <url>
     <loc>http://lcjoffrey.top/2021/12/04/conv/</loc>
+    
+    <lastmod>2022-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/2021/12/04/VAT/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -326,7 +335,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/Fixmatch/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/MINEstimation/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -335,7 +344,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/MINEstimation/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/Fixmatch/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -346,204 +355,204 @@
 
   <url>
     <loc>http://lcjoffrey.top/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://lcjoffrey.top/tags/CSI-Free/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/WET/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/WPT/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/tags/IRS/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/SWIPT/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/Deep-Learning/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/array-signal-processing/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <loc>http://lcjoffrey.top/tags/CSI-Free/</loc>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/radar/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <loc>http://lcjoffrey.top/tags/WET/</loc>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/signal-processing/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/communication/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/matlab/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <loc>http://lcjoffrey.top/tags/WPT/</loc>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/overview/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/array-signal-processing/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/radar/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/signal-processing/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/communication/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/matlab/</loc>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/python/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/utils/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/hexo/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/music/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/diy/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/MIMO/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/OFDM/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/envs/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/Radar/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/clash/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/gcn/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/spatial-modulation/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/RaspberryPi/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/basic-knowledge/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/communicaiton/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/tags/office/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -552,140 +561,140 @@
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/Paper-Reading/Semi-Supervised-Learning/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Simultaneous-Wireless-Information-and-Power-Transfer/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/Paper-Reading/Self-Supervised-Learning/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Intelligent-Reflecting-Surface/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/Paper-Reading/Semi-Supervised-Learning/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/Paper-Reading/Self-Supervised-Learning/</loc>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/radar/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/basic-knowledge/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/utils/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Graph-Convolutional-Network/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/utils/python/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/utils/hexo/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/utils/latex/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Data-Augment/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/envs/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Radar-and-Communication/</loc>
-    <lastmod>2022-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/utils/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Others/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/gadget/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Simultaneous-Wireless/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/utils/python/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/utils/latex/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/utils/hexo/</loc>
+    <lastmod>2022-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/utils/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</loc>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://lcjoffrey.top/categories/gadget/Raspberry-Pi/</loc>
-    <lastmod>2022-03-24</lastmod>
+    <lastmod>2022-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
