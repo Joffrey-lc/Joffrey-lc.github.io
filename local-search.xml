@@ -186,9 +186,9 @@
     
     <tags>
       
-      <tag>IRS</tag>
-      
       <tag>SWIPT</tag>
+      
+      <tag>IRS</tag>
       
     </tags>
     
@@ -215,9 +215,9 @@
     
     <tags>
       
-      <tag>IRS</tag>
-      
       <tag>SWIPT</tag>
+      
+      <tag>IRS</tag>
       
     </tags>
     
@@ -919,9 +919,9 @@
     
     <tags>
       
-      <tag>communication</tag>
-      
       <tag>signal processing</tag>
+      
+      <tag>communication</tag>
       
     </tags>
     
@@ -946,9 +946,9 @@
     
     <tags>
       
-      <tag>communication</tag>
-      
       <tag>signal processing</tag>
+      
+      <tag>communication</tag>
       
       <tag>matlab</tag>
       
@@ -1021,7 +1021,7 @@
     <link href="/2021/12/03/hexoutils/"/>
     <url>/2021/12/03/hexoutils/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hexo本地文件同步到github"><a href="#hexo本地文件同步到github" class="headerlink" title="hexo本地文件同步到github"></a>hexo本地文件同步到github</h1><ol><li><p>github新建分支，必须新建分支，血泪教训</p></li><li><p>将新分支设置为默认分支</p></li><li><p>将新分支clone到本地新文件夹A中</p></li><li><p>删除除了.git之外的所有文件。.git文件夹是隐藏文件夹</p></li><li><p>将本地文件除了.deploy_git和.git两个文件之外的所有文件全部复制，并粘贴到A</p></li><li><p>修改.gitignore文件中忽略的文件夹。因为我用的主题决定了我需要保留node_modules，所以将其中的/node_modules删除</p></li><li><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">git add .git commit -m &quot;add branch&quot;git push<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol><p>之后每次更新完博客，记得重复<code>步骤7</code></p><h1 id="在新电脑上clone博客文件"><a href="#在新电脑上clone博客文件" class="headerlink" title="在新电脑上clone博客文件"></a>在新电脑上clone博客文件</h1><p>安装git，安装nodejs，配置ssh key，安装hexo</p><ol><li><p>clone github 上的仓库</p></li><li><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">cd xxx.github.ionpm installnpm install hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li><li><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo ghexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li></ol><p>每次打开博客文件夹，都需要同步一下。</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">git pull<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><h1 id="创建新文档"><a href="#创建新文档" class="headerlink" title="创建新文档"></a>创建新文档</h1><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo new [layout] &lt;title&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>例如 hexo new mypage utils</p><p>意思是创建一个以mypage为模板的博客文件，名字叫做utils.md</p><p>注意 <code>mypage</code>是我自己定义的，自带的只有<code>post</code>,<code>draft</code>,<code>page</code>三种，默认是<code>post</code></p><h1 id="创建草稿不发布"><a href="#创建草稿不发布" class="headerlink" title="创建草稿不发布"></a>创建草稿不发布</h1><ol><li><p>创建草稿mydraft.md</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo new draft mydraft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>预览草稿</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo server --draft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>发布草稿mydraft.md</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo publish draft mydraft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ol>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hexo本地文件同步到github"><a href="#hexo本地文件同步到github" class="headerlink" title="hexo本地文件同步到github"></a>hexo本地文件同步到github</h1><ol><li><p>github新建分支，必须新建分支，血泪教训</p></li><li><p>将新分支设置为默认分支</p></li><li><p>将新分支clone到本地新文件夹A中</p></li><li><p>删除除了.git之外的所有文件。.git文件夹是隐藏文件夹</p></li><li><p>将本地文件除了.deploy_git和.git两个文件之外的所有文件全部复制，并粘贴到A</p></li><li><p>修改.gitignore文件中忽略的文件夹。因为我用的主题决定了我需要保留node_modules，所以将其中的/node_modules删除</p></li><li><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">git add .git commit -m &quot;add branch&quot;git push<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol><p>之后每次更新完博客，记得重复<code>步骤7</code></p><h1 id="在新电脑上clone博客文件"><a href="#在新电脑上clone博客文件" class="headerlink" title="在新电脑上clone博客文件"></a>在新电脑上clone博客文件</h1><p>安装git，安装nodejs，配置ssh key，安装hexo</p><ol><li><p>clone github 上的仓库</p></li><li><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">cd xxx.github.ionpm installnpm install hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li><li><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo ghexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li></ol><p>每次打开博客文件夹，都需要同步一下。</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">git pull<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><h1 id="创建新文档"><a href="#创建新文档" class="headerlink" title="创建新文档"></a>创建新文档</h1><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo new [layout] &lt;title&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>例如 hexo new mypage utils</p><p>意思是创建一个以mypage为模板的博客文件，名字叫做utils.md</p><p>注意 <code>mypage</code>是我自己定义的，自带的只有<code>post</code>,<code>draft</code>,<code>page</code>三种，默认是<code>post</code></p><h1 id="创建草稿不发布"><a href="#创建草稿不发布" class="headerlink" title="创建草稿不发布"></a>创建草稿不发布</h1><ol><li><p>创建草稿mydraft.md</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo new draft mydraft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>预览草稿</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo server --draft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>发布草稿mydraft.md</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">hexo publish draft mydraft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ol><h1 id="创建文章资源文件夹"><a href="#创建文章资源文件夹" class="headerlink" title="　创建文章资源文件夹"></a>　创建文章资源文件夹</h1><p>在根目录下的＿config.yml中设置：</p><div class="code-wrapper"><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">post_asset_folder: true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>然后新建post时就会产生资源文件夹</p><h1 id="添加PDF页面"><a href="#添加PDF页面" class="headerlink" title="添加PDF页面"></a>添加PDF页面</h1><p>新建一个html文件在post的资源文件夹中，写入：</p><div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>./paper.pdf<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>然后再资源文件夹中放入<strong>paper.pdf</strong>，并在文章中用超链接引用这个html文件。<strong>注意，在文章中默认路径在资源文件夹中</strong>。</p>]]></content>
     
     
     <categories>
