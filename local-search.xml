@@ -21,7 +21,7 @@
     <link href="/2022/03/27/OnCSIFree/"/>
     <url>/2022/03/27/OnCSIFree/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Internet of Things Journal, Jan.1, 1 2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9119347">pdf</a>)  (Citations <strong>8</strong>)</p><p>因为论文中设计大量推导以及证明和实验，所以具体内容只整理了部分，其余见<a href=".\MyPaperNote2.html">我的论文笔记</a>：</p><div>            <input type="checkbox" disabled checked="checked">信道建模、非线性能量转换建模、Preventive Adjustment of Mean Phases          </div><div>            <input type="checkbox" disabled >AA-SS、AA-IS、SA等等          </div><div>            <input type="checkbox" disabled >实验等          </div><h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><p>AA-SS: PB所有天线都发射相同的信号，且每根天线功率相同</p><p>AA-IS: PB所有天线发射i. i. d.信号</p><p>SA: M根天线中随机选一根，持续时间1/M</p><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul><li>准静态信道：时间缓慢变换的信道就是准静态信道了，不随时间变化的信道一般就是静态信道。比如在一段时间内，信道是不变化的，那么在这段时间内就可以看成静态信道。多普勒频移的倒数可以看成信道时变性（信道相干时间）的基准，如果符号持续时间远大于相干时间，那么就是个非静态信道如果符号持续时间远小于相干时间，就可以认为是准静态信道了。</li></ul><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>对AA-SS、AA-IS、SA三种结构进行建模分析，得到其接收机入射端的能量的均值和能量方差是一个Trade off。</p><ul><li>近PB（path loss 小），AA-IS好；远PB（path loss 大），SA好（二者性能统计上比较接近，后面分析也是一起分析的）。</li><li>在AA-SS结构中，阵元数（天线数）<script type="math/tex">M</script>也不是越多越好。越多<script type="math/tex">M</script>越多极小值，取到极小值的几率也增大（fig 1(a)）。</li><li>可以通过<script type="math/tex">\pi</script>相移取得AA-SS的较好结果（图fig 2 (b)）:极小值个数不变；最佳增益在<script type="math/tex">|\phi|=\pi/2</script>时；<strong>曲线下面积增大了</strong>。<strong>能量均值严重依赖天线的平均相移</strong>。</li><li>优化AA-SS有两种：<script type="math/tex">AA-SS_{\max E}</script>和<script type="math/tex">AA-SS_{\min Var}</script>，<script type="math/tex">\max E</script>的variance大，<script type="math/tex">\min Var</script>的mean小。</li><li>优化AA-IS发现：能量均值计算时，由于<script type="math/tex">M</script>在分母，而分子的值极小，所以AA-IS<strong>入射能量均值</strong>与<strong>天线数目关系不大</strong>；而<script type="math/tex">M</script>的增大可以<strong>有效减小方差</strong>。</li><li>优化SA没有讲，因为难以建模，但是和AA-IS性能相近。</li><li>非特定空间/方向，选AA-IS or SA；特定空间和方向选择AA-SS</li><li>AA-SS提供最大的能量均值，但是其方差性能差，而且中断概率高。<strong>似乎AA-SS更适合物联网设备积累能量的场景。</strong></li><li>信道相关性对AA-SS是有益的。</li><li>预防性相移可以用来控制最大化能量均值或者最小化能量方差。</li><li>对于AA-SS， LOS并不是总是有益的。甚至<script type="math/tex">\kappa=0dB</script>的中断概率低于<script type="math/tex">\kappa=10dB</script>。</li><li>AA-IS和SA都受益于小的相关性（越小越好），和大的天线数量（越多越好）和LOS</li></ul><h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><h3 id="Channel-Model"><a href="#Channel-Model" class="headerlink" title="Channel Model"></a>Channel Model</h3><p>莱斯信道建模，由<script type="math/tex">\kappa</script>来控制信道是<strong>瑞利衰落信道</strong>（<script type="math/tex">\kappa=0</script>）还是<strong>完全确定LOS信道</strong>（<script type="math/tex">\kappa\to\infin</script>）</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327000145442.png" alt="image-20220327000145442" style="zoom: 67%;" /></p><p>其中，<script type="math/tex">\textbf{h}_{los}=\left[\begin{array}11 & e^{i\Phi_1} & \cdots e^{i\Phi_{M-1}}\end{array}\right]</script>是确定LOS信道，并且<script type="math/tex">\Phi_t,t\in\{1,\cdots,M-1\}</script>是第<script type="math/tex">(t+1)</script>个阵元相对于第一个阵元的平均相移。<script type="math/tex">\varphi_0</script>是初相；</p><p>其中，<script type="math/tex">\textbf{h}_{nlos}\sim\mathcal{CN}(\textbf{0,R})</script>表示瑞利信道系数。</p><p>考虑ULA，可以得到：</p><script type="math/tex; mode=display">\Phi_t=-t\pi\sin\phi</script><p>其中，<script type="math/tex">t</script>是阵元间隔，<script type="math/tex">\phi</script>是来波（能量信号）和阵元的方向夹角。</p><h3 id="Preventive-Adjustment-of-Mean-Phases"><a href="#Preventive-Adjustment-of-Mean-Phases" class="headerlink" title="Preventive Adjustment of Mean Phases"></a>Preventive Adjustment of Mean Phases</h3><p>做<script type="math/tex">\textbf{h}^*=\Psi\textbf{h}</script>，且有：</p><script type="math/tex; mode=display">\Psi=diag(1,e^{i\psi_1},\cdots,e^{i\psi_{M-1}})</script><p>得到：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101257249.png" alt="image-20220327101257249" style="zoom: 67%;" /></p><p>证明见<strong>Noteability</strong>。</p><h3 id="EH-Transfer-Function"><a href="#EH-Transfer-Function" class="headerlink" title="EH Transfer Function"></a>EH Transfer Function</h3><p>非线性表达式：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101409153.png" alt="image-20220327101409153" style="zoom:67%;" /></p><p><strong>a,b代表什么物理含义？？</strong></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Internet of Things Journal, Jan.1, 1 2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9119347">pdf</a>)  (Citations <strong>8</strong>)</p><p>因为论文中设计大量推导以及证明和实验，所以具体内容只整理了部分，其余见<a href=".\MyPaperNote.html">我的论文笔记</a>：</p><div>            <input type="checkbox" disabled checked="checked">信道建模、非线性能量转换建模、Preventive Adjustment of Mean Phases          </div><div>            <input type="checkbox" disabled >AA-SS、AA-IS、SA等等          </div><div>            <input type="checkbox" disabled >实验等          </div><h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><p>AA-SS: PB所有天线都发射相同的信号，且每根天线功率相同</p><p>AA-IS: PB所有天线发射i. i. d.信号</p><p>SA: M根天线中随机选一根，持续时间1/M</p><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul><li>准静态信道：时间缓慢变换的信道就是准静态信道了，不随时间变化的信道一般就是静态信道。比如在一段时间内，信道是不变化的，那么在这段时间内就可以看成静态信道。多普勒频移的倒数可以看成信道时变性（信道相干时间）的基准，如果符号持续时间远大于相干时间，那么就是个非静态信道如果符号持续时间远小于相干时间，就可以认为是准静态信道了。</li></ul><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>对AA-SS、AA-IS、SA三种结构进行建模分析，得到其接收机入射端的能量的均值和能量方差是一个Trade off。</p><ul><li>近PB（path loss 小），AA-IS好；远PB（path loss 大），SA好（二者性能统计上比较接近，后面分析也是一起分析的）。</li><li>在AA-SS结构中，阵元数（天线数）<script type="math/tex">M</script>也不是越多越好。越多<script type="math/tex">M</script>越多极小值，取到极小值的几率也增大（fig 1(a)）。</li><li>可以通过<script type="math/tex">\pi</script>相移取得AA-SS的较好结果（图fig 2 (b)）:极小值个数不变；最佳增益在<script type="math/tex">|\phi|=\pi/2</script>时；<strong>曲线下面积增大了</strong>。<strong>能量均值严重依赖天线的平均相移</strong>。</li><li>优化AA-SS有两种：<script type="math/tex">AA-SS_{\max E}</script>和<script type="math/tex">AA-SS_{\min Var}</script>，<script type="math/tex">\max E</script>的variance大，<script type="math/tex">\min Var</script>的mean小。</li><li>优化AA-IS发现：能量均值计算时，由于<script type="math/tex">M</script>在分母，而分子的值极小，所以AA-IS<strong>入射能量均值</strong>与<strong>天线数目关系不大</strong>；而<script type="math/tex">M</script>的增大可以<strong>有效减小方差</strong>。</li><li>优化SA没有讲，因为难以建模，但是和AA-IS性能相近。</li><li>非特定空间/方向，选AA-IS or SA；特定空间和方向选择AA-SS</li><li>AA-SS提供最大的能量均值，但是其方差性能差，而且中断概率高。<strong>似乎AA-SS更适合物联网设备积累能量的场景。</strong></li><li>信道相关性对AA-SS是有益的。</li><li>预防性相移可以用来控制最大化能量均值或者最小化能量方差。</li><li>对于AA-SS， LOS并不是总是有益的。甚至<script type="math/tex">\kappa=0dB</script>的中断概率低于<script type="math/tex">\kappa=10dB</script>。</li><li>AA-IS和SA都受益于小的相关性（越小越好），和大的天线数量（越多越好）和LOS</li></ul><h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><h3 id="Channel-Model"><a href="#Channel-Model" class="headerlink" title="Channel Model"></a>Channel Model</h3><p>莱斯信道建模，由<script type="math/tex">\kappa</script>来控制信道是<strong>瑞利衰落信道</strong>（<script type="math/tex">\kappa=0</script>）还是<strong>完全确定LOS信道</strong>（<script type="math/tex">\kappa\to\infin</script>）</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327000145442.png" alt="image-20220327000145442" style="zoom: 67%;" /></p><p>其中，<script type="math/tex">\textbf{h}_{los}=\left[\begin{array}11 & e^{i\Phi_1} & \cdots e^{i\Phi_{M-1}}\end{array}\right]</script>是确定LOS信道，并且<script type="math/tex">\Phi_t,t\in\{1,\cdots,M-1\}</script>是第<script type="math/tex">(t+1)</script>个阵元相对于第一个阵元的平均相移。<script type="math/tex">\varphi_0</script>是初相；</p><p>其中，<script type="math/tex">\textbf{h}_{nlos}\sim\mathcal{CN}(\textbf{0,R})</script>表示瑞利信道系数。</p><p>考虑ULA，可以得到：</p><script type="math/tex; mode=display">\Phi_t=-t\pi\sin\phi</script><p>其中，<script type="math/tex">t</script>是阵元间隔，<script type="math/tex">\phi</script>是来波（能量信号）和阵元的方向夹角。</p><h3 id="Preventive-Adjustment-of-Mean-Phases"><a href="#Preventive-Adjustment-of-Mean-Phases" class="headerlink" title="Preventive Adjustment of Mean Phases"></a>Preventive Adjustment of Mean Phases</h3><p>做<script type="math/tex">\textbf{h}^*=\Psi\textbf{h}</script>，且有：</p><script type="math/tex; mode=display">\Psi=diag(1,e^{i\psi_1},\cdots,e^{i\psi_{M-1}})</script><p>得到：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101257249.png" alt="image-20220327101257249" style="zoom: 67%;" /></p><p>证明见<strong>Noteability</strong>。</p><h3 id="EH-Transfer-Function"><a href="#EH-Transfer-Function" class="headerlink" title="EH Transfer Function"></a>EH Transfer Function</h3><p>非线性表达式：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220327101409153.png" alt="image-20220327101409153" style="zoom:67%;" /></p><p><strong>a,b代表什么物理含义？？</strong></p>]]></content>
     
     
     <categories>
@@ -35,11 +35,11 @@
     
     <tags>
       
+      <tag>CSI Free</tag>
+      
       <tag>WET</tag>
       
       <tag>WPT</tag>
-      
-      <tag>CSI Free</tag>
       
     </tags>
     
@@ -66,11 +66,11 @@
     
     <tags>
       
+      <tag>CSI Free</tag>
+      
       <tag>WET</tag>
       
       <tag>WPT</tag>
-      
-      <tag>CSI Free</tag>
       
     </tags>
     
@@ -97,11 +97,11 @@
     
     <tags>
       
+      <tag>CSI Free</tag>
+      
       <tag>WET</tag>
       
       <tag>WPT</tag>
-      
-      <tag>CSI Free</tag>
       
     </tags>
     
@@ -155,11 +155,11 @@
     
     <tags>
       
-      <tag>SWIPT</tag>
-      
       <tag>WET</tag>
       
       <tag>WPT</tag>
+      
+      <tag>SWIPT</tag>
       
     </tags>
     
@@ -919,9 +919,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -946,9 +946,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
