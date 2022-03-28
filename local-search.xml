@@ -8,7 +8,7 @@
     <link href="/2022/03/27/OnCSIFree/MyPaperNote/"/>
     <url>/2022/03/27/OnCSIFree/MyPaperNote/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><embed src="./paper.pdf" style=" width: 100% ;height: 100%; " />]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><object data="./paper.pdf" type="application/pdf" width="100%" height="100%"></object>]]></content>
     
     
     
@@ -155,11 +155,11 @@
     
     <tags>
       
+      <tag>SWIPT</tag>
+      
       <tag>WET</tag>
       
       <tag>WPT</tag>
-      
-      <tag>SWIPT</tag>
       
     </tags>
     
