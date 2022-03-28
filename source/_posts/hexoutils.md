@@ -94,3 +94,22 @@ hexo new [layout] <title>
    hexo publish draft mydraft
    ```
 
+#　创建文章资源文件夹
+
+在根目录下的＿config.yml中设置：
+
+```markdown
+post_asset_folder: true
+```
+
+然后新建post时就会产生资源文件夹
+
+# 添加PDF页面
+
+新建一个html文件在post的资源文件夹中，写入：
+
+```html
+<iframe src="./paper.pdf" width="100%" height="100%"></iframe>
+```
+
+然后再资源文件夹中放入**paper.pdf**，并在文章中用超链接引用这个html文件。**注意，在文章中默认路径在资源文件夹中**。
