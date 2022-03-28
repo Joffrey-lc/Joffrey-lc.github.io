@@ -35,11 +35,11 @@
     
     <tags>
       
-      <tag>CSI Free</tag>
-      
       <tag>WET</tag>
       
       <tag>WPT</tag>
+      
+      <tag>CSI Free</tag>
       
     </tags>
     
@@ -66,11 +66,11 @@
     
     <tags>
       
-      <tag>CSI Free</tag>
-      
       <tag>WET</tag>
       
       <tag>WPT</tag>
+      
+      <tag>CSI Free</tag>
       
     </tags>
     
@@ -97,11 +97,11 @@
     
     <tags>
       
-      <tag>CSI Free</tag>
-      
       <tag>WET</tag>
       
       <tag>WPT</tag>
+      
+      <tag>CSI Free</tag>
       
     </tags>
     
@@ -141,7 +141,7 @@
     <link href="/2022/03/19/MassiveWirelessEnergyTransfer/"/>
     <url>/2022/03/19/MassiveWirelessEnergyTransfer/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Massive Wireless Energy Transfer: Enabling Sustainable IoT Toward 6G Era</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Internet of Things Journal, June1, 1 2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9319211">pdf</a>)  (Citations <strong>18</strong>)</p><h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><ul><li>DASs: Distributed Antenna Systems</li></ul><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160826065.png" alt="WIT和WET结构" style="zoom:67%;" /></p><p><strong>WET系统结构：</strong>WIT和WET/WPT自然而然的会在一起考虑。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160926828.png" alt="BS和PB实现WIT和WET" style="zoom:67%;" /></p><p>并且由于WET的路径损耗大，对功率要求高，所以得需要BS+PB才能达到到WIT Zone范围左右的WET Zone</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161142285.png" alt="WET和WIT的两种实现结构" style="zoom:67%;" /></p><p>设计WIT和WET发射机的两种形式，In-band 和Out-of-band。一般选择In-Band。其实就是<strong>时分复用</strong>和<strong>频分复用</strong>。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161254502.png" alt="(a)多天线单PB (b)多PBs单天线 (c)多天线多PBs" style="zoom:67%;" /></p><p>在只考虑WET的情况下，上图(a)表示一个PB带有M个天线；(b)表示分布式天线，即一个PB只有一根天线，共M个PBs；下方表示的DAS和EB结合的模式，即4个/8个PBs，每个M/4||||M/8根天线。</p><p><strong>实验结果如图：</strong></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161530798.png" alt="不同结构性能对比" style="zoom: 67%;" /></p><ul><li><p><em>Single PB (EB):</em> A PB located at the circle center equipped with <em>M</em> antennas.</p></li><li><p><em>Single-Antenna PBs (DAS): M</em> single-antenna PBs random and uniformly distributed in the area.</p></li><li><p><em>Single-Antenna PBs (Optimized DAS –oDAS):</em> Similar to the single-antenna PBs deployment but the PBs’ locations are set using the well-known <em>K-means</em> clustering algorithm [60].</p></li><li><p><em>Four PBs (EB</em>+<em>oDAS):</em> Four PBs, each equipped with M/4 antennas, are deployed and their locations are set using the <em>K-means</em> clustering algorithm.</p></li><li><p><em>Eight PBs (EB</em>+<em>oDAS):</em> Eight PBs, each equipped with M/8 antennas, are deployed and their locations are set using the <em>K-means</em> clustering algorithm.</p></li></ul><p>结论：</p><ol><li>没有位置优化（k-means 聚类）的DAS最差，甚至不如单个在圆心的结构</li><li>位置优化能够给DAS带来巨大的性能提升</li><li>DAS+EB的效果更好</li></ol><h2 id="CSI-related"><a href="#CSI-related" class="headerlink" title="CSI related"></a>CSI related</h2><p>分四个部分：</p><ul><li>Partial CSI-Based EB/Statistical CSI: 统计CSI，不是瞬时的<ul><li>在大时间内变化， 而不需要频繁更新。</li><li>有限CSI采集开销和能量消耗得到。</li><li>更不容易出错（统计的）</li></ul></li><li><p>CSI-Free：不需要CSI，具体有三种算法</p><ul><li>To Do</li><li>To Do</li><li>To Do</li></ul></li><li><p>Positioning-Based：在CSI-Free的基础上，通过位置信息，旋转PB的天线以获得更好的性能</p></li><li>Hybrid：混合模式，结合Perfect CSI、Limit CSI、CSI-free、Positioning-Based EB等。例如在IoT设备电量较低时先通过CSI-Free传输能量，电量得到补充后，可以传输导频，再使用perfect CSI等。</li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Massive Wireless Energy Transfer: Enabling Sustainable IoT Toward 6G Era</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Internet of Things Journal, June1, 1 2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9319211">pdf</a>)  (Citations <strong>18</strong>)</p><h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><ul><li>DASs: Distributed Antenna Systems</li></ul><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160826065.png" alt="WIT和WET结构" style="zoom:67%;" /></p><p><strong>WET系统结构：</strong>WIT和WET/WPT自然而然的会在一起考虑。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319160926828.png" alt="BS和PB实现WIT和WET" style="zoom:67%;" /></p><p>并且由于WET的路径损耗大，对功率要求高，所以得需要BS+PB才能达到到WIT Zone范围左右的WET Zone</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161142285.png" alt="WET和WIT的两种实现结构" style="zoom:67%;" /></p><p>设计WIT和WET发射机的两种形式，In-band 和Out-of-band。一般选择In-Band。其实就是<strong>时分复用</strong>和<strong>频分复用</strong>。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161254502.png" alt="(a)多天线单PB (b)多PBs单天线 (c)多天线多PBs" style="zoom:67%;" /></p><p>在只考虑WET的情况下，上图(a)表示一个PB带有M个天线；(b)表示分布式天线，即一个PB只有一根天线，共M个PBs；下方表示的DAS和EB结合的模式，即4个/8个PBs，每个M/4||||M/8根天线。</p><p><strong>实验结果如图：</strong></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161530798.png" alt="不同结构性能对比" style="zoom: 67%;" /></p><ul><li><p><em>Single PB (EB):</em> A PB located at the circle center equipped with <em>M</em> antennas.</p></li><li><p><em>Single-Antenna PBs (DAS): M</em> single-antenna PBs random and uniformly distributed in the area.</p></li><li><p><em>Single-Antenna PBs (Optimized DAS –oDAS):</em> Similar to the single-antenna PBs deployment but the PBs’ locations are set using the well-known <em>K-means</em> clustering algorithm [60].</p></li><li><p><em>Four PBs (EB</em>+<em>oDAS):</em> Four PBs, each equipped with M/4 antennas, are deployed and their locations are set using the <em>K-means</em> clustering algorithm.</p></li><li><p><em>Eight PBs (EB</em>+<em>oDAS):</em> Eight PBs, each equipped with M/8 antennas, are deployed and their locations are set using the <em>K-means</em> clustering algorithm.</p></li></ul><p>结论：</p><ol><li>没有位置优化（k-means 聚类）的DAS最差，甚至不如单个在圆心的结构</li><li>位置优化能够给DAS带来巨大的性能提升</li><li>DAS+EB的效果更好</li></ol><h2 id="CSI-related"><a href="#CSI-related" class="headerlink" title="CSI related"></a>CSI related</h2><p>分四个部分：</p><ul><li>Partial CSI-Based EB/Statistical CSI: 统计CSI，不是瞬时的<ul><li>在大时间内变化， 而不需要频繁更新。</li><li>有限CSI采集开销和能量消耗得到。</li><li>更不容易出错（统计的）</li></ul></li><li><p>CSI-Free：不需要CSI，具体有三种算法</p><ul><li><p><a href="https://lcjoffrey.top/2022/03/20/CSI-FREE-Transmit-diversity/">APS-EMW</a></p></li><li><p><a href="https://lcjoffrey.top/2022/03/27/OnCSIFree/">AA-IS/SA</a></p></li><li><p><a href="https://lcjoffrey.top/2022/03/27/OnCSIFree/">AA-SS 两种</a></p></li></ul></li></ul><p>由图可知，APS-EMW和AA-IS/SA策略的物联网节点接收能量都比较发散（均匀）。而AA-SS的两种优化形式都比较具有方向性。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152458628.png" alt="image-20220328152458628" style="zoom: 50%;" /></p><p>从下图可以看到，APS-EMW的低能量区域比较大，说明它只适用于一些低能量要求的场景。SA是这几种方案中，唯一一种只需要单射频发射链路的，其结构最简单。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152530913.png" alt="image-20220328152530913" style="zoom:50%;" /></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328145642755.png" alt="image-20220328145642755"></p><ul><li>Positioning-Based：在CSI-Free的基础上，通过位置信息，旋转PB的天线以获得更好的性能</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152756402.png" alt="image-20220328152756402" style="zoom:50%;" /></p><p>节点空域角度聚类，再进行天线旋转传输能量。AA-SS两种方案都从旋转角度中受益。</p><ul><li>Hybrid：混合模式，结合Perfect CSI、Limit CSI、CSI-free、Positioning-Based EB等。例如在IoT设备电量较低时先通过CSI-Free传输能量，电量得到补充后，可以传输导频，再使用perfect CSI等。</li></ul>]]></content>
     
     
     <categories>
@@ -186,9 +186,9 @@
     
     <tags>
       
-      <tag>IRS</tag>
-      
       <tag>SWIPT</tag>
+      
+      <tag>IRS</tag>
       
     </tags>
     
@@ -215,9 +215,9 @@
     
     <tags>
       
-      <tag>IRS</tag>
-      
       <tag>SWIPT</tag>
+      
+      <tag>IRS</tag>
       
     </tags>
     
@@ -919,9 +919,9 @@
     
     <tags>
       
-      <tag>communication</tag>
-      
       <tag>signal processing</tag>
+      
+      <tag>communication</tag>
       
     </tags>
     
@@ -946,9 +946,9 @@
     
     <tags>
       
-      <tag>communication</tag>
-      
       <tag>signal processing</tag>
+      
+      <tag>communication</tag>
       
       <tag>matlab</tag>
       

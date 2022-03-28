@@ -28,8 +28,12 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161142285.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161254502.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220319161530798.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152458628.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152530913.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328145642755.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152756402.png">
 <meta property="article:published_time" content="2022-03-19T09:01:01.000Z">
-<meta property="article:modified_time" content="2022-03-19T10:19:13.056Z">
+<meta property="article:modified_time" content="2022-03-28T07:31:56.479Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="SWIPT">
 <meta property="article:tag" content="WET">
@@ -224,7 +228,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.6k 字
     </span>
   
 
@@ -233,7 +237,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      5 分钟
     </span>
   
 
@@ -315,13 +319,26 @@
 </li>
 <li><p>CSI-Free：不需要CSI，具体有三种算法</p>
 <ul>
-<li>To Do</li>
-<li>To Do</li>
-<li>To Do</li>
+<li><p><a href="https://lcjoffrey.top/2022/03/20/CSI-FREE-Transmit-diversity/">APS-EMW</a></p>
+</li>
+<li><p><a href="https://lcjoffrey.top/2022/03/27/OnCSIFree/">AA-IS/SA</a></p>
+</li>
+<li><p><a href="https://lcjoffrey.top/2022/03/27/OnCSIFree/">AA-SS 两种</a></p>
+</li>
 </ul>
 </li>
-<li><p>Positioning-Based：在CSI-Free的基础上，通过位置信息，旋转PB的天线以获得更好的性能</p>
-</li>
+</ul>
+<p>由图可知，APS-EMW和AA-IS/SA策略的物联网节点接收能量都比较发散（均匀）。而AA-SS的两种优化形式都比较具有方向性。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152458628.png" srcset="/img/loading.gif" lazyload alt="image-20220328152458628" style="zoom: 50%;" /></p>
+<p>从下图可以看到，APS-EMW的低能量区域比较大，说明它只适用于一些低能量要求的场景。SA是这几种方案中，唯一一种只需要单射频发射链路的，其结构最简单。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152530913.png" srcset="/img/loading.gif" lazyload alt="image-20220328152530913" style="zoom:50%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328145642755.png" srcset="/img/loading.gif" lazyload alt="image-20220328145642755"></p>
+<ul>
+<li>Positioning-Based：在CSI-Free的基础上，通过位置信息，旋转PB的天线以获得更好的性能</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152756402.png" srcset="/img/loading.gif" lazyload alt="image-20220328152756402" style="zoom:50%;" /></p>
+<p>节点空域角度聚类，再进行天线旋转传输能量。AA-SS两种方案都从旋转角度中受益。</p>
+<ul>
 <li>Hybrid：混合模式，结合Perfect CSI、Limit CSI、CSI-free、Positioning-Based EB等。例如在IoT设备电量较低时先通过CSI-Free传输能量，电量得到补充后，可以传输导频，再使用perfect CSI等。</li>
 </ul>
 
