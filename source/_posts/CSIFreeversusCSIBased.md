@@ -37,7 +37,7 @@ date: 2022-03-29 22:11:07
 
 ### Result
 
-- 最远节点比其他节点**多**经历至少3dB的功率衰减时，**MRT波束形成器接近最优**
+- 最远节点比其他节点**多**经历至少3dB的功率衰减时，**MRT波束形成器接近最优**（CSI-Based）
 - SA虽然不能提供更高的平均EH增益，**但是提供更大的WIT、WET分集增益**，因为它只用一根天线WET，其余WIT
 - **CSI-Free**在**Periodic Traffic**下性能最佳，但是在**Possion Traffic**下不太行
 - Possion Traffic **存在一个最佳的碰撞概率**
