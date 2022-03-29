@@ -74,9 +74,26 @@ date: 2022-03-19 17:01:01
   - 有限CSI采集开销和能量消耗得到。
   - 更不容易出错（统计的）
 - CSI-Free：不需要CSI，具体有三种算法
-  - To Do
-  - To Do
-  - To Do
+  - [APS-EMW](https://lcjoffrey.top/2022/03/20/CSI-FREE-Transmit-diversity/)
+
+  - [AA-IS/SA](https://lcjoffrey.top/2022/03/27/OnCSIFree/)
+
+  - [AA-SS 两种](https://lcjoffrey.top/2022/03/27/OnCSIFree/)
+
+由图可知，APS-EMW和AA-IS/SA策略的物联网节点接收能量都比较发散（均匀）。而AA-SS的两种优化形式都比较具有方向性。
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152458628.png" alt="image-20220328152458628" style="zoom: 50%;" />
+
+从下图可以看到，APS-EMW的低能量区域比较大，说明它只适用于一些低能量要求的场景。SA是这几种方案中，唯一一种只需要单射频发射链路的，其结构最简单。
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152530913.png" alt="image-20220328152530913" style="zoom:50%;" />
+
+![image-20220328145642755](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328145642755.png)
 
 - Positioning-Based：在CSI-Free的基础上，通过位置信息，旋转PB的天线以获得更好的性能
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152756402.png" alt="image-20220328152756402" style="zoom:50%;" />
+
+节点空域角度聚类，再进行天线旋转传输能量。AA-SS两种方案都从旋转角度中受益。
+
 - Hybrid：混合模式，结合Perfect CSI、Limit CSI、CSI-free、Positioning-Based EB等。例如在IoT设备电量较低时先通过CSI-Free传输能量，电量得到补充后，可以传输导频，再使用perfect CSI等。
