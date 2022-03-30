@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152530913.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220330221528144.png">
 <meta property="article:published_time" content="2022-03-30T14:42:56.000Z">
-<meta property="article:modified_time" content="2022-03-30T15:05:31.956Z">
+<meta property="article:modified_time" content="2022-03-30T15:08:48.156Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="CSI Free">
 <meta property="article:tag" content="WET">
@@ -225,7 +225,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.6k 字
+      4.1k 字
     </span>
   
 
@@ -234,7 +234,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14 分钟
+      13 分钟
     </span>
   
 
@@ -300,50 +300,28 @@
 ">[1]</span></a></sup>和Onel等人研究的多天线发射机和单天线接收机的结构<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109/TCOMM.2019.2928542.
 ">[2]</span></a></sup><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109/JIOT.2020.3003114.
 ">[3]</span></a></sup>。</p>
-<pre><code class="mermaid"><span class="token keyword">graph</span> LR
-A<span class="token text string">[Wireless Energy Transfer]</span><span class="token arrow operator">--></span>B<span class="token text string">[Statistical CSI]</span>
-A<span class="token arrow operator">--></span>C<span class="token text string">["CSI-Free"]</span>
-A<span class="token arrow operator">--></span>D<span class="token text string">["Positioning-Based"]</span>
-A<span class="token arrow operator">--></span>E<span class="token text string">["Hybrid"]</span>
-C<span class="token arrow operator">--></span>F<span class="token text string">["Bruno et.al."]</span>
-F<span class="token arrow operator">--></span>G<span class="token text string">["快衰信道对EH有增益"]</span>
-C<span class="token arrow operator">--></span>H<span class="token text string">["OneL et.al."]</span>
-H<span class="token arrow operator">--></span>I1<span class="token text string">["OA(性能很差)"]</span>
-H<span class="token arrow operator">--></span>I2<span class="token text string">["AA"]</span>
-H<span class="token arrow operator">--></span>I3<span class="token text string">["SA(WET和AA-IS相近，WIT比AA-IS好)"]</span>
-I2<span class="token arrow operator">--></span>II1<span class="token text string">["AA-SS"]</span>
-I2<span class="token arrow operator">--></span>II2<span class="token text string">["AA-IS"]</span>
-II1<span class="token arrow operator">--></span>III1<span class="token text string">["AA-SS&lt;sub>min var"]</span>
-II1<span class="token arrow operator">--></span>III2<span class="token text string">["AA-SS&lt;sub>max E"]</span>
-D</code></pre>
 
 <pre>
 <code class="mermaid" >
-gantt
-dateFormat  YYYY-MM-DD
-title Adding GANTT diagram to mermaid
+graph LR
+A[Wireless Energy Transfer]-->B[Statistical CSI]
+A-->C["CSI-Free"]
+A-->D["Positioning-Based"]
+A-->E["Hybrid"]
+C-->F["Bruno et.al."]
+F-->G["快衰信道对EH有增益"]
+C-->H["OneL et.al."]
+H-->I1["OA(性能很差)"]
+H-->I2["AA"]
+H-->I3["SA(WET和AA-IS相近，WIT比AA-IS好)"]
+I2-->II1["AA-SS"]
+I2-->II2["AA-IS"]
+II1-->III1["AA-SS<sub>min var"]
+II1-->III2["AA-SS<sub>max E"]
+D-->D2["AA-SS受旋转影响(角度影响)大"]
 
-section A section
-Completed task            :done,    des1, 2014-01-06,2014-01-08
-Active task               :active,  des2, 2014-01-09, 3d
-Future task               :         des3, after des2, 5d
-Future task2               :         des4, after des3, 5d
 </code>
 </pre>
-<pre><code class="mermaid"><span class="token keyword">classDiagram</span>
-Class01 <span class="token arrow operator">&lt;|--</span> AveryLongClass <span class="token operator">:</span> Cool
-Class03 <span class="token arrow operator">*--</span> Class04
-Class05 <span class="token arrow operator">o--</span> Class06
-Class07 <span class="token arrow operator">..</span> Class08
-Class09 <span class="token arrow operator">--></span> C2 <span class="token operator">:</span> Where am i?
-Class09 <span class="token arrow operator">--*</span> C3
-Class09 <span class="token arrow operator">--|></span> Class07
-Class07 <span class="token operator">:</span> equals<span class="token punctuation">(</span><span class="token punctuation">)</span>
-Class07 <span class="token operator">:</span> Object[] elementData
-Class01 <span class="token operator">:</span> size<span class="token punctuation">(</span><span class="token punctuation">)</span>
-Class01 <span class="token operator">:</span> int chimp
-Class01 <span class="token operator">:</span> int gorilla
-Class08 </code></pre>
 <h3 id="构造快衰信道实现WET的增强"><a href="#构造快衰信道实现WET的增强" class="headerlink" title="构造快衰信道实现WET的增强"></a>构造快衰信道实现WET的增强</h3><h4 id="衰落对能量接收的增强"><a href="#衰落对能量接收的增强" class="headerlink" title="衰落对能量接收的增强"></a>衰落对能量接收的增强</h4><p>Bruno Clerckx等人提出，信道衰落（fading）对能量收集（EH）是有益的：这是因为能量接收器通常是<strong>非线性的</strong>。<strong>对这个非线性特性的能量接收模型进行四阶泰勒展开，得到有衰落的情况下，能量受益增大</strong>。但同时，衰落会降低信道容量，意味着对WIT有害。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320210336493.png" srcset="/img/loading.gif" lazyload alt="天线等效电路和二极管整流器（包括非线性器件-二极管和低通滤波器）" style="zoom: 50%;" /></p>
 <h4 id="分集对能量接收的增强"><a href="#分集对能量接收的增强" class="headerlink" title="分集对能量接收的增强"></a>分集对能量接收的增强</h4><p>基于此结论，仅考虑WPT（或者称为WET），使用分集发射，即在每根天线上添加一个时变的相位<script type="math/tex">\psi_m(t)</script>，如下图所示：</p>
