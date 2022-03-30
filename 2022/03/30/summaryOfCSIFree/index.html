@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="总结了最近阅读的CSI-Free相关资料">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="总结了最近阅读的CSI-Free相关资料">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSI-Free总结">
+<meta property="og:url" content="http://lcjoffrey.top/2022/03/30/summaryOfCSIFree/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="总结了最近阅读的CSI-Free相关资料">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320210336493.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320212227078.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320214305022.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152458628.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152530913.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220330221528144.png">
+<meta property="article:published_time" content="2022-03-30T14:42:56.000Z">
+<meta property="article:modified_time" content="2022-03-30T14:46:18.087Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="CSI Free">
+<meta property="article:tag" content="WET">
+<meta property="article:tag" content="WPT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320210336493.png">
+  
+  <title>CSI-Free总结 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSI-Free总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-30 22:42" pubdate>
+        2022年3月30日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSI-Free总结</h1>
+            
+            <div class="markdown-body">
+              <h1 id="CSI-Free-总结"><a href="#CSI-Free-总结" class="headerlink" title="CSI-Free 总结"></a>CSI-Free 总结</h1><h2 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h2><p>无线能量传输（WET/WPT）,经历了从①设计更好的接收机电路<script type="math/tex">\to</script>②设计能量波束赋形（Energy Beamforming）<script type="math/tex">\to</script>③设计能量波形（Energy Waveform）<script type="math/tex">\to</script>④设计能量调制（Energy Modulation）等阶段。到现在研究主要分四个方向：</p>
+<ul>
+<li>Partial CSI-Based EB/Statistical CSI: 统计CSI，不是瞬时的<ul>
+<li>在大时间内变化， 而不需要频繁更新。</li>
+<li>有限CSI采集开销和能量消耗得到。</li>
+<li>更不容易出错（统计的）</li>
+</ul>
+</li>
+<li>CSI-Free：不需要CSI，具体有三种算法<ul>
+<li><a href="https://lcjoffrey.top/2022/03/20/CSI-FREE-Transmit-diversity/">APS-EMW</a><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="B. Clerckx and J. Kim, “On the Beneficial Roles of Fading and Transmit Diversity in Wireless Power Transfer With Nonlinear Energy Harvesting,” in IEEE Transactions on Wireless Communications, vol. 17, no. 11, pp. 7731-7743, Nov. 2018, doi: 10.1109/TWC.2018.2870377.
+">[1]</span></a></sup></li>
+<li><a href="https://lcjoffrey.top/2022/03/27/OnCSIFree/">AA-IS/SA</a><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109/TCOMM.2019.2928542.
+">[2]</span></a></sup><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109/JIOT.2020.3003114.
+">[3]</span></a></sup></li>
+<li><a href="https://lcjoffrey.top/2022/03/27/OnCSIFree/">AA-SS 两种</a><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109/TCOMM.2019.2928542.
+">[2]</span></a></sup><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109/JIOT.2020.3003114.
+">[3]</span></a></sup></li>
+</ul>
+</li>
+<li>Positioning-Based：在CSI-Free的基础上，通过位置信息，旋转PB的天线以获得更好的性能（AA-SS可以从中获得较好的增益）</li>
+<li>Hybrid：混合模式，结合Perfect CSI、Limit CSI、CSI-free、Positioning-Based EB等。例如在IoT设备电量较低时先通过CSI-Free传输能量，电量得到补充后，可以传输导频，再使用perfect CSI等。</li>
+</ul>
+<p>目前主要调研的是CSI-Free算法。主要有由Bruno等人研究的构造快衰信道来实现能量接收端增益<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="B. Clerckx and J. Kim, “On the Beneficial Roles of Fading and Transmit Diversity in Wireless Power Transfer With Nonlinear Energy Harvesting,” in IEEE Transactions on Wireless Communications, vol. 17, no. 11, pp. 7731-7743, Nov. 2018, doi: 10.1109/TWC.2018.2870377.
+">[1]</span></a></sup>和Onel等人研究的多天线发射机和单天线接收机的结构<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109/TCOMM.2019.2928542.
+">[2]</span></a></sup><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109/JIOT.2020.3003114.
+">[3]</span></a></sup>。</p>
+<pre><code class="mermaid"><span class="token keyword">graph</span> LR
+A<span class="token text string">[Wireless Energy Transfer]</span><span class="token arrow operator">--></span>B<span class="token text string">[Statistical CSI]</span>
+A<span class="token arrow operator">--></span>C<span class="token text string">["CSI-Free"]</span>
+A<span class="token arrow operator">--></span>D<span class="token text string">["Positioning-Based"]</span>
+A<span class="token arrow operator">--></span>E<span class="token text string">["Hybrid"]</span>
+C<span class="token arrow operator">--></span>F<span class="token text string">["Bruno et.al."]</span>
+F<span class="token arrow operator">--></span>G<span class="token text string">["快衰信道对EH有增益"]</span>
+C<span class="token arrow operator">--></span>H<span class="token text string">["OneL et.al."]</span>
+H<span class="token arrow operator">--></span>I1<span class="token text string">["OA(性能很差)"]</span>
+H<span class="token arrow operator">--></span>I2<span class="token text string">["AA"]</span>
+H<span class="token arrow operator">--></span>I3<span class="token text string">["SA(WET和AA-IS相近，WIT比AA-IS好)"]</span>
+I2<span class="token arrow operator">--></span>II1<span class="token text string">["AA-SS"]</span>
+I2<span class="token arrow operator">--></span>II2<span class="token text string">["AA-IS"]</span>
+II1<span class="token arrow operator">--></span>III1<span class="token text string">["AA-SS&lt;sub>min var"]</span>
+II1<span class="token arrow operator">--></span>III2<span class="token text string">["AA-SS&lt;sub>max E"]</span>
+D</code></pre>
+<h3 id="构造快衰信道实现WET的增强"><a href="#构造快衰信道实现WET的增强" class="headerlink" title="构造快衰信道实现WET的增强"></a>构造快衰信道实现WET的增强</h3><h4 id="衰落对能量接收的增强"><a href="#衰落对能量接收的增强" class="headerlink" title="衰落对能量接收的增强"></a>衰落对能量接收的增强</h4><p>Bruno Clerckx等人提出，信道衰落（fading）对能量收集（EH）是有益的：这是因为能量接收器通常是<strong>非线性的</strong>。<strong>对这个非线性特性的能量接收模型进行四阶泰勒展开，得到有衰落的情况下，能量受益增大</strong>。但同时，衰落会降低信道容量，意味着对WIT有害。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320210336493.png" srcset="/img/loading.gif" lazyload alt="天线等效电路和二极管整流器（包括非线性器件-二极管和低通滤波器）" style="zoom: 50%;" /></p>
+<h4 id="分集对能量接收的增强"><a href="#分集对能量接收的增强" class="headerlink" title="分集对能量接收的增强"></a>分集对能量接收的增强</h4><p>基于此结论，仅考虑WPT（或者称为WET），使用分集发射，即在每根天线上添加一个时变的相位<script type="math/tex">\psi_m(t)</script>，如下图所示：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320212227078.png" srcset="/img/loading.gif" lazyload alt="分集发射的一般结构" style="zoom: 50%;" /></p>
+<p>则发射端信号为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x_m(t)&=\sqrt{\frac{2P}{M}}\cos(w_0t+\psi_m(t))\\
+&=\sqrt{\frac{2P}{M}}\Re\{e^{j(w_0t+\psi_m(t))}\}
+\end{aligned}</script><p>其中<script type="math/tex">P</script>为总能量；<script type="math/tex">M</script>为天线个数；<script type="math/tex">\Re(\cdot)</script>为取实部。</p>
+<p>接收端信号为：</p>
+<script type="math/tex; mode=display">
+y(t)=\sqrt{\frac{2P}{M}}\mathscr\{\Lambda^{-1/2}h(t)e^{jw_0t}\}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+h(t)=\sum\limits_{m=1}^Mh_me^{j\psi_m(t)}</script><p>其中，接收天线的路径损耗和衰落为<script type="math/tex">\Lambda ^{-1/2}h_m</script>。</p>
+<p><strong>可以理解为分集在衰落上<script type="math/tex">h</script>上乘了一个系数，创造了一个快衰信道，结合衰落使能量接收增加的特点，使能量接收增益增大</strong></p>
+<h4 id="天线数目对能量收集器的增强"><a href="#天线数目对能量收集器的增强" class="headerlink" title="天线数目对能量收集器的增强"></a>天线数目对能量收集器的增强</h4><p>建模出来在泰勒展开四阶项中有一个系数<script type="math/tex">G_{td}=(1+\frac{M-1}{M})</script>，即有如下趋势：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220320214305022.png" srcset="/img/loading.gif" lazyload alt="随天线数目增益" style="zoom: 50%;" /></p>
+<p>进一步，还可以结合Energy Modulation和Energy Waveforming来进一步增强能量接收。</p>
+<h3 id="讨论不同发射机结构对WET的影响"><a href="#讨论不同发射机结构对WET的影响" class="headerlink" title="讨论不同发射机结构对WET的影响"></a>讨论不同发射机结构对WET的影响</h3><p>以下内容中，接收机都是单天线设备。</p>
+<h4 id="OA（only-antenna）：发射机为单天线，单天线全功率输出。性能很差。"><a href="#OA（only-antenna）：发射机为单天线，单天线全功率输出。性能很差。" class="headerlink" title="OA（only  antenna）：发射机为单天线，单天线全功率输出。性能很差。"></a>OA（only  antenna）：发射机为单天线，单天线全功率输出。性能很差。</h4><h4 id="AA（all-antenna）：发射机为多天线，功率平均分配。可以选择不同的侧重优化方式和不同的发射信号。"><a href="#AA（all-antenna）：发射机为多天线，功率平均分配。可以选择不同的侧重优化方式和不同的发射信号。" class="headerlink" title="AA（all antenna）：发射机为多天线，功率平均分配。可以选择不同的侧重优化方式和不同的发射信号。"></a>AA（all antenna）：发射机为多天线，功率平均分配。可以选择不同的侧重优化方式和不同的发射信号。</h4><ul>
+<li>AA-SS：多天线，每根天线发射相同的信号。根据优化需求，分为<script type="math/tex">AA-SS_{\min var}</script>和<script type="math/tex">AA-SS_{\max E}</script></li>
+</ul>
+<p><script type="math/tex">AA-SS_{\min var}</script>优化结果为，能量信号与发射机天线（ULA）的法线方向平行（能量信号方向与天线夹角为0度），此时取得接收机能量有最小方差，但此时均值最小。</p>
+<p><script type="math/tex">AA-SS_{\max E}</script>优化结果为，能量信号与发射机天线（ULA）的法线方向垂直（能量信号方向与天线夹角为90度），且天线与天线之间存在<script type="math/tex">\pi</script>相位差，此时取得接收机能量有最大均值，但此时方差最大。</p>
+<ul>
+<li>AA-IS：多天线，每根天线发射i.i.d.信号。和下面的SA性能接近</li>
+</ul>
+<h4 id="SA（Switching-Antennas）：多天线，每次选一根天线全功率输出，输出时间是总时间的1-M。性能和AA-IS相似，但是只需要一个发射链路，方差小（均值与AA-SS相比也小）。"><a href="#SA（Switching-Antennas）：多天线，每次选一根天线全功率输出，输出时间是总时间的1-M。性能和AA-IS相似，但是只需要一个发射链路，方差小（均值与AA-SS相比也小）。" class="headerlink" title="SA（Switching Antennas）：多天线，每次选一根天线全功率输出，输出时间是总时间的1/M。性能和AA-IS相似，但是只需要一个发射链路，方差小（均值与AA-SS相比也小）。"></a>SA（Switching Antennas）：多天线，每次选一根天线全功率输出，输出时间是总时间的<script type="math/tex">1/M</script>。性能和AA-IS相似，但是只需要一个发射链路，方差小（均值与AA-SS相比也小）。</h4><p>注意，由于<script type="math/tex">SA</script>实现简单，而且可以很好地利用其余天线做WIT发射分集，所以<script type="math/tex">SA</script>和<script type="math/tex">AA-IS</script>相比，肯定选择<script type="math/tex">SA</script>。</p>
+<h2 id="对比-lt-span-class-”hint—top-hint—rounded”-aria-label-”O-L-A-Lopez-H-Alves-R-D-Souza-S-Montejo-Sanchez-E-M-G-Fernandez-and-M-Latva-Aho-“Massive-Wireless-Energy-Transfer-Enabling-Sustainable-IoT-Toward-6G-Era-”-in-IEEE-Internet-of-Things-Journal-vol-8-no-11-pp-8816-8835-1-June1-2021-doi-10-1109-JIOT-2021-3050612"><a href="#对比-lt-span-class-”hint—top-hint—rounded”-aria-label-”O-L-A-Lopez-H-Alves-R-D-Souza-S-Montejo-Sanchez-E-M-G-Fernandez-and-M-Latva-Aho-“Massive-Wireless-Energy-Transfer-Enabling-Sustainable-IoT-Toward-6G-Era-”-in-IEEE-Internet-of-Things-Journal-vol-8-no-11-pp-8816-8835-1-June1-2021-doi-10-1109-JIOT-2021-3050612" class="headerlink" title="　对比&lt;span class=”hint—top hint—rounded” aria-label=”O. L. A. López, H. Alves, R. D. Souza, S. Montejo-Sánchez, E. M. G. Fernández and M. Latva-Aho, “Massive Wireless Energy Transfer: Enabling Sustainable IoT Toward 6G Era,” in IEEE Internet of Things Journal, vol. 8, no. 11, pp. 8816-8835, 1 June1, 2021, doi: 10.1109/JIOT.2021.3050612."></a>　对比<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote">&lt;span class=”hint—top hint—rounded” aria-label=”O. L. A. López, H. Alves, R. D. Souza, S. Montejo-Sánchez, E. M. G. Fernández and M. Latva-Aho, “Massive Wireless Energy Transfer: Enabling Sustainable IoT Toward 6G Era,” in IEEE Internet of Things Journal, vol. 8, no. 11, pp. 8816-8835, 1 June1, 2021, doi: 10.1109/JIOT.2021.3050612.</h2><p>“&gt;[4]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152458628.png" srcset="/img/loading.gif" lazyload alt="几种方式的对比" style="zoom: 50%;" /></p>
+<p>由图可知，APS-EMW和AA-IS/SA策略的接收能量都比较发散（均匀）。而AA-SS的两种优化形式都比较具有方向性。</p>
+<p>APS-EMW的低能量区域比较大，只适用于一些低能量要求的场景，如下图所示：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152530913.png" srcset="/img/loading.gif" lazyload alt="几种算法能量分布对比" style="zoom: 50%;" /></p>
+<p>注意到，<script type="math/tex">AA-SS_{\min var}</script>全能量值覆盖区间都比较低；<script type="math/tex">AA-SS_{\max E}</script>具有全能量值覆盖区间都高；<script type="math/tex">SA</script>和<script type="math/tex">AA-IS</script>介于二者中间。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220330221528144.png" srcset="/img/loading.gif" lazyload alt="几种CSI-Free算法的总结" style="zoom: 50%;" /></p>
+<p><em>虽然总结上写SA/AA-IS不适合结合IRS，因为其能量传输是全方位的。但换个角度讲，SA方案方差性能比较好，但能量传输不具有方向性，IRS是否可以作为集中SA发射能量的一种方式？？</em></p>
+<h2 id="CSI-Free-versus-CSI-Based-lt-span-class-”hint—top-hint—rounded”-aria-label-”O-L-A-Lopez-N-H-Mahmood-H-Alves-and-M-Latva-aho-“CSI-Free-vs-CSI-Based-Multi-Antenna-WET-for-Massive-Low-Power-Internet-of-Things-”-in-IEEE-Transactions-on-Wireless-Communications-vol-20-no-5-pp-3078-3094-May-2021-doi-10-1109-TWC-2020-3047355"><a href="#CSI-Free-versus-CSI-Based-lt-span-class-”hint—top-hint—rounded”-aria-label-”O-L-A-Lopez-N-H-Mahmood-H-Alves-and-M-Latva-aho-“CSI-Free-vs-CSI-Based-Multi-Antenna-WET-for-Massive-Low-Power-Internet-of-Things-”-in-IEEE-Transactions-on-Wireless-Communications-vol-20-no-5-pp-3078-3094-May-2021-doi-10-1109-TWC-2020-3047355" class="headerlink" title="CSI-Free versus CSI-Based&lt;span class=”hint—top hint—rounded” aria-label=”O. L. A. López, N. H. Mahmood, H. Alves and M. Latva-aho, “CSI-Free vs CSI-Based Multi-Antenna WET for Massive Low-Power Internet of Things,” in IEEE Transactions on Wireless Communications, vol. 20, no. 5, pp. 3078-3094, May 2021, doi: 10.1109/TWC.2020.3047355."></a>CSI-Free versus CSI-Based<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote">&lt;span class=”hint—top hint—rounded” aria-label=”O. L. A. López, N. H. Mahmood, H. Alves and M. Latva-aho, “CSI-Free vs CSI-Based Multi-Antenna WET for Massive Low-Power Internet of Things,” in IEEE Transactions on Wireless Communications, vol. 20, no. 5, pp. 3078-3094, May 2021, doi: 10.1109/TWC.2020.3047355.</h2><p>“&gt;[5]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</p>
+<p>这里对比的是CSI-Free和CSI-Based在WPCN情况下的性能，因为作者认为，WIT是较少发生的，WPT/WET是持续发生的。所以作者考虑WPCN系统而不是SWIPT系统。</p>
+<p>CSI-Free采取SA，CSI-Based采取MMSE进行波束形成（precoding）(同时证明了在文章设置中，MMSE比ZF好)</p>
+<p>作者考虑了两种情况：</p>
+<ul>
+<li>WIT事件出现<script type="math/tex">\sim</script>Periodic Traffic</li>
+<li>WIT事件出现<script type="math/tex">\sim</script>Possion Traffic</li>
+</ul>
+<p>得到一些主要结论（结论有很多，这里只写了主要结论，其余见原文或者<a href="https://lcjoffrey.top/2022/03/29/CSIFreeversusCSIBased/">我的笔记</a>）</p>
+<ul>
+<li><p>CSI-Free和CSI-Based在接收机数量/节点数量<script type="math/tex">\to\infty</script>时相同，因为CSI-Free和接收机数量无关（不需要波束形成），而CSI-Based随接收机数量增多，天线波束增益下降</p>
+</li>
+<li><p>CSI-Free在Periodic Traffic 情况下是比较好的，但Periodic Traffic  情况下不太行</p>
+</li>
+<li>Possion Traffic <strong>存在一个最佳的碰撞概率</strong></li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>B. Clerckx and J. Kim, “On the Beneficial Roles of Fading and Transmit Diversity in Wireless Power Transfer With Nonlinear Energy Harvesting,” in IEEE Transactions on Wireless Communications, vol. 17, no. 11, pp. 7731-7743, Nov. 2018, doi: 10.1109/TWC.2018.2870377.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109/TCOMM.2019.2928542.
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109/JIOT.2020.3003114.
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>O. L. A. López, H. Alves, R. D. Souza, S. Montejo-Sánchez, E. M. G. Fernández and M. Latva-Aho, “Massive Wireless Energy Transfer: Enabling Sustainable IoT Toward 6G Era,” in IEEE Internet of Things Journal, vol. 8, no. 11, pp. 8816-8835, 1 June1, 2021, doi: 10.1109/JIOT.2021.3050612.
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span>O. L. A. López, N. H. Mahmood, H. Alves and M. Latva-aho, “CSI-Free vs CSI-Based Multi-Antenna WET for Massive Low-Power Internet of Things,” in IEEE Transactions on Wireless Communications, vol. 20, no. 5, pp. 3078-3094, May 2021, doi: 10.1109/TWC.2020.3047355.
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Simultaneous-Wireless-Information-and-Power-Transfer/">Simultaneous Wireless Information and Power Transfer</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CSI-Free/">CSI Free</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WET/">WET</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WPT/">WPT</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/03/30/summaryOfCSIFree/">http://lcjoffrey.top/2022/03/30/summaryOfCSIFree/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/29/CSIFreeversusCSIBased/MyPaperNote/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
