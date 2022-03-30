@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://lcjoffrey.top/2022/03/29/CSIFreeversusCSIBased/</loc>
-    <lastmod>2022-03-29</lastmod>
+    <lastmod>2022-03-30</lastmod>
   </url>
   <url>
     <loc>http://lcjoffrey.top/2022/03/19/MassiveWirelessEnergyTransfer/</loc>
@@ -125,6 +125,10 @@
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
+    <loc>http://lcjoffrey.top/2021/12/04/VAT/</loc>
+    <lastmod>2022-03-19</lastmod>
+  </url>
+  <url>
     <loc>http://lcjoffrey.top/2022/01/14/beamforming/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
@@ -137,19 +141,11 @@
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/VAT/</loc>
-    <lastmod>2022-03-19</lastmod>
-  </url>
-  <url>
     <loc>http://lcjoffrey.top/2021/12/04/Mixmatch/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
     <loc>http://lcjoffrey.top/2021/12/03/Self-Supervised%20Learning/</loc>
-    <lastmod>2022-03-19</lastmod>
-  </url>
-  <url>
-    <loc>http://lcjoffrey.top/2021/12/04/Fixmatch/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
@@ -162,6 +158,10 @@
   </url>
   <url>
     <loc>http://lcjoffrey.top/2021/12/04/MINEstimation/</loc>
+    <lastmod>2022-03-19</lastmod>
+  </url>
+  <url>
+    <loc>http://lcjoffrey.top/2021/12/04/Fixmatch/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
 </urlset> 
