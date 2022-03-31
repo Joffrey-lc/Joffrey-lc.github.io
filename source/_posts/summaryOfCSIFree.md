@@ -36,13 +36,12 @@ date: 2022-03-30 22:42:56
 
 目前主要调研的是CSI-Free算法。主要有由Bruno等人研究的构造快衰信道来实现能量接收端增益[^1]和Onel等人研究的多天线发射机和单天线接收机的结构[^2][^3]。
 
-
-
-```mermaid
+{% mermaid %}
 graph LR
 A[Wireless Energy Transfer]-->B[Statistical CSI]
 A-->C["CSI-Free"]
 A-->D["Positioning-Based"]
+D-->D2["AA-SS受旋转影响(角度影响)大"]
 A-->E["Hybrid"]
 C-->F["Bruno et.al."]
 F-->G["快衰信道对EH有增益"]
@@ -52,12 +51,10 @@ H-->I2["AA"]
 H-->I3["SA(WET和AA-IS相近，WIT比AA-IS好)"]
 I2-->II1["AA-SS"]
 I2-->II2["AA-IS"]
-II1-->III1["AA-SS<sub>min var"]
-II1-->III2["AA-SS<sub>max E"]
-D-->D2["AA-SS受旋转影响（角度影响）大"]
-```
+II1-->III1["AA-SS<sub>min var</sub>"]
+II1-->III2["AA-SS<sub>max E</sub>"]
 
-
+{% endmermaid %}
 
 ### 构造快衰信道实现WET的增强
 
@@ -124,10 +121,10 @@ $$AA-SS_{\max E}$$优化结果为，能量信号与发射机天线（ULA）的�
 
 注意，由于$$SA$$实现简单，而且可以很好地利用其余天线做WIT发射分集，所以$$SA$$和$$AA-IS$$相比，肯定选择$$SA$$。
 
-##　对比[^4]
+##　CSI-Free算法对比
 
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220328152458628.png" alt="几种方式的对比" style="zoom: 50%;" />
-
+具体内容见Onel文章[^4]
 由图可知，APS-EMW和AA-IS/SA策略的接收能量都比较发散（均匀）。而AA-SS的两种优化形式都比较具有方向性。
 
 APS-EMW的低能量区域比较大，只适用于一些低能量要求的场景，如下图所示：
@@ -140,9 +137,9 @@ APS-EMW的低能量区域比较大，只适用于一些低能量要求的场景�
 
 *虽然总结上写SA/AA-IS不适合结合IRS，因为其能量传输是全方位的。但换个角度讲，SA方案方差性能比较好，但能量传输不具有方向性，IRS是否可以作为集中SA发射能量的一种方式？？*
 
-## CSI-Free versus CSI-Based[^5]
+## CSI-Free versus CSI-Based
 
-这里对比的是CSI-Free和CSI-Based在WPCN情况下的性能，因为作者认为，WIT是较少发生的，WPT/WET是持续发生的。所以作者考虑WPCN系统而不是SWIPT系统。
+这里对比的是CSI-Free和CSI-Based在WPCN情况下的性能[^5]，因为作者认为，WIT是较少发生的，WPT/WET是持续发生的。所以作者考虑WPCN系统而不是SWIPT系统。
 
 CSI-Free采取SA，CSI-Based采取MMSE进行波束形成（precoding）(同时证明了在文章设置中，MMSE比ZF好)
 
