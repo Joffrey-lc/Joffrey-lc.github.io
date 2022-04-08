@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>DRL和IRS的结合（主要关注IRS怎么获取CSI）</title>
+    <link href="/2022/04/08/DRL-IRS/"/>
+    <url>/2022/04/08/DRL-IRS/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Deep Reinforcement Learning for Intelligent Reflecting Surfaces: Towards Standalone Operation</strong>.  <em>Abdelrahman Taha</em> et.al.  <strong>2020 IEEE 21st International Workshop on Signal Processing Advances in Wireless Communications (SPAWC), 26-29 May 2020</strong>  (<a href="https://ieeexplore.ieee.org/document/9154301">pdf</a>)  (Citations <strong>24</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>提出一种DRL（Deep Reinforcement Learning）的方法，不用<strong>额外的训练开销</strong>就可以获得接近Supervised Learning 和Perfect CSI的性能。而且这个方法不受其他基站控制，是<strong>standalone</strong>的。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407205815166.png" alt="示意图" style="zoom: 50%;" /></p><p>值得注意的是，对于整个IRS，并不是全部无源的，而是部分有源，<strong>称为Active element</strong>，等同于对全部IRS CSI进行sample。</p><p>实验结果说明：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407210210939.png" alt="实验一" style="zoom: 40%;" /></p><p>实验结果说明，虽然DRL需要更多的样本训练，但是DRL方案仅对每个训练片段使用一个Beam，而DL方案需要400个。</p><p>然后利用类似半监督-伪标记的方法，用DRL预测最优希望的<script type="math/tex">k_B</script>波束，并把这些波束添加到训练集中</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102154327.png" alt="image-20220408102154327" style="zoom: 80%;" /></p><p>同时，还可以看到，Ideal Rewarding 性能更加，即仅当可达速率等于期望值时，才给正向反馈，否则都是负向反馈。</p><h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102710833.png" alt="算法流程" style="zoom: 80%;" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Intelligent Reflecting Surface</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Deep Learning</tag>
+      
+      <tag>IRS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CSI-Free总结</title>
     <link href="/2022/03/30/summaryOfCSIFree/"/>
     <url>/2022/03/30/summaryOfCSIFree/</url>
