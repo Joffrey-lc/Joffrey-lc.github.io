@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/spi-start/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -146,7 +146,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/spi-start/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonutils/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs3/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -182,7 +182,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs3/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonutils/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -416,13 +416,6 @@
 
   
   <url>
-    <loc>http://lcjoffrey.top/tags/Sketchy-Reading/</loc>
-    <lastmod>2022-04-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/tags/CSI-Free/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -438,6 +431,13 @@
   
   <url>
     <loc>http://lcjoffrey.top/tags/WPT/</loc>
+    <lastmod>2022-04-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/Sketchy-Reading/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -570,14 +570,14 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/clash/</loc>
+    <loc>http://lcjoffrey.top/tags/gcn/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/gcn/</loc>
+    <loc>http://lcjoffrey.top/tags/clash/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
