@@ -10,7 +10,7 @@ tags:
   - CSI Free
 categories:
   - Paper Reading
-  - Simultaneous Wireless 
+  - Channel State Information 
 comment: valine
 math: true
 hide: false

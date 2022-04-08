@@ -10,7 +10,7 @@ tags:
   - WPT
 categories:
   - Paper Reading
-  - Simultaneous Wireless Information and Power Transfer
+  - Channel State Information
 comment: valine
 math: true
 hide: false
