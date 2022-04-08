@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lcjoffrey.top/2022/03/24/statistical4WET/</loc>
+    
+    <lastmod>2022-04-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/2022/04/08/CSI-Free-Ohter/</loc>
     
     <lastmod>2022-04-08</lastmod>
@@ -66,15 +75,6 @@
   
   <url>
     <loc>http://lcjoffrey.top/about/index.html</loc>
-    
-    <lastmod>2022-03-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/2022/03/24/statistical4WET/</loc>
     
     <lastmod>2022-03-31</lastmod>
     
@@ -720,13 +720,6 @@
   
   <url>
     <loc>http://lcjoffrey.top/categories/gadget/</loc>
-    <lastmod>2022-04-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/Paper-Reading/Simultaneous-Wireless/</loc>
     <lastmod>2022-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
