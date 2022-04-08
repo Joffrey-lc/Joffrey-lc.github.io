@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>CSI相关其他文献阅读</title>
+    <link href="/2022/04/08/CSI-Free-Ohter/"/>
+    <url>/2022/04/08/CSI-Free-Ohter/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr><p><strong>Ultra-Low Latency, Low Energy, and Massiveness in the 6G Era via Efficient CSIT-Limited Scheme</strong>.  <em>Onel L. A. Lopez</em> et.al.  <strong>IEEE Communications Magazine, November  2020</strong>  (<a href="https://ieeexplore.ieee.org/document/9269936">pdf</a>)  (Citations <strong>9</strong>)</p><p>总结了一些主要的<strong>CSI在发射端获取的限制</strong>，展望如何设计CSIT-limited scheme，然后提出future work。</p><ul><li>依靠统计CSIT</li><li>使用基于位置的策略来有效分配导频序列</li></ul><hr><p><strong>A Low-Complexity Beamforming Design for Multiuser Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Wireless Communications Letters, Jan.  2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9184149">pdf</a>)  (Citations <strong>4</strong>)</p><p><strong>数学推导太多，目前看不懂</strong>，提出一种优化方法（Ultra-Low Latency, Low Energy, and Massiveness）</p><ul><li>只利用信道的一阶统计量CSI-limited</li><li>提出了一种低复杂度但有效的EB算法，可以获得接近最优结果（在低<script type="math/tex">\kappa</script>时甚至优于最优（全CSI））</li><li>多用户性能随天线数目的增加而提高，同时可以利用旋转天线来获得更好的性能</li><li><strong>可以直接适用于WPCN和SWIPT</strong></li></ul><hr>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Channel State Information</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Sketchy Reading</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>DRL和IRS的结合（主要关注IRS怎么获取CSI）</title>
     <link href="/2022/04/08/DRL-IRS/"/>
     <url>/2022/04/08/DRL-IRS/</url>
@@ -22,9 +49,9 @@
     
     <tags>
       
-      <tag>Deep Learning</tag>
-      
       <tag>IRS</tag>
+      
+      <tag>Deep Learning</tag>
       
     </tags>
     
@@ -44,7 +71,7 @@
       
       <category>Paper Reading</category>
       
-      <category>Simultaneous Wireless Information and Power Transfer</category>
+      <category>Channel State Information</category>
       
     </categories>
     
@@ -88,7 +115,7 @@
       
       <category>Paper Reading</category>
       
-      <category>Simultaneous Wireless Information and Power Transfer</category>
+      <category>Channel State Information</category>
       
     </categories>
     
@@ -132,7 +159,7 @@
       
       <category>Paper Reading</category>
       
-      <category>Simultaneous Wireless Information and Power Transfer</category>
+      <category>Channel State Information</category>
       
     </categories>
     
@@ -194,7 +221,7 @@
       
       <category>Paper Reading</category>
       
-      <category>Simultaneous Wireless Information and Power Transfer</category>
+      <category>Channel State Information</category>
       
     </categories>
     
@@ -252,7 +279,7 @@
       
       <category>Paper Reading</category>
       
-      <category>Simultaneous Wireless Information and Power Transfer</category>
+      <category>Channel State Information</category>
       
     </categories>
     
