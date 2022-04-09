@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409220124999.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409220240072.png">
 <meta property="article:published_time" content="2022-04-09T14:04:20.000Z">
-<meta property="article:modified_time" content="2022-04-09T14:27:18.393Z">
+<meta property="article:modified_time" content="2022-04-09T15:33:31.512Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Channel Estimation">
@@ -225,7 +225,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.9k 字
+      3k 字
     </span>
   
 
@@ -338,7 +338,7 @@ y_k=(\textbf{h}_{D,k}^\mathrm{H}+\Psi^{\mathrm{H}}\textbf{G}_k^\mathrm{H})\textb
 \textbf{y}_{D}^{(k)}=\textbf{h}_{D,k}^\mathrm{H}\textbf{X}+\textbf{n}_{D,k}
 \tag{4}</script><p>得到<script type="math/tex">\textbf{h}_{D,k}</script>，<span class="label label-primary">作为direct channel 的标签</span></p>
 <ul>
-<li>再然后，一次打开<script type="math/tex">l-th \quad\forall l=1,\cdots,L</script> element，有：</li>
+<li>再然后，依次打开<script type="math/tex">l-th \quad\forall l=1,\cdots,L</script> element（每次<script type="math/tex">L</script>个elements中只有一个被激活），有：</li>
 </ul>
 <script type="math/tex; mode=display">
 \textbf{y}_{C}^{(k,l)}=(\textbf{h}_{D,k}^\mathrm{H}+\textbf{g}_{k,l}^\mathrm{H})\textbf{X}+\textbf{n}_{k,l}
