@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409220124999.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409220240072.png">
 <meta property="article:published_time" content="2022-04-09T14:04:20.000Z">
-<meta property="article:modified_time" content="2022-04-09T14:24:20.452Z">
+<meta property="article:modified_time" content="2022-04-09T14:27:18.393Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Channel Estimation">
@@ -351,7 +351,7 @@ y_k=(\textbf{h}_{D,k}^\mathrm{H}+\Psi^{\mathrm{H}}\textbf{G}_k^\mathrm{H})\textb
 <h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409215504129.png" srcset="/img/loading.gif" lazyload alt="Data Generation" style="zoom: 67%;" /></p>
 <h3 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409215556530.png" srcset="/img/loading.gif" lazyload alt="ChannelNet" style="zoom:80%;" /></p>
 <p>把direct channel数据reshape成了矩阵，方便输入模型；cascaded channel 的数据本来就是一个matrix</p>
-<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409215731318.png" srcset="/img/loading.gif" lazyload alt="with SNR"></p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409215731318.png" srcset="/img/loading.gif" lazyload alt="with SNR"></p>
 <p>可以看到proposed 结果比LS、MLP好，<strong>（因为Direct channel 中，Method 1 和Method 2都是一样的，所以只有一条线）</strong>，而cascaded channel中，Method 1最好。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409215936625.png" srcset="/img/loading.gif" lazyload alt="with noise"></p>
 <p>给标签（channel Information）加了一定的噪声，以实现泛化 or robustness。</p>
