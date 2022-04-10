@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163929060.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301164040842.png">
 <meta property="article:published_time" content="2022-03-01T08:55:58.000Z">
-<meta property="article:modified_time" content="2022-03-19T10:09:20.405Z">
+<meta property="article:modified_time" content="2022-04-10T13:10:49.824Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="OFDM">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.5k 字
     </span>
   
 
@@ -231,7 +231,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      8 分钟
     </span>
   
 
@@ -271,13 +271,26 @@
             <h1 style="display: none">知识储备-OFDM</h1>
             
             <div class="markdown-body">
-              <h1 id="OFDM"><a href="#OFDM" class="headerlink" title="OFDM"></a>OFDM</h1><h2 id="OFDM介绍"><a href="#OFDM介绍" class="headerlink" title="OFDM介绍"></a>OFDM介绍</h2><p>是一种多载波的传输方法，将频带划分为多个子带（子信道）进行并行传输，将高速数据流分为多个并行的低速数据流，然后调制到每个信道的子载波上进行传输。</p>
+              <h1 id="OFDM"><a href="#OFDM" class="headerlink" title="OFDM"></a>OFDM</h1><ul>
+<li>宽带系统： 发送信号通过<strong>多条有显著时间的路径</strong>到达接收端， 产生干扰（也就是著名的<strong>多径干扰</strong>）。</li>
+<li>窄带系统： 发送信号通过一条或多条没有时间差的路径到达接收端， 没有干扰（相当于简单的叠加）。</li>
+</ul>
+<p>可以简单认为，系统带宽为<script type="math/tex">B=1/T_B</script>，即系统带宽约等于码元周期的倒数；而发射的信号，由于多经，最大的延时时间为<script type="math/tex">\tau_{max}</script>，当<script type="math/tex">\tau_{max}<T_B</script>时，即在第二个码元发射时，第一个码元已经完全接收，所以不会产生多径干扰和码间干扰，<span class="label label-primary">认为是窄带系统</span></p>
+<p><strong>为了提高传输速率，<script type="math/tex">1/T_B</script>会增大</strong>，即会出现<script type="math/tex">\tau_{max}>T_B</script>。当前数据还没接收完毕，那么当前数据的最后一条径和下一个数据的第一条径就会重叠，产生多径干扰和码间干扰。数据的一部分会加强，一部分会减弱，在频域内表现为频率选择性衰落，<span class="label label-primary">认为是宽带系统</span></p>
+<div class="note note-success">
+            <p><strong>对于相同的场景， 相同的时延， 传输带宽不同， 决定了系统到底有没有多径干扰</strong>。</p>
+          </div>
+<p>为了将宽带系统<script type="math/tex">\to</script>窄带系统，速率不公<script type="math/tex">\to</script>频分复用，所以推出OFDM调制</p>
+<h2 id="OFDM介绍-lt-span-class-”hint—top-hint—rounded”-aria-label-”https-zhuyulab-blog-csdn-net-article-details-109907244"><a href="#OFDM介绍-lt-span-class-”hint—top-hint—rounded”-aria-label-”https-zhuyulab-blog-csdn-net-article-details-109907244" class="headerlink" title="OFDM介绍&lt;span class=”hint—top hint—rounded” aria-label=”https://zhuyulab.blog.csdn.net/article/details/109907244"></a>OFDM介绍<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote">&lt;span class=”hint—top hint—rounded” aria-label=”<a target="_blank" rel="noopener" href="https://zhuyulab.blog.csdn.net/article/details/109907244">https://zhuyulab.blog.csdn.net/article/details/109907244</a></h2><p>“&gt;[5]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</p>
+<p>是一种多载波的传输方法，将频带划分为多个子带（子信道）进行并行传输，将高速数据流分为多个并行的低速数据流，然后调制到每个信道的子载波上进行传输。</p>
 <ul>
 <li>各个子载波之间相互正交，以便接收端能够完全地分离各路信号。</li>
 <li>为了提高频谱利用率和增大传输速率，各路子载波的<strong>已调信号</strong>频谱有部分重叠。</li>
 <li>每路子载波的调制是多进制调制，而且每路子载波的调制制度可以不同。<strong>可以根据各个子载波处信道特性的优劣不同采用不同的体制。</strong></li>
 </ul>
-<p>OFDM能很好地对抗频率选择性衰落和窄带干扰。在多载波系统中，每一时刻只会有少部分的子信道收到深衰落的影响。</p>
+<div class="note note-success">
+            <p>主要优势：OFDM能很好地对抗频率选择性衰落和窄带干扰。在多载波系统中，每一时刻只会有少部分的子信道收到深衰落的影响。</p>
+          </div>
 <h2 id="数学模型"><a href="#数学模型" class="headerlink" title="　数学模型"></a>　数学模型</h2><h3 id="OFDM子带信号形式"><a href="#OFDM子带信号形式" class="headerlink" title="OFDM子带信号形式"></a>OFDM子带信号形式</h3><p>假设在一个OFDM系统中有$N$个子信道，每个子信道采用信号为：</p>
 <script type="math/tex; mode=display">
 x_k(t)=B_kcos(2\pi f_kt+\varphi_k)\quad\quad k=0,1,\cdots,N-1</script><p>式中：$B_k$为第$k$路子载波的振幅，它受基带码元的调制；$f_k$为第$k$路子载波的频率；$\varphi_k$为第$k$路子载波的初始相位，则在此系统中$N$路子信号之和可以表示为：</p>
@@ -303,11 +316,14 @@ f_k=k/2T_B</script><p>且要求子载频间隔：</p>
 B_{OFDM}=\frac{N+1}{T_B}(Hz)</script><p>为什么是$(N+1)$而不是$N$？？</p>
 <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163409959.png" srcset="/img/loading.gif" lazyload alt="MQAM的OFDM实现" style="zoom:33%;" /></p>
 <p>以MQAM为例。<strong>由于OFDM信号表示式的形式如同逆离散傅里叶变换式(IDFT)</strong>，所以可以用计算IDFT和DFT的方式进行OFDM的调制和解调<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="P245-P245 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
-">[2]</span></a></sup>。</p>
+">[2]</span></a></sup>。还可以参考blog<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label=" https://zhuyulab.blog.csdn.net/article/details/111075990
+">[6]</span></a></sup></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163850059.png" srcset="/img/loading.gif" lazyload alt="OFDM数字化处理框图-发射端" style="zoom:33%;" /></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163929060.png" srcset="/img/loading.gif" lazyload alt="OFDM数字化处理框图-接收端" style="zoom:33%;" /></p>
 <p>详细推导及实现结构可以参考资料<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuanlan.zhihu.com/p/30538458
-">[4]</span></a></sup></p>
+">[4]</span></a></sup>，简而言之就是<script type="math/tex">N</script>路用<script type="math/tex">N</script>个正交子载波进行调制，最后在时域相加，则有：</p>
+<script type="math/tex; mode=display">
+s(t)=\sum\limits_{n=0}^{N-1}s_ie^{j2\pi f_it}</script><p>这不和离散傅立叶变换差不多嘛。</p>
 <h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>由于多径效应，可能会产生干扰（信号经过不同的信道，所带来的延时不同）</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301164040842.png" srcset="/img/loading.gif" lazyload alt="多径干扰的示意图" style="zoom:33%;" /></p>
 <p>引入<strong>保护间隔</strong>：</p>
@@ -365,7 +381,9 @@ B_{OFDM}=\frac{N+1}{T_B}(Hz)</script><p>为什么是$(N+1)$而不是$N$？？</p
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>P245-P245 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57967971">https://zhuanlan.zhihu.com/p/57967971</a>
 <a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30538458">https://zhuanlan.zhihu.com/p/30538458</a>
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuyulab.blog.csdn.net/article/details/109907244">https://zhuyulab.blog.csdn.net/article/details/109907244</a>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuyulab.blog.csdn.net/article/details/111075990">https://zhuyulab.blog.csdn.net/article/details/111075990</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>
