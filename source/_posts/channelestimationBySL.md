@@ -59,6 +59,7 @@ $$
 \begin{align}
 \bar{s}=\sum\limits_{k=1}^K=\sqrt{\gamma_k}\bar{\textbf{f}}_ks_k\quad\in\mathbb{C}^{M\times1} 
 \label{eqn1}
+\tag{1}
 \end{align}
 $$
 where $$\bar{\textbf{f}}_k=\frac{\textbf{f}_k}{||\textbf{f}_k||_2}$$，$$\gamma_k$$是给$$k$$th User 分配的功率。
@@ -74,10 +75,12 @@ where $$\bar{\textbf{f}}_k=\frac{\textbf{f}_k}{||\textbf{f}_k||_2}$$，$$\gamma_
 根据[3.2小结](##发射信号建模)建模的发射信号，并结合IRS的建模（参考以往文章），得到接收端信号：
 $$
 y_k=(\textbf{h}_{D,k}^\mathrm{H}+\textbf{h}_{A,k}^{\mathrm{H}}\Psi^{\mathrm{H}}\textbf{H}^\mathrm{H})\bar{s}+n_k\label{eqn:2}
+\tag{2}
 $$
 其中，$$\Psi$$为IRS反射的幅度相位对角阵，$$\Psi=\text{diag}\{\beta_1exp(j\phi_1),\cdots,\beta_Lexp(j\phi_L)\}$$，可以控制$$\beta_i$$的大小$$\{0,1\}$$来控制IRS反射与否；$$\textbf{h}_{D,k}^\mathrm{H}\in\mathbb{C}^M$$是 direct channel，$$\textbf{H}^\mathrm{H}\in\mathbb{C}^{M\times L}$$是BS->IRS的信道，$$\textbf{h}_{A,k}^{\mathrm{H}}\in\mathbb{C}^L$$是IRS到User的信道，级联起来有$$\textbf{G}_k=\textbf{H}\cdot\text{diag}\{\textbf{h}_{A,k}\}\in\mathbb{C}^{M\times L}$$，则有式$$\ref{eqn:2}$$的级联版本：
 $$
 y_k=(\textbf{h}_{D,k}^\mathrm{H}+\Psi^{\mathrm{H}}\textbf{G}_k^\mathrm{H})\textbf{X}+\textbf{n}_k\label{eqn:3}
+\tag{3}
 $$
 where $$\textbf{X}=[\textbf{x}_1,\cdots,\textbf{x}_P]\in\mathbb{C}^{M\times P}$$为导频信号矩阵，$$P\geq M$$为导频数量。
 
@@ -93,23 +96,26 @@ where $$\textbf{X}=[\textbf{x}_1,\cdots,\textbf{x}_P]\in\mathbb{C}^{M\times P}$$
 
 $$
 \textbf{y}_{D}^{(k)}=\textbf{h}_{D,k}^\mathrm{H}\textbf{X}+\textbf{n}_{D,k}
+\tag{4}
 $$
 
-得到$$\textbf{h}_{D,k}$$，{% label primary 作为direct channel 的标签 %}
+得到$$\textbf{h}_{D,k}$$，{% label primary @作为direct channel 的标签 %}
 
-- 再然后，一次打开$$l-th \quad\forall l=1,\cdots,L$$ element，有：
+- 再然后，依次打开$$l-th \quad\forall l=1,\cdots,L$$ element（每次$$L$$个elements中只有一个被激活），有：
 
 $$
 \textbf{y}_{C}^{(k,l)}=(\textbf{h}_{D,k}^\mathrm{H}+\textbf{g}_{k,l}^\mathrm{H})\textbf{X}+\textbf{n}_{k,l}
+\tag{5}
 $$
 
 - 由LS算法有：
 
 $$
 \hat{\textbf{g}}_{k,l}=(\textbf{y}_C^{(k,l)}\textbf{X}^\mathrm{H}(\textbf{X}\textbf{X}^\mathrm{H})^{-1})\mathrm{H}-\textbf{h}_{D,k}
+\tag{6}
 $$
 
-所以有了$$\hat{\textbf{h}}_{D,k}$$，就有了$$\hat{\textbf{g}}_{k,l}$$，则有$$\hat{G}_k=[\hat{\textbf{g}}_{k,1}\cdots,\hat{\textbf{g}}_{k,L}]$$，{% label primary 作为cascaded channel 的标签 %}
+所以有了$$\hat{\textbf{h}}_{D,k}$$，就有了$$\hat{\textbf{g}}_{k,l}$$，则有$$\hat{G}_k=[\hat{\textbf{g}}_{k,1}\cdots,\hat{\textbf{g}}_{k,L}]$$，{% label primary @作为cascaded channel 的标签 %}
 
  
 
@@ -123,7 +129,7 @@ $$
 
 把direct channel数据reshape成了矩阵，方便输入模型；cascaded channel 的数据本来就是一个matrix
 
-## 
+## 实验结果
 
 ![with SNR](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220409215731318.png)
 
