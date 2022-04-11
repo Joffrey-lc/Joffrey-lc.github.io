@@ -13,23 +13,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="基础太差推不动，但是感觉又很有用QAQ">
+  <meta name="description" content="知识储备-IQ调制">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="基础太差推不动，但是感觉又很有用QAQ">
+  <meta name="description" content="知识储备-IQ调制">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Channel Estimation相关其他文章阅读">
-<meta property="og:url" content="http://lcjoffrey.top/2022/04/10/ChannelEstimation-Other/index.html">
+<meta property="og:title" content="Joffrey&#39;s Blog">
+<meta property="og:url" content="http://lcjoffrey.top/2022/04/11/IQmodulation/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="基础太差推不动，但是感觉又很有用QAQ">
+<meta property="og:description" content="知识储备-IQ调制">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-10T13:26:23.000Z">
-<meta property="article:modified_time" content="2022-04-10T13:32:18.499Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20200317215459221.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-c78e0ca1a780df0d2f94628aa22985cb_1440w.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-0f4b43ee7389c065abde1f122ab65141_1440w.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-fe0a0c2d3fd5001439db3ddb585e3445_1440w.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-5a91f588fa13b91ffb3773ad9b7ac892_1440w.jpg">
+<meta property="article:published_time" content="2022-04-11T08:39:46.000Z">
+<meta property="article:modified_time" content="2022-04-11T08:42:53.440Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Sketchy Reading">
+<meta property="article:tag" content="IQ  Modulation">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20200317215459221.png">
   
-  <title>Channel Estimation相关其他文章阅读 - Joffrey&#39;s Blog</title>
+  <title>Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -195,7 +201,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Channel Estimation相关其他文章阅读">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -205,8 +211,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-10 21:26" pubdate>
-        2022年4月10日 晚上
+      <time datetime="2022-04-11 16:39" pubdate>
+        2022年4月11日 下午
       </time>
     </span>
   
@@ -216,7 +222,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      260 字
+      1.2k 字
     </span>
   
 
@@ -225,7 +231,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      4 分钟
     </span>
   
 
@@ -262,16 +268,35 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Channel Estimation相关其他文章阅读</h1>
+            <h1 style="display: none"></h1>
             
             <div class="markdown-body">
-              <hr>
-<p><strong>Compressed Channel Estimation for Intelligent Reflecting Surface-Assisted Millimeter Wave Systems</strong>.  <em>Peilan Wang</em> et.al.  <strong>IEEE Signal Processing Letters, 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9103231">pdf</a>)  (Citations <strong>72</strong>)</p>
-<div class="note note-success">
-            <p>IRS辅助MISO系统的信道估计问题：忽略direct channel，只考虑cascaded channel（这种假设也比较常见），利用级联信道的稀疏结构将估计值转换为压缩感知问题。</p>
-          </div>
-<p>具体内容可以<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39274659/article/details/105085411">参考博客</a>以及<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39274659/article/details/110494905">仿真</a>。</p>
-<hr>
+              <h1 id="IQ调制"><a href="#IQ调制" class="headerlink" title="IQ调制"></a>IQ调制</h1><h2 id="IQ调制原理"><a href="#IQ调制原理" class="headerlink" title="IQ调制原理"></a>IQ调制原理</h2><p>首先，已调信号可以表示为：</p>
+<script type="math/tex; mode=display">
+M(t)\cos(wt+\phi(t))\label{eqn:1}</script><p>所谓调制，无非是调整幅度<script type="math/tex">M(t)</script>或者相位<script type="math/tex">\phi(t)</script>（由于频率是相位关于时间的微分，所以调频也可以包含在调相中）。</p>
+<p>如式<script type="math/tex">\ref{eqn:1}</script>的形式，在极坐标中可以表示为：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20200317215459221.png" srcset="/img/loading.gif" lazyload alt="调制信号极坐标表示" style="zoom:50%;" /></p>
+<p>所以可以得到<script type="math/tex">i(t)=M(t)\cos(\phi(t)),q(t)=M(t)\sin(\phi(t))</script>。</p>
+<p>映射完坐标，就需要上变频，IQ调制上变频的方式如下：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-c78e0ca1a780df0d2f94628aa22985cb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="上变频" style="zoom: 67%;" /></p>
+<p>根据频域卷积定理可得：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&i(t) \cdot \cos \left(\omega_{c} t\right) \leftrightarrow \frac{1}{2 \pi} \cdot I(\omega) *\left\{\pi \cdot\left[\delta\left(\omega+\omega_{c}\right)+\delta\left(\omega-\omega_{c}\right)\right]\right\}=\frac{1}{2} \cdot\left[I\left(\omega+\omega_{c}\right)+I\left(\omega-\omega_{c}\right)\right] \\
+&q(t) \cdot \sin \left(\omega_{c} t\right) \leftrightarrow \frac{1}{2 \pi} \cdot Q(\omega) *\left\{j \pi \cdot\left[\delta\left(\omega+\omega_{c}\right)-\delta\left(\omega-\omega_{c}\right)\right]\right\}=\frac{1}{2} j \cdot\left[Q\left(\omega+\omega_{c}\right)-Q\left(\omega-\omega_{c}\right)\right]
+\end{aligned}</script><p>可以知道对I路<script type="math/tex">i(t)</script>乘<script type="math/tex">\cos(w_ct)</script>等于在频域上对信号频谱进行搬移。由于正余弦的傅里叶变换有：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-0f4b43ee7389c065abde1f122ab65141_1440w.jpg" srcset="/img/loading.gif" lazyload alt="正余弦傅立叶变换" style="zoom:67%;" /></p>
+<p>则进行频谱搬移的过程可以由下图展示：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-fe0a0c2d3fd5001439db3ddb585e3445_1440w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>可以看到，搬上去的时候出现了负频率（图画得有问题）。合路后发射。<br><div class="note note-warning">
+            <p>带宽问题怎么理解？是单边带还是双边带？</p>
+          </div></p>
+<p>接收端接受到了之后，进行下变频：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-5a91f588fa13b91ffb3773ad9b7ac892_1440w.jpg" srcset="/img/loading.gif" lazyload alt="下变频" style="zoom:67%;" /></p>
+<p>对于<script type="math/tex">q(t)</script>路，<script type="math/tex">i(t)</script>路相关的基带信号抵消了，所以用一个低通滤波器就可以恢复出<script type="math/tex">q(t)</script>路；对<script type="math/tex">i(t)</script>路同理。</p>
+<h2 id="为什么IQ调制"><a href="#为什么IQ调制" class="headerlink" title="为什么IQ调制"></a>为什么IQ调制</h2><p>(1) IQ调制可以通过<strong>提高符号速率</strong>或者<strong>采用高阶调制</strong>实现更高的数据速率，非常方便灵活，这是传统的模拟调制所远远不及的。</p>
+<p>(2) 实现高速通信时，<strong>IQ</strong> <strong>调制更加易于实现</strong>。IQ 调制可以非常方便地将符号映射至矢量坐标系中，从而完成数字调制；同理，在接收侧也可以非常方便地根据符号映射解调出原始数据比特流。</p>
+<p>(3) <strong>IQ</strong> <strong>调制具有更高地频谱利用率</strong>。因为I和Q是在相位上面正交的（不相干）,可以作为两路信号看待。</p>
 
             </div>
             <hr>
@@ -281,9 +306,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Paper-Reading/Channel-Estimation/">Channel Estimation</a>
+                      <a class="hover-with-bg" href="/categories/basic-knowledge/">basic knowledge</a>
                     
                   </div>
                 
@@ -291,7 +314,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Sketchy-Reading/">Sketchy Reading</a>
+                      <a class="hover-with-bg" href="/tags/IQ-Modulation/">IQ  Modulation</a>
                     
                   </div>
                 
@@ -305,7 +328,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/10/ChannelEstimation-Other/">http://lcjoffrey.top/2022/04/10/ChannelEstimation-Other/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/11/IQmodulation/">http://lcjoffrey.top/2022/04/11/IQmodulation/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -315,18 +338,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/11/IQmodulation/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/09/typorautils/">
-                        <span class="hidden-mobile">Typora and Hexo工具箱</span>
+                      <a href="/2022/04/10/ChannelEstimation-Other/">
+                        <span class="hidden-mobile">Channel Estimation相关其他文章阅读</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
