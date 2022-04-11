@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="整理一些信道模型以及它们的使用场景">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="整理一些信道模型以及它们的使用场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识储备-信道模型整理">
+<meta property="og:url" content="http://lcjoffrey.top/2022/04/11/channelmodelsummary/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="整理一些信道模型以及它们的使用场景">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-11T14:30:39.000Z">
+<meta property="article:modified_time" content="2022-04-11T14:34:45.665Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="Communication">
+<meta property="article:tag" content="Channel">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>知识储备-信道模型整理 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="知识储备-信道模型整理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-11 22:30" pubdate>
+        2022年4月11日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">知识储备-信道模型整理</h1>
+            
+            <div class="markdown-body">
+              <p>整理不同的信道模型以及它们的使用场景</p>
+<h2 id="Rician-Fading"><a href="#Rician-Fading" class="headerlink" title="Rician Fading"></a>Rician Fading</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><strong>MISO System: Transmitter with M antennas and the receiver has only one antenna.</strong></p>
+<p>It is a very general assumption that allows modeling a wide variety of channels by tuning the Rician factor <script type="math/tex">\kappa\geq0</script></p>
+<ul>
+<li><script type="math/tex">\kappa=0</script>, the channel envelope is Rayleigh distributed</li>
+<li><script type="math/tex">\kappa\to\infty</script>, the channel is a fully deterministic LOS channel</li>
+</ul>
+<blockquote>
+<p><strong>莱斯衰落信</strong>道指除了经反射折射散射等来的信号外， 还有从发射机直接到达接收机 （如从卫星直接到达地面接收机）的信号，那么总信号的强度服从分布莱斯分布。有一条主路径，其余多径传输过来的信号仍如<strong>瑞利衰落</strong>所述。</p>
+<p><strong>瑞利衰落</strong>只适用于从发射机到接收机不存在直射信号（LOS，Line of Sight）的情况，即信道模型能够描述由电离层和对流层反射的短波信道，以及建筑物密集的城市环境。否则应使用<strong>莱斯衰落</strong>信道作为信道模型。</p>
+</blockquote>
+<h3 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h3><script type="math/tex; mode=display">
+\textbf{h}=\sqrt{\frac{\kappa}{1+\kappa}}e^{\text{i}\varphi_0}\textbf{h}_{\text{los}}+\sqrt{\frac{1}{1+\kappa}}\textbf{h}_{\text{nlos}}</script><p>其中<script type="math/tex">\varphi_0</script>是初始相位。有LOS部分：</p>
+<script type="math/tex; mode=display">
+\textbf{h}_{\text{los}}=[1,e^{\text{i}\Phi_1},\cdots,e^{\text{i}\Phi_{M-1}}]^\mathrm{T}</script><p>且<script type="math/tex">\Phi_t=-t\pi\sin\phi</script>，<script type="math/tex">\phi</script>是<strong>azimuth angle</strong> relative to the boresight of the transmitting antenna array。</p>
+<p>有Rayleigh部分：</p>
+<script type="math/tex; mode=display">
+\textbf{h}_{\text{nlos}}\sim\mathcal{CN}(\textbf{0},\textbf{R})</script><h3 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h3><p>CSI-Free中，对Wireless Energy Transfer的信道进行建模。</p>
+<div class="note note-success">
+            <ul><li><strong>On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Internet of Things Journal, Jan.1, 1 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9119347">pdf</a>)  (Citations <strong>8</strong>)</li></ul>
+          </div>
+<h2 id="Wideband-geometric-channel-model"><a href="#Wideband-geometric-channel-model" class="headerlink" title="?? Wideband geometric channel model"></a>?? Wideband geometric channel model</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>Consider a transmitter-IRS channel, <script type="math/tex">\textbf{h}_{T,k}</script>, (and similarly for the IRS-receiver channel) consisting of <em>L</em> clusters. Each cluster contributes with one ray from the transmitter to the IRS. The ray parameters are: azimuth/elevation angles of arrival, <script type="math/tex">\theta_l,\phi_l\in[0,2\pi)</script>; complex coefficient ; <script type="math/tex">\alpha_l\in\mathbb{C}</script>; time delay <script type="math/tex">\tau_l\in\mathbb{R}</script>. The transmitter-IRS path loss is denoted by <script type="math/tex">\rho_T</script>. The pulse shaping function, with <script type="math/tex">T_s</script>-spaced signaling, is defined as <script type="math/tex">p(\tau)</script> at <script type="math/tex">\tau</script> seconds. The frequency-domain channel vector, <script type="math/tex">\textbf{h}_{T,k}</script>, can then be defined as</p>
+<h3 id="建模-1"><a href="#建模-1" class="headerlink" title="　建模"></a>　建模</h3><script type="math/tex; mode=display">
+\mathbf{h}_{\mathrm{T}, k}=\sqrt{\frac{M}{\rho_{\mathrm{T}}}} \sum_{d=0}^{D-1} \sum_{\ell=1}^{L} \alpha_{\ell} \mathbf{a}\left(\theta_{\ell}, \phi_{\ell}\right) p\left(d T_{S}-\tau_{\ell}\right) e^{-j \frac{2 \pi k}{K} d}</script><p>where <script type="math/tex">\mathbf{a}\left(\theta_{\ell}, \phi_{\ell}\right)\in\mathbb{C}^{M\times 1}</script>  is the IRS array response vector. Assume a block-fading channel model, where <script type="math/tex">\textbf{h}_{T,k}</script> and <script type="math/tex">\textbf{h}_{T,k}</script> are assumed to stay constant over the channel coherence time.</p>
+<h3 id="适用范围-1"><a href="#适用范围-1" class="headerlink" title="适用范围"></a>适用范围</h3><p>Both transmitter and Receiver have only one antenna.</p>
+<div class="note note-success">
+            <ul><li><strong>Deep Learning Coordinated Beamforming for Highly-Mobile Millimeter Wave Systems</strong>.  <em>Ahmed Alkhateeb</em> et.al.  <strong>IEEE Access, 2018</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8395149">pdf</a>)  (Citations <strong>186</strong>)</li><li><strong>Deep Reinforcement Learning for Intelligent Reflecting Surfaces: Towards Standalone Operation</strong>.  <em>Abdelrahman Taha</em> et.al.  <strong>2020 IEEE 21st International Workshop on Signal Processing Advances in Wireless Communications (SPAWC), 26-29 May 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9154301">pdf</a>)  (Citations <strong>24</strong>)</li></ul>
+          </div>
+<h2 id="Saleh-Valenzuela-SV-model-Narrowband-geometric-channel-model"><a href="#Saleh-Valenzuela-SV-model-Narrowband-geometric-channel-model" class="headerlink" title="Saleh-Valenzuela (SV) model (Narrowband geometric channel model)"></a>Saleh-Valenzuela (SV) model (Narrowband geometric channel model)</h2><h3 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>Saleh-Valenzuela (SV) model where a geometric channel model is adopted with limited scattering.</p>
+<p>eg: BS-&gt;IRS</p>
+</blockquote>
+<h3 id="建模-2"><a href="#建模-2" class="headerlink" title="建模"></a>建模</h3><script type="math/tex; mode=display">
+\textbf{H}=\sqrt{\frac{NM}{\rho}}\sum\limits_{l=1}^L\varrho_l\textbf{a}_r(\vartheta_l,\gamma_l)\textbf{a}_l^\mathrm{H}(\phi_l)</script><p>其中，<script type="math/tex">\rho</script> average path-loss between BS and IRS; <script type="math/tex">L</script> is the number of paths; <script type="math/tex">\varrho</script> denotes the complex gain associated with the <script type="math/tex">l</script>-th path; <script type="math/tex">\vartheta_l</script>  and <script type="math/tex">\gamma_l</script> denote the azimuth angle and elevation angle of arrival (AoA), respectively. <script type="math/tex">\phi_l</script>  is the angle of departure (AoD),  <script type="math/tex">\textbf{a}_r</script> and <script type="math/tex">\textbf{a}_t</script> represent the receive and transmit array response vectors, respectively. </p>
+<p>假设IRS为一个有<script type="math/tex">M_x\times M_y</script>个elements的UPA (Uniform Planner Array)，则有：</p>
+<script type="math/tex; mode=display">
+\textbf{a}_r(\vartheta_l,\gamma_l)=\textbf{a}_x(u)\otimes\textbf{a}_y(v)</script><p>其中，<script type="math/tex">\otimes</script>表示Kronecker product（克罗内克积）。<script type="math/tex">\textbf{a}_x(u)</script>和<script type="math/tex">\textbf{a}_y(v)</script>表示导向矢量 or 相应向量 (steering vector) or 阵列流形 (array manifold)。 且<script type="math/tex">u\triangleq2\pi d\cos(\gamma_l)/\lambda</script>（即空间相位）,<script type="math/tex">v\triangleq2\pi d\sin(\gamma_l)\cos(\vartheta_l)/\lambda</script>，<script type="math/tex">d</script>表示天线位置：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\boldsymbol{a}_{x}(u) \triangleq \frac{1}{\sqrt{M_{x}}}\left[\begin{array}{llll}
+1 & e^{j u} & \ldots & e^{j\left(M_{x}-1\right) u}
+\end{array}\right]^{T} \\
+&\boldsymbol{a}_{y}(v) \triangleq \frac{1}{\sqrt{M_{y}}}\left[\begin{array}{llll}
+1 & e^{j v} & \ldots & e^{j\left(M_{y}-1\right) v}
+\end{array}\right]^{T}
+\end{aligned}</script><p><strong>由于毫米波信道的稀疏散射特性，路径L的数目相对于G的维度很小。</strong></p>
+<h3 id="适用范围-2"><a href="#适用范围-2" class="headerlink" title="适用范围"></a>适用范围</h3><p>考虑毫米波稀疏散射特性，有<script type="math/tex">L</script>个路径。</p>
+<div class="note note-success">
+            <ul><li><strong>Compressed Channel Estimation for Intelligent Reflecting Surface-Assisted Millimeter Wave Systems</strong>.  <em>Peilan Wang</em> et.al.  <strong>IEEE Signal Processing Letters, 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9103231">pdf</a>)  (Citations <strong>72</strong>)</li><li><strong>Deep Channel Learning for Large Intelligent Surfaces Aided mm-Wave Massive MIMO Systems</strong>.  <em>Ahmet M. Elbir</em> et.al.  <strong>IEEE Wireless Communications Letters, Sept.  2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9090876">pdf</a>)  (Citations <strong>51</strong>)</li></ul>
+          </div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/basic-knowledge/">basic knowledge</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Communication/">Communication</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Channel/">Channel</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/11/channelmodelsummary/">http://lcjoffrey.top/2022/04/11/channelmodelsummary/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/11/CSCG/">
+                        <span class="hidden-mobile">通信基础-循环对称复高斯噪声</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize(null);
+    }
+  </script>
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
