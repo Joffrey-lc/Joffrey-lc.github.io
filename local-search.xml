@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>通信基础-循环对称复高斯噪声</title>
+    <link href="/2022/04/11/CSCG/"/>
+    <url>/2022/04/11/CSCG/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>CSCG: Circularly Symmetric Complex zero-mean white Gaussian noise 循环对称复高斯噪声</strong></p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>数学定义：</p><div class="note note-success">            <p>\textbf{Z}\sim\mathcal{CN}(0,1)\to \Re{\textbf{Z}} \perp !!! \perp\Im{\textbf{Z}}<br>\and\<br>\Re{\textbf{Z}}\sim \mathcal{N}(0,1/2)\quad \Im{\textbf{Z}}\sim\mathcal{N}(0,1/2)</p>          </div><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><ul><li>Circularly: means the variance of the real and imaginary parts are equal.</li><li>Gaussian: means the probability distribution of the amplitudes of the noise samples is Gaussian</li></ul><h2 id="Matlab"><a href="#Matlab" class="headerlink" title="Matlab"></a>Matlab</h2><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1i</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span>sigma<span class="token operator">/</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>其中sigmal是方差</p><h2 id="正态分布的再生性"><a href="#正态分布的再生性" class="headerlink" title="正态分布的再生性"></a>正态分布的再生性</h2><p>设随机比昂量<script type="math/tex">X</script>和<script type="math/tex">Y</script>相互独立且分别服从正态分布<script type="math/tex">N\sim(\mu_1,\sigma_1^2)</script>和<script type="math/tex">N\sim(\mu_2,\sigma_2^2)</script>，则<script type="math/tex">Z=X+Y</script>服从正态分布<script type="math/tex">N\sim(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)</script></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>basic knowledge</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CSCG</tag>
+      
+      <tag>Communication</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>知识储备-IQ调制</title>
     <link href="/2022/04/11/IQmodulation/"/>
     <url>/2022/04/11/IQmodulation/</url>
