@@ -1,5 +1,5 @@
 ---
-title: 知识储备-IQ调制
+title: 通信基础-IQ调制
 excerpt: IQ调制基础
 index_img: >-
   https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/v2-5a91f588fa13b91ffb3773ad9b7ac892_1440w.jpg
