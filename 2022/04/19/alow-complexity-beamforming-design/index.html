@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220419161440897.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220419162008954.png">
 <meta property="article:published_time" content="2022-04-19T08:30:55.000Z">
-<meta property="article:modified_time" content="2022-04-19T08:44:11.607Z">
+<meta property="article:modified_time" content="2022-04-19T08:53:16.118Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Channel Estimation">
 <meta property="article:tag" content="CSI">
@@ -225,7 +225,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      1.9k 字
     </span>
   
 
@@ -234,7 +234,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      6 分钟
     </span>
   
 
@@ -296,7 +296,8 @@ E_i&=E[y_i^Hy_i]=\beta_iE_x\left[\left(\sum\limits_{k=1}^K\textbf{h}_i^T\textbf{
 <p>目标是以公平的方式最大化每个设备收集的能量：</p>
 <script type="math/tex; mode=display">
 \textbf{P1}: \text{maximize} \inf\limits_{i=1,\cdots,N}\{E_i\}\\
-\text{subject to} \sum\limits_{k=1}^K||\textbf{w}_k||^2\leq1</script><p>可以看到，优化目标是非凸的，优化约束是凸的。按照参考文献转换为SDP问题（semi-definite programming）：</p>
+\text{subject to} \sum\limits_{k=1}^K||\textbf{w}_k||^2\leq1</script><p>可以看到，优化目标是非凸的，优化约束是凸的。按照参考文献<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="A. Thudugalage, S. Atapattu and J. Evans, “Beamformer design for wireless energy transfer with fairness,” 2016 IEEE International Conference on Communications (ICC), 2016, pp. 1-6, doi: 10.1109/ICC.2016.7511170.
+">[1]</span></a></sup>转换为SDP问题（semi-definite programming）：</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220406225456729.png" srcset="/img/loading.gif" lazyload alt="first part" style="zoom: 50%;" /></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220406225513750.png" srcset="/img/loading.gif" lazyload alt="second part" style="zoom:48.6%;" /></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220419160245638.png" srcset="/img/loading.gif" lazyload alt="证明" style="zoom:33%;" /></p>
@@ -322,7 +323,8 @@ E_i&=E[y_i^Hy_i]=\beta_iE_x\left[\left(\sum\limits_{k=1}^K\textbf{h}_i^T\textbf{
 </ul>
 <blockquote>
 </blockquote>
-
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>A. Thudugalage, S. Atapattu and J. Evans, “Beamformer design for wireless energy transfer with fairness,” 2016 IEEE International Conference on Communications (ICC), 2016, pp. 1-6, doi: 10.1109/ICC.2016.7511170.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>
