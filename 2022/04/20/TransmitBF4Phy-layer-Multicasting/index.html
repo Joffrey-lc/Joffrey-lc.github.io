@@ -13,27 +13,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="压缩感知基础整理">
+  <meta name="description" content="N.D. Sidiropoulos et.al.-Transmit beamforming for physical-layer multicasting">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="压缩感知基础整理">
+  <meta name="description" content="N.D. Sidiropoulos et.al.-Transmit beamforming for physical-layer multicasting">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知识储备-压缩感知基础">
-<meta property="og:url" content="http://lcjoffrey.top/2022/04/18/compressedsensingsummary/index.html">
+<meta property="og:title" content="MAX–MIN FAIR BEAMFORMING -&gt; SDP Question">
+<meta property="og:url" content="http://lcjoffrey.top/2022/04/20/TransmitBF4Phy-layer-Multicasting/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="压缩感知基础整理">
+<meta property="og:description" content="N.D. Sidiropoulos et.al.-Transmit beamforming for physical-layer multicasting">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220418105328353.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ReconstructionAlgorithm.jpg">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/585228-20151215111251146-1870941303.jpg">
-<meta property="article:published_time" content="2022-04-18T06:01:54.000Z">
-<meta property="article:modified_time" content="2022-04-19T12:45:12.044Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220420210025213.png">
+<meta property="article:published_time" content="2022-04-20T13:26:02.000Z">
+<meta property="article:modified_time" content="2022-04-20T13:32:59.782Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Compressed Sensing">
+<meta property="article:tag" content="Transimit Beamforming">
+<meta property="article:tag" content="Channel Estimation">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220418105328353.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220420210025213.png">
   
-  <title>知识储备-压缩感知基础 - Joffrey&#39;s Blog</title>
+  <title>MAX–MIN FAIR BEAMFORMING -&gt; SDP Question - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -199,7 +198,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="知识储备-压缩感知基础">
+            <span class="h2" id="subtitle" title="MAX–MIN FAIR BEAMFORMING -&gt; SDP Question">
               
             </span>
 
@@ -209,8 +208,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-18 14:01" pubdate>
-        2022年4月18日 下午
+      <time datetime="2022-04-20 21:26" pubdate>
+        2022年4月20日 晚上
       </time>
     </span>
   
@@ -220,7 +219,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      1.4k 字
     </span>
   
 
@@ -229,7 +228,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      4 分钟
     </span>
   
 
@@ -266,45 +265,29 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">知识储备-压缩感知基础</h1>
+            <h1 style="display: none">MAX–MIN FAIR BEAMFORMING -&gt; SDP Question</h1>
             
             <div class="markdown-body">
-              <h2 id="压缩感知介绍"><a href="#压缩感知介绍" class="headerlink" title="压缩感知介绍"></a>压缩感知介绍</h2><p>Compressed Sensing：压缩感知，即在采样过程中实现了数据的压缩</p>
-<p>奈奎斯特提出的Nyquist采样定理指出，<strong>要想让采样之后的信号完整保留原始信号中的信息，采样频率必须大于信号中最高频率的两倍。</strong>（均匀采样）</p>
-<p>这是因为时域以<script type="math/tex">\tau</script>为间隔采样，频域会以<script type="math/tex">\tau</script>为间隔搬移。如果搬移间隔小于<script type="math/tex">\tau</script>，就会发生频谱混叠。</p>
-<p>但是如果使用非均匀采样，会产生大量不相关（incoherent）的干扰值。随机采样使得频谱不再是整齐地搬移，而是一小部分一小部分胡乱地搬移，频率泄露均匀地分布在整个频域，因而泄漏值都比较小，从而有了恢复的可能。</p>
-<p>与图像压缩完全不同，图像压缩是先进行了全采样，再进行压缩（例如变换后丢掉小系数的值）；压缩感知是直接进行亚采样，即在采样的时候已经完成了压缩。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220418105328353.png" srcset="/img/loading.gif" lazyload alt="压缩感知示意图" style="zoom: 80%;" /></p>
-<p>其中，<script type="math/tex">\textbf{x}=\Psi\textbf{s}</script>是原始信号，为k-spaese。目的是求解<script type="math/tex">\textbf{s}</script>，然后得到<script type="math/tex">\textbf{x}=\Psi\textbf{s}</script></p>
+              <hr>
+<p><strong>Transmit beamforming for physical-layer multicasting</strong>.  <em>N.D. Sidiropoulos</em> et.al.  <strong>IEEE Transactions on Signal Processing, June 2006</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/1634819">pdf</a>)  (Citations <strong>904</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>考虑MAX–MIN FAIR BEAMFORMING</p>
 <ul>
-<li>M=N，很好解</li>
-<li>M&lt;N，根据RIP特性重构</li>
+<li>将 Precoder原先的非凸优化问题松弛到SDP问题</li>
+<li>考虑松弛后，对结果进行再优化<ul>
+<li>如果解出来的矩阵是rank-one，那么就是这个原始问题的最优结果</li>
+<li>如果解出来的矩阵不是rank-one，那么这个解就是满足约束的下限</li>
 </ul>
-<h2 id="恢复条件"><a href="#恢复条件" class="headerlink" title="恢复条件"></a>恢复条件</h2><h3 id="稀疏性"><a href="#稀疏性" class="headerlink" title="稀疏性"></a>稀疏性</h3><blockquote>
-<p>信号需要在某一个变换域具有<strong>稀疏性</strong>。即<strong>大部分值趋于零</strong>，只有少量大的非零值。</p>
-</blockquote>
-<h3 id="不相关"><a href="#不相关" class="headerlink" title="不相关"></a>不相关</h3><p><strong>Restricted Isometry Property</strong>: RIP有限等距性质，即有：</p>
+</li>
+<li>在非rank-one的前提下，给出三种 based on <em>randomization</em>的方法，选择出最优的结果</li>
+</ul>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><h3 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220420210025213.png" srcset="/img/loading.gif" lazyload alt="建模" style="zoom: 50%;" /></p>
+<p>值得注意的一个等价形式：</p>
 <script type="math/tex; mode=display">
-\begin{align}
-    (1-\delta_K)\Vert\textbf{u}\Vert_2^2\leq\Vert\Phi\textbf{u}\Vert_2^2\leq(1+\delta_K)\Vert\textbf{u}\Vert_2^2\label{eqn:7}
-\end{align}</script><p>其中<script type="math/tex">\delta_K</script>称为k-阶受限等距常数(Restricted isometry Constant)。</p>
-<p><strong>但是一个矩阵是否满足RIP很难确定，所以Baraniuk证明了等价条件：</strong></p>
-<blockquote>
-<p>RIP的等价条件是观测矩阵和稀疏基不相关</p>
-</blockquote>
-<p><strong>陶哲轩和Candes证明，独立同分布的高斯随机测量矩阵可以称为普适的压缩感知测量矩阵。</strong></p>
-<p>如果一个信号<strong>在某个变换域是稀疏的</strong>，那么就可以用一个<strong>与变换基不相关的</strong>观测矩阵将变换所得高维信号投影到一个低维空间上，然后通过求<strong>解一个优化问题</strong>就可以从这些少量的投影中以高概率重构出原信号。</p>
-<h2 id="恢复算法"><a href="#恢复算法" class="headerlink" title="恢复算法"></a>恢复算法</h2><p>压缩感知信号的重构方法主要包括贪婪算法、凸优化方法、非凸优化方法、阈值方法以及深度学习方法等。其中，贪婪算法主要包括正交匹配追踪算法(Orthogonal Matching Pursuit, OMP)、分段正交匹配追踪算法(Stagewise Orthogonal Matching Pursuit, StOMP)、压缩采样匹配追踪算法(Compressive Sample Matching Pursuit, CoSaMP)、子空间追踪算法(Subspace Pursuit, SP)等；凸优化方法主要包括基追踪算法(Basis Pursuit, BP)、最小绝对收缩与选择算子算法(Least Absolute Shrinkage Selection Operator,  LASSO)、全变差降噪算法(Total Variation, TV)等；非凸优化方法主要包括迭代加权最小二乘法(Iteratively Re-Weighted Least Squares, IRWLS)、焦点欠定系统解算法(Focal Underdetermined System Solution, FOCUSS)等；阈值方法主要包括迭代硬阈值算法(Iterative Hard Thresholding, IHT)、迭代软阈值算法(Iterative Soft Thresholding, IST)、近似消息传递算法(Approx-imate Message Passing, AMP)等；随着深度学习技术的发展，一些基于深度学习的压缩感知信号重构算法被提出，主要包括近似消息传递网(Learned Approximate Message Passing Network)、交替方向乘子网(Alternating Direction Method of Multipliers Net, ADMM-Net)、迭代收缩阈值网络(Iterative Shrinkage-Thresholding Algorithm Net, ISTA-Net)等。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ReconstructionAlgorithm.jpg" srcset="/img/loading.gif" lazyload alt="ReconstructionAlgorithm"></p>
-<h3 id="OMP"><a href="#OMP" class="headerlink" title="OMP"></a>OMP</h3><blockquote>
-<p>将向量<script type="math/tex">\textbf{b}</script>投影到水平面上，其投影为<script type="math/tex">\textbf{p}</script>，<script type="math/tex">a_1,a_2</script>为水平面的两个线性无关向量，<script type="math/tex">\textbf{A}=[a_1,a_2]</script></p>
-<p>投影矩阵：<script type="math/tex">P=\textbf{A}(\textbf{A}^\mathrm{T}\textbf{A})^{-1}\textbf{A}^\mathrm{T}</script></p>
-<p>投影<script type="math/tex">\textbf{p}</script>为：<script type="math/tex">\textbf{p}=\textbf{P}\textbf{b}</script></p>
-</blockquote>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/585228-20151215111251146-1870941303.jpg" srcset="/img/loading.gif" lazyload alt="OMP Algorithm" style="zoom: 80%;" /></p>
-<p><strong>MP基本原理：</strong>从字典矩阵<script type="math/tex">\textbf{D}</script>（也称为过完备原子库中），选择一个与信号<script type="math/tex">\textbf{y}</script>（观测值）最匹配的原子(也就是某列)，构建一个稀疏逼近，并求出信号残差，然后继续选择与信号残差最匹配的原子，反复迭代，信号<script type="math/tex">\textbf{y}</script>（观测值）可以由这些原子的线性和，再加上最后的残差值来表示。很显然，如果残差值在可以忽略的范围内，则信号<script type="math/tex">\textbf{y}</script>（观测值）就是这些原子的线性组合。<br><strong>OMP改进：</strong>OMP 算法是在 MP 算法的基础上进行改进的，其挑选原子的标准和 MP 算法一致，也就是在训练字典<script type="math/tex">\textbf{D}</script>里挑选和观测样本<script type="math/tex">\textbf{y}</script>最为匹配的字典原子。不相同之处在于：OMP 算法在每一次迭代过程中对所挑选的全部原子先要执行 Schmidt 正交化操作，来确保每一次循环结果都是最优解。使得在同等精度的条件下，OMP 算法的性能更好，其收敛速度也更快。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/22445302">https://zhuanlan.zhihu.com/p/22445302</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tengweitw/article/details/41174555">https://blog.csdn.net/tengweitw/article/details/41174555</a></p>
+\tilde{\mathbf{h}}_{i}^{H} \mathbf{w} \mathbf{w}^{H} \tilde{\mathbf{h}}_{i}=\Tr(\tilde{\mathbf{h}}_{i}^{H} \mathbf{w} \mathbf{w}^{H} \tilde{\mathbf{h}}_{i})=\Tr(\mathbf{w} \mathbf{w}^{H}\tilde{\mathbf{h}}_{i}\tilde{\mathbf{h}}_{i}^{H})=\Tr(\textbf{XQ}_i)</script><p>Drop rank-one constraint 会得到一个松弛结果。</p>
+<p>由松弛结果可以得到<script type="math/tex">\textbf{X}_{\text{opt}}</script>，然后得到a set of candidate weight vectors，再根据某种判别条件（好像不同文章中的从set中选择最优的条件不同）选择最优结果。</p>
+<h3 id="randA"><a href="#randA" class="headerlink" title="randA"></a>randA</h3><p>对解得的<script type="math/tex">\textbf{X}_{\text{opt}}</script>有<script type="math/tex">\textbf{X}_{\text{opt}}=\textbf{U}\Sigma\textbf{U}^H</script>，可以得到a set of candidate weight vectors <script type="math/tex">\textbf{w}_l=\textbf{U}\Sigma^{1/2}\textbf{e}_l</script>，其中<script type="math/tex">[\textbf{e}_l]_i=e^{j\theta_{l,j}}</script>，且<script type="math/tex">\theta_{l,j}\sim U[0,2\pi)</script>。以保证有<script type="math/tex">\textbf{w}_l^H\textbf{w}_l=\Tr(\textbf{X}_{\text{opt}})</script></p>
+<h3 id="randB"><a href="#randB" class="headerlink" title="randB"></a>randB</h3><p>对解得的<script type="math/tex">\textbf{X}_{\text{opt}}</script>做<script type="math/tex">[\textbf{w}_l]_i=\sqrt{[\textbf{X}]_{ii}}[\textbf{e}_l]_i</script>，以保证有<script type="math/tex">|[\textbf{w}_l]_i|^2=[\textbf{X}_{\text{opt}}]_{ii}</script>，其中<script type="math/tex">\textbf{e}_{l}</script>同<em>randA</em>。</p>
+<h3 id="randC"><a href="#randC" class="headerlink" title="randC"></a>randC</h3><p>类似于<em>randA</em>，有<script type="math/tex">\textbf{w}_l=\textbf{U}\Sigma^{1/2}\textbf{v}_l</script>，其中<script type="math/tex">\textbf{v}_l\sim\mathcal{CN}(0,1)</script>，以保证有<script type="math/tex">\text{E}[\textbf{w}_l\textbf{w}^H]=\textbf{X}_{\text{opt}}</script></p>
 
             </div>
             <hr>
@@ -314,7 +297,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/basic-knowledge/">basic knowledge</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Transimit-Beamforming/">Transimit Beamforming</a>
                     
                   </div>
                 
@@ -322,7 +307,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Compressed-Sensing/">Compressed Sensing</a>
+                      <a class="hover-with-bg" href="/tags/Transimit-Beamforming/">Transimit Beamforming</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Channel-Estimation/">Channel Estimation</a>
                     
                   </div>
                 
@@ -336,7 +323,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/18/compressedsensingsummary/">http://lcjoffrey.top/2022/04/18/compressedsensingsummary/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/20/TransmitBF4Phy-layer-Multicasting/">http://lcjoffrey.top/2022/04/20/TransmitBF4Phy-layer-Multicasting/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -346,18 +333,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/18/matrixcalculus/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">知识储备-Matrix Calculus</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/12/fundamentalofMatrixtheory/">
-                        <span class="hidden-mobile">知识储备-矩阵相关</span>
+                      <a href="/2022/04/19/alow-complexity-beamforming-design/">
+                        <span class="hidden-mobile">Statistical-CSI 一般CSI-Based模型+Statistical模型+低复杂度实现Statistical</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
