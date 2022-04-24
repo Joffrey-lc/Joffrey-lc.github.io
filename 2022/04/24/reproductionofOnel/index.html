@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220424175207762.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/result2.jpg">
 <meta property="article:published_time" content="2022-04-24T09:55:37.000Z">
-<meta property="article:modified_time" content="2022-04-24T10:31:03.397Z">
+<meta property="article:modified_time" content="2022-04-24T10:33:58.596Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Reproduction">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +229,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35 分钟
+      34 分钟
     </span>
   
 
@@ -271,33 +271,22 @@
             <div class="markdown-body">
               <h1 id="OneL’s-CSI-Free-and-CSI-Based-Wireless-Energy-Transfer-Method-Reproduction"><a href="#OneL’s-CSI-Free-and-CSI-Based-Wireless-Energy-Transfer-Method-Reproduction" class="headerlink" title="OneL’s CSI-Free and CSI-Based Wireless Energy Transfer Method Reproduction"></a>OneL’s CSI-Free and CSI-Based Wireless Energy Transfer Method Reproduction</h1><p>参考OneL’s Github<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/onel2428/WEToverview
 ">[1]</span></a></sup>源码复现。</p>
-<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><h3 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h3><div>
-            <input type="checkbox" disabled >true true
-          </div>fix the bug of EH_Transfer_Funtion.m
+<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><h3 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h3>
+            <input type="checkbox" disabled checked="checked">fix the bug of EH_Transfer_Funtion.m
+          
 
-<div>
-            <input type="checkbox" disabled >true true
-          </div>build code by formula derivation
+            <input type="checkbox" disabled checked="checked">build code by formula derivation
+          
 
-<div>
-            <input type="checkbox" disabled >true true
-          </div>improve the CSI-based algorithm according to Reference<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="A. Thudugalage, S. Atapattu and J. Evans, “Beamformer design for wireless energy transfer with fairness,” 2016 IEEE International Conference on Communications (ICC), 2016, pp. 1-6, doi: 10.1109/ICC.2016.7511170.
-">[6]</span></a></sup> 
+            <input type="checkbox" disabled checked="checked">improve the CSI-based algorithm according to Reference<sup id=fnref:6 class=footnote-ref><a href=#fn:6 rel=footnote><span class=hint--top hint--rounded aria-label=A. Thudugalage
+          
+<h3 id="ToDo"><a href="#ToDo" class="headerlink" title="ToDo"></a>ToDo</h3>
+            <input type="checkbox" disabled >Change the EH-Transfer-Function
+          
 
-### ToDo
-
-<div>
-            <input type="checkbox" disabled >false true
-          </div>Change the EH-Transfer-Function
-
-<div>
-            <input type="checkbox" disabled >false true
-          </div>Change the Channel Path loss
-
-## Channel Path Loss
-
-直接搬用OneL的log-distance model：
-
+            <input type="checkbox" disabled >Change the Channel Path loss
+          
+<h2 id="Channel-Path-Loss"><a href="#Channel-Path-Loss" class="headerlink" title="Channel Path Loss"></a>Channel Path Loss</h2><p>直接搬用OneL的log-distance model：</p>
 <div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> beta <span class="token operator">=</span> <span class="token function">channel_path_loss</span><span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> y2<span class="token punctuation">)</span>
 <span class="token comment">%Channel path-loss between device at position (x1,y1) and another device at position (x2,y2)</span>
 
