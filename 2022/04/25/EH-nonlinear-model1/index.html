@@ -13,30 +13,30 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="星座图知识整理">
+  <meta name="description" content="Elena Boshkovska et.al.-Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="星座图知识整理">
+  <meta name="description" content="Elena Boshkovska et.al.-Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知识储备-星座图">
-<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/constellation/index.html">
+<meta property="og:title" content="无线能量传输-能量接收机的非线性接收模型（一）">
+<meta property="og:url" content="http://lcjoffrey.top/2022/04/25/EH-nonlinear-model1/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="星座图知识整理">
+<meta property="og:description" content="Elena Boshkovska et.al.-Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b50efc495629ea035ec664c76517790b.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f92376c8c9c8bdab82cc5ef29ff05741.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41f4fa54c7dc87329d6f03b81473b78a.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9001b3bf7d18301c23add6778f21da9c.png">
-<meta property="article:published_time" content="2021-12-04T06:19:12.000Z">
-<meta property="article:modified_time" content="2022-03-19T10:09:20.403Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153130097.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153239885.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153355034.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153919035.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153946764.png">
+<meta property="article:published_time" content="2022-04-25T07:41:18.000Z">
+<meta property="article:modified_time" content="2022-04-25T07:50:31.319Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="signal processing">
-<meta property="article:tag" content="communication">
+<meta property="article:tag" content="WPT">
+<meta property="article:tag" content="Energy Harvested Model">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153130097.png">
   
-  <title>知识储备-星座图 - Joffrey&#39;s Blog</title>
+  <title>无线能量传输-能量接收机的非线性接收模型（一） - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="知识储备-星座图">
+            <span class="h2" id="subtitle" title="无线能量传输-能量接收机的非线性接收模型（一）">
               
             </span>
 
@@ -212,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-04 14:19" pubdate>
-        2021年12月4日 下午
+      <time datetime="2022-04-25 15:41" pubdate>
+        2022年4月25日 下午
       </time>
     </span>
   
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      256 字
+      1.7k 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      5 分钟
     </span>
   
 
@@ -269,24 +269,49 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">知识储备-星座图</h1>
+            <h1 style="display: none">无线能量传输-能量接收机的非线性接收模型（一）</h1>
             
             <div class="markdown-body">
-              <h1 id="星座图"><a href="#星座图" class="headerlink" title="星座图"></a>星座图</h1><p>已知信号以IQ路表示：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png" srcset="/img/loading.gif" lazyload alt="IMG_1101"></p>
-<p>注意：</p>
-<p>①相邻符号之间码元变化１bit（格雷码）</p>
-<p>②相邻符号点之间的欧式距离越大，抗噪声能力越强</p>
-<p>③随着SPS(每个符号的采样点个数)增加，星座图显得越“乱”。因为一个符号的相位和幅度信息增加了，在星座图上的点数也增多了，符号与符号之间的跳变变得平滑。如下图可见：</p>
-<p>QPSK星座图符号位置：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b50efc495629ea035ec664c76517790b.png" srcset="/img/loading.gif" lazyload alt="image-20210815164210448"></p>
-<p>SPS=1，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f92376c8c9c8bdab82cc5ef29ff05741.png" srcset="/img/loading.gif" lazyload alt="image-20210815164329496"></p>
-<p>SPS=8，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41f4fa54c7dc87329d6f03b81473b78a.png" srcset="/img/loading.gif" lazyload alt="image-20210815164424105"></p>
-<p>SPS=32，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9001b3bf7d18301c23add6778f21da9c.png" srcset="/img/loading.gif" lazyload alt="image-20210815164642830"><br>肉眼观察SPS=1最明显，调制识别正确率和SPS有没有关系呢？</p>
-
+              <p>Date: 2022.04.22  17:07<br>Author: Joffrey LC</p>
+<hr>
+<p><strong>Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems</strong>.  <em>Elena Boshkovska</em> et.al.  <strong>IEEE Communications Letters, Dec.  2015</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7264986">pdf</a>)  (Citations <strong>551</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+<li>提出Energy Harvesting Model 是 non-linear的，并给出模型（需要根据具体测量值，拟合得到具体参数）</li>
+<li>给出一种双重循环的快速解决方案（这部分简单看了一下）</li>
+</ul>
+<blockquote>
+<p>如果噪声是矩阵形式，应该表示为<script type="math/tex">\textbf{n}\sim\mathcal{CN}(\textbf{0},\sigma^2\textbf{I})</script>，其中<script type="math/tex">\sigma^2</script>表示噪声的功率</p>
+</blockquote>
+<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><h3 id="Energy-Harvesting-Model"><a href="#Energy-Harvesting-Model" class="headerlink" title="Energy Harvesting Model"></a>Energy Harvesting Model</h3><p>Proposed a Non- Linear EH model based on the logistic (sigmoid) function: </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Phi_{\mathrm{ER}_{j}}^{\text {Practical }} &=\frac{\left[\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}-M_{j} \Omega_{j}\right]}{1-\Omega_{j}}, \Omega_{j}=\frac{1}{1+\exp \left(a_{j} b_{j}\right)} \\
+\Psi_{\mathrm{ER}_{j}}^{\text {Practical }} &=\frac{M_{j}}{1+\exp \left(-a_{j}\left(P_{\mathrm{ER}_{j}}-b_{j}\right)\right)}
+\end{aligned}</script><p>其中，<script type="math/tex">\Phi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>代表<script type="math/tex">j</script>-th ER 接受到的总能量；<script type="math/tex">\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>代表logistic function with respect to the receive RF power <script type="math/tex">P_{\mathrm{ER}_{j}}</script>。<span class="label label-primary">其他参数例如$$a_j,b_j,M_j$$都是通过对实际电路模型的测量值进行拟合得到</span></p>
+<blockquote>
+<p><strong>并且由于<script type="math/tex">\Omega_j</script>并不影响<script type="math/tex">\textbf{w}</script>的设计，所以一般采用<script type="math/tex">\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>表示接收到的能量。</strong>有典型值<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in IEEE Journal of Solid-State Circuits, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318.
+">[1]</span></a></sup>：</p>
+<script type="math/tex; mode=display">M_j=20\text{mW},a_j=6400,b_j=0.003</script></blockquote>
+<h3 id="双循环解法"><a href="#双循环解法" class="headerlink" title="双循环解法"></a>双循环解法</h3><h4 id="原始问题建模："><a href="#原始问题建模：" class="headerlink" title="原始问题建模："></a>原始问题建模：</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153130097.png" srcset="/img/loading.gif" lazyload alt="原始问题建模" style="zoom: 80%;" /></p>
+<p>C1：功率约束</p>
+<p>C2：SINR约束</p>
+<h4 id="Proposal-流程"><a href="#Proposal-流程" class="headerlink" title="Proposal 流程"></a>Proposal 流程</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153239885.png" srcset="/img/loading.gif" lazyload alt="提出算法流程" style="zoom: 60%;" /></p>
+<blockquote>
+<p>另外有一个重要理论（没有证明）：</p>
+</blockquote>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153355034.png" srcset="/img/loading.gif" lazyload alt="重要理论" style="zoom:60%;" /></p>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153919035.png" srcset="/img/loading.gif" lazyload alt="exp1" style="zoom:60%;" /></p>
+<ul>
+<li>Harvested Energy 随着Minimum required SINR 增大而减小</li>
+<li>Harvested Energy 随着单个ER的天线数量<script type="math/tex">N_T</script>的增大而增大：因为更多的天线带来更高的自由度，会得到更高效的资源分配方案</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153946764.png" srcset="/img/loading.gif" lazyload alt="exp2" style="zoom:60%;" /></p>
+<ul>
+<li>Harvested Energy 随着ERs数量增大而增大，而且性能增益（Performance Gap between Non-Linear Model with Linear Model）增大：因为ERs数量增大，Baseline（Performance with Linear Model）的失配（mismatch）更严重</li>
+</ul>
+<p>&gt;</p>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in <em>IEEE Journal of Solid-State Circuits</em>, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>
@@ -295,7 +320,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/basic-knowledge/">basic knowledge</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Wireless-Energy-Transfer/">Wireless Energy Transfer</a>
                     
                   </div>
                 
@@ -303,9 +330,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/signal-processing/">signal processing</a>
+                      <a class="hover-with-bg" href="/tags/WPT/">WPT</a>
                     
-                      <a class="hover-with-bg" href="/tags/communication/">communication</a>
+                      <a class="hover-with-bg" href="/tags/Energy-Harvested-Model/">Energy Harvested Model</a>
                     
                   </div>
                 
@@ -319,7 +346,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/constellation/">http://lcjoffrey.top/2021/12/04/constellation/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/25/EH-nonlinear-model1/">http://lcjoffrey.top/2022/04/25/EH-nonlinear-model1/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -329,18 +356,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/04/cpc/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Representation Learning With Contrastive Predictive Coding梳理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/04/conv/">
-                        <span class="hidden-mobile">知识储备-卷积/滤波及Matlab实现</span>
+                      <a href="/2022/04/25/PandNPandNPhard/">
+                        <span class="hidden-mobile">知识储备-P/NP/NPC/NP-Hard问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
