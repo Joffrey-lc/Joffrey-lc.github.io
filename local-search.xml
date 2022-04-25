@@ -8,7 +8,7 @@
     <link href="/2022/04/25/EH-nonlinear-model1/"/>
     <url>/2022/04/25/EH-nonlinear-model1/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Date: 2022.04.22  17:07<br>Author: Joffrey LC</p><hr><p><strong>Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems</strong>.  <em>Elena Boshkovska</em> et.al.  <strong>IEEE Communications Letters, Dec.  2015</strong>  (<a href="https://ieeexplore.ieee.org/document/7264986">pdf</a>)  (Citations <strong>551</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul><li>提出Energy Harvesting Model 是 non-linear的，并给出模型（需要根据具体测量值，拟合得到具体参数）</li><li>给出一种双重循环的快速解决方案（这部分简单看了一下）</li></ul><div class="note note-success">            <p>如果噪声是矩阵形式，应该表示为<script type="math/tex">\textbf{n}\sim\mathcal{CN}(\textbf{0},\sigma^2\textbf{I})</script>，其中<script type="math/tex">\sigma^2</script>表示噪声的功率</p>          </div><h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><h3 id="Energy-Harvesting-Model"><a href="#Energy-Harvesting-Model" class="headerlink" title="Energy Harvesting Model"></a>Energy Harvesting Model</h3><p>Proposed a Non- Linear EH model based on the logistic (sigmoid) function: </p><script type="math/tex; mode=display">\begin{aligned}\Phi_{\mathrm{ER}_{j}}^{\text {Practical }} &=\frac{\left[\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}-M_{j} \Omega_{j}\right]}{1-\Omega_{j}}, \Omega_{j}=\frac{1}{1+\exp \left(a_{j} b_{j}\right)} \\\Psi_{\mathrm{ER}_{j}}^{\text {Practical }} &=\frac{M_{j}}{1+\exp \left(-a_{j}\left(P_{\mathrm{ER}_{j}}-b_{j}\right)\right)}\end{aligned}</script><p>其中，<script type="math/tex">\Phi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>代表<script type="math/tex">j</script>-th ER 接受到的总能量；<script type="math/tex">\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>代表logistic function with respect to the receive RF power <script type="math/tex">P_{\mathrm{ER}_{j}}</script>。<span class="label label-primary">其他参数例如$$a_j,b_j,M_j$$都是通过对实际电路模型的测量值进行拟合得到</span></p><div class="note note-success">            <p><strong>并且由于<script type="math/tex">\Omega_j</script>并不影响<script type="math/tex">\textbf{w}</script>的设计，所以一般采用<script type="math/tex">\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>表示接收到的能量。</strong>有典型值<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in IEEE Journal of Solid-State Circuits, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318. ↩">[1]</span></a></sup>：</p><script type="math/tex; mode=display">M_j=20\text{mW},a_j=6400,b_j=0.003</script>          </div><h3 id="双循环解法"><a href="#双循环解法" class="headerlink" title="双循环解法"></a>双循环解法</h3><h4 id="原始问题建模："><a href="#原始问题建模：" class="headerlink" title="原始问题建模："></a>原始问题建模：</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153130097.png" alt="原始问题建模" style="zoom: 80%;" /></p><p>C1：功率约束</p><p>C2：SINR约束</p><h4 id="Proposal-流程"><a href="#Proposal-流程" class="headerlink" title="Proposal 流程"></a>Proposal 流程</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153239885.png" alt="提出算法流程" style="zoom: 60%;" /></p><div class="note note-success">            <p>另外有一个重要理论（没有证明）：</p>          </div><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153355034.png" alt="重要理论" style="zoom:60%;" /></p><h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153919035.png" alt="exp1" style="zoom:60%;" /></p><ul><li>Harvested Energy 随着Minimum required SINR 增大而减小</li><li>Harvested Energy 随着单个ER的天线数量<script type="math/tex">N_T</script>的增大而增大：因为更多的天线带来更高的自由度，会得到更高效的资源分配方案</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153946764.png" alt="exp2" style="zoom:60%;" /></p><ul><li>Harvested Energy 随着ERs数量增大而增大，而且性能增益（Performance Gap between Non-Linear Model with Linear Model）增大：因为ERs数量增大，Baseline（Performance with Linear Model）的失配（mismatch）更严重</li></ul><div class="note note-success">                      </div><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in <em>IEEE Journal of Solid-State Circuits</em>, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318. ↩<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Date: 2022.04.22  17:07<br>Author: Joffrey LC</p><hr><p><strong>Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems</strong>.  <em>Elena Boshkovska</em> et.al.  <strong>IEEE Communications Letters, Dec.  2015</strong>  (<a href="https://ieeexplore.ieee.org/document/7264986">pdf</a>)  (Citations <strong>551</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul><li>提出Energy Harvesting Model 是 non-linear的，并给出模型（需要根据具体测量值，拟合得到具体参数）</li><li>给出一种双重循环的快速解决方案（这部分简单看了一下）</li></ul><div class="note note-success">            <p>如果噪声是矩阵形式，应该表示为<script type="math/tex">\textbf{n}\sim\mathcal{CN}(\textbf{0},\sigma^2\textbf{I})</script>，其中<script type="math/tex">\sigma^2</script>表示噪声的功率</p>          </div><h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><h3 id="Energy-Harvesting-Model"><a href="#Energy-Harvesting-Model" class="headerlink" title="Energy Harvesting Model"></a>Energy Harvesting Model</h3><p>Proposed a Non- Linear EH model based on the logistic (sigmoid) function: </p><script type="math/tex; mode=display">\begin{aligned}\Phi_{\mathrm{ER}_{j}}^{\text {Practical }} &=\frac{\left[\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}-M_{j} \Omega_{j}\right]}{1-\Omega_{j}}, \Omega_{j}=\frac{1}{1+\exp \left(a_{j} b_{j}\right)} \\\Psi_{\mathrm{ER}_{j}}^{\text {Practical }} &=\frac{M_{j}}{1+\exp \left(-a_{j}\left(P_{\mathrm{ER}_{j}}-b_{j}\right)\right)}\end{aligned}</script><p>其中，<script type="math/tex">\Phi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>代表<script type="math/tex">j</script>-th ER 接受到的总能量；<script type="math/tex">\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>代表logistic function with respect to the receive RF power <script type="math/tex">P_{\mathrm{ER}_{j}}</script>。<span class="label label-primary">其他参数例如$$a_j,b_j,M_j$$都是通过对实际电路模型的测量值进行拟合得到</span></p><div class="note note-success">            <p><strong>并且由于<script type="math/tex">\Omega_j</script>并不影响<script type="math/tex">\textbf{w}</script>的设计，所以一般采用<script type="math/tex">\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}</script>表示接收到的能量。</strong>有典型值<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in IEEE Journal of Solid-State Circuits, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318. ↩">[1]</span></a></sup>：</p><script type="math/tex; mode=display">M_j=20\text{mW},a_j=6400,b_j=0.003</script>          </div><h3 id="双循环解法"><a href="#双循环解法" class="headerlink" title="双循环解法"></a>双循环解法</h3><h4 id="原始问题建模："><a href="#原始问题建模：" class="headerlink" title="原始问题建模："></a>原始问题建模：</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153130097.png" alt="原始问题建模" style="zoom: 80%;" /></p><p>C1：功率约束</p><p>C2：SINR约束</p><h4 id="Proposal-流程"><a href="#Proposal-流程" class="headerlink" title="Proposal 流程"></a>Proposal 流程</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153239885.png" alt="提出算法流程" style="zoom: 60%;" /></p><div class="note note-success">            <p>另外有一个重要理论（没有证明）：</p>          </div><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153355034.png" alt="重要理论" style="zoom:60%;" /></p><h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153919035.png" alt="exp1" style="zoom:60%;" /></p><ul><li>Harvested Energy 随着Minimum required SINR 增大而减小</li><li>Harvested Energy 随着单个ER的天线数量<script type="math/tex">N_T</script>的增大而增大：因为更多的天线带来更高的自由度，会得到更高效的资源分配方案</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153946764.png" alt="exp2" style="zoom:60%;" /></p><ul><li>Harvested Energy 随着ERs数量增大而增大，而且性能增益（Performance Gap between Non-Linear Model with Linear Model）增大：因为ERs数量增大，Baseline（Performance with Linear Model）的失配（mismatch）更严重</li></ul><hr><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in <em>IEEE Journal of Solid-State Circuits</em>, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318. ↩<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
     
     
     <categories>
@@ -500,11 +500,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -544,11 +544,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -588,11 +588,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -619,11 +619,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -650,11 +650,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -708,9 +708,9 @@
     
     <tags>
       
-      <tag>WET</tag>
-      
       <tag>WPT</tag>
+      
+      <tag>WET</tag>
       
       <tag>SWIPT</tag>
       
