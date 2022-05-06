@@ -13,23 +13,28 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="matlab工具箱，持续更新">
+  <meta name="description" content="整理了一下precoder/发射端BF遇到的问题">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="matlab工具箱，持续更新">
+  <meta name="description" content="整理了一下precoder&#x2F;发射端BF遇到的问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Matlab工具箱">
-<meta property="og:url" content="http://lcjoffrey.top/2022/04/26/matlabutils/index.html">
+<meta property="og:title" content="RANK-ONE Constraint及Precoder">
+<meta property="og:url" content="http://lcjoffrey.top/2022/05/06/rank-one-constraint/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="matlab工具箱，持续更新">
+<meta property="og:description" content="整理了一下precoder&#x2F;发射端BF遇到的问题">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-26T10:32:15.000Z">
-<meta property="article:modified_time" content="2022-04-26T10:41:38.828Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220421212504138.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220506192945337.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220505204643659.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220421212040776.png">
+<meta property="article:published_time" content="2022-05-06T12:00:02.000Z">
+<meta property="article:modified_time" content="2022-05-06T12:02:35.110Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="matlab">
+<meta property="article:tag" content="Beamforming">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220421212504138.png">
   
-  <title>Matlab工具箱 - Joffrey&#39;s Blog</title>
+  <title>RANK-ONE Constraint及Precoder - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -195,7 +200,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Matlab工具箱">
+            <span class="h2" id="subtitle" title="RANK-ONE Constraint及Precoder">
               
             </span>
 
@@ -205,8 +210,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-26 18:32" pubdate>
-        2022年4月26日 晚上
+      <time datetime="2022-05-06 20:00" pubdate>
+        2022年5月6日 晚上
       </time>
     </span>
   
@@ -216,7 +221,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      638 字
+      1.9k 字
     </span>
   
 
@@ -225,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      6 分钟
     </span>
   
 
@@ -262,38 +267,51 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Matlab工具箱</h1>
+            <h1 style="display: none">RANK-ONE Constraint及Precoder</h1>
             
             <div class="markdown-body">
-              <h2 id="matlab自定义曲线拟合"><a href="#matlab自定义曲线拟合" class="headerlink" title="matlab自定义曲线拟合"></a>matlab自定义曲线拟合</h2><ul>
-<li>定义想要拟合的曲线函数：</li>
-</ul>
-<p>以function的形式定义，参数以beta-&gt;list传入，例如：</p>
-<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> Phi <span class="token operator">=</span> <span class="token function">myfun1</span><span class="token punctuation">(</span>beta<span class="token punctuation">,</span>P<span class="token punctuation">)</span>
-    M <span class="token operator">=</span> <span class="token number">10</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">8</span><span class="token operator">-</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">0.35</span><span class="token punctuation">;</span>
-    a <span class="token operator">=</span> <span class="token function">beta</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    b <span class="token operator">=</span> <span class="token function">beta</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Phi <span class="token operator">=</span> M<span class="token operator">./</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">exp</span><span class="token punctuation">(</span>a<span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token function">exp</span><span class="token punctuation">(</span>a<span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.*</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token operator">-</span>a<span class="token operator">.*</span><span class="token punctuation">(</span>P<span class="token operator">-</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>M<span class="token operator">/</span><span class="token function">exp</span><span class="token punctuation">(</span>a<span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<ul>
-<li>喂数据进行拟合，得到参数值：</li>
-</ul>
-<p>在喂入数据的时候，需要给初始值。就目前我实验的结果而言，初始值极大程度影响最终拟合结果。</p>
-<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">beta <span class="token operator">=</span> <span class="token function">nlinfit</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token operator">@</span>myfun1<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">20000</span><span class="token punctuation">,</span><span class="token number">0.0001</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>返回的beta就是最后拟合的参数值。</p>
-<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>以<span class="label label-primary">y=struct(key1,value1,key2,value2...)</span>的形式定义：</p>
-<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">title_mapping<span class="token operator">=</span><span class="token function">struct</span><span class="token punctuation">(</span><span class="token string">'AA_IS'</span><span class="token punctuation">,</span> <span class="token string">'AA-IS'</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
-    <span class="token string">'AA_SA'</span><span class="token punctuation">,</span> <span class="token string">'AA-SA'</span><span class="token punctuation">,</span> <span class="token punctuation">...</span>
-    <span class="token string">'AA_minVar'</span><span class="token punctuation">,</span> <span class="token string">'AA-SS_&#123;minVar&#125;'</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
-    <span class="token string">'AA_maxE'</span><span class="token punctuation">,</span><span class="token string">'AA-SS_&#123;maxE&#125;'</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
-    <span class="token string">'APS_EMW'</span><span class="token punctuation">,</span> <span class="token string">'APS-EMW'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">fileds <span class="token operator">=</span> <span class="token function">fieldnames</span><span class="token punctuation">(</span>title_mapping<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>fileds<span class="token punctuation">)</span>
-    k <span class="token operator">=</span> <span class="token function">fileds</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    key <span class="token operator">=</span> k<span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    value <span class="token operator">=</span> title_mapping<span class="token punctuation">.</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
+              <h1 id="Rank-One"><a href="#Rank-One" class="headerlink" title="Rank-One"></a>Rank-One</h1><p>由于在看precoder（发射端波束形成）时，不同文章建模的时候形式不同，有的有rank-one约束，有的没有，有的是放缩。在此做个整理</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220421212504138.png" srcset="/img/loading.gif" lazyload alt="image-20220421212504138" style="zoom: 33%;" /></p>
+<p>其实无论是在通信中还是Wireless Energy Transfer中，都是相同的形式，即precoder可能是一个列向量<script type="math/tex">\textbf{w}\in\mathbb{C}^{M\times 1}</script>，也可能是一个矩阵<script type="math/tex">\textbf{w}\in\mathbb{C}^{M\times K}</script>。其中<script type="math/tex">M,K</script>分别是天线数量和用户数。</p>
+<p>在最早的文章</p>
+<blockquote>
+<p><strong>Transmit beamforming for physical-layer multicasting</strong>.  <em>N.D. Sidiropoulos</em> et.al.  <strong>IEEE Transactions on Signal Processing, June 2006</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/1634819">pdf</a>)  (Citations <strong>904</strong>)</p>
+</blockquote>
+<p>作者认为</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220506192945337.png" srcset="/img/loading.gif" lazyload alt="image-20220506192945337" style="zoom: 50%;" /></p>
+<p>这是后面所有文章的基本，大家都是这么建模的；唯一问题是这里有个rank-one约束。一般的解决方法是通过drop rank-one constraint，然后得到优化结果后，再通过randomization得到最优的结果，笔记<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://lcjoffrey.top/2022/04/20/TransmitBF4Phy-layer-Multicasting/
+">[1]</span></a></sup>中有randomization相关内容。</p>
+<p>但是在</p>
+<blockquote>
+<p><strong>Beamformer design for wireless energy transfer with fairness</strong>.  <em>Amanthi Thudugalage</em> et.al.  <strong>2016 IEEE International Conference on Communications (ICC), 22-27 May 2016</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7511170">pdf</a>)  (Citations <strong>19</strong>)</p>
+<p><strong>A Low-Complexity Beamforming Design for Multiuser Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Wireless Communications Letters, Jan.  2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9184149">pdf</a>)  (Citations <strong>4</strong>)</p>
+</blockquote>
+<p>其实都是没有rank-one约束的，而是通过计算<script type="math/tex">\mathbf{X}=\textbf{w}\textbf{w}^H</script>的特征值和特征向量，以特征值为标准归一化（因为由<script type="math/tex">\text{Tr}(\mathbf{X})=1</script>约束，可知特征值之和为1）特征向量，并以归一化后的特征向量作为precoder。这里又存在一个新的问题，这个归一化是在<span class="label label-primary">时间上归一化</span>还是在<span class="label label-primary">功率上归一化</span>？其表达式和结果都是一样的，但是物理意义不同。</p>
+<p>我认为在Onel文章中是在功率上归一化，在ICC中是以时间归一化</p>
+<p>在多用户的BF模型中</p>
+<blockquote>
+<p><strong>Dual-Function Radar Communication Systems: A Solution to the Spectrum Congestion Problem</strong>.  <em>Aboulnasr Hassanien</em> et.al.  <strong>IEEE Signal Processing Magazine, Sept.  2019</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8828023">pdf</a>)  (Citations <strong>78</strong>)</p>
+<p><strong>MU-MIMO Communications With MIMO Radar: From Co-Existence to Joint Transmission</strong>.  <em>Fan Liu</em> et.al.  <strong>IEEE Transactions on Wireless Communications, April  2018</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8288677">pdf</a>)  (Citations <strong>148</strong>)</p>
+<p><strong>CSI-Free vs CSI-Based Multi-Antenna WET for Massive Low-Power Internet of Things</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Transactions on Wireless Communications, May  2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9316281">pdf</a>)  (Citations <strong>1</strong>)</p>
+</blockquote>
+<p>有表达式：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220505204643659.png" srcset="/img/loading.gif" lazyload alt="image-20220505204643659" style="zoom:50%;" /></p>
+<p>但是值得注意的是，其求和符号上限时而是用户数<script type="math/tex">K</script>，时而是天线数<script type="math/tex">M</script>。</p>
+<p>总而言之，三个问题：</p>
+<div class="note note-success">
+            <ul><li>rank-one约束什么时候存在？</li><li>特征值归一化什么时候在时间上什么时候在功率上分配？</li><li>求和上限到底是什么？</li></ul>
+          </div>
+<h2 id="Answer"><a href="#Answer" class="headerlink" title="Answer"></a>Answer</h2><h3 id="rank-one约束"><a href="#rank-one约束" class="headerlink" title="rank-one约束"></a>rank-one约束</h3><p>这个rank-one约束的存在是因为，一根天线只能乘一个权值，所以其实在一个时刻，可以认为<script type="math/tex">\mathbf{X}=\mathbf{w}\mathbf{w}^H</script>是由一个列向量<script type="math/tex">\times</script>列向量的共轭转置得到的结果，所以一定是rank-one的。</p>
+<p>但是由于后面存在的Multiple Beamforming或者松弛，把rank-one丢掉了。</p>
+<h3 id="时间分配or功率分配"><a href="#时间分配or功率分配" class="headerlink" title="时间分配or功率分配"></a>时间分配or功率分配</h3><p>时间分配如下图，在ICC文章中如下：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220421212040776.png" srcset="/img/loading.gif" lazyload alt="Mutiple BF示意图"></p>
+<p>功率分配暂时没有看到文章指出，但是是很好理解。</p>
+<p>根据具体模型来判断，其结果完全一样。</p>
+<h3 id="求和上限"><a href="#求和上限" class="headerlink" title="求和上限"></a>求和上限</h3><p>首先我觉得很多学者混用了。一般而言都应该是<script type="math/tex">K</script>（用户数），但是可能存在<script type="math/tex">M=K</script>的情况</p>
+<p>又或者说，当<script type="math/tex">M<K</script>时，<script type="math/tex">\mathbf{X}=\mathbf{w}\mathbf{w}^H</script>的秩为<script type="math/tex">\min\{M,K\}=M</script>，这也意味着最多存在的BF个数为<script type="math/tex">\min\{M,K\}=M</script>个。所以可以用<script type="math/tex">M</script>作为求和上界。</p>
+<h2 id="New-Question"><a href="#New-Question" class="headerlink" title="New Question"></a>New Question</h2><p>==既然rank-one BF不仅计算量大，而且性能不好，为什么不直接用特征值归一化的BF？==</p>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://lcjoffrey.top/2022/04/20/TransmitBF4Phy-layer-Multicasting/">https://lcjoffrey.top/2022/04/20/TransmitBF4Phy-layer-Multicasting/</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>
@@ -302,9 +320,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/utils/">utils</a>
-                    
-                      <a class="hover-with-bg" href="/categories/utils/matlab/">matlab</a>
+                      <a class="hover-with-bg" href="/categories/Transmit-Beamforming/">Transmit Beamforming</a>
                     
                   </div>
                 
@@ -312,7 +328,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/matlab/">matlab</a>
+                      <a class="hover-with-bg" href="/tags/Beamforming/">Beamforming</a>
                     
                   </div>
                 
@@ -326,7 +342,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/26/matlabutils/">http://lcjoffrey.top/2022/04/26/matlabutils/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/05/06/rank-one-constraint/">http://lcjoffrey.top/2022/05/06/rank-one-constraint/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -336,18 +352,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/06/rank-one-constraint/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">RANK-ONE Constraint及Precoder</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/25/EH-nonlinear-model1/">
-                        <span class="hidden-mobile">无线能量传输-能量接收机的非线性接收模型（一）</span>
+                      <a href="/2022/04/26/matlabutils/">
+                        <span class="hidden-mobile">Matlab工具箱</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
