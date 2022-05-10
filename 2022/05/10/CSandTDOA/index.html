@@ -13,29 +13,32 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Abdelrahman Taha et.al.-Deep Reinforcement Learning for Intelligent Reflecting Surfaces—Towards Standalone Operation">
+  <meta name="description" content="小结部分工作">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="Abdelrahman Taha et.al.-Deep Reinforcement Learning for Intelligent Reflecting Surfaces—Towards Standalone Operation">
+  <meta name="description" content="小结部分工作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DRL和IRS的结合（主要关注IRS怎么获取CSI）">
-<meta property="og:url" content="http://lcjoffrey.top/2022/04/08/DRL-IRS/index.html">
+<meta property="og:title" content="利用CS进行TDOA">
+<meta property="og:url" content="http://lcjoffrey.top/2022/05/10/CSandTDOA/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="Abdelrahman Taha et.al.-Deep Reinforcement Learning for Intelligent Reflecting Surfaces—Towards Standalone Operation">
+<meta property="og:description" content="小结部分工作">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407205815166.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407210210939.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102154327.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102710833.png">
-<meta property="article:published_time" content="2022-04-08T02:30:54.000Z">
-<meta property="article:modified_time" content="2022-04-08T02:42:20.574Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510152640386.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510194055479.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510185751331.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510190103593.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510193122406.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510193248938.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510193412953.png">
+<meta property="article:published_time" content="2022-05-10T12:10:53.000Z">
+<meta property="article:modified_time" content="2022-05-10T12:18:01.762Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Deep Learning">
-<meta property="article:tag" content="IRS">
+<meta property="article:tag" content="TDOA">
+<meta property="article:tag" content="Compressed Sensing">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407205815166.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510152640386.png">
   
-  <title>DRL和IRS的结合（主要关注IRS怎么获取CSI） - Joffrey&#39;s Blog</title>
+  <title>利用CS进行TDOA - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -201,7 +204,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="DRL和IRS的结合（主要关注IRS怎么获取CSI）">
+            <span class="h2" id="subtitle" title="利用CS进行TDOA">
               
             </span>
 
@@ -211,8 +214,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-08 10:30" pubdate>
-        2022年4月8日 上午
+      <time datetime="2022-05-10 20:10" pubdate>
+        2022年5月10日 晚上
       </time>
     </span>
   
@@ -222,7 +225,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      597 字
+      1.4k 字
     </span>
   
 
@@ -231,7 +234,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      4 分钟
     </span>
   
 
@@ -268,20 +271,55 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">DRL和IRS的结合（主要关注IRS怎么获取CSI）</h1>
+            <h1 style="display: none">利用CS进行TDOA</h1>
             
             <div class="markdown-body">
-              <p><strong>Deep Reinforcement Learning for Intelligent Reflecting Surfaces: Towards Standalone Operation</strong>.  <em>Abdelrahman Taha</em> et.al.  <strong>2020 IEEE 21st International Workshop on Signal Processing Advances in Wireless Communications (SPAWC), 26-29 May 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9154301">pdf</a>)  (Citations <strong>24</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>提出一种DRL（Deep Reinforcement Learning）的方法，不用<strong>额外的训练开销</strong>就可以获得接近Supervised Learning 和Perfect CSI的性能。而且这个方法不受其他基站控制，是<strong>standalone</strong>的。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407205815166.png" srcset="/img/loading.gif" lazyload alt="示意图" style="zoom: 50%;" /></p>
-<p>值得注意的是，对于整个IRS，并不是全部无源的，而是部分有源，<strong>称为Active element</strong>，等同于对全部IRS CSI进行sample。</p>
-<p>实验结果说明：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407210210939.png" srcset="/img/loading.gif" lazyload alt="实验一" style="zoom: 40%;" /></p>
-<p>实验结果说明，虽然DRL需要更多的样本训练，但是DRL方案仅对每个训练片段使用一个Beam，而DL方案需要400个。</p>
-<p>然后利用类似半监督-伪标记的方法，用DRL预测最优希望的<script type="math/tex">k_B</script>波束，并把这些波束添加到训练集中</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102154327.png" srcset="/img/loading.gif" lazyload alt="image-20220408102154327" style="zoom: 80%;" /></p>
-<p>同时，还可以看到，Ideal Rewarding 性能更加，即仅当可达速率等于期望值时，才给正向反馈，否则都是负向反馈。</p>
-<h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102710833.png" srcset="/img/loading.gif" lazyload alt="算法流程" style="zoom: 80%;" /></p>
+              <h1 id="压缩感知和TDOA"><a href="#压缩感知和TDOA" class="headerlink" title="压缩感知和TDOA"></a>压缩感知和TDOA</h1><p>目前参考的文章的出发点都在于：并不是说在采样的时候进行压缩，而是先采样，再压缩，再进行传输到TDOA estimator进行恢复和估计。</p>
+<blockquote>
+<p>主要是考虑减少网络通信量，在低速率通信链路上进行数据交换的合适方法。</p>
+</blockquote>
+<ul>
+<li>TDOA是先采样再压缩</li>
+<li>不需要重构原始值，只要能保证他们之间的时间关系不被破坏就可以了</li>
+</ul>
+<h2 id="Hadamard-观测矩阵（-）"><a href="#Hadamard-观测矩阵（-）" class="headerlink" title="Hadamard 观测矩阵（**）"></a>Hadamard 观测矩阵（<em>**</em>）</h2><blockquote>
+<p><strong>TDOA Estimation With Compressive Sensing Measurements and Hadamard Matrix</strong>.  <em>Soheil Salari</em> et.al.  <strong>IEEE Transactions on Aerospace and Electronic Systems, Dec.  2018</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8336946">pdf</a>)  (Citations <strong>20</strong>)</p>
+</blockquote>
+<p>一般的观测矩阵不能用，是因为会破坏时延关系（break up their time-shift relation）</p>
+<p>但是Hadamard矩阵可以，并且不会破坏时延关系（但是只能测量2^n的数据维度）</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510152640386.png" srcset="/img/loading.gif" lazyload alt="image-20220510152640386" style="zoom: 67%;" /></p>
+<p>效果很好：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510194055479.png" srcset="/img/loading.gif" lazyload alt="image-20220510194055479" style="zoom: 33%;" /></p>
+<p>==有点奇怪的地方在于，正常CS是<strong>采样和降维同时进行</strong>，但是这里是<strong>先采样，再进行压缩</strong>==</p>
+<div class="note note-success">
+            <p>另外值得注意的是：</p><p>信号<script type="math/tex">\times$$$$\mathbf{H}_{M\times N}</script>，进行传输后再<script type="math/tex">\mathbf{H}^T_{N\times M}</script>后，虽然信号的幅度完全不同了，但是时间关系还是保持，所以可以直接做相关得到时差估计。</p>
+          </div>
+<h2 id="ML-Estimation"><a href="#ML-Estimation" class="headerlink" title="ML Estimation"></a>ML Estimation</h2><blockquote>
+<p><strong>Maximum Likelihood TDOA Estimation From Compressed Sensing Samples Without Reconstruction</strong>.  <em>H. Cao</em> et.al.  <strong>IEEE Signal Processing Letters, May  2017</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7880621">pdf</a>)  (Citations <strong>22</strong>)</p>
+</blockquote>
+<p>首先使用Hadamard矩阵对信号进行采样，然后对CS采样信号（其实我觉得不能成为CS，应该叫做压缩信号/降维信号）直接进行ML Estimation。</p>
+<script type="math/tex; mode=display">
+L(\tau)=-\left\{\sum_{p} \ln |\mathbf{V}(p)|+\sum_{p} \mathbf{R}(p)\right\}</script><p>Where <script type="math/tex">\mathbf{R}(p)=\left[\begin{array}{ll}
+Y_{1}^{*}(p) & Y_{2}^{*}(p)
+\end{array}\right] \mathbf{V}^{-1}(p)\left[\begin{array}{l}
+Y_{1}(p) \\
+Y_{2}(p)
+\end{array}\right]</script> and <script type="math/tex">\mathbf{V}(p)=\mathbb{E}\left\{\left[\begin{array}{l}
+Y_{1}(p) \\
+Y_{2}(p)
+\end{array}\right]\left[Y_{1}^{*}(p) \quad Y_{2}^{*}(p)\right]\right\}</script>，并且有：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510185751331.png" srcset="/img/loading.gif" lazyload alt="image-20220510185751331" style="zoom:50%;" /></p>
+<p>然后由于涉及到统计值，为了方便计算，通过测量值代替统计值，所以设计了算法：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510190103593.png" srcset="/img/loading.gif" lazyload alt="image-20220510190103593" style="zoom:50%;" /></p>
+<p>估计参数<script type="math/tex">\sigma^2</script>，并且设计：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510193122406.png" srcset="/img/loading.gif" lazyload alt="image-20220510193122406" style="zoom: 50%;" /></p>
+<p>然后有结果：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510193248938.png" srcset="/img/loading.gif" lazyload alt="image-20220510193248938" style="zoom:50%;" /></p>
+<p>然后推了一下CRLB：</p>
+<blockquote>
+<p><strong>Compressive TDOA Estimation: Cramér–Rao Bound and Incoherent Processing</strong>.  <em>Hui Cao</em> et.al.  <strong>IEEE Transactions on Aerospace and Electronic Systems, Aug.  2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8957073">pdf</a>)  (Citations <strong>4</strong>)</p>
+</blockquote>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220510193412953.png" srcset="/img/loading.gif" lazyload alt="image-20220510193412953" style="zoom:40%;" /></p>
 
             </div>
             <hr>
@@ -293,7 +331,7 @@
                     
                       <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
                     
-                      <a class="hover-with-bg" href="/categories/Paper-Reading/Intelligent-Reflecting-Surface/">Intelligent Reflecting Surface</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Compressed-Sensing/">Compressed Sensing</a>
                     
                   </div>
                 
@@ -301,9 +339,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Deep-Learning/">Deep Learning</a>
+                      <a class="hover-with-bg" href="/tags/TDOA/">TDOA</a>
                     
-                      <a class="hover-with-bg" href="/tags/IRS/">IRS</a>
+                      <a class="hover-with-bg" href="/tags/Compressed-Sensing/">Compressed Sensing</a>
                     
                   </div>
                 
@@ -317,7 +355,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/08/DRL-IRS/">http://lcjoffrey.top/2022/04/08/DRL-IRS/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/05/10/CSandTDOA/">http://lcjoffrey.top/2022/05/10/CSandTDOA/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -327,18 +365,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/08/CSI-Free-Ohter/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CSI相关其他文献阅读</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/30/summaryOfCSIFree/">
-                        <span class="hidden-mobile">CSI-Free总结</span>
+                      <a href="/2022/05/09/probAndlikelihood/">
+                        <span class="hidden-mobile">知识储备-概率和似然</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
