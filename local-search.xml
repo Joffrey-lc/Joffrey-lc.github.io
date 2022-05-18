@@ -328,33 +328,6 @@
   
   
   <entry>
-    <title>知识储备-Matrix</title>
-    <link href="/2022/04/18/matrixcalculus/"/>
-    <url>/2022/04/18/matrixcalculus/</url>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="矩阵求导-Matrix-Calculus"><a href="#矩阵求导-Matrix-Calculus" class="headerlink" title="矩阵求导 Matrix Calculus"></a>矩阵求导 Matrix Calculus</h1><p>记录一下查找的矩阵求导资料，有时间再看：</p><blockquote><p>标量对矩阵求导<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuanlan.zhihu.com/p/24709748">[1]</span></a></sup></p><p>向量对矩阵求导<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuanlan.zhihu.com/p/24863977">[2]</span></a></sup></p><p><strong>使用科技</strong><sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://www.matrixcalculus.org/">[3]</span></a></sup></p></blockquote><h1 id="矩阵向量化算子"><a href="#矩阵向量化算子" class="headerlink" title="矩阵向量化算子"></a>矩阵向量化算子</h1><p>矩阵向量化算子，例如文章</p><blockquote><p><strong>Compressed Channel Estimation for Intelligent Reflecting Surface-Assisted Millimeter Wave Systems</strong>.  <em>Peilan Wang</em> et.al.  <strong>IEEE Signal Processing Letters, 2020</strong>  (<a href="https://ieeexplore.ieee.org/document/9103231">pdf</a>)  (Citations <strong>72</strong>)</p></blockquote><p>中出现的<script type="math/tex">\text{vec}(\cdot)</script>，就是将一个矩阵的每一列首尾相连，形成一个新的列向量。</p><script type="math/tex; mode=display">\mathbf{A}\in\mathbb{C}^{m\times n}\\\text{vec}(\mathbf{A})=[\mathbf{a}_{:m,1};\mathbf{a}_{:m,2};\cdots;\mathbf{a}_{:m,n}]\in{\mathbb{C}^{mn\times 1}}</script><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://zhuanlan.zhihu.com/p/24709748">https://zhuanlan.zhihu.com/p/24709748</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a href="https://zhuanlan.zhihu.com/p/24863977">https://zhuanlan.zhihu.com/p/24863977</a><a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a href="http://www.matrixcalculus.org/">http://www.matrixcalculus.org/</a><a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
-    
-    
-    <categories>
-      
-      <category>basic knowledge</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Math</tag>
-      
-      <tag>Matrix Calculus</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>知识储备-压缩感知基础</title>
     <link href="/2022/04/18/compressedsensingsummary/"/>
     <url>/2022/04/18/compressedsensingsummary/</url>
