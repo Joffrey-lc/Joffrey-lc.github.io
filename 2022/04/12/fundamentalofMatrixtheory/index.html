@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220412113250013.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220412113256344.png">
 <meta property="article:published_time" content="2022-04-12T06:04:59.000Z">
-<meta property="article:modified_time" content="2022-05-16T14:00:39.779Z">
+<meta property="article:modified_time" content="2022-05-18T07:11:50.554Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="matrix theory">
 <meta name="twitter:card" content="summary_large_image">
@@ -221,7 +221,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      3.2k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      10 分钟
     </span>
   
 
@@ -346,11 +346,30 @@ A \odot B \odot C=(A \odot B) \odot C=A \odot(B \odot C)\\
 <script type="math/tex; mode=display">
 \|\mathrm{A}\|_{2}=\sqrt{\lambda_{\max }\left(\mathrm{A}^{\mathrm{T}} \mathrm{A}\right)}</script><p>矩阵F-范数：</p>
 <script type="math/tex; mode=display">
-\|\mathrm{A}\|_{F}=\sqrt{\operatorname{tr}\left(\mathrm{A}^{\mathrm{T}} \mathrm{A}\right)}=\sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} a_{i j}^{2}}</script><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E8%BE%BE%E7%8E%9B%E7%A7%AF/18894493?fr=aladdin">https://baike.baidu.com/item/%E5%93%88%E8%BE%BE%E7%8E%9B%E7%A7%AF/18894493?fr=aladdin</a>
+\|\mathrm{A}\|_{F}=\sqrt{\operatorname{tr}\left(\mathrm{A}^{\mathrm{T}} \mathrm{A}\right)}=\sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} a_{i j}^{2}}</script><h2 id="矩阵求导-Matrix-Calculus"><a href="#矩阵求导-Matrix-Calculus" class="headerlink" title="矩阵求导 Matrix Calculus"></a>矩阵求导 Matrix Calculus</h2><p>记录一下查找的矩阵求导资料，有时间再看：</p>
+<blockquote>
+<p>标量对矩阵求导<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuanlan.zhihu.com/p/24709748
+">[5]</span></a></sup></p>
+<p>向量对矩阵求导<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuanlan.zhihu.com/p/24863977
+">[6]</span></a></sup></p>
+<p><strong>使用科技</strong><sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote"><span class="hint--top hint--rounded" aria-label="http://www.matrixcalculus.org/
+">[7]</span></a></sup></p>
+</blockquote>
+<h2 id="矩阵向量化算子"><a href="#矩阵向量化算子" class="headerlink" title="矩阵向量化算子"></a>矩阵向量化算子</h2><p>矩阵向量化算子，例如文章</p>
+<blockquote>
+<p><strong>Compressed Channel Estimation for Intelligent Reflecting Surface-Assisted Millimeter Wave Systems</strong>.  <em>Peilan Wang</em> et.al.  <strong>IEEE Signal Processing Letters, 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9103231">pdf</a>)  (Citations <strong>72</strong>)</p>
+</blockquote>
+<p>中出现的<script type="math/tex">\text{vec}(\cdot)</script>，就是将一个矩阵的每一列首尾相连，形成一个新的列向量。</p>
+<script type="math/tex; mode=display">
+\mathbf{A}\in\mathbb{C}^{m\times n}\\
+\text{vec}(\mathbf{A})=[\mathbf{a}_{:m,1};\mathbf{a}_{:m,2};\cdots;\mathbf{a}_{:m,n}]\in{\mathbb{C}^{mn\times 1}}</script><h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%93%88%E8%BE%BE%E7%8E%9B%E7%A7%AF/18894493?fr=aladdin">https://baike.baidu.com/item/%E5%93%88%E8%BE%BE%E7%8E%9B%E7%A7%AF/18894493?fr=aladdin</a>
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%8B%E7%BD%97%E5%86%85%E5%85%8B%E7%A7%AF/6282573?fr=aladdin">https://baike.baidu.com/item/%E5%85%8B%E7%BD%97%E5%86%85%E5%85%8B%E7%A7%AF/6282573?fr=aladdin</a>
 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%9F%A9%E9%98%B5%E7%9A%84%E8%BF%B9/8889744?fr=aladdin">https://baike.baidu.com/item/%E7%9F%A9%E9%98%B5%E7%9A%84%E8%BF%B9/8889744?fr=aladdin</a>
 <a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.csdn.net/xuehuitanwan123/article/details/104291475">https://blog.csdn.net/xuehuitanwan123/article/details/104291475</a>
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24709748">https://zhuanlan.zhihu.com/p/24709748</a>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24863977">https://zhuanlan.zhihu.com/p/24863977</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:7" class="footnote-text"><span><a target="_blank" rel="noopener" href="http://www.matrixcalculus.org/">http://www.matrixcalculus.org/</a>
+<a href="#fnref:7" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>

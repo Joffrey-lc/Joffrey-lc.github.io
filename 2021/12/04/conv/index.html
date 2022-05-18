@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215206566.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215215585.png">
 <meta property="article:published_time" content="2021-12-04T06:16:38.000Z">
-<meta property="article:modified_time" content="2022-03-19T10:09:20.403Z">
+<meta property="article:modified_time" content="2022-05-18T06:53:29.113Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="signal processing">
 <meta property="article:tag" content="communication">
@@ -226,7 +226,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.4k 字
     </span>
   
 
@@ -235,7 +235,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      7 分钟
     </span>
   
 
@@ -345,7 +345,42 @@ y_fft_out <span class="token operator">=</span> <span class="token function">zer
 <span class="token function">title</span><span class="token punctuation">(</span><span class="token string">'手动实现滤波的频域图'</span><span class="token punctuation">)</span>
 <span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Hz'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>先产生两个频率的正弦波，并混合。<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215145850.png" srcset="/img/loading.gif" lazyload width="60%"><br>混合后的时域和频域波形<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215156905.png" srcset="/img/loading.gif" lazyload width="60%"><br>使用filter函数滤波结果<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215206566.png" srcset="/img/loading.gif" lazyload width="60%"><br>使用自定义方法滤波:<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215215585.png" srcset="/img/loading.gif" lazyload width="60%"></p>
+<h2 id="补充（与相关的关系）"><a href="#补充（与相关的关系）" class="headerlink" title="补充（与相关的关系）"></a>补充（与相关的关系）</h2><ul>
+<li><strong>卷积</strong>=补零-&gt;翻转-&gt;Hadamard积-&gt;求和</li>
+<li>相关=补零-&gt;Hadamard积-&gt;求和</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&x=[3,6,2] \\
+&y=[2,1,0]\\
+\\
 
+&r_{x y}(-2)=\quad \begin{array}{lllll}
+&&3 & 6 & 2\\
+2 & 1 & 0&&&=3\times 0=0
+\end{array}\\
+\\
+&r_{x y}(-1)=\quad \begin{array}{lllll}
+&3 & 6 & 2\\
+2 & 1 & 0&&&=3\times 1+6\times0=3
+\end{array}\\
+\\
+&r_{x y}(0)=\quad \begin{array}{lllll}
+3 & 6 & 2\\
+2 & 1 & 0&&&=3\times 2+6\times1+2\times0=12
+\end{array}\\
+\\
+&r_{x y}(1)=\quad \begin{array}{lllll}
+3 & 6 & 2\\
+&2 & 1 & 0&&&=3\times 0+6\times2+2\times1=14
+\end{array}\\
+\\
+&r_{x y}(2)=\quad \begin{array}{lllll}
+3 & 6 & 2\\
+&&2 & 1 & 0&&&=2\times2=4
+\end{array}\\
+
+\end{aligned}</script>
             </div>
             <hr>
             <div>
