@@ -24,8 +24,14 @@
 <meta property="og:description" content="简要总结无线信道">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228195339911.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518213858184.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214007417.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214315513.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215116994.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215444804.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518220127510.png">
 <meta property="article:published_time" content="2022-02-28T11:48:31.000Z">
-<meta property="article:modified_time" content="2022-03-19T10:09:20.408Z">
+<meta property="article:modified_time" content="2022-05-18T14:01:29.306Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="basic knowledge">
 <meta property="article:tag" content="communicaiton">
@@ -219,7 +225,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      212 字
+      1k 字
     </span>
   
 
@@ -228,7 +234,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      3 分钟
     </span>
   
 
@@ -274,6 +280,31 @@
 <h2 id="多径效应"><a href="#多径效应" class="headerlink" title="多径效应"></a>多径效应</h2><p>电磁波从发射端到接收端有许多时延不同、损耗各异的传输路径，例如直射、反射、绕射等。不同路径的相同信号在接收端叠加会增大或减小信号能量。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228195339911.png" srcset="/img/loading.gif" lazyload alt="image-20220228195339911"></p>
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p><strong>一旦发射机、接收机、以及周边的环境相对位置固定了，无线信道就是固定的，不会随时间变化。</strong></p>
+<h2 id="无线信道传播下的功率变化"><a href="#无线信道传播下的功率变化" class="headerlink" title="无线信道传播下的功率变化"></a>无线信道传播下的功率变化</h2><h3 id="大尺度衰落"><a href="#大尺度衰落" class="headerlink" title="大尺度衰落"></a>大尺度衰落</h3><p>是指在当前周围环境下，接收端离发射端一定距离时的电磁波信号功率的平均衰落水平。</p>
+<p>主要影响：<strong>环境</strong>和<strong>距离</strong></p>
+<script type="math/tex; mode=display">
+L_s=32.44+20\log d(km)+20\log f(MHz)</script><p>距离差不多要有千米量级才会有接收功率的差别。所以称之为<strong>大尺度</strong>，而且一般而言可以认为是整个信号频带内影响相同的，<strong>即可以认为大尺度衰落相对于实际通信系统的信号而言，是与频率无关的（只与中心频点有关）。</strong></p>
+<h3 id="小尺度衰落"><a href="#小尺度衰落" class="headerlink" title="小尺度衰落"></a>小尺度衰落</h3><p>主要由信号的多径传播以及收发端的相对运动引起，对收发端相对距离变化比较敏感。<strong>且一般和信号带宽内的各频率分量有关。</strong></p>
+<h2 id="多径"><a href="#多径" class="headerlink" title="多径"></a>多径</h2><h3 id="相干带宽-信道衰落近似相等的一段带宽"><a href="#相干带宽-信道衰落近似相等的一段带宽" class="headerlink" title="相干带宽-信道衰落近似相等的一段带宽"></a>相干带宽-信道衰落近似相等的一段带宽</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518213858184.png" srcset="/img/loading.gif" lazyload alt="image-20220518213858184"></p>
+<p>不同的时延（由多径产生）对应到频域就是相位旋转。相关带宽内，可以认为总的衰落系数仅有相位差别</p>
+<blockquote>
+<p>相关带宽的量级为该信道时延扩展（<script type="math/tex">\tau_1-\tau_2</script>）的倒数的量级</p>
+</blockquote>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214007417.png" srcset="/img/loading.gif" lazyload alt="image-20220518214007417"></p>
+<p>==当两个发射信号的频率间隔⼩于信道的相⼲带宽，那么这两个经过信道后的，受到的信道传输函数是相似的，由于通常的发射信号不是单⼀频率的，即⼀路信号也是占有⼀定带宽的，如果，这路信号的带宽⼩于相⼲带宽，那么它整个信号受到信道的传输函数是相似的，即信道对信号⽽⾔是平坦特性的，⾮频率选择性衰落的。==</p>
+<h3 id="相干时间-信道衰落近似相等的一段时间"><a href="#相干时间-信道衰落近似相等的一段时间" class="headerlink" title="相干时间-信道衰落近似相等的一段时间"></a>相干时间-信道衰落近似相等的一段时间</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214315513.png" srcset="/img/loading.gif" lazyload alt="image-20220518214315513"></p>
+<p>==在相⼲时间内，两路信号受到的传输函数也是相似的特性，通常发射的⼀路信号由于多径效应，有多路到达接收机，若这⼏路信号的时间间隔在相⼲时间之内，那么他们具有很强的相关性，接收机都可以认为是有⽤信号，若⼤于相⼲时间，则接收机⽆法识别，只能认为是⼲扰信号。==</p>
+<p>从分集发射的角度而言：时间分集要求两次发射的时间要大于信道的相干时间，即如果发射时间小于信道的相干时间，则两次发射的信号会经历相同的衰落，分集抗衰落的作用就不存在了。</p>
+<blockquote>
+<p>无线信道相干时间的量级为该信道多普勒扩展的倒数的量级</p>
+</blockquote>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215116994.png" srcset="/img/loading.gif" lazyload alt="image-20220518215116994"></p>
+<h2 id="无线信道的基带特征-等效基带信号"><a href="#无线信道的基带特征-等效基带信号" class="headerlink" title="无线信道的基带特征-等效基带信号"></a>无线信道的基带特征-等效基带信号</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215444804.png" srcset="/img/loading.gif" lazyload alt="image-20220518215444804"></p>
+<h2 id="经典信道（很大可能存在的两个变化模型）"><a href="#经典信道（很大可能存在的两个变化模型）" class="headerlink" title="经典信道（很大可能存在的两个变化模型）"></a>经典信道（很大可能存在的两个变化模型）</h2><ul>
+<li>瑞利信道</li>
+<li>莱斯信道</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518220127510.png" srcset="/img/loading.gif" lazyload alt="image-20220518220127510"></p>
 
             </div>
             <hr>
