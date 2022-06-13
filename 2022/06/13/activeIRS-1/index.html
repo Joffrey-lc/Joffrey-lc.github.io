@@ -13,32 +13,34 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="简要总结无线信道">
+  <meta name="description" content="没有添加摘要">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="简要总结无线信道">
+  <meta name="description" content="没有添加摘要">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知识储备-无线信道">
-<meta property="og:url" content="http://lcjoffrey.top/2022/02/28/wirechannel/index.html">
+<meta property="og:title" content="activeIRS_1">
+<meta property="og:url" content="http://lcjoffrey.top/2022/06/13/activeIRS-1/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="简要总结无线信道">
+<meta property="og:description" content="没有添加摘要">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228195339911.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518213858184.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214007417.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214315513.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215116994.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215444804.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518220127510.png">
-<meta property="article:published_time" content="2022-02-28T11:48:31.000Z">
-<meta property="article:modified_time" content="2022-05-19T08:11:09.108Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613195634274.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200418754.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200547459.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200850218.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613201108869.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613203905971.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613211827054.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213941563.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213954293.png">
+<meta property="article:published_time" content="2022-06-13T14:02:19.000Z">
+<meta property="article:modified_time" content="2022-06-13T14:03:30.383Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="basic knowledge">
-<meta property="article:tag" content="communicaiton">
+<meta property="article:tag" content="IRS">
+<meta property="article:tag" content="Active IRS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228195339911.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613195634274.png">
   
-  <title>知识储备-无线信道 - Joffrey&#39;s Blog</title>
+  <title>activeIRS_1 - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -204,7 +206,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="知识储备-无线信道">
+            <span class="h2" id="subtitle" title="activeIRS_1">
               
             </span>
 
@@ -214,8 +216,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-28 19:48" pubdate>
-        2022年2月28日 晚上
+      <time datetime="2022-06-13 22:02" pubdate>
+        2022年6月13日 晚上
       </time>
     </span>
   
@@ -225,7 +227,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      2.8k 字
     </span>
   
 
@@ -234,7 +236,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      9 分钟
     </span>
   
 
@@ -271,41 +273,62 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">知识储备-无线信道</h1>
+            <h1 style="display: none">activeIRS_1</h1>
             
             <div class="markdown-body">
-              <h1 id="Wireless-Channel"><a href="#Wireless-Channel" class="headerlink" title="Wireless Channel"></a>Wireless Channel</h1><h2 id="强度衰减"><a href="#强度衰减" class="headerlink" title="强度衰减"></a>强度衰减</h2><p> $L_s=32.44+20\log d(km)+20\log f(MHz)$</p>
-<p>即路径衰减与电磁波的<strong>频率</strong>及<strong>距离</strong>有关。</p>
-<h2 id="多普勒频移"><a href="#多普勒频移" class="headerlink" title="多普勒频移"></a>多普勒频移</h2><p>由于发射或接收端的运动引起的频率偏移</p>
-<h2 id="多径效应"><a href="#多径效应" class="headerlink" title="多径效应"></a>多径效应</h2><p>电磁波从发射端到接收端有许多时延不同、损耗各异的传输路径，例如直射、反射、绕射等。不同路径的相同信号在接收端叠加会增大或减小信号能量。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228195339911.png" srcset="/img/loading.gif" lazyload alt="image-20220228195339911"></p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p><strong>一旦发射机、接收机、以及周边的环境相对位置固定了，无线信道就是固定的，不会随时间变化。</strong></p>
-<h2 id="无线信道传播下的功率变化"><a href="#无线信道传播下的功率变化" class="headerlink" title="无线信道传播下的功率变化"></a>无线信道传播下的功率变化</h2><h3 id="大尺度衰落"><a href="#大尺度衰落" class="headerlink" title="大尺度衰落"></a>大尺度衰落</h3><p>是指在当前周围环境下，接收端离发射端一定距离时的电磁波信号功率的平均衰落水平。</p>
-<p>主要影响：<strong>环境</strong>和<strong>距离</strong></p>
-<script type="math/tex; mode=display">
-L_s=32.44+20\log d(km)+20\log f(MHz)</script><p>距离差不多要有千米量级才会有接收功率的差别。所以称之为<strong>大尺度</strong>，而且一般而言可以认为是整个信号频带内影响相同的，<strong>即可以认为大尺度衰落相对于实际通信系统的信号而言，是与频率无关的（只与中心频点有关）。</strong></p>
-<h3 id="小尺度衰落"><a href="#小尺度衰落" class="headerlink" title="小尺度衰落"></a>小尺度衰落</h3><p>主要由信号的多径传播以及收发端的相对运动引起，对收发端相对距离变化比较敏感。<strong>且一般和信号带宽内的各频率分量有关。</strong></p>
-<h2 id="多径"><a href="#多径" class="headerlink" title="多径"></a>多径</h2><h3 id="相干带宽-信道衰落近似相等的一段带宽"><a href="#相干带宽-信道衰落近似相等的一段带宽" class="headerlink" title="相干带宽-信道衰落近似相等的一段带宽"></a>相干带宽-信道衰落近似相等的一段带宽</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518213858184.png" srcset="/img/loading.gif" lazyload alt="image-20220518213858184"></p>
-<p>不同的时延（由多径产生）对应到频域就是相位旋转。相关带宽内，可以认为总的衰落系数仅有相位差别</p>
-<blockquote>
-<p>相关带宽的量级为该信道时延扩展（<script type="math/tex">\tau_1-\tau_2</script>）的倒数的量级</p>
-</blockquote>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214007417.png" srcset="/img/loading.gif" lazyload alt="image-20220518214007417"></p>
-<p>==当两个发射信号的频率间隔⼩于信道的相⼲带宽，那么这两个经过信道后的，受到的信道传输函数是相似的，由于通常的发射信号不是单⼀频率的，即⼀路信号也是占有⼀定带宽的，如果，这路信号的带宽⼩于相⼲带宽，那么它整个信号受到信道的传输函数是相似的，即信道对信号⽽⾔是平坦特性的，⾮频率选择性衰落的。==</p>
-<h3 id="相干时间-信道衰落近似相等的一段时间"><a href="#相干时间-信道衰落近似相等的一段时间" class="headerlink" title="相干时间-信道衰落近似相等的一段时间"></a>相干时间-信道衰落近似相等的一段时间</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518214315513.png" srcset="/img/loading.gif" lazyload alt="image-20220518214315513"></p>
-<p>==在相⼲时间内，两路信号受到的传输函数也是相似的特性，通常发射的⼀路信号由于多径效应，有多路到达接收机，若这⼏路信号的时间间隔在相⼲时间之内，那么他们具有很强的相关性，接收机都可以认为是有⽤信号，若⼤于相⼲时间，则接收机⽆法识别，只能认为是⼲扰信号。==</p>
-<p>从分集发射的角度而言：时间分集要求两次发射的时间要大于信道的相干时间，即如果发射时间小于信道的相干时间，则两次发射的信号会经历相同的衰落，分集抗衰落的作用就不存在了。</p>
-<blockquote>
-<p>无线信道相干时间的量级为该信道多普勒扩展的倒数的量级</p>
-</blockquote>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215116994.png" srcset="/img/loading.gif" lazyload alt="image-20220518215116994"></p>
-<h2 id="无线信道的基带特征-等效基带信号"><a href="#无线信道的基带特征-等效基带信号" class="headerlink" title="无线信道的基带特征-等效基带信号"></a>无线信道的基带特征-等效基带信号</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518215444804.png" srcset="/img/loading.gif" lazyload alt="image-20220518215444804"></p>
-<h2 id="经典信道（很大可能存在的两个变化模型）"><a href="#经典信道（很大可能存在的两个变化模型）" class="headerlink" title="经典信道（很大可能存在的两个变化模型）"></a>经典信道（很大可能存在的两个变化模型）</h2><ul>
-<li>瑞利信道</li>
-<li>莱斯信道</li>
+              <p><strong>Wireless Communication Aided by Intelligent Reflecting Surface: Active or Passive?</strong>.  <em>Changsheng You</em> et.al.  <strong>IEEE Wireless Communications Letters, Dec.  2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9530750">pdf</a>)  (Citations <strong>9</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><strong>a single antenna access point communicates with a single-antenna user</strong></p>
+<p>rate-maximization with passive/active IRS:</p>
+<ul>
+<li>active IRS should be deployed closer to the RECEIVER with the decreasing amplification power of the active IRS <span class="label label-success">（known in Lemma1）</span></li>
+<li>passive IRS is known to be near the transmitter or receiver to minimize the path-loss <span class="label label-success">(known in my-note section 3.2)</span></li>
 </ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220518220127510.png" srcset="/img/loading.gif" lazyload alt="image-20220518220127510"></p>
-
+<p>optimal the placement:</p>
+<ul>
+<li>passive IRS outperform active IRS when the number of element is sufficiently large/ the amplification power of the active IRS is too small.<span class="label label-success">(known in my-note section 3.3)</span></li>
+<li>optimal placement to maximize the weighted sum-rate of uplink and downlink communications. Passive is more likely to  achieve superior rate performance.<span class="label label-success">(known in my-note section 3.4)</span></li>
+</ul>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613195634274.png" srcset="/img/loading.gif" lazyload alt="System Model"></p>
+<h2 id="Main-Work"><a href="#Main-Work" class="headerlink" title="Main Work"></a>Main Work</h2><h3 id="Active-IRS"><a href="#Active-IRS" class="headerlink" title="Active IRS"></a>Active IRS</h3><script type="math/tex; mode=display">
+y_{\mathrm{act}}=\boldsymbol{h}_{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta}\left(\boldsymbol{h}_{\mathrm{AI}} s+\boldsymbol{n}_{\mathrm{F}}\right)+n</script><p>achievable rate = <script type="math/tex">\log_2(1+\text{SNR})=\log _{2}\left(1+\frac{P_{\mathrm{A}}\left|\boldsymbol{h}_{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta} \boldsymbol{h}_{\mathrm{AI}}\right|^{2}}{\left\|\boldsymbol{h}_{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta}\right\|^{2} \sigma_{\mathrm{F}}^{2}+\sigma^{2}}\right)</script></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200418754.png" srcset="/img/loading.gif" lazyload alt="image-20220613200418754" style="zoom:33%;" /></p>
+<p>得到优化目标<strong>（P1）：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200547459.png" srcset="/img/loading.gif" lazyload alt="image-20220613200547459" style="zoom: 67%;" /></p>
+<p>然后由于（4a）恒成立（是e的指数次项），且（4e）等价形式<script type="math/tex">P_{\mathrm{F}} \geq N P_{\mathrm{A}} \beta /\left(D^{2}/4+H^{2}\right)+N \sigma_{\mathrm{F}}^{2}</script></p>
+<span class="label label-warning">（原文这个等式有错误，$$D^2$$没有乘系数1/4）</span>
+<p>得到等效的<strong>（P2）:</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200850218.png" srcset="/img/loading.gif" lazyload alt="image-20220613200850218" style="zoom: 67%;" /></p>
+<p>因为信道建模为：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{h}_{\mathrm{AI}}=h_{\mathrm{AI}} \boldsymbol{a}_{\mathrm{r}}\left(\theta_{\mathrm{AI}}^{\mathrm{r}}, \vartheta_{\mathrm{AI}}^{\mathrm{r}}, N\right), \text { where } h_{\mathrm{AI}} \triangleq \sqrt{\beta / d_{\mathrm{AI}}^{2}} e^{-j \frac{2 \pi}{\lambda} d_{\mathrm{AI}}}</script><p>优化目标就是<strong>max(SINR)</strong></p>
+<p>整理得到优化目标<strong>（P3）：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613201108869.png" srcset="/img/loading.gif" lazyload alt="image-20220613201108869" style="zoom:67%;" /></p>
+<blockquote>
+<p>可以得到<strong>Lemma1</strong>:AP-IRS的距离<script type="math/tex">x_{AI}</script>随<script type="math/tex">P_F</script>的增大而单调递减；随<script type="math/tex">N</script>非减。<strong>(随<script type="math/tex">P_F</script>的单调递减证明没看懂)</strong></p>
+</blockquote>
+<p>然后有给定的<strong>lemma2：</strong></p>
+<blockquote>
+<p>给定<script type="math/tex">H\ll D</script>:</p>
+<script type="math/tex; mode=display">
+\max \left\{C_{1} d_{\mathrm{AI}}^{2}, C_{2} d_{\mathrm{IU}}^{2}\right\} \gg C_{3} d_{\mathrm{AI}}^{2} d_{\mathrm{IU}}^{2}, \forall x_{\mathrm{AI}} \in[0, D]</script><p>如果有：</p>
+<script type="math/tex; mode=display">
+\sqrt{P_{A} \beta} / \sigma_{\mathrm{F}}+\sqrt{P_{F} \beta} / \sigma \gg D</script></blockquote>
+<p>所以由<strong>Lemma2</strong>可以得到优化目标<strong>（P4）：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613203905971.png" srcset="/img/loading.gif" lazyload alt="image-20220613203905971" style="zoom:67%;" /></p>
+<p>这就是个高中数学题：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613211827054.png" srcset="/img/loading.gif" lazyload alt="image-20220613211827054" style="zoom: 33%;" /></p>
+<h3 id="Passive-IRS"><a href="#Passive-IRS" class="headerlink" title="Passive IRS"></a>Passive IRS</h3><p>与active IRS 类似，得到<script type="math/tex">\mathrm{SNR}_{\text {pas }}^{(\mathrm{DL})}=\frac{P_{\mathrm{A}} \beta^{2} N^{2}}{d_{\mathrm{AI}}^{2} d_{\mathrm{IU}}^{2} \sigma^{2}}</script>，然后由参考文献给出，对于Passive IRS，<script type="math/tex">x_{AI}=0\quad or\quad D</script>，得到：</p>
+<script type="math/tex; mode=display">
+\mathrm{SNR}_{\text {pas }}^{(\mathrm{DL}) *} \approx \widetilde{\mathrm{SNR}}_{\text {pas }}^{(\mathrm{DL})} \triangleq \frac{P_{\mathrm{A}} \beta^{2} N^{2}}{H^{2}\left(D^{2}+H^{2}\right) \sigma^{2}}</script><h3 id="Active-IRS-versus-Passive-IRS"><a href="#Active-IRS-versus-Passive-IRS" class="headerlink" title="Active IRS versus Passive IRS"></a>Active IRS versus Passive IRS</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213941563.png" srcset="/img/loading.gif" lazyload alt="image-20220613213941563" style="zoom:67%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213954293.png" srcset="/img/loading.gif" lazyload alt="image-20220613213954293" style="zoom: 33%;" /></p>
+<p>即：</p>
+<blockquote>
+<p>给定较小的<script type="math/tex">H</script>，当Active IRS的功率<script type="math/tex">P_F</script>太小或者IRS装配了大量的elements（<script type="math/tex">N</script>很大），Passive IRS 往往优于 Active IRS。</p>
+</blockquote>
+<h3 id="Joint-Downlink-and-Uplink-communication"><a href="#Joint-Downlink-and-Uplink-communication" class="headerlink" title="Joint Downlink and Uplink communication"></a>Joint Downlink and Uplink communication</h3><p> maximize the weighted sum-rate of uplink and downlink communications.</p>
+<p>对于一个较小的<script type="math/tex">P_F</script>，active IRS 在上行时应该接近AP， 在下行接近User（see Lemma1）。（需要权衡）</p>
+<p>而Passive IRS，IRS放置于AP或者User，对于上行/下行都是最佳（因为上行的<script type="math/tex">x_{AI}=0 orD</script>和下行的最佳<script type="math/tex">x_{AI}=Dor0</script>是相同的）。（直接最佳）</p>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><h3 id="complex-channel-gain到底指什么"><a href="#complex-channel-gain到底指什么" class="headerlink" title="complex channel gain到底指什么?"></a>complex channel gain到底指什么?</h3><h3 id="Passive-IRS-为什么x-D-x-0"><a href="#Passive-IRS-为什么x-D-x-0" class="headerlink" title="Passive IRS 为什么x=D/x=0?"></a>Passive IRS 为什么x=D/x=0?</h3>
             </div>
             <hr>
             <div>
@@ -314,7 +337,9 @@ L_s=32.44+20\log d(km)+20\log f(MHz)</script><p>距离差不多要有千米量�
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/basic-knowledge/">basic knowledge</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Active-IRS/">Active IRS</a>
                     
                   </div>
                 
@@ -322,9 +347,9 @@ L_s=32.44+20\log d(km)+20\log f(MHz)</script><p>距离差不多要有千米量�
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/basic-knowledge/">basic knowledge</a>
+                      <a class="hover-with-bg" href="/tags/IRS/">IRS</a>
                     
-                      <a class="hover-with-bg" href="/tags/communicaiton/">communicaiton</a>
+                      <a class="hover-with-bg" href="/tags/Active-IRS/">Active IRS</a>
                     
                   </div>
                 
@@ -338,7 +363,7 @@ L_s=32.44+20\log d(km)+20\log f(MHz)</script><p>距离差不多要有千米量�
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/02/28/wirechannel/">http://lcjoffrey.top/2022/02/28/wirechannel/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/06/13/activeIRS-1/">http://lcjoffrey.top/2022/06/13/activeIRS-1/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -348,18 +373,12 @@ L_s=32.44+20\log d(km)+20\log f(MHz)</script><p>距离差不多要有千米量�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/28/introduction4mimo/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">知识储备-MIMO介绍</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/26/modulationandcodingdesign4swipt/">
-                        <span class="hidden-mobile">阅读笔记-Modulation and Coding Design for Simultaneous Wireless Information and Power Transfer</span>
+                      <a href="/2022/05/24/mystudypipeline/">
+                        <span class="hidden-mobile">博士阶段的研究路线-20220524</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
