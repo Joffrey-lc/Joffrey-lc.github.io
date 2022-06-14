@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>gaussianAndrayleigh</title>
+    <link href="/2022/06/14/gaussianAndrayleigh/"/>
+    <url>/2022/06/14/gaussianAndrayleigh/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>复高斯分布：</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>unknown</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>unknown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Active IRS Versus Passive IRS</title>
     <link href="/2022/06/13/activeIRS-1/"/>
     <url>/2022/06/13/activeIRS-1/</url>
@@ -459,11 +484,11 @@
   
   
   <entry>
-    <title>通信基础-循环对称复高斯噪声</title>
+    <title>通信基础-常用的一些分布</title>
     <link href="/2022/04/11/CSCG/"/>
     <url>/2022/04/11/CSCG/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>CSCG: Circularly Symmetric Complex zero-mean white Gaussian noise 循环对称复高斯噪声</strong></p><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>数学定义：</p><script type="math/tex; mode=display">\textbf{Z}\sim\mathcal{CN}(0,1)\to \Re{\textbf{Z}} \perp \!\!\! \perp\Im{\textbf{Z}}\\and\\\Re{\textbf{Z}}\sim \mathcal{N}(0,1/2)\quad \Im{\textbf{Z}}\sim\mathcal{N}(0,1/2)</script><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><ul><li>Circularly: means the variance of the real and imaginary parts are equal.</li><li>Gaussian: means the probability distribution of the amplitudes of the noise samples is Gaussian</li></ul><h2 id="Matlab"><a href="#Matlab" class="headerlink" title="Matlab"></a>Matlab</h2><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1i</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span>sigma<span class="token operator">/</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>其中sigmal是方差</p><h2 id="正态分布的再生性"><a href="#正态分布的再生性" class="headerlink" title="正态分布的再生性"></a>正态分布的再生性</h2><p>设随机比昂量<script type="math/tex">X</script>和<script type="math/tex">Y</script>相互独立且分别服从正态分布<script type="math/tex">N\sim(\mu_1,\sigma_1^2)</script>和<script type="math/tex">N\sim(\mu_2,\sigma_2^2)</script>，则<script type="math/tex">Z=X+Y</script>服从正态分布<script type="math/tex">N\sim(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)</script></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>CSCG: Circularly Symmetric Complex zero-mean white Gaussian noise 循环对称复高斯噪声</strong></p><h2 id="CSCG：循环对称复高斯"><a href="#CSCG：循环对称复高斯" class="headerlink" title="CSCG：循环对称复高斯"></a>CSCG：循环对称复高斯</h2><p>数学定义：</p><script type="math/tex; mode=display">\textbf{Z}\sim\mathcal{CN}(0,1)\to \Re{\textbf{Z}} \perp \!\!\! \perp\Im{\textbf{Z}}\\and\\\Re{\textbf{Z}}\sim \mathcal{N}(0,1/2)\quad \Im{\textbf{Z}}\sim\mathcal{N}(0,1/2)</script><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><ul><li>Circularly: means the variance of the real and imaginary parts are equal.</li><li>Gaussian: means the probability distribution of the amplitudes of the noise samples is Gaussian</li></ul><h3 id="Matlab"><a href="#Matlab" class="headerlink" title="Matlab"></a>Matlab</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1i</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span>sigma<span class="token operator">/</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>其中sigmal是方差</p><h3 id="正态分布的再生性"><a href="#正态分布的再生性" class="headerlink" title="正态分布的再生性"></a>正态分布的再生性</h3><p>设随机比昂量<script type="math/tex">X</script>和<script type="math/tex">Y</script>相互独立且分别服从正态分布<script type="math/tex">N\sim(\mu_1,\sigma_1^2)</script>和<script type="math/tex">N\sim(\mu_2,\sigma_2^2)</script>，则<script type="math/tex">Z=X+Y</script>服从正态分布<script type="math/tex">N\sim(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)</script></p><h2 id="Rayleigh分布"><a href="#Rayleigh分布" class="headerlink" title="Rayleigh分布"></a>Rayleigh分布</h2><p>复高斯分布的模服从瑞利分布：</p><script type="math/tex; mode=display">f(x)=\frac{x}{\sigma^{2}} e^{-\frac{x^{2}}{2 \sigma^{2}}}, x>0</script><h3 id="Rayleigh分布和复高斯分布的关系"><a href="#Rayleigh分布和复高斯分布的关系" class="headerlink" title="Rayleigh分布和复高斯分布的关系"></a>Rayleigh分布和复高斯分布的关系</h3><p>如果<script type="math/tex">\textbf{A}\sim\mathcal{CN}(0,\sigma^2)</script>，即<script type="math/tex">\Re{\textbf{A}}\sim\mathcal{N}(0, \sigma^2/2)</script>，<script type="math/tex">\Im{\textbf{A}}\sim\mathcal{N}(0, \sigma^2/2)</script>，则<script type="math/tex">|\textbf{A}|\sim</script>参数为<script type="math/tex">\sigma^2/2</script>的瑞利分布：</p><script type="math/tex; mode=display">f_{|\textbf{A}|}(x)=\frac{x}{\sigma^{2}/2} e^{-\frac{x^{2}}{\sigma^{2}}}, x>0</script>]]></content>
     
     
     <categories>
@@ -475,7 +500,7 @@
     
     <tags>
       
-      <tag>CSCG</tag>
+      <tag>Signal Distribution</tag>
       
       <tag>Communication</tag>
       
@@ -1657,9 +1682,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -1684,9 +1709,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
