@@ -23,12 +23,14 @@
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
 <meta property="og:description" content="Circularly Symmetric Complex zero-mean white Gaussian noise">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/untitled.jpg">
 <meta property="article:published_time" content="2022-04-11T12:01:06.000Z">
-<meta property="article:modified_time" content="2022-06-14T12:20:57.861Z">
+<meta property="article:modified_time" content="2022-06-14T12:26:04.089Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Signal Distribution">
 <meta property="article:tag" content="Communication">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/untitled.jpg">
   
   <title>通信基础-常用的一些分布 - Joffrey&#39;s Blog</title>
 
@@ -217,7 +219,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      928 字
+      979 字
     </span>
   
 
@@ -282,7 +284,9 @@
 <script type="math/tex; mode=display">
 f(x)=\frac{x}{\sigma^{2}} e^{-\frac{x^{2}}{2 \sigma^{2}}}, x>0</script><h3 id="Rayleigh分布和复高斯分布的关系"><a href="#Rayleigh分布和复高斯分布的关系" class="headerlink" title="Rayleigh分布和复高斯分布的关系"></a>Rayleigh分布和复高斯分布的关系</h3><p>如果<script type="math/tex">\textbf{A}\sim\mathcal{CN}(0,\sigma^2)</script>，即<script type="math/tex">\Re{\textbf{A}}\sim\mathcal{N}(0, \sigma^2/2)</script>，<script type="math/tex">\Im{\textbf{A}}\sim\mathcal{N}(0, \sigma^2/2)</script>，则<script type="math/tex">|\textbf{A}|\sim</script>参数为<script type="math/tex">\sigma^2/2</script>的瑞利分布：</p>
 <script type="math/tex; mode=display">
-f_{|\textbf{A}|}(x)=\frac{x}{\sigma^{2}/2} e^{-\frac{x^{2}}{\sigma^{2}}}, x>0</script>
+f_{|\textbf{A}|}(x)=\frac{x}{\sigma^{2}/2} e^{-\frac{x^{2}}{\sigma^{2}}}, x>0</script><h3 id="simulation"><a href="#simulation" class="headerlink" title="simulation"></a>simulation</h3><p>因为没有找到Rayleigh分布和复高斯分布的关系。使用matlab进行仿真验证。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/untitled.jpg" srcset="/img/loading.gif" lazyload alt="untitled" style="zoom:33%;" /></p>
+
             </div>
             <hr>
             <div>
