@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Yitao Han et.al-Cooperative Double-IRS Aided Communication——Beamforming Design and Power Scaling.">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="Yitao Han et.al-Cooperative Double-IRS Aided Communication——Beamforming Design and Power Scaling.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="合作IRS-一个IRS拆分为两个">
+<meta property="og:url" content="http://lcjoffrey.top/2022/06/24/cooperativeIRS/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="Yitao Han et.al-Cooperative Double-IRS Aided Communication——Beamforming Design and Power Scaling.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134524678.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134629042.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623140628698.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623141955322.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220623_1.jpg">
+<meta property="article:published_time" content="2022-06-24T04:53:19.000Z">
+<meta property="article:modified_time" content="2022-06-24T04:57:13.849Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="IRS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png">
+  
+  <title>合作IRS-一个IRS拆分为两个 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="合作IRS-一个IRS拆分为两个">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-06-24 12:53" pubdate>
+        2022年6月24日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">合作IRS-一个IRS拆分为两个</h1>
+            
+            <div class="markdown-body">
+              <p><strong>Cooperative Double-IRS Aided Communication: Beamforming Design and Power Scaling</strong>.  <em>Yitao Han</em> et.al.  <strong>IEEE Wireless Communications Letters, Aug.  2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9060923">pdf</a>)  (Citations <strong>37</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><span class="label label-success">BS单天线、USER单天线</span>
+<span class="label label-warning">对IRS每一个element单元进行建模</span>
+<p>作者讨论了将一个拥有<script type="math/tex">K</script>个elements的IRS分解为两个分别拥有<script type="math/tex">K_1</script>和<script type="math/tex">K_2</script>(且<script type="math/tex">K_1+K_2=K</script>)的IRS1和IRS2</p>
+<ul>
+<li><p>当<script type="math/tex">K</script>足够大的时候，分割为两个IRS性能比一个IRS(有<script type="math/tex">K</script>个elements)要好。是因为其虽然受到了一共三段path-loss（BS-IRS1 IRS1-IRS2 IRS2-USER）但是其性能随<script type="math/tex">K^4</script>增长</p>
+</li>
+<li><p>为了简化IRS1-IRS2的channel，作者利用了IRS1-IRS2 channel 的rank-one性质，即IRS1如果对准IRS2中任意一个element，则IRS2中其他elements收到相同增益。</p>
+</li>
+</ul>
+<h2 id="Main-work"><a href="#Main-work" class="headerlink" title="Main work"></a>Main work</h2><h3 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png" srcset="/img/loading.gif" lazyload alt="system model" style="zoom: 80%;" /></p>
+<p>假设上图所示的模型。则有<script type="math/tex">\mathbf{t}\in\mathbb{C}^{K_1\times1}</script>,<script type="math/tex">\mathbf{S}\in\mathbb{C}^{K_1\times K_2}</script>,<script type="math/tex">\mathbf{r}^T\in\mathbb{C}^{1\times K_2}</script>，两个IRS的反射系数为<script type="math/tex">\Phi_1</script>和<script type="math/tex">\Phi_2</script>，则信道为：</p>
+<script type="math/tex; mode=display">
+h=\mathbf{r}^T\Phi_2\mathbf{S}\Phi_1\mathbf{t}</script><div class="note note-warning">
+            <p>作者引入了三维坐标系，对每个IRS element进行位置建模</p>
+          </div>
+<p>将上述三个信道建模为LoS，有：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134524678.png" srcset="/img/loading.gif" lazyload alt="image-20220623134524678" style="zoom: 80%;" /></p>
+<p>然后利用<script type="math/tex">\mathbf{S}</script>的Rank-one性质，简化<script type="math/tex">\mathbf{S}</script>为：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134629042.png" srcset="/img/loading.gif" lazyload alt="image-20220623134629042" style="zoom:80%;" /></p>
+<div class="note note-success">
+            <p>这意味着只要知道位置信息，就可以对IRS1-IRS2的channel进行建模</p>
+          </div>
+<h3 id="Design-of-Joint-Passive-Beamforming"><a href="#Design-of-Joint-Passive-Beamforming" class="headerlink" title="Design of Joint Passive Beamforming"></a>Design of Joint Passive Beamforming</h3><p>取<script type="math/tex">\Phi_1</script>的元素<script type="math/tex">\phi_{1,k_1}</script>为：</p>
+<script type="math/tex; mode=display">
+\phi_{1, k_{1}}=\left(\frac{\left(\mathbf{g}_{1}\right)_{k_{1}}(\mathbf{t})_{k_{1}}}{\left|(\mathbf{t})_{k_{1}}\right|}\right)^{*}, \quad k_{1} \in \mathcal{K}_{1}</script><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623140628698.png" srcset="/img/loading.gif" lazyload alt="image-20220623140628698" style="zoom: 33%;" /></p>
+<p>对于<script type="math/tex">\Phi_2</script>中的元素<script type="math/tex">\phi_{2,k_2}</script>同理。</p>
+<p>此时的接收端：</p>
+<script type="math/tex; mode=display">
+|h|^{2}=\left|\mathbf{r}^{T} \mathbf{\Phi}_{2} \mathbf{S} \boldsymbol{\Phi}_{1} \mathbf{t}\right|^{2} \approx \frac{\alpha^{3}}{\left(d_{\mathbf{r}} d_{\mathbf{S}} d_{\mathbf{t}}\right)^{2}}\left(K_{1} K_{2}\right)^{2}</script><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623141955322.png" srcset="/img/loading.gif" lazyload alt="image-20220623141955322" style="zoom: 33%;" /></p>
+<h2 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h2><p>我只仿真了2.2节中推导的近似表达式的结果，因为实际的结果需要对每个IRS element建模，有点复杂，而且不知道作者怎么将IRS elements进行排布的。所以这里就没有仿真。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">clc<span class="token punctuation">;</span>clear<span class="token punctuation">;</span>close all<span class="token punctuation">;</span>
+u1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0.87</span><span class="token punctuation">,</span> <span class="token number">0.50</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% location of BS</span>
+u2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">92.50</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% location of USER</span>
+v1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% element(0, 0) on IRS1</span>
+v2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% element(0, 0) on IRS2</span>
+dt <span class="token operator">=</span> <span class="token function">caculate_dis_3d</span><span class="token punctuation">(</span>u1<span class="token punctuation">,</span> v1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% distance between BS and IRS1</span>
+ds <span class="token operator">=</span> <span class="token function">caculate_dis_3d</span><span class="token punctuation">(</span>v1<span class="token punctuation">,</span> v2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% distance between IRS1 and IRS2</span>
+dr <span class="token operator">=</span> <span class="token function">caculate_dis_3d</span><span class="token punctuation">(</span>v2<span class="token punctuation">,</span> u2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% distance between IRS2 and USER</span>
+n1a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+n1b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">% proof that IRS 1 faces towards the BS</span>
+n1a<span class="token operator">*</span>u1<span class="token operator">.'</span>
+n1b<span class="token operator">*</span>u1<span class="token operator">.'</span> <span class="token comment">% 垂直于n1a</span>
+
+n2a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+n2b <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+f <span class="token operator">=</span> <span class="token number">5e9</span><span class="token punctuation">;</span>
+lambda <span class="token operator">=</span> <span class="token number">3e8</span><span class="token operator">/</span>f<span class="token punctuation">;</span>
+
+alpha_dB <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">46</span><span class="token punctuation">;</span><span class="token comment">% reference_path_loss_dB</span>
+alpha <span class="token operator">=</span> <span class="token number">10</span><span class="token operator">^</span><span class="token punctuation">(</span>alpha_dB<span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+l <span class="token operator">=</span> lambda<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+Pt_dBm <span class="token operator">=</span> <span class="token number">43</span><span class="token punctuation">;</span>
+Pt <span class="token operator">=</span> <span class="token number">10</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Pt_dBm<span class="token operator">-</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% W</span>
+sigma_dBm <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">60</span><span class="token punctuation">;</span>
+sigma <span class="token operator">=</span> <span class="token number">10</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token punctuation">(</span>sigma_dBm<span class="token operator">-</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+K <span class="token operator">=</span> <span class="token number">1600</span><span class="token punctuation">;</span>
+
+SNR_coop <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> K1 <span class="token operator">=</span> <span class="token number">70</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">1530</span>
+    SNR_coop <span class="token operator">=</span> <span class="token punctuation">[</span>SNR_coop Pt<span class="token operator">*</span>alpha<span class="token operator">^</span><span class="token number">3</span><span class="token operator">/</span><span class="token punctuation">(</span>ds<span class="token operator">*</span>dr<span class="token operator">*</span>dt<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">*</span>K1<span class="token operator">^</span><span class="token number">2</span><span class="token operator">*</span><span class="token punctuation">(</span>K<span class="token operator">-</span>K1<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span>sigma<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">70</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">1530</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token operator">*</span><span class="token function">log10</span><span class="token punctuation">(</span>SNR_coop<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token function">ylim</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">8</span> <span class="token number">18</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+
+SNR_single <span class="token operator">=</span>  Pt<span class="token operator">*</span>alpha<span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span><span class="token punctuation">(</span>dr<span class="token operator">*</span>ds<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">*</span>K<span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span>sigma<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">70</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">1530</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token operator">*</span><span class="token function">log10</span><span class="token punctuation">(</span>SNR_single<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">ones</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>SNR_coop<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'r--'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hold on<span class="token punctuation">;</span>
+
+
+K <span class="token operator">=</span> <span class="token number">800</span><span class="token punctuation">;</span>
+
+SNR_coop_2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> K1 <span class="token operator">=</span> <span class="token number">70</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">800</span><span class="token operator">-</span><span class="token number">70</span>
+    SNR_coop_2 <span class="token operator">=</span> <span class="token punctuation">[</span>SNR_coop_2 Pt<span class="token operator">*</span>alpha<span class="token operator">^</span><span class="token number">3</span><span class="token operator">/</span><span class="token punctuation">(</span>ds<span class="token operator">*</span>dr<span class="token operator">*</span>dt<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">*</span>K1<span class="token operator">^</span><span class="token number">2</span><span class="token operator">*</span><span class="token punctuation">(</span>K<span class="token operator">-</span>K1<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span>sigma<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">70</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">800</span><span class="token operator">-</span><span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token operator">*</span><span class="token function">log10</span><span class="token punctuation">(</span>SNR_coop_2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token function">ylim</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">8</span> <span class="token number">18</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+hold on<span class="token punctuation">;</span>
+
+SNR_single_2 <span class="token operator">=</span>  Pt<span class="token operator">*</span>alpha<span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span><span class="token punctuation">(</span>dr<span class="token operator">*</span>ds<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">*</span>K<span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span>sigma<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">70</span><span class="token operator">:</span><span class="token number">10</span><span class="token operator">:</span><span class="token number">800</span><span class="token operator">-</span><span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token operator">*</span><span class="token function">log10</span><span class="token punctuation">(</span>SNR_single_2<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">ones</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>SNR_coop_2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'r--'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hold off<span class="token punctuation">;</span>
+grid on<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>需要用到一个function：</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> dis <span class="token operator">=</span> <span class="token function">caculate_dis_3d</span><span class="token punctuation">(</span>loc1<span class="token punctuation">,</span> loc2<span class="token punctuation">)</span>
+    dis <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">loc1</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">loc2</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">+</span><span class="token punctuation">(</span><span class="token function">loc1</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">loc2</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">+</span><span class="token punctuation">(</span><span class="token function">loc1</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">loc2</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220623_1.jpg" srcset="/img/loading.gif" lazyload alt="20220623_1" style="zoom: 67%;" /></p>
+<div class="note note-warning">
+            <p>结果和作者文中的结果有一定的出入，但是在相对的增益上是相同的：</p><ul><li>800 elements 和1600 elements 的benchmark case之间差约6dB</li><li>800 elements 和1600 elements 的two IRS cooperation case之间差约12dB</li></ul><p>说明仿真问题应该是在某些稀疏上进行了整体的缩放。</p>
+          </div>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><ul>
+<li>作者提出这个模型，前提条件是inner IRS信道是rank-one的。这个rank-one到底决定了<script type="math/tex">\textbf{S}</script>推导的哪一步？</li>
+</ul>
+<p>if IRS 1 beams towards one element on IRS 2, the rest elements on IRS 2 can enjoy the same power gain</p>
+<ul>
+<li>这种对每一个element建模的方法是否是主流？有没有必要？</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Intelligent-Reflecting-Surface/">Intelligent Reflecting Surface</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/IRS/">IRS</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/06/24/cooperativeIRS/">http://lcjoffrey.top/2022/06/24/cooperativeIRS/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/13/activeIRS-1/">
+                        <span class="hidden-mobile">Active IRS Versus Passive IRS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize(null);
+    }
+  </script>
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
