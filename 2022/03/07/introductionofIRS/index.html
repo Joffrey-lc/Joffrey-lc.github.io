@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620104345370.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620105955701.png">
 <meta property="article:published_time" content="2022-03-07T06:55:43.000Z">
-<meta property="article:modified_time" content="2022-06-24T04:59:33.096Z">
+<meta property="article:modified_time" content="2022-06-24T05:21:20.501Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="IRS">
 <meta name="twitter:card" content="summary_large_image">
@@ -334,8 +334,8 @@ y_{in,n}(t)=Re\{\alpha_{1, n}e^{-j\xi_{1, n}}x(t)e^{j2\pi f_ct}\}$
 y_{out,n}(t)&=\beta_ny_{in,n}(t-t_n)\\
 &=Re\{\beta_n\alpha_{1,n}e^{-j\xi_{1,n}}x(t-t_n)e^{j2\pi f_c(t-t_n)}\}
 \\&\approx Re\{[\beta_ne^{-j\theta^{'}_n}\alpha_{1,n}e^{-j\xi_{1,n}}x(t)]e^{j2\pi f_ct}\}
-\end{align}</script><p>其中，在$t<em>n\leq1/f_c\ll1/B$的前提下，假设$x(t-t_n)\approx x(t)$；并有$-\theta_n^{‘}\triangleq-2\pi f_ct_n\in[-2\pi,0]$是单元$n$引起的相移。由$s</em>{in,n}(t)\triangleq \alpha<em>{1, n}e^{-j\xi</em>{1, n}}x(t)$并且有$s<em>{out,n}\triangleq\beta_ne^{-j\theta^{‘}_n}\alpha</em>{1,n}e^{-j\xi_{1,n}}x(t)$</p>
-<p>进一步，由于$\theta^{‘}_n$是以$2\pi$为周期的，所以为方便后续部分，取$\theta_n\in [0,2\pi]$，有：</p>
+\end{align}</script><p>其中，在<script type="math/tex">t_n\leq1/f_c\ll1/B</script>的前提下，假设<script type="math/tex">x(t-t_n)\approx x(t)</script>；并有<script type="math/tex">-\theta_n^{'}\triangleq-2\pi f_ct_n\in[-2\pi,0]</script>是单元<script type="math/tex">n</script>引起的相移。由<script type="math/tex">s_{in,n}(t)\triangleq \alpha_{1, n}e^{-j\xi_{1, n}}x(t)$并且有$s_{out,n}\triangleq\beta_ne^{-j\theta^{'}_n}\alpha_{1,n}e^{-j\xi_{1,n}}x(t)</script></p>
+<p>进一步，由于<script type="math/tex">\theta^{'}_n</script>是以<script type="math/tex">2\pi</script>为周期的，所以为方便后续部分，取<script type="math/tex">\theta_n\in [0,2\pi]</script>，有：</p>
 <script type="math/tex; mode=display">
 \begin{align}
 s_{out,n}(t)=\beta_ne^{-j\theta^{'}_n}s_{in,n}(t)=\beta_ne^{j\theta_n}s_{in,n}(t)
@@ -344,14 +344,14 @@ s_{out,n}(t)=\beta_ne^{-j\theta^{'}_n}s_{in,n}(t)=\beta_ne^{j\theta_n}s_{in,n}(t
 <script type="math/tex; mode=display">
 \begin{align}
 y_{r,n}(t)=Re\{[\alpha_{1,n}e^{-j\xi_{1,n}}\beta_ne^{j\theta_n}\alpha_{2,n}e^{-j\xi_{2,n}}x(t)]e^{j2\pi f_ct}\}
-\end{align}</script><p>用$h^*<em>{r,n}\triangleq\alpha</em>{1,n}e^{-j\xi<em>{1,n}}$（发射端到IRS的信道），并用$g_n\triangleq\alpha</em>{2,n}e^{-j\xi_{2,n}}$（IRS到接收端的信道），上式变为：</p>
+\end{align}</script><p>用<script type="math/tex">h^*_{r,n}\triangleq\alpha_{1,n}e^{-j\xi_{1,n}}</script>（发射端到IRS的信道），并用<script type="math/tex">g_n\triangleq\alpha_{2,n}e^{-j\xi_{2,n}}</script>（IRS到接收端的信道），上式变为：</p>
 <script type="math/tex; mode=display">
 y_n(t)=\beta_ne^{j\theta_n}h^*_{r,n}g_nx(t)</script><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3328208a299ddde470516df2ab995f6.jpg" srcset="/img/loading.gif" lazyload alt="IRS模型示意图" style="zoom:33%;" /></p>
 <p>假设没有信号耦合，即所有IRS单元独立地反射入射信号。并忽略多次反射（因为路径损失较大），则有考虑$N$个单元时，有接收端：</p>
 <script type="math/tex; mode=display">
 \begin{align}
 y(t)=(\sum_{n=1}^N\beta_ne^{j\theta_n}h^*_{r,n}g_n)x(t)=\textbf{h}_r^H\Theta\textbf{g}x(t)
-\end{align}</script><p>其中$\textbf{h}<em>r^H=[h^*</em>{r, 1},\cdots,h^*_{r,N}]$，$\textbf{g}=[g_1,\cdots,g_N]^T$，$\Theta=diag(\beta_1e^{j\theta_1},\cdots,\beta_Ne^{j\theta_N})$因为每个IRS单元独立地反射信号，且没有信号耦合，所以$\Theta$是对角阵。</p>
+\end{align}</script><p>其中<script type="math/tex">\textbf{h}_r^H=[h^*_{r, 1},\cdots,h^*_{r,N}]$，$\textbf{g}=[g_1,\cdots,g_N]^T</script>，<script type="math/tex">\Theta=diag(\beta_1e^{j\theta_1},\cdots,\beta_Ne^{j\theta_N})</script>因为每个IRS单元独立地反射信号，且没有信号耦合，所以$\Theta$是对角阵。</p>
 <h3 id="IRS硬件实现"><a href="#IRS硬件实现" class="headerlink" title="IRS硬件实现"></a>IRS硬件实现</h3><h4 id="硬件结构"><a href="#硬件结构" class="headerlink" title="硬件结构"></a>硬件结构</h4><p>由于发射机、接收机以及周围物体的移动性，信道通常是时变的，因此需要基于信道变化的IRS实时可调。所以需要联网以进行自适应反射。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307220020933.png" srcset="/img/loading.gif" lazyload alt="IRS结构" style="zoom:33%;" /></p>
 <ul>
