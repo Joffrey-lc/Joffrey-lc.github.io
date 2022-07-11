@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>多个WET Stations情况下非线性EHmodel的凸性</title>
+    <link href="/2022/07/11/convexofmultiBS/"/>
+    <url>/2022/07/11/convexofmultiBS/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Convexity Analysis of Nonlinear Wireless Power Transfer with Multiple RF Sources</strong>.  <em>Xiaopeng Yuan</em> et.al.  <strong>IEEE Transactions on Vehicular Technology, 2022</strong>  (<a href="https://ieeexplore.ieee.org/document/9808171">pdf</a>)  (Citations <strong>0</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul><li>用Bruno给的能量收割模型，进行分析多个WET Stations联合供能的情况下，结合非线性，分析最终接收能量和入射能量的关系（最终接收能量对于入射能量的倒数是凸的）</li><li>多个WET stations 联合优化，就意味着可以通过在多个独立信号之间进行功率分配，这就是一个新的优化方向。</li></ul><h2 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h2><p>单个能量接收：</p><script type="math/tex; mode=display">\begin{aligned}e^{\frac{R_{\mathrm{L}} I_{\mathrm{out}}}{n v} t}\left(I_{\mathrm{out}}+I_{s}\right) & \approx I_{s}+\sum_{i=1}^{n_{0}} \bar{k}_{i} R_{\mathrm{ant}}^{\frac{i}{2}} \mathbb{E}\left\{y_{\mathrm{in}}^{i}\right\} \\& \approx I_{s}+\sum_{i=1}^{n_{0}} \beta_{i} \mathbb{E}\left\{y_{\mathrm{in}}^{i}\right\}\end{aligned}</script><p>然后得到：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220711164729354.png" alt="image-20220711164729354" style="zoom:33%;" /></p><p>最终得到单个的表达式：</p><script type="math/tex; mode=display">P_{\mathrm{dc}}=I_{\mathrm{out}}^{2} R_{\mathrm{L}} \approx\left(\frac{1}{a} W_{0}\left(a e^{a I_{s}}\left(I_{s}+\sum_{i=1}^{n_{0}} \beta_{i} \mathbb{E}\left\{y_{\mathrm{in}}^{i}\right\}\right)\right)-I_{s}\right)^{2} R_{L}</script><h2 id="Main-Idea"><a href="#Main-Idea" class="headerlink" title="Main Idea"></a>Main Idea</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220711165511715.png" alt="image-20220711165511715" style="zoom:33%;" /></p><p>由于</p><script type="math/tex; mode=display">I_{\mathrm{out}} \approx \frac{1}{a} W_{0}\left(a e^{a I_{s}} \varphi(\mathbf{Q})\right)-I_{s}</script><p>且其Hessian矩阵为：</p><script type="math/tex; mode=display">\nabla_{\mathbf{u}}^{2} I_{\text {out }}(\mathbf{Q})=\frac{1}{\left(a \varphi(\mathbf{Q})+e^{a I_{\text {out }}(\mathbf{Q})}\right) \varphi(\mathbf{Q})}\left(\nabla_{\mathbf{u}}^{2} \varphi(\mathbf{Q}) \cdot \varphi(\mathbf{Q})-\nabla_{\mathbf{u}} \varphi(\mathbf{Q}) \cdot \nabla_{\mathbf{u}}^{T} \varphi(\mathbf{Q})+\frac{e^{2 a I_{\text {out }}(\mathbf{Q})} \nabla_{\mathbf{u}} \varphi(\mathbf{Q}) \cdot \nabla_{\mathbf{u}}^{T} \varphi(\mathbf{Q})}{\left(a \varphi(\mathbf{Q})+e^{a I_{\text {out }}(\mathbf{Q})}\right)^{2}}\right)</script><p>所以有<script type="math/tex">\varphi(\mathbf{Q})>0</script>，且当满足</p><script type="math/tex; mode=display">\nabla_{\mathbf{u}}^{2} \varphi(\mathbf{Q}) \cdot \varphi(\mathbf{Q})-\nabla_{\mathbf{u}} \varphi(\mathbf{Q}) \cdot \nabla_{\mathbf{u}}^{T} \varphi(\mathbf{Q})</script><p>为半正定的时候，<script type="math/tex">I_{out}(\mathbf{Q})</script>对于<script type="math/tex">\textbf{u}</script>是凸的。其实等价于<script type="math/tex">f(\mathbf{Q}(\mathbf{u}))</script>的Hessian矩阵是半正定的。</p><p>换句话说，保证<script type="math/tex">f(\mathbf{Q}(\mathbf{u}))=\ln \varphi(\mathbf{Q}(\mathbf{u}))</script>对于<script type="math/tex">\mathbf{u}</script>是凸的，<script type="math/tex">I_{out}</script>就是对于<script type="math/tex">\mathbf{u}</script>是凸的，而<script type="math/tex">P_{dc}=I^2_{out}R_L</script>也就是对于<script type="math/tex">\mathbf{u}</script>是凸的。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220711172804587.png" alt="image-20220711172804587" style="zoom:33%;" /></p><p>取<script type="math/tex">u_{m}=\ln Q_{m} \text {, i.e., } Q_{m}\left(u_{m}\right)=e^{u_{m}}, \forall m \in \mathcal{M}</script></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220711173039702.png" alt="image-20220711173039702" style="zoom:33%;" /></p><p>然后证明了<script type="math/tex">g(\mathbf{z})</script>对于<script type="math/tex">\mathbf{z}</script>而言是半正定的，利用了</p><span class="label label-primary">具有非负对角元的Hermit对角占优（主对角大于该列所有元素）矩阵是半正定的</span>性质由于$$\nabla_{\mathbf{z}}^{2} \hat{g}(\mathbf{z})=\frac{1}{\left(\sum_{n=1}^{N} e^{z_{n}}\right)^{2}}\left\{\begin{array}{cclc}e^{z_{1}} \sum_{n \neq 1} e^{z_{n}} & -e^{z_{1}} e^{z_{2}} & \ldots & -e^{z_{1}} e^{z_{N}} \\-e^{z_{1}} e^{z_{2}} & e^{z_{2}} \sum_{n \neq 2} e^{z_{n}} & \ldots & -e^{z_{2}} e^{z_{N}} \\\ldots & \ldots & \ldots & \ldots \\-e^{z_{1}} e^{z_{N}} & -e^{z_{2}} e^{z_{N}} & \ldots & e^{z_{N}} \sum_{n \neq N} e^{z_{n}}\end{array}\right\}$$所以$$P_{dc}$$对于$$\text{ln}Q_m$$而言是凸的。然后由保凸原则得到<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220711174745003.png" alt="image-20220711174745003" style="zoom:33%;" />进一步得到：<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220711174757400.png" alt="image-20220711174757400" style="zoom:33%;" /><div class="note note-success">            <p>The convexity properties proved in Theorem 1-4 hold for any given truncation order <em>n</em>0, namely they also hold if the truncation order n approaches infifinity</p>          </div>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Wireless Energy Transfer</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>convexity</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>合作IRS-一个IRS拆分为两个</title>
     <link href="/2022/06/24/cooperativeIRS/"/>
     <url>/2022/06/24/cooperativeIRS/</url>
