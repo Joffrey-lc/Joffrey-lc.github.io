@@ -1,0 +1,1070 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Le-Nam Tran et.al.--Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell MISO Downlink">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  <meta name="description" content="Le-Nam Tran et.al.--Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell MISO Downlink">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Weighted Sum Rate Maximization-SCA">
+<meta property="og:url" content="http://lcjoffrey.top/2022/07/14/optimizationSCA/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="Le-Nam Tran et.al.--Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell MISO Downlink">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220713161428895.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220713161513169.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714151240972.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714151314162.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714153124002.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714153242474.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714155130326.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714155653666.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/simulationofSCA.jpg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714152754044.png">
+<meta property="article:published_time" content="2022-07-14T08:03:13.000Z">
+<meta property="article:modified_time" content="2022-07-14T08:07:07.574Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="SCA">
+<meta property="article:tag" content="Optimization">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220713161428895.png">
+  
+  <title>Weighted Sum Rate Maximization-SCA - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                科研
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Weighted Sum Rate Maximization-SCA">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-07-14 16:03" pubdate>
+        2022年7月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      35 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Weighted Sum Rate Maximization-SCA</h1>
+            
+            <div class="markdown-body">
+              <p><strong>Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell MISO Downlink</strong>.  <em>Le-Nam Tran</em> et.al.  <strong>IEEE Signal Processing Letters, December 2012</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6327333">pdf</a>)  (Citations <strong>112</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+<li>Weighted sum rate maximization</li>
+<li>Successive Convex Approximation</li>
+</ul>
+<h2 id="Main-Idea"><a href="#Main-Idea" class="headerlink" title="Main Idea"></a>Main Idea</h2><p>compare these two equation:</p>
+<p>the <strong>original</strong> object is formed as follows:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220713161428895.png" srcset="/img/loading.gif" lazyload alt="image-20220713161428895" style="zoom: 67%;" /></p>
+<p>and <strong>finally</strong>, we get: </p>
+<p> ignore (11b) and (11c) in (11):</p>
+<p>(11f)  is equivalent to (6d)</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220713161513169.png" srcset="/img/loading.gif" lazyload alt="image-20220713161513169"></p>
+<p>(11d) is equivalent to (6b) based on the following equations:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714151240972.png" srcset="/img/loading.gif" lazyload alt="image-20220714151240972"></p>
+<p>and:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714151314162.png" srcset="/img/loading.gif" lazyload alt="image-20220714151314162"></p>
+<p>其实到这里，已经可以做了。用<script type="math/tex">G(\cdot)</script>代替eqn7(a)中的<script type="math/tex">f(\cdot)=\sqrt{x_k}\beta_k</script>，就是Algorithm 1 7(b) not approximation.(upper bound) </p>
+<p>但是作者还将(7b)再次展开得到（11e）（upper bound）</p>
+<p>得到<strong>最终</strong>的Algorithm 1 7(b) approximation. </p>
+<h2 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h2><p>首先由香农公式得到并利用log的特点：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714153124002.png" srcset="/img/loading.gif" lazyload alt="image-20220714153124002"></p>
+<p>因为是maximization 问题，所以有upper bound，然后变量替换转换为上述形式。</p>
+<p>进一步因为本来就需要<script type="math/tex">t_k</script>都越大越好，所以(5b)是<span class="label label-primary">active</span>的。然后在进行一个变量替换。同样的(6d)也是active 的。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714153242474.png" srcset="/img/loading.gif" lazyload alt="image-20220714153242474"></p>
+<p>然后把（6b）用（7a）和（7b）替换，值得注意的是，<span class="label label-primary">都是将小的部分放大</span></p>
+<p>然后精髓在于：</p>
+<p>利用算数和不等式，找到了一个<script type="math/tex">f(\cdot)</script>的 convex upper bound <script type="math/tex">G(\cdot)</script>，然后用<script type="math/tex">G(\cdot)</script>替换<script type="math/tex">f(\cdot)</script>。约束(7a)就是一个SOC约束。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714155130326.png" srcset="/img/loading.gif" lazyload alt="image-20220714155130326"></p>
+<p>同样的找<script type="math/tex">t_k^{1/{\alpha_k}}</script>的upper bound（first order Taylor expansion）来对（7b）近似：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714155653666.png" srcset="/img/loading.gif" lazyload alt="image-20220714155653666"></p>
+<h2 id="Simulation-Result"><a href="#Simulation-Result" class="headerlink" title="Simulation Result"></a>Simulation Result</h2><h3 id="my-Algorithm-1-7-b-approximation"><a href="#my-Algorithm-1-7-b-approximation" class="headerlink" title="my Algorithm 1 (7(b) approximation)"></a>my Algorithm 1 (7(b) approximation)</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">clc<span class="token punctuation">;</span>clear<span class="token punctuation">;</span>close all<span class="token punctuation">;</span>
+
+NumCells <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+Pb_dB <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+Pb <span class="token operator">=</span> <span class="token number">10.</span><span class="token operator">^</span><span class="token punctuation">(</span>Pb_dB<span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+NumUes <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">%2 cells times 2</span>
+NumAntennas <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span> <span class="token comment">% Num of each BS</span>
+sigma_2 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+BS2Ue <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% it means the first BS serve the 1th and 2th User while the second BS serve the 3th and 4th User</span>
+<span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'channel.mat'</span><span class="token punctuation">)</span>
+h <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumCells<span class="token punctuation">,</span> NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">h</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">h</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% h = sqrt(1/2)*(randn(NumCells, NumAntennas, NumUes)+1j*randn(NumCells, NumAntennas, NumUes));</span>
+<span class="token comment">% weights = ones(NumUes, 1); % real</span>
+weights <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0.14</span><span class="token punctuation">;</span><span class="token number">0.21</span><span class="token punctuation">;</span><span class="token number">0.28</span><span class="token punctuation">;</span><span class="token number">0.36</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% weights in Fig. 2</span>
+<span class="token comment">% parameters initial  都取临界值</span>
+wK_init <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1j</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">% meet the constrain of BS power.</span>
+<span class="token keyword">for</span> iCell <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>NumCells
+    <span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iCell<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">Pb</span><span class="token punctuation">(</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iCell<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% scalling to meet the power constraint</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">% tK_init = abs(randn(NumUes, 1)); % real</span>
+betaK_init <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% complex</span>
+xK_init <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% real</span>
+<span class="token keyword">for</span> iU <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+   interfere <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+   otherUes <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span>NumUes<span class="token operator">~=</span>iU<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   interfere <span class="token operator">=</span> interfere <span class="token operator">+</span> sigma_2<span class="token punctuation">;</span>
+   <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>otherUes<span class="token punctuation">)</span>
+       interfere <span class="token operator">=</span> interfere<span class="token operator">+</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span><span class="token function">otherUes</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token function">otherUes</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+   <span class="token keyword">end</span>  
+   <span class="token function">betaK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>interfere<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+   <span class="token function">xK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">betaK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+phiK_init <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>xK_init<span class="token punctuation">)</span><span class="token operator">./</span>betaK_init<span class="token punctuation">;</span> <span class="token comment">% complex</span>
+tK_init <span class="token operator">=</span> <span class="token punctuation">(</span>xK_init<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">.^</span><span class="token punctuation">(</span>weights<span class="token punctuation">)</span><span class="token punctuation">;</span>
+tol <span class="token operator">=</span> <span class="token number">1e-2</span><span class="token punctuation">;</span>
+
+max_itern <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+sumrate <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>max_itern<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> iter <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>max_itern
+    cvx_begin   quiet
+    variables <span class="token function">tK</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token function">xK</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token function">betaK</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    variable <span class="token function">wK</span><span class="token punctuation">(</span>NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span> complex 
+    <span class="token function">maximize</span><span class="token punctuation">(</span><span class="token function">geo_mean</span><span class="token punctuation">(</span>tK<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    subject to
+    <span class="token keyword">for</span> iU <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+        b <span class="token operator">=</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span><span class="token function">phiK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">xK</span><span class="token punctuation">(</span>iU<span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token operator">*</span><span class="token punctuation">(</span>b<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">phiK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">betaK</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">real</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token operator">*</span><span class="token punctuation">(</span>b<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">%因为要更新wK，所以wK是在约束中的</span>
+<span class="token comment">%         imag(h(BS2Ue(iU), :, iU)*wK(:, iU)) == 0; %(6c)</span>
+        <span class="token function">real</span><span class="token punctuation">(</span><span class="token function">tK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token function">weights</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">/</span><span class="token function">weights</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">tK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token function">weights</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">tK</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">tK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">xK</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span>
+        
+        other_Ues <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes <span class="token operator">~=</span>iU<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere sigma_2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>other_Ues<span class="token punctuation">)</span>
+            interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere <span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span><span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+        <span class="token function">norm</span><span class="token punctuation">(</span>interfere<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">betaK</span><span class="token punctuation">(</span>iU<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    
+<span class="token comment">%     tK >= 1;</span>
+    
+    <span class="token keyword">for</span> iC<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>NumCells
+        <span class="token function">norm</span><span class="token punctuation">(</span><span class="token function">vec</span><span class="token punctuation">(</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iC<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">Pb</span><span class="token punctuation">(</span>iC<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+
+    cvx_end<span class="token punctuation">;</span>
+    
+    <span class="token comment">% update parameters</span>
+    phiK_init <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>xK<span class="token punctuation">)</span><span class="token operator">./</span>betaK<span class="token punctuation">;</span>
+    tK_init <span class="token operator">=</span> tK<span class="token punctuation">;</span>
+    
+    beamformer <span class="token operator">=</span> wK<span class="token punctuation">;</span> <span class="token comment">%保存当前最优的beamformer，绘制achievable rate</span>
+    
+    SINR <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> iU <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+        User_power <span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">beamformer</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+        
+        other_Ues <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes <span class="token operator">~=</span>iU<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere sigma_2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>other_Ues<span class="token punctuation">)</span>
+            interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere <span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span><span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+        
+        <span class="token function">SINR</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span> <span class="token operator">=</span> User_power<span class="token operator">/</span><span class="token function">norm</span><span class="token punctuation">(</span>interfere<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    
+    <span class="token keyword">for</span> iU <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+        <span class="token function">sumrate</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sumrate</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">weights</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">log2</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token function">SINR</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    <span class="token keyword">if</span> iter<span class="token operator">>=</span><span class="token number">2</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token function">sumrate</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">sum</span><span class="token punctuation">(</span>iter<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>tol
+        <span class="token function">sumrate</span><span class="token punctuation">(</span>iter<span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span>   
+    <span class="token keyword">end</span>
+    
+<span class="token keyword">end</span>
+<span class="token function">figure</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>sumrate<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="my-Algorithm-1-7-b-not-approximation"><a href="#my-Algorithm-1-7-b-not-approximation" class="headerlink" title="my Algorithm 1 (7(b) not approximation)"></a>my Algorithm 1 (7(b) not approximation)</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">clc<span class="token punctuation">;</span>clear<span class="token punctuation">;</span>close all<span class="token punctuation">;</span>
+
+NumCells <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+Pb_dB <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+Pb <span class="token operator">=</span> <span class="token number">10.</span><span class="token operator">^</span><span class="token punctuation">(</span>Pb_dB<span class="token operator">/</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+NumUes <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">%2 cells times 2</span>
+NumAntennas <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span> <span class="token comment">% Num of each BS</span>
+sigma_2 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+BS2Ue <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% it means the first BS serve the 1th and 2th User while the second BS serve the 3th and 4th User</span>
+<span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'channel.mat'</span><span class="token punctuation">)</span>
+h <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumCells<span class="token punctuation">,</span> NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">h</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">h</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% h = sqrt(1/2)*(randn(NumCells, NumAntennas, NumUes)+1j*randn(NumCells, NumAntennas, NumUes));</span>
+<span class="token comment">% weights = ones(NumUes, 1); % real</span>
+weights <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0.14</span><span class="token punctuation">;</span><span class="token number">0.21</span><span class="token punctuation">;</span><span class="token number">0.28</span><span class="token punctuation">;</span><span class="token number">0.36</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% weights in Fig. 2</span>
+<span class="token comment">% parameters initial  都取临界值</span>
+wK_init <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1j</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">% meet the constrain of BS power.</span>
+<span class="token keyword">for</span> iCell <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>NumCells
+    <span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iCell<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">Pb</span><span class="token punctuation">(</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iCell<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% scalling to meet the power constraint</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">% tK_init = abs(randn(NumUes, 1)); % real</span>
+betaK_init <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% complex</span>
+xK_init <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% real</span>
+<span class="token keyword">for</span> iU <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+   interfere <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+   otherUes <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span>NumUes<span class="token operator">~=</span>iU<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   interfere <span class="token operator">=</span> interfere <span class="token operator">+</span> sigma_2<span class="token punctuation">;</span>
+   <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>otherUes<span class="token punctuation">)</span>
+       interfere <span class="token operator">=</span> interfere<span class="token operator">+</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span><span class="token function">otherUes</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token function">otherUes</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+   <span class="token keyword">end</span>  
+   <span class="token function">betaK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>interfere<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   
+   <span class="token function">xK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK_init</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">betaK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+phiK_init <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>xK_init<span class="token punctuation">)</span><span class="token operator">./</span>betaK_init<span class="token punctuation">;</span> <span class="token comment">% complex</span>
+tK_init <span class="token operator">=</span> <span class="token punctuation">(</span>xK_init<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">.^</span><span class="token punctuation">(</span>weights<span class="token punctuation">)</span><span class="token punctuation">;</span>
+tol <span class="token operator">=</span> <span class="token number">1e-2</span><span class="token punctuation">;</span>
+
+max_itern <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+sumrate <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>max_itern<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> iter <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>max_itern
+    cvx_begin   quiet
+    variable <span class="token function">tK</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> 
+    variable <span class="token function">xK</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    variable <span class="token function">betaK</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    variable <span class="token function">wK</span><span class="token punctuation">(</span>NumAntennas<span class="token punctuation">,</span> NumUes<span class="token punctuation">)</span> complex 
+    <span class="token function">maximize</span><span class="token punctuation">(</span><span class="token function">geo_mean</span><span class="token punctuation">(</span>tK<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    subject to
+    <span class="token keyword">for</span> iU <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+        
+        b <span class="token operator">=</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span><span class="token function">phiK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">xK</span><span class="token punctuation">(</span>iU<span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token operator">*</span><span class="token punctuation">(</span>b<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">phiK_init</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">betaK</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">real</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token operator">*</span><span class="token punctuation">(</span>b<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">%因为要更新wK，所以wK是在约束中的</span>
+        <span class="token function">xK</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span> <span class="token operator">>=</span> <span class="token function">tK</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token function">weights</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">imag</span><span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">%(6c)</span>
+        
+        other_Ues <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes <span class="token operator">~=</span>iU<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere sigma_2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>other_Ues<span class="token punctuation">)</span>
+            interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere <span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span><span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+        <span class="token function">norm</span><span class="token punctuation">(</span>interfere<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">betaK</span><span class="token punctuation">(</span>iU<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    
+    tK <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">for</span> iC<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>NumCells
+        <span class="token function">norm</span><span class="token punctuation">(</span><span class="token function">vec</span><span class="token punctuation">(</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>BS2Ue<span class="token operator">==</span>iC<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">Pb</span><span class="token punctuation">(</span>iC<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+
+    cvx_end<span class="token punctuation">;</span>
+    
+    <span class="token comment">% update parameters</span>
+    phiK_init <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>xK<span class="token punctuation">)</span><span class="token operator">./</span>betaK<span class="token punctuation">;</span>
+    tK_init <span class="token operator">=</span> tK<span class="token punctuation">;</span>
+    
+    beamformer <span class="token operator">=</span> wK<span class="token punctuation">;</span> <span class="token comment">%保存当前最优的beamformer，绘制achievable rate</span>
+    
+    SINR <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>NumUes<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> iU <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+        User_power <span class="token operator">=</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">beamformer</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+        
+        other_Ues <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes <span class="token operator">~=</span>iU<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere sigma_2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>other_Ues<span class="token punctuation">)</span>
+            interfere <span class="token operator">=</span> <span class="token punctuation">[</span>interfere <span class="token function">h</span><span class="token punctuation">(</span><span class="token function">BS2Ue</span><span class="token punctuation">(</span><span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">:</span><span class="token punctuation">,</span> iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">wK</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token function">other_Ues</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+        
+        <span class="token function">SINR</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span> <span class="token operator">=</span> User_power<span class="token operator">/</span><span class="token function">norm</span><span class="token punctuation">(</span>interfere<span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    
+    <span class="token keyword">for</span> iU <span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span>NumUes
+        <span class="token function">sumrate</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sumrate</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">weights</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">log2</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span><span class="token function">SINR</span><span class="token punctuation">(</span>iU<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token comment">%     if iter>=2 &amp;&amp; (sumrate(iter)-sum(iter-1))&lt;tol</span>
+<span class="token comment">%         sumrate(iter:end) = [];</span>
+<span class="token comment">%         break   </span>
+<span class="token comment">%     end</span>
+    
+<span class="token keyword">end</span>
+<span class="token function">figure</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">plot</span><span class="token punctuation">(</span>sumrate<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/simulationofSCA.jpg" srcset="/img/loading.gif" lazyload alt="simulationofSCA" style="zoom:33%;" /></p>
+<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%&#123;</span>
+ Simulation code <span class="token keyword">for</span> <span class="token keyword">for</span> Algorithm <span class="token number">1</span> presented in the following scientific paper<span class="token operator">:</span>
+ "Fast Converging Algorithm <span class="token keyword">for</span> Weighted Sum Rate Maximization in Multicell 
+ MISO Downlink by Le<span class="token operator">-</span>Nam Tran<span class="token punctuation">,</span> Muhammad Fainan Hanif<span class="token punctuation">,</span>Antti Tolli<span class="token punctuation">,</span> Markku Juntti<span class="token punctuation">,</span>
+ IEEE Signal Processing Letters <span class="token number">19.12</span> <span class="token punctuation">(</span><span class="token number">2012</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token number">872</span><span class="token operator">-</span><span class="token number">875</span>
+<span class="token comment">%&#125;</span>
+clear variables
+clc
+clear
+close all<span class="token punctuation">;</span>
+
+<span class="token comment">% Number of RX antennas</span>
+M<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Number of antennas for each BS</span>
+nTx<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">;</span>
+
+<span class="token comment">% total users</span>
+nUsers<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">;</span>
+
+<span class="token comment">% No. of cells</span>
+nCells<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+
+<span class="token comment">% for nUsers=4, usercellindex = [1 1 2 2], the first two elements give the users served</span>
+<span class="token comment">% by BS 1 and the other two elements give indeces of users served by BS 2</span>
+usercellindex<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+noise_power <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">% noise power</span>
+powerpercell <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span> <span class="token comment">% maximum tx power per cell in dB (i.e., normalized with noise power)</span>
+
+powerpercell <span class="token operator">=</span> <span class="token number">10.</span><span class="token operator">^</span><span class="token punctuation">(</span>powerpercell<span class="token operator">./</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">ones</span><span class="token punctuation">(</span>nCells<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+nIterations <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">;</span><span class="token comment">% maximum # of iterations</span>
+
+weights <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% for sum rate maximization</span>
+
+<span class="token comment">% generate channels</span>
+channel <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> nTx<span class="token punctuation">,</span> nUsers<span class="token punctuation">,</span> nCells<span class="token punctuation">)</span><span class="token operator">+</span> <span class="token punctuation">...</span>
+                    <span class="token number">1i</span><span class="token operator">*</span><span class="token function">randn</span><span class="token punctuation">(</span>M<span class="token punctuation">,</span> nTx<span class="token punctuation">,</span> nUsers<span class="token punctuation">,</span> nCells<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% Generate a feasible initial point</span>
+<span class="token comment">% Procedure: first generate  beamformers that stisfy the power constraints </span>
+<span class="token comment">% and calculate \phi </span>
+winit <span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span>nTx<span class="token punctuation">,</span>nUsers<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1i</span><span class="token operator">*</span><span class="token function">rand</span><span class="token punctuation">(</span>nTx<span class="token punctuation">,</span>nUsers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% randn can also be used here</span>
+<span class="token keyword">for</span> iCell <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>nCells
+    <span class="token function">winit</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>usercellindex<span class="token operator">==</span>iCell<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">powerpercell</span><span class="token punctuation">(</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">norm</span><span class="token punctuation">(</span><span class="token function">winit</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>usercellindex<span class="token operator">==</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">winit</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>usercellindex<span class="token operator">==</span>iCell<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% scalling to meet the power constraint</span>
+<span class="token keyword">end</span>
+mybetaInit <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>nUsers<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xInit <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>nUsers<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> iUser<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>nUsers
+    <span class="token comment">% find the index of the other users</span>
+    otherusers <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span>nUsers <span class="token operator">~=</span> iUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mybetaInit</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">[</span>noise_power<span class="token punctuation">;</span><span class="token function">diag</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">reshape</span><span class="token punctuation">(</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">,</span><span class="token function">usercellindex</span><span class="token punctuation">(</span>otherusers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>nTx<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">winit</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>otherusers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% set (6d) to equality</span>
+    <span class="token function">xInit</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">,</span><span class="token function">usercellindex</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">winit</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">mybetaInit</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">;</span>  
+<span class="token keyword">end</span>
+phi <span class="token operator">=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span>xInit<span class="token punctuation">)</span><span class="token operator">./</span>mybetaInit<span class="token punctuation">;</span>
+tNext <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span>xInit<span class="token punctuation">)</span><span class="token operator">.^</span>weights<span class="token punctuation">;</span>
+
+<span class="token comment">%% To generate Fig. 2, uncomment the following four lines</span>
+<span class="token comment">% load('channel.mat')</span>
+<span class="token comment">% tNext=ones(nUsers,1);        </span>
+<span class="token comment">% phi = 1./[0.14285714 2857143;0.214285714285714;0.285714285714286;0.357142857142857];</span>
+weights <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0.14</span><span class="token punctuation">;</span><span class="token number">0.21</span><span class="token punctuation">;</span><span class="token number">0.28</span><span class="token punctuation">;</span><span class="token number">0.36</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% weights in Fig. 2</span>
+
+<span class="token comment">% scale the weights so that all are larger than 1 </span>
+<span class="token comment">% scalecoeff = 1.1/min(weights);</span>
+<span class="token comment">% weights = scalecoeff*weights;</span>
+scalecoeff <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">% error tolerance. Algorithm terminates if the increase between two iterations &lt; tol</span>
+tol <span class="token operator">=</span> <span class="token number">1e-2</span><span class="token punctuation">;</span>   
+<span class="token comment">% memory allocation</span>
+sumrate <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>nIterations<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% the sequence of sum rate</span>
+weightedsumrate <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>nIterations<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% the sequence of weighted sum rate</span>
+seqobj <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>nIterations<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% the sequence of the objective of subproblems</span>
+<span class="token comment">%% main loop</span>
+<span class="token keyword">for</span> iIteration<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>nIterations
+    cvx_begin   quiet
+    variables   <span class="token function">t</span><span class="token punctuation">(</span>nUsers<span class="token punctuation">)</span> <span class="token function">mybeta</span><span class="token punctuation">(</span>nUsers<span class="token punctuation">)</span> <span class="token function">x</span><span class="token punctuation">(</span>nUsers<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+    variable    <span class="token function">w</span><span class="token punctuation">(</span>nTx<span class="token punctuation">,</span>nUsers<span class="token punctuation">)</span> complex<span class="token punctuation">;</span>
+    <span class="token function">maximize</span><span class="token punctuation">(</span><span class="token function">geo_mean</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">% CVX automatically implements (11b) and (11c)</span>
+    subject to
+    <span class="token keyword">for</span> iUser<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>nUsers
+        b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">,</span><span class="token function">usercellindex</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">w</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token function">phi</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">x</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">imag</span><span class="token punctuation">(</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">,</span><span class="token function">usercellindex</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">w</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">%(6c)</span>
+        
+        <span class="token comment">% constraint (11d) in the paper</span>
+        <span class="token function">norm</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.5</span><span class="token operator">*</span><span class="token punctuation">(</span>b<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">phi</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">mybeta</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">0.5</span><span class="token operator">*</span><span class="token function">real</span><span class="token punctuation">(</span>b<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        
+        <span class="token comment">% constraint (11e)</span>
+        <span class="token function">x</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token function">tNext</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token function">weights</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token operator">/</span><span class="token function">weights</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">tNext</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token function">weights</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">t</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">tNext</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">% find the index of the other users</span>
+        otherusers <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span>nUsers <span class="token operator">~=</span> iUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        interference <span class="token operator">=</span> <span class="token punctuation">[</span>noise_power<span class="token punctuation">;</span><span class="token function">diag</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">reshape</span><span class="token punctuation">(</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">,</span><span class="token function">usercellindex</span><span class="token punctuation">(</span>otherusers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>nTx<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">w</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>otherusers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">% constraint (11f)</span>
+        <span class="token function">norm</span><span class="token punctuation">(</span>interference<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">mybeta</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    
+    <span class="token comment">% implicit constraints in t (refer to (6b))</span>
+    t <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">% constraint (11g)</span>
+    <span class="token keyword">for</span> iCell<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>nCells
+        <span class="token function">norm</span><span class="token punctuation">(</span><span class="token function">vec</span><span class="token punctuation">(</span><span class="token function">w</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>usercellindex<span class="token operator">==</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token function">powerpercell</span><span class="token punctuation">(</span>iCell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    cvx_end<span class="token punctuation">;</span>
+    
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">contains</span><span class="token punctuation">(</span>cvx_status<span class="token punctuation">,</span><span class="token string">'Solved'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        
+        <span class="token comment">% Step 3 of Algorithm 1 in the paper</span>
+        phi <span class="token operator">=</span> x<span class="token operator">.^</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token operator">./</span>mybeta<span class="token punctuation">;</span>
+        tNext <span class="token operator">=</span> t<span class="token punctuation">;</span>
+        
+        <span class="token comment">%compute objective sequence returned by the solver after each iteration</span>
+        <span class="token function">seqobj</span><span class="token punctuation">(</span>iIteration<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token function">log2</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">% save the current values of beamformers</span>
+        beamformer <span class="token operator">=</span> w<span class="token punctuation">;</span>
+        
+        <span class="token comment">% compute the WSR and SR for each iteration</span>
+        <span class="token keyword">for</span> iUser<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span>nUsers
+            otherusers <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span>nUsers <span class="token operator">~=</span> iUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            interference <span class="token operator">=</span> <span class="token punctuation">[</span>noise_power<span class="token punctuation">;</span><span class="token function">diag</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">reshape</span><span class="token punctuation">(</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">,</span><span class="token punctuation">...</span>
+                <span class="token function">usercellindex</span><span class="token punctuation">(</span>otherusers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>nTx<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.'</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">beamformer</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>otherusers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            
+            <span class="token comment">% compute SINR for each user</span>
+            SINR<span class="token operator">=</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">,</span><span class="token function">usercellindex</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">beamformer</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span>iUser<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">norm</span><span class="token punctuation">(</span>interference<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token comment">% WSR and SR calculation</span>
+            <span class="token function">weightedsumrate</span><span class="token punctuation">(</span>iIteration<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">weightedsumrate</span><span class="token punctuation">(</span>iIteration<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">weights</span><span class="token punctuation">(</span>iUser<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">log2</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span>SINR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">sumrate</span><span class="token punctuation">(</span>iIteration<span class="token punctuation">)</span>  <span class="token operator">=</span> <span class="token function">sumrate</span><span class="token punctuation">(</span>iIteration<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">log2</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span>SINR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">end</span>
+        <span class="token comment">% check stopping criterion</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>iIteration<span class="token operator">></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span><span class="token punctuation">(</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">weightedsumrate</span><span class="token punctuation">(</span>iIteration<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">weightedsumrate</span><span class="token punctuation">(</span>iIteration<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> tol<span class="token punctuation">)</span>
+            <span class="token function">seqobj</span><span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span>iIteration<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>nIterations<span class="token punctuation">)</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token function">sumrate</span><span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span>iIteration<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>nIterations<span class="token punctuation">)</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token function">weightedsumrate</span><span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span>iIteration<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>nIterations<span class="token punctuation">)</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment">%  converge, break</span>
+        <span class="token keyword">end</span>
+    <span class="token keyword">else</span> <span class="token comment">% numerical issue</span>
+        <span class="token function">disp</span><span class="token punctuation">(</span><span class="token string">'There may be a numerical issue in the solver. Early termination'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span> 
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span class="token comment">% rescale the objectives</span>
+seqobj <span class="token operator">=</span> seqobj<span class="token operator">/</span>scalecoeff<span class="token punctuation">;</span> 
+weightedsumrate <span class="token operator">=</span> weightedsumrate<span class="token operator">/</span>scalecoeff<span class="token punctuation">;</span>
+sumrate <span class="token operator">=</span> sumrate<span class="token operator">/</span>scalecoeff<span class="token punctuation">;</span>
+
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>weightedsumrate<span class="token punctuation">)</span><span class="token punctuation">,</span>weightedsumrate<span class="token punctuation">,</span><span class="token string">'-rs'</span><span class="token punctuation">,</span><span class="token string">'MarkerEdgeColor'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
+                <span class="token string">'MarkerFaceColor'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hold on
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>seqobj<span class="token punctuation">)</span><span class="token punctuation">,</span>seqobj<span class="token punctuation">,</span><span class="token string">'-bd'</span><span class="token punctuation">,</span><span class="token string">'MarkerEdgeColor'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
+                <span class="token string">'MarkerFaceColor'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+grid on            
+<span class="token function">xlim</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token operator">-</span><span class="token number">0.1</span> <span class="token function">length</span><span class="token punctuation">(</span>seqobj<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Iteration index'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Weighted sum rate (b/s/Hz)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+h<span class="token operator">=</span><span class="token function">legend</span><span class="token punctuation">(</span> <span class="token string">'Weighted sum rate'</span><span class="token punctuation">,</span><span class="token string">'The objective sequence of convex approximate subproblems'</span><span class="token punctuation">,</span><span class="token string">'Location'</span><span class="token punctuation">,</span><span class="token string">'SouthEast'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">set</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token string">'Color'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span><span class="token string">'box'</span><span class="token punctuation">,</span><span class="token string">'on'</span><span class="token punctuation">,</span><span class="token string">'EdgeColor'</span><span class="token punctuation">,</span><span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">saveas</span><span class="token punctuation">(</span>gcf<span class="token punctuation">,</span> <span class="token string">'./ConvergencePlot.png'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><ul>
+<li><p>变量比较多，首先得确定哪些是需要迭代的。这篇文章中需要迭代<script type="math/tex">\phi_k</script>和<script type="math/tex">t_k</script>，但是<script type="math/tex">\phi_k</script>和<script type="math/tex">t_k</script>需要<script type="math/tex">\beta_k</script>和<script type="math/tex">x_k</script>。所以首先得先给出一个<script type="math/tex">\phi_{k-init}</script>和<script type="math/tex">t_{k-init}</script>来进行迭代。</p>
+</li>
+<li><p>有些东西还不能直接求，得转换为一个SOC（二阶锥优化问题）约束去做。</p>
+</li>
+<li><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714152754044.png" srcset="/img/loading.gif" lazyload alt="image-20220714152754044"></li>
+<li>放缩的时候都是大于符号右端放大。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Optimization/">Optimization</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SCA/">SCA</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Optimization/">Optimization</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/07/14/optimizationSCA/">http://lcjoffrey.top/2022/07/14/optimizationSCA/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+              
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/11/convexofmultiBS/">
+                        <span class="hidden-mobile">多个WET Stations情况下非线性EHmodel的凸性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/diy/music.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<!-- 
+  <div class="music-player">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=483378334&auto=1&height=66"></iframe>
+  </div>
+-->
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize(null);
+    }
+  </script>
+
+
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
