@@ -110,6 +110,6 @@ deploy:
   type: git
   repo: 
     github: git@github.com:Joffrey-lc/Joffrey-lc.github.io.git
-    gitee: git@gitee.com:joffreyc/joffreyc.git
+    #gitee: git@gitee.com:joffreyc/joffreyc.git
     #coding: git@e.coding.net:lc326771926/lc326771926/lc326771926.git
   branch: master

@@ -123,3 +123,47 @@ xlabel('Hz')
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215206566.png" width="60%">
 使用自定义方法滤波:
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215215585.png" width="60%">
+
+## 补充（与相关的关系）
+
+- **卷积**=补零->翻转->Hadamard积->求和
+- 相关=补零->Hadamard积->求和
+
+$$
+\begin{aligned}
+&x=[3,6,2] \\
+&y=[2,1,0]\\
+\\
+
+&r_{x y}(-2)=\quad \begin{array}{lllll}
+&&3 & 6 & 2\\
+2 & 1 & 0&&&=3\times 0=0
+\end{array}\\
+\\
+&r_{x y}(-1)=\quad \begin{array}{lllll}
+&3 & 6 & 2\\
+2 & 1 & 0&&&=3\times 1+6\times0=3
+\end{array}\\
+\\
+&r_{x y}(0)=\quad \begin{array}{lllll}
+3 & 6 & 2\\
+2 & 1 & 0&&&=3\times 2+6\times1+2\times0=12
+\end{array}\\
+\\
+&r_{x y}(1)=\quad \begin{array}{lllll}
+3 & 6 & 2\\
+&2 & 1 & 0&&&=3\times 0+6\times2+2\times1=14
+\end{array}\\
+\\
+&r_{x y}(2)=\quad \begin{array}{lllll}
+3 & 6 & 2\\
+&&2 & 1 & 0&&&=2\times2=4
+\end{array}\\
+
+\end{aligned}
+$$
+
+
+
+
+
