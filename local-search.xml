@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>20220806IRS讲座-IRS材料</title>
+    <link href="/2022/08/06/IRSlecture20220806/"/>
+    <url>/2022/08/06/IRSlecture20220806/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Quick-View"><a href="#Quick-View" class="headerlink" title="Quick View"></a>Quick View</h1><p>智能反射面调幅、调相、<span class="label label-success">调频</span>、调极化方向、<span class="label label-success">Active IRS（多单元share主动放大）</span>、<span class="label label-success">IRS调制/反射调制</span>、IRS感知定位</p><div class="note note-warning">            <p>调频可以结合：FDA+CSI-free，自动波束扫描</p>          </div><h2 id="调幅（On-Off）"><a href="#调幅（On-Off）" class="headerlink" title="调幅（On/Off）"></a>调幅（On/Off）</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801201438480.png" alt="image-20220801201438480"></p><p>调整幅度、相位、==频率==、极化方向</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801202614373.png" alt="image-20220801202614373"></p><p>选择阵面来实现空间波束赋形</p><h2 id="调频"><a href="#调频" class="headerlink" title="调频"></a>调频</h2><p>==频率调控==   时间编码</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801202841135.png" alt="image-20220801202841135"></p><p><strong>单元与单元之间的相位相同，但是不同时间中的相位不同。</strong></p><p>使得，单频信号照射，反射的频谱展宽，变为多频率反射波。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801203140467.png" alt="image-20220801203140467"></p><h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801203534699.png" alt="image-20220801203534699"></p><p>时间=调频</p><p>空间=空间波束赋形</p><h2 id="可编程无线环境"><a href="#可编程无线环境" class="headerlink" title="可编程无线环境"></a>可编程无线环境</h2><p><img src="C:/Users/32677/AppData/Roaming/Typora/typora-user-images/image-20220801203651157.png" alt="image-20220801203651157"></p><p>漫发射的原因是因为波束窄，想要给散射开</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801203945545.png" alt="image-20220801203945545"></p><p>主动信道：怎么贴，贴在哪，贴多大</p><h2 id="Active-IRS"><a href="#Active-IRS" class="headerlink" title="Active IRS"></a>Active IRS</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801204747976.png" alt="image-20220801204747976"></p><h2 id="IRS调制"><a href="#IRS调制" class="headerlink" title="IRS调制"></a>IRS调制</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801205234164.png" alt="image-20220801205234164"></p><p>IRS调制</p><h2 id="IRS感知"><a href="#IRS感知" class="headerlink" title="IRS感知"></a>IRS感知</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801210236549.png" alt="image-20220801210236549"></p><p>IRS 感知</p><h2 id="IRS幅度相位解耦"><a href="#IRS幅度相位解耦" class="headerlink" title="IRS幅度相位解耦"></a>IRS幅度相位解耦</h2><p>IRS幅度相位单独调控比较难，但是不是不可以实现</p><h2 id="实际响应速率"><a href="#实际响应速率" class="headerlink" title="实际响应速率"></a>实际响应速率</h2><p>IRS响应响应速率（在5G6G中的应用及限制） - 响应时间、充放电时间等等。。。。。调控速率现在在60-70MHz</p><h2 id="咨询问题"><a href="#咨询问题" class="headerlink" title="咨询问题"></a>咨询问题</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801212426257.png" alt="image-20220801212426257"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220801212452715.png" alt="image-20220801212452715"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Intelligent Reflecting Surface</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IRS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>优化基础-高斯随机化</title>
     <link href="/2022/07/16/gaussianrandomization/"/>
     <url>/2022/07/16/gaussianrandomization/</url>
