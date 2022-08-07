@@ -13,29 +13,32 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Abdelrahman Taha et.al.-Deep Reinforcement Learning for Intelligent Reflecting Surfaces—Towards Standalone Operation">
+  <meta name="description" content="离散相位、IRS+CSI-free scheme">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="Abdelrahman Taha et.al.-Deep Reinforcement Learning for Intelligent Reflecting Surfaces—Towards Standalone Operation">
+  <meta name="description" content="离散相位、IRS+CSI-free scheme">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DRL和IRS的结合（主要关注IRS怎么获取CSI）">
-<meta property="og:url" content="http://lcjoffrey.top/2022/04/08/DRL-IRS/index.html">
+<meta property="og:title" content="20220807IRS讲座-一种优化算法">
+<meta property="og:url" content="http://lcjoffrey.top/2022/08/07/IRSlecture20220807/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="Abdelrahman Taha et.al.-Deep Reinforcement Learning for Intelligent Reflecting Surfaces—Towards Standalone Operation">
+<meta property="og:description" content="离散相位、IRS+CSI-free scheme">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407205815166.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407210210939.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102154327.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102710833.png">
-<meta property="article:published_time" content="2022-04-08T02:30:54.000Z">
-<meta property="article:modified_time" content="2022-04-08T02:42:20.574Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105936888.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101657856.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101858754.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807102448872.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104058014.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104226771.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104652312.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105324829.png">
+<meta property="article:published_time" content="2022-08-07T05:25:45.000Z">
+<meta property="article:modified_time" content="2022-08-07T05:29:08.896Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="IRS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407205815166.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105936888.png">
   
-  <title>DRL和IRS的结合（主要关注IRS怎么获取CSI） - Joffrey&#39;s Blog</title>
+  <title>20220807IRS讲座-一种优化算法 - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -201,7 +204,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="DRL和IRS的结合（主要关注IRS怎么获取CSI）">
+            <span class="h2" id="subtitle" title="20220807IRS讲座-一种优化算法">
               
             </span>
 
@@ -211,8 +214,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-08 10:30" pubdate>
-        2022年4月8日 上午
+      <time datetime="2022-08-07 13:25" pubdate>
+        2022年8月7日 下午
       </time>
     </span>
   
@@ -222,7 +225,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      597 字
+      290 字
     </span>
   
 
@@ -231,7 +234,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      1 分钟
     </span>
   
 
@@ -268,20 +271,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">DRL和IRS的结合（主要关注IRS怎么获取CSI）</h1>
+            <h1 style="display: none">20220807IRS讲座-一种优化算法</h1>
             
             <div class="markdown-body">
-              <p><strong>Deep Reinforcement Learning for Intelligent Reflecting Surfaces: Towards Standalone Operation</strong>.  <em>Abdelrahman Taha</em> et.al.  <strong>2020 IEEE 21st International Workshop on Signal Processing Advances in Wireless Communications (SPAWC), 26-29 May 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9154301">pdf</a>)  (Citations <strong>24</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>提出一种DRL（Deep Reinforcement Learning）的方法，不用<strong>额外的训练开销</strong>就可以获得接近Supervised Learning 和Perfect CSI的性能。而且这个方法不受其他基站控制，是<strong>standalone</strong>的。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407205815166.png" srcset="/img/loading.gif" lazyload alt="示意图" style="zoom: 50%;" /></p>
-<p>值得注意的是，对于整个IRS，并不是全部无源的，而是部分有源，<strong>称为Active element</strong>，等同于对全部IRS CSI进行sample。</p>
-<p>实验结果说明：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220407210210939.png" srcset="/img/loading.gif" lazyload alt="实验一" style="zoom: 40%;" /></p>
-<p>实验结果说明，虽然DRL需要更多的样本训练，但是DRL方案仅对每个训练片段使用一个Beam，而DL方案需要400个。</p>
-<p>然后利用类似半监督-伪标记的方法，用DRL预测最优希望的<script type="math/tex">k_B</script>波束，并把这些波束添加到训练集中</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102154327.png" srcset="/img/loading.gif" lazyload alt="image-20220408102154327" style="zoom: 80%;" /></p>
-<p>同时，还可以看到，Ideal Rewarding 性能更加，即仅当可达速率等于期望值时，才给正向反馈，否则都是负向反馈。</p>
-<h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220408102710833.png" srcset="/img/loading.gif" lazyload alt="算法流程" style="zoom: 80%;" /></p>
+              <h1 id="Quick-Review"><a href="#Quick-Review" class="headerlink" title="Quick Review"></a>Quick Review</h1><p>离散相位、<span class="label label-primary">CSI-Free</span> Model</p>
+<p>但是他的CSI-free model还是根据直接采样得到的值，的条件均值，选取最大的Phase Shift</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105936888.png" srcset="/img/loading.gif" lazyload alt="image-20220807105936888"></p>
+<h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101657856.png" srcset="/img/loading.gif" lazyload alt="image-20220807101657856"></p>
+<h2 id="离散相位"><a href="#离散相位" class="headerlink" title="离散相位"></a>离散相位</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101858754.png" srcset="/img/loading.gif" lazyload alt="image-20220807101858754"></p>
+<p>解决 离散相位、Unknown Channel</p>
+<p>K—<script type="math/tex">\infty</script>，即连续相位，可以线性调整</p>
+<p>K—<script type="math/tex">\infty</script></p>
+<p>用SDP，只能达到全局最优的67%</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807102448872.png" srcset="/img/loading.gif" lazyload alt="image-20220807102448872"></p>
+<p>罗智泉等人找到一种方法实现多项式时间内求解这个问题。</p>
+<h2 id="Unknown-Channel"><a href="#Unknown-Channel" class="headerlink" title="Unknown Channel"></a>Unknown Channel</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104058014.png" srcset="/img/loading.gif" lazyload alt="image-20220807104058014"></p>
+<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104226771.png" srcset="/img/loading.gif" lazyload alt="image-20220807104226771"></p>
+<p>random 选一个信号强度最大的。</p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>sample一些样本，然后做统计均值？</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104652312.png" srcset="/img/loading.gif" lazyload alt="image-20220807104652312"></p>
+<p>Method2 需要更多的sample，但是可以实现更好的性能</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105324829.png" srcset="/img/loading.gif" lazyload alt="image-20220807105324829"></p>
 
             </div>
             <hr>
@@ -301,8 +311,6 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Deep-Learning/">Deep Learning</a>
-                    
                       <a class="hover-with-bg" href="/tags/IRS/">IRS</a>
                     
                   </div>
@@ -317,7 +325,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/04/08/DRL-IRS/">http://lcjoffrey.top/2022/04/08/DRL-IRS/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/08/07/IRSlecture20220807/">http://lcjoffrey.top/2022/08/07/IRSlecture20220807/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -327,18 +335,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/08/CSI-Free-Ohter/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CSI相关其他文献阅读</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/30/summaryOfCSIFree/">
-                        <span class="hidden-mobile">CSI-Free总结</span>
+                      <a href="/2022/08/06/IRSlecture20220806/">
+                        <span class="hidden-mobile">20220806IRS讲座-IRS材料</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>20220807IRS讲座-一种优化算法</title>
+    <link href="/2022/08/07/IRSlecture20220807/"/>
+    <url>/2022/08/07/IRSlecture20220807/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Quick-Review"><a href="#Quick-Review" class="headerlink" title="Quick Review"></a>Quick Review</h1><p>离散相位、<span class="label label-primary">CSI-Free</span> Model</p><p>但是他的CSI-free model还是根据直接采样得到的值，的条件均值，选取最大的Phase Shift</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105936888.png" alt="image-20220807105936888"></p><h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101657856.png" alt="image-20220807101657856"></p><h2 id="离散相位"><a href="#离散相位" class="headerlink" title="离散相位"></a>离散相位</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101858754.png" alt="image-20220807101858754"></p><p>解决 离散相位、Unknown Channel</p><p>K—<script type="math/tex">\infty</script>，即连续相位，可以线性调整</p><p>K—<script type="math/tex">\infty</script></p><p>用SDP，只能达到全局最优的67%</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807102448872.png" alt="image-20220807102448872"></p><p>罗智泉等人找到一种方法实现多项式时间内求解这个问题。</p><h2 id="Unknown-Channel"><a href="#Unknown-Channel" class="headerlink" title="Unknown Channel"></a>Unknown Channel</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104058014.png" alt="image-20220807104058014"></p><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104226771.png" alt="image-20220807104226771"></p><p>random 选一个信号强度最大的。</p><h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>sample一些样本，然后做统计均值？</p><h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104652312.png" alt="image-20220807104652312"></p><p>Method2 需要更多的sample，但是可以实现更好的性能</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105324829.png" alt="image-20220807105324829"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Intelligent Reflecting Surface</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IRS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>20220806IRS讲座-IRS材料</title>
     <link href="/2022/08/06/IRSlecture20220806/"/>
     <url>/2022/08/06/IRSlecture20220806/</url>
@@ -12,6 +39,8 @@
     
     
     <categories>
+      
+      <category>Paper Reading</category>
       
       <category>Intelligent Reflecting Surface</category>
       
@@ -787,9 +816,9 @@
     
     <tags>
       
-      <tag>IRS</tag>
-      
       <tag>Deep Learning</tag>
+      
+      <tag>IRS</tag>
       
     </tags>
     
