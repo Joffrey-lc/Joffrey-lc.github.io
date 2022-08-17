@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>20220812IRS讲座-Pancunhua</title>
+    <link href="/2022/08/17/IRSlecture20220812/"/>
+    <url>/2022/08/17/IRSlecture20220812/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://pan.baidu.com/s/1P0CIKb6qrRCiEs2Zt1CYaA?pwd=0623">讲座PPT</a>，潘老师人真的很好！！</p><h2 id="two-time-scale-scheme"><a href="#two-time-scale-scheme" class="headerlink" title="two-time scale scheme"></a>two-time scale scheme</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208171955259.png" alt="image-20220817160133889"></p><p>考虑导频开销，IRS element越多，性能越差，而一般的文章都是不考虑导频的，所以可以随IRSelement增多而增大，实际上这是不对的。</p><p>所以这就也突出我们的方法，CSI-free，不需要导频，可以实现更多element的IRS</p><h2 id="Active-IRS"><a href="#Active-IRS" class="headerlink" title="Active IRS"></a>Active IRS</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208171955350.png" alt="image-20220817160145162"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208171955256.png" alt="image-20220817160159313"></p><p>低功耗Passive IRS     高功率 Active IRS</p><p>折射透射IRS 和胡老师的Idea有点像</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Intelligent Reflecting Surface</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IRS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>20220807IRS讲座-一种优化算法</title>
     <link href="/2022/08/07/IRSlecture20220807/"/>
     <url>/2022/08/07/IRSlecture20220807/</url>
