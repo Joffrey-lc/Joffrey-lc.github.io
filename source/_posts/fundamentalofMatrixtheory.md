@@ -122,7 +122,46 @@ A \odot B \odot C=(A \odot B) \odot C=A \odot(B \odot C)\\
 (A\odot B)^{T}(A \odot B)=(A^{T} A)(B^{T} B)
 $$
 
+## 矩阵范数
 
+矩阵1-范数(列和范数)：
+$$
+\|A\|_{1}=\max _{1 \leq j \leq n} \sum_{i=1}^{n}\left|a_{i, j}\right|
+$$
+矩阵2-范数：
+$$
+\|\mathrm{A}\|_{2}=\sqrt{\lambda_{\max }\left(\mathrm{A}^{\mathrm{T}} \mathrm{A}\right)}
+$$
+矩阵F-范数：
+$$
+\|\mathrm{A}\|_{F}=\sqrt{\operatorname{tr}\left(\mathrm{A}^{\mathrm{T}} \mathrm{A}\right)}=\sqrt{\sum_{i=1}^{m} \sum_{j=1}^{n} a_{i j}^{2}}
+$$
+
+## 矩阵求导 Matrix Calculus
+
+记录一下查找的矩阵求导资料，有时间再看：
+
+
+
+> 标量对矩阵求导[^5]
+
+>向量对矩阵求导[^6]
+
+>**使用科技**[^7]
+
+## 矩阵向量化算子
+
+矩阵向量化算子，例如文章
+
+>**Compressed Channel Estimation for Intelligent Reflecting Surface-Assisted Millimeter Wave Systems**.  *Peilan Wang* et.al.  **IEEE Signal Processing Letters, 2020**  ([pdf](https://ieeexplore.ieee.org/document/9103231))  (Citations **72**)
+
+中出现的$$\text{vec}(\cdot)$$，就是将一个矩阵的每一列首尾相连，形成一个新的列向量。
+$$
+\mathbf{A}\in\mathbb{C}^{m\times n}\\
+\text{vec}(\mathbf{A})=[\mathbf{a}_{:m,1};\mathbf{a}_{:m,2};\cdots;\mathbf{a}_{:m,n}]\in{\mathbb{C}^{mn\times 1}}
+$$
+
+# 
 
 # Reference
 
@@ -130,3 +169,6 @@ $$
 [^2]: https://baike.baidu.com/item/%E5%85%8B%E7%BD%97%E5%86%85%E5%85%8B%E7%A7%AF/6282573?fr=aladdin
 [^3]: https://baike.baidu.com/item/%E7%9F%A9%E9%98%B5%E7%9A%84%E8%BF%B9/8889744?fr=aladdin
 [^4]: https://blog.csdn.net/xuehuitanwan123/article/details/104291475
+[^5]: https://zhuanlan.zhihu.com/p/24709748
+[^6]: https://zhuanlan.zhihu.com/p/24863977
+[^7]: http://www.matrixcalculus.org/

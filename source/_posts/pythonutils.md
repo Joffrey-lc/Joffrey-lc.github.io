@@ -249,3 +249,219 @@ for filename in glob.glob(cwd_path+'/*.pdf'):
 
 ```
 
+## python调制识别数据集读取
+
+### RML2016a
+
+```python
+import os
+import pickle
+
+dataset = pickle.load(open("dataset/RML2016.10a_dict.pkl", "rb"), encoding='bytes')
+save_path = 'dataset/split_dB_rml2016a'
+if not os.path.exists(save_path):
+    os.mkdir(save_path)
+print('processing')
+
+all_type: set = set()
+all_snr: set = set()
+for name in dataset.keys():
+    type_name, snr = name[0], name[1]
+    all_type.add(type_name)
+    all_snr.add(snr)
+print('调制形式为：', all_type)
+list_snr = list(all_snr)
+list_snr.sort()
+print('信噪比为：', list_snr)
+
+total = len(all_type)
+for name in dataset.keys():
+    type_name, snr = name[0], name[1]
+    if int(snr) < 0:
+        snr = 'b'+str(-snr)
+    try:
+        exec('dataset_'+str(snr)+'dB')
+    except NameError:
+        exec('dataset_'+str(snr)+'dB = {}')
+    data = dataset[name]
+    exec('dataset_'+str(snr)+'dB[type_name] = dataset[name]')
+    if eval('len(dataset_'+str(snr)+'dB) == total'):
+        with open(save_path+'/RML_2016_'+str(snr)+'dB.pkl', 'wb') as f:
+            pickle.dump(eval('dataset_'+str(snr)+'dB'), f, pickle.HIGHEST_PROTOCOL)
+```
+
+### RML2016c
+
+```python
+import os
+import pickle
+
+dataset = pickle.load(open("dataset/2016.04C.multisnr.pkl", "rb"), encoding='bytes')
+save_path = 'dataset/split_dB_rml2016c'
+if not os.path.exists(save_path):
+    os.mkdir(save_path)
+print('processing')
+
+all_type: set = set()
+all_snr: set = set()
+for name in dataset.keys():
+    type_name, snr = name[0], name[1]
+    all_type.add(type_name)
+    all_snr.add(snr)
+print('调制形式为：', all_type)
+list_snr = list(all_snr)
+list_snr.sort()
+print('信噪比为：', list_snr)
+
+total = len(all_type)
+for name in dataset.keys():
+    type_name, snr = name[0], name[1]
+    if int(snr) < 0:
+        snr = 'b'+str(-snr)
+    try:
+        exec('dataset_'+str(snr)+'dB')
+    except NameError:
+        exec('dataset_'+str(snr)+'dB = {}')
+    data = dataset[name]
+    exec('dataset_'+str(snr)+'dB[type_name] = dataset[name]')
+    if eval('len(dataset_'+str(snr)+'dB) == total'):
+        with open(save_path+'/RML_2016_'+str(snr)+'dB.pkl', 'wb') as f:
+            pickle.dump(eval('dataset_'+str(snr)+'dB'), f, pickle.HIGHEST_PROTOCOL)
+```
+
+### RML2018
+
+```python
+import h5py
+import pickle as pkl
+import os
+# file['X']是数据， file['Y']是one-hot 一类一类的  file['Z']是snr 一类的-20-30dB在一起
+
+classes = ['OOK', '4ASK', '8ASK', 'BPSK', 'QPSK',
+'8PSK', '16PSK', '32PSK', '16APSK', '32APSK', '64APSK',
+'128APSK', '16QAM', '32QAM', '64QAM', '128QAM',
+'256QAM', 'AM-SSB-WC', 'AM-SSB-SC', 'AM-DSB-WC',
+'AM-DSB-SC', 'FM', 'GMSK', 'OQPSK']
+
+save_path = 'dataset/split_dB_rml2018'
+if not os.path.exists(save_path):
+    os.mkdir(save_path)
+
+need_snr = [20]
+
+file = h5py.File('H:/DATASETS/RML/GOLD_XYZ_OSC.0001_1024.hdf5', 'r+')
+for name in file.keys():
+    print(name, file[name].shape)
+num_per_class = int(file['Y'].shape[0]/file['Y'].shape[1])
+print('每类所有dB信号总数:', num_per_class)
+num_per_snr = 4096
+
+data_list = file['X']
+print(len(data_list))
+# name_idx = [i for i in range(len(classes)) if classes[i] in ['BPSK', 'QPSK', '8PSK', '16QAM', '32QAM', '64QAM']]
+name_idx = [i for i in range(len(classes)) if classes[i] in classes]
+
+print(name_idx)
+
+snr_list = file['Z'][:num_per_class]
+# print(snr_list, len(snr_list))
+idx_snr = []
+for i in range(len(need_snr)):
+    idx_part = [j for j in range(num_per_class) if snr_list[j] == need_snr[i]]
+    idx_snr.append(idx_part)
+
+for snr_iidx in range(len(need_snr)):
+    exec('dict_out_'+str(need_snr[snr_iidx])+'dB = {}')
+    for idx in range(len(name_idx)):
+        start = name_idx[idx]*num_per_class
+        end = (name_idx[idx]+1)*num_per_class
+        out_one_class_all_snr = data_list[start:end]
+        exec('dict_out_'+str(need_snr[snr_iidx])+'dB[classes[name_idx[idx]]] = out_one_class_all_snr[idx_snr[snr_iidx]]')
+    with open(save_path+'\RML_2018_' + str(need_snr[snr_iidx])+'dB.pkl', 'wb') as f:
+        pkl.dump(eval('dict_out_' + str(need_snr[snr_iidx]) + 'dB'), f, pkl.HIGHEST_PROTOCOL)
+```
+
+重新更新了一下，速度更快
+
+```python
+import h5py
+import numpy as np
+import pickle
+classes = ['OOK', '4ASK', '8ASK', 'BPSK', 'QPSK',
+'8PSK', '16PSK', '32PSK', '16APSK', '32APSK', '64APSK',
+'128APSK', '16QAM', '32QAM', '64QAM', '128QAM',
+'256QAM', 'AM-SSB-WC', 'AM-SSB-SC', 'AM-DSB-WC',
+'AM-DSB-SC', 'FM', 'GMSK', 'OQPSK']
+
+file = h5py.File('H:/DATASETS/RML/GOLD_XYZ_OSC.0001_1024.hdf5', 'r+')
+# for name in file.keys():
+#     print(name, file[name].shape)
+# num_per_class = int(file['Y'].shape[0]/file['Y'].shape[1])
+# print('每类所有dB信号总数:', num_per_class)
+# num_per_snr = 4096
+
+# file['X']是数据， file['Y']是one-hot 一类一类的  file['Z']是snr 一类的-20-30dB在一起
+
+data_all = file['X']
+label_all = np.array(file['Y']).argmax(axis=1)
+snr_all = file['Z']
+
+
+need_snr = 20
+
+
+need_idx = [idx for idx in range(int(len(label_all)/24)) if snr_all[idx] == need_snr]
+
+need_idx_all = []
+for i in range(24):
+    need_idx_all.append([a+int(i*len(label_all)/24) for a in need_idx])
+
+# for i in range(24):
+#     exec('snr_'+str(i)+' = snr_all[need_idx_all[i]]')
+
+data_out = {}
+for i in range(24):
+    data_out[classes[i]] = data_all[need_idx_all[i], :, :]
+
+with open('datasets/dict_out_' + str(need_snr) + 'dB.pkl', 'wb') as f:
+    pickle.dump(data_out, f, pickle.HIGHEST_PROTOCOL)
+print('11')
+```
+
+
+
+### load data
+
+```python
+import numpy as np
+import pickle as pkl
+
+
+print('\nloading 2016c ... ')
+# 读取2016c
+with open('dataset/split_dB_rml2016c/RML_2016_0dB.pkl', 'rb') as f:
+    data_2016c = pkl.load(f)
+for k in data_2016c.keys():
+    print(k, data_2016c[k].shape)
+
+print('\nloading 2016a ... ')
+# 读取2016a
+with open('dataset/split_dB_rml2016a/RML_2016_0dB.pkl', 'rb') as f:
+    data_2016a = pkl.load(f)
+for k in data_2016a.keys():
+    print(k, data_2016a[k].shape)
+
+
+print('\nloading 2018 ... ')
+# 读取2016a
+with open('dataset/split_dB_rml2018/RML_2018_20dB.pkl', 'rb') as f:
+    data_2018 = pkl.load(f)
+for k in data_2018.keys():
+    print(k, data_2018[k].shape)
+
+
+print('\nloading WIDEFT-A2197_1 ... ')
+data_WIDEFT = np.load('dataset/A2197_1/1.npy')
+print(data_WIDEFT.real.shape, data_WIDEFT.imag.shape)
+```
+

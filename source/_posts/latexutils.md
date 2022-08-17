@@ -122,6 +122,38 @@ for example:
 
 $$\boldsymbol{\phi}||\phi$$
 
+# Latex横向纸张
+
+```latex
+\documentclass[review, 11pt]{article}%调用elsevier模板
+\usepackage[backend=bibtex]{biblatex}
+\usepackage[UTF8]{ctex}
+\usepackage{pdflscape}
+\usepackage{geometry}
+\geometry{layoutwidth=297mm,layoutheight=210 mm, left=2.7cm,right=2.7cm,top=1.8cm,bottom=1.5cm, includehead,includefoot}
+\paperwidth=\pdfpageheight
+\paperheight=\pdfpagewidth
+\pdfpageheight=\paperheight
+\pdfpagewidth=\paperwidth
+
+\begin{document} %开始正文书写
+%\begin{landscape}
+\begin{table}[h]
+\centering
+\caption{Soil physico-chemical characteristics of Horqin Desert with various GE time in two soil depths}
+\label{Table.1}
+\begin{tabular}{c c c c c c c c}
+\hline
+Time since GE & Soil Depth & Soil Moisture Content & pH & Conductivity & SOC & TN & TP\\
+(years) && ($\%$)&&(us/cm)&(g/Kg)&(g/Kg)&(mg/Kg)\\
+0&0-15 cm& 3.16$\pm$0.09 d&7.19$\pm$0.15 a& 16.19$\pm$4.72 b& 1.71$\pm$1.38 c&0.15$\pm$0.11 c& 0.07$\pm$0.003 b\\
+\hline
+\end{tabular}
+\end{table}
+%\end{landscape}
+\end{document}
+```
+
 # vs code open json
 
 [json配置](https://blog.csdn.net/qq_24502469/article/details/114269806)

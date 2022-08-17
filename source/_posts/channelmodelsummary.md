@@ -59,6 +59,20 @@ CSI-Free中，对Wireless Energy Transfer的信道进行建模。
 
 {% endnote %}
 
+### 实现
+
+```matlab
+function h = RicianFadingChannel(kappa,M,x,y, choice) 
+    phi = atan(y/x);
+    Phi = -(0:1:M-1)*pi*sin(phi);
+    h_los = PreventiveAdjustmentofMeanShift(exp(1i.*Phi.'), M, choice);
+    hnlos = 1/sqrt(2)*(randn(M,1)+1i*randn(M,1));
+    h = sqrt(kappa/(1+kappa))*h_los*exp(1i*pi/4)+sqrt(1/(1+kappa))*hnlos;
+end
+```
+
+
+
 
 
 ## ?? Wideband geometric channel model
@@ -109,6 +123,10 @@ $$
 \textbf{a}_r(\vartheta_l,\gamma_l)=\textbf{a}_x(u)\otimes\textbf{a}_y(v)
 $$
 其中，$$\otimes$$表示Kronecker product（克罗内克积）。$$\textbf{a}_x(u)$$和$$\textbf{a}_y(v)$$表示导向矢量 or 相应向量 (steering vector) or 阵列流形 (array manifold)。 且$$u\triangleq2\pi d\cos(\gamma_l)/\lambda$$（即空间相位）,$$v\triangleq2\pi d\sin(\gamma_l)\cos(\vartheta_l)/\lambda$$，$$d$$表示天线位置：
+
+{% note warning%}
+在更多的文章中，$$v\triangleq2\pi d\sin(\gamma_l)\sin(\vartheta_l)/\lambda$$，这和选取的参考系相关。我个人认为选$$\sin\sin$$比较好
+{% endnote %}
 $$
 \begin{aligned}
 &\boldsymbol{a}_{x}(u) \triangleq \frac{1}{\sqrt{M_{x}}}\left[\begin{array}{llll}
@@ -121,6 +139,12 @@ $$
 $$
 **由于毫米波信道的稀疏散射特性，路径L的数目相对于G的维度很小。**
 
+### 理解
+
+毫米波信道可以简化为单径信道模型（求和）。主要是LoS场景。毫米波绕射能力差，路径稀疏，信道模型具有丰富的几何特征。
+
+上面的$$\mathbf{H}$$其实就是接收为面阵，发射为线阵的导向矢量乘积，也就是==直射信道==。
+
 ### 适用范围
 
 考虑毫米波稀疏散射特性，有$$L$$个路径。
@@ -131,4 +155,46 @@ $$
 - **Deep Channel Learning for Large Intelligent Surfaces Aided mm-Wave Massive MIMO Systems**.  *Ahmet M. Elbir* et.al.  **IEEE Wireless Communications Letters, Sept.  2020**  ([pdf](https://ieeexplore.ieee.org/document/9090876))  (Citations **51**)
 
 {% endnote %}
+
+### 实现
+
+```matlab
+function H = generate_channel(Nt, Nr, L)
+    AOD = pi*rand(L, 1) - pi/2;  %-2/pi~2/pi
+    AOA = pi*rand(L, 2) - pi/2;  %-2/pi~2/pi
+
+    alpha(1) = 1; % gain of the LoS
+    if L >1
+        alpha(2:L) = 10^(-0.7)*(randn(1,L-1)+1i*randn(1,L-1))/sqrt(2);
+    end
+%     alpha(2:L) = 0;
+    H = zeros(Nr, Nt);
+    Nx = sqrt(Nr);
+    Ny = sqrt(Nr);
+    for ll=1:1:L
+        ax = sqrt(1/Nx)*exp((0:Nx-1)*1j*pi*cos(AOA(ll, 2))).';
+        ay = sqrt(1/Ny)*exp((0:Ny-1)*1j*pi*sin(AOA(ll, 1))*sin(AOA(ll, 2))).';
+        ar =kron(ax, ay);
+        at =  sqrt(1/Nt)*exp((0:Nt-1)*1j*pi*sin(AOD(ll, 1))).';
+        H = H + sqrt(Nr * Nt)*alpha(ll)*ar*at';
+    end
+end
+```
+
+还有简化版本，只有一个主径：
+
+```matlab
+function H = generate_channel_simple(Nt, Nr, AOA1, AOA2, AOD)
+    alpha = 1; % gain of the LoS
+    Nx = sqrt(Nr); % 因为我这里是有Nr个element的IRS
+    Ny = sqrt(Nr); % 方阵排布
+    ax = sqrt(1/Nx)*exp((0:Nx-1)*1j*pi*cos(AOA2)).';
+    ay = sqrt(1/Ny)*exp((0:Ny-1)*1j*pi*sin(AOA1)*sin(AOA2)).';
+    ar =kron(ax, ay);
+    at =  sqrt(1/Nt)*exp((0:Nt-1)*1j*pi*sin(AOD)).';
+    H = sqrt(Nr * Nt)*alpha*ar*at';
+end
+```
+
+
 
