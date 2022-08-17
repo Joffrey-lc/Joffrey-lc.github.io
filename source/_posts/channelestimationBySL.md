@@ -20,7 +20,7 @@ date: 2022-04-09 22:04:20
 
 
 
-其余细节可以参考[我的论文笔记](.\MyPaperNote.html)
+其余细节可以参考[我的论文笔记](https://pan.baidu.com/s/161aZTMZ6WzGJOg8ny8Qvww?pwd=0623)
 
 ## 缩写说明
 

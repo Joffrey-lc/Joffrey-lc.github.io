@@ -1,8 +1,8 @@
 ---
 title: 20220812IRS讲座-Pan cunhua
-excerpt: Two time scale scheme、Active IRS
+excerpt: Two time scale scheme\Active IRS
 index_img: >-
-  https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/202208171601966.png
+  https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208171608618.png
 banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg'
 tags:
   - IRS
@@ -15,7 +15,7 @@ hide: false
 date: 2022-08-17 16:05:
 ---
 
-[讲座PPT](./IRSlectureResource/PPTResource.html)，潘老师人真的很好！
+[讲座PPT](https://pan.baidu.com/s/1P0CIKb6qrRCiEs2Zt1CYaA?pwd=0623)，潘老师人真的很好！
 
 ## two-time scale scheme
 

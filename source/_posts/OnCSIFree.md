@@ -19,7 +19,7 @@ date: 2022-03-27 22:43:18
 
 **On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer**.  *Onel L. A. López* et.al.  **IEEE Internet of Things Journal, Jan.1, 1 2021**  ([pdf](https://ieeexplore.ieee.org/document/9119347))  (Citations **8**)
 
-因为论文中设计大量推导以及证明和实验，所以具体内容只整理了部分，其余见[我的论文笔记](.\MyPaperNote.html)：
+因为论文中设计大量推导以及证明和实验，所以具体内容只整理了部分，其余见[我的论文笔记](https://pan.baidu.com/s/1COopMtLFAMEKpa6mK-G-aQ?pwd=0623)：
 
 {% cb 信道建模、非线性能量转换建模、Preventive Adjustment of Mean Phases , true%}
 

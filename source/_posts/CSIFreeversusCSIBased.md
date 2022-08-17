@@ -17,7 +17,7 @@ hide: false
 date: 2022-03-29 22:11:07
 ---
 
-推导比较复杂， 主要整理了结论，更多信息见[我的论文笔记](.\MyPaperNote.html)
+推导比较复杂， 主要整理了结论，更多信息见[我的论文笔记](https://pan.baidu.com/s/1a0zqoWzu4MSEqukP2D-AYA?pwd=0623)
 
 **CSI-Free vs CSI-Based Multi-Antenna WET for Massive Low-Power Internet of Things**.  *Onel L. A. López* et.al.  **IEEE Transactions on Wireless Communications, May  2021**  ([pdf](https://ieeexplore.ieee.org/document/9316281))  (Citations **1**)
 
