@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://lcjoffrey.top/2022/04/09/typorautils/</loc>
+    <lastmod>2022-08-25</lastmod>
+  </url>
+  <url>
     <loc>http://lcjoffrey.top/2022/08/24/WETsurveyBruno/</loc>
     <lastmod>2022-08-25</lastmod>
   </url>
@@ -157,10 +161,6 @@
     <lastmod>2022-04-10</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2022/04/09/typorautils/</loc>
-    <lastmod>2022-04-09</lastmod>
-  </url>
-  <url>
     <loc>http://lcjoffrey.top/2022/03/24/statistical4WET/</loc>
     <lastmod>2022-04-08</lastmod>
   </url>
@@ -193,7 +193,7 @@
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2022/03/01/spatialmodulation/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
@@ -201,7 +201,7 @@
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
+    <loc>http://lcjoffrey.top/2022/03/01/spatialmodulation/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
@@ -241,19 +241,19 @@
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/cpc/</loc>
-    <lastmod>2022-03-19</lastmod>
-  </url>
-  <url>
     <loc>http://lcjoffrey.top/2021/12/04/datasetloader/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/gcn/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/cpc/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
     <loc>http://lcjoffrey.top/2021/12/12/hexomusic/</loc>
+    <lastmod>2022-03-19</lastmod>
+  </url>
+  <url>
+    <loc>http://lcjoffrey.top/2021/12/04/gcn/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
@@ -269,19 +269,19 @@
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2021/12/03/Self-Supervised%20Learning/</loc>
-    <lastmod>2022-03-19</lastmod>
-  </url>
-  <url>
     <loc>http://lcjoffrey.top/2021/12/04/Mixmatch/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2022/03/13/IRSaidedSWIPT2/</loc>
+    <loc>http://lcjoffrey.top/2021/12/03/Self-Supervised%20Learning/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
     <loc>http://lcjoffrey.top/2021/12/04/Fixmatch/</loc>
+    <lastmod>2022-03-19</lastmod>
+  </url>
+  <url>
+    <loc>http://lcjoffrey.top/2022/03/13/IRSaidedSWIPT2/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
