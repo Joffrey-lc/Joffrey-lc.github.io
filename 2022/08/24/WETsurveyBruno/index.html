@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000202.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000197.png">
 <meta property="article:published_time" content="2022-08-24T15:59:50.000Z">
-<meta property="article:modified_time" content="2022-08-26T08:34:37.668Z">
+<meta property="article:modified_time" content="2022-08-26T08:37:29.587Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Wireless Energy Transfer">
 <meta name="twitter:card" content="summary_large_image">
@@ -362,19 +362,19 @@ v_{\text {out }} \geq \beta_{2} P_{\mathrm{rf}}^{r}+\beta_{4}\left(P_{\mathrm{rf
 <p>意思是，考虑全耦合的element，效果是最好的？？？</p>
 </blockquote>
 <h2 id="Other-Methods"><a href="#Other-Methods" class="headerlink" title="Other Methods"></a>Other Methods</h2><ul>
-<li>**time-reversal<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="M. -L. Ku, Y. Han, H. -Q. Lai, Y. Chen and K. J. R. Liu, “Power Waveforming: Wireless Power Transfer Beyond Time Reversal,” in IEEE Transactions on Signal Processing, vol. 64, no. 22, pp. 5819-5834, 15 Nov.15, 2016, doi: 10.1109/TSP.2016.2601283.
-">[1]</span></a></sup></li>
+<li><strong>time-reversal:</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="M. -L. Ku, Y. Han, H. -Q. Lai, Y. Chen and K. J. R. Liu, “Power Waveforming: Wireless Power Transfer Beyond Time Reversal,” in IEEE Transactions on Signal Processing, vol. 64, no. 22, pp. 5819-5834, 15 Nov.15, 2016, doi: 10.1109/TSP.2016.2601283.
+">[1]</span></a></sup><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="M. -L. Ku, Y. Han, B. Wang and K. J. R. Liu, “Joint Power Waveforming and Beamforming for Wireless Power Transfer,” in IEEE Transactions on Signal Processing, vol. 65, no. 24, pp. 6409-6422, 15 Dec.15, 2017, doi: 10.1109/TSP.2017.2755582.
+">[2]</span></a></sup> 多径当作虚拟天线，增强<script type="math/tex">e_2</script>。需要large bandwidth in order to distinguish as many paths in channel as possible. </li>
 </ul>
 <ul>
-<li>(有点久远)**retrodirective arrays<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="R. Y. Miyamoto and T. Itoh, “Retrodirective arrays for wireless communications,” in IEEE Microwave Magazine, vol. 3, no. 1, pp. 71-79, March 2002, doi: 10.1109/6668.990692.
-">[3]</span></a></sup></li>
+<li>(有点久远)<strong>retrodirective arrays:</strong> <sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="R. Y. Miyamoto and T. Itoh, “Retrodirective arrays for wireless communications,” in IEEE Microwave Magazine, vol. 3, no. 1, pp. 71-79, March 2002, doi: 10.1109/6668.990692.
+">[3]</span></a></sup><sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="C. Pon, “Retrodirective array using the heterodyne technique,” in IEEE Transactions on Antennas and Propagation, vol. 12, no. 2, pp. 176-180, March 1964, doi: 10.1109/TAP.1964.1138191.
+">[4]</span></a></sup> Upon receiving a signal from any direction, retrodirective arrays exploit channel reciprocity to transmit a signal response, in the form of a phase-conjugated version of the received signal, back to the same direction without the need of knowing the source direction or performing explicit channel estimation/feedback</li>
 </ul>
 <section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>M. -L. Ku, Y. Han, H. -Q. Lai, Y. Chen and K. J. R. Liu, “Power Waveforming: Wireless Power Transfer Beyond Time Reversal,” in IEEE Transactions on Signal Processing, vol. 64, no. 22, pp. 5819-5834, 15 Nov.15, 2016, doi: 10.1109/TSP.2016.2601283.
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>** 多径当作虚拟天线，增强<script type="math/tex">e_2</script>。需要large bandwidth in order to distinguish as many paths in channel as possible.
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>M. -L. Ku, Y. Han, B. Wang and K. J. R. Liu, “Joint Power Waveforming and Beamforming for Wireless Power Transfer,” in IEEE Transactions on Signal Processing, vol. 65, no. 24, pp. 6409-6422, 15 Dec.15, 2017, doi: 10.1109/TSP.2017.2755582.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>M. -L. Ku, Y. Han, B. Wang and K. J. R. Liu, “Joint Power Waveforming and Beamforming for Wireless Power Transfer,” in IEEE Transactions on Signal Processing, vol. 65, no. 24, pp. 6409-6422, 15 Dec.15, 2017, doi: 10.1109/TSP.2017.2755582.
 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>R. Y. Miyamoto and T. Itoh, “Retrodirective arrays for wireless communications,” in IEEE Microwave Magazine, vol. 3, no. 1, pp. 71-79, March 2002, doi: 10.1109/6668.990692.
-<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>**  Upon receiving a signal from any direction, retrodirective arrays exploit channel reciprocity to transmit a signal response, in the form of a phase-conjugated version of the received signal, back to the same direction without the need of knowing the source direction or performing explicit channel estimation/feedback
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>C. Pon, “Retrodirective array using the heterodyne technique,” in IEEE Transactions on Antennas and Propagation, vol. 12, no. 2, pp. 176-180, March 1964, doi: 10.1109/TAP.1964.1138191.
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>C. Pon, “Retrodirective array using the heterodyne technique,” in IEEE Transactions on Antennas and Propagation, vol. 12, no. 2, pp. 176-180, March 1964, doi: 10.1109/TAP.1964.1138191.
 <a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
