@@ -13,23 +13,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Fourier Series">
+  <meta name="description" content="High-Efficiency Synthesizer for Spatial Waves Based on Space-Time-Coding Digital Metasurface. Jun Yan Dai et.al.">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="Fourier Series">
+  <meta name="description" content="High-Efficiency Synthesizer for Spatial Waves Based on Space-Time-Coding Digital Metasurface. Jun Yan Dai et.al.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知识储备-傅里叶级数">
-<meta property="og:url" content="http://lcjoffrey.top/2022/09/26/fourierseries/index.html">
+<meta property="og:title" content="Metasurface&#x2F;IRS 调频（一）">
+<meta property="og:url" content="http://lcjoffrey.top/2022/09/27/metasurfaceFrenquencyadjustment/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="Fourier Series">
+<meta property="og:description" content="High-Efficiency Synthesizer for Spatial Waves Based on Space-Time-Coding Digital Metasurface. Jun Yan Dai et.al.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-26T11:19:02.000Z">
-<meta property="article:modified_time" content="2022-09-26T12:08:40.688Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605274.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605338.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605689.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605288.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605208.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605334.png">
+<meta property="article:published_time" content="2022-09-27T08:05:10.000Z">
+<meta property="article:modified_time" content="2022-09-27T08:07:31.568Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Fourier Series">
+<meta property="article:tag" content="IRS">
+<meta property="article:tag" content="Metasurface">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605274.png">
   
-  <title>知识储备-傅里叶级数 - Joffrey&#39;s Blog</title>
+  <title>Metasurface/IRS 调频（一） - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -195,7 +203,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="知识储备-傅里叶级数">
+            <span class="h2" id="subtitle" title="Metasurface/IRS 调频（一）">
               
             </span>
 
@@ -205,8 +213,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-09-26 19:19" pubdate>
-        2022年9月26日 晚上
+      <time datetime="2022-09-27 16:05" pubdate>
+        2022年9月27日 下午
       </time>
     </span>
   
@@ -216,7 +224,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      404 字
+      2k 字
     </span>
   
 
@@ -225,7 +233,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      6 分钟
     </span>
   
 
@@ -262,17 +270,57 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">知识储备-傅里叶级数</h1>
+            <h1 style="display: none">Metasurface/IRS 调频（一）</h1>
             
             <div class="markdown-body">
-              <h2 id="傅里叶级数"><a href="#傅里叶级数" class="headerlink" title="傅里叶级数"></a>傅里叶级数</h2><p>法国数学家<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/傅里叶/841724?fromModule=lemma_inlink">傅里叶</a>认为，任何周期函数都可以用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/正弦函数/9601948?fromModule=lemma_inlink">正弦函数</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/余弦函数/9602078?fromModule=lemma_inlink">余弦函数</a>构成的无穷级数来表示（选择正弦函数与余弦函数作为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/基函数/1801232?fromModule=lemma_inlink">基函数</a>是因为它们是正交的），后世称傅里叶级数为一种特殊的三角级数，根据<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/欧拉公式/92066?fromModule=lemma_inlink">欧拉公式</a>，三角函数又能化成指数形式，也称<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/傅立叶级数/7649046?fromModule=lemma_inlink">傅立叶级数</a>为一种指数级数<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://baike.baidu.com/item/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/5210337?fr=aladdin
-">[1]</span></a></sup>。</p>
-<p>给定一个周期为<script type="math/tex">T</script>的周期函数，那么它可以表示为无穷级数：</p>
+              <p><strong>High-Efficiency Synthesizer for Spatial Waves Based on Space-Time-Coding Digital Metasurface</strong>.  <em>Jun Yan Dai</em> et.al.  <strong>LASER &amp; PHOTONICS REVIEWS, 2020</strong>  (<a target="_blank" rel="noopener" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/lpor.201900133">pdf</a>)  (Citations <strong>24</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><strong>两个关键点</strong></p>
+<ul>
+<li>实现从基波、+1-st、-1-st 谐波的抑制或转换（如果能很好地抑制不想要的谐波，则转换效率应该很大。理想中最大为100%，即完全抑制不需要的谐波）</li>
+<li>实现在这些转换的谐波上进行波束赋形，使波束指向某一特定方向</li>
+</ul>
+<p>提出的方法可以同时进行频率转换和beam shaping。</p>
+<p>高次谐波的产生主要与discrete phase states相关。</p>
+<h2 id="谐波转换"><a href="#谐波转换" class="headerlink" title="谐波转换"></a>谐波转换</h2><p>给出入射信号和反射信号的表达式，假设入射单频信号<script type="math/tex">E_{\mathrm{i}}(t)=e^{j2\pi f_0t}</script>：</p>
 <script type="math/tex; mode=display">
-x(t)=\sum_{k=-\infty}^{+\infty} a_k \cdot e^{j k\left(\frac{2 \pi}{T}\right) t}</script><p>其中<script type="math/tex">a_k</script>可以由下式计算：</p>
+E_{\mathrm{r}}(t)=E_{\mathrm{i}}(t) \cdot A(t) \mathrm{e}^{j \varphi(t)}</script><p>令<script type="math/tex">\Gamma(t)=A(t) e^{j \varphi(t)}</script>且：</p>
 <script type="math/tex; mode=display">
-a_k=\frac{1}{T} \int_T x(t) \cdot e^{-j k\left(\frac{2 \pi}{T}\right) t} d t</script><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/5210337?fr=aladdin">https://baike.baidu.com/item/%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0/5210337?fr=aladdin</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+\varphi(t)=\varphi_0+p \cdot \bmod (t, T)</script><p>其中<script type="math/tex">T</script>为调制周期，<script type="math/tex">\varphi_0</script>为初相。假设<script type="math/tex">A(t)=A_0</script>为定值。</p>
+<p>因为<script type="math/tex">\varphi(t)</script>为周期函数，所以可以通过傅里叶级数展开：</p>
+<script type="math/tex; mode=display">
+E_r(t)=A_0 \cdot \mathrm{e}^{\left[\varphi_0+p \cdot \bmod (t, T)\right]} \cdot \mathrm{e}^{j 2 \pi f_0 t}=\sum_{k=-\infty}^{+\infty} a_k \mathrm{e}^{j k \frac{2 \pi}{T} t} \mathrm{e}^{j 2 \pi f_0 t}</script><p>且：</p>
+<script type="math/tex; mode=display">
+a_k=\left|A_0 \operatorname{sinc}\left(\frac{p T}{2}-k \pi\right)\right| \mathrm{e}^{j\left[\varphi_0+\frac{p T}{2}-k \pi+\bmod \left(\left\lfloor\frac{p T}{2 \pi}-k \mid, 2\right) \cdot \pi+\varepsilon(2 k \pi-p T) \cdot \pi\right]\right.}</script><p>当<script type="math/tex">pT = 2m\pi</script>，有：</p>
+<script type="math/tex; mode=display">
+a_k=\left\{\begin{array}{cc}
+A_0 \mathrm{e}^{j \varphi_0}, & k=m \\
+0, & k \neq m
+\end{array}\right.</script><p>所以可以通过选择适当的<script type="math/tex">p</script>来控制需要的谐波，并且转换率可以达到<script type="math/tex">100\%</script></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605274.png" srcset="/img/loading.gif" lazyload alt="image-20220927150849165" style="zoom: 50%;" /></p>
+<p>从上图也可以看到，当<script type="math/tex">p</script>取不同的值时，留存有不同的谐波，例如在<script type="math/tex">p=2\pi/T</script>，仅有<script type="math/tex">k=m=1</script>次谐波有幅度为1，其余谐波幅度都未0。</p>
+<p>然后，考虑discrete phase带来的量化误差（quantization error）。选取<script type="math/tex">p=2\pi/T</script>，即仅保留+1-st谐波，结果如下：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605338.png" srcset="/img/loading.gif" lazyload alt="image-20220927151354925" style="zoom: 67%;" /></p>
+<p>看起来3-bit就可以实现很好地谐波抑制。</p>
+<h2 id="Beam-shaping"><a href="#Beam-shaping" class="headerlink" title="Beam shaping"></a>Beam shaping</h2><p>假设metasurface以列为单位，每一列的反射矩阵为<script type="math/tex">\Gamma^n(t)</script>，即只考虑二维ULA。则远场天线方向图的表达式：</p>
+<script type="math/tex; mode=display">
+f(\theta, t)=\sum_{n=1}^N E^n(\theta) \Gamma^n(t) e^{j \frac{2 \pi f_0}{c}(n-1) d \sin \theta}</script><p>其中<script type="math/tex">E^n(\theta)\approx \cos\theta</script>（代表定向天线的方向因子）。则谐波<script type="math/tex">f_0+k/T</script>的方向图为：</p>
+<script type="math/tex; mode=display">
+F_k(\theta)=\sum_{n=1}^N E^n(\theta) a_k^n \mathrm{e}^{j \frac{2 \pi\left(f_0+k / T\right)}{c}(n-1) d \sin \theta}</script><p>进一步，仅有<script type="math/tex">m</script>阶的能保留下来<script type="math/tex">a^n_m\neq0</script>，则：</p>
+<script type="math/tex; mode=display">
+F_m(\theta)=\sum_{n=1}^N E^n(\theta) A_0 \mathrm{e}^{j\left[\frac{2 \pi\left(f_0+m / T\right)}{c}(n-1) d \sin \theta+\varphi_0\right]}</script><p>==一般而言，通过调整相位可以改变波束指向，但是这里的相位已经用于谐波生成了，不适合再用于调整波束指向==</p>
+<p>所以作者认为可以通过反射单元引入时延来实现相位的调整。</p>
+<blockquote>
+<p>这个说法有点奇怪，为什么不直接再调相位？时延的相位差最后还是叠加在整体上的，和直接调整应该没啥区别。</p>
+</blockquote>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605689.png" srcset="/img/loading.gif" lazyload alt="image-20220927155314499" style="zoom: 50%;" /></p>
+<p>指向方向：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605288.png" srcset="/img/loading.gif" lazyload alt="image-20220927155612060" style="zoom:33%;" /></p>
+<p>实际硬件</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605208.png" srcset="/img/loading.gif" lazyload alt="image-20220927155213369" style="zoom: 67%;" /></p>
+<p>通过给不同的偏置电压，可以实现不同的相位，同时也有不同的幅度相应（希望幅度相应是平稳的）。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605334.png" srcset="/img/loading.gif" lazyload alt="image-20220927155952300" style="zoom:50%;" /></p>
+<p>谐波<script type="math/tex">\Delta f</script>越大， 泄露越多。<script type="math/tex">\varphi_0</script>和<script type="math/tex">p</script>还可以决定是正阶谐波还是负阶谐波</p>
+
             </div>
             <hr>
             <div>
@@ -281,7 +329,9 @@ a_k=\frac{1}{T} \int_T x(t) \cdot e^{-j k\left(\frac{2 \pi}{T}\right) t} d t</sc
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/basic-knowledge/">basic knowledge</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Intelligent-Reflecting-Surface/">Intelligent Reflecting Surface</a>
                     
                   </div>
                 
@@ -289,7 +339,9 @@ a_k=\frac{1}{T} \int_T x(t) \cdot e^{-j k\left(\frac{2 \pi}{T}\right) t} d t</sc
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Fourier-Series/">Fourier Series</a>
+                      <a class="hover-with-bg" href="/tags/IRS/">IRS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Metasurface/">Metasurface</a>
                     
                   </div>
                 
@@ -303,7 +355,7 @@ a_k=\frac{1}{T} \int_T x(t) \cdot e^{-j k\left(\frac{2 \pi}{T}\right) t} d t</sc
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/09/26/fourierseries/">http://lcjoffrey.top/2022/09/26/fourierseries/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/09/27/metasurfaceFrenquencyadjustment/">http://lcjoffrey.top/2022/09/27/metasurfaceFrenquencyadjustment/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -313,18 +365,12 @@ a_k=\frac{1}{T} \int_T x(t) \cdot e^{-j k\left(\frac{2 \pi}{T}\right) t} d t</sc
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/27/metasurfaceFrenquencyadjustment/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Metasurface/IRS 调频（一）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/29/sentences/">
-                        <span class="hidden-mobile">SSSSentences句子</span>
+                      <a href="/2022/09/26/fourierseries/">
+                        <span class="hidden-mobile">知识储备-傅里叶级数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Metasurface/IRS 调频（一）</title>
+    <link href="/2022/09/27/metasurfaceFrenquencyadjustment/"/>
+    <url>/2022/09/27/metasurfaceFrenquencyadjustment/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>High-Efficiency Synthesizer for Spatial Waves Based on Space-Time-Coding Digital Metasurface</strong>.  <em>Jun Yan Dai</em> et.al.  <strong>LASER &amp; PHOTONICS REVIEWS, 2020</strong>  (<a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/lpor.201900133">pdf</a>)  (Citations <strong>24</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><strong>两个关键点</strong></p><ul><li>实现从基波、+1-st、-1-st 谐波的抑制或转换（如果能很好地抑制不想要的谐波，则转换效率应该很大。理想中最大为100%，即完全抑制不需要的谐波）</li><li>实现在这些转换的谐波上进行波束赋形，使波束指向某一特定方向</li></ul><p>提出的方法可以同时进行频率转换和beam shaping。</p><p>高次谐波的产生主要与discrete phase states相关。</p><h2 id="谐波转换"><a href="#谐波转换" class="headerlink" title="谐波转换"></a>谐波转换</h2><p>给出入射信号和反射信号的表达式，假设入射单频信号<script type="math/tex">E_{\mathrm{i}}(t)=e^{j2\pi f_0t}</script>：</p><script type="math/tex; mode=display">E_{\mathrm{r}}(t)=E_{\mathrm{i}}(t) \cdot A(t) \mathrm{e}^{j \varphi(t)}</script><p>令<script type="math/tex">\Gamma(t)=A(t) e^{j \varphi(t)}</script>且：</p><script type="math/tex; mode=display">\varphi(t)=\varphi_0+p \cdot \bmod (t, T)</script><p>其中<script type="math/tex">T</script>为调制周期，<script type="math/tex">\varphi_0</script>为初相。假设<script type="math/tex">A(t)=A_0</script>为定值。</p><p>因为<script type="math/tex">\varphi(t)</script>为周期函数，所以可以通过傅里叶级数展开：</p><script type="math/tex; mode=display">E_r(t)=A_0 \cdot \mathrm{e}^{\left[\varphi_0+p \cdot \bmod (t, T)\right]} \cdot \mathrm{e}^{j 2 \pi f_0 t}=\sum_{k=-\infty}^{+\infty} a_k \mathrm{e}^{j k \frac{2 \pi}{T} t} \mathrm{e}^{j 2 \pi f_0 t}</script><p>且：</p><script type="math/tex; mode=display">a_k=\left|A_0 \operatorname{sinc}\left(\frac{p T}{2}-k \pi\right)\right| \mathrm{e}^{j\left[\varphi_0+\frac{p T}{2}-k \pi+\bmod \left(\left\lfloor\frac{p T}{2 \pi}-k \mid, 2\right) \cdot \pi+\varepsilon(2 k \pi-p T) \cdot \pi\right]\right.}</script><p>当<script type="math/tex">pT = 2m\pi</script>，有：</p><script type="math/tex; mode=display">a_k=\left\{\begin{array}{cc}A_0 \mathrm{e}^{j \varphi_0}, & k=m \\0, & k \neq m\end{array}\right.</script><p>所以可以通过选择适当的<script type="math/tex">p</script>来控制需要的谐波，并且转换率可以达到<script type="math/tex">100\%</script></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605274.png" alt="image-20220927150849165" style="zoom: 50%;" /></p><p>从上图也可以看到，当<script type="math/tex">p</script>取不同的值时，留存有不同的谐波，例如在<script type="math/tex">p=2\pi/T</script>，仅有<script type="math/tex">k=m=1</script>次谐波有幅度为1，其余谐波幅度都未0。</p><p>然后，考虑discrete phase带来的量化误差（quantization error）。选取<script type="math/tex">p=2\pi/T</script>，即仅保留+1-st谐波，结果如下：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605338.png" alt="image-20220927151354925" style="zoom: 67%;" /></p><p>看起来3-bit就可以实现很好地谐波抑制。</p><h2 id="Beam-shaping"><a href="#Beam-shaping" class="headerlink" title="Beam shaping"></a>Beam shaping</h2><p>假设metasurface以列为单位，每一列的反射矩阵为<script type="math/tex">\Gamma^n(t)</script>，即只考虑二维ULA。则远场天线方向图的表达式：</p><script type="math/tex; mode=display">f(\theta, t)=\sum_{n=1}^N E^n(\theta) \Gamma^n(t) e^{j \frac{2 \pi f_0}{c}(n-1) d \sin \theta}</script><p>其中<script type="math/tex">E^n(\theta)\approx \cos\theta</script>（代表定向天线的方向因子）。则谐波<script type="math/tex">f_0+k/T</script>的方向图为：</p><script type="math/tex; mode=display">F_k(\theta)=\sum_{n=1}^N E^n(\theta) a_k^n \mathrm{e}^{j \frac{2 \pi\left(f_0+k / T\right)}{c}(n-1) d \sin \theta}</script><p>进一步，仅有<script type="math/tex">m</script>阶的能保留下来<script type="math/tex">a^n_m\neq0</script>，则：</p><script type="math/tex; mode=display">F_m(\theta)=\sum_{n=1}^N E^n(\theta) A_0 \mathrm{e}^{j\left[\frac{2 \pi\left(f_0+m / T\right)}{c}(n-1) d \sin \theta+\varphi_0\right]}</script><p>==一般而言，通过调整相位可以改变波束指向，但是这里的相位已经用于谐波生成了，不适合再用于调整波束指向==</p><p>所以作者认为可以通过反射单元引入时延来实现相位的调整。</p><blockquote><p>这个说法有点奇怪，为什么不直接再调相位？时延的相位差最后还是叠加在整体上的，和直接调整应该没啥区别。</p></blockquote><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605689.png" alt="image-20220927155314499" style="zoom: 50%;" /></p><p>指向方向：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605288.png" alt="image-20220927155612060" style="zoom:33%;" /></p><p>实际硬件</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605208.png" alt="image-20220927155213369" style="zoom: 67%;" /></p><p>通过给不同的偏置电压，可以实现不同的相位，同时也有不同的幅度相应（希望幅度相应是平稳的）。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202209271605334.png" alt="image-20220927155952300" style="zoom:50%;" /></p><p>谐波<script type="math/tex">\Delta f</script>越大， 泄露越多。<script type="math/tex">\varphi_0</script>和<script type="math/tex">p</script>还可以决定是正阶谐波还是负阶谐波</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Intelligent Reflecting Surface</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IRS</tag>
+      
+      <tag>Metasurface</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>知识储备-傅里叶级数</title>
     <link href="/2022/09/26/fourierseries/"/>
     <url>/2022/09/26/fourierseries/</url>
