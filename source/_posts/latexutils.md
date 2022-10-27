@@ -157,3 +157,87 @@ Time since GE & Soil Depth & Soil Moisture Content & pH & Conductivity & SOC & T
 # vs code open json
 
 [json配置](https://blog.csdn.net/qq_24502469/article/details/114269806)
+
+# 公式编号
+
+用latex写论文的时候，每次公式换行都会有编号，可以通过在换行符\\\前加\nonumber
+
+
+
+# Research Style
+
+在进行调研的时候，可以通过如下参数配置调研表格。
+
+```latex
+\documentclass[review, 11pt]{article}%调用elsevier模板
+\usepackage[UTF8]{ctex}
+\usepackage{pdflscape}
+\usepackage{diagbox}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{ulem}
+\usepackage{float}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{gensymb}
+\usepackage[resetlabels]{multibib}
+\usepackage{subfigure}
+
+\usepackage{caption}
+\usepackage{graphicx}
+
+
+% \newcites{Info}{ }
+% \newcites{Idea}{ }
+% \newcites{WETIRS}{ }
+% \newcites{COOPIRS}{ }
+% \newcites{ACTIRS}{ }
+
+\geometry{layoutwidth=297mm,layoutheight=210 mm, left=1cm,right=1cm,top=1cm,bottom=1cm, includehead,includefoot}
+\paperwidth=\pdfpageheight
+\paperheight=\pdfpagewidth
+\pdfpageheight=\paperheight
+\pdfpagewidth=\paperwidth
+
+\begin{document} 
+\section*{CSI-free}
+% for table I
+\begin{table}[H]
+    \caption{Channel State Information free for \textbf{Energy} Harvesting System}
+    \label{Table.1}
+    \begin{center}
+        \begin{tabular}{|p{2cm}|p{3cm}|p{1.5cm}|p{4.5cm}|p{2.5cm}|p{1cm}|p{3cm}|p{6cm}|}
+        \hline
+        \textbf{Literature} & \textbf{System Model} & \textbf{Channel} & \textbf{CSI-free Method} &\textbf{Signal Type}& \textbf{With IRS} &\textbf{Further work} &\textbf{P.S.}\\
+        \hline
+        \href{https://ieeexplore.ieee.org/document/8470248}{Bruno et.al.}\cite[]{}& Multi-antennas BS, Single antenna user&LOS& Transimit Diversity (form a quick fading channel and Transmit Diversity can also benefit for EH) &Energy Only& No & Energy Waveform, Energy Modulation& Fading and Transmit Diversity are both benefit for Energy Harvesting\\
+        \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\bibliographystyle{IEEEtran}
+\bibliography{mybib}
+\end{document}
+
+```
+
+值得注意的是，需要在调研中出现多个reference的方法在：line21-line25。新建一个citation，例如：
+
+```latex
+\newcites{Info}{ }
+```
+
+然后再后面需要显示reference的地方，使用：
+
+```latex
+% citation
+\citeInfo{}
+% show reference 
+\bibliographystyleInfo{IEEEtran}
+\bibliographyInfo{mybib}
+```
+
+最后，在编译的时候选择latexmk进行编译。Done。

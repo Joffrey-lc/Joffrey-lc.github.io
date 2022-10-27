@@ -71,4 +71,9 @@ This is eqn $$\ref{eqn:1}$$
 {% label primary @text %}
 ```
 
-{% label primary @在这里填写的文字部分（text部分）不能以(at)开头 %}
+
+
+注意事项：
+
+- {% label primary @在这里填写的文字部分（text部分）不能以(at)开头 %}
+- {% label primary @在这里填写的markdown公式部分以单个''$''开始，单个结尾%}

@@ -52,3 +52,10 @@ FPGA实现4G通信模块，代替USRP。
 
 书
 
+# 博士阶段的研究路线（2022.09.26）
+
+## IRS+Multi-Sine+FDA
+
+## IRS+DOA
+
+## IRS+unknown PB-to-IRS Channel 

@@ -348,4 +348,32 @@ end;
 
 - 在插入中插入箭头
 
-  
+
+## matlab绘图MAP
+
+最近抖音学了几个配色还可以：
+
+```matlab
+color_map1 = [[21,29,41];[210,57,24];[229,168,075];[093,163,157]]./255;
+color_map2 = [[166,64,54];[240,194,162];[065,130,164];[053,078,107]]./255;
+color_map3 = [[073,148,196];[234,085,020];[093,163,157];[250,192,061]]./255;
+```
+
+最常用{% label primary @color_map3%}。
+
+## matlab横纵坐标及图例
+
+值得注意的是，横纵坐标和图例最好都用latex编译器，设置方式如下：
+
+```matlab
+h1 = legend('MISO, $$M=4,k_h=1,k_G=0$$', 'MISO, $$M=8,k_h=1,k_G=0$$', 'MISO, $$M=16,k_h=1,k_G=0$$','MISO, $$M=32,k_h=1,k_G=0$$','SISO,$$k_h=1,k_G=0$$');
+set(h1, 'Interpreter', 'latex')
+xlim([min(N_all), max(N_all)]);
+xlabel('Number of IRS elements', 'Interpreter', 'latex');
+ylabel('Outage Probability', 'Interpreter', 'latex')
+```
+
+三个{% label primary @'Interpreter', 'latex' %}
+
+
+
