@@ -24,7 +24,7 @@
 <meta property="og:description" content="matlab工具箱，持续更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-26T10:32:15.000Z">
-<meta property="article:modified_time" content="2022-10-27T02:43:36.858Z">
+<meta property="article:modified_time" content="2022-11-01T02:41:23.250Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="matlab">
 <meta name="twitter:card" content="summary_large_image">
@@ -216,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.5k 字
+      7.7k 字
     </span>
   
 
@@ -265,7 +265,11 @@
             <h1 style="display: none">Matlab工具箱</h1>
             
             <div class="markdown-body">
-              <h2 id="matlab自定义曲线拟合"><a href="#matlab自定义曲线拟合" class="headerlink" title="matlab自定义曲线拟合"></a>matlab自定义曲线拟合</h2><ul>
+              <blockquote>
+<p>一些奇怪的绘图方法：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vv_eve/article/details/107592978">https://blog.csdn.net/vv_eve/article/details/107592978</a></p>
+</blockquote>
+<h2 id="matlab自定义曲线拟合"><a href="#matlab自定义曲线拟合" class="headerlink" title="matlab自定义曲线拟合"></a>matlab自定义曲线拟合</h2><ul>
 <li>定义想要拟合的曲线函数：</li>
 </ul>
 <p>以function的形式定义，参数以beta-&gt;list传入，例如：</p>
@@ -558,6 +562,11 @@ color_map3 <span class="token operator">=</span> <span class="token punctuation"
 <span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Number of IRS elements'</span><span class="token punctuation">,</span> <span class="token string">'Interpreter'</span><span class="token punctuation">,</span> <span class="token string">'latex'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Outage Probability'</span><span class="token punctuation">,</span> <span class="token string">'Interpreter'</span><span class="token punctuation">,</span> <span class="token string">'latex'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>三个<span class="label label-primary">'Interpreter', latex</span></p>
+<h2 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h2><p>matlab自带load读取数据是结构体，不够方便。使用自定义函数，第一个参数为文件路径，第二个参数为保存时的变量名，返回数据。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> out <span class="token operator">=</span> <span class="token function">myload</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+    data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data.'</span><span class="token punctuation">,</span> name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 
             </div>
             <hr>
