@@ -25,8 +25,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/untitled.jpg">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220720161758149.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211161007876.png">
 <meta property="article:published_time" content="2022-04-11T12:01:06.000Z">
-<meta property="article:modified_time" content="2022-10-27T02:34:21.773Z">
+<meta property="article:modified_time" content="2022-11-16T02:08:02.759Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Signal Distribution">
 <meta property="article:tag" content="Communication">
@@ -220,7 +221,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.1k 字
+      4.3k 字
     </span>
   
 
@@ -229,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13 分钟
+      14 分钟
     </span>
   
 
@@ -346,7 +347,25 @@ F(x)= \begin{cases}1-Q_m\left(\frac{s}{\sigma}, \frac{\sqrt{x}}{\sigma}\right) &
 &c_1=-\frac{\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}
 \end{align}</script><p>其PDF为：</p>
 <script type="math/tex; mode=display">
--\lambda_3e^{-\lambda_3\gamma}c_3-\lambda_2e^{-\lambda_2\gamma}c_2-\lambda_1e^{-\lambda_1\gamma}c_1</script>
+-\lambda_3e^{-\lambda_3\gamma}c_3-\lambda_2e^{-\lambda_2\gamma}c_2-\lambda_1e^{-\lambda_1\gamma}c_1</script><h2 id="高斯分布的任意高阶矩"><a href="#高斯分布的任意高阶矩" class="headerlink" title="高斯分布的任意高阶矩"></a>高斯分布的任意高阶矩</h2><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">clc<span class="token punctuation">;</span>clear<span class="token punctuation">;</span>close all<span class="token punctuation">;</span>
+
+<span class="token comment">% 阶数为n</span>
+<span class="token keyword">for</span> n<span class="token operator">=</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">2</span><span class="token operator">:</span><span class="token number">16</span>
+<span class="token comment">%     n=6;</span>
+    k<span class="token operator">=</span>n<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token comment">% s代表sigma  没有平方！！！！</span>
+    syms s
+    <span class="token keyword">if</span> <span class="token function">rem</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">~=</span><span class="token number">0</span>
+        <span class="token function">disp</span><span class="token punctuation">(</span><span class="token string">'Error: make sure n is even plz'</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span>
+        <span class="token function">disp</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+        moment <span class="token operator">=</span> <span class="token function">factorial</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>k<span class="token punctuation">)</span><span class="token operator">*</span>s<span class="token operator">^</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>k<span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">^</span>k<span class="token operator">*</span><span class="token function">factorial</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211161007876.png" srcset="/img/loading.gif" lazyload alt="image-20221116100727821"></p>
+<p>参考<strong>Digital Communications-Fifth Edition</strong> ，<strong>John</strong> <strong>G.</strong> <strong>Proakis</strong></p>
+
             </div>
             <hr>
             <div>
