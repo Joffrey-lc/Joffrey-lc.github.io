@@ -15,6 +15,10 @@ hide: false
 date: 2022-04-26 18:32:15
 ---
 
+> 一些奇怪的绘图方法：
+>
+> https://blog.csdn.net/vv_eve/article/details/107592978
+
 ## matlab自定义曲线拟合
 
 - 定义想要拟合的曲线函数：
@@ -375,5 +379,13 @@ ylabel('Outage Probability', 'Interpreter', 'latex')
 
 三个{% label primary @'Interpreter', 'latex' %}
 
+## 数据读取
 
+matlab自带load读取数据是结构体，不够方便。使用自定义函数，第一个参数为文件路径，第二个参数为保存时的变量名，返回数据。
 
+```matlab
+function out = myload(path, name)
+    data = load(path);
+    out = eval(['data.', name]);
+end
+```

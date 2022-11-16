@@ -169,3 +169,28 @@ $$
 -\lambda_3e^{-\lambda_3\gamma}c_3-\lambda_2e^{-\lambda_2\gamma}c_2-\lambda_1e^{-\lambda_1\gamma}c_1
 $$
 
+## 高斯分布的任意高阶矩
+
+```matlab
+clc;clear;close all;
+
+% 阶数为n
+for n=2:2:16
+%     n=6;
+    k=n/2;
+    % s代表sigma  没有平方！！！！
+    syms s
+    if rem(k, 1) ~=0
+        disp('Error: make sure n is even plz')
+    else
+        disp(n)
+        moment = factorial(2*k)*s^(2*k)/(2^k*factorial(k))
+    end
+end
+
+```
+
+![image-20221116100727821](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211161007876.png)
+
+参考**Digital Communications-Fifth Edition** ，**John** **G.** **Proakis**
+
