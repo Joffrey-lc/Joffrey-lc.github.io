@@ -4,11 +4,38 @@
   
   
   <entry>
+    <title>IRS代码合集</title>
+    <link href="/2022/11/23/IRScodeResource/"/>
+    <url>/2022/11/23/IRScodeResource/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>合集1：<a href="https://github.com/wenhaofseu/RIS_Codes_Collection">https://github.com/wenhaofseu/RIS_Codes_Collection</a></p><div class="table-container"><table><thead><tr><th>Paper</th><th>Author</th></tr></thead><tbody><tr><td><a href="https://github.com/guohuayan/WSR-maximization-for-RIS-system">Weighted Sum-Rate Maximization for Reconfigurable Intelligent Surface Aided Wireless Networks</a></td><td>H. Guo, etal.</td></tr><tr><td><a href="https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications">A Framework of Robust Transmission Design for IRS-Aided MISO Communications With Imperfect Cascaded Channels</a></td><td>G. Zhou, C. Pan， etal.</td></tr><tr><td><a href="https://github.com/Abdelrahman-Taha/LIS-DeepLearning">Enabling Large Intelligent Surfaces with Compressive Sensing and Deep Learning</a></td><td>Abdelrahman Taha, etal.</td></tr><tr><td></td><td></td></tr><tr><td></td></tr></tbody></table></div><p>合集2：<a href="https://github.com/ken0225/RIS-Codes-Collection">https://github.com/ken0225/RIS-Codes-Collection</a></p><div class="table-container"><table><thead><tr><th>Paper</th><th>Author</th></tr></thead><tbody><tr><td><a href="http://oa.ee.tsinghua.edu.cn/dailinglong/publications/publications.html"> Two-Timescale Channel Estimation for Reconfigurable Intelligent Surface Aided Wireless Communications</a></td><td>Chen Hu, etal.</td></tr></tbody></table></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>Intelligent Reflecting Surface</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IRS</tag>
+      
+      <tag>code resource</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>鲁棒Beamforming</title>
     <link href="/2022/11/23/robustbeamforming2/"/>
     <url>/2022/11/23/robustbeamforming2/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Date: 2022.11.21  16:15<br>Author: Joffrey LC</p><hr><p><strong>Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication</strong>.  <em>Ming-Min Zhao</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9352530">pdf</a>)  (Citations <strong>16</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>在用户最大CSI错误中断概率约束的前提下，联合优化AP和IRS以最小化AP处的发射功率。</p><ul><li>先考虑单用户情况，计算单用户的平均信号的功率和方差来计算中断概率（功率和方差是trade-off）</li><li>多用户情况，很难求出闭式解，通过优化算法解决</li></ul><p>现有的robust beamforming的算法，可以分为方向：</p><ol><li>假设部分信道不确定性（有界的CSI误差模型），联合设计precoder和IRS reflection matrix</li><li>假设统计信号误差模型（高斯分布等）</li><li>设计中断概率下界高于某个阈值</li></ol><p>算法上：</p><ul><li>对单用户，讨论MSP（mean signal power）的均值和方差的trade-off，通过一维搜索搞定</li><li>对多用户，SCA，并且先将离散的相位变化放缩到连续，进行优化后，放回离散值并固定，再对precoder进行优化，以补偿IRS相位从连续到离散的损失</li></ul><h2 id="单用户（过程很有意思）"><a href="#单用户（过程很有意思）" class="headerlink" title="单用户（过程很有意思）"></a>单用户（过程很有意思）</h2><p>有意思的是，其约束是一个概率：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\left\{\mathbf{w}_k\right\}, \boldsymbol{\Theta}} & \sum_{k \in \mathcal{K}}\left\|\mathbf{w}_k\right\|^2 \\\text { s.t. } & \operatorname{Pr}\left(\operatorname{SINR}_k<\eta_k\right) \leq \epsilon_k, \forall k \in \mathcal{K}, \\& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .\end{aligned}</script><p>即优化目标为最小化发射功率，约束（6b）指中断概率小于一个阈值,（6c）指IRS相位的可行域</p><p>单用户的时候，可以丢掉下标<script type="math/tex">k</script>，然后写成矩阵形式有：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\mathbf{w}, \boldsymbol{\Theta}} &\|\mathbf{w}\|^2 \\\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{h}_r^H \boldsymbol{\Theta} \mathbf{G}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .\end{aligned}</script><p>并且由变量替换：</p><script type="math/tex; mode=display">\mathbf{H}_k \triangleq \operatorname{diag}\left(\mathbf{h}_{r, k}^H\right) \mathbf{G}</script><p>上式等于：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\mathbf{w}, \mathbf{v}} &\|\mathbf{w}\|^2 \\\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .\end{aligned}</script><p>由于发射功率越大中断概率肯定越小，所以可以交换一下：</p><script type="math/tex; mode=display">\begin{aligned}&\min _{\mathbf{w}, \mathbf{v}} \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \\&\text { s.t. }\|\mathbf{w}\|^2 \leq p, \\&v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},\end{aligned}</script><p>然后，加法形式可以再次写成矩阵乘法形式：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png" alt="image-20221123105539827" style="zoom: 50%;" /></p><p>进一步，上述优化目标等于求CDF：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\mathbf{w}, \mathbf{v}} & \iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\\text { s.t. } &\|\mathbf{w}\|^2 \leq p, \\& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},\end{aligned}</script><p>因为其CDF为：</p><script type="math/tex; mode=display">\begin{aligned}&\iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\&=\mathcal{P}\left(\left.\frac{\eta \sigma^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right|_2, \frac{\left|\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}\right|^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right)\end{aligned}</script><p>意思是，服从自由度为2，参数为<script type="math/tex">\lambda</script>的卡方：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png" alt="image-20221123105944569" style="zoom: 50%;" /></p><p>需要同时最大化<script type="math/tex">\frac{\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}}{\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}</script>和<script type="math/tex">\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}</script>，<script type="math/tex">\mathcal{P}\left[\left.\chi^2\right|_2, \lambda\right]</script>是<script type="math/tex">\chi</script>的递增函数，是<script type="math/tex">\lambda</script>的递减函数。</p><p>但是同时最大化感觉是不合理的。只能在最大化二者之间找一个平衡：</p><script type="math/tex; mode=display">\begin{gathered}\max _{\mathbf{v}} \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}+\omega \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}} \\\text { s.t. } v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},\end{gathered}</script><p>怎么解得，看不懂。</p><h2 id="多用户"><a href="#多用户" class="headerlink" title="多用户"></a>多用户</h2>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Date: 2022.11.21  16:15<br>Author: Joffrey LC</p><hr><p><strong>Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication</strong>.  <em>Ming-Min Zhao</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9352530">pdf</a>)  (Citations <strong>16</strong>)</p><p>记录一下，zhougui等人的robust beamforming  github code ：<a href="https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications">https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications</a></p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>在用户最大CSI错误中断概率约束的前提下，联合优化AP和IRS以最小化AP处的发射功率。</p><ul><li>先考虑单用户情况，计算单用户的平均信号的功率和方差来计算中断概率（功率和方差是trade-off）</li><li>多用户情况，很难求出闭式解，通过优化算法解决</li></ul><p>现有的robust beamforming的算法，可以分为方向：</p><ol><li>假设部分信道不确定性（有界的CSI误差模型），联合设计precoder和IRS reflection matrix</li><li>假设统计信号误差模型（高斯分布等）</li><li>设计中断概率下界高于某个阈值</li></ol><p>算法上：</p><ul><li>对单用户，讨论MSP（mean signal power）的均值和方差的trade-off，通过一维搜索搞定</li><li>对多用户，SCA，并且先将离散的相位变化放缩到连续，进行优化后，放回离散值并固定，再对precoder进行优化，以补偿IRS相位从连续到离散的损失</li></ul><h2 id="单用户（过程很有意思）"><a href="#单用户（过程很有意思）" class="headerlink" title="单用户（过程很有意思）"></a>单用户（过程很有意思）</h2><p>有意思的是，其约束是一个概率：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\left\{\mathbf{w}_k\right\}, \boldsymbol{\Theta}} & \sum_{k \in \mathcal{K}}\left\|\mathbf{w}_k\right\|^2 \\\text { s.t. } & \operatorname{Pr}\left(\operatorname{SINR}_k<\eta_k\right) \leq \epsilon_k, \forall k \in \mathcal{K}, \\& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .\end{aligned}</script><p>即优化目标为最小化发射功率，约束（6b）指中断概率小于一个阈值,（6c）指IRS相位的可行域</p><p>单用户的时候，可以丢掉下标<script type="math/tex">k</script>，然后写成矩阵形式有：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\mathbf{w}, \boldsymbol{\Theta}} &\|\mathbf{w}\|^2 \\\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{h}_r^H \boldsymbol{\Theta} \mathbf{G}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .\end{aligned}</script><p>并且由变量替换：</p><script type="math/tex; mode=display">\mathbf{H}_k \triangleq \operatorname{diag}\left(\mathbf{h}_{r, k}^H\right) \mathbf{G}</script><p>上式等于：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\mathbf{w}, \mathbf{v}} &\|\mathbf{w}\|^2 \\\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .\end{aligned}</script><p>由于发射功率越大中断概率肯定越小，所以可以交换一下：</p><script type="math/tex; mode=display">\begin{aligned}&\min _{\mathbf{w}, \mathbf{v}} \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \\&\text { s.t. }\|\mathbf{w}\|^2 \leq p, \\&v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},\end{aligned}</script><p>然后，加法形式可以再次写成矩阵乘法形式：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png" alt="image-20221123105539827" style="zoom: 50%;" /></p><p>进一步，上述优化目标等于求CDF：</p><script type="math/tex; mode=display">\begin{aligned}\min _{\mathbf{w}, \mathbf{v}} & \iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\\text { s.t. } &\|\mathbf{w}\|^2 \leq p, \\& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},\end{aligned}</script><p>因为其CDF为：</p><script type="math/tex; mode=display">\begin{aligned}&\iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\&=\mathcal{P}\left(\left.\frac{\eta \sigma^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right|_2, \frac{\left|\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}\right|^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right)\end{aligned}</script><p>意思是，服从自由度为2，参数为<script type="math/tex">\lambda</script>的卡方：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png" alt="image-20221123105944569" style="zoom: 50%;" /></p><p>需要同时最大化<script type="math/tex">\frac{\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}}{\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}</script>和<script type="math/tex">\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}</script>，<script type="math/tex">\mathcal{P}\left[\left.\chi^2\right|_2, \lambda\right]</script>是<script type="math/tex">\chi</script>的递增函数，是<script type="math/tex">\lambda</script>的递减函数。</p><p>但是同时最大化感觉是不合理的。只能在最大化二者之间找一个平衡：</p><script type="math/tex; mode=display">\begin{gathered}\max _{\mathbf{v}} \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}+\omega \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}} \\\text { s.t. } v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},\end{gathered}</script><p>怎么解得，看不懂。</p><h2 id="多用户"><a href="#多用户" class="headerlink" title="多用户"></a>多用户</h2>]]></content>
     
     
     <categories>
@@ -1013,9 +1040,9 @@
     
     <tags>
       
-      <tag>IRS</tag>
-      
       <tag>Deep Learning</tag>
+      
+      <tag>IRS</tag>
       
     </tags>
     
@@ -1042,11 +1069,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1073,11 +1100,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1104,11 +1131,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1135,11 +1162,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1166,11 +1193,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1224,11 +1251,11 @@
     
     <tags>
       
-      <tag>WET</tag>
+      <tag>SWIPT</tag>
       
       <tag>WPT</tag>
       
-      <tag>SWIPT</tag>
+      <tag>WET</tag>
       
     </tags>
     
