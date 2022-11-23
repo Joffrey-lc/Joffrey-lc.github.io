@@ -13,30 +13,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Ayush Bhandari et.al. -- On Unlimited Sampling and Reconstruction">
+  <meta name="description" content="Ming-Min Zhao et.al.--Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="Ayush Bhandari et.al. -- On Unlimited Sampling and Reconstruction">
+  <meta name="description" content="Ming-Min Zhao et.al.--Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无限制采样-Unlimited Sampling">
-<meta property="og:url" content="http://lcjoffrey.top/2022/11/17/unlimitedsampling-1/index.html">
+<meta property="og:title" content="鲁棒Beamforming">
+<meta property="og:url" content="http://lcjoffrey.top/2022/11/23/robustbeamforming2/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="Ayush Bhandari et.al. -- On Unlimited Sampling and Reconstruction">
+<meta property="og:description" content="Ming-Min Zhao et.al.--Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516079.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516068.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516055.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516116.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516157.png">
-<meta property="article:published_time" content="2022-11-17T07:16:44.000Z">
-<meta property="article:modified_time" content="2022-11-17T07:23:22.590Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png">
+<meta property="article:published_time" content="2022-11-23T03:18:02.000Z">
+<meta property="article:modified_time" content="2022-11-23T03:19:34.416Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Unlimited Sampling">
-<meta property="article:tag" content="Simultaneous Information and Power Transfer">
+<meta property="article:tag" content="Robust Beamforming">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516079.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png">
   
-  <title>无限制采样-Unlimited Sampling - Joffrey&#39;s Blog</title>
+  <title>鲁棒Beamforming - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -202,7 +198,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="无限制采样-Unlimited Sampling">
+            <span class="h2" id="subtitle" title="鲁棒Beamforming">
               
             </span>
 
@@ -212,8 +208,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-11-17 15:16" pubdate>
-        2022年11月17日 下午
+      <time datetime="2022-11-23 11:18" pubdate>
+        2022年11月23日 上午
       </time>
     </span>
   
@@ -223,7 +219,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      783 字
     </span>
   
 
@@ -232,7 +228,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      2 分钟
     </span>
   
 
@@ -269,60 +265,78 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">无限制采样-Unlimited Sampling</h1>
+            <h1 style="display: none">鲁棒Beamforming</h1>
             
             <div class="markdown-body">
-              <p>Date: 2022.11.15  20:01<br>Author: Joffrey LC</p>
+              <p>Date: 2022.11.21  16:15<br>Author: Joffrey LC</p>
 <hr>
-<p><strong>On Unlimited Sampling and Reconstruction</strong>.  <em>Ayush Bhandari</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9282196">pdf</a>)  (Citations <strong>16</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>那天健完身和王佬吃饭的时候，聊到了一种unlimited sampling，感觉非常适合应用到数能上。先找了一篇文章看一下，作为以后可能的拓展方向。</p>
-<hr>
-<p>主要的思想是，在一般的ADCs中，会存在限幅的问题。可以使用==self-reset ADCs==来避免。</p>
-<p>但是self-reset ADCs又引入了新的问题：self-reset ADCs等于是对信号一直取模，但是==怎么恢复==是难点。</p>
+<p><strong>Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication</strong>.  <em>Ming-Min Zhao</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9352530">pdf</a>)  (Citations <strong>16</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>在用户最大CSI错误中断概率约束的前提下，联合优化AP和IRS以最小化AP处的发射功率。</p>
 <ul>
-<li>推导了完美恢复的条件</li>
-<li>需要的采样密度独立于限幅电压（意思是电压再大，都可以恢复），只与信号的带宽相关</li>
-<li>分析了抗噪性能（因为恢复的阶级性，所以对噪声有一定鲁棒性）</li>
+<li>先考虑单用户情况，计算单用户的平均信号的功率和方差来计算中断概率（功率和方差是trade-off）</li>
+<li>多用户情况，很难求出闭式解，通过优化算法解决</li>
 </ul>
-<h2 id="ADCs"><a href="#ADCs" class="headerlink" title="ADCs"></a>ADCs</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516079.png" srcset="/img/loading.gif" lazyload alt="image-20221117142037989" style="zoom:33%;" /></p>
-<p>一般的ADC，存在限幅<script type="math/tex">[-\lambda,\lambda]</script>。</p>
-<p>意味着采样信息损耗：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516068.png" srcset="/img/loading.gif" lazyload alt="image-20221117142253078" style="zoom:33%;" /></p>
-<hr>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516055.png" srcset="/img/loading.gif" lazyload alt="image-20221117142303547" style="zoom:33%;" /></p>
-<p>self-reset ADCs会对信号取模，即将信号进行折叠：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516116.png" srcset="/img/loading.gif" lazyload alt="image-20221117142405802" style="zoom:33%;" /></p>
-<p>但是恢复困难。==这就是作者研究的重点==</p>
-<p>对平滑信号的截断导致突变和非平滑，对应于信号中的高频失真</p>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516157.png" srcset="/img/loading.gif" lazyload alt="image-20221117145854085"></p>
-<p>实际上就是解决残差的计算。注意残差是只有几个量化等级的，意味着计算出来的结果可以就近往上靠（强制对齐），以获得较强的鲁棒性。</p>
-<p>作者的方法是通过采样值倒推折叠次数的方法。</p>
-<p>TO BE CONTINUE …</p>
-<h2 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h2><p><a target="_blank" rel="noopener" href="https://github.com/Alessandre2000/unlimited-sampling">Github code</a></p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">reconstruction_unlimited_sampling</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> lamb<span class="token punctuation">,</span> beta<span class="token punctuation">,</span> T<span class="token punctuation">,</span> omega<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span> 
-        J <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>beta<span class="token operator">*</span><span class="token number">6</span><span class="token operator">/</span>lamb<span class="token punctuation">)</span>
-        N <span class="token operator">=</span> math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span><span class="token punctuation">(</span>math<span class="token punctuation">.</span>log<span class="token punctuation">(</span>lamb<span class="token punctuation">)</span><span class="token operator">-</span>math<span class="token punctuation">.</span>log<span class="token punctuation">(</span>beta<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span>math<span class="token punctuation">.</span>log<span class="token punctuation">(</span>T<span class="token operator">*</span>omega<span class="token operator">*</span>math<span class="token punctuation">.</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        delta_n_y <span class="token operator">=</span> np<span class="token punctuation">.</span>diff<span class="token punctuation">(</span>y<span class="token punctuation">,</span> N<span class="token punctuation">)</span>
-        m_delta_n_y <span class="token operator">=</span> np<span class="token punctuation">.</span>mod<span class="token punctuation">(</span>delta_n_y<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>lamb<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        delta_n_epsilon <span class="token operator">=</span> m_delta_n_y <span class="token operator">-</span>delta_n_y
-        s_i_1 <span class="token operator">=</span> delta_n_epsilon
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>N<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            s_i <span class="token operator">=</span> s<span class="token punctuation">(</span>s_i_1<span class="token punctuation">,</span> lamb<span class="token punctuation">)</span>
-            k_i <span class="token operator">=</span> k<span class="token punctuation">(</span>np<span class="token punctuation">.</span>cumsum<span class="token punctuation">(</span>np<span class="token punctuation">.</span>cumsum<span class="token punctuation">(</span>s_i_1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beta<span class="token punctuation">,</span> J<span class="token punctuation">)</span>
-            s_i <span class="token operator">+=</span> <span class="token number">2</span><span class="token operator">*</span>lamb<span class="token operator">*</span>k_i
-            s_i_1 <span class="token operator">=</span> s_i
-    <span class="token keyword">except</span><span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
-
-
-<span class="token keyword">def</span> <span class="token function">s</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> lamb<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token number">2</span><span class="token operator">*</span>lamb<span class="token operator">*</span>np<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>np<span class="token punctuation">.</span>floor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>cumsum<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token operator">/</span>lamb<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">k</span><span class="token punctuation">(</span>s_i<span class="token punctuation">,</span> beta<span class="token punctuation">,</span> J<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> math<span class="token punctuation">.</span>floor<span class="token punctuation">(</span><span class="token punctuation">(</span>s_i<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">-</span>s_i<span class="token punctuation">[</span>J<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token operator">*</span>beta<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
+<p>现有的robust beamforming的算法，可以分为方向：</p>
+<ol>
+<li>假设部分信道不确定性（有界的CSI误差模型），联合设计precoder和IRS reflection matrix</li>
+<li>假设统计信号误差模型（高斯分布等）</li>
+<li>设计中断概率下界高于某个阈值</li>
+</ol>
+<p>算法上：</p>
+<ul>
+<li>对单用户，讨论MSP（mean signal power）的均值和方差的trade-off，通过一维搜索搞定</li>
+<li>对多用户，SCA，并且先将离散的相位变化放缩到连续，进行优化后，放回离散值并固定，再对precoder进行优化，以补偿IRS相位从连续到离散的损失</li>
+</ul>
+<h2 id="单用户（过程很有意思）"><a href="#单用户（过程很有意思）" class="headerlink" title="单用户（过程很有意思）"></a>单用户（过程很有意思）</h2><p>有意思的是，其约束是一个概率：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min _{\left\{\mathbf{w}_k\right\}, \boldsymbol{\Theta}} & \sum_{k \in \mathcal{K}}\left\|\mathbf{w}_k\right\|^2 \\
+\text { s.t. } & \operatorname{Pr}\left(\operatorname{SINR}_k<\eta_k\right) \leq \epsilon_k, \forall k \in \mathcal{K}, \\
+& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
+\end{aligned}</script><p>即优化目标为最小化发射功率，约束（6b）指中断概率小于一个阈值,（6c）指IRS相位的可行域</p>
+<p>单用户的时候，可以丢掉下标<script type="math/tex">k</script>，然后写成矩阵形式有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min _{\mathbf{w}, \boldsymbol{\Theta}} &\|\mathbf{w}\|^2 \\
+\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{h}_r^H \boldsymbol{\Theta} \mathbf{G}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\
+& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
+\end{aligned}</script><p>并且由变量替换：</p>
+<script type="math/tex; mode=display">
+\mathbf{H}_k \triangleq \operatorname{diag}\left(\mathbf{h}_{r, k}^H\right) \mathbf{G}</script><p>上式等于：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min _{\mathbf{w}, \mathbf{v}} &\|\mathbf{w}\|^2 \\
+\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\
+& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
+\end{aligned}</script><p>由于发射功率越大中断概率肯定越小，所以可以交换一下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min _{\mathbf{w}, \mathbf{v}} \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \\
+&\text { s.t. }\|\mathbf{w}\|^2 \leq p, \\
+&v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
+\end{aligned}</script><p>然后，加法形式可以再次写成矩阵乘法形式：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png" srcset="/img/loading.gif" lazyload alt="image-20221123105539827" style="zoom: 50%;" /></p>
+<p>进一步，上述优化目标等于求CDF：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min _{\mathbf{w}, \mathbf{v}} & \iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\
+\text { s.t. } &\|\mathbf{w}\|^2 \leq p, \\
+& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
+\end{aligned}</script><p>因为其CDF为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\
+&=\mathcal{P}\left(\left.\frac{\eta \sigma^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right|_2, \frac{\left|\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}\right|^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right)
+\end{aligned}</script><p>意思是，服从自由度为2，参数为<script type="math/tex">\lambda</script>的卡方：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png" srcset="/img/loading.gif" lazyload alt="image-20221123105944569" style="zoom: 50%;" /></p>
+<p>需要同时最大化<script type="math/tex">\frac{\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}}{\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}</script>和<script type="math/tex">\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}</script>，<script type="math/tex">\mathcal{P}\left[\left.\chi^2\right|_2, \lambda\right]</script>是<script type="math/tex">\chi</script>的递增函数，是<script type="math/tex">\lambda</script>的递减函数。</p>
+<p>但是同时最大化感觉是不合理的。只能在最大化二者之间找一个平衡：</p>
+<script type="math/tex; mode=display">
+\begin{gathered}
+\max _{\mathbf{v}} \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}+\omega \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}} \\
+\text { s.t. } v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
+\end{gathered}</script><p>怎么解得，看不懂。</p>
+<h2 id="多用户"><a href="#多用户" class="headerlink" title="多用户"></a>多用户</h2>
             </div>
             <hr>
             <div>
@@ -331,7 +345,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Unlimited-Sampling/">Unlimited Sampling</a>
+                      <a class="hover-with-bg" href="/categories/Robust-Beamforming/">Robust Beamforming</a>
                     
                   </div>
                 
@@ -339,9 +353,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Unlimited-Sampling/">Unlimited Sampling</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Simultaneous-Information-and-Power-Transfer/">Simultaneous Information and Power Transfer</a>
+                      <a class="hover-with-bg" href="/tags/Robust-Beamforming/">Robust Beamforming</a>
                     
                   </div>
                 
@@ -355,7 +367,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/11/17/unlimitedsampling-1/">http://lcjoffrey.top/2022/11/17/unlimitedsampling-1/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/11/23/robustbeamforming2/">http://lcjoffrey.top/2022/11/23/robustbeamforming2/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -365,18 +377,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/23/robustbeamforming2/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">鲁棒Beamforming</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/27/metasurfaceFrenquencyadjustment/">
-                        <span class="hidden-mobile">Metasurface/IRS 调频（一）</span>
+                      <a href="/2022/11/17/unlimitedsampling-1/">
+                        <span class="hidden-mobile">无限制采样-Unlimited Sampling</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
