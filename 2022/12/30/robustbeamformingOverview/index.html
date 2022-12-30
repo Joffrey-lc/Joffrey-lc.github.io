@@ -13,26 +13,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Ming-Min Zhao et.al.--Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication">
+  <meta name="description" content="总结了一下最近做的Robust Beamforming">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="Ming-Min Zhao et.al.--Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication">
+  <meta name="description" content="总结了一下最近做的Robust Beamforming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="鲁棒Beamforming">
-<meta property="og:url" content="http://lcjoffrey.top/2022/11/23/robustbeamforming2/index.html">
+<meta property="og:title" content="Robust Beamforming -- OverView">
+<meta property="og:url" content="http://lcjoffrey.top/2022/12/30/robustbeamformingOverview/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="Ming-Min Zhao et.al.--Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication">
+<meta property="og:description" content="总结了一下最近做的Robust Beamforming">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png">
-<meta property="article:published_time" content="2022-11-23T03:18:02.000Z">
-<meta property="article:modified_time" content="2022-12-30T03:00:11.925Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301124980.png">
+<meta property="article:published_time" content="2022-12-30T03:00:41.000Z">
+<meta property="article:modified_time" content="2022-12-30T03:36:44.235Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Robust Beamforming">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301124980.png">
   
-  <title>鲁棒Beamforming - Joffrey&#39;s Blog</title>
+  <title>Robust Beamforming -- OverView - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -198,7 +197,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="鲁棒Beamforming">
+            <span class="h2" id="subtitle" title="Robust Beamforming -- OverView">
               
             </span>
 
@@ -208,8 +207,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-11-23 11:18" pubdate>
-        2022年11月23日 上午
+      <time datetime="2022-12-30 11:00" pubdate>
+        2022年12月30日 上午
       </time>
     </span>
   
@@ -219,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      926 字
+      7.6k 字
     </span>
   
 
@@ -228,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      24 分钟
     </span>
   
 
@@ -265,79 +264,127 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">鲁棒Beamforming</h1>
+            <h1 style="display: none">Robust Beamforming -- OverView</h1>
             
             <div class="markdown-body">
-              <p>Date: 2022.11.21  16:15<br>Author: Joffrey LC</p>
+              <h2 id="Bounded-model"><a href="#Bounded-model" class="headerlink" title="Bounded model"></a>Bounded model</h2><p>有界模型，一般是通过S-Procedure将问题转化为矩阵正定的问题：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\text{Pr}\{|\mathbf{h}^\mathrm{H}\boldsymbol{\Theta}\mathbf{G}\mathbf{w}|^2\geq T\}\\
+=
+&\text{Pr}\{|\mathbf{v}^\mathrm{T}\left(\mathbf{H}+\Delta\mathbf{H}\right)\mathbf{w}|^2\geq T\}\\
+=&\text{Pr}\{\mathbf{v}^\mathrm{T}(\mathbf{H}+\Delta\mathbf{H})\mathbf{w}\mathbf{w}^\mathrm{H}(\mathbf{H}+\Delta\mathbf{H})^\mathrm{H}\mathbf{v}^\mathrm{*}\geq T\}
+\\
+=&\text{Pr}\{\text{vec}^\mathrm{H}(\Delta\mathbf{H})\mathbf{Q}\text{vec}(\Delta\mathbf{H})+2\Re\{\mathbf{q}^\mathrm{H}\text{vec}(\Delta\mathbf{H})\}+c\geq T\}
+\end{align}</script><p>然后通过限定误差项<script type="math/tex">\Delta\mathbf{H}</script>的界，得到：</p>
+<script type="math/tex; mode=display">
+\text{vec}^\mathrm{H}(\Delta\mathbf{H})\mathbf{Q}\text{vec}(\Delta\mathbf{H})+2\Re\{\mathbf{q}^\mathrm{H}\text{vec}(\Delta\mathbf{H})\}+c-T\geq 0\\
+\text{vec}(\Delta\mathbf{H}^\mathrm{H})\text{vec}(\Delta\mathbf{H})\leq \frac{k_{\mathrm{h}}+k_\mathrm{G}+1}{(1+k_\mathrm{h})(1+k_\mathrm{G})}\frac{F_{\chi_{2 M N}^2}^{-1}\left(1-P_{\text {out }}\right)}{2}</script><p>由General S-procedure，对于形如<script type="math/tex">f_i(\mathbf{x})=\mathbf{x}^\mathrm{H}\mathbf{Q}_i\mathbf{x}+2\Re{\mathbf{q}_i\mathbf{x}}+c_i</script>，其中<script type="math/tex">\mathbf{Q}</script>是Hermit的。对于任意使得<script type="math/tex">f_0(\mathbf{x})\geq0</script>的可行<script type="math/tex">\mathbf{x}</script>，有<script type="math/tex">f_i(\mathbf{x})\to f_0(\mathbf{x})</script>当且仅当存在一个<script type="math/tex">t</script>满足：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+
+\left[
+\begin{array}{cc}
+\mathbf{Q}_0& \mathbf{q}_0\\
+\mathbf{q}_0^\mathrm{H}&c_0
+\end{array}
+\right]
+-t\left[
+\begin{array}{cc}
+\mathbf{Q}_1& \mathbf{q}_1\\
+\mathbf{q}_1^\mathrm{H}&c_1
+\end{array}
+\right]
+\succeq\mathbf{0}.
+
+\end{align}</script><p>当</p>
+<script type="math/tex; mode=display">
+\mathbf{Q}_0=\mathbf{Q},\mathbf{q}_0=\mathbf{q},c_0=c-T;\\
+\mathbf{Q}_1=-\mathbf{I}_{MN\times MN},\mathbf{q}_1=\mathbf{0}_{MN\times1},c_1=\frac{k_{\mathrm{h}}+k_\mathrm{G}+1}{(1+k_\mathrm{h})(1+k_\mathrm{G})}\frac{F_{\chi_{2 M N}^2}^{-1}\left(1-P_{\text {out }}\right)}{2};</script><p>时，可以得到：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+ \min _{\mathbf{W}, t} & \quad\operatorname{Tr}\left(\mathbf{W}\right) \\
+\text { s.t. }& \left[\begin{array}{cc}
+\mathbf{Q}+t \mathbf{I}_{MN\times MN} & \mathbf{q} \\
+\mathbf{q}^H & c-t d^2
+\end{array}\right] \succeq 0 ,\\
+& t\geq 0, \\
+& \mathbf{W} \succeq 0 , \\
+& d=\sqrt{\frac{k_{\mathrm{h}}+k_\mathrm{G}+1}{(1+k_\mathrm{h})(1+k_\mathrm{G})}\frac{F_{\chi_{2 M N}^2}^{-1}\left(1-P_{\text {out }}\right)}{2}}, \\
+& \mathbf{Q}=(\mathbf{W}\otimes\mathbf{V})^*, \\
+&
+\mathbf{q}=\mathbf{Q}\text{vec}(\mathbf{H}),\\
+&c=\text{vec}(\mathbf{H})^\mathrm{H}\mathbf{Q}\text{vec}(\mathbf{H}).
+\end{aligned}</script><p>通过CVX求解得到<script type="math/tex">\mathbf{W}</script>。然后固定<script type="math/tex">\mathbf{W}</script>，求解<script type="math/tex">\mathbf{V}</script>。因为对于求解<script type="math/tex">\mathbf{V}</script>，该问题变为一个可行性检查问题，引入一个功率残差<script type="math/tex">u</script>，将<script type="math/tex">T</script>变为<script type="math/tex">T+u</script>，则新问题表示为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+ \max _{\mathbf{V}, t,u} & \quad u \\
+\text { s.t. }& \left[\begin{array}{cc}
+\mathbf{Q}+t \mathbf{I}_{MN\times MN} & \mathbf{q} \\
+\mathbf{q}^H & c-t d^2-u
+\end{array}\right] \succeq 0 ,\\
+& t\geq 0, \\
+& u\geq 0, \\
+& \mathbf{V} \succeq 0 , \\
+& \text{diag}(\mathbf{V}) =1 , \\
+& d=\sqrt{\frac{k_{\mathrm{h}}+k_\mathrm{G}+1}{(1+k_\mathrm{h})(1+k_\mathrm{G})}\frac{F_{\chi_{2 M N}^2}^{-1}\left(1-P_{\text {out }}\right)}{2}}, \\
+& \mathbf{Q}=(\mathbf{W}\otimes\mathbf{V})^*, \\
+&
+\mathbf{q}=\mathbf{Q}\text{vec}(\mathbf{H}),\\
+&c=\text{vec}(\mathbf{H})^\mathrm{H}\mathbf{Q}\text{vec}(\mathbf{H}).
+\end{aligned}</script><p>最后，进行高斯随机化由<script type="math/tex">\mathbf{W}</script>和<script type="math/tex">\mathbf{V}</script>得到<script type="math/tex">\mathbf{w}</script>和<script type="math/tex">\mathbf{v}</script></p>
+<h3 id="Wang-Jun-amp-Liang-Ying-Chang"><a href="#Wang-Jun-amp-Liang-Ying-Chang" class="headerlink" title="Wang Jun &amp; Liang Ying Chang"></a>Wang Jun &amp; Liang Ying Chang</h3><p><strong>Robust Beamforming and Phase Shift Design for IRS-Enhanced Multi-User MISO Downlink Communication</strong>.  <em>Jun Wang</em> et.al.  <strong>ICC 2020 - 2020 IEEE International Conference on Communications (ICC), June 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9148947">pdf</a>)  (Citations <strong>17</strong>) </p>
+<p>他们的文章结构就如同上述Bounded model。</p>
+<h3 id="Zhou-Gui-amp-Pan-Cun-Hua"><a href="#Zhou-Gui-amp-Pan-Cun-Hua" class="headerlink" title="Zhou Gui &amp; Pan Cun Hua"></a>Zhou Gui &amp; Pan Cun Hua</h3><p><strong>A Framework of Robust Transmission Design for IRS-Aided MISO Communications With Imperfect Cascaded Channels</strong>.  <em>Gui Zhou</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9180053">pdf</a>)  (Citations <strong>135</strong>) </p>
 <hr>
-<p><strong>Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication</strong>.  <em>Ming-Min Zhao</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9352530">pdf</a>)  (Citations <strong>16</strong>)</p>
-<p>记录一下，zhougui等人的robust beamforming  github code ：<a target="_blank" rel="noopener" href="https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications">https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications</a></p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>在用户最大CSI错误中断概率约束的前提下，联合优化AP和IRS以最小化AP处的发射功率。</p>
+<p><strong>Robust Beamforming Design for Intelligent Reflecting Surface Aided MISO Communication Systems</strong>.  <em>Gui Zhou</em> et.al.  <strong>IEEE Wireless Communications Letters, October 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9110587">pdf</a>)  (Citations <strong>108</strong>)</p>
+<p><strong>不同之处有：</strong></p>
 <ul>
-<li>先考虑单用户情况，计算单用户的平均信号的功率和方差来计算中断概率（功率和方差是trade-off）</li>
-<li>多用户情况，很难求出闭式解，通过优化算法解决</li>
+<li>他们的WCL文章中，只是对<script type="math/tex">\mathbf{h}</script>信道建模误差，没有对<script type="math/tex">\text{diag}(\mathbf{h})\mathbf{G}</script>级联信道进行建模。</li>
 </ul>
-<p>现有的robust beamforming的算法，可以分为方向：</p>
-<ol>
-<li>假设部分信道不确定性（有界的CSI误差模型），联合设计precoder和IRS reflection matrix</li>
-<li>假设统计信号误差模型（高斯分布等）</li>
-<li>设计中断概率下界高于某个阈值</li>
-</ol>
-<p>算法上：</p>
+<p>该模型的收敛速度很快。</p>
 <ul>
-<li>对单用户，讨论MSP（mean signal power）的均值和方差的trade-off，通过一维搜索搞定</li>
-<li>对多用户，SCA，并且先将离散的相位变化放缩到连续，进行优化后，放回离散值并固定，再对precoder进行优化，以补偿IRS相位从连续到离散的损失</li>
+<li>他们的建模方式不太一样，Pan Cun Hua 他们经常使用Tayler Expression</li>
+<li>他们的模型中SINR分母还会进行一个约束处理，这部分我一般可以省略，因为我做单用户，分母只有Noise</li>
 </ul>
-<h2 id="单用户（过程很有意思）"><a href="#单用户（过程很有意思）" class="headerlink" title="单用户（过程很有意思）"></a>单用户（过程很有意思）</h2><p>有意思的是，其约束是一个概率：</p>
+<h2 id="Statistical-model"><a href="#Statistical-model" class="headerlink" title="Statistical model"></a>Statistical model</h2><p>这个模型与上述的Bounded Model完全不同，是通过如下的Bernstein-Type Inequality转换概率为不等式：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301124980.png" srcset="/img/loading.gif" lazyload alt="image-20221230112411923" style="zoom:50%;" /></p>
+<p>然后再进行求解。可以写为：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\min _{\left\{\mathbf{w}_k\right\}, \boldsymbol{\Theta}} & \sum_{k \in \mathcal{K}}\left\|\mathbf{w}_k\right\|^2 \\
-\text { s.t. } & \operatorname{Pr}\left(\operatorname{SINR}_k<\eta_k\right) \leq \epsilon_k, \forall k \in \mathcal{K}, \\
-& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
-\end{aligned}</script><p>即优化目标为最小化发射功率，约束（6b）指中断概率小于一个阈值,（6c）指IRS相位的可行域</p>
-<p>单用户的时候，可以丢掉下标<script type="math/tex">k</script>，然后写成矩阵形式有：</p>
+& \operatorname{Pr}\left\{\left(\mathbf{h}_k^{\mathrm{H}}+\mathbf{e}^{\mathrm{H}}\left(\widehat{\mathbf{G}}_k+\Delta \mathbf{G}_k\right)\right) \boldsymbol{\Phi}_k\left(\mathbf{h}_k+\left(\widehat{\mathbf{G}}_k+\Delta \mathbf{G}_k\right)^{\mathrm{H}} \mathbf{e}\right)-\sigma_k^2 \geq 0\right\} \\
+& =\operatorname{Pr}\left\{\operatorname{vec}^{\mathrm{H}}\left(\triangle \mathbf{G}_k\right)\left(\boldsymbol{\Phi}_k^{\mathrm{T}} \otimes \mathbf{E}\right) \operatorname{vec}\left(\triangle \mathbf{G}_k\right)+2 \operatorname{Re}\left\{\operatorname{vec}^{\mathrm{H}}\left(\left(\mathbf{e h}_k^{\mathrm{H}}+\mathbf{E} \widehat{\mathbf{G}}_k\right) \boldsymbol{\Phi}_k\right) \operatorname{vec}\left(\triangle \mathbf{G}_k\right)\right\}\right. \\
+& \left.+\left(\mathbf{h}_k^{\mathrm{H}}+\mathbf{e}^{\mathrm{H}} \widehat{\mathbf{G}}_k\right) \boldsymbol{\Phi}_k\left(\mathbf{h}_k+\widehat{\mathbf{G}}_k^{\mathrm{H}} \mathbf{e}\right)-\sigma_k^2 \geq 0\right\} \\
+& =\operatorname{Pr}\left\{\varepsilon_{\mathbf{g}, k}^2 \mathbf{i}_{\mathbf{g}, k}^{\mathrm{H}}\left(\boldsymbol{\Phi}_k^{\mathrm{T}} \otimes \mathbf{E}\right) \mathbf{i}_{\mathbf{g}, k}+2 \operatorname{Re}\left\{\varepsilon_{\mathbf{g}, k} \operatorname{vec}^{\mathrm{H}}\left(\left(\mathbf{e h}_k^{\mathrm{H}}+\mathbf{E} \widehat{\mathbf{G}}_k\right) \boldsymbol{\Phi}_k\right) \mathbf{i}_{\mathbf{g}, k}\right\}+\left(\mathbf{h}_k^{\mathrm{H}}+\mathbf{e}^{\mathrm{H}} \widehat{\mathbf{G}}_k\right) \boldsymbol{\Phi}_k\left(\mathbf{h}_k+\widehat{\mathbf{G}}_k^{\mathrm{H}} \mathbf{e}\right)-\sigma_k^2 \geq 0\right\} . \\
+&
+\end{aligned}</script><p>其中<script type="math/tex">\mathbf{i}\sim\mathcal{CN}(0, \mathbf{I})</script>。然后再进行求解<script type="math/tex">\mathbf{W}</script>:</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-\min _{\mathbf{w}, \boldsymbol{\Theta}} &\|\mathbf{w}\|^2 \\
-\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{h}_r^H \boldsymbol{\Theta} \mathbf{G}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\
-& \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
-\end{aligned}</script><p>并且由变量替换：</p>
-<script type="math/tex; mode=display">
-\mathbf{H}_k \triangleq \operatorname{diag}\left(\mathbf{h}_{r, k}^H\right) \mathbf{G}</script><p>上式等于：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\min _{\mathbf{w}, \mathbf{v}} &\|\mathbf{w}\|^2 \\
-\text { s.t. } & \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \leq \epsilon, \\
-& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
-\end{aligned}</script><p>由于发射功率越大中断概率肯定越小，所以可以交换一下：</p>
+\min _{\boldsymbol{\Gamma}, \mathbf{x}, \mathbf{y}} & \sum_{k=1}^K \operatorname{Tr}\left\{\boldsymbol{\Gamma}_k\right\} \\
+\text { s.t. } & \varepsilon_{\mathbf{g}, k}^2 M \operatorname{Tr}\left\{\mathbf{\Phi}_k\right\}-\sqrt{2 \ln \left(1 / \rho_k\right)} x_k-\ln \left(1 / \rho_k\right) y_k \\
+& +u_k \geq 0, \forall k \in \mathcal{K} \\
+& \| \quad \varepsilon_{\mathbf{g}, k}^2 M \operatorname{vec}\left(\mathbf{\Phi}_k\right) \\
+& \sqrt{2 M} \varepsilon_{\mathrm{g}, k} \mathbf{\Phi}_k\left(\mathbf{h}_k+\widehat{\mathbf{G}}_k^{\mathrm{H}} \mathbf{e}\right) \| \leq x_k, \forall k \in \mathcal{K} \\
+& y_k \mathbf{I}+\varepsilon_{\mathbf{g}, k}^2 M \mathbf{\Phi}_k \succeq \mathbf{0}, y_k \geq 0, \forall k \in \mathcal{K} \\
+& \boldsymbol{\Gamma}_k \succeq \mathbf{0}, \forall k \in \mathcal{K} \\
+& \operatorname{rank}\left(\boldsymbol{\Gamma}_k\right)=1, \forall k \in \mathcal{K}
+\end{aligned}</script><p>并且类似的，可行性检查求解<script type="math/tex">\mathbf{V}</script>:</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-&\min _{\mathbf{w}, \mathbf{v}} \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2<\sigma^2 \eta\right) \\
-&\text { s.t. }\|\mathbf{w}\|^2 \leq p, \\
-&v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
-\end{aligned}</script><p>然后，加法形式可以再次写成矩阵乘法形式：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png" srcset="/img/loading.gif" lazyload alt="image-20221123105539827" style="zoom: 50%;" /></p>
-<p>进一步，上述优化目标等于求CDF：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\min _{\mathbf{w}, \mathbf{v}} & \iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\
-\text { s.t. } &\|\mathbf{w}\|^2 \leq p, \\
-& v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
-\end{aligned}</script><p>因为其CDF为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&\iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\
-&=\mathcal{P}\left(\left.\frac{\eta \sigma^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right|_2, \frac{\left|\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}\right|^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right)
-\end{aligned}</script><p>意思是，服从自由度为2，参数为<script type="math/tex">\lambda</script>的卡方：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png" srcset="/img/loading.gif" lazyload alt="image-20221123105944569" style="zoom: 50%;" /></p>
-<p>需要同时最大化<script type="math/tex">\frac{\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}}{\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}</script>和<script type="math/tex">\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}</script>，<script type="math/tex">\mathcal{P}\left[\left.\chi^2\right|_2, \lambda\right]</script>是<script type="math/tex">\chi</script>的递增函数，是<script type="math/tex">\lambda</script>的递减函数。</p>
-<p>但是同时最大化感觉是不合理的。只能在最大化二者之间找一个平衡：</p>
-<script type="math/tex; mode=display">
-\begin{gathered}
-\max _{\mathbf{v}} \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}+\omega \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}} \\
-\text { s.t. } v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
-\end{gathered}</script><p>怎么解得，看不懂。</p>
-<h2 id="多用户"><a href="#多用户" class="headerlink" title="多用户"></a>多用户</h2>
+\max _{\mathbf{e}, \boldsymbol{\alpha}, \mathbf{x}, \mathbf{y}} & \sum_{k=1}^K \alpha_k \\
+\text { s.t. } & \varepsilon_{\mathrm{g}, k}^2 M \operatorname{Tr}\left\{\mathbf{\Phi}_k\right\}-\sqrt{2 \ln \left(1 / \rho_k\right)} x_k \\
+& -\ln \left(1 / \rho_k\right) y_k+u_k^{\mathbf{e}} \geq 0, \forall k \in \mathcal{K} \\
+& \left\|\varepsilon_{\mathbf{g}, k}^2 M\right\| \mathbf{\Phi}_k \|_F \\
+& \sqrt{2 M} \varepsilon_{\mathrm{g}, k} \mathbf{\Phi}_k\left(\mathbf{h}_k+\widehat{\mathbf{G}}_k^{\mathrm{H}} \mathbf{e}\right) \| \leq x_k, \forall k \in \mathcal{K} \\
+& \boldsymbol{\alpha} \geq 0 \\
+& \left|e_m\right|^2=1, \forall m \in \mathcal{M} .
+\end{aligned}</script><h3 id="Zhou-Gui-amp-Pan-Cun-Hua-1"><a href="#Zhou-Gui-amp-Pan-Cun-Hua-1" class="headerlink" title="Zhou Gui &amp; Pan Cun Hua"></a>Zhou Gui &amp; Pan Cun Hua</h3><p><strong>A Framework of Robust Transmission Design for IRS-Aided MISO Communications With Imperfect Cascaded Channels</strong>.  <em>Gui Zhou</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9180053">pdf</a>)  (Citations <strong>135</strong>) </p>
+<p>发的TSP，包含了直射信道和级联信道都不准确的情况和仅级联信道不全的情况。</p>
+<h3 id="Kun-Yu-Wang"><a href="#Kun-Yu-Wang" class="headerlink" title="Kun-Yu Wang"></a>Kun-Yu Wang</h3><p><strong>Outage Constrained Robust Transmit Optimization for Multiuser MISO Downlinks: Tractable Approximations by Conic Optimization</strong>.  <em>Kun-Yu Wang</em> et.al.  <strong>IEEE Transactions on Signal Processing, November 2014</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6891348">pdf</a>)  (Citations <strong>392</strong>)</p>
+<p>最早做Robust Beamforming，但是没有IRS</p>
+<h2 id="Hu-Xiao-Ling"><a href="#Hu-Xiao-Ling" class="headerlink" title="Hu Xiao Ling"></a>Hu Xiao Ling</h2><p>垃圾文章，耽误我时间。巨多错误，巨多问题，甚至复现不出来，我怀疑其真实性和学术态度。</p>
+<p><strong>Robust Design for IRS-Aided Communication Systems With User Location Uncertainty</strong>.  <em>Xiaoling Hu</em> et.al.  <strong>IEEE Wireless Communications Letters, January 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9184012">pdf</a>)  (Citations <strong>7</strong>)</p>
+
             </div>
             <hr>
             <div>
@@ -368,7 +415,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/11/23/robustbeamforming2/">http://lcjoffrey.top/2022/11/23/robustbeamforming2/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2022/12/30/robustbeamformingOverview/">http://lcjoffrey.top/2022/12/30/robustbeamformingOverview/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -378,18 +425,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/23/IRScodeResource/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">IRS代码合集</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/17/unlimitedsampling-1/">
-                        <span class="hidden-mobile">无限制采样-Unlimited Sampling</span>
+                      <a href="/2022/11/28/mymathtools/">
+                        <span class="hidden-mobile">Mymathtools</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
