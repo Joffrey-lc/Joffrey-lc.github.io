@@ -355,7 +355,7 @@ end;
 
 ## matlab绘图MAP
 
-最近抖音学了几个配色还可以：
+最近抖音学了几个配色还可以/颜色/配色/plot：
 
 ```matlab
 color_map1 = [[21,29,41];[210,57,24];[229,168,075];[093,163,157]]./255;
@@ -375,6 +375,7 @@ set(h1, 'Interpreter', 'latex')
 xlim([min(N_all), max(N_all)]);
 xlabel('Number of IRS elements', 'Interpreter', 'latex');
 ylabel('Outage Probability', 'Interpreter', 'latex')
+set(gca,'Fontname', 'Times New Roman');
 ```
 
 三个{% label primary @'Interpreter', 'latex' %}
@@ -389,3 +390,26 @@ function out = myload(path, name)
     out = eval(['data.', name]);
 end
 ```
+
+## 三维图EPS模糊的问题
+
+https://blog.csdn.net/QWERTYUIOPPLM123/article/details/108540242
+
+## Matlab 安装和CVX
+
+### maltab 安装
+
+- 管理员权限setup.exe
+- 密钥：62551-02011-26857-57509-64399-54230-13279-37181-62117-65158-40352-64197-45508-24369-45954-39446-39538-16936-10698-58393-44718-32560-10501-40058-34454
+- 证书：Crack文件夹下license.lic文件
+- 将libmwlmgrimpl.dll复制到安装目录R2021/bin/win64/matlab_startup_plugins/lmgrimpl下，并替换
+- 更改初始文件夹/默认文件夹/初始路径/默认路径
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303081030461.png" alt="image-20230224125933279" style="zoom: 25%;" />
+
+### CVX安装
+
+- [官网下载](http://cvxr.com/cvx/download/) 
+- 解压到某一个文件夹
+- matlab工作区，cd到该位置
+- ```cvx_setup```
