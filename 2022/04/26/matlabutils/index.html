@@ -23,11 +23,13 @@
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
 <meta property="og:description" content="matlab工具箱，持续更新">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303081030461.png">
 <meta property="article:published_time" content="2022-04-26T10:32:15.000Z">
-<meta property="article:modified_time" content="2022-11-19T11:12:51.614Z">
+<meta property="article:modified_time" content="2023-03-08T02:32:33.189Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="matlab">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303081030461.png">
   
   <title>Matlab工具箱 - Joffrey&#39;s Blog</title>
 
@@ -216,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.8k 字
+      8.2k 字
     </span>
   
 
@@ -225,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24 分钟
+      26 分钟
     </span>
   
 
@@ -550,7 +552,7 @@ fig_pointer_pos <span class="token operator">=</span> pointer_pos <span class="t
 <li><p>在插入中插入箭头</p>
 </li>
 </ul>
-<h2 id="matlab绘图MAP"><a href="#matlab绘图MAP" class="headerlink" title="matlab绘图MAP"></a>matlab绘图MAP</h2><p>最近抖音学了几个配色还可以：</p>
+<h2 id="matlab绘图MAP"><a href="#matlab绘图MAP" class="headerlink" title="matlab绘图MAP"></a>matlab绘图MAP</h2><p>最近抖音学了几个配色还可以/颜色/配色/plot：</p>
 <div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">color_map1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span><span class="token number">29</span><span class="token punctuation">,</span><span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">210</span><span class="token punctuation">,</span><span class="token number">57</span><span class="token punctuation">,</span><span class="token number">24</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">229</span><span class="token punctuation">,</span><span class="token number">168</span><span class="token punctuation">,</span><span class="token number">075</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">093</span><span class="token punctuation">,</span><span class="token number">163</span><span class="token punctuation">,</span><span class="token number">157</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">./</span><span class="token number">255</span><span class="token punctuation">;</span>
 color_map2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">166</span><span class="token punctuation">,</span><span class="token number">64</span><span class="token punctuation">,</span><span class="token number">54</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">240</span><span class="token punctuation">,</span><span class="token number">194</span><span class="token punctuation">,</span><span class="token number">162</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">065</span><span class="token punctuation">,</span><span class="token number">130</span><span class="token punctuation">,</span><span class="token number">164</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">053</span><span class="token punctuation">,</span><span class="token number">078</span><span class="token punctuation">,</span><span class="token number">107</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">./</span><span class="token number">255</span><span class="token punctuation">;</span>
 color_map3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">073</span><span class="token punctuation">,</span><span class="token number">148</span><span class="token punctuation">,</span><span class="token number">196</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">234</span><span class="token punctuation">,</span><span class="token number">085</span><span class="token punctuation">,</span><span class="token number">020</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">093</span><span class="token punctuation">,</span><span class="token number">163</span><span class="token punctuation">,</span><span class="token number">157</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">[</span><span class="token number">250</span><span class="token punctuation">,</span><span class="token number">192</span><span class="token punctuation">,</span><span class="token number">061</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">./</span><span class="token number">255</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
@@ -560,7 +562,8 @@ color_map3 <span class="token operator">=</span> <span class="token punctuation"
 <span class="token function">set</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span> <span class="token string">'Interpreter'</span><span class="token punctuation">,</span> <span class="token string">'latex'</span><span class="token punctuation">)</span>
 <span class="token function">xlim</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">min</span><span class="token punctuation">(</span>N_all<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">max</span><span class="token punctuation">(</span>N_all<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Number of IRS elements'</span><span class="token punctuation">,</span> <span class="token string">'Interpreter'</span><span class="token punctuation">,</span> <span class="token string">'latex'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Outage Probability'</span><span class="token punctuation">,</span> <span class="token string">'Interpreter'</span><span class="token punctuation">,</span> <span class="token string">'latex'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Outage Probability'</span><span class="token punctuation">,</span> <span class="token string">'Interpreter'</span><span class="token punctuation">,</span> <span class="token string">'latex'</span><span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>gca<span class="token punctuation">,</span><span class="token string">'Fontname'</span><span class="token punctuation">,</span> <span class="token string">'Times New Roman'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>三个<span class="label label-primary">'Interpreter', latex</span></p>
 <h2 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h2><p>matlab自带load读取数据是结构体，不够方便。使用自定义函数，第一个参数为文件路径，第二个参数为保存时的变量名，返回数据。</p>
 <div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> out <span class="token operator">=</span> <span class="token function">myload</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
@@ -568,6 +571,20 @@ color_map3 <span class="token operator">=</span> <span class="token punctuation"
     out <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data.'</span><span class="token punctuation">,</span> name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="三维图EPS模糊的问题"><a href="#三维图EPS模糊的问题" class="headerlink" title="三维图EPS模糊的问题"></a>三维图EPS模糊的问题</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/QWERTYUIOPPLM123/article/details/108540242">https://blog.csdn.net/QWERTYUIOPPLM123/article/details/108540242</a></p>
+<h2 id="Matlab-安装和CVX"><a href="#Matlab-安装和CVX" class="headerlink" title="Matlab 安装和CVX"></a>Matlab 安装和CVX</h2><h3 id="maltab-安装"><a href="#maltab-安装" class="headerlink" title="maltab 安装"></a>maltab 安装</h3><ul>
+<li>管理员权限setup.exe</li>
+<li>密钥：62551-02011-26857-57509-64399-54230-13279-37181-62117-65158-40352-64197-45508-24369-45954-39446-39538-16936-10698-58393-44718-32560-10501-40058-34454</li>
+<li>证书：Crack文件夹下license.lic文件</li>
+<li>将libmwlmgrimpl.dll复制到安装目录R2021/bin/win64/matlab_startup_plugins/lmgrimpl下，并替换</li>
+<li>更改初始文件夹/默认文件夹/初始路径/默认路径</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303081030461.png" srcset="/img/loading.gif" lazyload alt="image-20230224125933279" style="zoom: 25%;" /></p>
+<h3 id="CVX安装"><a href="#CVX安装" class="headerlink" title="CVX安装"></a>CVX安装</h3><ul>
+<li><a target="_blank" rel="noopener" href="http://cvxr.com/cvx/download/">官网下载</a> </li>
+<li>解压到某一个文件夹</li>
+<li>matlab工作区，cd到该位置</li>
+<li><code>cvx_setup</code></li>
+</ul>
 
             </div>
             <hr>
