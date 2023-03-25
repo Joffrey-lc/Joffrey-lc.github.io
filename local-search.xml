@@ -13,6 +13,8 @@
     
     <categories>
       
+      <category>Paper Reading</category>
+      
       <category>Robust Beamforming</category>
       
     </categories>
@@ -63,6 +65,8 @@
     
     <categories>
       
+      <category>Paper Reading</category>
+      
       <category>Intelligent Reflecting Surface</category>
       
     </categories>
@@ -90,6 +94,8 @@
     
     <categories>
       
+      <category>Paper Reading</category>
+      
       <category>Robust Beamforming</category>
       
     </categories>
@@ -114,6 +120,8 @@
     
     
     <categories>
+      
+      <category>Paper Reading</category>
       
       <category>Unlimited Sampling</category>
       
@@ -1119,11 +1127,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1150,11 +1158,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1181,11 +1189,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1212,11 +1220,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1243,11 +1251,11 @@
     
     <tags>
       
+      <tag>WPT</tag>
+      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
-      
-      <tag>WPT</tag>
       
     </tags>
     
@@ -1301,9 +1309,9 @@
     
     <tags>
       
-      <tag>WET</tag>
-      
       <tag>WPT</tag>
+      
+      <tag>WET</tag>
       
       <tag>SWIPT</tag>
       
