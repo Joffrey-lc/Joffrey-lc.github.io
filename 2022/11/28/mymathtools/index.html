@@ -25,8 +25,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301200434.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301201590.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108937.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108039.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108912.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108016.png">
 <meta property="article:published_time" content="2022-11-28T08:14:02.000Z">
-<meta property="article:modified_time" content="2022-12-30T04:45:28.089Z">
+<meta property="article:modified_time" content="2023-03-25T03:11:40.861Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Mathmatical">
 <meta name="twitter:card" content="summary_large_image">
@@ -219,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.9k 字
+      6.7k 字
     </span>
   
 
@@ -228,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18 分钟
+      21 分钟
     </span>
   
 
@@ -422,6 +426,29 @@ B <span class="token operator">=</span><span class="token function">ones</span><
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301200434.png" srcset="/img/loading.gif" lazyload alt="image-20221230120036399" style="zoom:50%;" /></p>
 <h2 id="General-S-Procdure"><a href="#General-S-Procdure" class="headerlink" title="General S-Procdure"></a>General S-Procdure</h2><p><strong>A Framework of Robust Transmission Design for IRS-Aided MISO Communications With Imperfect Cascaded Channels</strong>.  <em>Gui Zhou</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9180053">pdf</a>)  (Citations <strong>135</strong>)</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301201590.png" srcset="/img/loading.gif" lazyload alt="image-20221230120136566" style="zoom:50%;" /></p>
+<h2 id="moment-matching"><a href="#moment-matching" class="headerlink" title="moment-matching"></a>moment-matching</h2><p>关键词：矩匹配，PDF，CDF，逆CDF，逆累计分布函数</p>
+<p>思想很简单，就是用Gamma分布近似一个复杂分布。由于Gamma分布的参数只与均值和方差有关，这意味着我们只要求出待求随机变量的均值和方差，就可以拟合其PDF。</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">beta <span class="token operator">=</span> myapprox_mean<span class="token operator">/</span>myapprox_var<span class="token operator">/</span><span class="token punctuation">(</span>path_loss_IRS2Ues<span class="token operator">*</span>path_loss_PB2IRS<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% scaler parameter</span>
+alpha <span class="token operator">=</span> myapprox_mean<span class="token operator">^</span><span class="token number">2</span><span class="token operator">/</span>myapprox_var<span class="token punctuation">;</span> <span class="token comment">% shape parameter</span>
+inv_X <span class="token operator">=</span> <span class="token function">gaminv</span><span class="token punctuation">(</span>P_out<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">/</span>beta<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>其中gaminv是Gamma分布的逆累计分布函数。alpha是 Gamma分布的shape parameter， beta是Gamma分布的scaler parameter。</p>
+<h2 id="AOA-AOD"><a href="#AOA-AOD" class="headerlink" title="AOA/AOD"></a>AOA/AOD</h2><p>关键词：LoS，视距信道，面阵，IRS</p>
+<p>网上的对IRS面阵的空间向量的建模都是错的，这里我整理一下。</p>
+<h3 id="明确俯仰角-方位角"><a href="#明确俯仰角-方位角" class="headerlink" title="明确俯仰角/方位角"></a>明确俯仰角/方位角</h3><p>参考《现代数字信号处理及其应用》Page291 和《阵列信号处理及matlab实现》Page 42-43</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108937.png" srcset="/img/loading.gif" lazyload alt="image-20230325105446079" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108039.png" srcset="/img/loading.gif" lazyload alt="image-20230325105438173" style="zoom: 25%;" /></p>
+<p> ==明确以L阵的俯仰角和方位角进行建模。==</p>
+<h3 id="明确角度后进行分析"><a href="#明确角度后进行分析" class="headerlink" title="明确角度后进行分析"></a>明确角度后进行分析</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108912.jpeg" srcset="/img/loading.gif" lazyload alt="c33ad9009804428e4f106271504bd30" style="zoom:25%;" /></p>
+<p>所以对于我常用的模型，</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108016.png" srcset="/img/loading.gif" lazyload alt="image-20230325110217963" style="zoom:33%;" /></p>
+<p>有：</p>
+<script type="math/tex; mode=display">
+u_{G}\triangleq 2\pi d\cos\varphi_{G} /\lambda=\pi\cos\varphi_{G}\\
+v_{G}\triangleq \pi\sin\varphi_{G}\sin\vartheta_{G}\\
+z_{G}\triangleq \pi\sin\gamma_{G}</script><h2 id="天线的近场和远场"><a href="#天线的近场和远场" class="headerlink" title="天线的近场和远场"></a><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/oUrYPUN0cZlN4rtmF8vubw">天线的近场和远场</a></h2><p>详细信息参见：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/oUrYPUN0cZlN4rtmF8vubw">微信公众号</a></p>
+<p>主要结论 ==判断是否远场，是与天线尺寸和工作波长相关的：==</p>
+<script type="math/tex; mode=display">
+r\geq\frac{2d^2}{\lambda}</script><p>其中<script type="math/tex">d</script>为阵元之间的间隔，<script type="math/tex">\lambda</script>为波长，<script type="math/tex">r</script>为距离。</p>
 
             </div>
             <hr>
