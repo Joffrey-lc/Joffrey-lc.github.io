@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>知识储备-波束宽度</title>
+    <link href="/2023/03/28/beamwidth/"/>
+    <url>/2023/03/28/beamwidth/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="天线方向图"><a href="#天线方向图" class="headerlink" title="天线方向图"></a>天线方向图</h2><p>天线方向图：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281321924.png" alt="image-20230328132116860" style="zoom:33%;" /></p><p>由两部分组成，第一部分是==Element Factor==，称为==阵元因子==，第二部分是==Array Factor==，称为==阵（列）因子==。</p><blockquote><p>Element Factor：阵列的每个独立阵元（或许是贴片）都存在增益。定向天线？全向天线？</p><p>Array Factor：通过阵列波束成型会产生增益影响。波束赋形</p></blockquote><p>总的天线方向图是二者的乘积。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281325821.gif" alt="图片来源link1" style="zoom:33%;" /></p><p>Ref:<a href="https://blog.csdn.net/qq_23176133/article/details/120056777">https://blog.csdn.net/qq_23176133/article/details/120056777</a></p><p>在我的理解中，如果是全向天线，可以认为Element Factor 在各个方向上都是相同的定值；对于定向天线，就不一样了。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281326726.png" alt="image-20230328132636687" style="zoom:33%;" /></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281326397.png" alt="image-20230328132652356" style="zoom:33%;" /></p><p>Ref:<a href="https://blog.csdn.net/qq_23176133/article/details/120056777">https://blog.csdn.net/qq_23176133/article/details/120056777</a></p><p>当<script type="math/tex">d=0.5\lambda</script>时，有Array Factor方向图：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281328609.gif" alt="在这里插入图片描述" style="zoom:33%;" /></p><p>Ref:<a href="https://blog.csdn.net/qq_23176133/article/details/120056777">https://blog.csdn.net/qq_23176133/article/details/120056777</a></p><p>当<script type="math/tex">d=0.8\lambda</script>时，有Array Factor方向图：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281328489.gif" alt="在这里插入图片描述" style="zoom:33%;" /></p><p>Ref:<a href="https://blog.csdn.net/qq_23176133/article/details/120056777">https://blog.csdn.net/qq_23176133/article/details/120056777</a></p><p>参考雷达通信电子战的<a href="https://mp.weixin.qq.com/s/IoBHFRdP2PhJnElv0OzZEw">公众号文章</a>，以及问题：<a href="https://ask.csdn.net/questions/1049835，有代码：">https://ask.csdn.net/questions/1049835，有代码：</a></p><div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">% 更多专业内容请关注：</span><span class="token comment">% 雷达通信电子战</span>clc<span class="token punctuation">;</span>clear all<span class="token punctuation">;</span>close all<span class="token punctuation">;</span>N<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">;</span>a<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">;</span> <span class="token comment">% a=d/lambda</span>theta<span class="token operator">=</span><span class="token operator">-</span><span class="token keyword">pi</span><span class="token operator">:</span><span class="token number">0.01</span><span class="token operator">:</span><span class="token keyword">pi</span><span class="token punctuation">;</span><span class="token keyword">for</span> thetaB<span class="token operator">=</span><span class="token number">0</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">60</span>    thetaB1<span class="token operator">=</span>thetaB<span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>    sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">0</span><span class="token operator">:</span>N<span class="token operator">-</span><span class="token number">1</span>        y1<span class="token operator">=</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">i</span><span class="token operator">*</span>a<span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">sin</span><span class="token punctuation">(</span>theta<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">sin</span><span class="token punctuation">(</span>thetaB1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           sum<span class="token operator">=</span>sum<span class="token operator">+</span>y1<span class="token punctuation">;</span>    <span class="token keyword">end</span>        sum<span class="token operator">=</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">cos</span><span class="token punctuation">(</span>theta<span class="token punctuation">)</span><span class="token operator">.^</span><span class="token number">0.5</span><span class="token operator">.*</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>    sum<span class="token operator">=</span>sum<span class="token operator">/</span>N<span class="token punctuation">;</span>    clf<span class="token punctuation">;</span><span class="token comment">%     polarplot(theta,sum2,'-r');</span>    <span class="token function">polarplotdb</span><span class="token punctuation">(</span>theta<span class="token punctuation">,</span>sum<span class="token punctuation">,</span><span class="token string">'-r'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">pause</span><span class="token punctuation">(</span><span class="token number">0.0005</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">end</span>  <span class="token keyword">for</span> thetaB<span class="token operator">=</span><span class="token number">60</span><span class="token operator">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">0</span>        thetaB1<span class="token operator">=</span>thetaB<span class="token operator">/</span><span class="token number">180</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token punctuation">;</span>        sum<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>    <span class="token keyword">for</span> <span class="token number">i</span><span class="token operator">=</span><span class="token number">0</span><span class="token operator">:</span>N<span class="token operator">-</span><span class="token number">1</span>        y1<span class="token operator">=</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1i</span><span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span><span class="token keyword">pi</span><span class="token operator">*</span><span class="token number">i</span><span class="token operator">*</span>a<span class="token operator">*</span><span class="token punctuation">(</span><span class="token function">sin</span><span class="token punctuation">(</span>theta<span class="token punctuation">)</span><span class="token operator">-</span><span class="token function">sin</span><span class="token punctuation">(</span>thetaB1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           sum<span class="token operator">=</span>sum<span class="token operator">+</span>y1<span class="token punctuation">;</span>    <span class="token keyword">end</span>        sum<span class="token operator">=</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token function">cos</span><span class="token punctuation">(</span>theta<span class="token punctuation">)</span><span class="token operator">.^</span><span class="token number">0.5</span><span class="token operator">.*</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>    sum<span class="token operator">=</span>sum<span class="token operator">/</span>N<span class="token punctuation">;</span>     clf<span class="token punctuation">;</span><span class="token comment">%     polarplot(theta,sum2,'-r');</span>    <span class="token function">polarplotdb</span><span class="token punctuation">(</span>theta<span class="token punctuation">,</span>sum<span class="token punctuation">,</span><span class="token string">'-r'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">pause</span><span class="token punctuation">(</span><span class="token number">0.0005</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>当为全向天线，将line 14 ==cos(theta).^0.5==置1,即可。</p><h2 id="波束宽度"><a href="#波束宽度" class="headerlink" title="波束宽度"></a>波束宽度</h2><script type="math/tex; mode=display">A F[\theta]=\frac{\sin \left(\frac{N \pi d}{\lambda}\left[\sin (\theta)-\sin \left(\theta_0\right)\right]\right)}{N \sin \left(\frac{\pi d}{\lambda}\left[\sin (\theta)-\sin \left(\theta_0\right)\right]\right)}</script><p>其中<script type="math/tex">\theta_0</script>为波束指向方向（中线的指向方向），<script type="math/tex">AF[\theta]</script>为在<script type="math/tex">\theta</script>方向上的波束增益。注意，这里只考虑了Array Factor,没有考虑Element Factor，因为Element Factor只决定了在该方向上的增益大小，但是不决定波束宽度（算3dB可能要考虑？）。</p><hr><p>上述内容还有个Niub的参考文献：</p><p>Delos, Peter, Bob Broughton, and Jon Kraft. “Phased array antenna patterns-part 1: Linear array beam characteristics and array factor.” <em>Analog Dialogue</em> 54.2 (2020): 1-8.</p><p>其中文版：</p><p><a href="https://www.analog.com/media/cn/analog-dialogue/volume-54/number-2/phased-array-antenna-patterns-part-1-linear-array-beam-characteristics-and-array-factor_cn.pdf">https://www.analog.com/media/cn/analog-dialogue/volume-54/number-2/phased-array-antenna-patterns-part-1-linear-array-beam-characteristics-and-array-factor_cn.pdf</a></p><hr>]]></content>
+    
+    
+    <categories>
+      
+      <category>basic knowledge</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>beam width</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Robust Beamforming -- OverView</title>
     <link href="/2022/12/30/robustbeamformingOverview/"/>
     <url>/2022/12/30/robustbeamformingOverview/</url>
@@ -1127,11 +1152,11 @@
     
     <tags>
       
-      <tag>WPT</tag>
-      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
+      
+      <tag>WPT</tag>
       
     </tags>
     
@@ -1158,11 +1183,11 @@
     
     <tags>
       
-      <tag>WPT</tag>
-      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
+      
+      <tag>WPT</tag>
       
     </tags>
     
@@ -1189,11 +1214,11 @@
     
     <tags>
       
-      <tag>WPT</tag>
-      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
+      
+      <tag>WPT</tag>
       
     </tags>
     
@@ -1220,11 +1245,11 @@
     
     <tags>
       
-      <tag>WPT</tag>
-      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
+      
+      <tag>WPT</tag>
       
     </tags>
     
@@ -1251,11 +1276,11 @@
     
     <tags>
       
-      <tag>WPT</tag>
-      
       <tag>CSI Free</tag>
       
       <tag>WET</tag>
+      
+      <tag>WPT</tag>
       
     </tags>
     
@@ -1309,9 +1334,9 @@
     
     <tags>
       
-      <tag>WPT</tag>
-      
       <tag>WET</tag>
+      
+      <tag>WPT</tag>
       
       <tag>SWIPT</tag>
       
@@ -2073,9 +2098,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -2100,9 +2125,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
