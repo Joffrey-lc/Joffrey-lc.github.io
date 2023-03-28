@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281328609.gif">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281328489.gif">
 <meta property="article:published_time" content="2023-03-28T05:12:55.000Z">
-<meta property="article:modified_time" content="2023-03-28T05:50:34.363Z">
+<meta property="article:modified_time" content="2023-03-28T06:06:34.225Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="beam width">
 <meta name="twitter:card" content="summary_large_image">
@@ -274,7 +274,7 @@
             <div class="markdown-body">
               <h2 id="天线方向图"><a href="#天线方向图" class="headerlink" title="天线方向图"></a>天线方向图</h2><p>天线方向图：</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303281321924.png" srcset="/img/loading.gif" lazyload alt="image-20230328132116860" style="zoom:33%;" /></p>
-<p>由两部分组成，第一部分是==Element Factor==，称为==阵元因子==，第二部分是==Array Factor==，称为==阵（列）因子==。</p>
+<p>由两部分组成，第一部分是<span class="label label-primary">Element Factor</span>，称为<span class="label label-primary">阵元因子</span>，第二部分是<span class="label label-primary">Array Factor</span>，称为<span class="label label-primary">阵（列）因子</span>。</p>
 <blockquote>
 <p>Element Factor：阵列的每个独立阵元（或许是贴片）都存在增益。定向天线？全向天线？</p>
 <p>Array Factor：通过阵列波束成型会产生增益影响。波束赋形</p>
@@ -331,7 +331,7 @@ theta<span class="token operator">=</span><span class="token operator">-</span><
     <span class="token keyword">pause</span><span class="token punctuation">(</span><span class="token number">0.0005</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
 <span class="token keyword">end</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p>当为全向天线，将line 14 ==cos(theta).^0.5==置1,即可。</p>
+<p>当为全向天线，将line 14 <span class="label label-primary">cos(theta).^0.5</span>置1,即可。</p>
 <h2 id="波束宽度"><a href="#波束宽度" class="headerlink" title="波束宽度"></a>波束宽度</h2><script type="math/tex; mode=display">
 A F[\theta]=\frac{\sin \left(\frac{N \pi d}{\lambda}\left[\sin (\theta)-\sin \left(\theta_0\right)\right]\right)}{N \sin \left(\frac{\pi d}{\lambda}\left[\sin (\theta)-\sin \left(\theta_0\right)\right]\right)}</script><p>其中<script type="math/tex">\theta_0</script>为波束指向方向（中线的指向方向），<script type="math/tex">AF[\theta]</script>为在<script type="math/tex">\theta</script>方向上的波束增益。注意，这里只考虑了Array Factor,没有考虑Element Factor，因为Element Factor只决定了在该方向上的增益大小，但是不决定波束宽度（算3dB可能要考虑？）。</p>
 <hr>
