@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>IRS+tracking Self-Sensing Scheme</title>
+    <title>IRS + Tracking Self-Sensing Scheme</title>
     <link href="/2023/04/03/IRStracking2/"/>
     <url>/2023/04/03/IRStracking2/</url>
     
@@ -2152,9 +2152,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -2179,9 +2179,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
