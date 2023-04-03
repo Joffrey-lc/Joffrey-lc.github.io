@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032046138.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032049207.png">
 <meta property="article:published_time" content="2023-04-03T12:37:50.000Z">
-<meta property="article:modified_time" content="2023-04-03T12:49:27.325Z">
+<meta property="article:modified_time" content="2023-04-03T13:02:04.521Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="IRS">
 <meta name="twitter:card" content="summary_large_image">
@@ -224,7 +224,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.7k 字
     </span>
   
 
@@ -233,7 +233,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      5 分钟
     </span>
   
 
@@ -273,8 +273,8 @@
             <h1 style="display: none">IRS + Tracking MAP/CS/User Association Strategy/Deep Learning</h1>
             
             <div class="markdown-body">
-              <p><strong>Mobile User Trajectory Tracking for IRS Enabled Wireless Networks</strong>.  <em>Deyou Zhang</em> et.al.  <strong>IEEE Transactions on Vehicular Technology, August 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9479771">pdf</a>)  (Citations <strong>3</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+              <h2 id="Mobile-User-Trajectory-Tracking-for-IRS-Enabled-Wireless-Networks"><a href="#Mobile-User-Trajectory-Tracking-for-IRS-Enabled-Wireless-Networks" class="headerlink" title="Mobile User Trajectory Tracking for IRS Enabled Wireless Networks"></a>Mobile User Trajectory Tracking for IRS Enabled Wireless Networks</h2><p><strong>Mobile User Trajectory Tracking for IRS Enabled Wireless Networks</strong>.  <em>Deyou Zhang</em> et.al.  <strong>IEEE Transactions on Vehicular Technology, August 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9479771">pdf</a>)  (Citations <strong>3</strong>)</p>
+<ul>
 <li>Mobile User移动使用的是Markov random walk</li>
 <li>Rician channel：说的是假设Rician，实际上是LoS，但是加了一组Rician的实验。</li>
 <li><p>依然假设IRS和AP位置固定，所以这段信道认为长时间不变的</p>
@@ -289,7 +289,7 @@
 <li>MO： manifold optimization</li>
 </ul>
 <hr>
-<p><strong>Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems.</strong> Deyou Zhang et.al. </p>
+<h2 id="Codebook-Based-Training-Beam-Sequence-Design-for-Millimeter-Wave-Tracking-Systems"><a href="#Codebook-Based-Training-Beam-Sequence-Design-for-Millimeter-Wave-Tracking-Systems" class="headerlink" title="Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems"></a>Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems</h2><p><strong>Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems.</strong> Deyou Zhang et.al. </p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039799.png" srcset="/img/loading.gif" lazyload alt="image-20230328200202630" style="zoom:33%;" /></p>
 <p>两均匀线阵</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039794.png" srcset="/img/loading.gif" lazyload alt="image-20230328200228951" style="zoom:33%;" /></p>
@@ -303,7 +303,7 @@
 <p>但是我认为可以丢掉<script type="math/tex">\mathbf{A}</script>很多全0的列，然后再进OMP。因为<script type="math/tex">\delta</script>是自己设置的，所以可以知道什么地方的为0。</p>
 <p>剩下的一堆分析构造MAP，并最小化错误概率。都可省略。</p>
 <hr>
-<p><strong>Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G</strong>.  <em>Hiroaki Hashida</em> et.al.  <strong>IEEE Journal on Selected Areas in Communications, May 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9681871">pdf</a>)  (Citations <strong>8</strong>)</p>
+<h2 id="Mobility-Aware-User-Association-Strategy-for-IRS-Aided-mm-Wave-Multibeam-Transmission-Towards-6G"><a href="#Mobility-Aware-User-Association-Strategy-for-IRS-Aided-mm-Wave-Multibeam-Transmission-Towards-6G" class="headerlink" title="Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G"></a>Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G</h2><p><strong>Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G</strong>.  <em>Hiroaki Hashida</em> et.al.  <strong>IEEE Journal on Selected Areas in Communications, May 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9681871">pdf</a>)  (Citations <strong>8</strong>)</p>
 <ul>
 <li>搞了个User和IRS的配对。</li>
 <li>==不涉及跟踪本身的算法==，假设跟踪是完美执行的。</li>
@@ -313,7 +313,7 @@
 <p>在二维平面中的位置PDF由下式给出：</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032046138.png" srcset="/img/loading.gif" lazyload alt="image-20230329134754663" style="zoom:33%;" /></p>
 <hr>
-<p><strong>Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems</strong>.  <em>Jiadong Yu</em> et.al.  <strong>IEEE Transactions on Wireless Communications, September 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9743298">pdf</a>)  (Citations <strong>7</strong>)</p>
+<h2 id="Deep-Learning-for-Channel-Tracking-in-IRS-Assisted-UAV-Communication-Systems"><a href="#Deep-Learning-for-Channel-Tracking-in-IRS-Assisted-UAV-Communication-Systems" class="headerlink" title="Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems"></a>Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems</h2><p><strong>Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems</strong>.  <em>Jiadong Yu</em> et.al.  <strong>IEEE Transactions on Wireless Communications, September 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9743298">pdf</a>)  (Citations <strong>7</strong>)</p>
 <ul>
 <li>使用Deep Learning的方法（LSTM）：先预估计信道，再跟踪信道（两个机器学习模型，分别完成上述任务）</li>
 </ul>
