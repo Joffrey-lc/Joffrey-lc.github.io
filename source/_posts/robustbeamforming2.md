@@ -7,6 +7,7 @@ banner_img: 'https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/163852369
 tags:
   - Robust Beamforming
 categories:
+  - Paper Reading
   - Robust Beamforming
 comment: valine
 math: true

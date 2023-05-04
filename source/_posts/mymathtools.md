@@ -216,3 +216,62 @@ B =ones(1,N)*II*XI*II'*ones(N, 1);
 **A Framework of Robust Transmission Design for IRS-Aided MISO Communications With Imperfect Cascaded Channels**.  *Gui Zhou* et.al.  **IEEE Transactions on Signal Processing, 2020**  ([pdf](https://ieeexplore.ieee.org/document/9180053))  (Citations **135**)
 
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202212301201590.png" alt="image-20221230120136566" style="zoom:50%;" />
+
+
+
+## moment-matching
+
+关键词：矩匹配，PDF，CDF，逆CDF，逆累计分布函数
+
+思想很简单，就是用Gamma分布近似一个复杂分布。由于Gamma分布的参数只与均值和方差有关，这意味着我们只要求出待求随机变量的均值和方差，就可以拟合其PDF。
+
+```matlab
+beta = myapprox_mean/myapprox_var/(path_loss_IRS2Ues*path_loss_PB2IRS); % scaler parameter
+alpha = myapprox_mean^2/myapprox_var; % shape parameter
+inv_X = gaminv(P_out, alpha, 1/beta)
+```
+
+其中gaminv是Gamma分布的逆累计分布函数。alpha是 Gamma分布的shape parameter， beta是Gamma分布的scaler parameter。
+
+
+
+## AOA/AOD
+
+关键词：LoS，视距信道，面阵，IRS
+
+网上的对IRS面阵的空间向量的建模都是错的，这里我整理一下。
+
+### 明确俯仰角/方位角
+
+参考《现代数字信号处理及其应用》Page291 和《阵列信号处理及matlab实现》Page 42-43
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108937.png" alt="image-20230325105446079" style="zoom:33%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108039.png" alt="image-20230325105438173" style="zoom: 25%;" />
+
+ ==明确以L阵的俯仰角和方位角进行建模。==
+
+### 明确角度后进行分析
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108912.jpeg" alt="c33ad9009804428e4f106271504bd30" style="zoom:25%;" />
+
+所以对于我常用的模型，
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303251108016.png" alt="image-20230325110217963" style="zoom:33%;" />
+
+有：
+$$
+u_{G}\triangleq 2\pi d\cos\varphi_{G} /\lambda=\pi\cos\varphi_{G}\\
+v_{G}\triangleq \pi\sin\varphi_{G}\sin\vartheta_{G}\\
+z_{G}\triangleq \pi\sin\gamma_{G}
+$$
+
+## [天线的近场和远场](https://mp.weixin.qq.com/s/oUrYPUN0cZlN4rtmF8vubw)
+
+详细信息参见：[微信公众号](https://mp.weixin.qq.com/s/oUrYPUN0cZlN4rtmF8vubw)
+
+主要结论 ==判断是否远场，是与天线尺寸和工作波长相关的：==
+$$
+r\geq\frac{2d^2}{\lambda}
+$$
+其中$$d$$为阵元之间的间隔，$$\lambda$$为波长，$$r$$为距离。

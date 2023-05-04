@@ -8,6 +8,7 @@ tags:
   - Unlimited Sampling
   - Simultaneous Information and Power Transfer
 categories:
+  - Paper Reading
   - Unlimited Sampling
 comment: valine
 math: true

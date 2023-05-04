@@ -8,6 +8,7 @@ tags:
   - code resource
   - IRS
 categories:
+  - Paper Reading
   - Intelligent Reflecting Surface
 comment: valine
 math: true
