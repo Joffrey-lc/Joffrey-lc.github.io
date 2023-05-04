@@ -13,30 +13,35 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="星座图知识整理">
+  <meta name="description" content="2FSK\4QAM\4PSK\2ASK and AM\DSB\SSB\FM">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="星座图知识整理">
+  <meta name="description" content="2FSK\4QAM\4PSK\2ASK and AM\DSB\SSB\FM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知识储备-星座图">
-<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/constellation/index.html">
+<meta property="og:title" content="通信基础-Digital and Analog Modulation With Polar Code and Frequency Hopping">
+<meta property="og:url" content="http://lcjoffrey.top/2023/05/04/DigitalAnanlogModulation/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="星座图知识整理">
+<meta property="og:description" content="2FSK\4QAM\4PSK\2ASK and AM\DSB\SSB\FM">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b50efc495629ea035ec664c76517790b.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f92376c8c9c8bdab82cc5ef29ff05741.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41f4fa54c7dc87329d6f03b81473b78a.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9001b3bf7d18301c23add6778f21da9c.png">
-<meta property="article:published_time" content="2021-12-04T06:19:12.000Z">
-<meta property="article:modified_time" content="2022-03-19T10:09:20.403Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514196.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514179.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514186.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514171.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514168.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514101.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514647.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514637.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514718.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514778.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514958.png">
+<meta property="article:published_time" content="2023-05-04T06:06:53.000Z">
+<meta property="article:modified_time" content="2023-05-04T07:23:35.818Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="signal processing">
-<meta property="article:tag" content="communication">
+<meta property="article:tag" content="Modulation">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514196.jpeg">
   
-  <title>知识储备-星座图 - Joffrey&#39;s Blog</title>
+  <title>通信基础-Digital and Analog Modulation With Polar Code and Frequency Hopping - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -202,7 +207,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="知识储备-星座图">
+            <span class="h2" id="subtitle" title="通信基础-Digital and Analog Modulation With Polar Code and Frequency Hopping">
               
             </span>
 
@@ -212,8 +217,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-04 14:19" pubdate>
-        2021年12月4日 下午
+      <time datetime="2023-05-04 14:06" pubdate>
+        2023年5月4日 下午
       </time>
     </span>
   
@@ -223,7 +228,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      256 字
+      1.4k 字
     </span>
   
 
@@ -232,7 +237,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      4 分钟
     </span>
   
 
@@ -269,23 +274,54 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">知识储备-星座图</h1>
+            <h1 style="display: none">通信基础-Digital and Analog Modulation With Polar Code and Frequency Hopping</h1>
             
             <div class="markdown-body">
-              <h1 id="星座图"><a href="#星座图" class="headerlink" title="星座图"></a>星座图</h1><p>已知信号以IQ路表示：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png" srcset="/img/loading.gif" lazyload alt="IMG_1101"></p>
-<p>注意：</p>
-<p>①相邻符号之间码元变化１bit（格雷码）</p>
-<p>②相邻符号点之间的欧式距离越大，抗噪声能力越强</p>
-<p>③随着SPS(每个符号的采样点个数)增加，星座图显得越“乱”。因为一个符号的相位和幅度信息增加了，在星座图上的点数也增多了，符号与符号之间的跳变变得平滑。如下图可见：</p>
-<p>QPSK星座图符号位置：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b50efc495629ea035ec664c76517790b.png" srcset="/img/loading.gif" lazyload alt="image-20210815164210448"></p>
-<p>SPS=1，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f92376c8c9c8bdab82cc5ef29ff05741.png" srcset="/img/loading.gif" lazyload alt="image-20210815164329496"></p>
-<p>SPS=8，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41f4fa54c7dc87329d6f03b81473b78a.png" srcset="/img/loading.gif" lazyload alt="image-20210815164424105"></p>
-<p>SPS=32，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9001b3bf7d18301c23add6778f21da9c.png" srcset="/img/loading.gif" lazyload alt="image-20210815164642830"><br>肉眼观察SPS=1最明显，调制识别正确率和SPS有没有关系呢？</p>
+              <p><a target="_blank" rel="noopener" href="https://github.com/Joffrey-lc/Digital-and-Analog-Modulations">All Code can be found in Github</a></p>
+<p>Digital Modulations and Analog Modulations including 2FSK\4QAM\4PSK\2ASK and AM\DSB\SSB\FM. </p>
+<p>There are Polar code and frequency hopping in Digital Modulation.</p>
+<p>Especially, due to the imperfect character of digital filter, the simulation of 2FSK does not match the theoretical values. The difference will vanish with the decreased number of frequencies selected in frequency hopping. </p>
+<h2 id="Digital-Modulations"><a href="#Digital-Modulations" class="headerlink" title="Digital Modulations"></a>Digital Modulations</h2><h3 id="QPSK"><a href="#QPSK" class="headerlink" title="QPSK"></a>QPSK</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514196.jpeg" srcset="/img/loading.gif" lazyload alt="decd46a10e4237aff3048222793848a" style="zoom:33%;" /></p>
+<h3 id="2ASK"><a href="#2ASK" class="headerlink" title="2ASK"></a>2ASK</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514179.jpeg" srcset="/img/loading.gif" lazyload alt="d53b5853c39d163163f835c4059b947" style="zoom: 33%;" /></p>
+<h3 id="2FSK"><a href="#2FSK" class="headerlink" title="2FSK"></a>2FSK</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514186.jpeg" srcset="/img/loading.gif" lazyload alt="da402ee4c27ddd3f2e27e562eb6b8b1" style="zoom:33%;" /></p>
+<p>==(No longer envelope detection)==</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"> <span class="token keyword">for</span> p<span class="token operator">=</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>st1<span class="token punctuation">)</span><span class="token operator">/</span>sps
+    <span class="token keyword">for</span> is <span class="token operator">=</span> sps<span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">:</span>sps<span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+        <span class="token function">st1_sum</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">st1_sum</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">st1</span><span class="token punctuation">(</span>is<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">st2_sum</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">st2_sum</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">st2</span><span class="token punctuation">(</span>is<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+rx_data <span class="token operator">=</span> <span class="token punctuation">(</span>st1_sum<span class="token operator">-</span>st2_sum<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="4QAM"><a href="#4QAM" class="headerlink" title="4QAM"></a>4QAM</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514171.jpeg" srcset="/img/loading.gif" lazyload alt="a940b5d5779316e9e05e8e7b8dbe19e"></p>
+<h2 id="Analog-Modulations"><a href="#Analog-Modulations" class="headerlink" title="Analog Modulations"></a>Analog Modulations</h2><h3 id="AM"><a href="#AM" class="headerlink" title="AM"></a>AM</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514168.jpeg" srcset="/img/loading.gif" lazyload alt="889aaf78e35af52c2a35489fa447c5a" style="zoom:50%;" /></p>
+<p>Refer to《通信原理》-第七版（樊昌信）Page 87</p>
+<p>It should satisfy <script type="math/tex">|m_t|_{max}\leq A_0</script> and then we can use envelope detection</p>
+<h3 id="DSB"><a href="#DSB" class="headerlink" title="DSB"></a>DSB</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514101.jpeg" srcset="/img/loading.gif" lazyload alt="9eb6e312bb328814357b3fbf99de153" style="zoom: 50%;" /></p>
+<h3 id="SSB"><a href="#SSB" class="headerlink" title="SSB"></a>SSB</h3><p>Refer to </p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514647.png" srcset="/img/loading.gif" lazyload alt="image-20230327152726140" style="zoom: 25%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514637.png" srcset="/img/loading.gif" lazyload alt="image-20230327152714021" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514718.jpeg" srcset="/img/loading.gif" lazyload alt="a1a6e44169f9c3a43d61b8664bb7db7" style="zoom:33%;" /></p>
+<h3 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514778.jpeg" srcset="/img/loading.gif" lazyload alt="b3b580ca7fc4769612aee4ed9decdee"></p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>Sampling a stream of data with a small sampling rate will fold the signal, which means:</p>
+<script type="math/tex; mode=display">
+f_\text{target}=\left\{f_{\text{original}}/f_s\times2-\text{floor}(f_{\text{original}}/f_s\times2)\right\}\times f_s.</script><p>.But in 2FSK, we found that:</p>
+<ul>
+<li>If  <script type="math/tex">f_{\text{original}}/f_s</script> is even, it holds,</li>
+<li>If <script type="math/tex">f_{\text{original}}/f_s</script> is odd, it should be <script type="math/tex">f_{t}=0.5\times f_s-f_{\text{target}}</script></li>
+</ul>
+<hr>
+<p>We use digital filter in matlab and there will be a time delay. It can be calculated as:</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> out <span class="token operator">=</span> <span class="token function">firFilter</span><span class="token punctuation">(</span>N<span class="token punctuation">,</span> Wn<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+    fir_lp <span class="token operator">=</span><span class="token function">fir1</span><span class="token punctuation">(</span>N<span class="token punctuation">,</span> Wn<span class="token punctuation">,</span> <span class="token string">'low'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">%截止频率为Wn*(fs/2) 使用汉明窗设计一个N阶低通带线性相位的FIR滤波器。</span>
+    out <span class="token operator">=</span> <span class="token function">conv</span><span class="token punctuation">(</span>fir_lp<span class="token punctuation">,</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    delay_t <span class="token operator">=</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>fir_lp<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">%低通滤波器的延迟时长</span>
+    out <span class="token operator">=</span> <span class="token function">out</span><span class="token punctuation">(</span>delay_t<span class="token operator">+</span><span class="token number">1</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token operator">-</span>delay_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<hr>
+<p>Conversion between EbN0 and SNR:</p>
+<div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">EbN0 <span class="token operator">=</span> <span class="token number">0</span><span class="token operator">:</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">;</span> <span class="token comment">% Eb是每个bit的能量,N0是噪声的功率谱密度;EbN0=Eb/N0;</span>
+snr <span class="token operator">=</span> EbN0 <span class="token operator">-</span> <span class="token number">10</span><span class="token operator">*</span><span class="token function">log10</span><span class="token punctuation">(</span>sps<span class="token operator">*</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">10</span><span class="token operator">*</span><span class="token function">log10</span><span class="token punctuation">(</span><span class="token function">log2</span><span class="token punctuation">(</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% SNR和EbN0转换</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514958.png" srcset="/img/loading.gif" lazyload alt="image-20230504151349128"></p>
 
             </div>
             <hr>
@@ -303,9 +339,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/signal-processing/">signal processing</a>
-                    
-                      <a class="hover-with-bg" href="/tags/communication/">communication</a>
+                      <a class="hover-with-bg" href="/tags/Modulation/">Modulation</a>
                     
                   </div>
                 
@@ -319,7 +353,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/constellation/">http://lcjoffrey.top/2021/12/04/constellation/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2023/05/04/DigitalAnanlogModulation/">http://lcjoffrey.top/2023/05/04/DigitalAnanlogModulation/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -329,18 +363,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/04/cpc/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Representation Learning With Contrastive Predictive Coding梳理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/04/conv/">
-                        <span class="hidden-mobile">知识储备-卷积/滤波及Matlab实现</span>
+                      <a href="/2023/04/03/IRStracking2/">
+                        <span class="hidden-mobile">IRS + Tracking Self-Sensing Scheme</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
