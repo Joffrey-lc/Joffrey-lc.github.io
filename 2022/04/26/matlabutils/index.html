@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202303081030461.png">
 <meta property="article:published_time" content="2022-04-26T10:32:15.000Z">
-<meta property="article:modified_time" content="2023-05-06T04:34:43.638Z">
+<meta property="article:modified_time" content="2023-05-06T05:07:23.127Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="matlab">
 <meta name="twitter:card" content="summary_large_image">
@@ -218,7 +218,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.3k 字
+      8.5k 字
     </span>
   
 
@@ -227,7 +227,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26 分钟
+      27 分钟
     </span>
   
 
@@ -571,12 +571,20 @@ color_map3 <span class="token operator">=</span> <span class="token punctuation"
     out <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data.'</span><span class="token punctuation">,</span> name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 <hr>
-<p>20230506更新，不需要name:</p>
+<p>20230506更新，不需要name，增加输入检测，<strong>未实现文件名自动提示功能</strong>。</p>
 <div class="code-wrapper"><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> out <span class="token operator">=</span> <span class="token function">myload</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    path_buff <span class="token operator">=</span> <span class="token function">char</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token function">path_buff</span><span class="token punctuation">(</span><span class="token keyword">end</span><span class="token operator">-</span><span class="token number">3</span><span class="token operator">:</span><span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token string">'.mat'</span>
+        path <span class="token operator">=</span> <span class="token punctuation">[</span>path<span class="token punctuation">,</span> <span class="token string">'.mat'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+    a <span class="token operator">=</span> inputParser<span class="token punctuation">;</span>
+    <span class="token function">addRequired</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token string">'path'</span><span class="token punctuation">,</span> <span class="token operator">@</span>isfile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">parse</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
     data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
     name <span class="token operator">=</span> <span class="token function">cell2mat</span><span class="token punctuation">(</span><span class="token function">fieldnames</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     out <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'data.'</span><span class="token punctuation">,</span> name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <h2 id="三维图EPS模糊的问题"><a href="#三维图EPS模糊的问题" class="headerlink" title="三维图EPS模糊的问题"></a>三维图EPS模糊的问题</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/QWERTYUIOPPLM123/article/details/108540242">https://blog.csdn.net/QWERTYUIOPPLM123/article/details/108540242</a></p>
 <h2 id="Matlab-安装和CVX"><a href="#Matlab-安装和CVX" class="headerlink" title="Matlab 安装和CVX"></a>Matlab 安装和CVX</h2><h3 id="maltab-安装"><a href="#maltab-安装" class="headerlink" title="maltab 安装"></a>maltab 安装</h3><ul>
 <li>管理员权限setup.exe</li>
