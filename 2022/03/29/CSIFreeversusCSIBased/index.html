@@ -23,6 +23,19 @@
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
 <meta property="og:description" content="Onel L. A. López et.al.-CSI-Free vs CSI-Based Multi-Antenna WET for Massive Low-Power Internet of Things">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202307.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202918.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202802.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202946.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202912.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202875.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202915.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202252.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202446.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202386.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202635.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202547.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202619.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329211029929.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329213211839.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329213539222.png">
@@ -31,13 +44,13 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329215404520.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329220615250.png">
 <meta property="article:published_time" content="2022-03-29T14:11:07.000Z">
-<meta property="article:modified_time" content="2022-08-17T11:41:59.900Z">
+<meta property="article:modified_time" content="2023-07-06T14:03:07.401Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="CSI Free">
 <meta property="article:tag" content="WET">
 <meta property="article:tag" content="WPT">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329211029929.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202307.png">
   
   <title>CSI-FREE Versus CSI-Based - Joffrey&#39;s Blog</title>
 
@@ -226,7 +239,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      2.5k 字
     </span>
   
 
@@ -235,7 +248,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      8 分钟
     </span>
   
 
@@ -281,7 +294,28 @@
 <li>HTT: Harvest then Transmit</li>
 <li>HAP: Hybrid Access Point: 可以接收数据or发射能量</li>
 </ul>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><h3 id="assumption"><a href="#assumption" class="headerlink" title="assumption"></a>assumption</h3><ul>
+<h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><p>参数说明：</p>
+<ul>
+<li><script type="math/tex">T_c</script>相干时间</li>
+<li><script type="math/tex">t/t_c</script>??,<script type="math/tex">t_s</script>：periodicity of periodic traffic应该是指整个系统的周期，<script type="math/tex">t</script>应该是一个slot占据的时间。</li>
+<li>channel gain <script type="math/tex">\beta_i</script>, path loss <script type="math/tex">1/\beta_i</script></li>
+<li>上行channel <script type="math/tex">\mathbf{h}_i^{(u)}</script>, 下行<script type="math/tex">\mathbf{h}_i^{(d)}</script>，都是Rician，Rician factor <script type="math/tex">\kappa</script></li>
+<li><p><script type="math/tex">p_c</script> units power to keep active， <script type="math/tex">p_i</script> denotes the fixed transmit power of <script type="math/tex">s_i</script>，<script type="math/tex">\xi_{csi}^{(u)}</script>，<script type="math/tex">\xi_{csi}^{(d)}</script> represent the energy resources (power<script type="math/tex">\times</script> time) used by EH node (EH在两个阶段uplink 和 downlink阶段让HAP知道信道的能量开销)，所以<script type="math/tex">\xi_{csi}^{(u)}<\xi_{csi}^{(d)}</script>，因为uplink EH transmit pilot signals ，而在downlink EH 需要decoding\processing 再transmit。</p>
+</li>
+<li><p>sup：supremum，中文叫上确界。sup(S)是指集合S的上确界，即大于或等于S的所有元素的最小值， 这个数不一定在集合S中。</p>
+</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202307.png" srcset="/img/loading.gif" lazyload alt="image-20230706113003210" style="zoom:33%;" /></p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>HAP: Hybrid Access Point: 可以接收数据or发射能量</p>
+<p>WET in downlink and <strong>periodic</strong> or <strong>Poisson-traffic</strong> WIT in the uplink</p>
+<p>CSI-available：MRT is close to optimum whenever the  </p>
+<p>WET长时间的，WIT零星的。所以WPCN可能更实际。</p>
+<p>例如SA的上行解码，一根天线下行传输能量，其余的都进行信息解码（收信号），使用ZF或者MMSE。MMSE比ZF好。</p>
+<p>==Periodic traffic 和 Poisson traffic都不适用于表征突发任务==(我理解中的Poisson是表述突发任务的)</p>
+<p>MRT的最佳体现在，知道信道信息的情况下，当最差的性能比其他差3dB时，MRT是最优的（最公平的）。</p>
+<p>周期性或者Poisson流，Poisson流下的性能会下降。提出了优化问题来找到最佳的导频重复使用因子。</p>
+<p>对比CSI-based和CSI-free：CSI-free在Poisson下不行，在周期下不错。</p>
+<h3 id="assumption"><a href="#assumption" class="headerlink" title="assumption"></a>assumption</h3><ul>
 <li>构建的是<strong>WPCN模型</strong>，因为在实际中<strong>WPCN</strong>比<strong>SWIPT</strong>更贴近实际：<strong>大量时间都进行WPT/WET，少量时间进行WIT</strong></li>
 <li>CSI-Free采用<strong>SA策略</strong>，CSI-Based采用<strong>MMSE</strong>和<strong>ZF</strong>进行波束形成（precoding）</li>
 <li>以最差的（最远的、最大path loss的）节点性能来作为<strong>衡量标准</strong></li>
@@ -294,7 +328,50 @@
 <li>Possion Traffic <strong>存在一个最佳的碰撞概率</strong></li>
 <li>在<strong>WPCN</strong>场景中使用<strong>MMSE</strong>比<strong>ZF</strong>好</li>
 </ul>
-<h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><h3 id="WET-Performance"><a href="#WET-Performance" class="headerlink" title="WET Performance"></a>WET Performance</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329211029929.png" srcset="/img/loading.gif" lazyload alt="fig. 3" style="zoom: 80%;" /></p>
+<h2 id="Wireless-Energy-Transfer"><a href="#Wireless-Energy-Transfer" class="headerlink" title="Wireless Energy Transfer"></a>Wireless Energy Transfer</h2><p>gain from EB decrease quickly as the number of ERs increases, and this hold even without accounting for the considerable energy resources demanded by CSI acquisition.</p>
+<p>所以进行广播式的无线能量传输是可行的。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202918.png" srcset="/img/loading.gif" lazyload alt="image-20230704111603425" style="zoom:33%;" /></p>
+<p>这个模型可以参考，一部分天线用作传能，一部分天线用作通信解码。==不考虑天线之间的干扰？==原文中假设可以干扰消除。</p>
+<h3 id="Evaluation-of-outage-probability"><a href="#Evaluation-of-outage-probability" class="headerlink" title="Evaluation of outage probability"></a>Evaluation of outage probability</h3><p>定义outage probability: </p>
+<ol>
+<li>能量没有收集够<script type="math/tex">\mathcal{O}^{(d)}_i</script></li>
+<li>能量收够了但信息解码失败<script type="math/tex">\mathcal{O}^{(u)}_i</script></li>
+</ol>
+<p>所以outage probability为<script type="math/tex">\mathcal{O}_i=1-(1-\mathcal{O}_i^{(u)})(1-\mathcal{O}_i^{(d)})</script></p>
+<p>整个network的性能指标为最差的性能：<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202802.png" srcset="/img/loading.gif" lazyload alt="image-20230705141110353" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202946.png" srcset="/img/loading.gif" lazyload alt="image-20230705141252059" style="zoom:33%;" /></p>
+<p>由于都比较小，所以可以忽略掉乘积项，单独检查<script type="math/tex">\mathcal{O}^{(d)}_i</script>和<script type="math/tex">\mathcal{O}^{(u)}_i</script>即可</p>
+<hr>
+<h3 id="CSI-based"><a href="#CSI-based" class="headerlink" title="CSI-based"></a>CSI-based</h3><h4 id="outage-probability"><a href="#outage-probability" class="headerlink" title="outage probability"></a>outage probability</h4><p>MRT下，Periodic traffic</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202912.png" srcset="/img/loading.gif" lazyload alt="image-20230706202201989" style="zoom: 33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202875.png" srcset="/img/loading.gif" lazyload alt="image-20230706202213234" style="zoom: 33%;" /></p>
+<p>MRT下，Poisson traffic</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202915.png" srcset="/img/loading.gif" lazyload alt="image-20230706202243172" style="zoom: 33%;" /></p>
+<h4 id="MRT的最优性"><a href="#MRT的最优性" class="headerlink" title="MRT的最优性"></a>MRT的最优性</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202252.png" srcset="/img/loading.gif" lazyload alt="image-20230706155110231" style="zoom:33%;" /></p>
+<p>==We resorted to simulation and standard fitting procedures, and found out that==</p>
+<p>根据(9)，只有<script type="math/tex">\mathbf{w}_1\neq \mathbf{0}</script>,</p>
+<p>通过分析对最差的node使用MRT，对其他node的影响发现（求不出来用拟合），得到<script type="math/tex">\Omega=\inf _{s_i \in \mathcal{S} \backslash s_{i^{\prime}}}\left\{\mathbb{E}\left[E_i^{\mathrm{rf}}\right]\right\} / \mathbb{E}\left[E_{i^{\prime}}^{\mathrm{rf}}\right]</script>，这个表达式的意义在于，除去<script type="math/tex">s_{i'}</script>后，最差的下界与<script type="math/tex">\mathbb{E}[E_{i^{\prime}}^{\mathrm{rf}}]</script>的比值大于1，则说明没有比<script type="math/tex">\mathbb{E}[E_{i^{\prime}}^{\mathrm{rf}}]</script>差的了，那么MRT并没有使得其他的变得更差，并且还使得对于<script type="math/tex">s_{i'}</script>更好，那么MRT就是最佳的。</p>
+<p>但是值得说明的是，由于这里是均值，所以对于实际的真实值而言，不一定是最佳的，而是至少有一半的时间是最佳的。换句话说，即使<script type="math/tex">\inf _{s_i \in \mathcal{S} \backslash s_{i^{\prime}}}\left\{\mathbb{E}\left[E_i^{\mathrm{rf}}\right]\right\} / \mathbb{E}\left[E_{i^{\prime}}^{\mathrm{rf}}\right]>1</script>，但是<script type="math/tex">\inf _{s_i \in \mathcal{S} \backslash s_{i^{\prime}}}\left\{E_i^{\mathrm{rf}}\right\} / E_{i^{\prime}}^{\mathrm{rf}}>1</script>不一定都满足，但可以肯定的是，至少有一半的时间是满足的（PDF的角度而言）。</p>
+<hr>
+<p>==我可以求一个精确解，求概率分布==</p>
+<hr>
+<p>对于LoS channel，</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202446.png" srcset="/img/loading.gif" lazyload alt="image-20230705144733339" style="zoom:33%;" /></p>
+<p>当worst node path-loss至少比其他的多3dB，则MRT在一半以上的时间是最优的。</p>
+<p>==在LoS信道下的结果可以作为我后面文章的主体==</p>
+<h3 id="CSI-free"><a href="#CSI-free" class="headerlink" title="CSI-free"></a>CSI-free</h3><h4 id="outage-probability-1"><a href="#outage-probability-1" class="headerlink" title="outage probability"></a>outage probability</h4><p>CSI-free的outage probability可以由CSI-based的推导得到，分别取</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202386.png" srcset="/img/loading.gif" lazyload alt="image-20230706201039910" style="zoom:33%;" /></p>
+<p>而且这是一个准确解，而不是下界。</p>
+<h4 id="performance-versus-CSI-based"><a href="#performance-versus-CSI-based" class="headerlink" title="performance versus CSI-based"></a>performance versus CSI-based</h4><p>从mean来看，CSI-based比CSI-free大<script type="math/tex">M</script>倍</p>
+<p>但是对于大规模用户，CSI-based的结果会接近与CSI-free。==解释的角度和我们之前的不一样==</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202635.png" srcset="/img/loading.gif" lazyload alt="image-20230706201428493" style="zoom:33%;" /></p>
+<h2 id="Wireless-Information-Transfer"><a href="#Wireless-Information-Transfer" class="headerlink" title="Wireless Information Transfer"></a>Wireless Information Transfer</h2><p>Successive Interference Cancellation (SIC)消除天线之间的干扰。导频正交（orthogonal pilot）</p>
+<p>ZF:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202547.png" srcset="/img/loading.gif" lazyload alt="image-20230706203334694" style="zoom:33%;" /></p>
+<p>MMSE:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202619.png" srcset="/img/loading.gif" lazyload alt="image-20230706203418662" style="zoom:33%;" /></p>
+<hr>
+<h2 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h2><h3 id="WET-Performance"><a href="#WET-Performance" class="headerlink" title="WET Performance"></a>WET Performance</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220329211029929.png" srcset="/img/loading.gif" lazyload alt="fig. 3" style="zoom: 80%;" /></p>
 <ul>
 <li>CSI-Based（green）随天线数量增多而降低，这是因为波束形成增益随<script type="math/tex">|S|</script>的增大而减小</li>
 <li><strong>CSI-Based（Red）是使用MRT对最远（最大path loss）节点进行供电时的下界（最远的节点-&gt;最差的能源接收性能），一直都比CSI-Free（Blue）大<script type="math/tex">10\log_{10}M_t</script></strong></li>
