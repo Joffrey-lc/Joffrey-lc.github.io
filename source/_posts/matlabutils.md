@@ -391,6 +391,28 @@ function out = myload(path, name)
 end
 ```
 
+---
+
+20230506更新，不需要name，增加输入检测，**未实现文件名自动提示功能**。
+
+```matlab
+function out = myload(path)
+    path_buff = char(path);
+    if path_buff(end-3:end) ~= '.mat'
+        path = [path, '.mat'];
+    end
+    a = inputParser;
+    addRequired(a, 'path', @isfile);
+    parse(a, path);
+
+    data = load(path);
+    name = cell2mat(fieldnames(data));
+    out = eval(['data.', name]);
+end
+```
+
+
+
 ## 三维图EPS模糊的问题
 
 https://blog.csdn.net/QWERTYUIOPPLM123/article/details/108540242
