@@ -605,7 +605,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/spi-start/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -614,7 +614,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/spi-start/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -677,7 +677,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs1/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs2/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -686,7 +686,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs2/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/pythonenvs1/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -704,15 +704,6 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/cpc/</loc>
-    
-    <lastmod>2022-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/2021/12/04/datasetloader/</loc>
     
     <lastmod>2022-03-19</lastmod>
@@ -722,7 +713,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/2021/12/12/hexomusic/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/cpc/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -732,6 +723,15 @@
   
   <url>
     <loc>http://lcjoffrey.top/2021/12/04/gcn/</loc>
+    
+    <lastmod>2022-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/2021/12/12/hexomusic/</loc>
     
     <lastmod>2022-03-19</lastmod>
     
@@ -821,6 +821,13 @@
 
   
   <url>
+    <loc>http://lcjoffrey.top/tags/Sketchy-Reading/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/tags/TDOA/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -835,28 +842,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/RIS/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/IRS/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/tags/Transmit-Beamforming/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/Sketchy-Reading/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -884,21 +870,21 @@
   </url>
   
   <url>
+    <loc>http://lcjoffrey.top/tags/RIS/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/IRS/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/tags/Deep-Learning/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/Modulation/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/IQ-Modulation/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -919,7 +905,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/Energy-Harvested-Model/</loc>
+    <loc>http://lcjoffrey.top/tags/Modulation/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -927,6 +913,20 @@
   
   <url>
     <loc>http://lcjoffrey.top/tags/SWIPT/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/Energy-Harvested-Model/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/IQ-Modulation/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -961,14 +961,14 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/Wireless-Energy-Transfer/</loc>
+    <loc>http://lcjoffrey.top/tags/CSI/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/CSI/</loc>
+    <loc>http://lcjoffrey.top/tags/Wireless-Energy-Transfer/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1003,13 +1003,6 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/communication/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/tags/signal-processing/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1017,7 +1010,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/matlab/</loc>
+    <loc>http://lcjoffrey.top/tags/communication/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1025,6 +1018,13 @@
   
   <url>
     <loc>http://lcjoffrey.top/tags/Channel/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/matlab/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1052,14 +1052,14 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/matrix-theory/</loc>
+    <loc>http://lcjoffrey.top/tags/Fourier-Series/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/Fourier-Series/</loc>
+    <loc>http://lcjoffrey.top/tags/matrix-theory/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1094,13 +1094,6 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/MIMO/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/tags/OFDM/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1108,14 +1101,14 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/Metasurface/</loc>
+    <loc>http://lcjoffrey.top/tags/MIMO/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/Study-field/</loc>
+    <loc>http://lcjoffrey.top/tags/Metasurface/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1130,6 +1123,13 @@
   
   <url>
     <loc>http://lcjoffrey.top/tags/SCA/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/Study-field/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1157,6 +1157,13 @@
   </url>
   
   <url>
+    <loc>http://lcjoffrey.top/tags/Robust-Beamforming/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/tags/Beamforming/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1164,7 +1171,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/Robust-Beamforming/</loc>
+    <loc>http://lcjoffrey.top/tags/clash/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1185,13 +1192,6 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/tags/clash/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/tags/spatial-modulation/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1200,13 +1200,6 @@
   
   <url>
     <loc>http://lcjoffrey.top/tags/RaspberryPi/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/unknown/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1227,6 +1220,20 @@
   </url>
   
   <url>
+    <loc>http://lcjoffrey.top/tags/basic-knowledge/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/tags/communicaiton/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/tags/Unlimited-Sampling/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1241,21 +1248,14 @@
   </url>
   
   <url>
+    <loc>http://lcjoffrey.top/tags/unknown/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/tags/office/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/basic-knowledge/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/tags/communicaiton/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1265,6 +1265,13 @@
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/Paper-Reading/Channel-State-Information/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1286,13 +1293,6 @@
   
   <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Compressed-Sensing/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/Paper-Reading/Channel-State-Information/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1397,21 +1397,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/categories/utils/python/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://lcjoffrey.top/categories/envs/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/utils/hexo/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1432,21 +1418,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/categories/utils/latex/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/Paper-Reading/Others/</loc>
-    <lastmod>2023-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://lcjoffrey.top/categories/utils/matlab/</loc>
+    <loc>http://lcjoffrey.top/categories/utils/python/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1460,6 +1432,13 @@
   </url>
   
   <url>
+    <loc>http://lcjoffrey.top/categories/Paper-Reading/Others/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/categories/gadget/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1467,7 +1446,7 @@
   </url>
   
   <url>
-    <loc>http://lcjoffrey.top/categories/unknown/</loc>
+    <loc>http://lcjoffrey.top/categories/utils/hexo/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1481,7 +1460,28 @@
   </url>
   
   <url>
+    <loc>http://lcjoffrey.top/categories/utils/latex/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://lcjoffrey.top/categories/Paper-Reading/Unlimited-Sampling/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/utils/matlab/</loc>
+    <lastmod>2023-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://lcjoffrey.top/categories/unknown/</loc>
     <lastmod>2023-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
