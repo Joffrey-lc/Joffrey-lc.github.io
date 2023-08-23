@@ -24,8 +24,10 @@
 <meta property="og:description" content="latex工具箱，持续更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/2d320c1a614a4c919702e9c8c95790a2.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308231600233.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308231600978.png">
 <meta property="article:published_time" content="2021-12-04T07:04:21.000Z">
-<meta property="article:modified_time" content="2022-09-28T04:59:21.584Z">
+<meta property="article:modified_time" content="2023-08-23T08:02:36.970Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="utils">
 <meta name="twitter:card" content="summary_large_image">
@@ -218,7 +220,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.4k 字
+      6.6k 字
     </span>
   
 
@@ -227,7 +229,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20 分钟
+      21 分钟
     </span>
   
 
@@ -426,6 +428,11 @@ Time since GE <span class="token punctuation">&amp;</span> Soil Depth <span clas
 <span class="token function selector">\bibliographystyleInfo</span><span class="token punctuation">&#123;</span>IEEEtran<span class="token punctuation">&#125;</span>
 <span class="token function selector">\bibliographyInfo</span><span class="token punctuation">&#123;</span>mybib<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>最后，在编译的时候选择latexmk进行编译。Done。</p>
+<h1 id="编译链"><a href="#编译链" class="headerlink" title="编译链"></a>编译链</h1><p>经常没有参考文献的时候会报错：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308231600233.png" srcset="/img/loading.gif" lazyload alt="image-20230823160030201" style="zoom:25%;" /></p>
+<p>这都是因为编译链选择的问题。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308231600978.png" srcset="/img/loading.gif" lazyload alt="image-20230823160053955" style="zoom:33%;" /></p>
+<p>选择biber或者bibtex都需要bib文件（不是很确定），一般没有参考文献的就选XeLatex。另外有\tableofcontent命令的都需要编译两次，所以我加了一个XeLatex*2（在setting.json文件中修改）</p>
 
             </div>
             <hr>
