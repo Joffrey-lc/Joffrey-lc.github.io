@@ -13,34 +13,30 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="20230819感谢家人们的支持">
+  <meta name="description" content="RIS更实际的NLoS信道">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="20230819感谢家人们的支持">
+  <meta name="description" content="RIS更实际的NLoS信道">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LC-LF求婚大作战v3">
-<meta property="og:url" content="http://lcjoffrey.top/2023/08/16/willumarryme/index.html">
+<meta property="og:title" content="RIS Channel-Correlated Rayleigh Channel and Channel Harden">
+<meta property="og:url" content="http://lcjoffrey.top/2023/08/27/RIScorrelatedRayleigh/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="20230819感谢家人们的支持">
+<meta property="og:description" content="RIS更实际的NLoS信道">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171827990.jpg">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171827149.jpg">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171827912.jpg">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171830141.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171754495.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308162237837.jpeg">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181715956.jpg">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181716746.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181717596.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181721622.png">
-<meta property="article:published_time" content="2023-08-16T14:36:03.000Z">
-<meta property="article:modified_time" content="2023-08-18T09:21:43.075Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417251.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417406.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417281.jpeg">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417372.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417327.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417365.png">
+<meta property="article:published_time" content="2023-08-27T06:17:51.000Z">
+<meta property="article:modified_time" content="2023-08-27T06:20:34.159Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="unknown">
+<meta property="article:tag" content="IRS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171827990.jpg">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417251.png">
   
-  <title>LC-LF求婚大作战v3 - Joffrey&#39;s Blog</title>
+  <title>RIS Channel-Correlated Rayleigh Channel and Channel Harden - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -206,7 +202,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="LC-LF求婚大作战v3">
+            <span class="h2" id="subtitle" title="RIS Channel-Correlated Rayleigh Channel and Channel Harden">
               
             </span>
 
@@ -216,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2023-08-16 22:36" pubdate>
-        2023年8月16日 晚上
+      <time datetime="2023-08-27 14:17" pubdate>
+        2023年8月27日 下午
       </time>
     </span>
   
@@ -227,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      944 字
     </span>
   
 
@@ -236,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      3 分钟
     </span>
   
 
@@ -273,67 +269,36 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">LC-LF求婚大作战v3</h1>
+            <h1 style="display: none">RIS Channel-Correlated Rayleigh Channel and Channel Harden</h1>
             
             <div class="markdown-body">
-              <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>家人们大家好，首先感谢各位家人们的支持和捧场。各位都是我和帆帆多年的好友，在这个我和她将快7年的爱情长跑进一步升华的重要时刻！！！非常感谢各位能一起见证。当然，为了给帆帆一个正儿八经的惊喜，还需要各位兄弟姐妹们齐心协力，发挥演员特长，助我完成求婚仪式。</p>
-<p>我也就不和大家客气啦，如果有什么安排或者招待不周的地方，兄弟姐妹们多多包涵。</p>
-<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>我和帆帆在2016年的上大相遇，并且在上大度过了两年的快乐时光；之后她出国两年，我们也继续网恋两年；再之后她回成都工作，我回成都继续学业。诚然成都是我和她的家乡，也是我和她一起呆的最久的城市。但是上海大学永远是故事的开始。所以我想借她在上海出差的这次机会，以上大兄弟姐妹们相聚的名义，让我们一起相聚在上大，从而开展LC-LF求婚大作战计划。</p>
-<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><h2 id="时间及作战人员"><a href="#时间及作战人员" class="headerlink" title="时间及作战人员"></a>时间及作战人员</h2><p>计划于<span class="label label-danger">2023年08月19日16:30</span>在上海大学宝山校区开展。参与作战的家人们提前十分钟左右到终极作战地点碰面。参与作战人员分为三拨，分别是：</p>
+              <hr>
+<p><strong>Rayleigh Fading Modeling and Channel Hardening for Reconfigurable Intelligent Surfaces</strong>.  <em>Emil Björnson</em> et.al.  <strong>IEEE Wireless Communications Letters, April 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9300189">pdf</a>)  (Citations <strong>184</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>作者认为i.i.d.的Rayleigh信道是不合理的，在RIS中应该建模为一个相关的Rayleigh。</p>
 <ul>
-<li><span class="label label-danger">LC作战小分队</span>：老林两口子，zlf两口子，老吴两口子，骚帅两口子，老喆两口子</li>
-<li><span class="label label-danger">LF作战小分队</span>：利利和胖子</li>
-<li><span class="label label-danger">摄影摄像大师组</span>：老凯(20230816阳了)+老吴</li>
+<li><p>but the i.i.d. Rayleigh fading model can be observed in practice if a half-wavelength-spaced uniform</p>
+<p>linear array (ULA) is deployed in an isotropic scattering environment.</p>
+</li>
+<li><p><em>Reproducible Research:</em> The simulation code is available at: <a target="_blank" rel="noopener" href="https://github.com/emilbjornson/RIS-fading">https://github.com/emilbjornson/RIS-fading</a></p>
+</li>
+<li>SISO模型</li>
 </ul>
-<h2 id="作战准备"><a href="#作战准备" class="headerlink" title="作战准备"></a>作战准备</h2><ul>
-<li>LC手持的玫瑰花(老林)</li>
-</ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171827990.jpg" srcset="/img/loading.gif" lazyload alt="LC手持玫瑰" style="zoom:33%;" /></p>
-<ul>
-<li>头纱(老林)</li>
-</ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171827149.jpg" srcset="/img/loading.gif" lazyload alt="头纱" style="zoom: 15%;" /></p>
-<ul>
-<li>戒指(LC)+戒指盒(胖子)</li>
-</ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171827912.jpg" srcset="/img/loading.gif" lazyload alt="戒指盒" style="zoom:20%;" /></p>
-<ul>
-<li>数字拉旗(胖子)+手举牌(胖子)</li>
-</ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171830141.png" srcset="/img/loading.gif" lazyload alt="手举牌+数字拉旗" style="zoom:25%;" /></p>
-<ul>
-<li>LC给帆帆的神秘礼物(LC)</li>
-</ul>
-<p>先保密哈哈哈哈哈</p>
-<h2 id="终极作战计划"><a href="#终极作战计划" class="headerlink" title="终极作战计划"></a>终极作战计划</h2><h3 id="天气良好-室外版"><a href="#天气良好-室外版" class="headerlink" title="天气良好-室外版"></a>天气良好-室外版</h3><hr>
-<p>20230816实地考察，选择<span class="label label-danger">图书馆正面小树林</span>，即下图中的<span class="label label-danger">红框2</span>所在位置（有个拐角）：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308171754495.png" srcset="/img/loading.gif" lazyload alt="作战地点红框1和红框2" style="zoom:33%;" /></p>
-<p>拐角处可以非常好地隐藏大家，而且环境比较好，重点是比较凉快。可能会有蚊子。。</p>
-<iframe src="//player.bilibili.com/player.html?aid=489796451&bvid=BV1mN411z7h9&cid=1236553914&page=1"scrolling="no" border="0" height="500" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-<p>LC作战小分队主要任务就是嗨起来，大家16：20左右尽量到上面所述的终极作战地点<span class="label label-danger">（红框2）</span>集合，然后分发手举牌，做好准备工作。</p>
-<p>老喆得辛苦一下，16：30来北门地铁站附近和我们碰面，然后把我手上的礼物和戒指先拿到终极作战地点。把女戒装在购买的戒指盒中，把礼物、头纱拿给LF作战小分队(利利和胖子)。然后再过来找我们(需要老喆实时和其他LC作战小分队成员沟通一下我们所在位置，让大家做好准备)。</p>
-<p>当我们走到1号位置时<span class="label label-danger">（红框1）</span>，让利利和胖子先把给LF的神秘礼物拿出来，可以陪帆帆说说话，然后我和帆帆一起走进来/或者我能润我就先润进来，在终极作战地点<span class="label label-danger">（红框2）</span>和大家汇合。然后利利帮忙给帆帆戴一下头纱。剩下的看我表演~！</p>
-<hr>
-<h3 id="当天有雨-室内版"><a href="#当天有雨-室内版" class="headerlink" title="当天有雨-室内版"></a>当天有雨-室内版</h3><ul>
-<li>雨不是很大，咱就还是室外作战（下点 小雨也浪漫，哈哈哈哈）</li>
-<li>雨比较大，KTV整个大包（KTV还没预订，等下雨的话我提前订），顺带嗨皮一下</li>
-</ul>
-<p>KTV里还是分发一下手举牌。利利和胖子依然提前下来接我们，然后给帆帆送礼物，等到进包间后给她戴头纱，最后看我表演。</p>
-<hr>
-<p>结束作战之后我和帆帆招待大家一起吃饭！！</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308162237837.jpeg" srcset="/img/loading.gif" lazyload alt="家人们聚餐的地方" style="zoom:33%;" /></p>
-<hr>
-<span class="label label-primary">这辈子第一次求婚哈哈哈哈，当天突发情况可能比较多，如有考虑不周的地方家人们多多担待！！</span>
-<h2 id="应急预案"><a href="#应急预案" class="headerlink" title="应急预案"></a>应急预案</h2><p>现在有一些可能会出现的突发情况，家人们参考一下。</p>
-<h3 id="关于神秘礼物"><a href="#关于神秘礼物" class="headerlink" title="关于神秘礼物"></a>关于神秘礼物</h3><p>神秘礼物之一是一个积木帆帆。因为拼装完成后，盒子装不下，所以在只能把它的头先取下来哈哈哈哈（她知道了要砍我），到时候家人们拼一下。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181715956.jpg" srcset="/img/loading.gif" lazyload alt="积木帆帆" style="zoom:33%;" /></p>
-<p>另外手部有点容易掉：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181716746.png" srcset="/img/loading.gif" lazyload alt="肩膀" style="zoom:25%;" /></p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181717596.png" srcset="/img/loading.gif" lazyload alt="手持狗狗" style="zoom:25%;" /></p>
-<hr>
-<p>这里有一些成品的细节图(扫二维码，然后直接翻到拼图的最后)，方便家人们辨别一下:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308181721622.png" srcset="/img/loading.gif" lazyload alt="image-20230818172136446" style="zoom:33%;" /></p>
+<h2 id="Main-content"><a href="#Main-content" class="headerlink" title="Main content"></a>Main content</h2><p>作者认为信道模应该是：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417251.png" srcset="/img/loading.gif" lazyload alt="image-20230824210416741" style="zoom:33%;" /></p>
+<p>其中<script type="math/tex">\mathbf{R}\neq\mathbf{I}</script>，而是等于：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417406.png" srcset="/img/loading.gif" lazyload alt="image-20230824210451110" style="zoom:33%;" /></p>
+<p>==如果要实现上述的<script type="math/tex">\mathbf{R}\neq\mathbf{I}</script>，则需要满足所有单元之间间隔都是<script type="math/tex">\lambda/2</script>的整数倍，即对于线阵可以满足，但对于面阵无法满足（因为）对角为<script type="math/tex">\sqrt{2}</script>==:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417281.jpeg" srcset="/img/loading.gif" lazyload alt="414e853b6c38c21859a5441a5cdb079" style="zoom:33%;" /></p>
+<p>==这样是否就可行了？？？==</p>
+<p>衡量信道相关性的一个方法是看<script type="math/tex">\text{rank}(\mathbf{R})=N</script>，且特征值都相同，则不相关（i.i.d.）:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417372.png" srcset="/img/loading.gif" lazyload alt="image-20230824211639076" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417327.png" srcset="/img/loading.gif" lazyload alt="image-20230824213235958" style="zoom:33%;" /></p>
+<p>这张图的意思是，如果是i.i.d.，则特征值应该全是1（1600）个1，但是实际上，很多都不是1，特别是间距小于<script type="math/tex">\lambda/2</script>的时候，耦合增加，导致更具有相关性。</p>
+<p>而<script type="math/tex">\lambda/2</script>时，后面有一些特征值为0；前面有一些大于0。说明还是具有相关性。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417365.png" srcset="/img/loading.gif" lazyload alt="image-20230824213620711" style="zoom:33%;" /></p>
+<p>==这一点非常有趣，可以结合Null-space SWIPT作为下一个研究方向。==</p>
+<p>有一种计算矩阵和矩阵之间关系的方法称为correlated matrix distance可以用来计算矩阵相似度（？？）</p>
+<p>还讨论了RIS的信道硬化（还没来的及看）</p>
 
             </div>
             <hr>
@@ -343,7 +308,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/unknown/">unknown</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Intelligent-Reflecting-Surface/">Intelligent Reflecting Surface</a>
                     
                   </div>
                 
@@ -351,7 +318,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/unknown/">unknown</a>
+                      <a class="hover-with-bg" href="/tags/IRS/">IRS</a>
                     
                   </div>
                 
@@ -365,7 +332,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2023/08/16/willumarryme/">http://lcjoffrey.top/2023/08/16/willumarryme/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2023/08/27/RIScorrelatedRayleigh/">http://lcjoffrey.top/2023/08/27/RIScorrelatedRayleigh/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -375,18 +342,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/27/RIScorrelatedRayleigh/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">RIS Channel-Correlated Rayleigh Channel and Channel Harden</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/05/BDRIS/">
-                        <span class="hidden-mobile">Beyond Diagonal Reconfigurable Intelligent Surface</span>
+                      <a href="/2023/08/16/willumarryme/">
+                        <span class="hidden-mobile">LC-LF求婚大作战v3</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
