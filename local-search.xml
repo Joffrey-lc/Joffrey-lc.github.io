@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>Rank-One Constrain Recovery</title>
+    <title>优化基础-IRM Rank-One Constrain Recovery</title>
     <link href="/2023/12/13/rankoneRecovery/"/>
     <url>/2023/12/13/rankoneRecovery/</url>
     
@@ -13,12 +13,14 @@
     
     <categories>
       
-      <category>unknown</category>
+      <category>Optimization</category>
       
     </categories>
     
     
     <tags>
+      
+      <tag>Optimization</tag>
       
       <tag>Math</tag>
       
