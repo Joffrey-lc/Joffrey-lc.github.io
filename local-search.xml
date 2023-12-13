@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Rank-One Constrain Recovery</title>
+    <link href="/2023/12/13/rankoneRecovery/"/>
+    <url>/2023/12/13/rankoneRecovery/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在做一些QCQP（抽空整理一下）问题的时候，存在求解：</p><script type="math/tex; mode=display">\mathbf{C}=\mathbf{c}\mathbf{c}^H</script><p>后还要再求解<script type="math/tex">\mathbf{c}</script>的情况，其中<script type="math/tex">\mathbf{C}\in\mathbb{C}^{N\times N}</script>，<script type="math/tex">\mathbf{c}\in\mathbb{C}^{N\times 1}</script>。一般都是丢掉Rank one constrain 得到结果后再恢复rank one。</p><p>恢复算法之前一直采用的是Gaussian randomization，总觉得很奇怪。最近学习到了一个算法叫做IRM，效果不错.</p><h2 id="Gaussian-Randomization"><a href="#Gaussian-Randomization" class="headerlink" title="Gaussian Randomization"></a>Gaussian Randomization</h2><p>Refer to <a href="https://lcjoffrey.top/2022/07/16/gaussianrandomization/">my blog</a></p><h2 id="Iterative-Rank-Minimization"><a href="#Iterative-Rank-Minimization" class="headerlink" title="Iterative Rank Minimization"></a>Iterative Rank Minimization</h2><p><a href="https://zhuanlan.zhihu.com/p/63763400">参考解析1</a>[参考解析2](<a href="https://blog.csdn.net/qq_25777815/article/details/89525721)和文献">https://blog.csdn.net/qq_25777815/article/details/89525721)和文献</a></p><p>[1] Sun C , Liu Y C , Dai R , et al. Two Approaches for Path Planning of Unmanned Aerial Vehicles with Avoidance Zones[J]. Journal of Guidance Control &amp; Dynamics, 2017, 40(8).</p><p>[2] Sun C , Dai R . An iterative approach to Rank Minimization Problems[C]// Decision &amp; Control. IEEE, 2016.</p><p>对应于我最近的工作，想要解决问题：</p><script type="math/tex; mode=display">\begin{align}        \text{(P1):  }\max_{\mathbf{v},\boldsymbol{\Theta}} \,\,&\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_d)\label{eqn:eqnP1}\\        \text{s.t.}\,\,\,\,&\text{diag}(\boldsymbol{\mathcal{C}})=\left|\mathbf{v}^T\boldsymbol{\beta}(\varpi_{G})\right|^2\mathbf{1}_N,\tag{\ref{eqn:eqnP1}a}\label{eqn:eqnP1consA}\\        &\text{trace}(\boldsymbol{\mathcal{C}})\leq MNP,\tag{\ref{eqn:eqnP1}b}\label{eqn:eqnP1consB}\\        &\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_k)=0,\forall k\in K, k\neq d,\tag{\ref{eqn:eqnP1}c}\label{eqn:eqnP1consC}\\        &\boldsymbol{\mathcal{C}} = \mathbf{c}^\dagger\mathbf{c}^T,\tag{\ref{eqn:eqnP1}d}\label{eqn:eqnP1consD}\\        &\mathbf{c}^T=\mathbf{v}^T\boldsymbol{\beta}(\varpi_{G})\boldsymbol{\alpha}^T(\vartheta_G,\varphi_G)\boldsymbol{\Theta}\tag{\ref{eqn:eqnP1}e}\label{eqn:eqnP1consE},\\        &\text{Rank}(\boldsymbol{\mathcal{C}}) = 1,\tag{\ref{eqn:eqnP1}f}\label{eqn:eqnP1consF}\end{align}</script><p>现丢掉Rank one constrain，得到：</p><script type="math/tex; mode=display">\begin{align}\text{(P1.1):  }\max_{\boldsymbol{\Theta}_h} \,\,\,&\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_d)\label{eqn:eqnP1p1}\\    \text{s.t.}\,\,\,\,\,&\text{diag}(\boldsymbol{\mathcal{C}})=MP\mathbf{1}_N,\tag{\ref{eqn:eqnP1p1}a}\label{eqn:eqnP1p1consA}\\    &\mathbf{c}^T=\sqrt{MP}\mathbf{1}_N^T\boldsymbol{\Theta}_h,\tag{\ref{eqn:eqnP1p1}b}\label{eqn:eqnP1p1consB}\\    &\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_k)\leq \tau_k,\forall k\in K,k\neq d,\tag{\ref{eqn:eqnP1p1}c}\label{eqn:eqnP1p1consC}\\    &\eqref{eqn:eqnP1consB}, \eqref{eqn:eqnP1consD}, \tag{\ref{eqn:eqnP1p1}d}\label{eqn:eqnP1p1consD}\end{align}</script><p>再进行IRM恢复：</p><script type="math/tex; mode=display">\begin{align}    \text{(P1.2):  }\min_{\boldsymbol{\Theta}_{h,l}, r} \,\,\,&-\text{trace}(\boldsymbol{\mathcal{C}}_l\boldsymbol{\mathcal{A}}_d)+\epsilon_l r\label{eqn:eqnP1p2}\\    \text{s.t.}\,\,\,\,\,&\text{diag}(\boldsymbol{\mathcal{C}}_l)=MP\mathbf{1}_N,\tag{\ref{eqn:eqnP1p2}a}\label{eqn:eqnP1p2consA}\\    &\mathbf{c}^T_l=\sqrt{MP}\mathbf{1}_N^T\boldsymbol{\Theta}_{h,l},\tag{\ref{eqn:eqnP1p2}b}\label{eqn:eqnP1p2consB}\\    &\text{trace}(\boldsymbol{\mathcal{C}}_l\boldsymbol{\mathcal{A}}_k)\leq \tau_k,\forall k\in K,k\neq d,\tag{\ref{eqn:eqnP1p2}c}\label{eqn:eqnP1p2consC}\\    &r\mathbf{I}_{N-1}-\mathbf{V}_l^H\boldsymbol{\mathcal{C}}_l\mathbf{V}_l \succeq \mathbf{0},\tag{\ref{eqn:eqnP1p2}d}\label{eqn:eqnP1p2consD}\\    &\eqref{eqn:eqnP1consB}, \eqref{eqn:eqnP1consD}, \tag{\ref{eqn:eqnP1p2}e}\label{eqn:eqnP1p2consE}\end{align}</script><p>总的流程如下：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202312132112800.png" alt="image-20231213211208483" style="zoom: 67%;" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>unknown</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Math</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>My Paper Utils for Manuscript and Response</title>
     <link href="/2023/10/20/paperutils/"/>
     <url>/2023/10/20/paperutils/</url>
