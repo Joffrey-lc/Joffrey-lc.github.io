@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Multiple Tasks Receiver Design</title>
+    <link href="/2024/01/17/multitaskreceiver/"/>
+    <url>/2024/01/17/multitaskreceiver/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Waveform Level Intelligent Multi-Task Receiver With BiLSTM</strong>.  <em>Zhaorui Zhu</em> et.al.  <strong>IEEE Communications Letters, March 2022</strong>  (<a href="https://ieeexplore.ieee.org/document/9656168">pdf</a>)  (Citations <strong>1</strong>)</p><p>简而言之，可以拆分为两个network，一个估计modulation，一个根据modulation结果进行bits recovery。</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul><li>straightforwardly recover bit messages from waveform sequences of unknown modulation schemes without additional time synchronization module. The whole structure is an effective joint synchronization and detection method.</li><li>The first attempt to establish purely one NN to directly process the oversampled waveform sequence with timing offset and blindly recover bits from multiple modulation schemes.</li><li>Numerical results show that one NN can recover bits from four different modulation schemes with BER performance approaching the theoretical value in the ideal channel.</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127825.png" alt="image-20240117204216905" style="zoom:33%;" /></p><h2 id="signal-model"><a href="#signal-model" class="headerlink" title="signal model"></a>signal model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127880.png" alt="image-20240117204721152" style="zoom:33%;" /></p><h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127834.png" alt="image-20240117204858739" style="zoom:33%;" /></p><p>Bits recovery (left) and Modulation recognition (right)</p><p>Three parts</p><ul><li><p>The uppermost two BiLSTM layers extract representation vectors with an overwhelming majority of learnable weights.</p></li><li><p>They use LSTM layer for the variable-length sequence. And complementary bidirectional structure is applied due to trailing interference of filter between</p><p>adjacent symbols.</p><p>Reshape received data into </p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127858.png" alt="image-20240117205349066" style="zoom:33%;" /></p></li></ul><p>​    where <script type="math/tex">N_s</script> denotes the number of symbols, and <script type="math/tex">\gamma</script> denotes the oversample rate. </p><h2 id="Train-details"><a href="#Train-details" class="headerlink" title="Train details"></a>Train details</h2><p>The output unit for “Dense-0” is <script type="math/tex">k_\text{max}</script> (it mean the output dimension), while some lower order modulations need to padding zero as <script type="math/tex">[b_1,b_2,0,0]</script></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127855.png" alt="image-20240117212402627" style="zoom:33%;" /></p><p>The loss function</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127849.png" alt="image-20240117212527495" style="zoom:33%;" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Deep Learning-based Waveform Design</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Deep Learning</tag>
+      
+      <tag>Receiver Design</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Dense Network for Joint Transmitter and Receiver Noncoherent Codebook Design</title>
     <link href="/2024/01/17/dense4jointTxRxcodebookdesign/"/>
     <url>/2024/01/17/dense4jointTxRxcodebookdesign/</url>
@@ -2418,9 +2447,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -2445,9 +2474,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
