@@ -13,36 +13,28 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Waveform (flexible guard interval, compared to Cyclic Prefix) and receiver design for THz.">
+  <meta name="description" content="unsupervised learning (maybe not appropriate), noncoherent (CSI is unavailable at the Receiver.)">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="Waveform (flexible guard interval, compared to Cyclic Prefix) and receiver design for THz.">
+  <meta name="description" content="unsupervised learning (maybe not appropriate), noncoherent (CSI is unavailable at the Receiver.)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="THz Waveform Design and Deep Learning-Based Receiver Design">
-<meta property="og:url" content="http://lcjoffrey.top/2024/01/17/THzwaveformdesignandDeeplearningbasedTransRecDesign/index.html">
+<meta property="og:title" content="Dense Network for Joint Transmitter and Receiver Noncoherent Codebook Design">
+<meta property="og:url" content="http://lcjoffrey.top/2024/01/17/dense4jointTxRxcodebookdesign/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="Waveform (flexible guard interval, compared to Cyclic Prefix) and receiver design for THz.">
+<meta property="og:description" content="unsupervised learning (maybe not appropriate), noncoherent (CSI is unavailable at the Receiver.)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436833.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436735.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436761.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436750.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436729.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436891.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436218.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436165.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436295.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436331.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436524.png">
-<meta property="article:published_time" content="2024-01-17T06:35:58.000Z">
-<meta property="article:modified_time" content="2024-01-17T06:42:27.072Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632907.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632951.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632426.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632393.png">
+<meta property="article:published_time" content="2024-01-17T08:32:39.000Z">
+<meta property="article:modified_time" content="2024-01-17T08:36:11.941Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="Deep Learning">
-<meta property="article:tag" content="THz">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436833.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632907.png">
   
-  <title>THz Waveform Design and Deep Learning-Based Receiver Design - Joffrey&#39;s Blog</title>
+  <title>Dense Network for Joint Transmitter and Receiver Noncoherent Codebook Design - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -208,7 +200,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="THz Waveform Design and Deep Learning-Based Receiver Design">
+            <span class="h2" id="subtitle" title="Dense Network for Joint Transmitter and Receiver Noncoherent Codebook Design">
               
             </span>
 
@@ -218,7 +210,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-01-17 14:35" pubdate>
+      <time datetime="2024-01-17 16:32" pubdate>
         2024年1月17日 下午
       </time>
     </span>
@@ -229,7 +221,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      1k 字
     </span>
   
 
@@ -238,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      3 分钟
     </span>
   
 
@@ -275,73 +267,31 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">THz Waveform Design and Deep Learning-Based Receiver Design</h1>
+            <h1 style="display: none">Dense Network for Joint Transmitter and Receiver Noncoherent Codebook Design</h1>
             
             <div class="markdown-body">
-              <p><strong>Sensing Integrated DFT-Spread OFDM Waveform and Deep Learning-Powered Receiver Design for Terahertz Integrated Sensing and Communication Systems</strong>.  <em>Yongzhi Wu</em> et.al.  <strong>IEEE Transactions on Communications, January 2023</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9967989">pdf</a>)  (Citations <strong>7</strong>)</p>
-<ul>
-<li>主要是设计了一种 ==flexible guard interval (FGI)== 帧结构来替换CP，取得了一定的效果。</li>
-<li>设计SensingNet and ComNet (both are dense network) 来对感知（距离和速度）和通信组件进行替换。</li>
-</ul>
+              <p><strong>Unsupervised Deep Learning for MU-SIMO Joint Transmitter and Noncoherent Receiver Design</strong>.  <em>Songyan Xue</em> et.al.  <strong>IEEE Wireless Communications Letters, February 2019</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8437142">pdf</a>)  (Citations <strong>24</strong>)</p>
 <h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
-<li>proposed a SI-DFT-s-OFDM waveform for THz ISAC system.</li>
-<li>SensingNet: Multiple-input average-output neural network for sensing: block-wise processing and multiple-wise processing.<ul>
-<li>block-wise for range estimation</li>
-<li>subcarrier-wise for velocity estimation</li>
+<li>Joint transmitter and ==noncoherent== receiver optimization fo MU-SIMO through unsupervised learning. Find the optimal waveform set <script type="math/tex">\mathbf{A}</script> for multiusers. </li>
+<li>Communication chain can be represented by a DNN with three essential layers.<ul>
+<li>The first layer is a partially-connected linear layer responsible for multiuser waveform joint optimization.</li>
+<li>The others (the second and the third layers) are nonlinear dense layers for noncoherent multiuser detection at the received side</li>
 </ul>
 </li>
-<li>ComNet: Two-level communication neural network, the first level is designed to extract channel information. The second level is designed to recover the transmitted data symbols.</li>
-<li><p>joint sensing and communication neural network by incorporating the proposed SensingNet and ComNet.</p>
-</li>
-<li><p>lower PARA.</p>
-</li>
 </ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632907.png" srcset="/img/loading.gif" lazyload alt="image-20240117161334411" style="zoom:33%;" /></p>
+<p>其是很简单，就是在收发机联合训练，找到最适合的波形，使得其能够在发射端分离出来。所谓的创新点还有：</p>
 <ul>
-<li><p>插入参考块（reference blocks）以满足感知参数估计和通信信道估计的要求</p>
-</li>
-<li><p>Active Sensing and passive sensing: </p>
-<ul>
-<li><p>Active sensing, Tx-Rx or Tx-target-Tx(用于感知)</p>
-</li>
-<li><p>Passive sensing, transmits a signal that is jointly designed and used for communication and sensing. This is followed by the received communication signal serving as the sensing signal that carries the information of the</p>
-<p>transmitter, such as its distance.</p>
-</li>
+<li>减少hidden layers，从而减轻梯度爆炸或消失，并且性能不会收到损失。</li>
+<li>采用部分链接的Dense层来模拟多发射机并行传输的行为。</li>
+<li>非对称DNN结构。</li>
 </ul>
-</li>
-</ul>
-<h2 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h2><h3 id="Communication-channel-model"><a href="#Communication-channel-model" class="headerlink" title="Communication channel model"></a>Communication channel model</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436833.png" srcset="/img/loading.gif" lazyload alt="image-20240117130122857" style="zoom:33%;" /></p>
-<h3 id="Sensing-channel-model"><a href="#Sensing-channel-model" class="headerlink" title="Sensing channel model"></a>Sensing channel model</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436735.png" srcset="/img/loading.gif" lazyload alt="image-20240117130454912" style="zoom:33%;" /></p>
-<h3 id="Power-attenuation"><a href="#Power-attenuation" class="headerlink" title="Power attenuation"></a>Power attenuation</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436761.png" srcset="/img/loading.gif" lazyload alt="image-20240117130519723" style="zoom:33%;" /></p>
-<h2 id="Waveform-design"><a href="#Waveform-design" class="headerlink" title="Waveform design"></a>Waveform design</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436750.png" srcset="/img/loading.gif" lazyload alt="image-20240117132106602" style="zoom:33%;" /></p>
-<ul>
-<li>data matrix 横着看有$M<em>{DB}+M</em>{RB}=M$个block，每个block长$L$。每个格子是QAM调制符号。</li>
-<li>the reference block is used for sensing parameter estimation and signal recovery.</li>
-<li>增加循环前缀<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436729.png" srcset="/img/loading.gif" lazyload alt="image-20240117133102792"></li>
-</ul>
-<p>​    即将一个block的最后$N_{CP}$采样点再移到前面。</p>
-<p>​    CP长度一般要比最大时延扩展长，以消除IBI （inter-block interference）</p>
-<p>==由于THz时延扩展可能不确定==，使得CP可能长度没有固定的需求。这就是本文的Motivation之一。然后帧结构变为：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436891.png" srcset="/img/loading.gif" lazyload alt="image-20240117135042344" style="zoom:33%;" /></p>
-<p>Reference block is generated by fixed reference symbols and inserted into the data blocks. 并且插入数据序列reference data 是$[p<em>K, \cdots,P</em>{L-1}]$，并且使得后面几位都基本相同（==和我们单载波加保护间隔是同一个目的==）</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436218.png" srcset="/img/loading.gif" lazyload alt="image-20240117135337563" style="zoom:33%;" /></p>
-<h2 id="SensingNet"><a href="#SensingNet" class="headerlink" title="SensingNet"></a>SensingNet</h2><p>Regard the received reference signals as input features (Complex, imaginary part and real part)</p>
-<ul>
-<li>block-wise input processing for range estimation. $M_{RB}$ Inputs. </li>
-<li>subcarrier-wise input processing for velocity estimation. $L$ Inputs.</li>
-</ul>
-<p>全是 Dense layer，并且block-wise的所有输入共享一个network，多个输入结果再进行平均作为最终输出。同理对于subcarrier-wise也是这样。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436165.png" srcset="/img/loading.gif" lazyload alt="image-20240117141932651" style="zoom:33%;" /></p>
-<h2 id="ComNet"><a href="#ComNet" class="headerlink" title="ComNet"></a>ComNet</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436295.png" srcset="/img/loading.gif" lazyload alt="image-20240117142259818" style="zoom:33%;" /></p>
-<p>two-level：</p>
-<ul>
-<li><p>received pilot（reference block）处理信道信息</p>
-</li>
-<li><p>received data block 级联 上一级的信道信息一起输入，进行处理。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436331.png" srcset="/img/loading.gif" lazyload alt="image-20240117142516384" style="zoom:33%;" /></p>
-</li>
-</ul>
-<p>然后一起训练</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171436524.png" srcset="/img/loading.gif" lazyload alt="image-20240117142749458" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632951.png" srcset="/img/loading.gif" lazyload alt="image-20240117163031144" style="zoom:33%;" /></p>
+<h2 id="Transmitter"><a href="#Transmitter" class="headerlink" title="Transmitter"></a>Transmitter</h2><p>Codebook for transmitter:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632426.png" srcset="/img/loading.gif" lazyload alt="image-20240117155647446" style="zoom:33%;" /></p>
+<p>Choose a transmitter codebook <script type="math/tex">\mathbf{A}</script> to minimize the Channel Ambiguity. </p>
+<p>Each codebook has <script type="math/tex">K</script> codewords. So the available codebook for <script type="math/tex">m</script>-th user is <script type="math/tex">\mathbf{W}_m\in\mathbb{R}^{L\times K}</script>. The one-hot vector <script type="math/tex">\mathbf{a}_m</script> (uniformly distributed) has the size of <script type="math/tex">K\times 1</script>, which denotes the chosen index of codebooks.</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632393.png" srcset="/img/loading.gif" lazyload alt="image-20240117162754584" style="zoom:33%;" /></p>
 
             </div>
             <hr>
@@ -363,8 +313,6 @@
                     
                       <a class="hover-with-bg" href="/tags/Deep-Learning/">Deep Learning</a>
                     
-                      <a class="hover-with-bg" href="/tags/THz/">THz</a>
-                    
                   </div>
                 
               </div>
@@ -377,7 +325,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2024/01/17/THzwaveformdesignandDeeplearningbasedTransRecDesign/">http://lcjoffrey.top/2024/01/17/THzwaveformdesignandDeeplearningbasedTransRecDesign/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2024/01/17/dense4jointTxRxcodebookdesign/">http://lcjoffrey.top/2024/01/17/dense4jointTxRxcodebookdesign/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -387,18 +335,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/17/dense4jointTxRxcodebookdesign/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Dense Network for Joint Transmitter and Receiver Noncoherent Codebook Design</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/13/rankoneRecovery/">
-                        <span class="hidden-mobile">优化基础-IRM Rank-One Constrain Recovery</span>
+                      <a href="/2024/01/17/THzwaveformdesignandDeeplearningbasedTransRecDesign/">
+                        <span class="hidden-mobile">THz Waveform Design and Deep Learning-Based Receiver Design</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

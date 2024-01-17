@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Dense Network for Joint Transmitter and Receiver Noncoherent Codebook Design</title>
+    <link href="/2024/01/17/dense4jointTxRxcodebookdesign/"/>
+    <url>/2024/01/17/dense4jointTxRxcodebookdesign/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Unsupervised Deep Learning for MU-SIMO Joint Transmitter and Noncoherent Receiver Design</strong>.  <em>Songyan Xue</em> et.al.  <strong>IEEE Wireless Communications Letters, February 2019</strong>  (<a href="https://ieeexplore.ieee.org/document/8437142">pdf</a>)  (Citations <strong>24</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul><li>Joint transmitter and ==noncoherent== receiver optimization fo MU-SIMO through unsupervised learning. Find the optimal waveform set <script type="math/tex">\mathbf{A}</script> for multiusers. </li><li>Communication chain can be represented by a DNN with three essential layers.<ul><li>The first layer is a partially-connected linear layer responsible for multiuser waveform joint optimization.</li><li>The others (the second and the third layers) are nonlinear dense layers for noncoherent multiuser detection at the received side</li></ul></li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632907.png" alt="image-20240117161334411" style="zoom:33%;" /></p><p>其是很简单，就是在收发机联合训练，找到最适合的波形，使得其能够在发射端分离出来。所谓的创新点还有：</p><ul><li>减少hidden layers，从而减轻梯度爆炸或消失，并且性能不会收到损失。</li><li>采用部分链接的Dense层来模拟多发射机并行传输的行为。</li><li>非对称DNN结构。</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632951.png" alt="image-20240117163031144" style="zoom:33%;" /></p><h2 id="Transmitter"><a href="#Transmitter" class="headerlink" title="Transmitter"></a>Transmitter</h2><p>Codebook for transmitter:</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632426.png" alt="image-20240117155647446" style="zoom:33%;" /></p><p>Choose a transmitter codebook <script type="math/tex">\mathbf{A}</script> to minimize the Channel Ambiguity. </p><p>Each codebook has <script type="math/tex">K</script> codewords. So the available codebook for <script type="math/tex">m</script>-th user is <script type="math/tex">\mathbf{W}_m\in\mathbb{R}^{L\times K}</script>. The one-hot vector <script type="math/tex">\mathbf{a}_m</script> (uniformly distributed) has the size of <script type="math/tex">K\times 1</script>, which denotes the chosen index of codebooks.</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632393.png" alt="image-20240117162754584" style="zoom:33%;" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Deep Learning-based Waveform Design</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Deep Learning</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>THz Waveform Design and Deep Learning-Based Receiver Design</title>
     <link href="/2024/01/17/THzwaveformdesignandDeeplearningbasedTransRecDesign/"/>
     <url>/2024/01/17/THzwaveformdesignandDeeplearningbasedTransRecDesign/</url>
