@@ -28,8 +28,10 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163850059.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163929060.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301164040842.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649041.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649047.png">
 <meta property="article:published_time" content="2022-03-01T08:55:58.000Z">
-<meta property="article:modified_time" content="2022-04-10T13:10:49.824Z">
+<meta property="article:modified_time" content="2024-01-18T08:51:01.338Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="OFDM">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +224,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      2.9k 字
     </span>
   
 
@@ -231,7 +233,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      9 分钟
     </span>
   
 
@@ -331,7 +333,7 @@ s(t)=\sum\limits_{n=0}^{N-1}s_ie^{j2\pi f_it}</script><p>这不和离散傅立�
 <li>补零</li>
 <li>插入循环前缀（cp）或循环后缀（cs）</li>
 </ul>
-<p>一般采用循环前缀，即将OFDM的后部的采样复制到前面，长度为$T<em>{cp}$，故每个符号的长度为$T</em>{sym}=T<em>{B}+T</em>{cp}$且$T_{cp}$大于等于多径时延。</p>
+<p>一般采用循环前缀，即将OFDM的后部的采样复制到前面，长度为<script type="math/tex">T_{cp}</script>，故每个符号的长度为<script type="math/tex">T_{sym}=T_{B}+T_{cp}</script>且<script type="math/tex">T_{cp}</script>大于等于多径时延。</p>
 <h2 id="符号之间的关系-lt-span-class-”hint—top-hint—rounded”-aria-label-”https-zhuanlan-zhihu-com-p-57967971"><a href="#符号之间的关系-lt-span-class-”hint—top-hint—rounded”-aria-label-”https-zhuanlan-zhihu-com-p-57967971" class="headerlink" title="符号之间的关系&lt;span class=”hint—top hint—rounded” aria-label=”https://zhuanlan.zhihu.com/p/57967971"></a>符号之间的关系<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote">&lt;span class=”hint—top hint—rounded” aria-label=”<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57967971">https://zhuanlan.zhihu.com/p/57967971</a></h2><p>“&gt;[3]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</p>
 <div class="table-container">
 <table>
@@ -377,6 +379,13 @@ s(t)=\sum\limits_{n=0}^{N-1}s_ie^{j2\pi f_it}</script><p>这不和离散傅立�
 </tbody>
 </table>
 </div>
+<h2 id="20240118-update"><a href="#20240118-update" class="headerlink" title="20240118 update"></a>20240118 update</h2><p>Diagram of legacy OFDM PHY</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649041.png" srcset="/img/loading.gif" lazyload alt="image-20240118153805786" style="zoom:33%;" /></p>
+<p>Exemplary OFDM coherence slot and time-domain waveform</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649047.png" srcset="/img/loading.gif" lazyload alt="image-20240118153824808" style="zoom:33%;" /></p>
+<p>An OFDM symbol contains <script type="math/tex">N=32</script> subcarriers, and <script type="math/tex">G=10</script> DC guard band and edge guard band among the subcarriers. </p>
+<p>A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains <script type="math/tex">F=8</script> OFDM symbols, with <script type="math/tex">P=7\times 8=56</script> pilot REs and <script type="math/tex">D=16\times8=128</script> data REs, respectively. </p>
+<p>The length of a time-domain full OFDM symbol is <script type="math/tex">S=N+N_{CP}</script>.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>P243-P244 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>P245-P245 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57967971">https://zhuanlan.zhihu.com/p/57967971</a>
