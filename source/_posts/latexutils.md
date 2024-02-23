@@ -241,3 +241,15 @@ Time since GE & Soil Depth & Soil Moisture Content & pH & Conductivity & SOC & T
 ```
 
 最后，在编译的时候选择latexmk进行编译。Done。
+
+# 编译链
+
+经常没有参考文献的时候会报错：
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308231600233.png" alt="image-20230823160030201" style="zoom:25%;" />
+
+这都是因为编译链选择的问题。
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308231600978.png" alt="image-20230823160053955" style="zoom:33%;" />
+
+选择biber或者bibtex都需要bib文件（不是很确定），一般没有参考文献的就选XeLatex。另外有\tableofcontent命令的都需要编译两次，所以我加了一个XeLatex*2（在setting.json文件中修改）

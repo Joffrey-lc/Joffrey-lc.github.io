@@ -118,7 +118,7 @@ $$
 - 补零
 - 插入循环前缀（cp）或循环后缀（cs）
 
-一般采用循环前缀，即将OFDM的后部的采样复制到前面，长度为$T_{cp}$，故每个符号的长度为$T_{sym}=T_{B}+T_{cp}$且$T_{cp}$大于等于多径时延。
+一般采用循环前缀，即将OFDM的后部的采样复制到前面，长度为$$T_{cp}$$，故每个符号的长度为$$T_{sym}=T_{B}+T_{cp}$$且$$T_{cp}$$大于等于多径时延。
 
 ## 符号之间的关系[^3]
 
@@ -132,6 +132,30 @@ $$
 |     $B$      |                带宽，$B=(N+1)\Delta f$                 |
 | $T_{sample}$ | 采样时间间隔，$T_{sample}=\frac{1}{B}=\frac{T_B}{N+1}$ |
 |    $F_s$     |  采样频率，$F_s=\frac{1}{T_{sample}}=\frac{N+1}{T_B}$  |
+
+## OFDM的特性补充
+
+- 抗频率选择性衰落信道：由于串转并，将高码率的数据流转换为低码率的，使得每个子载波等价于窄带系统。从而对于每个子载波而言（调制和解调都可以认为是在子载波上的操作），频率选择性衰落影响不大（在窄带面前都可以认为是频率衰落平坦的），从而说明了OFDM的抗频率选择性衰落。
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401231635282.png" alt="image-20240123163514071" style="zoom: 25%;" />
+
+- Others todo...
+
+## 20240118 update
+
+Diagram of legacy OFDM PHY
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649041.png" alt="image-20240118153805786" style="zoom:33%;" />
+
+Exemplary OFDM coherence slot and time-domain waveform
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649047.png" alt="image-20240118153824808" style="zoom:33%;" />
+
+An OFDM symbol contains $$N=32$$ subcarriers, and $$G=10$$ DC guard band and edge guard band among the subcarriers. 
+
+A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains $$F=8$$ OFDM symbols, with $$P=7\times 8=56$$ pilot REs and $$D=16\times8=128$$ data REs, respectively. 
+
+The length of a time-domain full OFDM symbol is $$S=N+N_{CP}$$.
 
 # Reference
 
