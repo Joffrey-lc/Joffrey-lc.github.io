@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136393.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136422.png">
 <meta property="article:published_time" content="2024-02-27T13:36:10.000Z">
-<meta property="article:modified_time" content="2024-02-27T13:40:45.190Z">
+<meta property="article:modified_time" content="2024-02-27T13:46:42.133Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="RIS">
 <meta property="article:tag" content="Stacked Intelligent Metasurfaces">
@@ -316,15 +316,15 @@
 </ul>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136112.png" srcset="/img/loading.gif" lazyload alt="image-20240226155932718"></p>
 <p>值得注意的是，输入层和输出层单元数不是那么多，距离计算方式有点变化。</p>
-<p>记$\boldsymbol{v}<em>0=\left[v</em>{0,1}, v<em>{0,2}, \cdots, v</em>{0, N}\right]^T \in \mathbb{C}^{N \times 1}$和$\boldsymbol{\Upsilon}_0=\operatorname{diag}\left(\boldsymbol{v}_0\right) \in \mathbb{C}^{N \times N}$​分别为 complex-valued transmission coefficient vector and the corresponding matrix for the input layer (i.e., the zeroth layer)，所以整个系统模型被建模为：</p>
+<p>记<script type="math/tex">\boldsymbol{v}_0=\left[v_{0,1}, v_{0,2}, \cdots, v_{0, N}\right]^T \in \mathbb{C}^{N \times 1}$和$\boldsymbol{\Upsilon}_0=\operatorname{diag}\left(\boldsymbol{v}_0\right) \in \mathbb{C}^{N \times N}</script>​分别为 complex-valued transmission coefficient vector and the corresponding matrix for the input layer (i.e., the zeroth layer)，所以整个系统模型被建模为：</p>
 <script type="math/tex; mode=display">
 \boldsymbol{G}=\boldsymbol{W}_L \boldsymbol{\Upsilon}_L \boldsymbol{W}_{L-1} \cdots \boldsymbol{W}_2 \Upsilon_2 \boldsymbol{W}_1 \boldsymbol{\Upsilon}_1 \boldsymbol{W}_0</script><h3 id="Received-model"><a href="#Received-model" class="headerlink" title="Received model"></a>Received model</h3><p>Received model和正常的RIS类似：</p>
 <script type="math/tex; mode=display">
 \boldsymbol{r}=\sqrt{\varrho} \boldsymbol{G} \Upsilon_0 \boldsymbol{x}+\boldsymbol{u}=\sqrt{\varrho} \boldsymbol{G} \Upsilon_0 \boldsymbol{a}\left(\psi_{\mathbf{x}}, \psi_{\mathrm{y}}\right) s+\boldsymbol{u}</script><ul>
-<li>虽然$\mathbf{G}$包含大量矩阵乘法，但是这些矩阵乘法都是在传播过程中自动发生， 即以光速进行运算的。</li>
+<li>虽然<script type="math/tex">\mathbf{G}</script>包含大量矩阵乘法，但是这些矩阵乘法都是在传播过程中自动发生， 即以光速进行运算的。</li>
 </ul>
 <h2 id="Problem-and-Solution"><a href="#Problem-and-Solution" class="headerlink" title="Problem and Solution"></a>Problem and Solution</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136108.png" srcset="/img/loading.gif" lazyload alt="image-20240226161303214" style="zoom:33%;" /></p>
-<p>其中$\mathbf{F}$是2D DFT matrix，目的是将$\mathbf{G}$搞成和$\mathbf{F}$相同功能的东西，然后通过传播过程中自动计算</p>
+<p>其中<script type="math/tex">\mathbf{F}</script>是2D DFT matrix，目的是将<script type="math/tex">\mathbf{G}</script>搞成和<script type="math/tex">\mathbf{F}</script>相同功能的东西，然后通过传播过程中自动计算</p>
 <p>（空中计算）。</p>
 <p>设计梯度下降算法进行求解。</p>
 <h2 id="Accuracy-Improvement"><a href="#Accuracy-Improvement" class="headerlink" title="Accuracy Improvement"></a>Accuracy Improvement</h2><p>没读懂</p>
