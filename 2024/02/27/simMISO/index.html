@@ -13,30 +13,30 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="OFDM receiver, DFT/IDFT is replaced by complex dense network. Complex convolutional networks">
+  <meta name="description" content="Stacked Intelligent Metasurfaces for Multiuser Beamforming in the Wave Domain.  Jiancheng An et.al.">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="OFDM receiver, DFT&#x2F;IDFT is replaced by complex dense network. Complex convolutional networks">
+  <meta name="description" content="Stacked Intelligent Metasurfaces for Multiuser Beamforming in the Wave Domain.  Jiancheng An et.al.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OFDM Receiver Design and Complex Convolutional Networks">
-<meta property="og:url" content="http://lcjoffrey.top/2024/01/18/OFDMReceiverandComplexConv/index.html">
+<meta property="og:title" content="Stacked Intelligent Metasurfaces for MIMO System.">
+<meta property="og:url" content="http://lcjoffrey.top/2024/02/27/simMISO/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="OFDM receiver, DFT&#x2F;IDFT is replaced by complex dense network. Complex convolutional networks">
+<meta property="og:description" content="Stacked Intelligent Metasurfaces for Multiuser Beamforming in the Wave Domain.  Jiancheng An et.al.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652494.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652608.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652892.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652002.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652006.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652912.png">
-<meta property="article:published_time" content="2024-01-18T08:51:50.000Z">
-<meta property="article:modified_time" content="2024-01-18T08:55:03.209Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272135243.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133945.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133291.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133292.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133297.png">
+<meta property="article:published_time" content="2024-02-27T13:33:08.000Z">
+<meta property="article:modified_time" content="2024-02-27T13:35:41.578Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="RIS">
+<meta property="article:tag" content="Stacked Intelligent Metasurfaces">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652494.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272135243.png">
   
-  <title>OFDM Receiver Design and Complex Convolutional Networks - Joffrey&#39;s Blog</title>
+  <title>Stacked Intelligent Metasurfaces for MIMO System. - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="OFDM Receiver Design and Complex Convolutional Networks">
+            <span class="h2" id="subtitle" title="Stacked Intelligent Metasurfaces for MIMO System.">
               
             </span>
 
@@ -212,8 +212,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-01-18 16:51" pubdate>
-        2024年1月18日 下午
+      <time datetime="2024-02-27 21:33" pubdate>
+        2024年2月27日 晚上
       </time>
     </span>
   
@@ -223,7 +223,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      426 字
     </span>
   
 
@@ -232,7 +232,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7 分钟
+      1 分钟
     </span>
   
 
@@ -269,49 +269,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">OFDM Receiver Design and Complex Convolutional Networks</h1>
+            <h1 style="display: none">Stacked Intelligent Metasurfaces for MIMO System.</h1>
             
             <div class="markdown-body">
-              <p><strong>Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-Valued Convolutional Networks</strong>.  <em>Zhongyuan Zhao</em> et.al.  <strong>IEEE Journal on Selected Areas in Communications, August 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9448141">pdf</a>)  (Citations <strong>25</strong>)</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/zhongyuanzhao/dl_ofdm">Open-source software </a></p>
-<p>提出了一种利用deep complex-valued convolutional network 实现直接从时域信号解调OFDM bits的方案</p>
-<ul>
-<li>结合CP-exploitation, channel estimation, and intersymbol interference，一起取得了比较好的效果</li>
-<li>指导了新的方法进行复数运算<ul>
-<li>传统方案一：拼成两列</li>
-<li>传统方案二：two channel</li>
-</ul>
-</li>
-<li>Two stages for training in fading channel.</li>
-<li>代码开源</li>
-</ul>
+              <p>Date: 2024.02.26  14:13<br>Author: Joffrey LC</p>
+<hr>
+<p><strong>Stacked Intelligent Metasurfaces for Multiuser Beamforming in the Wave Domain</strong>.  <em>Jiancheng An</em> et.al.  <strong>ICC 2023 - IEEE International Conference on Communications, 28 May 2023</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10279173">pdf</a>)  (Citations <strong>4</strong>)</p>
 <h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
-<li>Use a deep complex-valued convolutional network (DCCN) to recover bits from time-domain OFDM signals without relying on any explicit DFT/IDFT.</li>
-<li>has the advantage of combining CP-exploitation, channel estimation, and intersymbol interference.</li>
-<li>guidelines of exact and approximate implementations of a complex-valued convolutional layer are provided for the design and analysis of convolutional networks for wireless PHY. </li>
-<li>a suite of novel training techniques are developed to improve the convergence and generalizability of the trained model in fading channels. </li>
+<li>通过Stacked Intelligent Metasurfaces在BS端进行MISO设计</li>
+<li>同时服务多个Users</li>
 </ul>
-<p>The Authors claimed that process complex data  in the $\mathbb{R}^2$ is differs from <script type="math/tex">\mathbb{C}</script> field in multiplicative operations.</p>
-<p>And DCCN can:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272135243.png" srcset="/img/loading.gif" lazyload alt="image-20240227213529211" style="zoom:33%;" /></p>
+<h2 id="Channel-Model"><a href="#Channel-Model" class="headerlink" title="Channel Model"></a>Channel Model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133945.png" srcset="/img/loading.gif" lazyload alt="image-20240227212903847" style="zoom:33%;" /></p>
+<h2 id="Signal-model"><a href="#Signal-model" class="headerlink" title="Signal model"></a>Signal model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133291.png" srcset="/img/loading.gif" lazyload alt="image-20240227212919255" style="zoom:33%;" /></p>
+<p>and <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133292.png" srcset="/img/loading.gif" lazyload alt="image-20240227212929990" style="zoom:33%;" /></p>
+<p>其实和传统的RIS类似。</p>
+<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><p>为了最大化加权和通信速率，要对每个用户分配的功率以及Stacked Intelligent Metasurfaces相移进行设计。</p>
 <ul>
-<li>a learned linear transform to replace DFT/IDFT by exploiting its cyclic prefix (CP).</li>
-<li>a data-driven interpretable DCCN channel equalizer that outperformances the legacy receivers and lower complexity. Combine CP exploitation, intersymbol interference mitigation and channel estimation.</li>
-<li>a training methods to improve the convergence and generalizability of the DNN-based receiver in fading channel.</li>
+<li>通过注水算法对发射功率进行求解</li>
+<li>通过梯度下降对每个Metasurface的相移进行求解</li>
+<li>通过AO对二者进行交替优化</li>
 </ul>
-<h2 id="OFDM-system"><a href="#OFDM-system" class="headerlink" title="OFDM system"></a>OFDM system</h2><p>Diagram of legacy OFDM PHY</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652494.png" srcset="/img/loading.gif" lazyload alt="image-20240118153805786" style="zoom:33%;" /></p>
-<p>Exemplary OFDM coherence slot and time-domain waveform</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652608.png" srcset="/img/loading.gif" lazyload alt="image-20240118153824808" style="zoom:33%;" /></p>
-<p>An OFDM symbol contains <script type="math/tex">N=32</script> subcarriers, and <script type="math/tex">G=10</script> DC guard band and edge guard band among the subcarriers. </p>
-<p>A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains <script type="math/tex">F=8</script> OFDM symbols, with <script type="math/tex">P=7\times 8=56</script> pilot REs and <script type="math/tex">D=16\times8=128</script> data REs, respectively. </p>
-<p>The length of a time-domain full OFDM symbol is <script type="math/tex">S=N+N_{CP}</script>.</p>
-<h2 id="Channel-estimation"><a href="#Channel-estimation" class="headerlink" title="Channel estimation"></a>Channel estimation</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652892.png" srcset="/img/loading.gif" lazyload alt="image-20240118161650143" style="zoom:33%;" /></p>
-<p>Pilot signals are of either constant signal or low auto-correlation sequence (e.g., Zadoff-Chu sequence) known at the receiver. The basic pilot-aided channel equalizer in OFDM system is based on the least square (LS) estimator.</p>
-<h2 id="Whole-Structure"><a href="#Whole-Structure" class="headerlink" title="Whole Structure"></a>Whole Structure</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652002.png" srcset="/img/loading.gif" lazyload alt="image-20240118163753636"></p>
-<p>And two stage training. </p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652006.png" srcset="/img/loading.gif" lazyload alt="image-20240118163923111" style="zoom:33%;" /></p>
-<h2 id="Simplify"><a href="#Simplify" class="headerlink" title="Simplify"></a>Simplify</h2><p>Using the legacy data REs extraction and demodulation (Equalizer?)</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652912.png" srcset="/img/loading.gif" lazyload alt="image-20240118163730156" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272133297.png" srcset="/img/loading.gif" lazyload alt="image-20240227213223105" style="zoom:33%;" /></p>
 
             </div>
             <hr>
@@ -323,7 +302,7 @@
                     
                       <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
                     
-                      <a class="hover-with-bg" href="/categories/Paper-Reading/Deep-Learning-based-Waveform-Design/">Deep Learning-based Waveform Design</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Stacked-Intelligent-Metasurfaces/">Stacked Intelligent Metasurfaces</a>
                     
                   </div>
                 
@@ -331,7 +310,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Deep-Learning/">Deep Learning</a>
+                      <a class="hover-with-bg" href="/tags/RIS/">RIS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Stacked-Intelligent-Metasurfaces/">Stacked Intelligent Metasurfaces</a>
                     
                   </div>
                 
@@ -345,7 +326,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2024/01/18/OFDMReceiverandComplexConv/">http://lcjoffrey.top/2024/01/18/OFDMReceiverandComplexConv/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2024/02/27/simMISO/">http://lcjoffrey.top/2024/02/27/simMISO/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -355,9 +336,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/27/simMISO/">
+                      <a href="/2024/02/27/SIMDFT/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Stacked Intelligent Metasurfaces for MIMO System.</span>
+                        <span class="hidden-mobile">Approximating DFT Matrix Through Stacked Intelligent Metasurfaces</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -365,8 +346,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/17/multitaskreceiver/">
-                        <span class="hidden-mobile">Multiple Tasks Receiver Design</span>
+                      <a href="/2024/01/18/OFDMReceiverandComplexConv/">
+                        <span class="hidden-mobile">OFDM Receiver Design and Complex Convolutional Networks</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
