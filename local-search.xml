@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>SIMbased</title>
+    <link href="/2024/02/29/SIMbased/"/>
+    <url>/2024/02/29/SIMbased/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Date: 2024.02.26  14:14<br>Author: Joffrey LC</p><hr><p><strong>Efficient Beamforming and Radiation Pattern Control Using Stacked Intelligent Metasurfaces</strong>.  <em>Naveed Ul Hassan</em> et.al.  <strong>IEEE Open Journal of the Communications Society, 2024</strong>  (<a href="https://ieeexplore.ieee.org/document/10379500">pdf</a>)  (Citations <strong>0</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul><li>continuous phase shift: gradient ascent algorithm</li><li>discrete phase shift: AO-based algorithm</li></ul><p>The contribution of this paper:</p><ul><li>a general path-loss model for SIM-assisted wireless communication systems.</li><li>continuous and discrete phase shift model</li></ul><p>惠更斯原理：</p><blockquote><p><strong>在波的传播过程中，波阵面上的每一点都可看作是发射子波的波源，在其后的任意时刻，这些子波的包迹就成为新的波阵面.</strong></p></blockquote><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402292123844.png" alt="image-20240229211756911" style="zoom:33%;" /></p><p>一个奇怪的现象是，随着SIM层数的增多，连续相移下，性能反而变差？离散值情况下没有出现减小的问题。作者留作future work了。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402292123918.png" alt="image-20240229211611623"></p><h2 id="Channel-model-Path-loss-model"><a href="#Channel-model-Path-loss-model" class="headerlink" title="Channel model/Path-loss model"></a>Channel model/Path-loss model</h2><p>channel model: </p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402292123235.png" alt="image-20240229211643668" style="zoom:33%;" /></p><p>pathloss model: </p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402292123233.png" alt="image-20240229211701615" style="zoom:33%;" /></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>gradient-based algorithm: 梯度下降法</p><p>AO-based algorithm: 固定一个原子进行迭代（离散才行，连续计算量太大了）</p><h2 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h2><h3 id="continuous"><a href="#continuous" class="headerlink" title="continuous"></a>continuous</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402292123746.png" alt="image-20240229212059779"></p><h3 id="discrete"><a href="#discrete" class="headerlink" title="discrete"></a>discrete</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402292123795.png" alt="image-20240229212112327"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Stacked Intelligent Metasurfaces</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>RIS</tag>
+      
+      <tag>Stacked Intelligent Metasurfaces</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Approximating DFT Matrix Through Stacked Intelligent Metasurfaces</title>
     <link href="/2024/02/27/SIMDFT/"/>
     <url>/2024/02/27/SIMDFT/</url>
@@ -2532,9 +2561,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -2559,9 +2588,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
