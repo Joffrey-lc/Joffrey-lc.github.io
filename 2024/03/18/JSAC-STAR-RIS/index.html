@@ -13,33 +13,35 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Jiaqi Xu et.al. IEEE Communications Letters">
+  <meta name="description" content="lossless, correlated phase shift model">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="Jiaqi Xu et.al. IEEE Communications Letters">
+  <meta name="description" content="lossless, correlated phase shift model">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STAR-RISs--Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces">
-<meta property="og:url" content="http://lcjoffrey.top/2024/03/18/starRIS/index.html">
+<meta property="og:title" content="STAR-RISs-- a Correlated T&amp;R Phase-Shift Model and Practical Phase-Shift Configuration Strategies">
+<meta property="og:url" content="http://lcjoffrey.top/2024/03/18/JSAC-STAR-RIS/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="Jiaqi Xu et.al. IEEE Communications Letters">
+<meta property="og:description" content="lossless, correlated phase shift model">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181654450.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437233.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437254.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437329.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437439.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437353.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437461.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437432.png">
-<meta property="article:published_time" content="2024-03-18T06:37:23.000Z">
-<meta property="article:modified_time" content="2024-03-18T08:54:27.144Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650680.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650713.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650856.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650903.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650045.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650026.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650961.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650947.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650067.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650176.png">
+<meta property="article:published_time" content="2024-03-18T08:49:53.000Z">
+<meta property="article:modified_time" content="2024-03-18T08:55:46.286Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="RIS">
 <meta property="article:tag" content="STAR RIS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181654450.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650680.png">
   
-  <title>STAR-RISs--Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces - Joffrey&#39;s Blog</title>
+  <title>STAR-RISs-- a Correlated T&amp;R Phase-Shift Model and Practical Phase-Shift Configuration Strategies - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -205,7 +207,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="STAR-RISs--Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces">
+            <span class="h2" id="subtitle" title="STAR-RISs-- a Correlated T&amp;R Phase-Shift Model and Practical Phase-Shift Configuration Strategies">
               
             </span>
 
@@ -215,7 +217,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-03-18 14:37" pubdate>
+      <time datetime="2024-03-18 16:49" pubdate>
         2024年3月18日 下午
       </time>
     </span>
@@ -226,7 +228,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.4k 字
     </span>
   
 
@@ -272,39 +274,55 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">STAR-RISs--Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces</h1>
+            <h1 style="display: none">STAR-RISs-- a Correlated T&amp;R Phase-Shift Model and Practical Phase-Shift Configuration Strategies</h1>
             
             <div class="markdown-body">
-              <p>Date: 2024.03.18  10:50<br>Author: Joffrey LC</p>
+              <p>Date: 2024.03.12  16:26<br>Author: Joffrey LC</p>
 <hr>
-<p><strong>STAR-RISs: Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces</strong>.  <em>Jiaqi Xu</em> et.al.  <strong>IEEE Communications Letters, September 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9437234">pdf</a>)  (Citations <strong>171</strong>)</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181654450.png" srcset="/img/loading.gif" lazyload alt="image-20240318165416386" style="zoom:33%;" /></p>
+<p><strong>STAR-RISs: A Correlated T&amp;R Phase-Shift Model and Practical Phase-Shift Configuration Strategies</strong>.  <em>Jiaqi Xu</em> et.al.  <strong>IEEE Journal of Selected Topics in Signal Processing, August 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9774942">pdf</a>)  (Citations <strong>37</strong>)</p>
 <h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
-<li>Full diversity order can be achieved on both sides. </li>
-<li><p>Far field and near field model</p>
-</li>
-<li><p>==The boundary between the near-field and the far-field is <script type="math/tex">2L_a^2/\lambda</script>，where<script type="math/tex">L_a</script> is the largest dimension of the RIS aperture.==</p>
-</li>
+<li>To realize a full-space smart radio environment, each STAR-RIS element has to dynamically impose two distinct tunable phase-shift values, one for the transmitted signal and one for the reflected signal.</li>
+<li>The phase shift can/cant be adjusted independently. </li>
 </ul>
-<h2 id="Far-field"><a href="#Far-field" class="headerlink" title="Far field"></a>Far field</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437233.png" srcset="/img/loading.gif" lazyload alt="image-20240318111855531" style="zoom: 33%;" /></p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437254.png" srcset="/img/loading.gif" lazyload alt="image-20240318112135611" style="zoom:33%;" /></p>
+<h2 id="Phase-shift-model"><a href="#Phase-shift-model" class="headerlink" title="Phase shift model"></a>Phase shift model</h2><h3 id="Correlated-adjustment"><a href="#Correlated-adjustment" class="headerlink" title="Correlated adjustment"></a>Correlated adjustment</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650680.png" srcset="/img/loading.gif" lazyload alt="image-20240318151857353" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650713.png" srcset="/img/loading.gif" lazyload alt="image-20240318152006933" style="zoom:33%;" /></p>
+<h3 id="Independent-adjustment"><a href="#Independent-adjustment" class="headerlink" title="Independent adjustment"></a>Independent adjustment</h3><p>According to the Maxwell’s Equations, the phase shift of both transmitting and reflecting can be adjusted independently if the if the impedances <script type="math/tex">Z_e</script>and <script type="math/tex">Z_m</script>​ in (1) and (2) can take on arbitrary complex values, which means that the STAR-RIS required a active or lossy elements.</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650856.png" srcset="/img/loading.gif" lazyload alt="image-20240318152013662" style="zoom:33%;" /></p>
+<h2 id="OMA-v-s-NOMA"><a href="#OMA-v-s-NOMA" class="headerlink" title="OMA v.s. NOMA"></a>OMA v.s. NOMA</h2><h3 id="OMA"><a href="#OMA" class="headerlink" title="OMA"></a>OMA</h3><p>选择FDMA，且两个用户占用正交的、相同带宽的频带。则其可达速率为：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650903.png" srcset="/img/loading.gif" lazyload alt="image-20240318153729112" style="zoom:33%;" /></p>
+<p>有意思的是，带宽变为1/2，因为两个用户各占一半，然后噪声功率也下降，因为用户带宽各占一半</p>
+<h3 id="NOMA"><a href="#NOMA" class="headerlink" title="NOMA"></a>NOMA</h3><p>一个用户采用SIC（连续干扰消除）来消除干扰。为了成功实施SIC，给强信道弱功率，弱信道强功率</p>
 <ul>
-<li>反射和透射的RIS相移可 independently adjusted</li>
-<li>反射和透射有个功率分配，因为是passive，所以应该满足能量守恒</li>
+<li>基于CSI的用户排序</li>
+<li>CSI强的用户先解码CSI弱的用户的信号</li>
+<li>然后CSI强的通过SIC减去用户弱的，得到自己的信号</li>
+<li>弱信道将强信道（弱功率）当做干扰</li>
 </ul>
-<h2 id="Near-field"><a href="#Near-field" class="headerlink" title="Near field"></a>Near field</h2><p>根据Fresnel-Kirchhoff diffraction formula，应该建模为<script type="math/tex">M</script>个单元的求和：</p>
+<p>例如，R强，T弱，则有：</p>
+<ul>
+<li>先R解T:</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650045.png" srcset="/img/loading.gif" lazyload alt="image-20240318155609683" style="zoom:33%;" /></p>
+<ul>
+<li>再R解R：</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650026.png" srcset="/img/loading.gif" lazyload alt="image-20240318155622216" style="zoom:33%;" /></p>
+<ul>
+<li>再T解T：</li>
+</ul>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650961.png" srcset="/img/loading.gif" lazyload alt="image-20240318155641457" style="zoom:33%;" /></p>
+<h2 id="Three-available-optimization-methods"><a href="#Three-available-optimization-methods" class="headerlink" title="Three available optimization methods"></a>Three available optimization methods</h2><h3 id="Primary-Secondary-Phase-Shift-Configuration-PS-PSC-Strategy"><a href="#Primary-Secondary-Phase-Shift-Configuration-PS-PSC-Strategy" class="headerlink" title="Primary-Secondary Phase-Shift Configuration (PS-PSC) Strategy"></a>Primary-Secondary Phase-Shift Configuration (PS-PSC) Strategy</h3><p>step1: 先只考虑主要用户，而忽略其中的约束</p>
+<p>step2: 再考虑次要用户，次要用户相移为主要用户的v调整（次要用户的相移为主要用户相移的<script type="math/tex">+\pi/2</script> or <script type="math/tex">+3\pi/2</script>）</p>
+<h3 id="Diversity-Preserving-Phase-Shift-Configuration-DP-PSC-Stratege"><a href="#Diversity-Preserving-Phase-Shift-Configuration-DP-PSC-Stratege" class="headerlink" title="Diversity Preserving Phase-Shift Configuration (DP-PSC) Stratege"></a>Diversity Preserving Phase-Shift Configuration (DP-PSC) Stratege</h3><p>先计算二者的最优：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650947.png" srcset="/img/loading.gif" lazyload alt="image-20240318162245084" style="zoom:33%;" /></p>
+<p>然后通过查表进行：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650067.png" srcset="/img/loading.gif" lazyload alt="image-20240318162311920" style="zoom:33%;" /></p>
+<p>记误差：</p>
 <script type="math/tex; mode=display">
-g^\chi=\frac{1}{j \lambda} \iint_{(\Sigma)} U^\chi(Q) F\left(\theta^\chi\right) \frac{e^{2 j \pi d_m^\chi / \lambda}}{d^\chi} d \Sigma</script><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437329.png" srcset="/img/loading.gif" lazyload alt="image-20240318112839450" style="zoom:33%;" /></p>
+\delta_m^\chi=\left|\phi_m^{\chi^*}-\Delta \phi_m^\chi\right|</script><p>有:</p>
 <script type="math/tex; mode=display">
-g^\chi=\frac{A_e}{j \lambda} \sum_m \Phi_m^\chi h_m F\left(\theta_m^\chi\right) \frac{e^{2 j \pi d_m^\chi / \lambda}}{d_m^\chi}</script><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437439.png" srcset="/img/loading.gif" lazyload alt="image-20240318112929059" style="zoom:33%;" /></p>
-<script type="math/tex; mode=display">
-\left|g^\chi\right|=\frac{A_e}{\lambda}\left|\sum_m \Phi_m^\chi h_m\left(1+\cos \theta_m^\chi\right) \frac{e^{2 j \pi d_m^\chi / \lambda}}{2 d_m^\chi}\right| .</script><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437353.png" srcset="/img/loading.gif" lazyload alt="image-20240318113444192" style="zoom:33%;" /></p>
-<h2 id="Diversity-Analysis"><a href="#Diversity-Analysis" class="headerlink" title="Diversity Analysis"></a>Diversity Analysis</h2><p>All elements of STAR-RIS share the same power ratio, i.e., <script type="math/tex">\beta^T_m=\beta^T,\beta^R_m=\beta^R,\forall m\in M</script>.</p>
-<p>In fact, we can include the power ratios constrains of each element for further improving the performance.</p>
-<p>定义diversity order：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437461.png" srcset="/img/loading.gif" lazyload alt="image-20240318143353876" style="zoom:33%;" /></p>
-<p>红色是考虑leaning factor/rate，而蓝色是没有使用leaning rate<script type="math/tex">F(\theta)=1</script>的</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437432.png" srcset="/img/loading.gif" lazyload alt="image-20240318143525743" style="zoom:33%;" /></p>
+\delta_m^\chi\leq \pi/4</script><h3 id="T-R-Group-Phase-Shift-Configuration-TR-PSC-Strategy"><a href="#T-R-Group-Phase-Shift-Configuration-TR-PSC-Strategy" class="headerlink" title="T/R-Group Phase-Shift Configuration (TR-PSC) Strategy"></a>T/R-Group Phase-Shift Configuration (TR-PSC) Strategy</h3><p>分组，分为透射和反射，分别用于不同用户</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181650176.png" srcset="/img/loading.gif" lazyload alt="image-20240318162619273" style="zoom:33%;" /></p>
 
             </div>
             <hr>
@@ -316,7 +334,7 @@ g^\chi=\frac{A_e}{j \lambda} \sum_m \Phi_m^\chi h_m F\left(\theta_m^\chi\right) 
                     
                       <a class="hover-with-bg" href="/categories/Paper-Reading/">Paper Reading</a>
                     
-                      <a class="hover-with-bg" href="/categories/Paper-Reading/Simultaneous-Transmitting-and-Reflecting-RIS/">Simultaneous Transmitting and Reflecting RIS</a>
+                      <a class="hover-with-bg" href="/categories/Paper-Reading/Simultaneous-Transmitting-and-Reflecting/">Simultaneous Transmitting and Reflecting</a>
                     
                   </div>
                 
@@ -340,7 +358,7 @@ g^\chi=\frac{A_e}{j \lambda} \sum_m \Phi_m^\chi h_m F\left(\theta_m^\chi\right) 
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2024/03/18/starRIS/">http://lcjoffrey.top/2024/03/18/starRIS/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2024/03/18/JSAC-STAR-RIS/">http://lcjoffrey.top/2024/03/18/JSAC-STAR-RIS/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -350,18 +368,12 @@ g^\chi=\frac{A_e}{j \lambda} \sum_m \Phi_m^\chi h_m F\left(\theta_m^\chi\right) 
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/18/JSAC-STAR-RIS/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">STAR-RISs-- a Correlated T&R Phase-Shift Model and Practical Phase-Shift Configuration Strategies</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/29/SIMbased/">
-                        <span class="hidden-mobile">Efficient Beamforming and Radiation Pattern Control Using Stacked Intelligent Metasurfaces</span>
+                      <a href="/2024/03/18/starRIS/">
+                        <span class="hidden-mobile">STAR-RISs--Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
