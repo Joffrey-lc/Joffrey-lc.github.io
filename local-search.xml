@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Relay Joint Nulling--Beyond SVD-Based</title>
+    <link href="/2024/03/28/relayjointnulling/"/>
+    <url>/2024/03/28/relayjointnulling/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Date: 2024.03.26  21:20<br>Author: Joffrey LC</p><hr><p><strong>A Spatial-Domain Joint-Nulling Method of Self-Interference in Full-Duplex Relays</strong>.  <em>Byungjin Chun</em> et.al.  <strong>IEEE Communications Letters, April 2012</strong>  (<a href="https://ieeexplore.ieee.org/document/6151763">pdf</a>)  (Citations <strong>64</strong>)</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709621.png" alt="image-20240328154857037"></p><ul><li><p>两种中继（Relay）转发结构：</p><ul><li>amplify-and-forward (AF)</li><li>decode-and-forward (DF)</li></ul></li><li><p>两种中继方案的解调信噪比：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709637.png" alt="image-20240328161139883" style="zoom:33%;" /></p></li></ul><p>​    AF: 算信噪比，并且结合两段<script type="math/tex">\mathbf{d}^H</script>，<script type="math/tex">\mathbf{b}</script>的增益</p><p>​    DF: 取min，relay不行解码就不行</p><p>假设echo signals 延迟足够大，就变成了一个干扰信号，所以需要消除干扰：</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709768.png" alt="image-20240328162140743" style="zoom:33%;" /></p><h2 id="SVD-based"><a href="#SVD-based" class="headerlink" title="SVD based"></a>SVD based</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709185.png" alt="image-20240328162201418" style="zoom:33%;" /></p><p>有意思的是，通过<script type="math/tex">\mathbf{U}^{(1)}</script>和<script type="math/tex">\mathbf{U}^{(2)}</script>的正交性（<script type="math/tex">\mathbf{V}^{(1)}</script>和<script type="math/tex">\mathbf{V}^{(2)}</script>同理），当<script type="math/tex">\mathbf{d}=\mathbf{U}^{(1)} \mathbf{b}</script>，==且<script type="math/tex">\mathbf{b}</script>可以任意取值，只要满足功率约束就可==，同理<script type="math/tex">\mathbf{p}=\mathbf{V}^{(2)} \mathbf{c}</script></p><p>则有：</p><script type="math/tex; mode=display">\begin{align}\mathbf{d}^H\mathbf{H}\mathbf{p}=&\mathbf{b}^H\mathbf{U}^{(1),H}\left(\mathbf{U}^{(1)} \boldsymbol{\Sigma}^{(1)} \mathbf{V}^{(1) H}+\mathbf{U}^{(2)} \boldsymbol{\Sigma}^{(2)} \mathbf{V}^{(2) H}\right)\mathbf{V}^{(2)} \mathbf{c},\\=&\mathbf{0}\end{align}</script><p>==因为<script type="math/tex">\mathbf{U}^{(1)}</script>消掉了<script type="math/tex">\mathbf{U}^{(2)}</script>项，因为<script type="math/tex">\mathbf{V}^{(2)}</script>消掉了<script type="math/tex">\mathbf{V}^{(1)}</script>项==</p><p>然后再选择最大化的<script type="math/tex">\mathbf{b}</script>和<script type="math/tex">\mathbf{c}</script>。</p><h2 id="Continuous-domain-based"><a href="#Continuous-domain-based" class="headerlink" title="Continuous domain based"></a>Continuous domain based</h2><p>核心思想是，通过正交投影，使得其中一个一定是正交的，这样就只用优化一个，并使得整个最大化。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709260.png" alt="image-20240328165659696" style="zoom:33%;" /></p><ol><li>由<script type="math/tex">\mathbf{p}=\mathbf{P}_{\mathbf{z}}^{\perp} \mathbf{k}</script>，则一定使得<script type="math/tex">\mathbf{d}^H\mathbf{H}\mathbf{p}=\mathbf{0}</script>成立。</li><li>取<script type="math/tex">\mathbf{k}=\frac{\left(\mathbf{h}_{r d}^H \mathbf{P}_{\mathbf{z}}^{\perp}\right)^H}{\left\|\mathbf{h}_{r d}^H \mathbf{P}_{\mathbf{z}}^{\perp}\right\|}</script>，从而使得<script type="math/tex">\mathbf{p}</script>完全固定由<script type="math/tex">\mathbf{H}^H\mathbf{d}</script>求出。</li><li>将问题转换为只与<script type="math/tex">\mathbf{d}</script>相关的问题</li></ol><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709766.png" alt="image-20240328170527488" style="zoom:33%;" /></p><p>用梯度下降法求解。</p><h2 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281710140.png" alt="image-20240328170759254" style="zoom:33%;" /></p><ul><li>DF比AF好</li><li>Proposed 比 SVD-based 好</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>unknown</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>unknown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>STAR-RISs-- a Correlated T&amp;R Phase-Shift Model and Practical Phase-Shift Configuration Strategies</title>
     <link href="/2024/03/18/JSAC-STAR-RIS/"/>
     <url>/2024/03/18/JSAC-STAR-RIS/</url>
@@ -2619,9 +2644,9 @@
     
     <tags>
       
-      <tag>communication</tag>
-      
       <tag>signal processing</tag>
+      
+      <tag>communication</tag>
       
     </tags>
     
@@ -2646,9 +2671,9 @@
     
     <tags>
       
-      <tag>communication</tag>
-      
       <tag>signal processing</tag>
+      
+      <tag>communication</tag>
       
       <tag>matlab</tag>
       

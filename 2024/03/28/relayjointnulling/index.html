@@ -13,30 +13,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="星座图知识整理">
+  <meta name="description" content="A Spatial-Domain Joint-Nulling Method of Self-Interference in Full-Duplex Relays.  Byungjin Chun et.al.  IEEE Communications Letters, April 2012">
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
-  <meta name="description" content="星座图知识整理">
+  <meta name="description" content="A Spatial-Domain Joint-Nulling Method of Self-Interference in Full-Duplex Relays.  Byungjin Chun et.al.  IEEE Communications Letters, April 2012">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知识储备-星座图">
-<meta property="og:url" content="http://lcjoffrey.top/2021/12/04/constellation/index.html">
+<meta property="og:title" content="Relay Joint Nulling--Beyond SVD-Based">
+<meta property="og:url" content="http://lcjoffrey.top/2024/03/28/relayjointnulling/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="星座图知识整理">
+<meta property="og:description" content="A Spatial-Domain Joint-Nulling Method of Self-Interference in Full-Duplex Relays.  Byungjin Chun et.al.  IEEE Communications Letters, April 2012">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b50efc495629ea035ec664c76517790b.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f92376c8c9c8bdab82cc5ef29ff05741.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41f4fa54c7dc87329d6f03b81473b78a.png">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9001b3bf7d18301c23add6778f21da9c.png">
-<meta property="article:published_time" content="2021-12-04T06:19:12.000Z">
-<meta property="article:modified_time" content="2022-03-19T10:09:20.403Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709621.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709637.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709768.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709185.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709260.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709766.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281710140.png">
+<meta property="article:published_time" content="2024-03-28T09:09:36.000Z">
+<meta property="article:modified_time" content="2024-03-28T09:11:41.876Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="signal processing">
-<meta property="article:tag" content="communication">
+<meta property="article:tag" content="unknown">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709621.png">
   
-  <title>知识储备-星座图 - Joffrey&#39;s Blog</title>
+  <title>Relay Joint Nulling--Beyond SVD-Based - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -202,7 +203,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="知识储备-星座图">
+            <span class="h2" id="subtitle" title="Relay Joint Nulling--Beyond SVD-Based">
               
             </span>
 
@@ -212,8 +213,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-04 14:19" pubdate>
-        2021年12月4日 下午
+      <time datetime="2024-03-28 17:09" pubdate>
+        2024年3月28日 下午
       </time>
     </span>
   
@@ -223,7 +224,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      256 字
+      1.4k 字
     </span>
   
 
@@ -232,7 +233,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      4 分钟
     </span>
   
 
@@ -269,23 +270,51 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">知识储备-星座图</h1>
+            <h1 style="display: none">Relay Joint Nulling--Beyond SVD-Based</h1>
             
             <div class="markdown-body">
-              <h1 id="星座图"><a href="#星座图" class="headerlink" title="星座图"></a>星座图</h1><p>已知信号以IQ路表示：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/92c9c4adef9ca809931193d74d875a22.png" srcset="/img/loading.gif" lazyload alt="IMG_1101"></p>
-<p>注意：</p>
-<p>①相邻符号之间码元变化１bit（格雷码）</p>
-<p>②相邻符号点之间的欧式距离越大，抗噪声能力越强</p>
-<p>③随着SPS(每个符号的采样点个数)增加，星座图显得越“乱”。因为一个符号的相位和幅度信息增加了，在星座图上的点数也增多了，符号与符号之间的跳变变得平滑。如下图可见：</p>
-<p>QPSK星座图符号位置：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b50efc495629ea035ec664c76517790b.png" srcset="/img/loading.gif" lazyload alt="image-20210815164210448"></p>
-<p>SPS=1，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/f92376c8c9c8bdab82cc5ef29ff05741.png" srcset="/img/loading.gif" lazyload alt="image-20210815164329496"></p>
-<p>SPS=8，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/41f4fa54c7dc87329d6f03b81473b78a.png" srcset="/img/loading.gif" lazyload alt="image-20210815164424105"></p>
-<p>SPS=32，SNR=18dB，QPSK星座图:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9001b3bf7d18301c23add6778f21da9c.png" srcset="/img/loading.gif" lazyload alt="image-20210815164642830"><br>肉眼观察SPS=1最明显，调制识别正确率和SPS有没有关系呢？</p>
+              <p>Date: 2024.03.26  21:20<br>Author: Joffrey LC</p>
+<hr>
+<p><strong>A Spatial-Domain Joint-Nulling Method of Self-Interference in Full-Duplex Relays</strong>.  <em>Byungjin Chun</em> et.al.  <strong>IEEE Communications Letters, April 2012</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6151763">pdf</a>)  (Citations <strong>64</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709621.png" srcset="/img/loading.gif" lazyload alt="image-20240328154857037"></p>
+<ul>
+<li><p>两种中继（Relay）转发结构：</p>
+<ul>
+<li>amplify-and-forward (AF)</li>
+<li>decode-and-forward (DF)</li>
+</ul>
+</li>
+<li><p>两种中继方案的解调信噪比：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709637.png" srcset="/img/loading.gif" lazyload alt="image-20240328161139883" style="zoom:33%;" /></p>
+</li>
+</ul>
+<p>​    AF: 算信噪比，并且结合两段<script type="math/tex">\mathbf{d}^H</script>，<script type="math/tex">\mathbf{b}</script>的增益</p>
+<p>​    DF: 取min，relay不行解码就不行</p>
+<p>假设echo signals 延迟足够大，就变成了一个干扰信号，所以需要消除干扰：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709768.png" srcset="/img/loading.gif" lazyload alt="image-20240328162140743" style="zoom:33%;" /></p>
+<h2 id="SVD-based"><a href="#SVD-based" class="headerlink" title="SVD based"></a>SVD based</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709185.png" srcset="/img/loading.gif" lazyload alt="image-20240328162201418" style="zoom:33%;" /></p>
+<p>有意思的是，通过<script type="math/tex">\mathbf{U}^{(1)}</script>和<script type="math/tex">\mathbf{U}^{(2)}</script>的正交性（<script type="math/tex">\mathbf{V}^{(1)}</script>和<script type="math/tex">\mathbf{V}^{(2)}</script>同理），当<script type="math/tex">\mathbf{d}=\mathbf{U}^{(1)} \mathbf{b}</script>，==且<script type="math/tex">\mathbf{b}</script>可以任意取值，只要满足功率约束就可==，同理<script type="math/tex">\mathbf{p}=\mathbf{V}^{(2)} \mathbf{c}</script></p>
+<p>则有：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbf{d}^H\mathbf{H}\mathbf{p}=&\mathbf{b}^H\mathbf{U}^{(1),H}\left(\mathbf{U}^{(1)} \boldsymbol{\Sigma}^{(1)} \mathbf{V}^{(1) H}+\mathbf{U}^{(2)} \boldsymbol{\Sigma}^{(2)} \mathbf{V}^{(2) H}\right)\mathbf{V}^{(2)} \mathbf{c},\\
+=&\mathbf{0}
+\end{align}</script><p>==因为<script type="math/tex">\mathbf{U}^{(1)}</script>消掉了<script type="math/tex">\mathbf{U}^{(2)}</script>项，因为<script type="math/tex">\mathbf{V}^{(2)}</script>消掉了<script type="math/tex">\mathbf{V}^{(1)}</script>项==</p>
+<p>然后再选择最大化的<script type="math/tex">\mathbf{b}</script>和<script type="math/tex">\mathbf{c}</script>。</p>
+<h2 id="Continuous-domain-based"><a href="#Continuous-domain-based" class="headerlink" title="Continuous domain based"></a>Continuous domain based</h2><p>核心思想是，通过正交投影，使得其中一个一定是正交的，这样就只用优化一个，并使得整个最大化。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709260.png" srcset="/img/loading.gif" lazyload alt="image-20240328165659696" style="zoom:33%;" /></p>
+<ol>
+<li>由<script type="math/tex">\mathbf{p}=\mathbf{P}_{\mathbf{z}}^{\perp} \mathbf{k}</script>，则一定使得<script type="math/tex">\mathbf{d}^H\mathbf{H}\mathbf{p}=\mathbf{0}</script>成立。</li>
+<li>取<script type="math/tex">\mathbf{k}=\frac{\left(\mathbf{h}_{r d}^H \mathbf{P}_{\mathbf{z}}^{\perp}\right)^H}{\left\|\mathbf{h}_{r d}^H \mathbf{P}_{\mathbf{z}}^{\perp}\right\|}</script>，从而使得<script type="math/tex">\mathbf{p}</script>完全固定由<script type="math/tex">\mathbf{H}^H\mathbf{d}</script>求出。</li>
+<li>将问题转换为只与<script type="math/tex">\mathbf{d}</script>相关的问题</li>
+</ol>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709766.png" srcset="/img/loading.gif" lazyload alt="image-20240328170527488" style="zoom:33%;" /></p>
+<p>用梯度下降法求解。</p>
+<h2 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281710140.png" srcset="/img/loading.gif" lazyload alt="image-20240328170759254" style="zoom:33%;" /></p>
+<ul>
+<li>DF比AF好</li>
+<li>Proposed 比 SVD-based 好</li>
+</ul>
 
             </div>
             <hr>
@@ -295,7 +324,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/basic-knowledge/">basic knowledge</a>
+                      <a class="hover-with-bg" href="/categories/unknown/">unknown</a>
                     
                   </div>
                 
@@ -303,9 +332,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/signal-processing/">signal processing</a>
-                    
-                      <a class="hover-with-bg" href="/tags/communication/">communication</a>
+                      <a class="hover-with-bg" href="/tags/unknown/">unknown</a>
                     
                   </div>
                 
@@ -319,7 +346,7 @@
 <!--                -->
               <p class="note note-warning">
                 <strong>本文作者: </strong><a href="/">Joffrey-Luo Cheng</a> <br>
-                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2021/12/04/constellation/">http://lcjoffrey.top/2021/12/04/constellation/</a> <br>
+                <strong>本文链接: </strong><a href="http://lcjoffrey.top/2024/03/28/relayjointnulling/">http://lcjoffrey.top/2024/03/28/relayjointnulling/</a> <br>
                 <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
                    </p>
               
@@ -329,18 +356,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/04/cpc/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Representation Learning With Contrastive Predictive Coding梳理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/04/conv/">
-                        <span class="hidden-mobile">知识储备-卷积/滤波及Matlab实现</span>
+                      <a href="/2024/03/18/JSAC-STAR-RIS/">
+                        <span class="hidden-mobile">STAR-RISs-- a Correlated T&R Phase-Shift Model and Practical Phase-Shift Configuration Strategies</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
