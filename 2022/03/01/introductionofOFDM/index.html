@@ -31,8 +31,12 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401231635282.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649041.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649047.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949667.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949629.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949847.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949877.png">
 <meta property="article:published_time" content="2022-03-01T08:55:58.000Z">
-<meta property="article:modified_time" content="2024-01-23T08:35:26.861Z">
+<meta property="article:modified_time" content="2024-04-18T11:49:49.355Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="OFDM">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +229,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      3.5k 字
     </span>
   
 
@@ -234,7 +238,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10 分钟
+      11 分钟
     </span>
   
 
@@ -393,7 +397,16 @@ s(t)=\sum\limits_{n=0}^{N-1}s_ie^{j2\pi f_it}</script><p>这不和离散傅立�
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649047.png" srcset="/img/loading.gif" lazyload alt="image-20240118153824808" style="zoom:33%;" /></p>
 <p>An OFDM symbol contains <script type="math/tex">N=32</script> subcarriers, and <script type="math/tex">G=10</script> DC guard band and edge guard band among the subcarriers. </p>
 <p>A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains <script type="math/tex">F=8</script> OFDM symbols, with <script type="math/tex">P=7\times 8=56</script> pilot REs and <script type="math/tex">D=16\times8=128</script> data REs, respectively. </p>
-<p>The length of a time-domain full OFDM symbol is <script type="math/tex">S=N+N_{CP}</script>.</p>
+<p>The length of a time-domain full OFDM symbol is <script type="math/tex">S=N+N_{CP}</script>​.</p>
+<h1 id="OFDM-IM-OFDM-with-Index-Modulation"><a href="#OFDM-IM-OFDM-with-Index-Modulation" class="headerlink" title="OFDM-IM ( OFDM with Index Modulation)"></a>OFDM-IM ( OFDM with Index Modulation)</h1><p>OFDM-IM, OFDM with Index Modulation</p>
+<p>OFDM-IM技术的核心思想是子载波在发送端被分成两部分，一部分子载波是激活的，称为有效子载波。==这部分载波来传输星座点==，而另一部分并不传输信号，==将载波的非激活和激活的状态信息作为额外信息进行传输==</p>
+<p>OFDM-IM系统在整体的信号处理过程与OFDM系统基本一致。而两者的主要区别主要为：在OFDM系统中，所有的子载波都用来传输调制好的信号，所有比特信息都承载在载波所发送的信号上。但在加入了索引思想之后，OFDM-IM系统在发送端会先将所有的子载波分为若干个块，而所需传输的比特信息也相应的被分成了相同数量的分组，并且每个分组中比特又被划分为了两部分：索引比特和调制比特。其中，索引比特的部分是用来确定有效载波在子块中的位置信息，调制比特是用来生成调制符号并通过有效子载波进行发送。 </p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949667.png" srcset="/img/loading.gif" lazyload alt="image-20240418183904747" style="zoom: 50%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949629.png" srcset="/img/loading.gif" lazyload alt="image-20240418183935551" style="zoom:50%;" /></p>
+<p>当<script type="math/tex">\eta\neq\mathbf{I}_\beta</script>时，<script type="math/tex">x_\beta(\eta)=0</script>，等于是在该子载波上静默。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949847.png" srcset="/img/loading.gif" lazyload alt="image-20240418184214775" style="zoom:50%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949877.png" srcset="/img/loading.gif" lazyload alt="image-20240418184226034" style="zoom:50%;" /></p>
+<p>传输信息量由两部分组成。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>P243-P244 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>P245-P245 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57967971">https://zhuanlan.zhihu.com/p/57967971</a>
