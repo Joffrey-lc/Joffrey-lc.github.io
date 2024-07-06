@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://lcjoffrey.top/2022/04/26/matlabutils/</loc>
+    <lastmod>2024-07-06</lastmod>
+  </url>
+  <url>
     <loc>http://lcjoffrey.top/2024/05/14/E2Emodelfree/</loc>
     <lastmod>2024-05-14</lastmod>
   </url>
@@ -59,10 +63,6 @@
   <url>
     <loc>http://lcjoffrey.top/2024/01/17/dense4jointTxRxcodebookdesign/</loc>
     <lastmod>2024-01-17</lastmod>
-  </url>
-  <url>
-    <loc>http://lcjoffrey.top/2022/04/26/matlabutils/</loc>
-    <lastmod>2024-01-05</lastmod>
   </url>
   <url>
     <loc>http://lcjoffrey.top/2023/10/20/paperutils/</loc>
@@ -329,11 +329,11 @@
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/spi-start/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
-    <loc>http://lcjoffrey.top/2021/12/04/spi-start/</loc>
+    <loc>http://lcjoffrey.top/2021/12/04/spi-git/</loc>
     <lastmod>2022-03-19</lastmod>
   </url>
   <url>
