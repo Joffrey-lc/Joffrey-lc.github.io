@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Linux服务器使用</title>
+    <link href="/2024/08/06/linux-station/"/>
+    <url>/2024/08/06/linux-station/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="使用python脚本"><a href="#使用python脚本" class="headerlink" title="使用python脚本"></a>使用python脚本</h2><h3 id="直接使用"><a href="#直接使用" class="headerlink" title="直接使用"></a>直接使用</h3><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python xxx.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><h3 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h3><div class="code-wrapper"><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">nohup python xxx.py &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>然后在代码文件夹会生成一个nohup.out文件，记录cmd的输出</p><p>通过</p><div class="code-wrapper"><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">tail -f nohup.out <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>查看</p><blockquote><p>注意，nohup默认的python是系统默认base的python</p></blockquote><p>解决办法是</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">conda activate myenvnohup conda run -n myenv python main.py &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div><blockquote><p>这种办法似乎会占用nohup.out文件，从而使输出在tail -f nohup.out 时不可以实时查看</p></blockquote><p>另外一种是</p><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">nohup ~&#x2F;.conda&#x2F;envs&#x2F;mypytoch&#x2F;bin&#x2F;python main.py &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>如果是当前shell的后台，可以直接</p><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jobs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>或者</p><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jobs -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>查询，并且可以通过</p><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">fg jobsNum<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>调到前台</p><hr><p>如果不是当前shell的后台，可以通过</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">ps -aux | grep xxx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>进行查询，其中xxx可以是python or xxx.py</p><h2 id="linux-基础"><a href="#linux-基础" class="headerlink" title="linux 基础"></a>linux 基础</h2><h3 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h3><div class="code-wrapper"><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">kill -9 PID<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><p>-9：强制执行</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>utils</category>
+      
+      <category>linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>End-2-End Model-Free Transceiver Design</title>
     <link href="/2024/05/14/E2Emodelfree/"/>
     <url>/2024/05/14/E2Emodelfree/</url>
