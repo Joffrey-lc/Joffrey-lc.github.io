@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>AFDM_tutorial</title>
+    <link href="/2024/10/28/AFDM-tutorial/"/>
+    <url>/2024/10/28/AFDM-tutorial/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Date: 2024.10.25  17:16<br>Author: Joffrey LC</p><hr><p><strong>AFDM: A Full Diversity Next Generation Waveform for High Mobility Communications</strong>.  <em>Ali Bemani</em> et.al.  <strong>2021 IEEE International Conference on Communications Workshops (ICC Workshops), June 2021</strong>  (<a href="https://ieeexplore.ieee.org/document/9473655">pdf</a>)  (Citations <strong>26</strong>)</p><p>The corresponding video can be found in <a href="https://www.bilibili.com/video/BV1CkySYYE37/?spm_id_from=333.337.search-card.all.click&amp;vd_source=4e18d3634d18ee20188cdddc5aa92d81">Bilibili</a>.</p><h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>AFDM: Affline Frequency Division Multiplexing</p><ul><li>chirp-based multicarrier transceiver </li><li>based on discrete affline Fourier transform (DAFT)</li><li>Adjust the ==two parameters== to better cope with the doubly dispersive channels. And avoid the time domain channel paths with distinct delays or Doppler frequency shifts overlap in DAFT domain.</li><li>Achieved full diversity of linear time-varying (LTV) channel. </li></ul><p>OFDM/single-carrier FDMA (SC-FDMA) achieved even optimal performance in ==time-invariant== frequency selective channels. </p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282135029.png" alt="image-20241028213541914" style="zoom:33%;" /></p><hr><h2 id="AFDM-for-communication"><a href="#AFDM-for-communication" class="headerlink" title="AFDM for communication"></a>AFDM for communication</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138536.png" alt="image-20241025160417663" style="zoom:33%;" /></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138518.png" alt="image-20241025160451941"></p><p>OFDM is designed for LTI channel, and we can use the orthogonal to modulate/demodulate</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138624.png" alt="image-20241025160637042"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138595.png" alt="image-20241028113502486"></p><p>general AFT: 调整abcd以适用于各种变换</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138569.png" alt="image-20241025160833345"></p><p>discrete form：2 parameters and chirp periodic prefix (CPP) to avoid ISI like CP in OFDM</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138567.png" alt="image-20241025160924357"></p><p>相比于传统的OFDM 仅 IFFT 多了左右两个matrix, 主要特性来自于C1 matrix（frequency变化斜率）</p><p>CP-CPP</p><ul><li>OFDM子载波是固定频率</li><li>AFDM子载波是chrip信号 线性调频</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138173.png" alt="image-20241025161134256"></p><p>信道模型：双色散信道， multiple paths, each of which has its own delay and Doppler shift</p><p>大频率间隔或者大持续时间下， 这两个现象可以被忽略（观察分母）</p><p>==时延和多普勒被分为整数部分和分数部分？？==</p><ul><li>分数部分的delay处理起来比较困难，而且如上图所示有个取模的现象（增大到边界后下降到0再增加），这点很多文章都没注意。</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138288.png" alt="image-20241025161340753"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138357.png" alt="image-20241025161450792"></p><p>只有整数时，如左侧图所示</p><p>而分数情况如右侧所示</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138338.png" alt="image-20241025161641074"></p><p>有了分数的Doppler shift之后，他们可能会重叠，如左侧图所示；或者如右图所示不重叠</p><p>==峰值的位置取决于C1==</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138344.png" alt="image-20241025161801275"></p><p>想要让整个delay-Doppler 表示能够有区分，需要满足以下公式：</p><ul><li>k_max denotes the maximal Doppler frequency shift, k_v is driven from the fractional Doppler shift.</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138701.png" alt="image-20241025161845785"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138843.png" alt="image-20241025162056216"></p><p>AFDM with Zak transform</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138952.png" alt="image-20241025162143676"></p><p>AFDM with Zak transform</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138097.png" alt="image-20241025162226167"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138574.png" alt="image-20241025162301680"></p><p>diversity</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138667.png" alt="image-20241025162444829"></p><p>diversity, rank=P (number of channel paths)</p><p>如果不满足2*k_max+l_max+2*k_max*l_max的条件，会由于前面聊到的取模操作而产生重叠。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138754.png" alt="image-20241025162453577"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138096.png" alt="image-20241025162741157"></p><p>Only one pilot for AFDM channel estimation </p><ul><li>P_GI depends on the max Doppler frequency shift and delay</li><li>可以把zeros位的功率全部给pilot，这样使得一个frame的功率不会发生变化</li><li>for the channel estimation, we should only focus on the blue parts.</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138070.png" alt="image-20241025162828696"></p><p>整个公式都是聚焦于blue part， only one pilot symbol.</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138337.png" alt="image-20241025163022775"></p><p>同时，SNR也被称为overhead，因为如果我们想增大SNR，就意味着要给pilot增加更大的功率，就需要更多的guard（zeros）</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138409.png" alt="image-20241025163117675"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138797.png" alt="image-20241028152311550"></p><p>Number of guard: AFDM需要更==少==的Guards，几乎是OTFS的一半</p><ul><li>粉色和紫色是OTFS和AFDM的==共同的/重叠的==guard位</li><li>所有颜色的和是OTFS的guards</li><li>红色的等于是OTFS的额外开销（减小了channel capacity）</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138827.png" alt="image-20241025163211372"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138278.png" alt="image-20241025163344000"></p><p>如果有稀疏性，C1的值就不需要取太大</p><ul><li>Situation a: We have a distribution of delay, and the Doppler shift is random. 多普勒random但是在不同delay中几乎都一样？？，</li><li>Situation b: Everything is random.</li><li>Situation c: Delay is random and we have the distribution of Doppler shift.每个谱图delay的多普勒几乎都一样？？？？</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138310.png" alt="image-20241025163432960"></p><p>How many pilot we need for the small C1</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138506.png" alt="image-20241025163730416"></p><p>得到最小的导频数量N_p</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138697.png" alt="image-20241025163943546"></p><hr><h2 id="AFD-M-for-ISAC"><a href="#AFD-M-for-ISAC" class="headerlink" title="AFD M for ISAC"></a>AFD M for ISAC</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138721.png" alt="image-20241025164128403"></p><p>P-target  and some self-interference</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138001.png" alt="image-20241028164653306"></p><p>用pilot处理，性能与处理整个信号相同</p><ul><li>chirp 的特性使得消除self-interference非常简单，before the ADC</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138053.png" alt="image-20241025164327745"></p><p>self-interference比回波大一个数量级，通过两个chirp分别dechirp扫描，去掉零频，就可以消除self-interference  like FMCW雷达</p><ul><li>大C1增大处理复杂度</li></ul><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138355.png" alt="image-20241025164440439"></p><p>DC-blocking for self-interference of full-duplex </p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138318.png" alt="image-20241025164738810"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138435.png" alt="image-20241025164822896"></p><p>OTFS: full duplex SIC</p><p>AFDM: 1 RF chain</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138425.png" alt="image-20241025164956647"></p><p>Down-sampling for ADFM: generate another chirp signal, with length N/O, and ==C1== becomes to ==OC1==</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138479.png" alt="image-20241025165017363"></p><p>没有丢失分辨率</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138441.png" alt="image-20241028205843165"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138586.png" alt="image-20241028210220090"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138633.png" alt="image-20241025165649748"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138697.png" alt="image-20241025165804482"></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138609.png" alt="image-20241028210424087"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Paper Reading</category>
+      
+      <category>Affine Frequency Diversity Multiplexing</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AFDM</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Linux服务器使用</title>
     <link href="/2024/08/06/linux-station/"/>
     <url>/2024/08/06/linux-station/</url>
@@ -2756,9 +2783,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -2783,9 +2810,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
