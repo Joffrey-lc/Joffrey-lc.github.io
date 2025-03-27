@@ -35,8 +35,11 @@
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949629.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949847.png">
 <meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949877.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554176.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554386.png">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271556087.png">
 <meta property="article:published_time" content="2022-03-01T08:55:58.000Z">
-<meta property="article:modified_time" content="2024-04-18T11:49:49.355Z">
+<meta property="article:modified_time" content="2025-03-27T07:58:27.963Z">
 <meta property="article:author" content="Joffrey">
 <meta property="article:tag" content="OFDM">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +232,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.5k 字
+      4k 字
     </span>
   
 
@@ -238,7 +241,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11 分钟
+      12 分钟
     </span>
   
 
@@ -304,7 +307,8 @@ x_k(t)=B_kcos(2\pi f_kt+\varphi_k)\quad\quad k=0,1,\cdots,N-1</script><p>式中�
 <script type="math/tex; mode=display">
 \begin{align}
 e(t)=\sum\limits_{k=1}^{N-1}x_k(t)=\sum\limits_{k=1}^{N-1}B_kcos(2\pi f_kt+\varphi_k)
-\end{align}=\sum\limits_{k=1}^{N-1}\textbf{B}_ke^{j(2\pi f_kt+\varphi_k)}</script><p>其中，$\textbf{B}_k$是一个复数，为第$k$路子信道中的复输入数据。</p>
+=\sum\limits_{k=1}^{N-1}\textbf{B}_ke^{j(2\pi f_kt+\varphi_k)}
+\end{align}</script><p>其中，$\textbf{B}_k$是一个复数，为第$k$路子信道中的复输入数据。</p>
 <h3 id="正交化"><a href="#正交化" class="headerlink" title="正交化"></a>正交化</h3><p>为了使这$N$路子信道信号在接收时能够完全分离，要求他们满足正交条件。在<strong>码元持续时间</strong>$T_B$内任意两个子载波都正交：</p>
 <script type="math/tex; mode=display">
 \int^{T_B}_0\cos(2\pi f_kt+\varphi_k)\cos(2\pi f_it+\varphi_i)=0</script><p>具体推导见书本<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="P243-P244 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
@@ -407,6 +411,16 @@ s(t)=\sum\limits_{n=0}^{N-1}s_ie^{j2\pi f_it}</script><p>这不和离散傅立�
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949847.png" srcset="/img/loading.gif" lazyload alt="image-20240418184214775" style="zoom:50%;" /></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949877.png" srcset="/img/loading.gif" lazyload alt="image-20240418184226034" style="zoom:50%;" /></p>
 <p>传输信息量由两部分组成。</p>
+<h2 id="20240327-Update"><a href="#20240327-Update" class="headerlink" title="20240327 Update"></a>20240327 Update</h2><h3 id="OFDM的格式"><a href="#OFDM的格式" class="headerlink" title="OFDM的格式"></a>OFDM的格式</h3><p>OFDM调制完后，是按一个完整OFDM的纬度去<span class="label label-primary">并转串</span>的。</p>
+<h3 id="OFDM的正交性"><a href="#OFDM的正交性" class="headerlink" title="OFDM的正交性"></a>OFDM的正交性</h3><p>OFDM一直给我了一个误区，就是正交性似乎是成型滤波/FFT这些带来的。但是实际上，是由于发射基带信号是一个矩形波，在频域上是sinc函数，所以有周期性的零点。参考[<a target="_blank" rel="noopener" href="https://blog.csdn.net/madongchunqiu/article/details/18614233">https://blog.csdn.net/madongchunqiu/article/details/18614233</a>]</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554176.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:33%;" /></p>
+<p>再来一个：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554386.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:33%;" /></p>
+<p>叠在一起后是：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271556087.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:33%;" /></p>
+<p>可以观察到本身就存在零点。然后，成型滤波可以加强这个零点（因为可能存在非完美矩形波形，导致子载波泄露，可以参考<a href="https://lcjoffrey.top/2025/03/27/recuPulseandtrapezoidPulse/）">https://lcjoffrey.top/2025/03/27/recuPulseandtrapezoidPulse/）</a></p>
+<p>然后，通过上采样，成型滤波，将带宽限。构成OFDM。</p>
+<p>但是在实际工程中，还需要在时域加窗，可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/a2145565/article/details/139580022">https://blog.csdn.net/a2145565/article/details/139580022</a></p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>P243-P244 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>P245-P245 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
 <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57967971">https://zhuanlan.zhihu.com/p/57967971</a>
