@@ -139,5 +139,8 @@ Entire：
 - Upload to [overleaf](https://www.overleaf.com/project)
 - Submit to arXiv
 - Download the template generate from overleaf, and change the path of .eps files to .pdf.
-- Upload .tex, .pdf (or .png) and .bbl files on by one to arXiv
-- Sucess!
+- Normally, choose arXiv.org perpetual
+- Upload .tex, .pdf (or .png) and .bbl files one by one to arXiv
+- Success!
+
+Reference https://blog.csdn.net/Netceor/article/details/138800086

@@ -12,8 +12,10 @@ categories:
 comment: valine
 math: true
 hide: false
-date: 2024-01-18 16:51:50
+date: 2024-01-18 16:51:50 
 ---
+
+# Deep-Waveform
 
 **Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-Valued Convolutional Networks**.  *Zhongyuan Zhao* et.al.  **IEEE Journal on Selected Areas in Communications, August 2021**  ([pdf](https://ieeexplore.ieee.org/document/9448141))  (Citations **25**)
 
@@ -92,3 +94,70 @@ And two stage training.
 Using the legacy data REs extraction and demodulation (Equalizer?)
 
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652912.png" alt="image-20240118163730156" style="zoom:33%;" />
+
+
+
+# Another paper/ old version https://arxiv.org/abs/1810.07181v3
+
+- The model contains both dense and convolutional layers which are mostly linear activated, and new structures of residual and skip connections. (different from other works which only contain Fully-Connected layer and Relu activation.)
+- complex convolutional layer is implemented within Tensorflow to process complex IQ data, instead of treating it as two independent real numbers. 
+
+Typical pilot patterns in OFDM system are: block, comb, and scattered
+
+![image-20240305111123753](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000673.png)
+
+
+
+
+
+{% label primary @It is recommended to keep the CP while recovering the bits from the time-domain waveform. %}
+
+## Basic OFDM Receiver (AWGN)
+
+Firtstly, the author trains the basic DCCN OFDM receiver (i.e., without channel equalizer) for bit recovery. 
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000676.png" alt="image-20240305175722646" style="zoom:33%;" />
+
+- The first part includes first 3 layers, which is intended to transform time-domain OFDM symbol into frequency-domain. The major component of the first part is a Complex Conv (C-Conv) layer of size N × S(N) × 1.
+  - DCCN can drop CP by configuration. Dropping the CP before Complex 1D-Conv.
+- The second part contains layers 4 to 6, which is intended to extract all the data cells of an OFDM frame, this is implemented by an FC layer.
+  - the real part and imaginary part are stored in the last dimension of the tensors.
+- Part 3 is for demodulation, which is convert the complex IQ data into soft bits. The output of softmax activation are soft bits, which represents each bit with 2 real numbers (e.g. Log-Likelihoods of 0 and 1).
+
+## OFDM receiver Equalizer
+
+- The equalizer usually located in the frequency domain to avoid the convolutional operator. Thus, the DFT-like component is located before the LS-like Equalization.
+
+![image-20240305181423944](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000666.png)
+
+- The first (layer 0-5) and fourth parts (last 4 layers) are DFT/IDFT-like complex Conv layers intended to perform time/frequency domain transformation. The layer 3 and last 2 layer are used for CP removing and adding back.
+- Part 2, from layers 6 to 19, is for channel estimation.
+- Part 3, layer 20, is frequency domain channel equalization implemented by complex division: the output of part 1 (frequency domain receive signal) over the output of part 2 (channel estimates).
+  - LS-like channel equalizer
+
+
+
+### Training configurations
+
+The Two-stage training configurations:
+
+![image-20240305182353730](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000628.png)
+
+- It's too complex to be trained together at one time. 
+- Firstly, training the basic OFDM receiver in AWGN channel {% label primary @without fading %}
+- Then, Load the pre-trained basic OFDM receiver and insert the DCCN Equalizer before the DCCN OFDM receiver.
+- Lastly, generate the Rx data {% label primary @with fading %}, and only the DCCN Equalizer is trained.
+- Some tracks:
+  - mini batch
+  - to tensor
+  - small and decaying learning rate
+  - early stopping
+
+The {% label primary @same loss function %} is used in the two stages. And the loss function is:
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000617.png" alt="image-20240305182603431" style="zoom: 67%;" />
+
+- The logarithmic BER could prevent diminishing gradient due to tiny changes of CE when BER is very small. 
+- Training SNR:
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000669.png" alt="image-20240305183646134" style="zoom: 67%;" />

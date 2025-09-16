@@ -381,7 +381,43 @@ color_map3 = [[073,148,196];[234,085,020];[093,163,157];[250,192,061]]./255;
 
 对照表：
 
-![colormap](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202312031606902.jpg)
+![colormap](https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202407062222709.png)
+
+```matlab
+clc;clear;close all;
+color_map1 = [[21,29,41];[210,57,24];[229,168,075];[093,163,157]]./255;
+color_map2 = [[166,64,54];[240,194,162];[065,130,164];[053,078,107]]./255;
+color_map3 = [[073,148,196];[234,085,020];[093,163,157];[250,192,061]]./255;
+
+x_num = 4; % 横4
+y_num = 3; % 竖3
+
+x_len = 2; % 横长2
+y_len = 1; % 竖长1
+figure(1)
+hold on;
+for ix=1:x_num
+    for iy = 1:y_num
+        choose_x = [(ix-1)*x_len, ix*x_len, ix*x_len, (ix-1)*x_len];
+        choose_y = [(y_num-iy)*y_len, (y_num-iy)*y_len, (y_num-iy+1)*y_len, (y_num-iy+1)*y_len];
+        if iy == 1
+            color_map = color_map1;
+        elseif iy == 2
+            color_map = color_map2;
+        elseif iy == 3
+            color_map = color_map3;
+        else
+            fprintf('Error');
+        end
+        fill(choose_x, choose_y, color_map(ix, :));
+    end
+end
+hold off;
+
+yticks([0, 1, 2, 3])
+```
+
+
 
 ## matlab横纵坐标及图例
 
@@ -434,6 +470,17 @@ end
 ## 三维图EPS模糊的问题
 
 https://blog.csdn.net/QWERTYUIOPPLM123/article/details/108540242
+
+---
+
+20241009：
+
+matlab painters不支持透明，openGL三维模糊
+
+1. matlab另存为SVG
+2. Inkscape另存为eps
+
+
 
 ## Matlab 安装和CVX
 

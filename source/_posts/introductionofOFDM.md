@@ -55,7 +55,8 @@ $$
 $$
 \begin{align}
 e(t)=\sum\limits_{k=1}^{N-1}x_k(t)=\sum\limits_{k=1}^{N-1}B_kcos(2\pi f_kt+\varphi_k)
-\end{align}=\sum\limits_{k=1}^{N-1}\textbf{B}_ke^{j(2\pi f_kt+\varphi_k)}
+=\sum\limits_{k=1}^{N-1}\textbf{B}_ke^{j(2\pi f_kt+\varphi_k)}
+\end{align}
 $$
 其中，$\textbf{B}_k$是一个复数，为第$k$路子信道中的复输入数据。
 
@@ -155,7 +156,57 @@ An OFDM symbol contains $$N=32$$ subcarriers, and $$G=10$$ DC guard band and edg
 
 A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains $$F=8$$ OFDM symbols, with $$P=7\times 8=56$$ pilot REs and $$D=16\times8=128$$ data REs, respectively. 
 
-The length of a time-domain full OFDM symbol is $$S=N+N_{CP}$$.
+The length of a time-domain full OFDM symbol is $$S=N+N_{CP}$$​.
+
+## 20250327 Update
+
+### OFDM的格式
+
+OFDM调制完后，是按一个完整OFDM的纬度去{% label primary @并转串 %}的。
+
+### OFDM的正交性
+
+OFDM一直给我了一个误区，就是正交性似乎是成型滤波/FFT这些带来的。但是实际上，是由于发射基带信号是一个矩形波，在频域上是sinc函数，所以有周期性的零点。参考[https://blog.csdn.net/madongchunqiu/article/details/18614233]
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554176.png" alt="img" style="zoom:33%;" />
+
+再来一个：
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554386.png" alt="img" style="zoom:33%;" />
+
+叠在一起后是：
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271556087.png" alt="img" style="zoom:33%;" />
+
+可以观察到本身就存在零点。然后，成型滤波可以加强这个零点（因为可能存在非完美矩形波形，导致子载波泄露，可以参考https://lcjoffrey.top/2025/03/27/recuPulseandtrapezoidPulse/）
+
+然后，通过上采样，成型滤波，将带宽限。构成OFDM。
+
+但是在实际工程中，还需要在时域加窗，可以参考https://blog.csdn.net/a2145565/article/details/139580022
+
+# OFDM-IM ( OFDM with Index Modulation)
+
+OFDM-IM, OFDM with Index Modulation
+
+OFDM-IM技术的核心思想是子载波在发送端被分成两部分，一部分子载波是激活的，称为有效子载波。==这部分载波来传输星座点==，而另一部分并不传输信号，==将载波的非激活和激活的状态信息作为额外信息进行传输==
+
+OFDM-IM系统在整体的信号处理过程与OFDM系统基本一致。而两者的主要区别主要为：在OFDM系统中，所有的子载波都用来传输调制好的信号，所有比特信息都承载在载波所发送的信号上。但在加入了索引思想之后，OFDM-IM系统在发送端会先将所有的子载波分为若干个块，而所需传输的比特信息也相应的被分成了相同数量的分组，并且每个分组中比特又被划分为了两部分：索引比特和调制比特。其中，索引比特的部分是用来确定有效载波在子块中的位置信息，调制比特是用来生成调制符号并通过有效子载波进行发送。 
+
+
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949667.png" alt="image-20240418183904747" style="zoom: 50%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949629.png" alt="image-20240418183935551" style="zoom:50%;" />
+
+当$$\eta\neq\mathbf{I}_\beta$$时，$$x_\beta(\eta)=0$$，等于是在该子载波上静默。
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949847.png" alt="image-20240418184214775" style="zoom:50%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949877.png" alt="image-20240418184226034" style="zoom:50%;" />
+
+传输信息量由两部分组成。
+
+
 
 # Reference
 
