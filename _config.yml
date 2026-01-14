@@ -29,7 +29,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-
+ - "verify/index.html"
+ - "./source/verify/index.html"
 # Writing
 post:
   mermaid:

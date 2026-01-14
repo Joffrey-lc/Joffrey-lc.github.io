@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="format-detection" content="telephone=no,email=no,address=no"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>智慧通行</title>
+
+  <style>
+    body { -webkit-text-size-adjust: 100%; }
+
+    /* 右侧时间：显示区域限制为页面一半（50vw），并且不超过容器 */
+    .marquee-wrap{
+      width: 45vw;               /* ✅ 关键：限制到“整个页面的一半” */
+      max-width: 50vw;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track{
+      display: inline-flex;
+      width: max-content;
+      white-space: pre;
+      animation: marquee 8s linear infinite;
+      will-change: transform;
+      font-variant-numeric: tabular-nums;
+    }
+    @keyframes marquee{
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="max-w-md mx-auto min-h-screen flex flex-col">
+
+    <div class="px-6 pt-12">
+      <div class="flex items-center gap-4">
+        <div class="text-[24px] leading-tight font-extrabold text-green-700 whitespace-nowrap">
+		
+		<div>  </div>
+          研究生用户，出校登记成功！
+		  <div>  </div>
+		  
+        </div>
+        <!-- <div class="flex-1 border-t border-gray-200"></div> -->
+      </div>
+    </div>
+<div class="h-10"></div>
+    <div class="px-6 mt-2">
+      <div class="border-t border-gray-200 pt-2 space-y-7">
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3 text-gray-600">
+            <span class="inline-flex w-8 justify-center">
+              <img
+                src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202512301123289.png"
+                alt="用户姓名"
+                class="h-5 w-auto object-contain"
+              />
+            </span>
+            <span class="text-base">用户姓名</span>
+          </div>
+          <div id="name" class="text-2xl font-extrabold text-gray-900">—</div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3 text-gray-600">
+            <span class="inline-flex w-8 justify-center">
+              <img
+                src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202512301123669.png"
+                alt="登记类型"
+                class="h-5 w-auto object-contain"
+              />
+            </span>
+            <span class="text-base">登记类型</span>
+          </div>
+          <div id="type" class="text-2xl font-extrabold text-gray-900">—</div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3 text-gray-600">
+            <span class="inline-flex w-8 justify-center">
+              <img
+                src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202512301124774.png"
+                alt="登记时间"
+                class="h-[22px] w-auto object-contain"
+              />
+            </span>
+            <span class="text-base">登记时间</span>
+          </div>
+
+          <!-- ✅ 显示区域 = 页面一半 -->
+          <div class="marquee-wrap text-teal-500 font-extrabold text-[18px] text-right">
+            <div class="marquee-track">
+              <span id="timeA">—</span>
+              <span id="timeB">—</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <button class="w-36 py-2.5 rounded-md bg-teal-500 text-white text-sm font-semibold shadow-sm active:scale-[0.99]">
+          前往个人二维码
+        </button>
+      </div>
+
+      <div class="flex justify-center mt-10">
+        <img
+          src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202512301124574.png"
+          alt="校徽"
+          class="h-14 w-auto object-contain"
+        />
+      </div>
+    </div>
+
+    <div class="flex-1"></div>
+
+    <div class="text-center text-xs text-gray-300 pb-6">
+      提示：请以页面实时信息为准
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const name = params.get("name") || "罗程";
+    const type = params.get("type") || "研究生（博士）";
+
+    document.getElementById("name").textContent = name;
+    document.getElementById("type").textContent = type;
+
+    const timeA = document.getElementById("timeA");
+    const timeB = document.getElementById("timeB");
+    const gap = "  ";
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function formatNow() {
+      const d = new Date();
+      const date = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+      const time = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+      return `${time}${gap}${date}`;
+    }
+
+    function tick() {
+      const t = formatNow();
+      timeA.textContent = t + gap;
+      timeB.textContent = t + gap;
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
