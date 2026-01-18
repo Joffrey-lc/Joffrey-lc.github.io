@@ -1,0 +1,10 @@
+@ARTICLE{10330059,
+  author={Luo, Cheng and Hu, Jie and Xiang, Luping and Yang, Kun},
+  journal={IEEE Transactions on Communications}, 
+  title={Reconfigurable Intelligent Sensing Surface Aided Wireless Powered Communication Networks: A Sensing-Then-Reflecting Approach}, 
+  year={2024},
+  volume={72},
+  number={3},
+  pages={1835-1848},
+  keywords={Direction-of-arrival estimation;Sensors;Estimation;Protocols;Channel estimation;Rician channels;Closed-form solutions;Reconfigurable intelligent sensing surface;wireless-powered communication network;direction of angle estimation;performance analysis},
+  doi={10.1109/TCOMM.2023.3337257}}

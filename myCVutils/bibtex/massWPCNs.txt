@@ -1,0 +1,10 @@
+@ARTICLE{10422762,
+  author={Luo, Cheng and Hu, Jie and Xiang, Luping and Yang, Kun and Wong, Kai-Kit},
+  journal={IEEE Transactions on Vehicular Technology}, 
+  title={Massive Wireless Energy Transfer Without Channel State Information via Imperfect Intelligent Reflecting Surfaces}, 
+  year={2024},
+  volume={73},
+  number={6},
+  pages={8529-8541},
+  keywords={Wireless communication;Internet of Things;Hardware;Channel estimation;Communication system security;Receivers;6G mobile communication;Channel state information-free;imperfect hardware;intelligent reflecting surface;massive energy receivers;wireless energy transfer},
+  doi={10.1109/TVT.2024.3361210}}

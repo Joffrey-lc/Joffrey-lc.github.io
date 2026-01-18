@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Joffreys CV</title>
+  <meta name="description" content="CV" />
+  <style>
+:root{
+  --bg:#f4f6f9;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --primary:#2563eb;
+  --primary-weak:#dbeafe;
+  --shadow:0 10px 30px rgba(17,24,39,.08);
+  --radius:16px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+          "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--text);
+  background: radial-gradient(1200px 500px at 10% 0%, #eef2ff 0%, transparent 60%),
+              radial-gradient(1200px 500px at 90% 10%, #ecfeff 0%, transparent 60%),
+              var(--bg);
+  line-height:1.6;
+}
+a{ color:var(--primary); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.wrap{
+  max-width:1100px;
+  margin:28px auto;
+  padding:0 16px 32px;
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:18px;
+  align-items:start;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* Sidebar */
+.sidebar{
+  position:sticky;
+  top:18px;
+  padding:18px 18px 14px;
+}
+.profile{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line);
+}
+.avatar{
+  width:76px; height:76px;
+  border-radius:18px;
+  background:#ddd;
+  overflow:hidden;
+  flex:0 0 auto;
+  border:1px solid var(--line);
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+.name{ font-size:20px; font-weight:750; margin:0; line-height:1.2; }
+.title{ margin:6px 0 0; color:var(--muted); font-size:13px; }
+.tags{ margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
+.tag{ font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--line); background:#fafafa; color:#334155; }
+
+.contact{
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.contact .item{
+  display:flex; gap:10px; align-items:flex-start;
+  padding:7px 0; font-size:14px;
+}
+.contact .k{ color:var(--muted); width:72px; flex:0 0 auto; }
+.contact .v{ word-break:break-word; }
+
+.actions{ padding-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:9px 12px; border-radius:12px;
+  border:1px solid var(--line);
+  background:#fff; color:var(--text);
+  font-weight:650; font-size:13px;
+  cursor:pointer; user-select:none;
+}
+.btn.primary{ background:var(--primary); border-color:var(--primary); color:#fff; }
+.btn:hover{ filter:brightness(.98); }
+
+.hint{ margin:12px 0 0; color:var(--muted); font-size:12px; }
+
+/* Main */
+.main{ padding:18px 18px 20px; }
+.topbar{
+  display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+  padding-bottom:10px; border-bottom:1px solid var(--line); margin-bottom:14px;
+}
+.topbar h1{ margin:0; font-size:22px; line-height:1.25; }
+.topbar .meta{
+  text-align:right; color:var(--muted); font-size:12px;
+  font-family:var(--mono); white-space:nowrap;
+}
+
+section{ padding:14px 0; border-bottom:1px dashed var(--line); }
+section:last-child{ border-bottom:none; }
+.sec-title{
+  display:flex; align-items:center; gap:10px;
+  margin:0 0 10px; font-size:15px; font-weight:800;
+}
+.dot{
+  width:10px; height:10px; border-radius:999px;
+  background:var(--primary);
+  box-shadow:0 0 0 6px var(--primary-weak);
+  flex:0 0 auto;
+}
+.lead{ margin:0; font-size:14px; color:#111827; }
+.muted{ color:var(--muted); }
+
+ul{ margin:8px 0 0 18px; padding:0; color:#374151; font-size:13px; }
+li{ margin:6px 0; }
+p{ margin:8px 0; color:#374151; font-size:13px; }
+
+/* Publications */
+.pub{
+  display:flex; gap:12px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  margin-top:10px;
+}
+.pub .idx{
+  font-family:var(--mono);
+  color:var(--muted);
+  width:28px;
+  flex:0 0 auto;
+  text-align:right;
+  padding-top:2px;
+}
+.pub .content{ flex:1; min-width:0; }
+.pub .ptitle{ margin:0; font-weight:800; color:#111827; font-size:13px; }
+.pub .authors{ margin:4px 0 0; font-size:12px; color:#374151; }
+.pub .venue{ margin:4px 0 0; font-size:12px; color:var(--muted); }
+.links{ margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+.pill{
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+
+.footer{ margin-top:10px; color:var(--muted); font-size:12px; text-align:center; }
+
+@media (max-width: 940px){
+  .wrap{ grid-template-columns:1fr; }
+  .sidebar{ position:relative; top:auto; }
+  .topbar .meta{ text-align:left; white-space:normal; }
+}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <aside class="card sidebar">
+      <div class="profile">
+        <div class="avatar"><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601142156575.jpeg" alt="avatar" /></div>
+        <div>
+          <h2 class="name">罗程 / Luo Cheng</h2>
+          <p class="title">深度学习/内生智能/物理层/RIS/SWIPT</p>
+          <div class="tags"><span class="tag">深度学习/内生智能/物理层/RIS/SWIPT</span></div>
+        </div>
+      </div>
+
+      <div class="contact">
+<div class="item"><div class="k">邮箱</div><div class="v"><a href="mailto:chengluo0810@gmail.com" target="_blank" rel="noopener">chengluo0810@gmail.com</a></div></div>
+<div class="item"><div class="k">主页</div><div class="v"><a href="https://lcjoffrey.top" target="_blank" rel="noopener">https://lcjoffrey.top</a></div></div>
+<div class="item"><div class="k">GitHub</div><div class="v"><a href="https://github.com/Joffrey-lc" target="_blank" rel="noopener">github.com/Joffrey-lc</a></div></div>
+<div class="item"><div class="k">所在地</div><div class="v">Chengdu, China</div></div>
+      </div>
+
+      <div class="actions">
+<a class="btn primary" href="https://lcjoffrey.top/" target="_blank" rel="noopener">Research Blog</a>
+      </div>
+
+
+    </aside>
+
+    <main class="card main">
+      <div class="topbar">
+        <div>
+          <h1>Joffrey's CV</h1>
+          <div class="muted">Personal CV</div>
+        </div>
+        <div class="meta">
+          <div>Last updated: 2026-01-14</div>
+        </div>
+      </div>
+
+<section>
+<h3 class="sec-title"><span class="dot"></span>个人简历</h3>
+<ul>
+<li>研究方向：多模态学习 / 视觉理解</li>
+<li>技术栈：Python / PyTorch / Linux / Git</li>
+<li>亮点：XXX（量化结果或成果）</li>
+</ul>
+</section>
+<section>
+<h3 class="sec-title"><span class="dot"></span>研究兴趣</h3>
+<ul>
+<li>多模态对齐与理解（图文/视频-文本）</li>
+<li>视觉表征学习、下游任务迁移</li>
+<li>高效训练/推理（可选）</li>
+</ul>
+</section>
+<section>
+<h3 class="sec-title"><span class="dot"></span>Selected Publications</h3>
+<div class="pub">
+  <div class="idx">[1]</div>
+  <div class="content">
+    <p class="ptitle">Reconfigurable Intelligent Sensing Surface Aided Wireless Powered Communication Networks: A Sensing-Then-Reflecting Approach</p>
+    <p class="authors">Cheng Luo, Jie Hu, Luping Xiang</p>
+    <p class="venue">IEEE TCOM</p>
+    <div class="links"><a class="pill" href="https://ieeexplore.ieee.org/document/10330059" target="_blank" rel="noopener">PDF</a><a class="pill" href="./bibtex/RISS.txt" target="_blank" rel="noopener">BibTeX</a></div>
+  </div>
+</div>
+<div class="pub">
+  <div class="idx">[2]</div>
+  <div class="content">
+    <p class="ptitle">Massive Wireless Energy Transfer Without Channel State Information via Imperfect Intelligent Reflecting Surfaces</p>
+    <p class="authors">Cheng Luo, Jie Hu, Luping Xiang</p>
+    <p class="venue">TIEEE TVT</p>
+    <div class="links"><a class="pill" href="https://ieeexplore.ieee.org/document/10422762" target="_blank" rel="noopener">PDF</a><a class="pill" href="./bibtex/massiveWPCN.txt" target="_blank" rel="noopener">BibTeX</a></div>
+  </div>
+</div>
+</section>
+
+      <div class="footer">© 2026 罗程 / Luo Cheng</div>
+    </main>
+  </div>
+</body>
+</html>
