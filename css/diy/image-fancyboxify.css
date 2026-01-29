@@ -1,12 +1,14 @@
-/* 让 fancybox 包裹层负责“居中” */
-.markdown-body a.img-zoom-wrapper {
-  display: flex;
-  justify-content: center;
+/* 用 data-fancybox 选择器，避开 fancybox.image 带点号导致的选择器坑 */
+.markdown-body a.fancybox[data-fancybox="default"] {
+  display: block;
+  text-align: center;
+  margin: 1rem auto;
 }
 
-/* 让图片“像 Fluid 一样”自适应 + 圆角阴影 */
-.markdown-body a.img-zoom-wrapper > img {
+/* 图片居中 + 更像 Fluid 的观感 */
+.markdown-body a.fancybox[data-fancybox="default"] > img {
   display: block;
+  margin: 0 auto;
   max-width: 100%;
   height: auto;
 
