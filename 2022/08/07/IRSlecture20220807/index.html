@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          137 字
+          147 字
         
       </span>
     
@@ -323,24 +323,47 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Quick-Review"><a href="#Quick-Review" class="headerlink" title="Quick Review"></a>Quick Review</h1><p>离散相位、<span class="label label-primary">CSI-Free</span> Model</p>
+                <h1 id="quick-review">Quick Review</h1>
+<p>离散相位、<span class="label label-primary">CSI-Free</span> Model</p>
 <p>但是他的CSI-free model还是根据直接采样得到的值，的条件均值，选取最大的Phase Shift</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105936888.png" srcset="/img/loading.gif" lazyload alt="image-20220807105936888"></p>
-<h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101657856.png" srcset="/img/loading.gif" lazyload alt="image-20220807101657856"></p>
-<h2 id="离散相位"><a href="#离散相位" class="headerlink" title="离散相位"></a>离散相位</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101858754.png" srcset="/img/loading.gif" lazyload alt="image-20220807101858754"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105936888.png" srcset="/img/loading.gif" lazyload alt="image-20220807105936888" /><figcaption aria-hidden="true">image-20220807105936888</figcaption>
+</figure>
+<h2 id="system-model">System Model</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101657856.png" srcset="/img/loading.gif" lazyload alt="image-20220807101657856" /><figcaption aria-hidden="true">image-20220807101657856</figcaption>
+</figure>
+<h2 id="离散相位">离散相位</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807101858754.png" srcset="/img/loading.gif" lazyload alt="image-20220807101858754" /><figcaption aria-hidden="true">image-20220807101858754</figcaption>
+</figure>
 <p>解决 离散相位、Unknown Channel</p>
-<p>K—$\infty$，即连续相位，可以线性调整</p>
-<p>K—$\infty$</p>
+<p>K—<span class="math inline">\(\infty\)</span>，即连续相位，可以线性调整</p>
+<p>K—<span class="math inline">\(\infty\)</span></p>
 <p>用SDP，只能达到全局最优的67%</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807102448872.png" srcset="/img/loading.gif" lazyload alt="image-20220807102448872"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807102448872.png" srcset="/img/loading.gif" lazyload alt="image-20220807102448872" /><figcaption aria-hidden="true">image-20220807102448872</figcaption>
+</figure>
 <p>罗智泉等人找到一种方法实现多项式时间内求解这个问题。</p>
-<h2 id="Unknown-Channel"><a href="#Unknown-Channel" class="headerlink" title="Unknown Channel"></a>Unknown Channel</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104058014.png" srcset="/img/loading.gif" lazyload alt="image-20220807104058014"></p>
-<h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104226771.png" srcset="/img/loading.gif" lazyload alt="image-20220807104226771"></p>
+<h2 id="unknown-channel">Unknown Channel</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104058014.png" srcset="/img/loading.gif" lazyload alt="image-20220807104058014" /><figcaption aria-hidden="true">image-20220807104058014</figcaption>
+</figure>
+<h3 id="method-1">Method 1</h3>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104226771.png" srcset="/img/loading.gif" lazyload alt="image-20220807104226771" /><figcaption aria-hidden="true">image-20220807104226771</figcaption>
+</figure>
 <p>random 选一个信号强度最大的。</p>
-<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>sample一些样本，然后做统计均值？</p>
-<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104652312.png" srcset="/img/loading.gif" lazyload alt="image-20220807104652312"></p>
+<h3 id="method-2">Method 2</h3>
+<p>sample一些样本，然后做统计均值？</p>
+<h3 id="analysis">Analysis</h3>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807104652312.png" srcset="/img/loading.gif" lazyload alt="image-20220807104652312" /><figcaption aria-hidden="true">image-20220807104652312</figcaption>
+</figure>
 <p>Method2 需要更多的sample，但是可以实现更好的性能</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105324829.png" srcset="/img/loading.gif" lazyload alt="image-20220807105324829"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20220807105324829.png" srcset="/img/loading.gif" lazyload alt="image-20220807105324829" /><figcaption aria-hidden="true">image-20220807105324829</figcaption>
+</figure>
 
                 
               </div>

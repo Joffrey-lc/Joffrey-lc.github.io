@@ -325,31 +325,62 @@
             
               <div class="markdown-body">
                 
-                <p><strong>Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer</strong>.  <em>Onel L. A. López</em> et.al.  <strong>IEEE Transactions on Communications, Oct.  2019</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8760520">pdf</a>)  (Citations <strong>16</strong>)</p>
-<h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><ul>
+                <p><strong>Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer</strong>. <em>Onel L. A. López</em> et.al. <strong>IEEE Transactions on Communications, Oct. 2019</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8760520">pdf</a>) (Citations <strong>16</strong>)</p>
+<h2 id="缩写说明">缩写说明</h2>
+<ul>
 <li>PB: Power Beacon</li>
 </ul>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+<h2 id="quick-overview">Quick Overview</h2>
+<ul>
 <li>三种CSI-free方案和两种CSI-Based方案在不同条件下的性能对比</li>
 <li>各种意义上的建模和数学推导（<strong>太难了，看不懂啊</strong>）</li>
 </ul>
-<h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><p>系统模型：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324170240238.png" srcset="/img/loading.gif" lazyload alt="PB多天线ER单天线系统结构" style="zoom: 120%;" />
-
-<h3 id="CSI-Free-Strategies"><a href="#CSI-Free-Strategies" class="headerlink" title="CSI-Free Strategies"></a>CSI-Free Strategies</h3><p>一般接收端接收信号建模为：<br>$$<br>\begin{aligned}<br>\xi^{rf}_j&#x3D;\varrho_j|\textbf{h}<em>j^T\sum\limits^l</em>{k&#x3D;1}\textbf{w}<em>kx_k|^2&#x3D;\varrho_j\sum\limits</em>{k&#x3D;1}^l|\textbf{h}_j^T\textbf{w}_k|^2<br>\end{aligned}<br>$$<br>其中$\varrho_j$是发射机到接收机的路径损耗$\times$总功率，$\textbf{w}_k$是发射机波束形成（precoding vector， 预编码向量）。</p>
-<p>由于考虑二极管电路的特点，最终收到的能量$\xi_j$与接收机输入的能量$\xi_j^{rf}$之间的关系如下：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173153144.png" srcset="/img/loading.gif" lazyload alt="最终能量额接收机输入能量的非线性关系式"></p>
-<p>其中$\bar{w}_1$代表接收门限；$\bar{w}_2$代表二极管的击穿电压，在未击穿的时候是线性的；击穿后是恒定的；$\eta$是能量效率。</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173429153.png" srcset="/img/loading.gif" lazyload alt="非线性关系式图解" style="zoom: 33%;" />
-
-
-
-<h4 id="Only-Antenna-OA"><a href="#Only-Antenna-OA" class="headerlink" title="Only Antenna, OA"></a>Only Antenna, OA</h4><p>只有$M$根天线中的一根天线全功率输出。<br>$$<br>\begin{aligned}<br>\xi_{jOA}&#x3D;g(\varrho_j|h_i,j|^2)<br>\end{aligned}<br>$$<br>其中$\textbf{w}$只有一个元素是1，其余全为0。</p>
-<h4 id="All-Antenna-at-Once-AA"><a href="#All-Antenna-at-Once-AA" class="headerlink" title="All Antenna at Once, AA"></a>All Antenna at Once, AA</h4><p> 一次性所有$M$根天线共同输出，总功率不变（每根天线的功率变为OA的1&#x2F;M）,$\textbf{w}&#x3D;(1&#x2F;\sqrt{M})\textbf{1}<em>{M\times1}$：<br>$$<br>\begin{aligned}<br>\xi</em>{jAA}&#x3D;g(\frac{\varrho_j}{M}|\sum\limits_{i&#x3D;1}^Mh_{i,j}|^2)<br>\end{aligned}<br>$$<br>在$M$根天线中选择$K$个天线是一种普遍情况，这种普遍情况的性能应该介于OA和AA之间。</p>
-<h4 id="Switching-Antennas-SA"><a href="#Switching-Antennas-SA" class="headerlink" title="Switching Antennas, SA"></a>Switching Antennas, SA</h4><p> 一次一根天线，分$M$个时间块，每根天线持续1个时间块：<br>$$<br>\begin{aligned}<br>\xi_{jSA}&#x3D;\frac{1}{M}\sum\limits_{i&#x3D;1}^Mg(\varrho_j|h_{i,j}|^2)<br>\end{aligned}<br>$$<br>其中$\textbf{w}$在每个时间块与OA相同，但是不同时间块选择不同的天线。等于OA的时变版本。</p>
-<h3 id="CSI-Based"><a href="#CSI-Based" class="headerlink" title="CSI-Based"></a>CSI-Based</h3><h4 id="OA-CSI"><a href="#OA-CSI" class="headerlink" title="OA-CSI"></a>OA-CSI</h4><p>对应于OA，在已知CSI的条件下，从整个集合中选择提供最大<strong>总收获能量</strong>的天线：<br>$$<br>\sum\limits_{j&#x3D;1}^{|\mathcal{S}|}\xi_{jOA-CSI}&#x3D;\max\limits_{i&#x3D;1,\cdots,M}\sum\limits_{j&#x3D;1}^{|\mathcal{S}|}g(\varrho_j|h_{i,j}|^2)<br>$$<br>其$w$和OA的类似，只有一个为1，其余全0。</p>
-<h4 id="AA-CSI"><a href="#AA-CSI" class="headerlink" title="AA-CSI"></a>AA-CSI</h4><p>对应于AA，在一直CSI的条件下，不是在每个天线上以相同的功率进行发送，而是在发送之前通过$\textbf{w}<em>k$对信道和EH硬件效应进行预补偿，使得在接收端处的总收获能量被最大化：<br>$$<br>\begin{aligned}<br>\sum\limits</em>{j&#x3D;1}^{|\mathcal{S}|}\xi_{jAA-CSI}&#x3D;\max\limits_{\textbf{w}<em>k}\sum\limits</em>{j&#x3D;1}^{|\mathcal{S}|}g(\varrho_j\sum\limits_{k&#x3D;1}^{M}|\textbf{h}_j^T\textbf{w}_k|^2)<br>\end{aligned}<br>$$<br><strong>与AA−CSI相比，OA−CSI方案对CSI缺陷的敏感度较低。这是因为OA-CSI仅依赖于通道的功率增益，而AA−CSI需要通道系数的完全表征、包络和相位。</strong></p>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
+<h2 id="具体内容">具体内容</h2>
+<p>系统模型：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324170240238.png" srcset="/img/loading.gif" lazyload alt="PB多天线ER单天线系统结构" style="zoom: 120%;" /></p>
+<h3 id="csi-free-strategies">CSI-Free Strategies</h3>
+<p>一般接收端接收信号建模为： <span class="math display">\[
+\begin{aligned}
+\xi^{rf}_j=\varrho_j|\textbf{h}_j^T\sum\limits^l_{k=1}\textbf{w}_kx_k|^2=\varrho_j\sum\limits_{k=1}^l|\textbf{h}_j^T\textbf{w}_k|^2
+\end{aligned}
+\]</span> 其中<span class="math inline">\(\varrho_j\)</span>是发射机到接收机的路径损耗<span class="math inline">\(\times\)</span>总功率，<span class="math inline">\(\textbf{w}_k\)</span>是发射机波束形成（precoding vector， 预编码向量）。</p>
+<p>由于考虑二极管电路的特点，最终收到的能量<span class="math inline">\(\xi_j\)</span>与接收机输入的能量<span class="math inline">\(\xi_j^{rf}\)</span>之间的关系如下：</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173153144.png" srcset="/img/loading.gif" lazyload alt="最终能量额接收机输入能量的非线性关系式" /><figcaption aria-hidden="true">最终能量额接收机输入能量的非线性关系式</figcaption>
+</figure>
+<p>其中<span class="math inline">\(\bar{w}_1\)</span>代表接收门限；<span class="math inline">\(\bar{w}_2\)</span>代表二极管的击穿电压，在未击穿的时候是线性的；击穿后是恒定的；<span class="math inline">\(\eta\)</span>是能量效率。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220324173429153.png" srcset="/img/loading.gif" lazyload alt="非线性关系式图解" style="zoom: 33%;" /></p>
+<h4 id="only-antenna-oa">Only Antenna, OA</h4>
+<p>只有<span class="math inline">\(M\)</span>根天线中的一根天线全功率输出。 <span class="math display">\[
+\begin{aligned}
+\xi_{jOA}=g(\varrho_j|h_i,j|^2)
+\end{aligned}
+\]</span> 其中<span class="math inline">\(\textbf{w}\)</span>只有一个元素是1，其余全为0。</p>
+<h4 id="all-antenna-at-once-aa">All Antenna at Once, AA</h4>
+<p>一次性所有<span class="math inline">\(M\)</span>根天线共同输出，总功率不变（每根天线的功率变为OA的1/M）,<span class="math inline">\(\textbf{w}=(1/\sqrt{M})\textbf{1}_{M\times1}\)</span>： <span class="math display">\[
+\begin{aligned}
+\xi_{jAA}=g(\frac{\varrho_j}{M}|\sum\limits_{i=1}^Mh_{i,j}|^2)
+\end{aligned}
+\]</span> 在<span class="math inline">\(M\)</span>根天线中选择<span class="math inline">\(K\)</span>个天线是一种普遍情况，这种普遍情况的性能应该介于OA和AA之间。</p>
+<h4 id="switching-antennas-sa">Switching Antennas, SA</h4>
+<p>一次一根天线，分<span class="math inline">\(M\)</span>个时间块，每根天线持续1个时间块： <span class="math display">\[
+\begin{aligned}
+\xi_{jSA}=\frac{1}{M}\sum\limits_{i=1}^Mg(\varrho_j|h_{i,j}|^2)
+\end{aligned}
+\]</span> 其中<span class="math inline">\(\textbf{w}\)</span>在每个时间块与OA相同，但是不同时间块选择不同的天线。等于OA的时变版本。</p>
+<h3 id="csi-based">CSI-Based</h3>
+<h4 id="oa-csi">OA-CSI</h4>
+<p>对应于OA，在已知CSI的条件下，从整个集合中选择提供最大<strong>总收获能量</strong>的天线： <span class="math display">\[
+\sum\limits_{j=1}^{|\mathcal{S}|}\xi_{jOA-CSI}=\max\limits_{i=1,\cdots,M}\sum\limits_{j=1}^{|\mathcal{S}|}g(\varrho_j|h_{i,j}|^2)
+\]</span> 其<span class="math inline">\(w\)</span>和OA的类似，只有一个为1，其余全0。</p>
+<h4 id="aa-csi">AA-CSI</h4>
+<p>对应于AA，在一直CSI的条件下，不是在每个天线上以相同的功率进行发送，而是在发送之前通过<span class="math inline">\(\textbf{w}_k\)</span>对信道和EH硬件效应进行预补偿，使得在接收端处的总收获能量被最大化： <span class="math display">\[
+\begin{aligned}
+\sum\limits_{j=1}^{|\mathcal{S}|}\xi_{jAA-CSI}=\max\limits_{\textbf{w}_k}\sum\limits_{j=1}^{|\mathcal{S}|}g(\varrho_j\sum\limits_{k=1}^{M}|\textbf{h}_j^T\textbf{w}_k|^2)
+\end{aligned}
+\]</span> <strong>与AA−CSI相比，OA−CSI方案对CSI缺陷的敏感度较低。这是因为OA-CSI仅依赖于通道的功率增益，而AA−CSI需要通道系数的完全表征、包络和相位。</strong></p>
+<h3 id="结论">结论</h3>
+<ul>
 <li>在小能量要求的情况下，AA-CSI&gt;OA-CSI&gt;SA&gt;AA&gt;OA</li>
 <li>在大能量要求的情况下，AA很好，甚至超过OA-CSI，同样AA-CSI最好</li>
 <li>天线单元之间的空间相关性，在所有天线以相同功率同时发射时，有好处，否则性能会随着相关性增大而降低</li>

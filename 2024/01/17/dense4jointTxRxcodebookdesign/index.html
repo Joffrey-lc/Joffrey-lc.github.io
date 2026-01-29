@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          152 字
+          148 字
         
       </span>
     
@@ -323,31 +323,30 @@
             
               <div class="markdown-body">
                 
-                <p><strong>Unsupervised Deep Learning for MU-SIMO Joint Transmitter and Noncoherent Receiver Design</strong>.  <em>Songyan Xue</em> et.al.  <strong>IEEE Wireless Communications Letters, February 2019</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8437142">pdf</a>)  (Citations <strong>24</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
-<li>Joint transmitter and &#x3D;&#x3D;noncoherent&#x3D;&#x3D; receiver optimization fo MU-SIMO through unsupervised learning. Find the optimal waveform set $\mathbf{A}$ for multiusers. </li>
-<li>Communication chain can be represented by a DNN with three essential layers.<ul>
+                <p><strong>Unsupervised Deep Learning for MU-SIMO Joint Transmitter and Noncoherent Receiver Design</strong>. <em>Songyan Xue</em> et.al. <strong>IEEE Wireless Communications Letters, February 2019</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8437142">pdf</a>) (Citations <strong>24</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<ul>
+<li>Joint transmitter and ==noncoherent== receiver optimization fo MU-SIMO through unsupervised learning. Find the optimal waveform set <span class="math inline">\(\mathbf{A}\)</span> for multiusers.</li>
+<li>Communication chain can be represented by a DNN with three essential layers.
+<ul>
 <li>The first layer is a partially-connected linear layer responsible for multiuser waveform joint optimization.</li>
 <li>The others (the second and the third layers) are nonlinear dense layers for noncoherent multiuser detection at the received side</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632907.png" srcset="/img/loading.gif" lazyload alt="image-20240117161334411" style="zoom:33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632907.png" srcset="/img/loading.gif" lazyload alt="image-20240117161334411" style="zoom:33%;" /></p>
 <p>其是很简单，就是在收发机联合训练，找到最适合的波形，使得其能够在发射端分离出来。所谓的创新点还有：</p>
 <ul>
 <li>减少hidden layers，从而减轻梯度爆炸或消失，并且性能不会收到损失。</li>
 <li>采用部分链接的Dense层来模拟多发射机并行传输的行为。</li>
 <li>非对称DNN结构。</li>
 </ul>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632951.png" srcset="/img/loading.gif" lazyload alt="image-20240117163031144" style="zoom:33%;" />
-
-<h2 id="Transmitter"><a href="#Transmitter" class="headerlink" title="Transmitter"></a>Transmitter</h2><p>Codebook for transmitter:</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632426.png" srcset="/img/loading.gif" lazyload alt="image-20240117155647446" style="zoom:33%;" />
-
-<p>Choose a transmitter codebook $\mathbf{A}$ to minimize the Channel Ambiguity. </p>
-<p>Each codebook has $K$ codewords. So the available codebook for $m$-th user is $\mathbf{W}_m\in\mathbb{R}^{L\times K}$. The one-hot vector $\mathbf{a}_m$ (uniformly distributed) has the size of $K\times 1$, which denotes the chosen index of codebooks.</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632393.png" srcset="/img/loading.gif" lazyload alt="image-20240117162754584" style="zoom:33%;" />
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632951.png" srcset="/img/loading.gif" lazyload alt="image-20240117163031144" style="zoom:33%;" /></p>
+<h2 id="transmitter">Transmitter</h2>
+<p>Codebook for transmitter:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632426.png" srcset="/img/loading.gif" lazyload alt="image-20240117155647446" style="zoom:33%;" /></p>
+<p>Choose a transmitter codebook <span class="math inline">\(\mathbf{A}\)</span> to minimize the Channel Ambiguity.</p>
+<p>Each codebook has <span class="math inline">\(K\)</span> codewords. So the available codebook for <span class="math inline">\(m\)</span>-th user is <span class="math inline">\(\mathbf{W}_m\in\mathbb{R}^{L\times K}\)</span>. The one-hot vector <span class="math inline">\(\mathbf{a}_m\)</span> (uniformly distributed) has the size of <span class="math inline">\(K\times 1\)</span>, which denotes the chosen index of codebooks.</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401171632393.png" srcset="/img/loading.gif" lazyload alt="image-20240117162754584" style="zoom:33%;" /></p>
 
                 
               </div>

@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          855 字
+          851 字
         
       </span>
     
@@ -323,18 +323,49 @@
             
               <div class="markdown-body">
                 
-                <h1 id="空间调制"><a href="#空间调制" class="headerlink" title="空间调制"></a>空间调制</h1><h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>空间调制（Spatial Modulation,SM）将一部分的比特信息隐含在发射天线的索引当中，在一定程度上拟补了频谱效率的损失。<strong>是一种单射频链的系统</strong>。</p>
+                <h1 id="空间调制">空间调制</h1>
+<h2 id="基本原理">基本原理</h2>
+<p>空间调制（Spatial Modulation,SM）将一部分的比特信息隐含在发射天线的索引当中，在一定程度上拟补了频谱效率的损失。<strong>是一种单射频链的系统</strong>。</p>
 <p>每次仅仅激活比特信息所映射的特定天线传输数据，从而避免了多天线间的干扰。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301101910095.png" srcset="/img/loading.gif" lazyload alt="SM结构示意图"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301101910095.png" srcset="/img/loading.gif" lazyload alt="SM结构示意图" /><figcaption aria-hidden="true">SM结构示意图</figcaption>
+</figure>
 <p>输入的原始比特信息被分为两部分：</p>
 <ul>
 <li>一部分映射为天线序号，用来选择被激活传输数据的物理天线，称为<strong>空间比特</strong></li>
-<li>一部分映射为APM符号，采用QAM&#x2F;PSK调制，称为<strong>符号比特</strong></li>
+<li>一部分映射为APM符号，采用QAM/PSK调制，称为<strong>符号比特</strong></li>
 </ul>
 <p>每个时隙，仅有一根特定天线被激活用于传输特定的符号，其余天线则处于闲置状态，或者说发射的信号为0。</p>
-<h2 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h2><p>假设如上图所示的一个$N_r\times N_t,N_t&#x3D;2^{b_1}$的SM系统，其中$N_r$和$N_t$分别为接收和发射的天线数量，$b_1$为空间比特数。采用$M$阶数字调制，$M&#x3D;2^{b_2}$，$b_2$为符号比特数目。所以单个时隙里传输的比特数为$B$:<br>$$<br>B&#x3D;b_1+b_2&#x3D;\log_2(N_t)+\log_2(N_r)<br>$$<br>将原始比特信息分为数量为$\log_2(N_t)$和$\log_2(M)$两部分，分别映射激活天线序号和APM符号。假设此时隙里被激活的天线序号为$i$，APM符号为$x_k$，其中$i\in\mathcal{A}&#x3D;{1,2,\cdots,N_t}$，$k\in\mathcal{B}&#x3D;{1,2,\cdots,M}$，此时发射信号可以表示为：<br>$$<br>\textbf{x}&#x3D;\left[<br>\begin{matrix}<br>0&amp;\cdots&amp;\mathop{x_k}\limits_{i-th}&amp;\cdots0<br>\end{matrix}<br>\right]^T<br>$$<br>发射信号$\textbf{x}$是一个稀疏向量，其中只存在一个非0元数$x_{k}$，由符号比特映射，而该元素的位置为$i$，对应着第$i$根发射天线，由空间比特所决定。其余0元素表示剩余未激活的天线不发送任何信号。</p>
-<p>定义MIMO瑞利衰落的信道矩阵$\textbf{H}\in\mathbb{C}^{N_r\times N_t}$如下：<br>$$<br>\begin{align}<br>    \textbf{H}&#x3D;&amp;\left[\begin{array}{cccc}\textbf{h}<em>1&amp;\textbf{h}<em>2&amp;\cdots&amp;\textbf{h}</em>{N_t}\end{array}\right]<br>    \&#x3D;&amp;<br>    \left[<br>    \begin{array}{cccc}<br>    h</em>{11}&amp;h_{12}&amp;\cdots&amp;h_{1N_t}\<br>    h_{21}&amp;h_{22}&amp;\cdots&amp;h_{2N_t}\<br>    \vdots&amp;\vdots&amp;\ddots&amp;\vdots\<br>    h_{N_r1}&amp;h_{N_r2}&amp;\cdots&amp;h_{N_rN_t}<br>    \end{array}<br>    \right]<br>\end{align}<br>$$<br>其中$\textbf{h}_l,l\in\mathcal{A}$，表示第$k$根发射天线与接收天线之间所对应的信道向量，其中包含$N_r$个元素，每个元素为信道的衰落系数，且都服从均值为0，方差为1的复高斯分布$\mathcal{C}\mathcal{N}(0,1)$。在经过无线信道后，接收信号矢量可以表示如下：<br>$$<br>\begin{align}<br>\textbf{y}&#x3D;\sqrt{\rho}\textbf{H}\textbf{x}+\textbf{n}<br>\end{align}<br>$$<br>其中$\rho$表示系统的发射功率，$\textbf{n}$表示加性高斯白噪声向量，其中每个元素均服从高斯分布$\mathcal{C}\mathcal{N}(0,1)$。</p>
-<h2 id="缺陷及应用限制"><a href="#缺陷及应用限制" class="headerlink" title="缺陷及应用限制"></a>缺陷及应用限制</h2><p>优势：</p>
+<h2 id="数学模型">数学模型</h2>
+<p>假设如上图所示的一个<span class="math inline">\(N_r\times N_t,N_t=2^{b_1}\)</span>的SM系统，其中<span class="math inline">\(N_r\)</span>和<span class="math inline">\(N_t\)</span>分别为接收和发射的天线数量，<span class="math inline">\(b_1\)</span>为空间比特数。采用<span class="math inline">\(M\)</span>阶数字调制，<span class="math inline">\(M=2^{b_2}\)</span>，<span class="math inline">\(b_2\)</span>为符号比特数目。所以单个时隙里传输的比特数为<span class="math inline">\(B\)</span>: <span class="math display">\[
+B=b_1+b_2=\log_2(N_t)+\log_2(N_r)
+\]</span> 将原始比特信息分为数量为<span class="math inline">\(\log_2(N_t)\)</span>和<span class="math inline">\(\log_2(M)\)</span>两部分，分别映射激活天线序号和APM符号。假设此时隙里被激活的天线序号为<span class="math inline">\(i\)</span>，APM符号为<span class="math inline">\(x_k\)</span>，其中<span class="math inline">\(i\in\mathcal{A}=\{1,2,\cdots,N_t\}\)</span>，<span class="math inline">\(k\in\mathcal{B}=\{1,2,\cdots,M\}\)</span>，此时发射信号可以表示为： <span class="math display">\[
+\textbf{x}=\left[
+\begin{matrix}
+0&amp;\cdots&amp;\mathop{x_k}\limits_{i-th}&amp;\cdots0
+\end{matrix}
+\right]^T
+\]</span> 发射信号<span class="math inline">\(\textbf{x}\)</span>是一个稀疏向量，其中只存在一个非0元数<span class="math inline">\(x_{k}\)</span>，由符号比特映射，而该元素的位置为<span class="math inline">\(i\)</span>，对应着第<span class="math inline">\(i\)</span>根发射天线，由空间比特所决定。其余0元素表示剩余未激活的天线不发送任何信号。</p>
+<p>定义MIMO瑞利衰落的信道矩阵<span class="math inline">\(\textbf{H}\in\mathbb{C}^{N_r\times N_t}\)</span>如下： <span class="math display">\[
+\begin{align}
+    \textbf{H}=&amp;\left[\begin{array}{cccc}\textbf{h}_1&amp;\textbf{h}_2&amp;\cdots&amp;\textbf{h}_{N_t}\end{array}\right]
+    \\=&amp;
+    \left[
+    \begin{array}{cccc}
+    h_{11}&amp;h_{12}&amp;\cdots&amp;h_{1N_t}\\
+    h_{21}&amp;h_{22}&amp;\cdots&amp;h_{2N_t}\\
+    \vdots&amp;\vdots&amp;\ddots&amp;\vdots\\
+    h_{N_r1}&amp;h_{N_r2}&amp;\cdots&amp;h_{N_rN_t}
+    \end{array}
+    \right]
+\end{align}
+\]</span> 其中<span class="math inline">\(\textbf{h}_l,l\in\mathcal{A}\)</span>，表示第<span class="math inline">\(k\)</span>根发射天线与接收天线之间所对应的信道向量，其中包含<span class="math inline">\(N_r\)</span>个元素，每个元素为信道的衰落系数，且都服从均值为0，方差为1的复高斯分布<span class="math inline">\(\mathcal{C}\mathcal{N}(0,1)\)</span>。在经过无线信道后，接收信号矢量可以表示如下： <span class="math display">\[
+\begin{align}
+\textbf{y}=\sqrt{\rho}\textbf{H}\textbf{x}+\textbf{n}
+\end{align}
+\]</span> 其中<span class="math inline">\(\rho\)</span>表示系统的发射功率，<span class="math inline">\(\textbf{n}\)</span>表示加性高斯白噪声向量，其中每个元素均服从高斯分布<span class="math inline">\(\mathcal{C}\mathcal{N}(0,1)\)</span>。</p>
+<h2 id="缺陷及应用限制">缺陷及应用限制</h2>
+<p>优势：</p>
 <ul>
 <li>单射频链</li>
 <li>无天线间的干扰</li>

@@ -325,43 +325,101 @@
               <div class="markdown-body">
                 
                 <p><strong>CSCG: Circularly Symmetric Complex zero-mean white Gaussian noise 循环对称复高斯噪声</strong></p>
-<h2 id="CSCG：循环对称复高斯"><a href="#CSCG：循环对称复高斯" class="headerlink" title="CSCG：循环对称复高斯"></a>CSCG：循环对称复高斯</h2><p>数学定义：<br>$$<br>\textbf{Z}\sim\mathcal{CN}(0,1)\to \Re{\textbf{Z}} \perp !!! \perp\Im{\textbf{Z}}<br>\and\<br>\Re{\textbf{Z}}\sim \mathcal{N}(0,1&#x2F;2)\quad \Im{\textbf{Z}}\sim\mathcal{N}(0,1&#x2F;2)<br>$$</p>
-<h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><ul>
+<h2 id="cscg循环对称复高斯">CSCG：循环对称复高斯</h2>
+<p>数学定义： <span class="math display">\[
+\textbf{Z}\sim\mathcal{CN}(0,1)\to \Re{\textbf{Z}} \perp \!\!\! \perp\Im{\textbf{Z}}
+\\and\\
+\Re{\textbf{Z}}\sim \mathcal{N}(0,1/2)\quad \Im{\textbf{Z}}\sim\mathcal{N}(0,1/2)
+\]</span></p>
+<h3 id="含义">含义</h3>
+<ul>
 <li>Circularly: means the variance of the real and imaginary parts are equal.</li>
 <li>Gaussian: means the probability distribution of the amplitudes of the noise samples is Gaussian</li>
 </ul>
-<h3 id="Matlab"><a href="#Matlab" class="headerlink" title="Matlab"></a>Matlab</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">(<span class="hljs-built_in">randn</span>(m,n)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(m,n))*sigma/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
-
+<h3 id="matlab">Matlab</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">(<span class="hljs-built_in">randn</span>(m,n)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(m,n))*sigma/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
 <p>其中sigmal是方差</p>
-<h3 id="正态分布的再生性"><a href="#正态分布的再生性" class="headerlink" title="正态分布的再生性"></a>正态分布的再生性</h3><p>设随机比昂量$X$和$Y$相互独立且分别服从正态分布$N\sim(\mu_1,\sigma_1^2)$和$N\sim(\mu_2,\sigma_2^2)$，则$Z&#x3D;X+Y$服从正态分布$N\sim(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$</p>
-<h2 id="Rayleigh分布"><a href="#Rayleigh分布" class="headerlink" title="Rayleigh分布"></a>Rayleigh分布</h2><p>复高斯分布的模服从瑞利分布：<br>$$<br>f(x)&#x3D;\frac{x}{\sigma^{2}} e^{-\frac{x^{2}}{2 \sigma^{2}}}, x&gt;0<br>$$</p>
-<h3 id="Rayleigh分布和复高斯分布的关系"><a href="#Rayleigh分布和复高斯分布的关系" class="headerlink" title="Rayleigh分布和复高斯分布的关系"></a>Rayleigh分布和复高斯分布的关系</h3><p>如果$\textbf{A}\sim\mathcal{CN}(0,\sigma^2)$，即$\Re{\textbf{A}}\sim\mathcal{N}(0, \sigma^2&#x2F;2)$，$\Im{\textbf{A}}\sim\mathcal{N}(0, \sigma^2&#x2F;2)$，则$|\textbf{A}|\sim$参数为$\sigma^2&#x2F;2$的瑞利分布：<br>$$<br>f_{|\textbf{A}|}(x)&#x3D;\frac{x}{\sigma^{2}&#x2F;2} e^{-\frac{x^{2}}{\sigma^{2}}}, x&gt;0<br>$$</p>
-<h3 id="simulation"><a href="#simulation" class="headerlink" title="simulation"></a>simulation</h3><p>因为没有找到Rayleigh分布和复高斯分布的关系。使用matlab进行仿真验证。</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/untitled.jpg" srcset="/img/loading.gif" lazyload alt="untitled" style="zoom:33%;" />
-
-
-
-<h2 id="非中心卡方分布"><a href="#非中心卡方分布" class="headerlink" title="非中心卡方分布"></a>非中心卡方分布</h2><p>非中心卡方分布由若干<span class="label label-primary">独立同方差的均值不全为0的</span>高斯随机变量平方和得到。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220720161758149.png" srcset="/img/loading.gif" lazyload alt="image-20220720161758149"></p>
-<p>值得注意的是，例如OneL文章中以及其他参考文献中所述，常常写为$\mathcal{X}^2(a,b)$，其中，$a$为自由度，$b$为参数$\lambda&#x2F;\sigma^2$。</p>
-<p>所以，此时有期望$E&#x3D;a+b$（事先归一化了方差，所以这里比上式少了一个$\sigma^2$）</p>
-<p>方差$V&#x3D;2(a+2b)$（事先归一化了方差，所以这里比上式少了一个$\sigma^4$）</p>
-<hr>
+<h3 id="正态分布的再生性">正态分布的再生性</h3>
+<p>设随机比昂量<span class="math inline">\(X\)</span>和<span class="math inline">\(Y\)</span>相互独立且分别服从正态分布<span class="math inline">\(N\sim(\mu_1,\sigma_1^2)\)</span>和<span class="math inline">\(N\sim(\mu_2,\sigma_2^2)\)</span>，则<span class="math inline">\(Z=X+Y\)</span>服从正态分布<span class="math inline">\(N\sim(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)\)</span></p>
+<h2 id="rayleigh分布">Rayleigh分布</h2>
+<p>复高斯分布的模服从瑞利分布： <span class="math display">\[
+f(x)=\frac{x}{\sigma^{2}} e^{-\frac{x^{2}}{2 \sigma^{2}}}, x&gt;0
+\]</span></p>
+<h3 id="rayleigh分布和复高斯分布的关系">Rayleigh分布和复高斯分布的关系</h3>
+<p>如果<span class="math inline">\(\textbf{A}\sim\mathcal{CN}(0,\sigma^2)\)</span>，即<span class="math inline">\(\Re{\textbf{A}}\sim\mathcal{N}(0, \sigma^2/2)\)</span>，<span class="math inline">\(\Im{\textbf{A}}\sim\mathcal{N}(0, \sigma^2/2)\)</span>，则<span class="math inline">\(|\textbf{A}|\sim\)</span>参数为<span class="math inline">\(\sigma^2/2\)</span>的瑞利分布： <span class="math display">\[
+f_{|\textbf{A}|}(x)=\frac{x}{\sigma^{2}/2} e^{-\frac{x^{2}}{\sigma^{2}}}, x&gt;0
+\]</span></p>
+<h3 id="simulation">simulation</h3>
+<p>因为没有找到Rayleigh分布和复高斯分布的关系。使用matlab进行仿真验证。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/untitled.jpg" srcset="/img/loading.gif" lazyload alt="untitled" style="zoom:33%;" /></p>
+<h2 id="非中心卡方分布">非中心卡方分布</h2>
+<p>非中心卡方分布由若干<span class="label label-primary">独立同方差的均值不全为0的</span>高斯随机变量平方和得到。</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220720161758149.png" srcset="/img/loading.gif" lazyload alt="image-20220720161758149" /><figcaption aria-hidden="true">image-20220720161758149</figcaption>
+</figure>
+<p>值得注意的是，例如OneL文章中以及其他参考文献中所述，常常写为<span class="math inline">\(\mathcal{X}^2(a,b)\)</span>，其中，<span class="math inline">\(a\)</span>为自由度，<span class="math inline">\(b\)</span>为参数<span class="math inline">\(\lambda/\sigma^2\)</span>。</p>
+<p>所以，此时有期望<span class="math inline">\(E=a+b\)</span>（事先归一化了方差，所以这里比上式少了一个<span class="math inline">\(\sigma^2\)</span>）</p>
+<p>方差<span class="math inline">\(V=2(a+2b)\)</span>（事先归一化了方差，所以这里比上式少了一个<span class="math inline">\(\sigma^4\)</span>）</p>
+<hr />
 <p>参考书目：《数字通信》P46</p>
-<p>非中心卡方分布的PDF为：<br>$$<br>p(x)&#x3D; \begin{cases}\frac{1}{2 \sigma^2}\left(\frac{x}{s^2}\right)^{\frac{n-2}{4}} e^{-\frac{s^2+x}{2 \sigma^2}} I_{\frac{n}{2}-1}\left(\frac{s}{\sigma^2} \sqrt{x}\right) &amp; x&gt;0 \ 0 &amp; \text { otherwise }\end{cases}<br>$$<br>其中：<br>$$<br>\begin{align}<br>&amp;s &#x3D; \sqrt{\sum\limits_{i&#x3D;1}^nm_i^2}\</p>
-<p>&amp;I_\alpha(x)&#x3D;\sum_{k&#x3D;0}^{\infty} \frac{(x &#x2F; 2)^{\alpha+2 k}}{k ! \Gamma(\alpha+k+1)}, \quad x \geq 0<br>\end{align}<br>$$<br>$I_\alpha(x)$是<strong>modify Bessel function of the first kind and order $\alpha$</strong>，$\Gamma(x)$是gamma function。</p>
-<p>对于$x&gt;1$，有常用近似$I_0(x)\approx\frac{e^x}{\sqrt{2\pi x}}$</p>
-<p>其CDF为：<br>$$<br>F(x)&#x3D; \begin{cases}1-Q_m\left(\frac{s}{\sigma}, \frac{\sqrt{x}}{\sigma}\right) &amp; x&gt;0 \ 0 &amp; \text { otherwise }\end{cases}<br>$$<br>其中$2m&#x3D;n$，$Q_m(a,b)$为<strong>generalized Marcum Q function</strong>.</p>
-<h3 id="matlab实现"><a href="#matlab实现" class="headerlink" title="matlab实现"></a>matlab实现</h3><p>generalized Marcum Q function 和modify bessel function of the first kind and order $\alpha$可以直接用matlab函数：</p>
+<p>非中心卡方分布的PDF为： <span class="math display">\[
+p(x)= \begin{cases}\frac{1}{2 \sigma^2}\left(\frac{x}{s^2}\right)^{\frac{n-2}{4}} e^{-\frac{s^2+x}{2 \sigma^2}} I_{\frac{n}{2}-1}\left(\frac{s}{\sigma^2} \sqrt{x}\right) &amp; x&gt;0 \\ 0 &amp; \text { otherwise }\end{cases}
+\]</span> 其中： $$ <span class="math display">\[\begin{align}
+&amp;s = \sqrt{\sum\limits_{i=1}^nm_i^2}\\
+
+&amp;I_\alpha(x)=\sum_{k=0}^{\infty} \frac{(x / 2)^{\alpha+2 k}}{k ! \Gamma(\alpha+k+1)}, \quad x \geq 0
+\end{align}\]</span> $$ <span class="math inline">\(I_\alpha(x)\)</span>是<strong>modify Bessel function of the first kind and order <span class="math inline">\(\alpha\)</span></strong>，<span class="math inline">\(\Gamma(x)\)</span>是gamma function。</p>
+<p>对于<span class="math inline">\(x&gt;1\)</span>，有常用近似<span class="math inline">\(I_0(x)\approx\frac{e^x}{\sqrt{2\pi x}}\)</span></p>
+<p>其CDF为： <span class="math display">\[
+F(x)= \begin{cases}1-Q_m\left(\frac{s}{\sigma}, \frac{\sqrt{x}}{\sigma}\right) &amp; x&gt;0 \\ 0 &amp; \text { otherwise }\end{cases}
+\]</span> 其中<span class="math inline">\(2m=n\)</span>，<span class="math inline">\(Q_m(a,b)\)</span>为<strong>generalized Marcum Q function</strong>.</p>
+<h3 id="matlab实现">matlab实现</h3>
+<p>generalized Marcum Q function 和modify bessel function of the first kind and order <span class="math inline">\(\alpha\)</span>可以直接用matlab函数：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">marcumq(a,b,m) <span class="hljs-comment">% calculate the generilized Marcum Q function</span><br><span class="hljs-built_in">besseli</span>(alpha,x) <span class="hljs-comment">% calculate the modify bessel function of the first kind and order alpha</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="CDF和PDF推导"><a href="#CDF和PDF推导" class="headerlink" title="CDF和PDF推导"></a>CDF和PDF推导</h2><p>例如之前遇到的典型问题，三个随机变量分别服从参数为$\lambda_1$,$\lambda_2$,$\lambda_1$的指数分布，记为$\Gamma_1$，$\Gamma_2$，$\Gamma_3$，即：<br>$$<br>\Gamma_1\sim\mathbf{E}(\lambda_1)\<br>\Gamma_2\sim\mathbf{E}(\lambda_2)\<br>\Gamma_3\sim\mathbf{E}(\lambda_3)\<br>$$<br>则其和$\Gamma&#x3D;\Gamma_1+\Gamma_2+\Gamma_3$的CDF为：<br>$$<br>\mathrm{F}<em>\Gamma(\gamma)&#x3D;\text{Pr}(\Gamma\leq \gamma)&#x3D;\text{Pr}(\Gamma_1+\Gamma_2+\Gamma_3\leq \gamma)<br>$$<br>令$\Gamma^\S&#x3D;\Gamma_1+\Gamma_2$，则上式变为：<br>$$<br>\begin{align}<br>&amp;\text{Pr}(\Gamma_1+\Gamma_2+\Gamma_3\leq \gamma)&#x3D;\text{Pr}(\Gamma^\S+\Gamma_3\leq \gamma)\<br>&#x3D;&amp;\text{Pr}(\Gamma^\S\leq \gamma-\Gamma_3)\<br>&#x3D;&amp;\mathrm{F}</em>{\Gamma^\S}(\gamma-\Gamma_3)\<br>&#x3D;&amp;\int^\gamma_0\mathrm{F}<em>{\Gamma^\S}(\gamma-\gamma_3)\mathrm{f}</em>{\Gamma_3}(\gamma_3)d\gamma_3<br>\end{align}<br>$$<br>因为：<br>$$<br>\begin{align}<br>&amp;\mathrm{F}<em>{\Gamma^\S}(\gamma^\S)&#x3D;\text{Pr}(\Gamma^\S\leq\gamma^\S)\<br>&#x3D;&amp;\text{Pr}(\Gamma_1+\Gamma_2\leq\gamma^\S)\<br>&#x3D;&amp;\text{Pr}(\Gamma_1\leq\gamma^\S-\Gamma_2)\<br>&#x3D;&amp;\int^{\gamma^\S}<em>0\mathrm{F}</em>{\gamma_1}(\gamma^\S-\gamma_2)\mathrm{f}</em>{\Gamma_2}(\gamma_2)d\gamma_2\<br>&#x3D;&amp;\int^{\gamma^\S}_0(1-e^{-\lambda_1(\gamma^\S-\gamma_2)})\lambda_2e^{-\lambda_2\gamma_2}d\gamma_2\<br>&#x3D;&amp;-\frac{\lambda_1}{\lambda_1-\lambda_2}e^{-\lambda_2\gamma^\S}+1+\frac{\lambda_2}{\lambda_1-\lambda_2}e^{-\lambda_1\gamma^\S}<br>\end{align}<br>$$<br>所以：<br>$$<br>\begin{align}<br>&amp;\text{Pr}(\Gamma_1+\Gamma_2+\Gamma_3\leq \gamma)\<br>&#x3D;&amp;\int^{\gamma}_0\left(\frac{-\lambda_1}{\lambda_1-\lambda_2}e^{-\lambda_2(\gamma-\gamma_3)} +1+\frac{\lambda_2}{\lambda_1-\lambda_2}e^{-\lambda_1(\gamma-\gamma_3)}\right)\lambda_3e^{-\lambda_3\gamma_3}d\gamma_3\<br>&#x3D;&amp;e^{-\lambda_3\gamma}c_3+e^{-\lambda_2\gamma}c_2+e^{-\lambda_1\gamma}c_1+1<br>\end{align}<br>$$<br>其中，有：<br>$$<br>\begin{align}<br>&amp;c_3&#x3D;\frac{\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}-\frac{\lambda_1\lambda_3}{(\lambda_1-\lambda_2)(\lambda_2-\lambda_3)}-1\<br>&amp;c_2&#x3D;\frac{\lambda_1\lambda_3}{(\lambda_1-\lambda_2)(\lambda_2-\lambda_3)}\<br>&amp;c_1&#x3D;-\frac{\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}<br>\end{align}<br>$$</p>
-<p>其PDF为：<br>$$<br>-\lambda_3e^{-\lambda_3\gamma}c_3-\lambda_2e^{-\lambda_2\gamma}c_2-\lambda_1e^{-\lambda_1\gamma}c_1<br>$$</p>
-<h2 id="高斯分布的任意高阶矩"><a href="#高斯分布的任意高阶矩" class="headerlink" title="高斯分布的任意高阶矩"></a>高斯分布的任意高阶矩</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br><br><span class="hljs-comment">% 阶数为n</span><br><span class="hljs-keyword">for</span> n=<span class="hljs-number">2</span>:<span class="hljs-number">2</span>:<span class="hljs-number">16</span><br><span class="hljs-comment">%     n=6;</span><br>    k=n/<span class="hljs-number">2</span>;<br>    <span class="hljs-comment">% s代表sigma  没有平方！！！！</span><br>    syms s<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">rem</span>(k, <span class="hljs-number">1</span>) ~=<span class="hljs-number">0</span><br>        <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;Error: make sure n is even plz&#x27;</span>)<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">disp</span>(n)<br>        moment = <span class="hljs-built_in">factorial</span>(<span class="hljs-number">2</span>*k)*s^(<span class="hljs-number">2</span>*k)/(<span class="hljs-number">2</span>^k*<span class="hljs-built_in">factorial</span>(k))<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211161007876.png" srcset="/img/loading.gif" lazyload alt="image-20221116100727821"></p>
+<h2 id="cdf和pdf推导">CDF和PDF推导</h2>
+<p>例如之前遇到的典型问题，三个随机变量分别服从参数为<span class="math inline">\(\lambda_1\)</span>,<span class="math inline">\(\lambda_2\)</span>,<span class="math inline">\(\lambda_1\)</span>的指数分布，记为<span class="math inline">\(\Gamma_1\)</span>，<span class="math inline">\(\Gamma_2\)</span>，<span class="math inline">\(\Gamma_3\)</span>，即： <span class="math display">\[
+\Gamma_1\sim\mathbf{E}(\lambda_1)\\
+\Gamma_2\sim\mathbf{E}(\lambda_2)\\
+\Gamma_3\sim\mathbf{E}(\lambda_3)\\
+\]</span> 则其和<span class="math inline">\(\Gamma=\Gamma_1+\Gamma_2+\Gamma_3\)</span>的CDF为： <span class="math display">\[
+\mathrm{F}_\Gamma(\gamma)=\text{Pr}(\Gamma\leq \gamma)=\text{Pr}(\Gamma_1+\Gamma_2+\Gamma_3\leq \gamma)
+\]</span> 令<span class="math inline">\(\Gamma^\S=\Gamma_1+\Gamma_2\)</span>，则上式变为： <span class="math display">\[
+\begin{align}
+&amp;\text{Pr}(\Gamma_1+\Gamma_2+\Gamma_3\leq \gamma)=\text{Pr}(\Gamma^\S+\Gamma_3\leq \gamma)\\
+=&amp;\text{Pr}(\Gamma^\S\leq \gamma-\Gamma_3)\\
+=&amp;\mathrm{F}_{\Gamma^\S}(\gamma-\Gamma_3)\\
+=&amp;\int^\gamma_0\mathrm{F}_{\Gamma^\S}(\gamma-\gamma_3)\mathrm{f}_{\Gamma_3}(\gamma_3)d\gamma_3
+\end{align}
+\]</span> 因为： <span class="math display">\[
+\begin{align}
+&amp;\mathrm{F}_{\Gamma^\S}(\gamma^\S)=\text{Pr}(\Gamma^\S\leq\gamma^\S)\\
+=&amp;\text{Pr}(\Gamma_1+\Gamma_2\leq\gamma^\S)\\
+=&amp;\text{Pr}(\Gamma_1\leq\gamma^\S-\Gamma_2)\\
+=&amp;\int^{\gamma^\S}_0\mathrm{F}_{\gamma_1}(\gamma^\S-\gamma_2)\mathrm{f}_{\Gamma_2}(\gamma_2)d\gamma_2\\
+=&amp;\int^{\gamma^\S}_0(1-e^{-\lambda_1(\gamma^\S-\gamma_2)})\lambda_2e^{-\lambda_2\gamma_2}d\gamma_2\\
+=&amp;-\frac{\lambda_1}{\lambda_1-\lambda_2}e^{-\lambda_2\gamma^\S}+1+\frac{\lambda_2}{\lambda_1-\lambda_2}e^{-\lambda_1\gamma^\S}
+\end{align}
+\]</span> 所以： <span class="math display">\[
+\begin{align}
+&amp;\text{Pr}(\Gamma_1+\Gamma_2+\Gamma_3\leq \gamma)\\
+=&amp;\int^{\gamma}_0\left(\frac{-\lambda_1}{\lambda_1-\lambda_2}e^{-\lambda_2(\gamma-\gamma_3)} +1+\frac{\lambda_2}{\lambda_1-\lambda_2}e^{-\lambda_1(\gamma-\gamma_3)}\right)\lambda_3e^{-\lambda_3\gamma_3}d\gamma_3\\
+=&amp;e^{-\lambda_3\gamma}c_3+e^{-\lambda_2\gamma}c_2+e^{-\lambda_1\gamma}c_1+1
+\end{align}
+\]</span> 其中，有： <span class="math display">\[
+\begin{align}
+&amp;c_3=\frac{\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}-\frac{\lambda_1\lambda_3}{(\lambda_1-\lambda_2)(\lambda_2-\lambda_3)}-1\\
+&amp;c_2=\frac{\lambda_1\lambda_3}{(\lambda_1-\lambda_2)(\lambda_2-\lambda_3)}\\
+&amp;c_1=-\frac{\lambda_2\lambda_3}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)}
+\end{align}
+\]</span></p>
+<p>其PDF为： <span class="math display">\[
+-\lambda_3e^{-\lambda_3\gamma}c_3-\lambda_2e^{-\lambda_2\gamma}c_2-\lambda_1e^{-\lambda_1\gamma}c_1
+\]</span></p>
+<h2 id="高斯分布的任意高阶矩">高斯分布的任意高阶矩</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br><br><span class="hljs-comment">% 阶数为n</span><br><span class="hljs-keyword">for</span> n=<span class="hljs-number">2</span>:<span class="hljs-number">2</span>:<span class="hljs-number">16</span><br><span class="hljs-comment">%     n=6;</span><br>    k=n/<span class="hljs-number">2</span>;<br>    <span class="hljs-comment">% s代表sigma  没有平方！！！！</span><br>    syms s<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">rem</span>(k, <span class="hljs-number">1</span>) ~=<span class="hljs-number">0</span><br>        <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;Error: make sure n is even plz&#x27;</span>)<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">disp</span>(n)<br>        moment = <span class="hljs-built_in">factorial</span>(<span class="hljs-number">2</span>*k)*s^(<span class="hljs-number">2</span>*k)/(<span class="hljs-number">2</span>^k*<span class="hljs-built_in">factorial</span>(k))<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br></code></pre></td></tr></table></figure>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211161007876.png" srcset="/img/loading.gif" lazyload alt="image-20221116100727821" /><figcaption aria-hidden="true">image-20221116100727821</figcaption>
+</figure>
 <p>参考<strong>Digital Communications-Fifth Edition</strong> ，<strong>John</strong> <strong>G.</strong> <strong>Proakis</strong></p>
 
                 

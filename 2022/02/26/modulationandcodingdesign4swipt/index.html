@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          839 字
+          838 字
         
       </span>
     
@@ -323,46 +323,62 @@
             
               <div class="markdown-body">
                 
-                <h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><ul>
+                <h2 id="缩写说明">缩写说明</h2>
+<ul>
 <li>WPT: wireless power transfer</li>
 <li>WIT: wireless information transfer</li>
 <li>SWIPT: simultaneous wireless information and power transfer, coordinating WIT and WPT in the same RF spectral band thus yields the research of SWIPT</li>
 </ul>
-<h2 id="Contributions"><a href="#Contributions" class="headerlink" title="Contributions"></a>Contributions</h2><ul>
+<h2 id="contributions">Contributions</h2>
+<ul>
 <li>Introduce the popular transceiver architecture of SWIPT</li>
 <li>unary code and run-length-limited (RLL) code in SWIPT. These two codes can show the trade-off between WIT and WPT performance</li>
 <li>The impact of wireless channels and hardware constraints on the practical modulation design in the SWIPT system is studied for a single user scenario.</li>
 <li>The principle of the modulation design in multi-user SWIPT systems relying on the superposition symbols is introduced.</li>
 <li>Open problems concerning the modulation and coding design in the SWIPT system are envisioned.</li>
 </ul>
-<h2 id="收发机结构"><a href="#收发机结构" class="headerlink" title="收发机结构"></a>收发机结构</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/149477c0dc394a332caeea51db437e80.png" srcset="/img/loading.gif" lazyload alt="trancevier"></p>
-<h2 id="SWIPT接收机"><a href="#SWIPT接收机" class="headerlink" title="SWIPT接收机"></a>SWIPT接收机</h2><p>接收机由两个部分，分别用作WIT和WPT。RF信号被接收机接收后，根据一定规则用作WIT和WPT。现有成果都主要研究收发机结构，很少研究编码和调制的影响。</p>
-<h3 id="非线性整流"><a href="#非线性整流" class="headerlink" title="非线性整流"></a>非线性整流</h3><p>只有当信号功率大于一定<strong>阈值</strong>，才会激活接收机的整流器电路，才会接收能量。</p>
-<h2 id="编码与SWIPT"><a href="#编码与SWIPT" class="headerlink" title="编码与SWIPT"></a>编码与SWIPT</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/006b17b4138c9d95b731f764a4715a8e.png" srcset="/img/loading.gif" lazyload alt="coding with SWIPT"></p>
+<h2 id="收发机结构">收发机结构</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/149477c0dc394a332caeea51db437e80.png" srcset="/img/loading.gif" lazyload alt="trancevier" /><figcaption aria-hidden="true">trancevier</figcaption>
+</figure>
+<h2 id="swipt接收机">SWIPT接收机</h2>
+<p>接收机由两个部分，分别用作WIT和WPT。RF信号被接收机接收后，根据一定规则用作WIT和WPT。现有成果都主要研究收发机结构，很少研究编码和调制的影响。</p>
+<h3 id="非线性整流">非线性整流</h3>
+<p>只有当信号功率大于一定<strong>阈值</strong>，才会激活接收机的整流器电路，才会接收能量。</p>
+<h2 id="编码与swipt">编码与SWIPT</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/006b17b4138c9d95b731f764a4715a8e.png" srcset="/img/loading.gif" lazyload alt="coding with SWIPT" /><figcaption aria-hidden="true">coding with SWIPT</figcaption>
+</figure>
 <p>结合上图，同一种调制方式2ASK(OOK)，因为编码后的码元不同，导致波形不同，根据上面接收机的设计，携带的能量也不同。给设备充电的能力也不同。<strong>但是要注意能量不宜过高，造成能源浪费，也不宜过低，造成设备能源短缺。</strong></p>
 <p>所以传输能量和信息之间有一个trade-off：</p>
-<ol>
+<ol type="1">
 <li><p>无论传什么信息，编码都是全1，能量达到最大值，但是互信息为0（意味着接收机并不能接受到有用的信息）</p>
-<p>从信息论的角度而言，因为有$H(x)&#x3D;H(X|Y)+I(X;Y)$</p>
-<p>其中$H(x)$是原本信宿有的信息量，$I(X;Y)&#x3D;0$，则信道损失熵$H(X|Y)&#x3D;H(X)$，意味着信息全部丢失。</p>
-</li>
-<li><p>如果完全考虑WIT，则可能不满足WPT的要求，或者说WPT不可控？</p>
-</li>
+<p>从信息论的角度而言，因为有<span class="math inline">\(H(x)=H(X|Y)+I(X;Y)\)</span></p>
+<p>其中<span class="math inline">\(H(x)\)</span>是原本信宿有的信息量，<span class="math inline">\(I(X;Y)=0\)</span>，则信道损失熵<span class="math inline">\(H(X|Y)=H(X)\)</span>，意味着信息全部丢失。</p></li>
+<li><p>如果完全考虑WIT，则可能不满足WPT的要求，或者说WPT不可控？</p></li>
 </ol>
 <p>基于此，有一些可用的编码方式（这些编码本身也就存在WIT和WPT的trade-off）：</p>
-<p><strong>Compensation Energy Coding:</strong> Dummy binary  bits are directly concatenated behind information bits in order to guarantee that the resultant  codeword has a certain percentage of bit “1.”  This coding approach has the lowest complexity. However, the dummy bits do not carry any  information, which may thus degrade the WIT  performance.<br><strong>Inverse Source Coding:</strong> A classic source  encoder takes non-equi-probable messages to  generate binary sequences having equi-probable  binary bits. By contrast, an inverse source encoder  takes equi-probable messages to generate binary  sequences having certain structures for satisfying  the WPT requirement. However, the asynchronization between the encoder and the decoder imposes difficulties in the efficient decoding design.<br><strong>Constraint Coding:</strong> Some constraint coding  techniques have degrees of freedom to change  the codeword structure for satisfying the WPT  requirement. Since they do not include any  dummy bits, the WIT performance may not suffer  significant degradation. Furthermore, the efficient  symbol-level trellis can be adopted for decoding  the constraint code.</p>
+<p><strong>Compensation Energy Coding:</strong> Dummy binary bits are directly concatenated behind information bits in order to guarantee that the resultant codeword has a certain percentage of bit “1.” This coding approach has the lowest complexity. However, the dummy bits do not carry any information, which may thus degrade the WIT performance. <strong>Inverse Source Coding:</strong> A classic source encoder takes non-equi-probable messages to generate binary sequences having equi-probable binary bits. By contrast, an inverse source encoder takes equi-probable messages to generate binary sequences having certain structures for satisfying the WPT requirement. However, the asynchronization between the encoder and the decoder imposes difficulties in the efficient decoding design. <strong>Constraint Coding:</strong> Some constraint coding techniques have degrees of freedom to change the codeword structure for satisfying the WPT requirement. Since they do not include any dummy bits, the WIT performance may not suffer significant degradation. Furthermore, the efficient symbol-level trellis can be adopted for decoding the constraint code.</p>
 <p>以及文章中介绍的两种约束编码：</p>
-<p><strong>Unary Code:</strong> The unary encoder maps the j-th input binary  sequence onto a j-bit codeword, which has a  single bit “0” at the end and all the other bits in  front are “1.” For instance, the four-level unary  encoder is capable of encoding four different binary sequences {00, 01, 10, 11}. The first  input sequence ‘00’ is encoded as a codeword  ‘0’, while the fourth input sequence “11” is thus  encoded as a codeword “1110”. Obviously, a  different input binary sequence may be encoded  as a codeword having a different percentage of  energy bit “1.” Therefore, the average percentage of energy bit “1” in unary codewords can be  adjusted by changing the occurrence probabilities  of the input binary sequences, which hence controls the SWIPT performance of the codewords.</p>
-<p><strong>Run-Length-Limited Code</strong>:  Another constraint coding technique is the RLL  code [12]. A type-0 (d, k)-RLL code has the following constraints on a codeword: • The runs of bit “0” have a length of d at least  between successive bit “1.” • The runs of bit “0” have a length of k at most  between successive bit “1.” The run-length of bit “0” may be an arbitrary  value between d and k. For instance, a type-0 (1,  3) RLL code is capable of generating a binary bit  sequence of “10100010010001001 …,” where  the minimum run-length of bit “0” is 1 and its  maximum run-length is 3. Obviously, the average  percentage of energy bit “1” in a type-0 RLL codeword is determined by the occurrence probabilities  of the runs of bit “0” having different lengths. For  instance, if a type-0 (1, 3) RLL encoder increases  the occurrence probability of the runs of bit “0”  having a length of 1, the average percentage of  energy bit “1” can be thus increased. Therefore,  by adjusting the occurrence probabilities of the  runs of bit “0” having different lengths, we may  control the SWIPT performance of the type-0 RLL  codewords. For a type-1 RLL encoder, we should  focus on adjusting the occurrence probabilities of  the runs of bit “1” having different lengths in order  to control its corresponding SWIPT performance.</p>
+<p><strong>Unary Code:</strong> The unary encoder maps the j-th input binary sequence onto a j-bit codeword, which has a single bit “0” at the end and all the other bits in front are “1.” For instance, the four-level unary encoder is capable of encoding four different binary sequences {00, 01, 10, 11}. The first input sequence ‘00’ is encoded as a codeword ‘0’, while the fourth input sequence “11” is thus encoded as a codeword “1110”. Obviously, a different input binary sequence may be encoded as a codeword having a different percentage of energy bit “1.” Therefore, the average percentage of energy bit “1” in unary codewords can be adjusted by changing the occurrence probabilities of the input binary sequences, which hence controls the SWIPT performance of the codewords.</p>
+<p><strong>Run-Length-Limited Code</strong>: Another constraint coding technique is the RLL code [12]. A type-0 (d, k)-RLL code has the following constraints on a codeword: • The runs of bit “0” have a length of d at least between successive bit “1.” • The runs of bit “0” have a length of k at most between successive bit “1.” The run-length of bit “0” may be an arbitrary value between d and k. For instance, a type-0 (1, 3) RLL code is capable of generating a binary bit sequence of “10100010010001001 …,” where the minimum run-length of bit “0” is 1 and its maximum run-length is 3. Obviously, the average percentage of energy bit “1” in a type-0 RLL codeword is determined by the occurrence probabilities of the runs of bit “0” having different lengths. For instance, if a type-0 (1, 3) RLL encoder increases the occurrence probability of the runs of bit “0” having a length of 1, the average percentage of energy bit “1” can be thus increased. Therefore, by adjusting the occurrence probabilities of the runs of bit “0” having different lengths, we may control the SWIPT performance of the type-0 RLL codewords. For a type-1 RLL encoder, we should focus on adjusting the occurrence probabilities of the runs of bit “1” having different lengths in order to control its corresponding SWIPT performance.</p>
 <p>都是通过约束0-1出现的百分比，来控制WIT和WPT的权衡。</p>
-<h2 id="Battery-Aware-Design"><a href="#Battery-Aware-Design" class="headerlink" title="Battery-Aware Design"></a>Battery-Aware Design</h2><p>因为编码-调制后，所带有的能量不宜过高，也不宜过低。过高会导致能量溢出，过低会导致设备能源短缺。所以在满足最低的信息传输性能后，需要考虑最小化电池过满概率和下溢概率。</p>
-<h2 id="调制与SWIPT-Single-user"><a href="#调制与SWIPT-Single-user" class="headerlink" title="调制与SWIPT(Single-user)"></a>调制与SWIPT(Single-user)</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/c8ce5d538e20380058d694e86ecafa47.png" srcset="/img/loading.gif" lazyload alt="signal power and threshold"></p>
+<h2 id="battery-aware-design">Battery-Aware Design</h2>
+<p>因为编码-调制后，所带有的能量不宜过高，也不宜过低。过高会导致能量溢出，过低会导致设备能源短缺。所以在满足最低的信息传输性能后，需要考虑最小化电池过满概率和下溢概率。</p>
+<h2 id="调制与swiptsingle-user">调制与SWIPT(Single-user)</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/c8ce5d538e20380058d694e86ecafa47.png" srcset="/img/loading.gif" lazyload alt="signal power and threshold" /><figcaption aria-hidden="true">signal power and threshold</figcaption>
+</figure>
 <p>因为整流要设置一定阈值，16-PSK全部不能收集能量（如果阈小于平均功率，16-PSK最好），16-QAM有四个符号超过了阈值（红圈）</p>
 <p><strong>高阶调制方案往往具有更好的WPT性能</strong></p>
 <p>另外，一些干扰，例如多径，会降低WIT性能，但是提高WPT性能。</p>
-<h2 id="调制与SWIPT-Multiple-user"><a href="#调制与SWIPT-Multiple-user" class="headerlink" title="调制与SWIPT(Multiple-user)"></a>调制与SWIPT(Multiple-user)</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ce492042e336b8ee78f5d86b0930f953.png" srcset="/img/loading.gif" lazyload alt="constellation rotation"></p>
+<h2 id="调制与swiptmultiple-user">调制与SWIPT(Multiple-user)</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/ce492042e336b8ee78f5d86b0930f953.png" srcset="/img/loading.gif" lazyload alt="constellation rotation" /><figcaption aria-hidden="true">constellation rotation</figcaption>
+</figure>
 <p>通过旋转星座图（如上图（下））来实现多用户时符号的叠加。图（上）的传统叠加方式，与原始符号相比，得到的叠加符号能量损失较大，导致WPT性能下降。而如图（下）的旋转，WPT性能满足，但是会损失一定的WIT性能（因为符号之间的最小欧式距离减小）。</p>
-<h2 id="Future-Challenges"><a href="#Future-Challenges" class="headerlink" title="Future Challenges"></a>Future Challenges</h2><p>The following open problems still need our further investigation.<br><strong>Concatenated Code:</strong> A concatenated encoder  consisting of a source encoder, channel encoder and an energy encoder should be carefully  designed, while a powerful iterative decoder is  also required for processing the sophisticated  concatenated codewords.<br><strong>Coded Modulation:</strong> The bit-to-symbol mapping from the binary bits to the modulated symbols has to be designed by jointly considering the  codeword structure and the modulation characteristic in order to satisfy both the WIT and WPT  requirements.<br><strong>Adaptive Modulation:</strong> In order to exploit the  distinctive WPT and WIT features of a specific  modulation scheme, we should design an adaptive modulation scheme by considering the wireless channel characteristics, the non-linear rectifier  and the diverse SWIPT requirements.</p>
+<h2 id="future-challenges">Future Challenges</h2>
+<p>The following open problems still need our further investigation. <strong>Concatenated Code:</strong> A concatenated encoder consisting of a source encoder, channel encoder and an energy encoder should be carefully designed, while a powerful iterative decoder is also required for processing the sophisticated concatenated codewords. <strong>Coded Modulation:</strong> The bit-to-symbol mapping from the binary bits to the modulated symbols has to be designed by jointly considering the codeword structure and the modulation characteristic in order to satisfy both the WIT and WPT requirements. <strong>Adaptive Modulation:</strong> In order to exploit the distinctive WPT and WIT features of a specific modulation scheme, we should design an adaptive modulation scheme by considering the wireless channel characteristics, the non-linear rectifier and the diverse SWIPT requirements.</p>
 
                 
               </div>

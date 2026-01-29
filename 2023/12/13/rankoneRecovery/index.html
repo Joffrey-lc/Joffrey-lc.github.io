@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          608 字
+          598 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          6 分钟
+          5 分钟
         
       </span>
     
@@ -324,17 +324,48 @@
             
               <div class="markdown-body">
                 
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在做一些QCQP（抽空整理一下）问题的时候，存在求解：<br>$$<br>\mathbf{C}&#x3D;\mathbf{c}\mathbf{c}^H<br>$$<br>后还要再求解$\mathbf{c}$的情况，其中$\mathbf{C}\in\mathbb{C}^{N\times N}$，$\mathbf{c}\in\mathbb{C}^{N\times 1}$。一般都是丢掉Rank one constrain 得到结果后再恢复rank one。</p>
+                <h2 id="前言">前言</h2>
+<p>在做一些QCQP（抽空整理一下）问题的时候，存在求解： <span class="math display">\[
+\mathbf{C}=\mathbf{c}\mathbf{c}^H
+\]</span> 后还要再求解<span class="math inline">\(\mathbf{c}\)</span>的情况，其中<span class="math inline">\(\mathbf{C}\in\mathbb{C}^{N\times N}\)</span>，<span class="math inline">\(\mathbf{c}\in\mathbb{C}^{N\times 1}\)</span>。一般都是丢掉Rank one constrain 得到结果后再恢复rank one。</p>
 <p>恢复算法之前一直采用的是Gaussian randomization，总觉得很奇怪。最近学习到了一个算法叫做IRM，效果不错.</p>
-<h2 id="Gaussian-Randomization"><a href="#Gaussian-Randomization" class="headerlink" title="Gaussian Randomization"></a>Gaussian Randomization</h2><p>Refer to <a href="https://lcjoffrey.top/2022/07/16/gaussianrandomization/">my blog</a></p>
-<h2 id="Iterative-Rank-Minimization"><a href="#Iterative-Rank-Minimization" class="headerlink" title="Iterative Rank Minimization"></a>Iterative Rank Minimization</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/63763400">参考解析1</a></p>
+<h2 id="gaussian-randomization">Gaussian Randomization</h2>
+<p>Refer to <a href="https://lcjoffrey.top/2022/07/16/gaussianrandomization/">my blog</a></p>
+<h2 id="iterative-rank-minimization">Iterative Rank Minimization</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/63763400">参考解析1</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25777815/article/details/89525721">参考解析2</a> 和文献</p>
-<p>[1] Sun C , Liu Y C , Dai R , et al. Two Approaches for Path Planning of Unmanned Aerial Vehicles with Avoidance Zones[J]. Journal of Guidance Control &amp; Dynamics, 2017, 40(8).</p>
-<p>[2] Sun C , Dai R . An iterative approach to Rank Minimization Problems[C]&#x2F;&#x2F; Decision &amp; Control. IEEE, 2016.</p>
-<p>[3] C. Sun, N. Kingry and R. Dai, “A Unified Formulation and Nonconvex Optimization Method for Mixed-Type Decision-Making of Robotic Systems,” in <em>IEEE Transactions on Robotics</em>, vol. 37, no. 3, pp. 831-846, June 2021, doi: 10.1109&#x2F;TRO.2020.3036619. </p>
-<p>对应于我最近的工作，想要解决问题：<br>$$<br>\begin{align}<br>		\text{(P1):  }\max_{\mathbf{v},\boldsymbol{\Theta}} ,,&amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}<em>d)\label{eqn:eqnP1}\<br>		\text{s.t.},,,,&amp;\text{diag}(\boldsymbol{\mathcal{C}})&#x3D;\left|\mathbf{v}^T\boldsymbol{\beta}(\varpi</em>{G})\right|^2\mathbf{1}<em>N,\tag{\ref{eqn:eqnP1}a}\label{eqn:eqnP1consA}\<br>		&amp;\text{trace}(\boldsymbol{\mathcal{C}})\leq MNP,\tag{\ref{eqn:eqnP1}b}\label{eqn:eqnP1consB}\<br>		&amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}<em>k)&#x3D;0,\forall k\in K, k\neq d,\tag{\ref{eqn:eqnP1}c}\label{eqn:eqnP1consC}\<br>		&amp;\boldsymbol{\mathcal{C}} &#x3D; \mathbf{c}^\dagger\mathbf{c}^T,\tag{\ref{eqn:eqnP1}d}\label{eqn:eqnP1consD}\<br>		&amp;\mathbf{c}^T&#x3D;\mathbf{v}^T\boldsymbol{\beta}(\varpi</em>{G})\boldsymbol{\alpha}^T(\vartheta_G,\varphi_G)\boldsymbol{\Theta}\tag{\ref{eqn:eqnP1}e}\label{eqn:eqnP1consE},\<br>		&amp;\text{Rank}(\boldsymbol{\mathcal{C}}) &#x3D; 1,\tag{\ref{eqn:eqnP1}f}\label{eqn:eqnP1consF}<br>\end{align}<br>$$<br>现丢掉Rank one constrain，得到：<br>$$<br>\begin{align}<br>\text{(P1.1):  }\max</em>{\boldsymbol{\Theta}_h} ,,,&amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_d)\label{eqn:eqnP1p1}\<br>	\text{s.t.},,,,,&amp;\text{diag}(\boldsymbol{\mathcal{C}})&#x3D;MP\mathbf{1}_N,\tag{\ref{eqn:eqnP1p1}a}\label{eqn:eqnP1p1consA}\<br>	&amp;\mathbf{c}^T&#x3D;\sqrt{MP}\mathbf{1}_N^T\boldsymbol{\Theta}<em>h,\tag{\ref{eqn:eqnP1p1}b}\label{eqn:eqnP1p1consB}\<br>	&amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}<em>k)\leq \tau_k,\forall k\in K,k\neq d,\tag{\ref{eqn:eqnP1p1}c}\label{eqn:eqnP1p1consC}\<br>	&amp;\eqref{eqn:eqnP1consB}, \eqref{eqn:eqnP1consD}, \tag{\ref{eqn:eqnP1p1}d}\label{eqn:eqnP1p1consD}<br>\end{align}<br>$$<br>再进行IRM恢复：<br>$$<br>\begin{align}<br>	\text{(P1.2):  }\min</em>{\boldsymbol{\Theta}</em>{h,l}, r} ,,,&amp;-\text{trace}(\boldsymbol{\mathcal{C}}_l\boldsymbol{\mathcal{A}}_d)+\epsilon_l r\label{eqn:eqnP1p2}\<br>	\text{s.t.},,,,,&amp;\text{diag}(\boldsymbol{\mathcal{C}}_l)&#x3D;MP\mathbf{1}_N,\tag{\ref{eqn:eqnP1p2}a}\label{eqn:eqnP1p2consA}\<br>	&amp;\mathbf{c}^T_l&#x3D;\sqrt{MP}\mathbf{1}<em>N^T\boldsymbol{\Theta}</em>{h,l},\tag{\ref{eqn:eqnP1p2}b}\label{eqn:eqnP1p2consB}\<br>	&amp;\text{trace}(\boldsymbol{\mathcal{C}}_l\boldsymbol{\mathcal{A}}<em>k)\leq \tau_k,\forall k\in K,k\neq d,\tag{\ref{eqn:eqnP1p2}c}\label{eqn:eqnP1p2consC}\<br>    &amp;r\mathbf{I}</em>{N-1}-\mathbf{V}_l^H\boldsymbol{\mathcal{C}}_l\mathbf{V}_l \succeq \mathbf{0},\tag{\ref{eqn:eqnP1p2}d}\label{eqn:eqnP1p2consD}\<br>	&amp;\eqref{eqn:eqnP1consB}, \eqref{eqn:eqnP1consD}, \tag{\ref{eqn:eqnP1p2}e}\label{eqn:eqnP1p2consE}<br>\end{align}<br>$$<br>总的流程如下：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202312132112800.png" srcset="/img/loading.gif" lazyload alt="image-20231213211208483" style="zoom: 67%;" />
-
+<p>[1] Sun C , Liu Y C , Dai R , et al. Two Approaches for Path Planning of Unmanned Aerial Vehicles with Avoidance Zones[J]. Journal of Guidance Control &amp; Dynamics, 2017, 40(8).</p>
+<p>[2] Sun C , Dai R . An iterative approach to Rank Minimization Problems[C]// Decision &amp; Control. IEEE, 2016.</p>
+<p>[3] C. Sun, N. Kingry and R. Dai, “A Unified Formulation and Nonconvex Optimization Method for Mixed-Type Decision-Making of Robotic Systems,” in <em>IEEE Transactions on Robotics</em>, vol. 37, no. 3, pp. 831-846, June 2021, doi: 10.1109/TRO.2020.3036619.</p>
+<p>对应于我最近的工作，想要解决问题： <span class="math display">\[
+\begin{align}
+        \text{(P1):  }\max_{\mathbf{v},\boldsymbol{\Theta}} \,\,&amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_d)\label{eqn:eqnP1}\\
+        \text{s.t.}\,\,\,\,&amp;\text{diag}(\boldsymbol{\mathcal{C}})=\left|\mathbf{v}^T\boldsymbol{\beta}(\varpi_{G})\right|^2\mathbf{1}_N,\tag{\ref{eqn:eqnP1}a}\label{eqn:eqnP1consA}\\
+        &amp;\text{trace}(\boldsymbol{\mathcal{C}})\leq MNP,\tag{\ref{eqn:eqnP1}b}\label{eqn:eqnP1consB}\\
+        &amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_k)=0,\forall k\in K, k\neq d,\tag{\ref{eqn:eqnP1}c}\label{eqn:eqnP1consC}\\
+        &amp;\boldsymbol{\mathcal{C}} = \mathbf{c}^\dagger\mathbf{c}^T,\tag{\ref{eqn:eqnP1}d}\label{eqn:eqnP1consD}\\
+        &amp;\mathbf{c}^T=\mathbf{v}^T\boldsymbol{\beta}(\varpi_{G})\boldsymbol{\alpha}^T(\vartheta_G,\varphi_G)\boldsymbol{\Theta}\tag{\ref{eqn:eqnP1}e}\label{eqn:eqnP1consE},\\
+        &amp;\text{Rank}(\boldsymbol{\mathcal{C}}) = 1,\tag{\ref{eqn:eqnP1}f}\label{eqn:eqnP1consF}
+\end{align}
+\]</span> 现丢掉Rank one constrain，得到： <span class="math display">\[
+\begin{align}
+\text{(P1.1):  }\max_{\boldsymbol{\Theta}_h} \,\,\,&amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_d)\label{eqn:eqnP1p1}\\
+    \text{s.t.}\,\,\,\,\,&amp;\text{diag}(\boldsymbol{\mathcal{C}})=MP\mathbf{1}_N,\tag{\ref{eqn:eqnP1p1}a}\label{eqn:eqnP1p1consA}\\
+    &amp;\mathbf{c}^T=\sqrt{MP}\mathbf{1}_N^T\boldsymbol{\Theta}_h,\tag{\ref{eqn:eqnP1p1}b}\label{eqn:eqnP1p1consB}\\
+    &amp;\text{trace}(\boldsymbol{\mathcal{C}}\boldsymbol{\mathcal{A}}_k)\leq \tau_k,\forall k\in K,k\neq d,\tag{\ref{eqn:eqnP1p1}c}\label{eqn:eqnP1p1consC}\\
+    &amp;\eqref{eqn:eqnP1consB}, \eqref{eqn:eqnP1consD}, \tag{\ref{eqn:eqnP1p1}d}\label{eqn:eqnP1p1consD}
+\end{align}
+\]</span> 再进行IRM恢复： <span class="math display">\[
+\begin{align}
+    \text{(P1.2):  }\min_{\boldsymbol{\Theta}_{h,l}, r} \,\,\,&amp;-\text{trace}(\boldsymbol{\mathcal{C}}_l\boldsymbol{\mathcal{A}}_d)+\epsilon_l r\label{eqn:eqnP1p2}\\
+    \text{s.t.}\,\,\,\,\,&amp;\text{diag}(\boldsymbol{\mathcal{C}}_l)=MP\mathbf{1}_N,\tag{\ref{eqn:eqnP1p2}a}\label{eqn:eqnP1p2consA}\\
+    &amp;\mathbf{c}^T_l=\sqrt{MP}\mathbf{1}_N^T\boldsymbol{\Theta}_{h,l},\tag{\ref{eqn:eqnP1p2}b}\label{eqn:eqnP1p2consB}\\
+    &amp;\text{trace}(\boldsymbol{\mathcal{C}}_l\boldsymbol{\mathcal{A}}_k)\leq \tau_k,\forall k\in K,k\neq d,\tag{\ref{eqn:eqnP1p2}c}\label{eqn:eqnP1p2consC}\\
+    &amp;r\mathbf{I}_{N-1}-\mathbf{V}_l^H\boldsymbol{\mathcal{C}}_l\mathbf{V}_l \succeq \mathbf{0},\tag{\ref{eqn:eqnP1p2}d}\label{eqn:eqnP1p2consD}\\
+    &amp;\eqref{eqn:eqnP1consB}, \eqref{eqn:eqnP1consD}, \tag{\ref{eqn:eqnP1p2}e}\label{eqn:eqnP1p2consE}
+\end{align}
+\]</span> 总的流程如下：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202312132112800.png" srcset="/img/loading.gif" lazyload alt="image-20231213211208483" style="zoom: 67%;" /></p>
 
                 
               </div>

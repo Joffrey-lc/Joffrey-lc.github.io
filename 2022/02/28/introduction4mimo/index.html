@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          597 字
+          600 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -323,27 +323,69 @@
             
               <div class="markdown-body">
                 
-                <h1 id="MIMO"><a href="#MIMO" class="headerlink" title="MIMO"></a>MIMO</h1><h2 id="MIMO介绍"><a href="#MIMO介绍" class="headerlink" title="MIMO介绍"></a>MIMO介绍</h2><p>SISO：Single Input Single Output：独木桥</p>
+                <h1 id="mimo">MIMO</h1>
+<h2 id="mimo介绍">MIMO介绍</h2>
+<p>SISO：Single Input Single Output：独木桥</p>
 <p>MISO：Multi Input Single Output：发射端丢一点没关系，只要保证Multi Input 中有成功传输即可（发射分集）</p>
 <p>SIMO：Single Input Multi Output：接收端丢一些没关系，只要保证Multi Output中有成功接收即可（接收分集）</p>
 <p>MIMO：Multi Input Multi Output：利用多天线，复用空间中不同的传输路径并行发送多份不同数据来提升容量（空分复用）</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228200503468.png" srcset="/img/loading.gif" lazyload alt="SISO到MIMO"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228200503468.png" srcset="/img/loading.gif" lazyload alt="SISO到MIMO" /><figcaption aria-hidden="true">SISO到MIMO</figcaption>
+</figure>
 <p><strong>MIMO的性能受限于短板，即MIMO的最大容量受制于Input和Output端中天线数量少的一端。</strong></p>
 <p><strong>For example：</strong></p>
-<p>$A \times B $的MIMO，代表基站端有$A$根天线，用户端&#x2F;手机有$B$根天线。$4\times 4$MIMO的最大容量可以达到SISO的<strong>4</strong>倍；而$4\times 2$MIMO的最大容量是SISO的<strong>2</strong>倍。</p>
-<h2 id="MIMO建模"><a href="#MIMO建模" class="headerlink" title="MIMO建模"></a>MIMO建模</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228203934811.png" srcset="/img/loading.gif" lazyload alt="2 times 2 MIMO示意图"></p>
-<p>得到一个方程组：<br>$$<br>\begin{align}<br>Y_1&#x3D;h_{11}X_1+h_{21}X_2\<br>Y_2&#x3D;h_{12}X_1+h_{22}X_2\</p>
-<p>即\left[\begin{matrix}<br>Y_1\Y_2<br>\end{matrix}<br>\right]&#x3D;\left[<br>\begin{matrix}<br>h_{11}&amp;h_{21}\<br>h_{12}&amp;h_{22}<br>\end{matrix}<br>\right]\cdot<br>\left[\begin{matrix}<br>X_1\X_2<br>\end{matrix}<br>\right]<br>\end{align}<br>$$<br>但由于<strong>信道之间存在相关性</strong>，导致了容量的变化。</p>
-<p>进一步推导，假设简化模型为：<br>$$<br>\left[\begin{matrix}<br>Y^{‘}_1\Y^{‘}_2<br>\end{matrix}<br>\right]&#x3D;\left[<br>\begin{matrix}<br>\lambda_1&amp;0\<br>0&amp;\lambda_2<br>\end{matrix}<br>\right]\cdot\left[<br>\begin{matrix}<br>X_1^{‘}\X_2^{‘}<br>\end{matrix}<br>\right]<br>$$<br>只有一个对角线有数据的矩阵称为对角阵，其中对角线上<strong>非零数据</strong>的个数，称为矩阵的秩。</p>
-<p>很好理解，如果秩为1的话，即表达式中的$\lambda_2&#x3D;0$，就表示这个2x2 MIMO系统的传输空间相关性很大，从MIMO退化成了SISO或者SIMO，只能同时收发一路数据；如果秩为2的话，就表示该系统有两条相对独立空间信道，可以同时收发两路数据。</p>
-<p>但是这样的情况下也不一定是SISO的两倍。定义<strong>条件数</strong>：<br>$$<br>条件数&#x3D;\frac{\lambda_1}{\lambda_2}<br>$$</p>
+<p>$A B <span class="math inline">\(的MIMO，代表基站端有\)</span>A<span class="math inline">\(根天线，用户端/手机有\)</span>B$根天线。<span class="math inline">\(4\times 4\)</span>MIMO的最大容量可以达到SISO的<strong>4</strong>倍；而<span class="math inline">\(4\times 2\)</span>MIMO的最大容量是SISO的<strong>2</strong>倍。</p>
+<h2 id="mimo建模">MIMO建模</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228203934811.png" srcset="/img/loading.gif" lazyload alt="2 times 2 MIMO示意图" /><figcaption aria-hidden="true">2 times 2 MIMO示意图</figcaption>
+</figure>
+<p>得到一个方程组： $$ <span class="math display">\[\begin{align}
+Y_1=h_{11}X_1+h_{21}X_2\\
+Y_2=h_{12}X_1+h_{22}X_2\\
+
+即\left[\begin{matrix}
+Y_1\\Y_2
+\end{matrix}
+\right]=\left[
+\begin{matrix}
+h_{11}&amp;h_{21}\\
+h_{12}&amp;h_{22}
+\end{matrix}
+\right]\cdot
+\left[\begin{matrix}
+X_1\\X_2
+\end{matrix}
+\right]
+\end{align}\]</span> $$ 但由于<strong>信道之间存在相关性</strong>，导致了容量的变化。</p>
+<p>进一步推导，假设简化模型为： <span class="math display">\[
+\left[\begin{matrix}
+Y^{&#39;}_1\\Y^{&#39;}_2
+\end{matrix}
+\right]=\left[
+\begin{matrix}
+\lambda_1&amp;0\\
+0&amp;\lambda_2
+\end{matrix}
+\right]\cdot\left[
+\begin{matrix}
+X_1^{&#39;}\\X_2^{&#39;}
+\end{matrix}
+\right]
+\]</span> 只有一个对角线有数据的矩阵称为对角阵，其中对角线上<strong>非零数据</strong>的个数，称为矩阵的秩。</p>
+<p>很好理解，如果秩为1的话，即表达式中的<span class="math inline">\(\lambda_2=0\)</span>，就表示这个2x2 MIMO系统的传输空间相关性很大，从MIMO退化成了SISO或者SIMO，只能同时收发一路数据；如果秩为2的话，就表示该系统有两条相对独立空间信道，可以同时收发两路数据。</p>
+<p>但是这样的情况下也不一定是SISO的两倍。定义<strong>条件数</strong>： <span class="math display">\[
+条件数=\frac{\lambda_1}{\lambda_2}
+\]</span></p>
 <ul>
-<li>如果条件数&#x3D;1，说明两个信道半斤八两，此时的MIMO系统的容量达到最大。</li>
-<li>如果条件数&gt;1，说明两个信道有一定差距，此时系统会将主要资源放在质量好的信道上，此时$2\times 2$的MIMO系统的最大容量就介于$1\sim2$之间。</li>
+<li>如果条件数=1，说明两个信道半斤八两，此时的MIMO系统的容量达到最大。</li>
+<li>如果条件数&gt;1，说明两个信道有一定差距，此时系统会将主要资源放在质量好的信道上，此时<span class="math inline">\(2\times 2\)</span>的MIMO系统的最大容量就介于<span class="math inline">\(1\sim2\)</span>之间。</li>
 </ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228234827809.png" srcset="/img/loading.gif" lazyload alt="合作通信"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220228234827809.png" srcset="/img/loading.gif" lazyload alt="合作通信" /><figcaption aria-hidden="true">合作通信</figcaption>
+</figure>
 <p>基站和用户（手机）之间是合作通信，所以信道信息是可知的，这样就可以让基站进行选择。</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/41520064">https://zhuanlan.zhihu.com/p/41520064</a></p>
+<h1 id="reference">Reference</h1>
+<p>https://zhuanlan.zhihu.com/p/41520064</p>
 
                 
               </div>

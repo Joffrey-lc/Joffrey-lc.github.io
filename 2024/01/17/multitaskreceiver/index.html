@@ -324,52 +324,34 @@
             
               <div class="markdown-body">
                 
-                <p><strong>Waveform Level Intelligent Multi-Task Receiver With BiLSTM</strong>.  <em>Zhaorui Zhu</em> et.al.  <strong>IEEE Communications Letters, March 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9656168">pdf</a>)  (Citations <strong>1</strong>)</p>
+                <p><strong>Waveform Level Intelligent Multi-Task Receiver With BiLSTM</strong>. <em>Zhaorui Zhu</em> et.al. <strong>IEEE Communications Letters, March 2022</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9656168">pdf</a>) (Citations <strong>1</strong>)</p>
 <p>简而言之，可以拆分为两个network，一个估计modulation，一个根据modulation结果进行bits recovery。</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+<h2 id="quick-overview">Quick Overview</h2>
+<ul>
 <li>straightforwardly recover bit messages from waveform sequences of unknown modulation schemes without additional time synchronization module. The whole structure is an effective joint synchronization and detection method.</li>
 <li>The first attempt to establish purely one NN to directly process the oversampled waveform sequence with timing offset and blindly recover bits from multiple modulation schemes.</li>
 <li>Numerical results show that one NN can recover bits from four different modulation schemes with BER performance approaching the theoretical value in the ideal channel.</li>
 </ul>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127825.png" srcset="/img/loading.gif" lazyload alt="image-20240117204216905" style="zoom:33%;" />
-
-<h2 id="signal-model"><a href="#signal-model" class="headerlink" title="signal model"></a>signal model</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127880.png" srcset="/img/loading.gif" lazyload alt="image-20240117204721152" style="zoom:33%;" />
-
-<h2 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127834.png" srcset="/img/loading.gif" lazyload alt="image-20240117204858739" style="zoom:33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127825.png" srcset="/img/loading.gif" lazyload alt="image-20240117204216905" style="zoom:33%;" /></p>
+<h2 id="signal-model">signal model</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127880.png" srcset="/img/loading.gif" lazyload alt="image-20240117204721152" style="zoom:33%;" /></p>
+<h2 id="network">Network</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127834.png" srcset="/img/loading.gif" lazyload alt="image-20240117204858739" style="zoom:33%;" /></p>
 <p>Bits recovery (left) and Modulation recognition (right)</p>
 <p>Three parts</p>
 <ul>
-<li><p>The uppermost two BiLSTM layers extract representation vectors with an overwhelming majority of learnable weights.</p>
-</li>
+<li><p>The uppermost two BiLSTM layers extract representation vectors with an overwhelming majority of learnable weights.</p></li>
 <li><p>They use LSTM layer for the variable-length sequence. And complementary bidirectional structure is applied due to trailing interference of filter between</p>
 <p>adjacent symbols.</p>
-<p>Reshape received data into </p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127858.png" srcset="/img/loading.gif" lazyload alt="image-20240117205349066" style="zoom:33%;" /></li>
+<p>Reshape received data into</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127858.png" srcset="/img/loading.gif" lazyload alt="image-20240117205349066" style="zoom:33%;" /></p></li>
 </ul>
-<p>​	where $N_s$ denotes the number of symbols, and $\gamma$ denotes the oversample rate. </p>
-<h2 id="Train-details"><a href="#Train-details" class="headerlink" title="Train details"></a>Train details</h2><p>The output unit for “Dense-0” is $k_\text{max}$ (it mean the output dimension), while some lower order modulations need to padding zero as $[b_1,b_2,0,0]$</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127855.png" srcset="/img/loading.gif" lazyload alt="image-20240117212402627" style="zoom:33%;" />
-
-
-
+<p>​ where <span class="math inline">\(N_s\)</span> denotes the number of symbols, and <span class="math inline">\(\gamma\)</span> denotes the oversample rate.</p>
+<h2 id="train-details">Train details</h2>
+<p>The output unit for “Dense-0” is <span class="math inline">\(k_\text{max}\)</span> (it mean the output dimension), while some lower order modulations need to padding zero as <span class="math inline">\([b_1,b_2,0,0]\)</span></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127855.png" srcset="/img/loading.gif" lazyload alt="image-20240117212402627" style="zoom:33%;" /></p>
 <p>The loss function</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127849.png" srcset="/img/loading.gif" lazyload alt="image-20240117212527495" style="zoom:33%;" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401172127849.png" srcset="/img/loading.gif" lazyload alt="image-20240117212527495" style="zoom:33%;" /></p>
 
                 
               </div>

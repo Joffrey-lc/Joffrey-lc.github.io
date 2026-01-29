@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          817 字
+          819 字
         
       </span>
     
@@ -323,53 +323,51 @@
             
               <div class="markdown-body">
                 
-                <p><strong>Cooperative Double-IRS Aided Communication: Beamforming Design and Power Scaling</strong>.  <em>Yitao Han</em> et.al.  <strong>IEEE Wireless Communications Letters, Aug.  2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9060923">pdf</a>)  (Citations <strong>37</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><span class="label label-success">BS单天线、USER单天线</span>
-
+                <p><strong>Cooperative Double-IRS Aided Communication: Beamforming Design and Power Scaling</strong>. <em>Yitao Han</em> et.al. <strong>IEEE Wireless Communications Letters, Aug. 2020</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9060923">pdf</a>) (Citations <strong>37</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<span class="label label-success">BS单天线、USER单天线</span>
 <span class="label label-warning">对IRS每一个element单元进行建模</span>
-
-<p>作者讨论了将一个拥有$K$个elements的IRS分解为两个分别拥有$K_1$和$K_2$(且$K_1+K_2&#x3D;K$)的IRS1和IRS2</p>
+<p>作者讨论了将一个拥有<span class="math inline">\(K\)</span>个elements的IRS分解为两个分别拥有<span class="math inline">\(K_1\)</span>和<span class="math inline">\(K_2\)</span>(且<span class="math inline">\(K_1+K_2=K\)</span>)的IRS1和IRS2</p>
 <ul>
-<li><p>当$K$足够大的时候，分割为两个IRS性能比一个IRS(有$K$个elements)要好。是因为其虽然受到了一共三段path-loss（BS-IRS1 IRS1-IRS2 IRS2-USER）但是其性能随$K^4$增长</p>
-</li>
-<li><p>为了简化IRS1-IRS2的channel，作者利用了IRS1-IRS2 channel 的rank-one性质，即IRS1如果对准IRS2中任意一个element，则IRS2中其他elements收到相同增益。</p>
-</li>
+<li><p>当<span class="math inline">\(K\)</span>足够大的时候，分割为两个IRS性能比一个IRS(有<span class="math inline">\(K\)</span>个elements)要好。是因为其虽然受到了一共三段path-loss（BS-IRS1 IRS1-IRS2 IRS2-USER）但是其性能随<span class="math inline">\(K^4\)</span>增长</p></li>
+<li><p>为了简化IRS1-IRS2的channel，作者利用了IRS1-IRS2 channel 的rank-one性质，即IRS1如果对准IRS2中任意一个element，则IRS2中其他elements收到相同增益。</p></li>
 </ul>
-<h2 id="Main-work"><a href="#Main-work" class="headerlink" title="Main work"></a>Main work</h2><h3 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png" srcset="/img/loading.gif" lazyload alt="system model" style="zoom: 80%;" />
-
-<p>假设上图所示的模型。则有$\mathbf{t}\in\mathbb{C}^{K_1\times1}$,$\mathbf{S}\in\mathbb{C}^{K_1\times K_2}$,$\mathbf{r}^T\in\mathbb{C}^{1\times K_2}$，两个IRS的反射系数为$\Phi_1$和$\Phi_2$，则信道为：<br>$$<br>h&#x3D;\mathbf{r}^T\Phi_2\mathbf{S}\Phi_1\mathbf{t}<br>$$</p>
-<div class="note note-warning">
+<h2 id="main-work">Main work</h2>
+<h3 id="system-model">System model</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png" srcset="/img/loading.gif" lazyload alt="system model" style="zoom: 80%;" /></p>
+<p>假设上图所示的模型。则有<span class="math inline">\(\mathbf{t}\in\mathbb{C}^{K_1\times1}\)</span>,<span class="math inline">\(\mathbf{S}\in\mathbb{C}^{K_1\times K_2}\)</span>,<span class="math inline">\(\mathbf{r}^T\in\mathbb{C}^{1\times K_2}\)</span>，两个IRS的反射系数为<span class="math inline">\(\Phi_1\)</span>和<span class="math inline">\(\Phi_2\)</span>，则信道为： <span class="math display">\[
+h=\mathbf{r}^T\Phi_2\mathbf{S}\Phi_1\mathbf{t}
+\]</span> <div class="note note-warning">
             <p>作者引入了三维坐标系，对每个IRS element进行位置建模</p>
-          </div>
-
+          </div></p>
 <p>将上述三个信道建模为LoS，有：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134524678.png" srcset="/img/loading.gif" lazyload alt="image-20220623134524678" style="zoom: 80%;" />
-
-<p>然后利用$\mathbf{S}$的Rank-one性质，简化$\mathbf{S}$为：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134629042.png" srcset="/img/loading.gif" lazyload alt="image-20220623134629042" style="zoom:80%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134524678.png" srcset="/img/loading.gif" lazyload alt="image-20220623134524678" style="zoom: 80%;" /></p>
+<p>然后利用<span class="math inline">\(\mathbf{S}\)</span>的Rank-one性质，简化<span class="math inline">\(\mathbf{S}\)</span>为：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134629042.png" srcset="/img/loading.gif" lazyload alt="image-20220623134629042" style="zoom:80%;" /></p>
 <div class="note note-success">
             <p>这意味着只要知道位置信息，就可以对IRS1-IRS2的channel进行建模</p>
           </div>
-
-<h3 id="Design-of-Joint-Passive-Beamforming"><a href="#Design-of-Joint-Passive-Beamforming" class="headerlink" title="Design of Joint Passive Beamforming"></a>Design of Joint Passive Beamforming</h3><p>取$\Phi_1$的元素$\phi_{1,k_1}$为：</p>
-<p>$$<br>\phi_{1, k_{1}}&#x3D;\left(\frac{\left(\mathbf{g}<em>{1}\right)</em>{k_{1}}(\mathbf{t})<em>{k</em>{1}}}{\left|(\mathbf{t})<em>{k</em>{1}}\right|}\right)^{*}, \quad k_{1} \in \mathcal{K}_{1}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623140628698.png" srcset="/img/loading.gif" lazyload alt="image-20220623140628698" style="zoom: 33%;" /></p>
-<p>对于$\Phi_2$中的元素$\phi_{2,k_2}$同理。</p>
-<p>此时的接收端：<br>$$<br>|h|^{2}&#x3D;\left|\mathbf{r}^{T} \mathbf{\Phi}<em>{2} \mathbf{S} \boldsymbol{\Phi}</em>{1} \mathbf{t}\right|^{2} \approx \frac{\alpha^{3}}{\left(d_{\mathbf{r}} d_{\mathbf{S}} d_{\mathbf{t}}\right)^{2}}\left(K_{1} K_{2}\right)^{2}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623141955322.png" srcset="/img/loading.gif" lazyload alt="image-20220623141955322" style="zoom: 33%;" /></p>
-<h2 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h2><p>我只仿真了2.2节中推导的近似表达式的结果，因为实际的结果需要对每个IRS element建模，有点复杂，而且不知道作者怎么将IRS elements进行排布的。所以这里就没有仿真。</p>
+<h3 id="design-of-joint-passive-beamforming">Design of Joint Passive Beamforming</h3>
+<p>取<span class="math inline">\(\Phi_1\)</span>的元素<span class="math inline">\(\phi_{1,k_1}\)</span>为：</p>
+<p><span class="math display">\[
+\phi_{1, k_{1}}=\left(\frac{\left(\mathbf{g}_{1}\right)_{k_{1}}(\mathbf{t})_{k_{1}}}{\left|(\mathbf{t})_{k_{1}}\right|}\right)^{*}, \quad k_{1} \in \mathcal{K}_{1}
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623140628698.png" srcset="/img/loading.gif" lazyload alt="image-20220623140628698" style="zoom: 33%;" /></p>
+<p>对于<span class="math inline">\(\Phi_2\)</span>中的元素<span class="math inline">\(\phi_{2,k_2}\)</span>同理。</p>
+<p>此时的接收端： <span class="math display">\[
+|h|^{2}=\left|\mathbf{r}^{T} \mathbf{\Phi}_{2} \mathbf{S} \boldsymbol{\Phi}_{1} \mathbf{t}\right|^{2} \approx \frac{\alpha^{3}}{\left(d_{\mathbf{r}} d_{\mathbf{S}} d_{\mathbf{t}}\right)^{2}}\left(K_{1} K_{2}\right)^{2}
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623141955322.png" srcset="/img/loading.gif" lazyload alt="image-20220623141955322" style="zoom: 33%;" /></p>
+<h2 id="simulation">Simulation</h2>
+<p>我只仿真了2.2节中推导的近似表达式的结果，因为实际的结果需要对每个IRS element建模，有点复杂，而且不知道作者怎么将IRS elements进行排布的。所以这里就没有仿真。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>u1 = [<span class="hljs-number">0.87</span>, <span class="hljs-number">0.50</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% location of BS</span><br>u2 = [<span class="hljs-number">13</span>, <span class="hljs-number">92.50</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% location of USER</span><br>v1 = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% element(0, 0) on IRS1</span><br>v2 = [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% element(0, 0) on IRS2</span><br>dt = caculate_dis_3d(u1, v1); <span class="hljs-comment">% distance between BS and IRS1</span><br>ds = caculate_dis_3d(v1, v2); <span class="hljs-comment">% distance between IRS1 and IRS2</span><br>dr = caculate_dis_3d(v2, u2); <span class="hljs-comment">% distance between IRS2 and USER</span><br>n1a = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>];<br>n1b = [<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>)/<span class="hljs-number">2</span>, <span class="hljs-number">-1</span>/<span class="hljs-number">2</span>, <span class="hljs-number">0</span>];<br><br><span class="hljs-comment">% proof that IRS 1 faces towards the BS</span><br>n1a*u1.&#x27;<br>n1b*u1.&#x27; <span class="hljs-comment">% 垂直于n1a</span><br><br>n2a = [<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>)/<span class="hljs-number">2</span>, <span class="hljs-number">1</span>/<span class="hljs-number">2</span>, <span class="hljs-number">0</span>];<br>n2b = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>];<br><br>f = <span class="hljs-number">5e9</span>;<br>lambda = <span class="hljs-number">3e8</span>/f;<br><br>alpha_dB = <span class="hljs-number">-46</span>;<span class="hljs-comment">% reference_path_loss_dB</span><br>alpha = <span class="hljs-number">10</span>^(alpha_dB/<span class="hljs-number">10</span>);<br>l = lambda/<span class="hljs-number">2</span>;<br>Pt_dBm = <span class="hljs-number">43</span>;<br>Pt = <span class="hljs-number">10</span>^((Pt_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>); <span class="hljs-comment">% W</span><br>sigma_dBm = <span class="hljs-number">-60</span>;<br>sigma = <span class="hljs-number">10</span>^((sigma_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br><br>K = <span class="hljs-number">1600</span>;<br><br>SNR_coop = [];<br><span class="hljs-keyword">for</span> K1 = <span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">1530</span><br>    SNR_coop = [SNR_coop Pt*alpha^<span class="hljs-number">3</span>/(ds*dr*dt)^<span class="hljs-number">2</span>*K1^<span class="hljs-number">2</span>*(K-K1)^<span class="hljs-number">2</span>/sigma];<br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">1530</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_coop))<br>ylim([<span class="hljs-number">-8</span> <span class="hljs-number">18</span>])<br><span class="hljs-built_in">hold</span> on;<br><br>SNR_single =  Pt*alpha^<span class="hljs-number">2</span>/(dr*ds)^<span class="hljs-number">2</span>*K^<span class="hljs-number">2</span>/sigma;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">1530</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_single)*<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">length</span>(SNR_coop)), <span class="hljs-string">&#x27;r--&#x27;</span>);<br><span class="hljs-built_in">hold</span> on;<br><br><br>K = <span class="hljs-number">800</span>;<br><br>SNR_coop_2 = [];<br><span class="hljs-keyword">for</span> K1 = <span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">800</span><span class="hljs-number">-70</span><br>    SNR_coop_2 = [SNR_coop_2 Pt*alpha^<span class="hljs-number">3</span>/(ds*dr*dt)^<span class="hljs-number">2</span>*K1^<span class="hljs-number">2</span>*(K-K1)^<span class="hljs-number">2</span>/sigma];<br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">800</span><span class="hljs-number">-70</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_coop_2))<br>ylim([<span class="hljs-number">-8</span> <span class="hljs-number">18</span>])<br><span class="hljs-built_in">hold</span> on;<br><br>SNR_single_2 =  Pt*alpha^<span class="hljs-number">2</span>/(dr*ds)^<span class="hljs-number">2</span>*K^<span class="hljs-number">2</span>/sigma;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">800</span><span class="hljs-number">-70</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_single_2)*<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">length</span>(SNR_coop_2)), <span class="hljs-string">&#x27;r--&#x27;</span>);<br><span class="hljs-built_in">hold</span> off;<br>grid on;<br></code></pre></td></tr></table></figure>
-
 <p>需要用到一个function：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dis</span> = <span class="hljs-title">caculate_dis_3d</span><span class="hljs-params">(loc1, loc2)</span></span><br>    dis = <span class="hljs-built_in">sqrt</span>((loc1(<span class="hljs-number">1</span>)-loc2(<span class="hljs-number">1</span>))^<span class="hljs-number">2</span>+(loc1(<span class="hljs-number">2</span>)-loc2(<span class="hljs-number">2</span>))^<span class="hljs-number">2</span>+(loc1(<span class="hljs-number">3</span>)-loc2(<span class="hljs-number">3</span>))^<span class="hljs-number">2</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220623_1.jpg" srcset="/img/loading.gif" lazyload alt="20220623_1" style="zoom: 67%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220623_1.jpg" srcset="/img/loading.gif" lazyload alt="20220623_1" style="zoom: 67%;" /></p>
 <div class="note note-warning">
-            <p>结果和作者文中的结果有一定的出入，但是在相对的增益上是相同的：</p><ul><li>800 elements 和1600 elements 的benchmark case之间差约6dB</li><li>800 elements 和1600 elements 的two IRS cooperation case之间差约12dB</li></ul><p>说明仿真问题应该是在某些稀疏上进行了整体的缩放。</p>
+            <p>结果和作者文中的结果有一定的出入，但是在相对的增益上是相同的：</p><ul><li>800 elements 和1600 elements 的benchmark case之间差约6dB</li><li>800 elements 和1600 elements 的two IRS cooperation case之间差约12dB</li></ul><p>说明仿真问题应该是在某些稀疏上进行了整体的缩放。</p>
           </div>
-
-<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><ul>
-<li>作者提出这个模型，前提条件是inner IRS信道是rank-one的。这个rank-one到底决定了$\textbf{S}$推导的哪一步？</li>
+<h2 id="question">Question</h2>
+<ul>
+<li>作者提出这个模型，前提条件是inner IRS信道是rank-one的。这个rank-one到底决定了<span class="math inline">\(\textbf{S}\)</span>推导的哪一步？</li>
 </ul>
 <p>if IRS 1 beams towards one element on IRS 2, the rest elements on IRS 2 can enjoy the same power gain</p>
 <ul>

@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          269 字
+          260 字
         
       </span>
     
@@ -323,114 +323,118 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Deep-Waveform"><a href="#Deep-Waveform" class="headerlink" title="Deep-Waveform"></a>Deep-Waveform</h1><p><strong>Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-Valued Convolutional Networks</strong>.  <em>Zhongyuan Zhao</em> et.al.  <strong>IEEE Journal on Selected Areas in Communications, August 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9448141">pdf</a>)  (Citations <strong>25</strong>)</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/zhongyuanzhao/dl_ofdm">Open-source software </a></p>
+                <h1 id="deep-waveform">Deep-Waveform</h1>
+<p><strong>Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-Valued Convolutional Networks</strong>. <em>Zhongyuan Zhao</em> et.al. <strong>IEEE Journal on Selected Areas in Communications, August 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9448141">pdf</a>) (Citations <strong>25</strong>)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhongyuanzhao/dl_ofdm">Open-source software</a></p>
 <p>提出了一种利用deep complex-valued convolutional network 实现直接从时域信号解调OFDM bits的方案</p>
 <ul>
 <li>结合CP-exploitation, channel estimation, and intersymbol interference，一起取得了比较好的效果</li>
-<li>指导了新的方法进行复数运算<ul>
+<li>指导了新的方法进行复数运算
+<ul>
 <li>传统方案一：拼成两列</li>
 <li>传统方案二：two channel</li>
-</ul>
-</li>
+</ul></li>
 <li>Two stages for training in fading channel.</li>
 <li>代码开源</li>
 </ul>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
-<li>Use a deep complex-valued convolutional network (DCCN) to recover bits from time-domain OFDM signals without relying on any explicit DFT&#x2F;IDFT.</li>
+<h2 id="quick-overview">Quick Overview</h2>
+<ul>
+<li>Use a deep complex-valued convolutional network (DCCN) to recover bits from time-domain OFDM signals without relying on any explicit DFT/IDFT.</li>
 <li>has the advantage of combining CP-exploitation, channel estimation, and intersymbol interference.</li>
-<li>guidelines of exact and approximate implementations of a complex-valued convolutional layer are provided for the design and analysis of convolutional networks for wireless PHY. </li>
+<li>guidelines of exact and approximate implementations of a complex-valued convolutional layer are provided for the design and analysis of convolutional networks for wireless PHY.</li>
 <li>a suite of novel training techniques are developed to improve the convergence and generalizability of the trained model in fading channels.</li>
 </ul>
-<p>The Authors claimed that process complex data  in the $\mathbb{R}^2$ is differs from $\mathbb{C}$ field in multiplicative operations.</p>
+<p>The Authors claimed that process complex data in the <span class="math inline">\(\mathbb{R}^2\)</span> is differs from <span class="math inline">\(\mathbb{C}\)</span> field in multiplicative operations.</p>
 <p>And DCCN can:</p>
 <ul>
-<li>a learned linear transform to replace DFT&#x2F;IDFT by exploiting its cyclic prefix (CP).</li>
+<li>a learned linear transform to replace DFT/IDFT by exploiting its cyclic prefix (CP).</li>
 <li>a data-driven interpretable DCCN channel equalizer that outperformances the legacy receivers and lower complexity. Combine CP exploitation, intersymbol interference mitigation and channel estimation.</li>
 <li>a training methods to improve the convergence and generalizability of the DNN-based receiver in fading channel.</li>
 </ul>
-<h2 id="OFDM-system"><a href="#OFDM-system" class="headerlink" title="OFDM system"></a>OFDM system</h2><p>Diagram of legacy OFDM PHY</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652494.png" srcset="/img/loading.gif" lazyload alt="image-20240118153805786" style="zoom:33%;" />
-
+<h2 id="ofdm-system">OFDM system</h2>
+<p>Diagram of legacy OFDM PHY</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652494.png" srcset="/img/loading.gif" lazyload alt="image-20240118153805786" style="zoom:33%;" /></p>
 <p>Exemplary OFDM coherence slot and time-domain waveform</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652608.png" srcset="/img/loading.gif" lazyload alt="image-20240118153824808" style="zoom:33%;" />
-
-<p>An OFDM symbol contains $N&#x3D;32$ subcarriers, and $G&#x3D;10$ DC guard band and edge guard band among the subcarriers. </p>
-<p>A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains $F&#x3D;8$ OFDM symbols, with $P&#x3D;7\times 8&#x3D;56$ pilot REs and $D&#x3D;16\times8&#x3D;128$ data REs, respectively. </p>
-<p>The length of a time-domain full OFDM symbol is $S&#x3D;N+N_{CP}$.</p>
-<h2 id="Channel-estimation"><a href="#Channel-estimation" class="headerlink" title="Channel estimation"></a>Channel estimation</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652892.png" srcset="/img/loading.gif" lazyload alt="image-20240118161650143" style="zoom:33%;" />
-
-
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652608.png" srcset="/img/loading.gif" lazyload alt="image-20240118153824808" style="zoom:33%;" /></p>
+<p>An OFDM symbol contains <span class="math inline">\(N=32\)</span> subcarriers, and <span class="math inline">\(G=10\)</span> DC guard band and edge guard band among the subcarriers.</p>
+<p>A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains <span class="math inline">\(F=8\)</span> OFDM symbols, with <span class="math inline">\(P=7\times 8=56\)</span> pilot REs and <span class="math inline">\(D=16\times8=128\)</span> data REs, respectively.</p>
+<p>The length of a time-domain full OFDM symbol is <span class="math inline">\(S=N+N_{CP}\)</span>.</p>
+<h2 id="channel-estimation">Channel estimation</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652892.png" srcset="/img/loading.gif" lazyload alt="image-20240118161650143" style="zoom:33%;" /></p>
 <p>Pilot signals are of either constant signal or low auto-correlation sequence (e.g., Zadoff-Chu sequence) known at the receiver. The basic pilot-aided channel equalizer in OFDM system is based on the least square (LS) estimator.</p>
-<h2 id="Whole-Structure"><a href="#Whole-Structure" class="headerlink" title="Whole Structure"></a>Whole Structure</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652002.png" srcset="/img/loading.gif" lazyload alt="image-20240118163753636"></p>
-<p>And two stage training. </p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652006.png" srcset="/img/loading.gif" lazyload alt="image-20240118163923111" style="zoom:33%;" />
-
-
-
-<h2 id="Simplify"><a href="#Simplify" class="headerlink" title="Simplify"></a>Simplify</h2><p>Using the legacy data REs extraction and demodulation (Equalizer?)</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652912.png" srcset="/img/loading.gif" lazyload alt="image-20240118163730156" style="zoom:33%;" />
-
-
-
-<h1 id="Another-paper-old-version-https-arxiv-org-abs-1810-07181v3"><a href="#Another-paper-old-version-https-arxiv-org-abs-1810-07181v3" class="headerlink" title="Another paper&#x2F; old version https://arxiv.org/abs/1810.07181v3"></a>Another paper&#x2F; old version <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1810.07181v3">https://arxiv.org/abs/1810.07181v3</a></h1><ul>
+<h2 id="whole-structure">Whole Structure</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652002.png" srcset="/img/loading.gif" lazyload alt="image-20240118163753636" /><figcaption aria-hidden="true">image-20240118163753636</figcaption>
+</figure>
+<p>And two stage training.</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652006.png" srcset="/img/loading.gif" lazyload alt="image-20240118163923111" style="zoom:33%;" /></p>
+<h2 id="simplify">Simplify</h2>
+<p>Using the legacy data REs extraction and demodulation (Equalizer?)</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181652912.png" srcset="/img/loading.gif" lazyload alt="image-20240118163730156" style="zoom:33%;" /></p>
+<h1 id="another-paper-old-version-httpsarxiv.orgabs1810.07181v3">Another paper/ old version https://arxiv.org/abs/1810.07181v3</h1>
+<ul>
 <li>The model contains both dense and convolutional layers which are mostly linear activated, and new structures of residual and skip connections. (different from other works which only contain Fully-Connected layer and Relu activation.)</li>
 <li>complex convolutional layer is implemented within Tensorflow to process complex IQ data, instead of treating it as two independent real numbers.</li>
 </ul>
 <p>Typical pilot patterns in OFDM system are: block, comb, and scattered</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000673.png" srcset="/img/loading.gif" lazyload alt="image-20240305111123753"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000673.png" srcset="/img/loading.gif" lazyload alt="image-20240305111123753" /><figcaption aria-hidden="true">image-20240305111123753</figcaption>
+</figure>
 <span class="label label-primary">It is recommended to keep the CP while recovering the bits from the time-domain waveform.</span>
-
-<h2 id="Basic-OFDM-Receiver-AWGN"><a href="#Basic-OFDM-Receiver-AWGN" class="headerlink" title="Basic OFDM Receiver (AWGN)"></a>Basic OFDM Receiver (AWGN)</h2><p>Firtstly, the author trains the basic DCCN OFDM receiver (i.e., without channel equalizer) for bit recovery. </p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000676.png" srcset="/img/loading.gif" lazyload alt="image-20240305175722646" style="zoom:33%;" />
-
+<h2 id="basic-ofdm-receiver-awgn">Basic OFDM Receiver (AWGN)</h2>
+<p>Firtstly, the author trains the basic DCCN OFDM receiver (i.e., without channel equalizer) for bit recovery.</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000676.png" srcset="/img/loading.gif" lazyload alt="image-20240305175722646" style="zoom:33%;" /></p>
 <ul>
-<li>The first part includes first 3 layers, which is intended to transform time-domain OFDM symbol into frequency-domain. The major component of the first part is a Complex Conv (C-Conv) layer of size N × S(N) × 1.<ul>
+<li>The first part includes first 3 layers, which is intended to transform time-domain OFDM symbol into frequency-domain. The major component of the first part is a Complex Conv (C-Conv) layer of size N × S(N) × 1.
+<ul>
 <li>DCCN can drop CP by configuration. Dropping the CP before Complex 1D-Conv.</li>
-</ul>
-</li>
-<li>The second part contains layers 4 to 6, which is intended to extract all the data cells of an OFDM frame, this is implemented by an FC layer.<ul>
+</ul></li>
+<li>The second part contains layers 4 to 6, which is intended to extract all the data cells of an OFDM frame, this is implemented by an FC layer.
+<ul>
 <li>the real part and imaginary part are stored in the last dimension of the tensors.</li>
+</ul></li>
+<li>Part 3 is for demodulation, which is convert the complex IQ data into soft bits. The output of softmax activation are soft bits, which represents each bit with 2 real numbers (e.g. Log-Likelihoods of 0 and 1).</li>
 </ul>
-</li>
-<li>Part 3 is for demodulation, which is convert the complex IQ data into soft bits. The output of softmax activation are soft bits, which represents each bit with 2 real numbers (e.g. Log-Likelihoods of 0 and 1).</li>
-</ul>
-<h2 id="OFDM-receiver-Equalizer"><a href="#OFDM-receiver-Equalizer" class="headerlink" title="OFDM receiver Equalizer"></a>OFDM receiver Equalizer</h2><ul>
+<h2 id="ofdm-receiver-equalizer">OFDM receiver Equalizer</h2>
+<ul>
 <li>The equalizer usually located in the frequency domain to avoid the convolutional operator. Thus, the DFT-like component is located before the LS-like Equalization.</li>
 </ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000666.png" srcset="/img/loading.gif" lazyload alt="image-20240305181423944"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000666.png" srcset="/img/loading.gif" lazyload alt="image-20240305181423944" /><figcaption aria-hidden="true">image-20240305181423944</figcaption>
+</figure>
 <ul>
-<li>The first (layer 0-5) and fourth parts (last 4 layers) are DFT&#x2F;IDFT-like complex Conv layers intended to perform time&#x2F;frequency domain transformation. The layer 3 and last 2 layer are used for CP removing and adding back.</li>
+<li>The first (layer 0-5) and fourth parts (last 4 layers) are DFT/IDFT-like complex Conv layers intended to perform time/frequency domain transformation. The layer 3 and last 2 layer are used for CP removing and adding back.</li>
 <li>Part 2, from layers 6 to 19, is for channel estimation.</li>
-<li>Part 3, layer 20, is frequency domain channel equalization implemented by complex division: the output of part 1 (frequency domain receive signal) over the output of part 2 (channel estimates).<ul>
-<li>LS-like channel equalizer</li>
-</ul>
-</li>
-</ul>
-<h3 id="Training-configurations"><a href="#Training-configurations" class="headerlink" title="Training configurations"></a>Training configurations</h3><p>The Two-stage training configurations:</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000628.png" srcset="/img/loading.gif" lazyload alt="image-20240305182353730"></p>
+<li>Part 3, layer 20, is frequency domain channel equalization implemented by complex division: the output of part 1 (frequency domain receive signal) over the output of part 2 (channel estimates).
 <ul>
-<li>It’s too complex to be trained together at one time. </li>
+<li>LS-like channel equalizer</li>
+</ul></li>
+</ul>
+<h3 id="training-configurations">Training configurations</h3>
+<p>The Two-stage training configurations:</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000628.png" srcset="/img/loading.gif" lazyload alt="image-20240305182353730" /><figcaption aria-hidden="true">image-20240305182353730</figcaption>
+</figure>
+<ul>
+<li>It’s too complex to be trained together at one time.</li>
 <li>Firstly, training the basic OFDM receiver in AWGN channel <span class="label label-primary">without fading</span></li>
 <li>Then, Load the pre-trained basic OFDM receiver and insert the DCCN Equalizer before the DCCN OFDM receiver.</li>
 <li>Lastly, generate the Rx data <span class="label label-primary">with fading</span>, and only the DCCN Equalizer is trained.</li>
-<li>Some tracks:<ul>
+<li>Some tracks:
+<ul>
 <li>mini batch</li>
 <li>to tensor</li>
 <li>small and decaying learning rate</li>
 <li>early stopping</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>The <span class="label label-primary">same loss function</span> is used in the two stages. And the loss function is:</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000617.png" srcset="/img/loading.gif" lazyload alt="image-20240305182603431" style="zoom: 67%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000617.png" srcset="/img/loading.gif" lazyload alt="image-20240305182603431" style="zoom: 67%;" /></p>
 <ul>
-<li>The logarithmic BER could prevent diminishing gradient due to tiny changes of CE when BER is very small. </li>
+<li>The logarithmic BER could prevent diminishing gradient due to tiny changes of CE when BER is very small.</li>
 <li>Training SNR:</li>
 </ul>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000669.png" srcset="/img/loading.gif" lazyload alt="image-20240305183646134" style="zoom: 67%;" />
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403052000669.png" srcset="/img/loading.gif" lazyload alt="image-20240305183646134" style="zoom: 67%;" /></p>
 
                 
               </div>

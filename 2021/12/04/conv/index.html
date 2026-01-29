@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          996 字
         
       </span>
     
@@ -325,31 +325,66 @@
             
               <div class="markdown-body">
                 
-                <h1 id="通信基础-卷积-滤波-原理及Matlab实现"><a href="#通信基础-卷积-滤波-原理及Matlab实现" class="headerlink" title="通信基础-卷积&#x2F;滤波(原理及Matlab实现)"></a>通信基础-卷积&#x2F;滤波(原理及Matlab实现)</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>若有两个在定义域上可积的函数$f(x)$和$g(x)$，波形如下：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a9424a77d482f4dc01ddfa01d05be699.png" srcset="/img/loading.gif" lazyload alt="55f37ca13c8e2d21fb00aa2bf65c6d1"></p>
+                <h1 id="通信基础-卷积滤波原理及matlab实现">通信基础-卷积/滤波(原理及Matlab实现)</h1>
+<h2 id="原理">原理</h2>
+<p>若有两个在定义域上可积的函数<span class="math inline">\(f(x)\)</span>和<span class="math inline">\(g(x)\)</span>，波形如下：</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/a9424a77d482f4dc01ddfa01d05be699.png" srcset="/img/loading.gif" lazyload alt="55f37ca13c8e2d21fb00aa2bf65c6d1" /><figcaption aria-hidden="true">55f37ca13c8e2d21fb00aa2bf65c6d1</figcaption>
+</figure>
 <p>则卷积的定义为：</p>
-<p>连续形式：$f(x)*g(x)&#x3D;\int^{\infty}_{-\infty}g(\tau)f(x-\tau)$</p>
-<p>离散形式：$f(n)*g(n)&#x3D;\sum_{i&#x3D;-\infty}^{\infty}g(i)f(n-i)$</p>
-<p>看起来略微有点复杂，其物理意义就是将可积函数$f(x)$前后翻转颠倒（卷积中的-卷）；再进行相乘求积分&#x2F;求和（卷积中的-积）。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/08aba5b10d5b7cd6f3b3736b7a667b44.png" srcset="/img/loading.gif" lazyload alt="f61355f876f0b6176d5b3f2767a0395"></p>
-<p>对应的步骤拆解为上图，可以把$g(x)$看做一个窗，这个窗固定不动，$f(x)$在翻转后，从左到右进入窗，并与窗对应点相乘并求和&#x2F;积分，当$f(x)$穿过整个窗后，卷积运算结束。</p>
-<h2 id="Matlab仿真"><a href="#Matlab仿真" class="headerlink" title="Matlab仿真"></a>Matlab仿真</h2><p>有两种实现方式，第一种是调用其filter函数；第二种是手动运算。</p>
-<h3 id="滤波器设计"><a href="#滤波器设计" class="headerlink" title="滤波器设计"></a>滤波器设计</h3><p>设计一个简单的低通滤波，分离开2KHz和4KHz。<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/486b7107a74144818d84642a5d8e0b31.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h3 id="filter函数"><a href="#filter函数" class="headerlink" title="filter函数"></a>filter函数</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% 测试卷积</span><br>clc;clear;close all;<br>Fs = <span class="hljs-number">20000</span>; <span class="hljs-comment">%采样率</span><br>fc1 = <span class="hljs-number">2000</span>; <span class="hljs-comment">%第一个正弦波频率2Khz</span><br>fc2 = <span class="hljs-number">4000</span>;<span class="hljs-comment">% 第二个正弦波频率4Khz</span><br>N = <span class="hljs-number">4096</span>;<span class="hljs-comment">%fft点数</span><br>t = <span class="hljs-number">0</span>:<span class="hljs-number">1</span>/Fs:<span class="hljs-number">100</span>/Fs;<span class="hljs-comment">%时间序列</span><br>y1 = <span class="hljs-built_in">cos</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*fc1*t);<span class="hljs-comment">% 第一个正弦波</span><br>y2 = <span class="hljs-built_in">cos</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*fc2*t);<span class="hljs-comment">% 第二个正弦波</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br>subplot(<span class="hljs-number">211</span>)<br><span class="hljs-built_in">plot</span>(t, y1, <span class="hljs-string">&#x27;b&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;t&#x27;</span>)<br>title(<span class="hljs-string">&#x27;f=2KHz正弦波&#x27;</span>)<br>subplot(<span class="hljs-number">212</span>)<br><span class="hljs-built_in">plot</span>(t, y2, <span class="hljs-string">&#x27;r&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;t&#x27;</span>)<br>title(<span class="hljs-string">&#x27;f=4KHz正弦波&#x27;</span>)<br><span class="hljs-built_in">figure</span>(<span class="hljs-number">2</span>)<br>subplot(<span class="hljs-number">211</span>)<br>y_mix = y1+y2;<span class="hljs-comment">% 混合信号</span><br><span class="hljs-built_in">plot</span>(t, y_mix)<br>title(<span class="hljs-string">&#x27;2KHz和4KHz信号混合后的波形&#x27;</span>)<br>subplot(<span class="hljs-number">212</span>)<br>x = <span class="hljs-number">0</span>:Fs/N:(N<span class="hljs-number">-1</span>)/N*Fs; <span class="hljs-comment">%频率序列</span><br><span class="hljs-built_in">plot</span>(x, <span class="hljs-built_in">abs</span>(fft(y_mix, N)))<span class="hljs-comment">% 做N点fft</span><br>xlabel(<span class="hljs-string">&#x27;Hz&#x27;</span>)<br>title(<span class="hljs-string">&#x27;混合后的频谱图&#x27;</span>)<br><span class="hljs-comment">%使用自带filter函数滤波</span><br>filter_coffe = load(<span class="hljs-string">&#x27;filter_coffe&#x27;</span>);<span class="hljs-comment">% 读取滤波器系数，可直接使用filter designer设计低通滤波器</span><br>filter_coffe = filter_coffe.Num;<br>filter_after = filter(filter_coffe, <span class="hljs-number">1</span>, y_mix);<span class="hljs-comment">% 使用filter函数滤波</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">3</span>)<br>subplot(<span class="hljs-number">211</span>)<br><span class="hljs-built_in">plot</span>(t, filter_after)<br>title(<span class="hljs-string">&#x27;使用filter函数滤波后时域图&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;t&#x27;</span>)<br>subplot(<span class="hljs-number">212</span>)<br><span class="hljs-built_in">plot</span>(x, <span class="hljs-built_in">abs</span>(fft(filter_after, N)))<br>title(<span class="hljs-string">&#x27;使用filter函数滤波后频域图&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;Hz&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="手动实现"><a href="#手动实现" class="headerlink" title="手动实现"></a>手动实现</h3><p>过程就和上面第一点中讲的完全相同，先翻转一个信号，再依点送入并和另外一个信号对应相乘求和&#x2F;积分。</p>
+<p>连续形式：<span class="math inline">\(f(x)*g(x)=\int^{\infty}_{-\infty}g(\tau)f(x-\tau)\)</span></p>
+<p>离散形式：<span class="math inline">\(f(n)*g(n)=\sum_{i=-\infty}^{\infty}g(i)f(n-i)\)</span></p>
+<p>看起来略微有点复杂，其物理意义就是将可积函数<span class="math inline">\(f(x)\)</span>前后翻转颠倒（卷积中的-卷）；再进行相乘求积分/求和（卷积中的-积）。</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/08aba5b10d5b7cd6f3b3736b7a667b44.png" srcset="/img/loading.gif" lazyload alt="f61355f876f0b6176d5b3f2767a0395" /><figcaption aria-hidden="true">f61355f876f0b6176d5b3f2767a0395</figcaption>
+</figure>
+<p>对应的步骤拆解为上图，可以把<span class="math inline">\(g(x)\)</span>看做一个窗，这个窗固定不动，<span class="math inline">\(f(x)\)</span>在翻转后，从左到右进入窗，并与窗对应点相乘并求和/积分，当<span class="math inline">\(f(x)\)</span>穿过整个窗后，卷积运算结束。</p>
+<h2 id="matlab仿真">Matlab仿真</h2>
+<p>有两种实现方式，第一种是调用其filter函数；第二种是手动运算。 ### 滤波器设计 设计一个简单的低通滤波，分离开2KHz和4KHz。 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/486b7107a74144818d84642a5d8e0b31.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> ### filter函数</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% 测试卷积</span><br>clc;clear;close all;<br>Fs = <span class="hljs-number">20000</span>; <span class="hljs-comment">%采样率</span><br>fc1 = <span class="hljs-number">2000</span>; <span class="hljs-comment">%第一个正弦波频率2Khz</span><br>fc2 = <span class="hljs-number">4000</span>;<span class="hljs-comment">% 第二个正弦波频率4Khz</span><br>N = <span class="hljs-number">4096</span>;<span class="hljs-comment">%fft点数</span><br>t = <span class="hljs-number">0</span>:<span class="hljs-number">1</span>/Fs:<span class="hljs-number">100</span>/Fs;<span class="hljs-comment">%时间序列</span><br>y1 = <span class="hljs-built_in">cos</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*fc1*t);<span class="hljs-comment">% 第一个正弦波</span><br>y2 = <span class="hljs-built_in">cos</span>(<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*fc2*t);<span class="hljs-comment">% 第二个正弦波</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br>subplot(<span class="hljs-number">211</span>)<br><span class="hljs-built_in">plot</span>(t, y1, <span class="hljs-string">&#x27;b&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;t&#x27;</span>)<br>title(<span class="hljs-string">&#x27;f=2KHz正弦波&#x27;</span>)<br>subplot(<span class="hljs-number">212</span>)<br><span class="hljs-built_in">plot</span>(t, y2, <span class="hljs-string">&#x27;r&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;t&#x27;</span>)<br>title(<span class="hljs-string">&#x27;f=4KHz正弦波&#x27;</span>)<br><span class="hljs-built_in">figure</span>(<span class="hljs-number">2</span>)<br>subplot(<span class="hljs-number">211</span>)<br>y_mix = y1+y2;<span class="hljs-comment">% 混合信号</span><br><span class="hljs-built_in">plot</span>(t, y_mix)<br>title(<span class="hljs-string">&#x27;2KHz和4KHz信号混合后的波形&#x27;</span>)<br>subplot(<span class="hljs-number">212</span>)<br>x = <span class="hljs-number">0</span>:Fs/N:(N<span class="hljs-number">-1</span>)/N*Fs; <span class="hljs-comment">%频率序列</span><br><span class="hljs-built_in">plot</span>(x, <span class="hljs-built_in">abs</span>(fft(y_mix, N)))<span class="hljs-comment">% 做N点fft</span><br>xlabel(<span class="hljs-string">&#x27;Hz&#x27;</span>)<br>title(<span class="hljs-string">&#x27;混合后的频谱图&#x27;</span>)<br><span class="hljs-comment">%使用自带filter函数滤波</span><br>filter_coffe = load(<span class="hljs-string">&#x27;filter_coffe&#x27;</span>);<span class="hljs-comment">% 读取滤波器系数，可直接使用filter designer设计低通滤波器</span><br>filter_coffe = filter_coffe.Num;<br>filter_after = filter(filter_coffe, <span class="hljs-number">1</span>, y_mix);<span class="hljs-comment">% 使用filter函数滤波</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">3</span>)<br>subplot(<span class="hljs-number">211</span>)<br><span class="hljs-built_in">plot</span>(t, filter_after)<br>title(<span class="hljs-string">&#x27;使用filter函数滤波后时域图&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;t&#x27;</span>)<br>subplot(<span class="hljs-number">212</span>)<br><span class="hljs-built_in">plot</span>(x, <span class="hljs-built_in">abs</span>(fft(filter_after, N)))<br>title(<span class="hljs-string">&#x27;使用filter函数滤波后频域图&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;Hz&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="手动实现">手动实现</h3>
+<p>过程就和上面第一点中讲的完全相同，先翻转一个信号，再依点送入并和另外一个信号对应相乘求和/积分。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% 自己定义滤波 先倒过来，然后一步一步往里推数据，再相乘求和。数据窗长应该和滤波器系数长度相同</span><br>fft_data = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(filter_coffe), <span class="hljs-number">1</span>); <span class="hljs-comment">%准备数据窗长</span><br>y_fft_in = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(filter_coffe)<span class="hljs-number">-1</span>+<span class="hljs-built_in">length</span>(y_mix), <span class="hljs-number">1</span>);<span class="hljs-comment">% 先准备一个全0序列</span><br>y_fft_in(<span class="hljs-built_in">length</span>(filter_coffe):<span class="hljs-keyword">end</span>, <span class="hljs-number">1</span>) = y_mix(<span class="hljs-keyword">end</span>:<span class="hljs-number">-1</span>:<span class="hljs-number">1</span>);<span class="hljs-comment">% 给全0序列后面填翻转后的数据。整个过程等于在给原始数据前面补0</span><br>y_fft_out = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(y_mix), <span class="hljs-number">1</span>);<span class="hljs-comment">% 准备输出数据的位置</span><br><span class="hljs-keyword">for</span> step=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(y_mix)   <br>    y_fft_out(step) = filter_coffe*y_fft_in(step:step+<span class="hljs-built_in">length</span>(filter_coffe)<span class="hljs-number">-1</span>); <span class="hljs-comment">%相乘求和</span><br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">4</span>)<br>subplot(<span class="hljs-number">211</span>)<br><span class="hljs-built_in">plot</span>(t, y_fft_out)<br>title(<span class="hljs-string">&#x27;手动实现滤波的时域图&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;t&#x27;</span>)<br>subplot(<span class="hljs-number">212</span>)<br><span class="hljs-built_in">plot</span>(x, <span class="hljs-built_in">abs</span>(fft(y_fft_out, N)))<br>title(<span class="hljs-string">&#x27;手动实现滤波的频域图&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;Hz&#x27;</span>)<br></code></pre></td></tr></table></figure>
-
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>先产生两个频率的正弦波，并混合。<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215145850.png" srcset="/img/loading.gif" lazyload width="60%"><br>混合后的时域和频域波形<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215156905.png" srcset="/img/loading.gif" lazyload width="60%"><br>使用filter函数滤波结果<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215206566.png" srcset="/img/loading.gif" lazyload width="60%"><br>使用自定义方法滤波:<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215215585.png" srcset="/img/loading.gif" lazyload width="60%"></p>
-<h2 id="补充（与相关的关系）"><a href="#补充（与相关的关系）" class="headerlink" title="补充（与相关的关系）"></a>补充（与相关的关系）</h2><ul>
-<li><strong>卷积</strong>&#x3D;补零-&gt;翻转-&gt;Hadamard积-&gt;求和</li>
-<li>相关&#x3D;补零-&gt;Hadamard积-&gt;求和</li>
+<h2 id="结果">结果</h2>
+<p>先产生两个频率的正弦波，并混合。 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215145850.png" srcset="/img/loading.gif" lazyload width="60%"> 混合后的时域和频域波形 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215156905.png" srcset="/img/loading.gif" lazyload width="60%"> 使用filter函数滤波结果 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215206566.png" srcset="/img/loading.gif" lazyload width="60%"> 使用自定义方法滤波: <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20210928215215585.png" srcset="/img/loading.gif" lazyload width="60%"></p>
+<h2 id="补充与相关的关系">补充（与相关的关系）</h2>
+<ul>
+<li><strong>卷积</strong>=补零-&gt;翻转-&gt;Hadamard积-&gt;求和</li>
+<li>相关=补零-&gt;Hadamard积-&gt;求和</li>
 </ul>
-<p>$$<br>\begin{aligned}<br>&amp;x&#x3D;[3,6,2] \<br>&amp;y&#x3D;[2,1,0]\<br>\</p>
-<p>&amp;r_{x y}(-2)&#x3D;\quad \begin{array}{lllll}<br>&amp;&amp;3 &amp; 6 &amp; 2\<br>2 &amp; 1 &amp; 0&amp;&amp;&amp;&#x3D;3\times 0&#x3D;0<br>\end{array}\<br>\<br>&amp;r_{x y}(-1)&#x3D;\quad \begin{array}{lllll}<br>&amp;3 &amp; 6 &amp; 2\<br>2 &amp; 1 &amp; 0&amp;&amp;&amp;&#x3D;3\times 1+6\times0&#x3D;3<br>\end{array}\<br>\<br>&amp;r_{x y}(0)&#x3D;\quad \begin{array}{lllll}<br>3 &amp; 6 &amp; 2\<br>2 &amp; 1 &amp; 0&amp;&amp;&amp;&#x3D;3\times 2+6\times1+2\times0&#x3D;12<br>\end{array}\<br>\<br>&amp;r_{x y}(1)&#x3D;\quad \begin{array}{lllll}<br>3 &amp; 6 &amp; 2\<br>&amp;2 &amp; 1 &amp; 0&amp;&amp;&amp;&#x3D;3\times 0+6\times2+2\times1&#x3D;14<br>\end{array}\<br>\<br>&amp;r_{x y}(2)&#x3D;\quad \begin{array}{lllll}<br>3 &amp; 6 &amp; 2\<br>&amp;&amp;2 &amp; 1 &amp; 0&amp;&amp;&amp;&#x3D;2\times2&#x3D;4<br>\end{array}\</p>
-<p>\end{aligned}<br>$$</p>
+$$
+<span class="math display">\[\begin{aligned}
+&amp;x=[3,6,2] \\
+&amp;y=[2,1,0]\\
+\\
+
+&amp;r_{x y}(-2)=\quad \begin{array}{lllll}
+&amp;&amp;3 &amp; 6 &amp; 2\\
+2 &amp; 1 &amp; 0&amp;&amp;&amp;=3\times 0=0
+\end{array}\\
+\\
+&amp;r_{x y}(-1)=\quad \begin{array}{lllll}
+&amp;3 &amp; 6 &amp; 2\\
+2 &amp; 1 &amp; 0&amp;&amp;&amp;=3\times 1+6\times0=3
+\end{array}\\
+\\
+&amp;r_{x y}(0)=\quad \begin{array}{lllll}
+3 &amp; 6 &amp; 2\\
+2 &amp; 1 &amp; 0&amp;&amp;&amp;=3\times 2+6\times1+2\times0=12
+\end{array}\\
+\\
+&amp;r_{x y}(1)=\quad \begin{array}{lllll}
+3 &amp; 6 &amp; 2\\
+&amp;2 &amp; 1 &amp; 0&amp;&amp;&amp;=3\times 0+6\times2+2\times1=14
+\end{array}\\
+\\
+&amp;r_{x y}(2)=\quad \begin{array}{lllll}
+3 &amp; 6 &amp; 2\\
+&amp;&amp;2 &amp; 1 &amp; 0&amp;&amp;&amp;=2\times2=4
+\end{array}\\
+
+\end{aligned}\]</span>
+<p>$$</p>
 
                 
               </div>

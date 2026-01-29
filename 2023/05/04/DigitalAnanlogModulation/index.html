@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          222 字
+          210 字
         
       </span>
     
@@ -324,47 +324,55 @@
               <div class="markdown-body">
                 
                 <p><a target="_blank" rel="noopener" href="https://github.com/Joffrey-lc/Digital-and-Analog-Modulations">All Code can be found in Github</a></p>
-<p>Digital Modulations and Analog Modulations including 2FSK\4QAM\4PSK\2ASK and AM\DSB\SSB\FM. </p>
+<p>Digital Modulations and Analog Modulations including 2FSK\4QAM\4PSK\2ASK and AM.</p>
 <p>There are Polar code and frequency hopping in Digital Modulation.</p>
-<p>Especially, due to the imperfect character of digital filter, the simulation of 2FSK does not match the theoretical values. The difference will vanish with the decreased number of frequencies selected in frequency hopping. </p>
-<h2 id="Digital-Modulations"><a href="#Digital-Modulations" class="headerlink" title="Digital Modulations"></a>Digital Modulations</h2><h3 id="QPSK"><a href="#QPSK" class="headerlink" title="QPSK"></a>QPSK</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514196.jpeg" srcset="/img/loading.gif" lazyload alt="decd46a10e4237aff3048222793848a" style="zoom:33%;" />
-
-<h3 id="2ASK"><a href="#2ASK" class="headerlink" title="2ASK"></a>2ASK</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514179.jpeg" srcset="/img/loading.gif" lazyload alt="d53b5853c39d163163f835c4059b947" style="zoom: 33%;" />
-
-<h3 id="2FSK"><a href="#2FSK" class="headerlink" title="2FSK"></a>2FSK</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514186.jpeg" srcset="/img/loading.gif" lazyload alt="da402ee4c27ddd3f2e27e562eb6b8b1" style="zoom:33%;" />
-
-<p>&#x3D;&#x3D;(No longer envelope detection)&#x3D;&#x3D;</p>
+<p>Especially, due to the imperfect character of digital filter, the simulation of 2FSK does not match the theoretical values. The difference will vanish with the decreased number of frequencies selected in frequency hopping.</p>
+<h2 id="digital-modulations">Digital Modulations</h2>
+<h3 id="qpsk">QPSK</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514196.jpeg" srcset="/img/loading.gif" lazyload alt="decd46a10e4237aff3048222793848a" style="zoom:33%;" /></p>
+<h3 id="ask">2ASK</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514179.jpeg" srcset="/img/loading.gif" lazyload alt="d53b5853c39d163163f835c4059b947" style="zoom: 33%;" /></p>
+<h3 id="fsk">2FSK</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514186.jpeg" srcset="/img/loading.gif" lazyload alt="da402ee4c27ddd3f2e27e562eb6b8b1" style="zoom:33%;" /></p>
+<p>==(No longer envelope detection)==</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab"> <span class="hljs-keyword">for</span> p=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(st1)/sps<br>    <span class="hljs-keyword">for</span> is = sps*(p<span class="hljs-number">-1</span>):sps*(p)<span class="hljs-number">-1</span><br>        st1_sum(p) = st1_sum(p)+st1(is+<span class="hljs-number">1</span>);<br>        st2_sum(p) = st2_sum(p)+st2(is+<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>rx_data = (st1_sum-st2_sum);<br></code></pre></td></tr></table></figure>
-
-<h3 id="4QAM"><a href="#4QAM" class="headerlink" title="4QAM"></a>4QAM</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514171.jpeg" srcset="/img/loading.gif" lazyload alt="a940b5d5779316e9e05e8e7b8dbe19e"></p>
-<h2 id="Analog-Modulations"><a href="#Analog-Modulations" class="headerlink" title="Analog Modulations"></a>Analog Modulations</h2><h3 id="AM"><a href="#AM" class="headerlink" title="AM"></a>AM</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514168.jpeg" srcset="/img/loading.gif" lazyload alt="889aaf78e35af52c2a35489fa447c5a" style="zoom:50%;" />
-
+<h3 id="qam">4QAM</h3>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514171.jpeg" srcset="/img/loading.gif" lazyload alt="a940b5d5779316e9e05e8e7b8dbe19e" /><figcaption aria-hidden="true">a940b5d5779316e9e05e8e7b8dbe19e</figcaption>
+</figure>
+<h2 id="analog-modulations">Analog Modulations</h2>
+<h3 id="am">AM</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514168.jpeg" srcset="/img/loading.gif" lazyload alt="889aaf78e35af52c2a35489fa447c5a" style="zoom:50%;" /></p>
 <p>Refer to《通信原理》-第七版（樊昌信）Page 87</p>
-<p>It should satisfy $|m_t|_{max}\leq A_0$ and then we can use envelope detection</p>
-<h3 id="DSB"><a href="#DSB" class="headerlink" title="DSB"></a>DSB</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514101.jpeg" srcset="/img/loading.gif" lazyload alt="9eb6e312bb328814357b3fbf99de153" style="zoom: 50%;" />
-
-<h3 id="SSB"><a href="#SSB" class="headerlink" title="SSB"></a>SSB</h3><p>Refer to </p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514647.png" srcset="/img/loading.gif" lazyload alt="image-20230327152726140" style="zoom: 25%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514637.png" srcset="/img/loading.gif" lazyload alt="image-20230327152714021" style="zoom:33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514718.jpeg" srcset="/img/loading.gif" lazyload alt="a1a6e44169f9c3a43d61b8664bb7db7" style="zoom:33%;" />
-
-<h3 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514778.jpeg" srcset="/img/loading.gif" lazyload alt="b3b580ca7fc4769612aee4ed9decdee"></p>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>Sampling a stream of data with a small sampling rate will fold the signal, which means:<br>$$<br>f_\text{target}&#x3D;\left{f_{\text{original}}&#x2F;f_s\times2-\text{floor}(f_{\text{original}}&#x2F;f_s\times2)\right}\times f_s.<br>$$<br>.But in 2FSK, we found that:</p>
+<p>It should satisfy <span class="math inline">\(|m_t|_{max}\leq A_0\)</span> and then we can use envelope detection</p>
+<h3 id="dsb">DSB</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514101.jpeg" srcset="/img/loading.gif" lazyload alt="9eb6e312bb328814357b3fbf99de153" style="zoom: 50%;" /></p>
+<h3 id="ssb">SSB</h3>
+<p>Refer to</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514647.png" srcset="/img/loading.gif" lazyload alt="image-20230327152726140" style="zoom: 25%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514637.png" srcset="/img/loading.gif" lazyload alt="image-20230327152714021" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514718.jpeg" srcset="/img/loading.gif" lazyload alt="a1a6e44169f9c3a43d61b8664bb7db7" style="zoom:33%;" /></p>
+<h3 id="fm">FM</h3>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514778.jpeg" srcset="/img/loading.gif" lazyload alt="b3b580ca7fc4769612aee4ed9decdee" /><figcaption aria-hidden="true">b3b580ca7fc4769612aee4ed9decdee</figcaption>
+</figure>
+<h2 id="notes">Notes</h2>
+<p>Sampling a stream of data with a small sampling rate will fold the signal, which means: <span class="math display">\[
+f_\text{target}=\left\{f_{\text{original}}/f_s\times2-\text{floor}(f_{\text{original}}/f_s\times2)\right\}\times f_s.
+\]</span> .But in 2FSK, we found that:</p>
 <ul>
-<li>If  $f_{\text{original}}&#x2F;f_s$ is even, it holds,</li>
-<li>If $f_{\text{original}}&#x2F;f_s$ is odd, it should be $f_{t}&#x3D;0.5\times f_s-f_{\text{target}}$</li>
+<li>If <span class="math inline">\(f_{\text{original}}/f_s\)</span> is even, it holds,</li>
+<li>If <span class="math inline">\(f_{\text{original}}/f_s\)</span> is odd, it should be <span class="math inline">\(f_{t}=0.5\times f_s-f_{\text{target}}\)</span></li>
 </ul>
-<hr>
+<hr />
 <p>We use digital filter in matlab and there will be a time delay. It can be calculated as:</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">out</span> = <span class="hljs-title">firFilter</span><span class="hljs-params">(N, Wn, data)</span></span><br>    fir_lp =fir1(N, Wn, <span class="hljs-string">&#x27;low&#x27;</span>); <span class="hljs-comment">%截止频率为Wn*(fs/2) 使用汉明窗设计一个N阶低通带线性相位的FIR滤波器。</span><br>    out = conv(fir_lp,data);<br>    delay_t = <span class="hljs-built_in">round</span>((<span class="hljs-built_in">length</span>(fir_lp)<span class="hljs-number">-1</span>)/<span class="hljs-number">2</span>);  <span class="hljs-comment">%低通滤波器的延迟时长</span><br>    out = out(delay_t+<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>-delay_t);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<hr>
+<hr />
 <p>Conversion between EbN0 and SNR:</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">EbN0 = <span class="hljs-number">0</span>:<span class="hljs-number">1</span>:<span class="hljs-number">20</span>; <span class="hljs-comment">% Eb是每个bit的能量,N0是噪声的功率谱密度;EbN0=Eb/N0;</span><br>snr = EbN0 - <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(sps*<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)+<span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(<span class="hljs-built_in">log2</span>(M)); <span class="hljs-comment">% SNR和EbN0转换</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514958.png" srcset="/img/loading.gif" lazyload alt="image-20230504151349128"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514958.png" srcset="/img/loading.gif" lazyload alt="image-20230504151349128" /><figcaption aria-hidden="true">image-20230504151349128</figcaption>
+</figure>
 
                 
               </div>

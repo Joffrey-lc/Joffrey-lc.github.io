@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          607 字
+          608 字
         
       </span>
     
@@ -324,24 +324,21 @@
             
               <div class="markdown-body">
                 
-                <h2 id="制作论文插图"><a href="#制作论文插图" class="headerlink" title="制作论文插图"></a>制作论文插图</h2><p>有人喜欢用visio，有人喜欢用drawio，我就不一样了，我喜欢的drawio+viso。这也没办法。drawio画图舒服，但是导出的矢量图插入word有bug，<a target="_blank" rel="noopener" href="https://desk.draw.io/support/solutions/articles/16000042487">详情见这里</a>，但是我试了没有用，所以只能用drawio画好后，用visio打开，调整一下可能变化的格式，然后导出矢量图插入word。</p>
-<h2 id="visio调整格式"><a href="#visio调整格式" class="headerlink" title="visio调整格式"></a>visio调整格式</h2><p>假如说现在已经在drawio画好了图，如下：<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/91f772eb97cb4b36a0deeb1110858011.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>保存为.svg文件<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/70a7bd2998054a5c98e28b7e9df889a1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>然后用visio打开，如下：<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/0dfc294f0dd94f90812cf019edfae868.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>发现有个主要问题，就是用latex打的公式在visio中不能识别。我在visio和word套件中都是用的AxMath插件，类似于Mathtype。现在重新打公式。插入对象AxMath:<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9e8e93b5ac3d4d139d06b9be8f5c3646.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>完成后结果如下：<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/de2bed6d89574ad781c8c8d9c1b79980.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>删掉周围的空白部分<br>①在空白处右键选择显示ShapeSheet<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1e23f934a7ef417cb613b6f758775ad6.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>②将参数改为如下所示：<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9a8699c59eb04682b43eac6763a1f086.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>③选择设计-&gt;大小-&gt;适应绘图<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/dcc9bd31b5374770bfeac8e08787f0b5.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>得到了一个没有白边的图：<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9734dcf8d4cd447bb6f106171784b375.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<p>然后就是保存为矢量图，我习惯用.emf文件，不容易出问题。</p>
-<h2 id="在word中插入"><a href="#在word中插入" class="headerlink" title="在word中插入"></a>在word中插入</h2><p>就如同插入图片，直接插入就可以</p>
-<h2 id="转pdf"><a href="#转pdf" class="headerlink" title="转pdf"></a>转pdf</h2><p>转为pdf容易出现问题，<del>最好装上Adobe套件</del>：建议直接用系统自带的pdf打印机打印pdf，这样基本上不会出问题。<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/70b98db116e54f8c956fccbb28f21a3a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>选择另存为Adobe PDF即可。</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>如果选择的.svg，转为pdf后会出现公式模糊；不使用Adobe套件，矢量图的字体会放得极大，完全失真</p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>有时候用python画好的图，只需要保存为.svg格式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">plt.savefig(<span class="hljs-string">&#x27;Acc with SNR.svg&#x27;</span>, <span class="hljs-built_in">format</span>=<span class="hljs-string">&#x27;svg&#x27;</span>)<br></code></pre></td></tr></table></figure>
-<p>直接插入word是不行的，线条会乱掉。解决办法是下一个<a target="_blank" rel="noopener" href="https://inkscape.org/">inkscape</a>然后直接打开python导出的.svg矢量图。选中图像主体，按<code><strong>ctrl</strong>+<strong>shift</strong>+<strong>R</strong></code>,去除白边之后再另存为.emf文件即可。</p>
-<p>#LaTex插入矢量图</p>
-<h2 id="制作矢量图"><a href="#制作矢量图" class="headerlink" title="制作矢量图"></a>制作矢量图</h2><p>visio画好图之后，另存为pdf。<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/c38ea1b813da42d8be1dd2b2bddc6077.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<h2 id="使用inkscape编辑"><a href="#使用inkscape编辑" class="headerlink" title="使用inkscape编辑"></a>使用inkscape编辑</h2><p>inkscape导入的pdf图有两个问题，第一是有黑色的边框；第二是有白边。我找到一种简单粗暴的解决方法：<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/dbdb92b8f7c54a54a8afbe9fdb9d5752.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<ol>
-<li>先用inkscape打开pdf图<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b9baa2037d8247418842a55a8ab2bed9.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
-<li>选中要保存的主体并直接复制，<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b399e488cbcd43b5a6272ce53e445701.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
-<li>然后新建一个inkscape文档，直接粘贴，并在选中粘贴内容的情况下按<code><strong>ctrl</strong>+<strong>shift</strong>+<strong>R</strong></code>,去除白边之后再另存为.eps文件即可.<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4847c3863aee42a99d839d376001ea2c.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+                <h2 id="制作论文插图">制作论文插图</h2>
+<p>有人喜欢用visio，有人喜欢用drawio，我就不一样了，我喜欢的drawio+viso。这也没办法。drawio画图舒服，但是导出的矢量图插入word有bug，<a target="_blank" rel="noopener" href="https://desk.draw.io/support/solutions/articles/16000042487">详情见这里</a>，但是我试了没有用，所以只能用drawio画好后，用visio打开，调整一下可能变化的格式，然后导出矢量图插入word。 ## visio调整格式 假如说现在已经在drawio画好了图，如下： <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/91f772eb97cb4b36a0deeb1110858011.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> 保存为.svg文件 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/70a7bd2998054a5c98e28b7e9df889a1.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> 然后用visio打开，如下： <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/0dfc294f0dd94f90812cf019edfae868.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> 发现有个主要问题，就是用latex打的公式在visio中不能识别。我在visio和word套件中都是用的AxMath插件，类似于Mathtype。现在重新打公式。插入对象AxMath: <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9e8e93b5ac3d4d139d06b9be8f5c3646.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> 完成后结果如下： <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/de2bed6d89574ad781c8c8d9c1b79980.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> 删掉周围的空白部分 ①在空白处右键选择显示ShapeSheet <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1e23f934a7ef417cb613b6f758775ad6.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> ②将参数改为如下所示： <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9a8699c59eb04682b43eac6763a1f086.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> ③选择设计-&gt;大小-&gt;适应绘图 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/dcc9bd31b5374770bfeac8e08787f0b5.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> 得到了一个没有白边的图： <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/9734dcf8d4cd447bb6f106171784b375.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /></p>
+<p>然后就是保存为矢量图，我习惯用.emf文件，不容易出问题。 ## 在word中插入 就如同插入图片，直接插入就可以 ## 转pdf 转为pdf容易出现问题，<del>最好装上Adobe套件</del>：建议直接用系统自带的pdf打印机打印pdf，这样基本上不会出问题。 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/70b98db116e54f8c956fccbb28f21a3a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> 选择另存为Adobe PDF即可。</p>
+<h2 id="注意">注意</h2>
+<p>如果选择的.svg，转为pdf后会出现公式模糊；不使用Adobe套件，矢量图的字体会放得极大，完全失真</p>
+<h2 id="补充">补充</h2>
+<p>有时候用python画好的图，只需要保存为.svg格式： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">plt.savefig(<span class="hljs-string">&#x27;Acc with SNR.svg&#x27;</span>, <span class="hljs-built_in">format</span>=<span class="hljs-string">&#x27;svg&#x27;</span>)<br></code></pre></td></tr></table></figure> 直接插入word是不行的，线条会乱掉。解决办法是下一个<a target="_blank" rel="noopener" href="https://inkscape.org/">inkscape</a>然后直接打开python导出的.svg矢量图。选中图像主体，按<code><strong>ctrl</strong>+<strong>shift</strong>+<strong>R</strong></code>,去除白边之后再另存为.emf文件即可。</p>
+<p>#LaTex插入矢量图 ## 制作矢量图 visio画好图之后，另存为pdf。 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/c38ea1b813da42d8be1dd2b2bddc6077.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /> ## 使用inkscape编辑 inkscape导入的pdf图有两个问题，第一是有黑色的边框；第二是有白边。我找到一种简单粗暴的解决方法： <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/dbdb92b8f7c54a54a8afbe9fdb9d5752.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /></p>
+<ol type="1">
+<li>先用inkscape打开pdf图<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b9baa2037d8247418842a55a8ab2bed9.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /></li>
+<li>选中要保存的主体并直接复制，<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/b399e488cbcd43b5a6272ce53e445701.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /></li>
+<li>然后新建一个inkscape文档，直接粘贴，并在选中粘贴内容的情况下按<code><strong>ctrl</strong>+<strong>shift</strong>+<strong>R</strong></code>,去除白边之后再另存为.eps文件即可. <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/4847c3863aee42a99d839d376001ea2c.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" /></li>
 </ol>
-<h1 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h1><p>在word中推荐使用emf，在latex中推荐使用eps</p>
+<h1 id="注意-1">注意</h1>
+<p>在word中推荐使用emf，在latex中推荐使用eps</p>
 
                 
               </div>

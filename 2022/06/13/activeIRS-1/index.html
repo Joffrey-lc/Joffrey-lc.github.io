@@ -263,7 +263,7 @@
         
         
         
-          12 分钟
+          11 分钟
         
       </span>
     
@@ -324,114 +324,114 @@
             
               <div class="markdown-body">
                 
-                <p><strong>Wireless Communication Aided by Intelligent Reflecting Surface: Active or Passive?</strong>.  <em>Changsheng You</em> et.al.  <strong>IEEE Wireless Communications Letters, Dec.  2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9530750">pdf</a>)  (Citations <strong>9</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><strong>a single antenna access point communicates with a single-antenna user</strong></p>
-<p>rate-maximization with passive&#x2F;active IRS:</p>
+                <p><strong>Wireless Communication Aided by Intelligent Reflecting Surface: Active or Passive?</strong>. <em>Changsheng You</em> et.al. <strong>IEEE Wireless Communications Letters, Dec. 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9530750">pdf</a>) (Citations <strong>9</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<p><strong>a single antenna access point communicates with a single-antenna user</strong></p>
+<p>rate-maximization with passive/active IRS:</p>
 <ul>
 <li>active IRS should be deployed closer to the RECEIVER with the decreasing amplification power of the active IRS <span class="label label-success">（known in Lemma1）</span></li>
 <li>passive IRS is known to be near the transmitter or receiver to minimize the path-loss <span class="label label-success">(known in my-note section 3.2)</span></li>
 </ul>
 <p>optimal the placement:</p>
 <ul>
-<li>passive IRS outperform active IRS when the number of element is sufficiently large&#x2F; the amplification power of the active IRS is too small.<span class="label label-success">(known in my-note section 3.3)</span></li>
-<li>optimal placement to maximize the weighted sum-rate of uplink and downlink communications. Passive is more likely to  achieve superior rate performance.<span class="label label-success">(known in my-note section 3.4)</span></li>
+<li>passive IRS outperform active IRS when the number of element is sufficiently large/ the amplification power of the active IRS is too small.<span class="label label-success">(known in my-note section 3.3)</span></li>
+<li>optimal placement to maximize the weighted sum-rate of uplink and downlink communications. Passive is more likely to achieve superior rate performance.<span class="label label-success">(known in my-note section 3.4)</span></li>
 </ul>
-<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613195634274.png" srcset="/img/loading.gif" lazyload alt="System Model"></p>
-<h2 id="Main-Work"><a href="#Main-Work" class="headerlink" title="Main Work"></a>Main Work</h2><h3 id="Active-IRS"><a href="#Active-IRS" class="headerlink" title="Active IRS"></a>Active IRS</h3><p>$$<br>y_{\mathrm{act}}&#x3D;\boldsymbol{h}<em>{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta}\left(\boldsymbol{h}</em>{\mathrm{AI}} s+\boldsymbol{n}_{\mathrm{F}}\right)+n<br>$$</p>
-<p>achievable rate &#x3D; $\log_2(1+\text{SNR})&#x3D;\log <em>{2}\left(1+\frac{P</em>{\mathrm{A}}\left|\boldsymbol{h}<em>{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta} \boldsymbol{h}</em>{\mathrm{AI}}\right|^{2}}{\left|\boldsymbol{h}<em>{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta}\right|^{2} \sigma</em>{\mathrm{F}}^{2}+\sigma^{2}}\right)$</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200418754.png" srcset="/img/loading.gif" lazyload alt="image-20220613200418754" style="zoom:33%;" />
-
-<p>得到优化目标**（P1）：**</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200547459.png" srcset="/img/loading.gif" lazyload alt="image-20220613200547459" style="zoom: 67%;" />
-
-<p>然后由于（4a）恒成立（是e的指数次项），且（4e）等价形式$P_{\mathrm{F}} \geq N P_{\mathrm{A}} \beta &#x2F;\left(D^{2}&#x2F;4+H^{2}\right)+N \sigma_{\mathrm{F}}^{2}$</p>
+<h2 id="model">Model</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613195634274.png" srcset="/img/loading.gif" lazyload alt="System Model" /><figcaption aria-hidden="true">System Model</figcaption>
+</figure>
+<h2 id="main-work">Main Work</h2>
+<h3 id="active-irs">Active IRS</h3>
+<p><span class="math display">\[
+y_{\mathrm{act}}=\boldsymbol{h}_{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta}\left(\boldsymbol{h}_{\mathrm{AI}} s+\boldsymbol{n}_{\mathrm{F}}\right)+n
+\]</span></p>
+<p>achievable rate = <span class="math inline">\(\log_2(1+\text{SNR})=\log _{2}\left(1+\frac{P_{\mathrm{A}}\left|\boldsymbol{h}_{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta} \boldsymbol{h}_{\mathrm{AI}}\right|^{2}}{\left\|\boldsymbol{h}_{\mathrm{IU}}^{H} \eta \boldsymbol{\Theta}\right\|^{2} \sigma_{\mathrm{F}}^{2}+\sigma^{2}}\right)\)</span></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200418754.png" srcset="/img/loading.gif" lazyload alt="image-20220613200418754" style="zoom:33%;" /></p>
+<p>得到优化目标<strong>（P1）：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200547459.png" srcset="/img/loading.gif" lazyload alt="image-20220613200547459" style="zoom: 67%;" /></p>
+<p>然后由于（4a）恒成立（是e的指数次项），且（4e）等价形式<span class="math inline">\(P_{\mathrm{F}} \geq N P_{\mathrm{A}} \beta /\left(D^{2}/4+H^{2}\right)+N \sigma_{\mathrm{F}}^{2}\)</span></p>
 <span class="label label-warning">（原文这个等式有错误，$D^2$没有乘系数1/4）</span>
-
-<p>得到等效的**（P2）:**</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200850218.png" srcset="/img/loading.gif" lazyload alt="image-20220613200850218" style="zoom: 67%;" />
-
-<p>因为信道建模为：<br>$$<br>\boldsymbol{h}<em>{\mathrm{AI}}&#x3D;h</em>{\mathrm{AI}} \boldsymbol{a}<em>{\mathrm{r}}\left(\theta</em>{\mathrm{AI}}^{\mathrm{r}}, \vartheta_{\mathrm{AI}}^{\mathrm{r}}, N\right), \text { where } h_{\mathrm{AI}} \triangleq \sqrt{\beta &#x2F; d_{\mathrm{AI}}^{2}} e^{-j \frac{2 \pi}{\lambda} d_{\mathrm{AI}}}<br>$$<br>优化目标就是<strong>max(SINR)</strong></p>
-<p>整理得到优化目标**（P3）：**</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613201108869.png" srcset="/img/loading.gif" lazyload alt="image-20220613201108869" style="zoom:67%;" />
-
+<p>得到等效的<strong>（P2）:</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613200850218.png" srcset="/img/loading.gif" lazyload alt="image-20220613200850218" style="zoom: 67%;" /></p>
+<p>因为信道建模为： <span class="math display">\[
+\boldsymbol{h}_{\mathrm{AI}}=h_{\mathrm{AI}} \boldsymbol{a}_{\mathrm{r}}\left(\theta_{\mathrm{AI}}^{\mathrm{r}}, \vartheta_{\mathrm{AI}}^{\mathrm{r}}, N\right), \text { where } h_{\mathrm{AI}} \triangleq \sqrt{\beta / d_{\mathrm{AI}}^{2}} e^{-j \frac{2 \pi}{\lambda} d_{\mathrm{AI}}}
+\]</span> 优化目标就是<strong>max(SINR)</strong></p>
+<p>整理得到优化目标<strong>（P3）：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613201108869.png" srcset="/img/loading.gif" lazyload alt="image-20220613201108869" style="zoom:67%;" /></p>
 <blockquote>
-<p>可以得到<strong>Lemma1</strong>:AP-IRS的距离$x_{AI}$随$P_F$的增大而单调递减；随$N$非减。<strong>(随$P_F$的单调递减证明没看懂)</strong></p>
+<p>可以得到<strong>Lemma1</strong>:AP-IRS的距离<span class="math inline">\(x_{AI}\)</span>随<span class="math inline">\(P_F\)</span>的增大而单调递减；随<span class="math inline">\(N\)</span>非减。<strong>(随<span class="math inline">\(P_F\)</span>的单调递减证明没看懂)</strong></p>
 </blockquote>
 <p>然后有给定的<strong>lemma2：</strong></p>
 <blockquote>
-<p>给定$H\ll D$:<br>$$<br>\max \left{C_{1} d_{\mathrm{AI}}^{2}, C_{2} d_{\mathrm{IU}}^{2}\right} \gg C_{3} d_{\mathrm{AI}}^{2} d_{\mathrm{IU}}^{2}, \forall x_{\mathrm{AI}} \in[0, D]<br>$$<br>如果有：<br>$$<br>\sqrt{P_{A} \beta} &#x2F; \sigma_{\mathrm{F}}+\sqrt{P_{F} \beta} &#x2F; \sigma \gg D<br>$$</p>
+<p>给定<span class="math inline">\(H\ll D\)</span>: <span class="math display">\[
+\max \left\{C_{1} d_{\mathrm{AI}}^{2}, C_{2} d_{\mathrm{IU}}^{2}\right\} \gg C_{3} d_{\mathrm{AI}}^{2} d_{\mathrm{IU}}^{2}, \forall x_{\mathrm{AI}} \in[0, D]
+\]</span> 如果有： <span class="math display">\[
+\sqrt{P_{A} \beta} / \sigma_{\mathrm{F}}+\sqrt{P_{F} \beta} / \sigma \gg D
+\]</span></p>
 </blockquote>
-<p>所以由<strong>Lemma2</strong>可以得到优化目标**（P4）：**</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613203905971.png" srcset="/img/loading.gif" lazyload alt="image-20220613203905971" style="zoom:67%;" />
-
+<p>所以由<strong>Lemma2</strong>可以得到优化目标<strong>（P4）：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613203905971.png" srcset="/img/loading.gif" lazyload alt="image-20220613203905971" style="zoom:67%;" /></p>
 <p>这就是个高中数学题：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613211827054.png" srcset="/img/loading.gif" lazyload alt="image-20220613211827054" style="zoom: 33%;" />
-
-<h3 id="Passive-IRS"><a href="#Passive-IRS" class="headerlink" title="Passive IRS"></a>Passive IRS</h3><p>与active IRS 类似，得到$\mathrm{SNR}<em>{\text {pas }}^{(\mathrm{DL})}&#x3D;\frac{P</em>{\mathrm{A}} \beta^{2} N^{2}}{d_{\mathrm{AI}}^{2} d_{\mathrm{IU}}^{2} \sigma^{2}}$，然后由参考文献给出，对于Passive IRS，$x_{AI}&#x3D;0\quad or\quad D$，得到：<br>$$<br>\mathrm{SNR}<em>{\text {pas }}^{(\mathrm{DL}) *} \approx \widetilde{\mathrm{SNR}}</em>{\text {pas }}^{(\mathrm{DL})} \triangleq \frac{P_{\mathrm{A}} \beta^{2} N^{2}}{H^{2}\left(D^{2}+H^{2}\right) \sigma^{2}}<br>$$</p>
-<h3 id="Active-IRS-versus-Passive-IRS"><a href="#Active-IRS-versus-Passive-IRS" class="headerlink" title="Active IRS versus Passive IRS"></a>Active IRS versus Passive IRS</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213941563.png" srcset="/img/loading.gif" lazyload alt="image-20220613213941563" style="zoom:67%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213954293.png" srcset="/img/loading.gif" lazyload alt="image-20220613213954293" style="zoom: 33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613211827054.png" srcset="/img/loading.gif" lazyload alt="image-20220613211827054" style="zoom: 33%;" /></p>
+<h3 id="passive-irs">Passive IRS</h3>
+<p>与active IRS 类似，得到<span class="math inline">\(\mathrm{SNR}_{\text {pas }}^{(\mathrm{DL})}=\frac{P_{\mathrm{A}} \beta^{2} N^{2}}{d_{\mathrm{AI}}^{2} d_{\mathrm{IU}}^{2} \sigma^{2}}\)</span>，然后由参考文献给出，对于Passive IRS，<span class="math inline">\(x_{AI}=0\quad or\quad D\)</span>，得到： <span class="math display">\[
+\mathrm{SNR}_{\text {pas }}^{(\mathrm{DL}) *} \approx \widetilde{\mathrm{SNR}}_{\text {pas }}^{(\mathrm{DL})} \triangleq \frac{P_{\mathrm{A}} \beta^{2} N^{2}}{H^{2}\left(D^{2}+H^{2}\right) \sigma^{2}}
+\]</span></p>
+<h3 id="active-irs-versus-passive-irs">Active IRS versus Passive IRS</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213941563.png" srcset="/img/loading.gif" lazyload alt="image-20220613213941563" style="zoom:67%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220613213954293.png" srcset="/img/loading.gif" lazyload alt="image-20220613213954293" style="zoom: 33%;" /></p>
 <p>即：</p>
 <blockquote>
-<p>给定较小的$H$，当Active IRS的功率$P_F$太小或者IRS装配了大量的elements（$N$很大），Passive IRS 往往优于 Active IRS。</p>
+<p>给定较小的<span class="math inline">\(H\)</span>，当Active IRS的功率<span class="math inline">\(P_F\)</span>太小或者IRS装配了大量的elements（<span class="math inline">\(N\)</span>很大），Passive IRS 往往优于 Active IRS。</p>
 </blockquote>
-<h3 id="Joint-Downlink-and-Uplink-communication"><a href="#Joint-Downlink-and-Uplink-communication" class="headerlink" title="Joint Downlink and Uplink communication"></a>Joint Downlink and Uplink communication</h3><p> maximize the weighted sum-rate of uplink and downlink communications.</p>
-<p>对于一个较小的$P_F$，active IRS 在上行时应该接近AP， 在下行接近User（see Lemma1）。（需要权衡）</p>
-<p>而Passive IRS，IRS放置于AP或者User，对于上行&#x2F;下行都是最佳（因为上行的$x_{AI}&#x3D;0 orD$和下行的最佳$x_{AI}&#x3D;Dor0$是相同的）。（直接最佳）</p>
-<h2 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h2><h3 id="参数设置"><a href="#参数设置" class="headerlink" title="参数设置:"></a>参数设置:</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs matlab">N=<span class="hljs-number">400</span>; <span class="hljs-comment">% number of IRS elements</span><br>H=<span class="hljs-number">1.5</span>; <span class="hljs-comment">% IRS altitude</span><br>fc =<span class="hljs-number">0.75e9</span>; <span class="hljs-comment">% carrier wave frequency</span><br>lambda = <span class="hljs-number">0.4</span>; <span class="hljs-comment">% wave length </span><br>D = <span class="hljs-number">50</span>; <span class="hljs-comment">% horizontal distance between AP and User</span><br><span class="hljs-comment">% Other parameters</span><br>PA_dBm = <span class="hljs-number">20</span>; <span class="hljs-comment">% the power of transmitter (DownLink)</span><br>PU_dBm = <span class="hljs-number">15</span>; <span class="hljs-comment">% the power of receiver (UpLink)</span><br>sigma_2_dBm = <span class="hljs-number">-80</span>; <span class="hljs-comment">% noise power from IRS to User</span><br>sigma_F_2_dBm = <span class="hljs-number">-70</span>; <span class="hljs-comment">% noise power from AP to IRS </span><br>beta_dB = <span class="hljs-number">-30</span>; <span class="hljs-comment">% reference path loss</span><br><span class="hljs-comment">% 转换为功率比</span><br>PA = <span class="hljs-number">10</span>^((PA_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>PU = <span class="hljs-number">10</span>^((PU_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>sigma_2 = <span class="hljs-number">10</span>^((sigma_2_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>sigma_F_2 = <span class="hljs-number">10</span>^((sigma_F_2_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br><span class="hljs-comment">% beta = (lambda/(4*pi))^2;</span><br><span class="hljs-built_in">beta</span> = <span class="hljs-number">10</span>^(beta_dB/<span class="hljs-number">10</span>);<br></code></pre></td></tr></table></figure>
-
-<h3 id="Fig-2"><a href="#Fig-2" class="headerlink" title="Fig. 2"></a>Fig. 2</h3><p>对比Optimal位置优化和Suboptimal位置优化，证明作者提出的Suboptimal是有效的：</p>
-<p>首先是Optimal way，对应于**（P3）**</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614141413650.png" srcset="/img/loading.gif" lazyload alt="image-20220614141413650" style="zoom: 67%;" />
-
+<h3 id="joint-downlink-and-uplink-communication">Joint Downlink and Uplink communication</h3>
+<p>maximize the weighted sum-rate of uplink and downlink communications.</p>
+<p>对于一个较小的<span class="math inline">\(P_F\)</span>，active IRS 在上行时应该接近AP， 在下行接近User（see Lemma1）。（需要权衡）</p>
+<p>而Passive IRS，IRS放置于AP或者User，对于上行/下行都是最佳（因为上行的<span class="math inline">\(x_{AI}=0 orD\)</span>和下行的最佳<span class="math inline">\(x_{AI}=Dor0\)</span>是相同的）。（直接最佳）</p>
+<h2 id="simulation">Simulation</h2>
+<h3 id="参数设置">参数设置:</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs matlab">N=<span class="hljs-number">400</span>; <span class="hljs-comment">% number of IRS elements</span><br>H=<span class="hljs-number">1.5</span>; <span class="hljs-comment">% IRS altitude</span><br>fc =<span class="hljs-number">0.75e9</span>; <span class="hljs-comment">% carrier wave frequency</span><br>lambda = <span class="hljs-number">0.4</span>; <span class="hljs-comment">% wave length </span><br>D = <span class="hljs-number">50</span>; <span class="hljs-comment">% horizontal distance between AP and User</span><br><span class="hljs-comment">% Other parameters</span><br>PA_dBm = <span class="hljs-number">20</span>; <span class="hljs-comment">% the power of transmitter (DownLink)</span><br>PU_dBm = <span class="hljs-number">15</span>; <span class="hljs-comment">% the power of receiver (UpLink)</span><br>sigma_2_dBm = <span class="hljs-number">-80</span>; <span class="hljs-comment">% noise power from IRS to User</span><br>sigma_F_2_dBm = <span class="hljs-number">-70</span>; <span class="hljs-comment">% noise power from AP to IRS </span><br>beta_dB = <span class="hljs-number">-30</span>; <span class="hljs-comment">% reference path loss</span><br><span class="hljs-comment">% 转换为功率比</span><br>PA = <span class="hljs-number">10</span>^((PA_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>PU = <span class="hljs-number">10</span>^((PU_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>sigma_2 = <span class="hljs-number">10</span>^((sigma_2_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>sigma_F_2 = <span class="hljs-number">10</span>^((sigma_F_2_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br><span class="hljs-comment">% beta = (lambda/(4*pi))^2;</span><br><span class="hljs-built_in">beta</span> = <span class="hljs-number">10</span>^(beta_dB/<span class="hljs-number">10</span>);<br></code></pre></td></tr></table></figure>
+<h3 id="fig.-2">Fig. 2</h3>
+<p>对比Optimal位置优化和Suboptimal位置优化，证明作者提出的Suboptimal是有效的：</p>
+<p>首先是Optimal way，对应于<strong>（P3）</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614141413650.png" srcset="/img/loading.gif" lazyload alt="image-20220614141413650" style="zoom: 67%;" /></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">out</span> = <span class="hljs-title">optimal_way</span><span class="hljs-params">(PA,PU,sigma_2,sigma_F_2,beta, N, H, D)</span></span><br>out = [];<br>    <span class="hljs-keyword">for</span> PF_dBm = <span class="hljs-number">0</span>:<span class="hljs-number">1</span>:<span class="hljs-number">10</span><br>        PF = <span class="hljs-number">10</span>^((PF_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>        x0 = <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, N*PA*<span class="hljs-built_in">beta</span>/(PF-N*sigma_F_2)-H^<span class="hljs-number">2</span>));<br>        max_obj=<span class="hljs-number">0</span>;<br>        max_indx = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> xa = x0:<span class="hljs-number">1</span>:D <span class="hljs-comment">% one-dimensional search to find the best placement</span><br>            C1 = <span class="hljs-built_in">beta</span>*sigma_F_2;<br>            C2 = PA*<span class="hljs-built_in">beta</span>*sigma_2/PF;<br>            C3 = sigma_2*sigma_F_2/PF;<br>            d_AI_2 = xa^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>;<br>            d_IU_2 = (D-xa)^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>;<br>            obj = PA*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N/(C1*d_AI_2+C2*d_IU_2+C3*d_AI_2*d_IU_2);<br>            <span class="hljs-keyword">if</span> obj&gt;max_obj<br>                max_obj = obj;<br>                max_indx = xa;<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>        out = [out max_indx];<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<p>然后是Suboptimal way，对应于**（P4）**:</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614141432027.png" srcset="/img/loading.gif" lazyload alt="image-20220614141432027" style="zoom:67%;" />
-
+<p>然后是Suboptimal way，对应于<strong>（P4）</strong>:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614141432027.png" srcset="/img/loading.gif" lazyload alt="image-20220614141432027" style="zoom:67%;" /></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">out</span> = <span class="hljs-title">suboptimal_way</span><span class="hljs-params">(PA,PU,sigma_2,sigma_F_2,beta, N, H, D)</span></span><br>    out = [];<br>    <span class="hljs-keyword">for</span> PF_dBm = <span class="hljs-number">0</span>:<span class="hljs-number">1</span>:<span class="hljs-number">10</span><br>        PF = <span class="hljs-number">10</span>^((PF_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>        x0 = <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, N*PA*<span class="hljs-built_in">beta</span>/(PF-N*sigma_F_2)-H^<span class="hljs-number">2</span>));<br>        out = [out <span class="hljs-built_in">max</span>(sigma_2*PA/(sigma_2*PA+sigma_F_2*PF)*D, x0)];<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_2.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_2" style="zoom: 33%;" />
-
-<h3 id="Fig-3"><a href="#Fig-3" class="headerlink" title="Fig. 3"></a>Fig. 3</h3><p>Active IRS的achievable rate需要先算SNR，再由$R&#x3D;\log_2(1+\text{SNR})$得到。为了方便计算，这里我用Suboptimal优化位置。对应于**（eqn.11）**</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142001512.png" srcset="/img/loading.gif" lazyload alt="eqn.11" style="zoom: 67%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_2.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_2" style="zoom: 33%;" /></p>
+<h3 id="fig.-3">Fig. 3</h3>
+<p>Active IRS的achievable rate需要先算SNR，再由<span class="math inline">\(R=\log_2(1+\text{SNR})\)</span>得到。为了方便计算，这里我用Suboptimal优化位置。对应于<strong>（eqn.11）</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142001512.png" srcset="/img/loading.gif" lazyload alt="eqn.11" style="zoom: 67%;" /></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">R_act</span> = <span class="hljs-title">ActiveIRS_achievable_rate</span><span class="hljs-params">(PA,PU,sigma_2,sigma_F_2,beta, H, D, PF)</span></span><br>    R_act = [];<br>    <span class="hljs-keyword">for</span> N=<span class="hljs-number">100</span>:<span class="hljs-number">10</span>:<span class="hljs-number">500</span><br>        <span class="hljs-comment">% 用Suboptimal的位置优化结果求achievable rate</span><br>        x0 = <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>, N*PA*<span class="hljs-built_in">beta</span>/(PF-N*sigma_F_2)-H^<span class="hljs-number">2</span>));<br>        threshold = sigma_2*PA*D/(sigma_2*PA+sigma_F_2*PF);<br>        <span class="hljs-keyword">if</span> x0&lt;=threshold<br>            SNR_act = N*<span class="hljs-built_in">beta</span>/(D^<span class="hljs-number">2</span>)*(PA/sigma_F_2+PF/sigma_2);<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;2&#x27;</span>)<span class="hljs-comment">%发现一个问题，所有的x0都小于threshold</span><br>            C1 = <span class="hljs-built_in">beta</span>*sigma_F_2;<br>            C2 = PA*<span class="hljs-built_in">beta</span>*sigma_2/PF;<br>            SNR_act = PA*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N/(C1*x0^<span class="hljs-number">2</span>+C2*(D-x0)^<span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">end</span><br>        R_act = [R_act <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_act)];<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
 <p>Passive IRS同理：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142032345.png" srcset="/img/loading.gif" lazyload alt="eqn.15" style="zoom:67%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142032345.png" srcset="/img/loading.gif" lazyload alt="eqn.15" style="zoom:67%;" /></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">R_pas</span> = <span class="hljs-title">PassiveIRS_achievable_rate</span><span class="hljs-params">(PA,PU,sigma_2,sigma_F_2,beta, H, D)</span></span><br>    R_pas = [];<br>    <span class="hljs-keyword">for</span> N=<span class="hljs-number">100</span>:<span class="hljs-number">10</span>:<span class="hljs-number">500</span><br>        SNR_pas = PA*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(H^<span class="hljs-number">2</span>*(H^<span class="hljs-number">2</span>+D^<span class="hljs-number">2</span>)*sigma_2);<br>        R_pas = [R_pas <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_pas)];<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_3.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_3" style="zoom:33%;" />
-
-<h3 id="Fig-4"><a href="#Fig-4" class="headerlink" title="Fig. 4"></a>Fig. 4</h3><p>计算weighted sum-rate，意味存在两个分配问题：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_3.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_3" style="zoom:33%;" /></p>
+<h3 id="fig.-4">Fig. 4</h3>
+<p>计算weighted sum-rate，意味存在两个分配问题：</p>
 <ul>
 <li>IRS位置</li>
-<li>上行、下行分配的时间（我是这么理解$w^{(UL)}$和$w^{(DL)}$）</li>
+<li>上行、下行分配的时间（我是这么理解<span class="math inline">\(w^{(UL)}\)</span>和<span class="math inline">\(w^{(DL)}\)</span>）</li>
 </ul>
-<p>对于Active IRS，对应**（P6）**：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142439139.png" srcset="/img/loading.gif" lazyload alt="image-20220614142439139" style="zoom:67%;" />
-
+<p>对于Active IRS，对应<strong>（P6）</strong>：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142439139.png" srcset="/img/loading.gif" lazyload alt="image-20220614142439139" style="zoom:67%;" /></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">out</span> = <span class="hljs-title">ActiveIRS_Weighted_Sum_rate</span><span class="hljs-params">(PA,PU,sigma_2,sigma_F_2,beta, N, H, D, PF)</span></span><br>    out = [];<br>    <span class="hljs-keyword">for</span> w_dl = <span class="hljs-number">0</span>:<span class="hljs-number">0.02</span>:<span class="hljs-number">1</span><br>        w_ul = <span class="hljs-number">1</span>-w_dl;<br>        max_obj = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> xa=<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:D<br>            d_AI_2 = xa^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>;<br>            d_IU_2 = (D-xa)^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>;<br>            R_act_UL = <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PU*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(<span class="hljs-built_in">beta</span>*N*sigma_F_2*d_IU_2+PU*<span class="hljs-built_in">beta</span>*N*sigma_2/PF*d_AI_2+N*sigma_2*sigma_F_2/PF*d_AI_2*d_IU_2));<br>            R_act_DL = <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PA*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(<span class="hljs-built_in">beta</span>*N*sigma_F_2*d_AI_2+PA*<span class="hljs-built_in">beta</span>*N*sigma_2/PF*d_IU_2+N*sigma_2*sigma_F_2/PF*d_AI_2*d_IU_2));<br>            obj = w_ul*R_act_UL+w_dl*R_act_DL;<br>            max_obj = <span class="hljs-built_in">max</span>(max_obj, obj);<br>        <span class="hljs-keyword">end</span><br>        out = [out , max_obj];<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<p>对于Passive IRS，对应**（P7）**：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142654269.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
-
+<p>对于Passive IRS，对应<strong>（P7）</strong>：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220614142654269.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">out</span> = <span class="hljs-title">PassiveIRS_Weighted_Sum_rate</span><span class="hljs-params">(PA,PU,sigma_2,sigma_F_2,beta, N, H, D, PF)</span></span><br>    out = [];<br>    <span class="hljs-keyword">for</span> w_dl = <span class="hljs-number">0</span>:<span class="hljs-number">0.02</span>:<span class="hljs-number">1</span><br>        w_ul = <span class="hljs-number">1</span>-w_dl;<br>        R_obj = w_ul*<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PU*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(H^<span class="hljs-number">2</span>*(D^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>)*sigma_2))+w_dl*<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PA*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(H^<span class="hljs-number">2</span>*(D^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>)*sigma_2));<br>        out = [out R_obj];<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_4.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_4" style="zoom:33%;" />
-
-<h3 id="Fig-5（结果和论文中有一定差异）"><a href="#Fig-5（结果和论文中有一定差异）" class="headerlink" title="Fig. 5（结果和论文中有一定差异）"></a>Fig. 5（<strong>结果和论文中有一定差异</strong>）</h3><p>考虑$H$对weighted sum-rate 的影响，Active IRS：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_4.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_4" style="zoom:33%;" /></p>
+<h3 id="fig.-5结果和论文中有一定差异">Fig. 5（<strong>结果和论文中有一定差异</strong>）</h3>
+<p>考虑<span class="math inline">\(H\)</span>对weighted sum-rate 的影响，Active IRS：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs matlab">w_dl = <span class="hljs-number">0.5</span>;<br>w_ul = <span class="hljs-number">1</span>-w_dl;<br>out = [];<br><span class="hljs-keyword">for</span> H = <span class="hljs-number">1.5</span>:<span class="hljs-number">0.5</span>:<span class="hljs-number">10</span><br>    max_obj = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> xa=<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:D<br>        d_AI_2 = xa^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>;<br>        d_IU_2 = (D-xa)^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>;<br>        R_act_UL = <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PU*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(<span class="hljs-built_in">beta</span>*N*sigma_F_2*d_IU_2+PU*<span class="hljs-built_in">beta</span>*N*sigma_2/PF*d_AI_2+N*sigma_2*sigma_F_2/PF*d_AI_2*d_IU_2));<br>        R_act_DL = <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PA*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(<span class="hljs-built_in">beta</span>*N*sigma_F_2*d_AI_2+PA*<span class="hljs-built_in">beta</span>*N*sigma_2/PF*d_IU_2+N*sigma_2*sigma_F_2/PF*d_AI_2*d_IU_2));<br>        obj = w_ul*R_act_UL+w_dl*R_act_DL;<br>        max_obj = <span class="hljs-built_in">max</span>(max_obj, obj);<br>    <span class="hljs-keyword">end</span><br>    out = [out , max_obj];<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
 <p>Passive IRS：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">out = [];<br><span class="hljs-keyword">for</span> H = <span class="hljs-number">1.5</span>:<span class="hljs-number">0.5</span>:<span class="hljs-number">10</span><br>    R_obj = w_ul*<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PU*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(H^<span class="hljs-number">2</span>*(D^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>)*sigma_2))+w_dl*<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+PA*<span class="hljs-built_in">beta</span>^<span class="hljs-number">2</span>*N^<span class="hljs-number">2</span>/(H^<span class="hljs-number">2</span>*(D^<span class="hljs-number">2</span>+H^<span class="hljs-number">2</span>)*sigma_2));<br>    out = [out, R_obj];<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_5.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_5" style="zoom:33%;" /></p>
+<h2 id="question">Question</h2>
+<h3 id="complex-channel-gain到底指什么">complex channel gain到底指什么?</h3>
+<h3 id="passive-irs-为什么xdx0">Passive IRS 为什么x=D/x=0?</h3>
 
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/activet_IRS_1_5.jpg" srcset="/img/loading.gif" lazyload alt="activet_IRS_1_5" style="zoom:33%;" />
-
-<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><h3 id="complex-channel-gain到底指什么"><a href="#complex-channel-gain到底指什么" class="headerlink" title="complex channel gain到底指什么?"></a>complex channel gain到底指什么?</h3><h3 id="Passive-IRS-为什么x-D-x-0"><a href="#Passive-IRS-为什么x-D-x-0" class="headerlink" title="Passive IRS 为什么x&#x3D;D&#x2F;x&#x3D;0?"></a>Passive IRS 为什么x&#x3D;D&#x2F;x&#x3D;0?</h3>
                 
               </div>
             

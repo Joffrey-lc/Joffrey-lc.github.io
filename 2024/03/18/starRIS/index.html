@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          203 字
+          188 字
         
       </span>
     
@@ -324,37 +324,38 @@
             
               <div class="markdown-body">
                 
-                <p>Date: 2024.03.18  10:50<br>Author: Joffrey LC</p>
-<hr>
-<p><strong>STAR-RISs: Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces</strong>.  <em>Jiaqi Xu</em> et.al.  <strong>IEEE Communications Letters, September 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9437234">pdf</a>)  (Citations <strong>171</strong>)</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181654450.png" srcset="/img/loading.gif" lazyload alt="image-20240318165416386" style="zoom:33%;" />
-
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
-<li><p>Full diversity order can be achieved on both sides. </p>
-</li>
-<li><p>Far field and near field model</p>
-</li>
-<li><p>&#x3D;&#x3D;The boundary between the near-field and the far-field is $2L_a^2&#x2F;\lambda$，where$L_a$ is the largest dimension of the RIS aperture.&#x3D;&#x3D;</p>
-</li>
+                <p>Date: 2024.03.18 10:50 Author: Joffrey LC</p>
+<hr />
+<p><strong>STAR-RISs: Simultaneous Transmitting and Reflecting Reconfigurable Intelligent Surfaces</strong>. <em>Jiaqi Xu</em> et.al. <strong>IEEE Communications Letters, September 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9437234">pdf</a>) (Citations <strong>171</strong>)</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181654450.png" srcset="/img/loading.gif" lazyload alt="image-20240318165416386" style="zoom:33%;" /></p>
+<h2 id="quick-overview">Quick Overview</h2>
+<ul>
+<li><p>Full diversity order can be achieved on both sides.</p></li>
+<li><p>Far field and near field model</p></li>
+<li><p>==The boundary between the near-field and the far-field is <span class="math inline">\(2L_a^2/\lambda\)</span>，where<span class="math inline">\(L_a\)</span> is the largest dimension of the RIS aperture.==</p></li>
 </ul>
-<h2 id="Far-field"><a href="#Far-field" class="headerlink" title="Far field"></a>Far field</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437233.png" srcset="/img/loading.gif" lazyload alt="image-20240318111855531" style="zoom: 33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437254.png" srcset="/img/loading.gif" lazyload alt="image-20240318112135611" style="zoom:33%;" />
-
+<h2 id="far-field">Far field</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437233.png" srcset="/img/loading.gif" lazyload alt="image-20240318111855531" style="zoom: 33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437254.png" srcset="/img/loading.gif" lazyload alt="image-20240318112135611" style="zoom:33%;" /></p>
 <ul>
 <li>反射和透射的RIS相移可 independently adjusted</li>
 <li>反射和透射有个功率分配，因为是passive，所以应该满足能量守恒</li>
 </ul>
-<h2 id="Near-field"><a href="#Near-field" class="headerlink" title="Near field"></a>Near field</h2><p>根据Fresnel-Kirchhoff diffraction formula，应该建模为$M$个单元的求和：<br>$$<br>g^\chi&#x3D;\frac{1}{j \lambda} \iint_{(\Sigma)} U^\chi(Q) F\left(\theta^\chi\right) \frac{e^{2 j \pi d_m^\chi &#x2F; \lambda}}{d^\chi} d \Sigma<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437329.png" srcset="/img/loading.gif" lazyload alt="image-20240318112839450" style="zoom:33%;" /><br>$$<br>g^\chi&#x3D;\frac{A_e}{j \lambda} \sum_m \Phi_m^\chi h_m F\left(\theta_m^\chi\right) \frac{e^{2 j \pi d_m^\chi &#x2F; \lambda}}{d_m^\chi}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437439.png" srcset="/img/loading.gif" lazyload alt="image-20240318112929059" style="zoom:33%;" /><br>$$<br>\left|g^\chi\right|&#x3D;\frac{A_e}{\lambda}\left|\sum_m \Phi_m^\chi h_m\left(1+\cos \theta_m^\chi\right) \frac{e^{2 j \pi d_m^\chi &#x2F; \lambda}}{2 d_m^\chi}\right| .<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437353.png" srcset="/img/loading.gif" lazyload alt="image-20240318113444192" style="zoom:33%;" /></p>
-<h2 id="Diversity-Analysis"><a href="#Diversity-Analysis" class="headerlink" title="Diversity Analysis"></a>Diversity Analysis</h2><p>All elements of STAR-RIS share the same power ratio, i.e., $\beta^T_m&#x3D;\beta^T,\beta^R_m&#x3D;\beta^R,\forall m\in M$.</p>
+<h2 id="near-field">Near field</h2>
+<p>根据Fresnel-Kirchhoff diffraction formula，应该建模为<span class="math inline">\(M\)</span>个单元的求和： <span class="math display">\[
+g^\chi=\frac{1}{j \lambda} \iint_{(\Sigma)} U^\chi(Q) F\left(\theta^\chi\right) \frac{e^{2 j \pi d_m^\chi / \lambda}}{d^\chi} d \Sigma
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437329.png" srcset="/img/loading.gif" lazyload alt="image-20240318112839450" style="zoom:33%;" /> <span class="math display">\[
+g^\chi=\frac{A_e}{j \lambda} \sum_m \Phi_m^\chi h_m F\left(\theta_m^\chi\right) \frac{e^{2 j \pi d_m^\chi / \lambda}}{d_m^\chi}
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437439.png" srcset="/img/loading.gif" lazyload alt="image-20240318112929059" style="zoom:33%;" /> <span class="math display">\[
+\left|g^\chi\right|=\frac{A_e}{\lambda}\left|\sum_m \Phi_m^\chi h_m\left(1+\cos \theta_m^\chi\right) \frac{e^{2 j \pi d_m^\chi / \lambda}}{2 d_m^\chi}\right| .
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437353.png" srcset="/img/loading.gif" lazyload alt="image-20240318113444192" style="zoom:33%;" /></p>
+<h2 id="diversity-analysis">Diversity Analysis</h2>
+<p>All elements of STAR-RIS share the same power ratio, i.e., <span class="math inline">\(\beta^T_m=\beta^T,\beta^R_m=\beta^R,\forall m\in M\)</span>.</p>
 <p>In fact, we can include the power ratios constrains of each element for further improving the performance.</p>
 <p>定义diversity order：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437461.png" srcset="/img/loading.gif" lazyload alt="image-20240318143353876" style="zoom:33%;" />
-
-
-
-<p>红色是考虑leaning factor&#x2F;rate，而蓝色是没有使用leaning rate$F(\theta)&#x3D;1$的</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437432.png" srcset="/img/loading.gif" lazyload alt="image-20240318143525743" style="zoom:33%;" />
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437461.png" srcset="/img/loading.gif" lazyload alt="image-20240318143353876" style="zoom:33%;" /></p>
+<p>红色是考虑leaning factor/rate，而蓝色是没有使用leaning rate<span class="math inline">\(F(\theta)=1\)</span>的</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403181437432.png" srcset="/img/loading.gif" lazyload alt="image-20240318143525743" style="zoom:33%;" /></p>
 
                 
               </div>

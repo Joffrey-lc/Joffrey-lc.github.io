@@ -323,44 +323,44 @@
             
               <div class="markdown-body">
                 
-                <p><strong>Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial</strong>.  <em>Qingqing Wu</em> et.al.  <strong>IEEE Transactions on Communications, May  2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9326394">pdf</a>)  (Citations <strong>210</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><em>Intelligent Reflflecting Surface-Aided Wireless Communications: A Tutorial</em>文章的整理。</p>
+                <p><strong>Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial</strong>. <em>Qingqing Wu</em> et.al. <strong>IEEE Transactions on Communications, May 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9326394">pdf</a>) (Citations <strong>210</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<p><em>Intelligent Reflflecting Surface-Aided Wireless Communications: A Tutorial</em>文章的整理。</p>
 <div>
             <input type="checkbox"  checked="checked">IRS基础部分及建模
 
-          </div> 
-
+          </div>
 <div>
             <input type="checkbox"  checked="checked">IRS优化
 
-          </div> 
-
+          </div>
 <div>
             <input type="checkbox"  checked="checked">IRS信道估计
 
-          </div> 
-
+          </div>
 <div>
             <input type="checkbox"  checked="checked">IRS部署
 
-          </div> 
-
-<h2 id="IRS介绍"><a href="#IRS介绍" class="headerlink" title="IRS介绍"></a>IRS介绍</h2><p><strong>IRS</strong>: Intelligent reflecting surface</p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+          </div>
+<h2 id="irs介绍">IRS介绍</h2>
+<p><strong>IRS</strong>: Intelligent reflecting surface</p>
+<h3 id="背景">背景</h3>
+<ul>
 <li>6G存在的需求，例如超高数据速率和能源效率，极高的可靠性和低延迟等</li>
 <li>解决来自用户的时变无线信道</li>
 </ul>
-<h3 id="什么是IRS"><a href="#什么是IRS" class="headerlink" title="什么是IRS"></a>什么是IRS</h3><p>Generally speaking, IRS is a planar surface comprising a large number of <strong>passive reflecting elements</strong>, each of which is able to induce a controllable amplitude and&#x2F;or phase change to the incident signal independently</p>
+<h3 id="什么是irs">什么是IRS</h3>
+<p>Generally speaking, IRS is a planar surface comprising a large number of <strong>passive reflecting elements</strong>, each of which is able to induce a controllable amplitude and/or phase change to the incident signal independently</p>
 <ul>
 <li>IRS elements 是<strong>无源的</strong>（虽然后面会讲到还是需要一定的能源（用来调整幅度反射和相位反射），但是相比其他设备，这些能源是微乎其微的，还是可以认为是无源的）</li>
 </ul>
-<h3 id="IRS作用及优势"><a href="#IRS作用及优势" class="headerlink" title="IRS作用及优势"></a>IRS作用及优势</h3><p><strong>从概念上：</strong></p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307143040521.png" srcset="/img/loading.gif" lazyload alt="IRS在无线信道重配置中额主要功能" style="zoom: 33%;" />
-
+<h3 id="irs作用及优势">IRS作用及优势</h3>
+<p><strong>从概念上：</strong></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307143040521.png" srcset="/img/loading.gif" lazyload alt="IRS在无线信道重配置中额主要功能" style="zoom: 33%;" /></p>
 <ul>
 <li>(a): 创建虚拟视距(LoS)链接以通过智能反射面绕过收发器之间的障碍物</li>
 <li>(b): 在期望的方向添加额外的信号路径以提升信道等级条件</li>
-<li>(c): 改善信道分布，例如将瑞利&#x2F;快衰落转换为Rician&#x2F;慢衰落以实现超高可靠性</li>
+<li>(c): 改善信道分布，例如将瑞利/快衰落转换为Rician/慢衰落以实现超高可靠性</li>
 <li>(d): 抑制一些干扰</li>
 </ul>
 <p><strong>在实施上</strong></p>
@@ -370,27 +370,50 @@
 <li>安装拆除简单</li>
 <li>极大的灵活性和与现有无线系统的兼容性</li>
 </ul>
-<h3 id="IRS挑战"><a href="#IRS挑战" class="headerlink" title="IRS挑战"></a>IRS挑战</h3><ul>
+<h3 id="irs挑战">IRS挑战</h3>
+<ul>
 <li>无源反射原件需要适当设计，实现IRS element之间的协同信号聚焦或干扰消除。考虑与基站、用户的传输联合设计。</li>
 <li>由于IRS没有发射射频链，所以要考虑如何获得IRS与其用户之间的信道状态信息。</li>
 <li>IRS在无线网络中最大化网络容量的最佳部署策略需要重新设计。</li>
 </ul>
-<h3 id="IRS建模"><a href="#IRS建模" class="headerlink" title="IRS建模"></a>IRS建模</h3><p>以$x(t)$表示等效复值基带发射信号，对于一个有$N$个反射单元的IRS，以$n$代表单元，即$n\in{1, \cdots, N}$，用$\alpha_{1, n}e^{-j\xi_{1, n}}$表示基带信号从发射机到IRS的反射单元$n$的复信道系数，其中$\alpha_{1, n}$表示幅度衰减（amplitude attenuation），$e^{-j\xi_{1,n}}$表示窄带系统平坦信道的相移。所以其带通信号（经过上变频）可以表示为：<br>$$<br>\begin{align}<br>y_{in,n}(t)&#x3D;Re{\alpha_{1, n}e^{-j\xi_{1, n}}x(t)e^{j2\pi f_ct}}$<br>\end{align}<br>$$<br>其中，$f_c$是载波频率；该单元（第$n$个单元）的幅度衰减和时间延迟分别用$\beta_n\in[0, 1]$（因为是无源的）和$t_n\in[0, 1&#x2F;f_c]$表示。忽略电路非线性和相位噪声等硬件缺陷，IRS单元$n$的反射信号表示为：<br>$$<br>\begin{align}<br>y_{out,n}(t)&amp;&#x3D;\beta_ny_{in,n}(t-t_n)\<br>&amp;&#x3D;Re{\beta_n\alpha_{1,n}e^{-j\xi_{1,n}}x(t-t_n)e^{j2\pi f_c(t-t_n)}}<br>\&amp;\approx Re{[\beta_ne^{-j\theta^{‘}<em>n}\alpha</em>{1,n}e^{-j\xi_{1,n}}x(t)]e^{j2\pi f_ct}}<br>\end{align}<br>$$<br>其中，在$t_n\leq1&#x2F;f_c\ll1&#x2F;B$的前提下，假设$x(t-t_n)\approx x(t)$；并有$-\theta_n^{‘}\triangleq-2\pi f_ct_n\in[-2\pi,0]$是单元$n$引起的相移。由$s_{in,n}(t)\triangleq \alpha_{1, n}e^{-j\xi_{1, n}}x(t)$并且有$s_{out,n}\triangleq\beta_ne^{-j\theta^{‘}<em>n}\alpha</em>{1,n}e^{-j\xi_{1,n}}x(t)$</p>
-<p>进一步，由于$\theta^{‘}<em>n$是以$2\pi$为周期的，所以为方便后续部分，取$\theta_n\in [0,2\pi]$，有：<br>$$<br>\begin{align}<br>s</em>{out,n}(t)&#x3D;\beta_ne^{-j\theta^{‘}<em>n}s</em>{in,n}(t)&#x3D;\beta_ne^{j\theta_n}s_{in,n}(t)<br>\end{align}<br>$$<br><strong>所以在基带信号模型中，IRS单元$n$的输出&#x2F;反射信号是通过将相应的输入&#x2F;入射信号乘以复反射系数$\beta_ne^{-j\theta_n}$得到的</strong>。</p>
-<p>再接上从IRS单元$n$到接收端的信号（与前面相似的等效窄带平坦频率信道），则有接收端的表达式：<br>$$<br>\begin{align}<br>y_{r,n}(t)&#x3D;Re{[\alpha_{1,n}e^{-j\xi_{1,n}}\beta_ne^{j\theta_n}\alpha_{2,n}e^{-j\xi_{2,n}}x(t)]e^{j2\pi f_ct}}<br>\end{align}<br>$$<br>用$h^<em><em>{r,n}\triangleq\alpha</em>{1,n}e^{-j\xi_{1,n}}$（发射端到IRS的信道），并用$g_n\triangleq\alpha_{2,n}e^{-j\xi_{2,n}}$（IRS到接收端的信道），上式变为：<br>$$<br>y_n(t)&#x3D;\beta_ne^{j\theta_n}h^</em>_{r,n}g_nx(t)<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3328208a299ddde470516df2ab995f6.jpg" srcset="/img/loading.gif" lazyload alt="IRS模型示意图" style="zoom:33%;" /></p>
-<p>假设没有信号耦合，即所有IRS单元独立地反射入射信号。并忽略多次反射（因为路径损失较大），则有考虑$N$个单元时，有接收端：<br>$$<br>\begin{align}<br>y(t)&#x3D;(\sum_{n&#x3D;1}^N\beta_ne^{j\theta_n}h^<em>_{r,n}g_n)x(t)&#x3D;\textbf{h}_r^H\Theta\textbf{g}x(t)<br>\end{align}<br>$$<br>其中$\textbf{h}_r^H&#x3D;[h^</em><em>{r, 1},\cdots,h^*</em>{r,N}]$，$\textbf{g}&#x3D;[g_1,\cdots,g_N]^T$，$\Theta&#x3D;diag(\beta_1e^{j\theta_1},\cdots,\beta_Ne^{j\theta_N})$因为每个IRS单元独立地反射信号，且没有信号耦合，所以$\Theta$是对角阵。</p>
-<h3 id="IRS硬件实现"><a href="#IRS硬件实现" class="headerlink" title="IRS硬件实现"></a>IRS硬件实现</h3><h4 id="硬件结构"><a href="#硬件结构" class="headerlink" title="硬件结构"></a>硬件结构</h4><p>由于发射机、接收机以及周围物体的移动性，信道通常是时变的，因此需要基于信道变化的IRS实时可调。所以需要联网以进行自适应反射。</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307220020933.png" srcset="/img/loading.gif" lazyload alt="IRS结构" style="zoom:33%;" />
-
+<h3 id="irs建模">IRS建模</h3>
+<p>以<span class="math inline">\(x(t)\)</span>表示等效复值基带发射信号，对于一个有<span class="math inline">\(N\)</span>个反射单元的IRS，以<span class="math inline">\(n\)</span>代表单元，即<span class="math inline">\(n\in\{1, \cdots, N\}\)</span>，用<span class="math inline">\(\alpha_{1, n}e^{-j\xi_{1, n}}\)</span>表示基带信号从发射机到IRS的反射单元<span class="math inline">\(n\)</span>的复信道系数，其中<span class="math inline">\(\alpha_{1, n}\)</span>表示幅度衰减（amplitude attenuation），<span class="math inline">\(e^{-j\xi_{1,n}}\)</span>表示窄带系统平坦信道的相移。所以其带通信号（经过上变频）可以表示为： <span class="math display">\[
+\begin{align}
+y_{in,n}(t)=Re\{\alpha_{1, n}e^{-j\xi_{1, n}}x(t)e^{j2\pi f_ct}\}$
+\end{align}
+\]</span> 其中，<span class="math inline">\(f_c\)</span>是载波频率；该单元（第<span class="math inline">\(n\)</span>个单元）的幅度衰减和时间延迟分别用<span class="math inline">\(\beta_n\in[0, 1]\)</span>（因为是无源的）和<span class="math inline">\(t_n\in[0, 1/f_c]\)</span>表示。忽略电路非线性和相位噪声等硬件缺陷，IRS单元<span class="math inline">\(n\)</span>的反射信号表示为： <span class="math display">\[
+\begin{align}
+y_{out,n}(t)&amp;=\beta_ny_{in,n}(t-t_n)\\
+&amp;=Re\{\beta_n\alpha_{1,n}e^{-j\xi_{1,n}}x(t-t_n)e^{j2\pi f_c(t-t_n)}\}
+\\&amp;\approx Re\{[\beta_ne^{-j\theta^{&#39;}_n}\alpha_{1,n}e^{-j\xi_{1,n}}x(t)]e^{j2\pi f_ct}\}
+\end{align}
+\]</span> 其中，在<span class="math inline">\(t_n\leq1/f_c\ll1/B\)</span>的前提下，假设<span class="math inline">\(x(t-t_n)\approx x(t)\)</span>；并有<span class="math inline">\(-\theta_n^{&#39;}\triangleq-2\pi f_ct_n\in[-2\pi,0]\)</span>是单元<span class="math inline">\(n\)</span>引起的相移。由<span class="math inline">\(s_{in,n}(t)\triangleq \alpha_{1, n}e^{-j\xi_{1, n}}x(t)\)</span>并且有<span class="math inline">\(s_{out,n}\triangleq\beta_ne^{-j\theta^{&#39;}_n}\alpha_{1,n}e^{-j\xi_{1,n}}x(t)\)</span></p>
+<p>进一步，由于<span class="math inline">\(\theta^{&#39;}_n\)</span>是以<span class="math inline">\(2\pi\)</span>为周期的，所以为方便后续部分，取<span class="math inline">\(\theta_n\in [0,2\pi]\)</span>，有： <span class="math display">\[
+\begin{align}
+s_{out,n}(t)=\beta_ne^{-j\theta^{&#39;}_n}s_{in,n}(t)=\beta_ne^{j\theta_n}s_{in,n}(t)
+\end{align}
+\]</span> <strong>所以在基带信号模型中，IRS单元<span class="math inline">\(n\)</span>的输出/反射信号是通过将相应的输入/入射信号乘以复反射系数<span class="math inline">\(\beta_ne^{-j\theta_n}\)</span>得到的</strong>。</p>
+<p>再接上从IRS单元<span class="math inline">\(n\)</span>到接收端的信号（与前面相似的等效窄带平坦频率信道），则有接收端的表达式： <span class="math display">\[
+\begin{align}
+y_{r,n}(t)=Re\{[\alpha_{1,n}e^{-j\xi_{1,n}}\beta_ne^{j\theta_n}\alpha_{2,n}e^{-j\xi_{2,n}}x(t)]e^{j2\pi f_ct}\}
+\end{align}
+\]</span> 用<span class="math inline">\(h^*_{r,n}\triangleq\alpha_{1,n}e^{-j\xi_{1,n}}\)</span>（发射端到IRS的信道），并用<span class="math inline">\(g_n\triangleq\alpha_{2,n}e^{-j\xi_{2,n}}\)</span>（IRS到接收端的信道），上式变为： <span class="math display">\[
+y_n(t)=\beta_ne^{j\theta_n}h^*_{r,n}g_nx(t)
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3328208a299ddde470516df2ab995f6.jpg" srcset="/img/loading.gif" lazyload alt="IRS模型示意图" style="zoom:33%;" /></p>
+<p>假设没有信号耦合，即所有IRS单元独立地反射入射信号。并忽略多次反射（因为路径损失较大），则有考虑<span class="math inline">\(N\)</span>个单元时，有接收端： <span class="math display">\[
+\begin{align}
+y(t)=(\sum_{n=1}^N\beta_ne^{j\theta_n}h^*_{r,n}g_n)x(t)=\textbf{h}_r^H\Theta\textbf{g}x(t)
+\end{align}
+\]</span> 其中<span class="math inline">\(\textbf{h}_r^H=[h^*_{r, 1},\cdots,h^*_{r,N}]\)</span>，<span class="math inline">\(\textbf{g}=[g_1,\cdots,g_N]^T\)</span>，<span class="math inline">\(\Theta=diag(\beta_1e^{j\theta_1},\cdots,\beta_Ne^{j\theta_N})\)</span>因为每个IRS单元独立地反射信号，且没有信号耦合，所以<span class="math inline">\(\Theta\)</span>是对角阵。</p>
+<h3 id="irs硬件实现">IRS硬件实现</h3>
+<h4 id="硬件结构">硬件结构</h4>
+<p>由于发射机、接收机以及周围物体的移动性，信道通常是时变的，因此需要基于信道变化的IRS实时可调。所以需要联网以进行自适应反射。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307220020933.png" srcset="/img/loading.gif" lazyload alt="IRS结构" style="zoom:33%;" /></p>
 <ul>
-<li><p>智能控制器，FPGA，总的控制端</p>
-</li>
-<li><p>第一层，调整层，控制层，也可以布置一些传感器（感知周围感兴趣的无线电信号，以方便智能控制器设计反射系数）</p>
-</li>
-<li><p>第二层，铜，减少信号能量损失</p>
-</li>
-<li><p>第三层，可调整的单元</p>
-</li>
+<li><p>智能控制器，FPGA，总的控制端</p></li>
+<li><p>第一层，调整层，控制层，也可以布置一些传感器（感知周围感兴趣的无线电信号，以方便智能控制器设计反射系数）</p></li>
+<li><p>第二层，铜，减少信号能量损失</p></li>
+<li><p>第三层，可调整的单元</p></li>
 </ul>
 <p>为了实现重新配置IRS单元以实现高度可控反射，有三种主要方法被提出：</p>
 <ul>
@@ -399,82 +422,159 @@
 <li>电子设备（PIN二极管等）</li>
 </ul>
 <p>第三种电子设备（PIN二极管等）是最常用的。</p>
-<h4 id="实际限制"><a href="#实际限制" class="headerlink" title="实际限制"></a>实际限制</h4><h5 id="离散的反射幅度和相移"><a href="#离散的反射幅度和相移" class="headerlink" title="离散的反射幅度和相移"></a>离散的反射幅度和相移</h5><p>用固定的PIN二极管，需要大数量才能控制精细相移，例如$\log_28&#x3D;3$，即8级相移需要3个PIN二极管；使用变容二极管则需要更大范围的偏置电压，成本更高。</p>
+<h4 id="实际限制">实际限制</h4>
+<h5 id="离散的反射幅度和相移">离散的反射幅度和相移</h5>
+<p>用固定的PIN二极管，需要大数量才能控制精细相移，例如<span class="math inline">\(\log_28=3\)</span>，即8级相移需要3个PIN二极管；使用变容二极管则需要更大范围的偏置电压，成本更高。</p>
 <p>顺便提出了两个特殊结构：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221743796.png" srcset="/img/loading.gif" lazyload alt="两种特殊结构" style="zoom: 67%;" />
-
-<h5 id="耦合的反射幅度和相移"><a href="#耦合的反射幅度和相移" class="headerlink" title="耦合的反射幅度和相移"></a>耦合的反射幅度和相移</h5><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221921769.png" srcset="/img/loading.gif" lazyload alt="实际IRS中反射幅度和相移之间的关系" style="zoom:50%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221743796.png" srcset="/img/loading.gif" lazyload alt="两种特殊结构" style="zoom: 67%;" /></p>
+<h5 id="耦合的反射幅度和相移">耦合的反射幅度和相移</h5>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221921769.png" srcset="/img/loading.gif" lazyload alt="实际IRS中反射幅度和相移之间的关系" style="zoom:50%;" /></p>
 <p>有人提出反射的幅度和相移之间存在非线性耦合，所以不能单独调节。</p>
 <p>产生这种现象的原因是因为：<strong>0相移时</strong>，反射电流与单元电流同相（in-phase），电流强度增加，导致<strong>发热增多</strong>，<strong>反射幅度下降</strong>；当<strong>电流反相</strong>时（out-of-phase），电流强度<strong>减弱</strong>，<strong>发热变少</strong>，<strong>反射幅度增加</strong>。</p>
 <p>此外，IRS理论上是无源的（passive），但是例如控制PIN二极管时，需要消耗一部分能量。只是说这部分能量相对较小。</p>
-<h3 id="其他相关内容及未来研究方向"><a href="#其他相关内容及未来研究方向" class="headerlink" title="其他相关内容及未来研究方向"></a>其他相关内容及未来研究方向</h3><ul>
+<h3 id="其他相关内容及未来研究方向">其他相关内容及未来研究方向</h3>
+<ul>
 <li><strong>IRS单元之间的耦合</strong>目前是被忽略的。考虑在增大IRS单元密度以提高性能时，可能会使耦合更严重，以至于不能忽略。<strong>考虑耦合反射系数</strong>或者<strong>开发有效的去耦、隔离技术</strong>。</li>
 <li>目前考虑的模型对信号的<strong>入射角不敏感</strong>。目前的部分实现证明IRS反射系数，特别是相移，对<strong>入射角非常敏感</strong>。同时这也意味着<strong>信道互易假设可能不再有效</strong>，即上行链路的信道估计不再适用于下行链路的信道估计，vice versa。</li>
-<li>对于<strong>宽带信号</strong>的建模以及<strong>频率&#x2F;时间偏移</strong>、<strong>相位噪声</strong>等。</li>
+<li>对于<strong>宽带信号</strong>的建模以及<strong>频率/时间偏移</strong>、<strong>相位噪声</strong>等。</li>
 </ul>
-<h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><h3 id="有IRS的系统的接收信号"><a href="#有IRS的系统的接收信号" class="headerlink" title="有IRS的系统的接收信号"></a>有IRS的系统的接收信号</h3><p>$$<br>y(t)&#x3D;\left(\sum_{n&#x3D;1}^{N} \beta_{n} e^{\jmath \theta_{n}} h_{r, n}^{*} g_{n}\right) x(t)&#x3D;\boldsymbol{h}_{r}^{H} \boldsymbol{\Theta} \boldsymbol{g} x(t)<br>$$</p>
-<p>其中<br>$$<br>\mathbb{E}\left(\left|h_{r, n}\right|^{2}\right) \propto c_{1}\left(\frac{d_{1}}{d_{0}}\right)^{-a_{1}}<br>$$</p>
-<p>$$<br>\mathbb{E}\left(\left|g_n\right|^{2}\right) \propto c_{2}\left(\frac{d_{2}}{d_{0}}\right)^{-a_{2}}<br>$$</p>
+<h2 id="system-model">System Model</h2>
+<h3 id="有irs的系统的接收信号">有IRS的系统的接收信号</h3>
+<p><span class="math display">\[
+y(t)=\left(\sum_{n=1}^{N} \beta_{n} e^{\jmath \theta_{n}} h_{r, n}^{*} g_{n}\right) x(t)=\boldsymbol{h}_{r}^{H} \boldsymbol{\Theta} \boldsymbol{g} x(t)
+\]</span></p>
+<p>其中 <span class="math display">\[
+\mathbb{E}\left(\left|h_{r, n}\right|^{2}\right) \propto c_{1}\left(\frac{d_{1}}{d_{0}}\right)^{-a_{1}}
+\]</span></p>
+<p><span class="math display">\[
+\mathbb{E}\left(\left|g_n\right|^{2}\right) \propto c_{2}\left(\frac{d_{2}}{d_{0}}\right)^{-a_{2}}
+\]</span></p>
 <p>where <em>c</em>1(<em>c</em>2) denotes the corresponding path loss at the reference distance <em>d</em>0, while <em>a</em>1(<em>a</em>2) denotes the corresponding path loss exponent with typical values from 2 (in free-space propagation) to 6</p>
 <p>意味着如果是free-space，path loss exponent 取2。</p>
-<p>所以Average Received Power：<br>$$<br>P_{r, n} \propto \frac{1}{d_{1}^{a_{1}} d_{2}^{a_{2}}}<br>$$<br>称之为<em>product distance path loss model</em>，另外还有<em>sum-distance path loss model</em>，但是作者认为不是很适用。</p>
-<h3 id="调整幅度和相位"><a href="#调整幅度和相位" class="headerlink" title="调整幅度和相位"></a>调整幅度和相位</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220617154210815.png" srcset="/img/loading.gif" lazyload alt="image-20220617154210815" style="zoom:33%;" />
-
+<p>所以Average Received Power： <span class="math display">\[
+P_{r, n} \propto \frac{1}{d_{1}^{a_{1}} d_{2}^{a_{2}}}
+\]</span> 称之为<em>product distance path loss model</em>，另外还有<em>sum-distance path loss model</em>，但是作者认为不是很适用。</p>
+<h3 id="调整幅度和相位">调整幅度和相位</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220617154210815.png" srcset="/img/loading.gif" lazyload alt="image-20220617154210815" style="zoom:33%;" /></p>
 <p>不能单独调整幅度或相位，二者之间存在一定的耦合</p>
-<h2 id="IRS反射优化"><a href="#IRS反射优化" class="headerlink" title="IRS反射优化"></a>IRS反射优化</h2><p>single-user single-input-single-output<br>$$<br>y&#x3D;\left(\boldsymbol{h}<em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{g}+h</em>{d}^{*}\right) \sqrt{P_{t}} x+z<br>$$<br>$P_t$ is the transmit power at the AP</p>
-<p>所以信噪比SNR表示为:<br>$$<br>\begin{aligned}<br>\gamma &amp;&#x3D;\frac{P_{t}\left|\boldsymbol{h}<em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{g}+h</em>{d}^{<em>}\right|^{2}}{\sigma^{2}} \<br>&amp;&#x3D;\frac{P_{t}\left|\sum_{n&#x3D;1}^{N} h_{r, n}^{</em>} \beta_{n} e^{\jmath \theta_{n}} g_{n}+h_{d}^{<em>}\right|^{2}}{\sigma^{2}}<br>\end{aligned}<br>$$<br>其achievable rate由$\log_2(1+\gamma)$给出。最大化achievable rate等效于最大化SNR，并且丢掉常数$P_t$和$\sigma^2$。<br>$$<br>\begin{aligned}<br>\max <em>{\boldsymbol{\theta}, \boldsymbol{\beta}} &amp;\left|\sum</em>{n&#x3D;1}^{N} h_{r, n}^{</em>} g_{n} \beta_{n} e^{\jmath \theta_{n}}+h_{d}^{*}\right|^{2} \<br>\text { s.t. } 0 &amp; \leq \theta_{n}&lt;2 \pi, \quad n&#x3D;1, \cdots, N \<br>0 &amp; \leq \beta_{n} \leq 1, \quad n&#x3D;1, \cdots, N<br>\end{aligned}\label{eqn:1}<br>$$<br>由于最终的目的，希望信号在接收端同相叠加，（而不是相消），所以<br>$$<br>\theta_{n}^{\star}&#x3D;\mod \left[\zeta-\left(\phi_{n}+\psi_{n}\right), 2 \pi\right], \quad n&#x3D;1, \cdots, N<br>$$<br>就只剩下了模值：<br>$$<br>\begin{aligned}<br>&amp;\max <em>{\boldsymbol{\beta}}\left|\sum</em>{n&#x3D;1}^{N}|h_{r, n}|| g_{n}\left|\beta_{n}+\right| h_{d}|\right|^{2} \<br>&amp;\text { s.t. } 0 \leq \beta_{n} \leq 1, \quad n&#x3D;1, \cdots, N .<br>\end{aligned}<br>$$<br>由复高斯和瑞利的关系，如果$\textbf{h}<em>r^H$和$\textbf{g}$服从CSCG，且功率为$\varrho_h^2$和$\varrho_g^2$，则接收端总功率：<br>$$<br>P</em>{r} \approx N^{2} \frac{P_{t} \pi^{2} \varrho_{h}^{2} \varrho_{g}^{2}}{16}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220619_1.jpg" srcset="/img/loading.gif" lazyload alt="20220619_1" style="zoom:33%;" /></p>
-<p>可以在不增加AP发射功率的前提下，增大$N$，就可以实现覆盖范围的增加。</p>
+<h2 id="irs反射优化">IRS反射优化</h2>
+<p>single-user single-input-single-output <span class="math display">\[
+y=\left(\boldsymbol{h}_{r}^{H} \boldsymbol{\Theta} \boldsymbol{g}+h_{d}^{*}\right) \sqrt{P_{t}} x+z
+\]</span> <span class="math inline">\(P_t\)</span> is the transmit power at the AP</p>
+<p>所以信噪比SNR表示为: <span class="math display">\[
+\begin{aligned}
+\gamma &amp;=\frac{P_{t}\left|\boldsymbol{h}_{r}^{H} \boldsymbol{\Theta} \boldsymbol{g}+h_{d}^{*}\right|^{2}}{\sigma^{2}} \\
+&amp;=\frac{P_{t}\left|\sum_{n=1}^{N} h_{r, n}^{*} \beta_{n} e^{\jmath \theta_{n}} g_{n}+h_{d}^{*}\right|^{2}}{\sigma^{2}}
+\end{aligned}
+\]</span> 其achievable rate由<span class="math inline">\(\log_2(1+\gamma)\)</span>给出。最大化achievable rate等效于最大化SNR，并且丢掉常数<span class="math inline">\(P_t\)</span>和<span class="math inline">\(\sigma^2\)</span>。 <span class="math display">\[
+\begin{aligned}
+\max _{\boldsymbol{\theta}, \boldsymbol{\beta}} &amp;\left|\sum_{n=1}^{N} h_{r, n}^{*} g_{n} \beta_{n} e^{\jmath \theta_{n}}+h_{d}^{*}\right|^{2} \\
+\text { s.t. } 0 &amp; \leq \theta_{n}&lt;2 \pi, \quad n=1, \cdots, N \\
+0 &amp; \leq \beta_{n} \leq 1, \quad n=1, \cdots, N
+\end{aligned}\label{eqn:1}
+\]</span> 由于最终的目的，希望信号在接收端同相叠加，（而不是相消），所以 <span class="math display">\[
+\theta_{n}^{\star}=\mod \left[\zeta-\left(\phi_{n}+\psi_{n}\right), 2 \pi\right], \quad n=1, \cdots, N
+\]</span> 就只剩下了模值： <span class="math display">\[
+\begin{aligned}
+&amp;\max _{\boldsymbol{\beta}}\left|\sum_{n=1}^{N}|h_{r, n}|| g_{n}\left|\beta_{n}+\right| h_{d}|\right|^{2} \\
+&amp;\text { s.t. } 0 \leq \beta_{n} \leq 1, \quad n=1, \cdots, N .
+\end{aligned}
+\]</span> 由复高斯和瑞利的关系，如果<span class="math inline">\(\textbf{h}_r^H\)</span>和<span class="math inline">\(\textbf{g}\)</span>服从CSCG，且功率为<span class="math inline">\(\varrho_h^2\)</span>和<span class="math inline">\(\varrho_g^2\)</span>，则接收端总功率： <span class="math display">\[
+P_{r} \approx N^{2} \frac{P_{t} \pi^{2} \varrho_{h}^{2} \varrho_{g}^{2}}{16}
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220619_1.jpg" srcset="/img/loading.gif" lazyload alt="20220619_1" style="zoom:33%;" /></p>
+<p>可以在不增加AP发射功率的前提下，增大<span class="math inline">\(N\)</span>，就可以实现覆盖范围的增加。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>c0_dB = <span class="hljs-number">-30</span>;<br>c0 = <span class="hljs-number">10</span>^(c0_dB/<span class="hljs-number">10</span>);<br>Pt = <span class="hljs-number">50e-3</span>;<br>sigma_2_dBm = <span class="hljs-number">-90</span>;<br>sigma_2 =  <span class="hljs-number">10</span>^((sigma_2_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>d0= <span class="hljs-number">50</span>;<br>d2 = <span class="hljs-number">5</span>;<br>pathloss_free_space_los = c0*d0^(<span class="hljs-number">-2</span>);<br>pathloss_free_space_los_2 = c0*d2^(<span class="hljs-number">-2</span>);<br><br>pathloss_Rician = c0*d0^(<span class="hljs-number">-2.4</span>);<br>pathloss_Rician_2 = c0*d2^(<span class="hljs-number">-2.4</span>);<br><br>varrho_h_2 = c0*d0^(<span class="hljs-number">-2.8</span>);<br>varrho_g_2 = c0*d2^(<span class="hljs-number">-2.8</span>);<br><br>phi = <span class="hljs-number">0</span>;<br>SNR_free_space = [];<br><span class="hljs-keyword">for</span> N=<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span><br>    Phi = -(<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:N<span class="hljs-number">-1</span>)*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">sin</span>(phi);<br>    h_los = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>.*Phi.&#x27;);<br><br>    h_free_space_1 = <span class="hljs-built_in">sqrt</span>(pathloss_free_space_los)*h_los;<br>    h_free_space_2 = <span class="hljs-built_in">sqrt</span>(pathloss_free_space_los_2)*h_los;<br>    S_free = Pt*<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(h_free_space_1).&#x27;*<span class="hljs-built_in">abs</span>(h_free_space_2))^<span class="hljs-number">2</span>;<br>    <br>    SNR_free_space = [SNR_free_space S_free/sigma_2];<br><span class="hljs-keyword">end</span><br><br>kappa = <span class="hljs-number">3</span>;<br>SNR_all = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,<span class="hljs-number">481</span>);<br>mtkl_a = <span class="hljs-number">1000</span>;<br><span class="hljs-keyword">for</span> mtkl=<span class="hljs-number">1</span>:mtkl_a<br>    <br>    SNR_Rician = [];<br>    <span class="hljs-keyword">for</span> N=<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span><br>        Phi = -(<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:N<span class="hljs-number">-1</span>)*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">sin</span>(phi);<br>        h_los = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>.*Phi.&#x27;);<br>        h_Rician_1 = <span class="hljs-built_in">sqrt</span>(pathloss_Rician)*(<span class="hljs-built_in">sqrt</span>(kappa/(kappa+<span class="hljs-number">1</span>))*h_los+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/(kappa+<span class="hljs-number">1</span>))*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>)));<br>        h_Rician_2 = <span class="hljs-built_in">sqrt</span>(pathloss_Rician_2)*(<span class="hljs-built_in">sqrt</span>(kappa/(kappa+<span class="hljs-number">1</span>))*h_los+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/(kappa+<span class="hljs-number">1</span>))*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>)));<br><br>        S_R = Pt*<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(h_Rician_1).&#x27;*<span class="hljs-built_in">abs</span>(h_Rician_2))^<span class="hljs-number">2</span>;<br>        SNR_Rician = [SNR_Rician S_R/sigma_2]; <br>    <span class="hljs-keyword">end</span><br>    SNR_all = SNR_all + SNR_Rician;<br><span class="hljs-keyword">end</span><br>SNR_Rician = SNR_all/mtkl_a;<br><span class="hljs-comment">% 瑞利信道，就可以用文章中的结论Pr=N^2*Pt*pi^2*varrho_h^2*varrho_g^2/16</span><br>SNR_Rayleigh = [];<br><span class="hljs-keyword">for</span> N=<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span><br>    h = <span class="hljs-built_in">sqrt</span>(varrho_h_2)*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>));<br>    g = <span class="hljs-built_in">sqrt</span>(varrho_g_2)*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>));<br>    S_Ray = N^<span class="hljs-number">2</span>*varrho_h_2*varrho_g_2*<span class="hljs-built_in">pi</span>^<span class="hljs-number">2</span>*Pt/<span class="hljs-number">16</span>;<br>    S_Ray2 = Pt*<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(h).&#x27;*<span class="hljs-built_in">abs</span>(g))^<span class="hljs-number">2</span>;<br><span class="hljs-comment">%     eta = S_Ray/S_Ray2</span><br>    SNR_Rayleigh = [SNR_Rayleigh S_Ray/sigma_2];<br><span class="hljs-keyword">end</span><br><br><br><span class="hljs-built_in">plot</span>(<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_free_space))<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_Rician))<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_Rayleigh))<br><span class="hljs-built_in">hold</span> off;<br>grid on;<br></code></pre></td></tr></table></figure>
-
-<h2 id="MISO-System"><a href="#MISO-System" class="headerlink" title="MISO System"></a>MISO System</h2><p>发射机多天线，downlink是MISO Uplink是SIMO。</p>
-<p>则需要联合优化的问题是：<br>$$<br>\begin{aligned}<br>&amp;\max <em>{\boldsymbol{w}, \boldsymbol{\theta}}\left|\left(\boldsymbol{h}</em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{G}+\boldsymbol{h}<em>{d}^{H}\right) \boldsymbol{w}\right|^{2} \<br>&amp;\text { s.t. }|\boldsymbol{w}|^{2} \leq P</em>{t}, \<br>&amp;\quad 0 \leq \theta_{n}&lt;2 \pi, \quad n&#x3D;1, \cdots, N,<br>\end{aligned}<br>$$</p>
-<h3 id="AO-求解"><a href="#AO-求解" class="headerlink" title="AO 求解"></a>AO 求解</h3><p>这个问题是非凸的。可以通过固定其中一个参数：</p>
+<h2 id="miso-system">MISO System</h2>
+<p>发射机多天线，downlink是MISO Uplink是SIMO。</p>
+<p>则需要联合优化的问题是： <span class="math display">\[
+\begin{aligned}
+&amp;\max _{\boldsymbol{w}, \boldsymbol{\theta}}\left|\left(\boldsymbol{h}_{r}^{H} \boldsymbol{\Theta} \boldsymbol{G}+\boldsymbol{h}_{d}^{H}\right) \boldsymbol{w}\right|^{2} \\
+&amp;\text { s.t. }\|\boldsymbol{w}\|^{2} \leq P_{t}, \\
+&amp;\quad 0 \leq \theta_{n}&lt;2 \pi, \quad n=1, \cdots, N,
+\end{aligned}
+\]</span></p>
+<h3 id="ao-求解">AO 求解</h3>
+<p>这个问题是非凸的。可以通过固定其中一个参数：</p>
 <ul>
-<li>固定参数$\textbf{w}$，和式$\ref{eqn:1}$是相同的</li>
-<li>固定参数$\theta$，则最佳precoder可以由Maximum-ratio transmission （MRT）给出：</li>
+<li>固定参数<span class="math inline">\(\textbf{w}\)</span>，和式<span class="math inline">\(\ref{eqn:1}\)</span>是相同的</li>
+<li>固定参数<span class="math inline">\(\theta\)</span>，则最佳precoder可以由Maximum-ratio transmission （MRT）给出：</li>
 </ul>
-<p>$$<br>\boldsymbol{w}<em>{\mathrm{MRT}}&#x3D;\sqrt{P</em>{t}} \frac{\left(\boldsymbol{h}<em>{r}^{H} \Theta \boldsymbol{G}+\boldsymbol{h}</em>{d}^{H}\right)^{H}}{\left|\boldsymbol{h}<em>{r}^{H} \Theta \boldsymbol{G}+\boldsymbol{h}</em>{d}^{H}\right|}<br>$$</p>
+<p><span class="math display">\[
+\boldsymbol{w}_{\mathrm{MRT}}=\sqrt{P_{t}} \frac{\left(\boldsymbol{h}_{r}^{H} \Theta \boldsymbol{G}+\boldsymbol{h}_{d}^{H}\right)^{H}}{\left\|\boldsymbol{h}_{r}^{H} \Theta \boldsymbol{G}+\boldsymbol{h}_{d}^{H}\right\|}
+\]</span></p>
 <p>重复交替求解（Alternating Optimization）</p>
-<h3 id="直接带入-textbf-w-MRT"><a href="#直接带入-textbf-w-MRT" class="headerlink" title="直接带入$\textbf{w}_{MRT}$"></a>直接带入$\textbf{w}_{MRT}$</h3><p>直接带入$\textbf{w}<em>{MRT}$就可以得到一个只有参数$\mathbf{\theta}$的表达式：<br>$$<br>\begin{aligned}<br>&amp;\max <em>{\boldsymbol{\theta}}\left|\boldsymbol{h}</em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{G}+\boldsymbol{h}</em>{d}^{H}\right|^{2} \<br>&amp;\text { s.t. } 0 \leq \theta_{n} \leq 2 \pi, \quad n&#x3D;1, \cdots, N .<br>\end{aligned}<br>$$<br>是NP-hard的。可以用一些例如</p>
+<h3 id="直接带入textbfw_mrt">直接带入<span class="math inline">\(\textbf{w}_{MRT}\)</span></h3>
+<p>直接带入<span class="math inline">\(\textbf{w}_{MRT}\)</span>就可以得到一个只有参数<span class="math inline">\(\mathbf{\theta}\)</span>的表达式： <span class="math display">\[
+\begin{aligned}
+&amp;\max _{\boldsymbol{\theta}}\left\|\boldsymbol{h}_{r}^{H} \boldsymbol{\Theta} \boldsymbol{G}+\boldsymbol{h}_{d}^{H}\right\|^{2} \\
+&amp;\text { s.t. } 0 \leq \theta_{n} \leq 2 \pi, \quad n=1, \cdots, N .
+\end{aligned}
+\]</span> 是NP-hard的。可以用一些例如</p>
 <ul>
 <li>半松弛（SDR）+高斯随机化</li>
 <li>AO</li>
 </ul>
 <p>等来求解</p>
-<h3 id="AP-User距离影响"><a href="#AP-User距离影响" class="headerlink" title="AP-User距离影响"></a>AP-User距离影响</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619152753102.png" srcset="/img/loading.gif" lazyload alt="image-20220619152753102"></p>
+<h3 id="ap-user距离影响">AP-User距离影响</h3>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619152753102.png" srcset="/img/loading.gif" lazyload alt="image-20220619152753102" /><figcaption aria-hidden="true">image-20220619152753102</figcaption>
+</figure>
 <ul>
 <li>AO：如4.1所示的AO求解</li>
-<li>AP-User MRT： $\boldsymbol{w}&#x3D;\sqrt{P_{t}} \frac{\boldsymbol{h}<em>{d}}{\left|\boldsymbol{h}</em>{d}\right|}$，等于说是部分Beamforming，只对直射信道进行Beamforming。可以看到，当d比较小，AP-User距离近，这个Beamformer效果很好，但是随着距离增加，AP-IRS-User的作用更大，所以效果随着d增大而于AO产生了差距。</li>
-<li>AP-IRS MRT：$\boldsymbol{w}&#x3D;\sqrt{P_{t}} \frac{g}{|\boldsymbol{g}|}$，和上面类似。当AP-User距离远，则等于AP-IRS进，AP-IRS信道贡献大，这个时候性能随着d增大逼近AO</li>
+<li>AP-User MRT： <span class="math inline">\(\boldsymbol{w}=\sqrt{P_{t}} \frac{\boldsymbol{h}_{d}}{\left\|\boldsymbol{h}_{d}\right\|}\)</span>，等于说是部分Beamforming，只对直射信道进行Beamforming。可以看到，当d比较小，AP-User距离近，这个Beamformer效果很好，但是随着距离增加，AP-IRS-User的作用更大，所以效果随着d增大而于AO产生了差距。</li>
+<li>AP-IRS MRT：<span class="math inline">\(\boldsymbol{w}=\sqrt{P_{t}} \frac{g}{\|\boldsymbol{g}\|}\)</span>，和上面类似。当AP-User距离远，则等于AP-IRS进，AP-IRS信道贡献大，这个时候性能随着d增大逼近AO</li>
 <li>MRT without IRS： 只有AP-User MRT，没有IRS，所以性能一开始和AP-User MRT相似，然后随着d增大，性能变差。</li>
 </ul>
-<h3 id="TODO…"><a href="#TODO…" class="headerlink" title="TODO…"></a>TODO…</h3><h2 id="IRS-Channel-Estimation"><a href="#IRS-Channel-Estimation" class="headerlink" title="IRS Channel Estimation"></a>IRS Channel Estimation</h2><p>现在有两种可以能的信道估计方案：</p>
+<h3 id="todo">TODO…</h3>
+<h2 id="irs-channel-estimation">IRS Channel Estimation</h2>
+<p>现在有两种可以能的信道估计方案：</p>
 <ul>
 <li>Semi-Passive IRS</li>
 <li>Passive IRS</li>
 </ul>
-<h3 id="Semi-Passive-iRS"><a href="#Semi-Passive-iRS" class="headerlink" title="Semi-Passive iRS"></a>Semi-Passive iRS</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619153914505.png" srcset="/img/loading.gif" lazyload alt="semi-passive IRS"></p>
+<h3 id="semi-passive-irs">Semi-Passive iRS</h3>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619153914505.png" srcset="/img/loading.gif" lazyload alt="semi-passive IRS" /><figcaption aria-hidden="true">semi-passive IRS</figcaption>
+</figure>
 <p>用一些有源element做信道估计。问题在于这些element（sensing device）的信道和reflecting element的信道其实不一样，但是有一定关联性。由这些有关联性的信道估计其他的信道也是一个研究点<span class="label label-success">压缩感知、机器学习等</span></p>
-<h3 id="Passive-IRS"><a href="#Passive-IRS" class="headerlink" title="Passive IRS"></a>Passive IRS</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619154545950.png" srcset="/img/loading.gif" lazyload alt="Passive IRS"></p>
-<p> 估计级联信道。</p>
-<h2 id="IRS-Deployment"><a href="#IRS-Deployment" class="headerlink" title="IRS Deployment"></a>IRS Deployment</h2><p>IRS需要部署接近AP or User以减小path-loss</p>
-<h3 id="在链路层级讨论IRS部署"><a href="#在链路层级讨论IRS部署" class="headerlink" title="在链路层级讨论IRS部署"></a>在链路层级讨论IRS部署</h3><h4 id="Single-IRS"><a href="#Single-IRS" class="headerlink" title="Single IRS"></a>Single IRS</h4><p>只考虑AP-IRS-User路径：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619155443385.png" srcset="/img/loading.gif" lazyload alt="Single IRS"></p>
-<p>接收端的SNR可以表示为：<br>$$<br>\rho_{\mathrm{S}}&#x3D;\frac{P \beta_{0}^{2} N^{2}}{\left(d^{2}+H^{2}\right)\left((D-d)^{2}+H^{2}\right) \sigma^{2}}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619160730564.png" srcset="/img/loading.gif" lazyload alt="Proof" style="zoom:33%;" /></p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620103728273.png" srcset="/img/loading.gif" lazyload alt="image-20220620103728273"></p>
-<p>从结果看，IRS应该near user &#x2F; near AP</p>
-<h4 id="Multiple-Cooperative-IRSs"><a href="#Multiple-Cooperative-IRSs" class="headerlink" title="Multiple Cooperative IRSs"></a>Multiple Cooperative IRSs</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620104345370.png" srcset="/img/loading.gif" lazyload alt="image-20220620104345370"></p>
-<p>一个IRS可以分为多个小尺寸的IRSs。IRS多，path-loss大，但是可以收到多IRS的被动波束形成增益。以如上图所示的placement，路径服从自由空间LoS，则接收端的SNR为：<br>$$<br>\rho_{\mathrm{D}}&#x3D;\frac{P \beta_{0}^{3} N^{4}}{16 H^{4} D^{2} \sigma^{2}}<br>$$<br>所以当满足：<br>$$<br>N&gt;\frac{4 H}{\sqrt{\beta_{0}}}<br>$$<br>时，这种Multiple cooperative IRSs效果更好。</p>
-<h3 id="在网络层级讨论IRS部署"><a href="#在网络层级讨论IRS部署" class="headerlink" title="在网络层级讨论IRS部署"></a>在网络层级讨论IRS部署</h3><p>分为两种：</p>
+<h3 id="passive-irs">Passive IRS</h3>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619154545950.png" srcset="/img/loading.gif" lazyload alt="Passive IRS" /><figcaption aria-hidden="true">Passive IRS</figcaption>
+</figure>
+<p>估计级联信道。</p>
+<h2 id="irs-deployment">IRS Deployment</h2>
+<p>IRS需要部署接近AP or User以减小path-loss</p>
+<h3 id="在链路层级讨论irs部署">在链路层级讨论IRS部署</h3>
+<h4 id="single-irs">Single IRS</h4>
+<p>只考虑AP-IRS-User路径：</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619155443385.png" srcset="/img/loading.gif" lazyload alt="Single IRS" /><figcaption aria-hidden="true">Single IRS</figcaption>
+</figure>
+<p>接收端的SNR可以表示为： <span class="math display">\[
+\rho_{\mathrm{S}}=\frac{P \beta_{0}^{2} N^{2}}{\left(d^{2}+H^{2}\right)\left((D-d)^{2}+H^{2}\right) \sigma^{2}}
+\]</span> <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619160730564.png" srcset="/img/loading.gif" lazyload alt="Proof" style="zoom:33%;" /></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620103728273.png" srcset="/img/loading.gif" lazyload alt="image-20220620103728273" /><figcaption aria-hidden="true">image-20220620103728273</figcaption>
+</figure>
+<p>从结果看，IRS应该near user / near AP</p>
+<h4 id="multiple-cooperative-irss">Multiple Cooperative IRSs</h4>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620104345370.png" srcset="/img/loading.gif" lazyload alt="image-20220620104345370" /><figcaption aria-hidden="true">image-20220620104345370</figcaption>
+</figure>
+<p>一个IRS可以分为多个小尺寸的IRSs。IRS多，path-loss大，但是可以收到多IRS的被动波束形成增益。以如上图所示的placement，路径服从自由空间LoS，则接收端的SNR为： <span class="math display">\[
+\rho_{\mathrm{D}}=\frac{P \beta_{0}^{3} N^{4}}{16 H^{4} D^{2} \sigma^{2}}
+\]</span> 所以当满足： <span class="math display">\[
+N&gt;\frac{4 H}{\sqrt{\beta_{0}}}
+\]</span> 时，这种Multiple cooperative IRSs效果更好。</p>
+<h3 id="在网络层级讨论irs部署">在网络层级讨论IRS部署</h3>
+<p>分为两种：</p>
 <ul>
 <li>分布式</li>
 <li>集中式</li>
 </ul>
 <p>分布式就是多个IRS参与工作，但是每个用户只能收到距离其最近的部分elements的反射。</p>
 <p>集中式就是单个IRS，使AP的SNR最大化。</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620105955701.png" srcset="/img/loading.gif" lazyload alt="cen vs dis" style="zoom:33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620105955701.png" srcset="/img/loading.gif" lazyload alt="cen vs dis" style="zoom:33%;" /></p>
 <p>结论是集中式效果好，但是有时候分布式的布置更为灵活。</p>
 
                 

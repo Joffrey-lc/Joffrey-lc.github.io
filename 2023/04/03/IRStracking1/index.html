@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          529 字
+          533 字
         
       </span>
     
@@ -323,65 +323,57 @@
             
               <div class="markdown-body">
                 
-                <h2 id="Mobile-User-Trajectory-Tracking-for-IRS-Enabled-Wireless-Networks"><a href="#Mobile-User-Trajectory-Tracking-for-IRS-Enabled-Wireless-Networks" class="headerlink" title="Mobile User Trajectory Tracking for IRS Enabled Wireless Networks"></a>Mobile User Trajectory Tracking for IRS Enabled Wireless Networks</h2><p><strong>Mobile User Trajectory Tracking for IRS Enabled Wireless Networks</strong>.  <em>Deyou Zhang</em> et.al.  <strong>IEEE Transactions on Vehicular Technology, August 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9479771">pdf</a>)  (Citations <strong>3</strong>)</p>
+                <h2 id="mobile-user-trajectory-tracking-for-irs-enabled-wireless-networks">Mobile User Trajectory Tracking for IRS Enabled Wireless Networks</h2>
+<p><strong>Mobile User Trajectory Tracking for IRS Enabled Wireless Networks</strong>. <em>Deyou Zhang</em> et.al. <strong>IEEE Transactions on Vehicular Technology, August 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9479771">pdf</a>) (Citations <strong>3</strong>)</p>
 <ul>
-<li><p>Mobile User移动使用的是Markov random walk</p>
-</li>
-<li><p>Rician channel：说的是假设Rician，实际上是LoS，但是加了一组Rician的实验。</p>
-</li>
-<li><p>依然假设IRS和AP位置固定，所以这段信道认为长时间不变的</p>
-</li>
-<li><p>用pilot symbols 估计Mobile User位置</p>
-</li>
+<li><p>Mobile User移动使用的是Markov random walk</p></li>
+<li><p>Rician channel：说的是假设Rician，实际上是LoS，但是加了一组Rician的实验。</p></li>
+<li><p>依然假设IRS和AP位置固定，所以这段信道认为长时间不变的</p></li>
+<li><p>用pilot symbols 估计Mobile User位置</p></li>
 </ul>
 <span class="label label-primary">估计误差会随着观测次数的增多而累计？？？？即观测次数越多，误差越大？</span>
-
-
-
 <p>构建MAP（最大后验概率），然后找到上界，最小化上界。使用了两种方式：</p>
 <ul>
 <li>Codebook</li>
 <li>MO： manifold optimization</li>
 </ul>
-<hr>
-<h2 id="Codebook-Based-Training-Beam-Sequence-Design-for-Millimeter-Wave-Tracking-Systems"><a href="#Codebook-Based-Training-Beam-Sequence-Design-for-Millimeter-Wave-Tracking-Systems" class="headerlink" title="Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems"></a>Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems</h2><p><strong>Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems.</strong> Deyou Zhang et.al. </p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039799.png" srcset="/img/loading.gif" lazyload alt="image-20230328200202630" style="zoom:33%;" />
-
+<hr />
+<h2 id="codebook-based-training-beam-sequence-design-for-millimeter-wave-tracking-systems">Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems</h2>
+<p><strong>Codebook-Based Training Beam Sequence Design for Millimeter-Wave Tracking Systems.</strong> Deyou Zhang et.al.</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039799.png" srcset="/img/loading.gif" lazyload alt="image-20230328200202630" style="zoom:33%;" /></p>
 <p>两均匀线阵</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039794.png" srcset="/img/loading.gif" lazyload alt="image-20230328200228951" style="zoom:33%;" />
-
-<p>$\mathbf{A}<em>{UE}$的每一列，代表了在$\theta_i,i\in N</em>{UE}$下的向量，同理$\mathbf{A}<em>{BS}$中的每一列代表了在$\theta_j,j\in N</em>{BS}$下的向量。等于在做Codebook的时候，将角度分割为$N_{UE}$和$N_{BS}$份。</p>
-<p>因为发射端假设有$K$个径，接收端只有1个径，所以：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039876.png" srcset="/img/loading.gif" lazyload alt="image-20230328200941394" style="zoom:33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039794.png" srcset="/img/loading.gif" lazyload alt="image-20230328200228951" style="zoom:33%;" /></p>
+<p><span class="math inline">\(\mathbf{A}_{UE}\)</span>的每一列，代表了在<span class="math inline">\(\theta_i,i\in N_{UE}\)</span>下的向量，同理<span class="math inline">\(\mathbf{A}_{BS}\)</span>中的每一列代表了在<span class="math inline">\(\theta_j,j\in N_{BS}\)</span>下的向量。等于在做Codebook的时候，将角度分割为<span class="math inline">\(N_{UE}\)</span>和<span class="math inline">\(N_{BS}\)</span>份。</p>
+<p>因为发射端假设有<span class="math inline">\(K\)</span>个径，接收端只有1个径，所以：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039876.png" srcset="/img/loading.gif" lazyload alt="image-20230328200941394" style="zoom:33%;" /></p>
 <p>写成压缩感知的形式：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039809.png" srcset="/img/loading.gif" lazyload alt="image-20230328201009696" style="zoom:33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039824.png" srcset="/img/loading.gif" lazyload alt="image-20230328201032853" style="zoom:33%;" />
-
-
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039809.png" srcset="/img/loading.gif" lazyload alt="image-20230328201009696" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032039824.png" srcset="/img/loading.gif" lazyload alt="image-20230328201032853" style="zoom:33%;" /></p>
 <p>重点来了，作者说用OMP等方式求解，效率不高。</p>
-<p>但是我认为可以丢掉$\mathbf{A}$很多全0的列，然后再进OMP。因为$\delta$是自己设置的，所以可以知道什么地方的为0。</p>
+<p>但是我认为可以丢掉<span class="math inline">\(\mathbf{A}\)</span>很多全0的列，然后再进OMP。因为<span class="math inline">\(\delta\)</span>是自己设置的，所以可以知道什么地方的为0。</p>
 <p>剩下的一堆分析构造MAP，并最小化错误概率。都可省略。</p>
-<hr>
-<h2 id="Mobility-Aware-User-Association-Strategy-for-IRS-Aided-mm-Wave-Multibeam-Transmission-Towards-6G"><a href="#Mobility-Aware-User-Association-Strategy-for-IRS-Aided-mm-Wave-Multibeam-Transmission-Towards-6G" class="headerlink" title="Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G"></a>Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G</h2><p><strong>Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G</strong>.  <em>Hiroaki Hashida</em> et.al.  <strong>IEEE Journal on Selected Areas in Communications, May 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9681871">pdf</a>)  (Citations <strong>8</strong>)</p>
+<hr />
+<h2 id="mobility-aware-user-association-strategy-for-irs-aided-mm-wave-multibeam-transmission-towards-6g">Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G</h2>
+<p><strong>Mobility-Aware User Association Strategy for IRS-Aided mm-Wave Multibeam Transmission Towards 6G</strong>. <em>Hiroaki Hashida</em> et.al. <strong>IEEE Journal on Selected Areas in Communications, May 2022</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9681871">pdf</a>) (Citations <strong>8</strong>)</p>
 <ul>
 <li>搞了个User和IRS的配对。</li>
-<li><span class="label label-primary">不涉及跟踪本身的算法</span>，假设跟踪是完美执行的。</li>
+<li><span class="label label-primary">不涉及跟踪本身的算法</span>
+，假设跟踪是完美执行的。</li>
 <li>主要贡献在于合理分配IRS和用户链接，使得链接的中断概率和平均信道容量取得tradeoff（这个tradeoff是因为，当分配较多的IRS时，信道容量肯定上升，但是由于占用了较多的IRS，使得一旦有中断的情况发生，就没有中断鲁棒性）</li>
 </ul>
 <p>BS、IRS、Ues进行详尽的波束扫描以确定最佳波束和User-IRS配对</p>
 <p>在二维平面中的位置PDF由下式给出：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032046138.png" srcset="/img/loading.gif" lazyload alt="image-20230329134754663" style="zoom:33%;" />
-
-<hr>
-<h2 id="Deep-Learning-for-Channel-Tracking-in-IRS-Assisted-UAV-Communication-Systems"><a href="#Deep-Learning-for-Channel-Tracking-in-IRS-Assisted-UAV-Communication-Systems" class="headerlink" title="Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems"></a>Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems</h2><p><strong>Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems</strong>.  <em>Jiadong Yu</em> et.al.  <strong>IEEE Transactions on Wireless Communications, September 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9743298">pdf</a>)  (Citations <strong>7</strong>)</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032046138.png" srcset="/img/loading.gif" lazyload alt="image-20230329134754663" style="zoom:33%;" /></p>
+<hr />
+<h2 id="deep-learning-for-channel-tracking-in-irs-assisted-uav-communication-systems">Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems</h2>
+<p><strong>Deep Learning for Channel Tracking in IRS-Assisted UAV Communication Systems</strong>. <em>Jiadong Yu</em> et.al. <strong>IEEE Transactions on Wireless Communications, September 2022</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9743298">pdf</a>) (Citations <strong>7</strong>)</p>
 <ul>
 <li>使用Deep Learning的方法（LSTM）：先预估计信道，再跟踪信道（两个机器学习模型，分别完成上述任务）</li>
 </ul>
 <p>有点扯，IRS的相位调整没考虑。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032049207.png" srcset="/img/loading.gif" lazyload alt="image-20230403204919147"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032049207.png" srcset="/img/loading.gif" lazyload alt="image-20230403204919147" /><figcaption aria-hidden="true">image-20230403204919147</figcaption>
+</figure>
 
                 
               </div>

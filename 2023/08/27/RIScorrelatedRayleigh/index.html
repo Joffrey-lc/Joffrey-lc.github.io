@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          353 字
+          337 字
         
       </span>
     
@@ -323,42 +323,31 @@
             
               <div class="markdown-body">
                 
-                <hr>
-<p><strong>Rayleigh Fading Modeling and Channel Hardening for Reconfigurable Intelligent Surfaces</strong>.  <em>Emil Björnson</em> et.al.  <strong>IEEE Wireless Communications Letters, April 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9300189">pdf</a>)  (Citations <strong>184</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>作者认为i.i.d.的Rayleigh信道是不合理的，在RIS中应该建模为一个相关的Rayleigh。</p>
+                <hr />
+<p><strong>Rayleigh Fading Modeling and Channel Hardening for Reconfigurable Intelligent Surfaces</strong>. <em>Emil Björnson</em> et.al. <strong>IEEE Wireless Communications Letters, April 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9300189">pdf</a>) (Citations <strong>184</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<p>作者认为i.i.d.的Rayleigh信道是不合理的，在RIS中应该建模为一个相关的Rayleigh。</p>
 <ul>
 <li><p>but the i.i.d. Rayleigh fading model can be observed in practice if a half-wavelength-spaced uniform</p>
-<p>linear array (ULA) is deployed in an isotropic scattering environment.</p>
-</li>
-<li><p><em>Reproducible Research:</em> The simulation code is available at: <a target="_blank" rel="noopener" href="https://github.com/emilbjornson/RIS-fading">https://github.com/emilbjornson/RIS-fading</a></p>
-</li>
-<li><p>SISO模型</p>
-</li>
+<p>linear array (ULA) is deployed in an isotropic scattering environment.</p></li>
+<li><p><em>Reproducible Research:</em> The simulation code is available at: https://github.com/emilbjornson/RIS-fading</p></li>
+<li><p>SISO模型</p></li>
 </ul>
-<h2 id="Main-content"><a href="#Main-content" class="headerlink" title="Main content"></a>Main content</h2><p>作者认为信道模应该是：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417251.png" srcset="/img/loading.gif" lazyload alt="image-20230824210416741" style="zoom:33%;" />
-
-<p>其中$\mathbf{R}\neq\mathbf{I}$，而是等于：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417406.png" srcset="/img/loading.gif" lazyload alt="image-20230824210451110" style="zoom:33%;" />
-
-<p>&#x3D;&#x3D;如果要实现上述的$\mathbf{R}\neq\mathbf{I}$，则需要满足所有单元之间间隔都是$\lambda&#x2F;2$的整数倍，即对于线阵可以满足，但对于面阵无法满足（因为）对角为$\sqrt{2}$&#x3D;&#x3D;:</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417281.jpeg" srcset="/img/loading.gif" lazyload alt="414e853b6c38c21859a5441a5cdb079" style="zoom:33%;" />
-
-<p>&#x3D;&#x3D;这样是否就可行了？？？&#x3D;&#x3D;</p>
-<p>衡量信道相关性的一个方法是看$\text{rank}(\mathbf{R})&#x3D;N$，且特征值都相同，则不相关（i.i.d.）:</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417372.png" srcset="/img/loading.gif" lazyload alt="image-20230824211639076" style="zoom:33%;" />
-
-
-
-
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417327.png" srcset="/img/loading.gif" lazyload alt="image-20230824213235958" style="zoom:33%;" />
-
-<p>这张图的意思是，如果是i.i.d.，则特征值应该全是1（1600）个1，但是实际上，很多都不是1，特别是间距小于$\lambda&#x2F;2$的时候，耦合增加，导致更具有相关性。</p>
-<p>而$\lambda&#x2F;2$时，后面有一些特征值为0；前面有一些大于0。说明还是具有相关性。</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417365.png" srcset="/img/loading.gif" lazyload alt="image-20230824213620711" style="zoom:33%;" />
-
-<p>&#x3D;&#x3D;这一点非常有趣，可以结合Null-space SWIPT作为下一个研究方向。&#x3D;&#x3D;</p>
+<h2 id="main-content">Main content</h2>
+<p>作者认为信道模应该是：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417251.png" srcset="/img/loading.gif" lazyload alt="image-20230824210416741" style="zoom:33%;" /></p>
+<p>其中<span class="math inline">\(\mathbf{R}\neq\mathbf{I}\)</span>，而是等于：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417406.png" srcset="/img/loading.gif" lazyload alt="image-20230824210451110" style="zoom:33%;" /></p>
+<p>==如果要实现上述的<span class="math inline">\(\mathbf{R}\neq\mathbf{I}\)</span>，则需要满足所有单元之间间隔都是<span class="math inline">\(\lambda/2\)</span>的整数倍，即对于线阵可以满足，但对于面阵无法满足（因为）对角为<span class="math inline">\(\sqrt{2}\)</span>==:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417281.jpeg" srcset="/img/loading.gif" lazyload alt="414e853b6c38c21859a5441a5cdb079" style="zoom:33%;" /></p>
+<p>==这样是否就可行了？？？==</p>
+<p>衡量信道相关性的一个方法是看<span class="math inline">\(\text{rank}(\mathbf{R})=N\)</span>，且特征值都相同，则不相关（i.i.d.）:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417372.png" srcset="/img/loading.gif" lazyload alt="image-20230824211639076" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417327.png" srcset="/img/loading.gif" lazyload alt="image-20230824213235958" style="zoom:33%;" /></p>
+<p>这张图的意思是，如果是i.i.d.，则特征值应该全是1（1600）个1，但是实际上，很多都不是1，特别是间距小于<span class="math inline">\(\lambda/2\)</span>的时候，耦合增加，导致更具有相关性。</p>
+<p>而<span class="math inline">\(\lambda/2\)</span>时，后面有一些特征值为0；前面有一些大于0。说明还是具有相关性。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202308271417365.png" srcset="/img/loading.gif" lazyload alt="image-20230824213620711" style="zoom:33%;" /></p>
+<p>==这一点非常有趣，可以结合Null-space SWIPT作为下一个研究方向。==</p>
 <p>有一种计算矩阵和矩阵之间关系的方法称为correlated matrix distance可以用来计算矩阵相似度（？？）</p>
 <p>还讨论了RIS的信道硬化（还没来的及看）</p>
 

@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          219 字
+          223 字
         
       </span>
     
@@ -323,26 +323,36 @@
             
               <div class="markdown-body">
                 
-                <h1 id="设置CLASH规则"><a href="#设置CLASH规则" class="headerlink" title="设置CLASH规则"></a>设置CLASH规则</h1><p>因为最近发现在clash中设置规则，一旦更新配置文件，就会将之前的规则覆盖掉。所以研究了一下怎么在解析器中直接添加规则，这样以后更新配置文件也不会覆盖掉规则了。</p>
+                <h1 id="设置clash规则">设置CLASH规则</h1>
+<p>因为最近发现在clash中设置规则，一旦更新配置文件，就会将之前的规则覆盖掉。所以研究了一下怎么在解析器中直接添加规则，这样以后更新配置文件也不会覆盖掉规则了。</p>
 <p>找到clash-&gt;settings-&gt;profiles-&gt;parsers-&gt;edit</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/98e560c90353e3ce71da9cb8f75a6eb.png" srcset="/img/loading.gif" lazyload alt="98e560c90353e3ce71da9cb8f75a6eb"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/98e560c90353e3ce71da9cb8f75a6eb.png" srcset="/img/loading.gif" lazyload alt="98e560c90353e3ce71da9cb8f75a6eb" /><figcaption aria-hidden="true">98e560c90353e3ce71da9cb8f75a6eb</figcaption>
+</figure>
 <p>然后在以下界面中编辑自己的规则</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119170045041.png" srcset="/img/loading.gif" lazyload alt="image-20220119170045041"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119170045041.png" srcset="/img/loading.gif" lazyload alt="image-20220119170045041" /><figcaption aria-hidden="true">image-20220119170045041</figcaption>
+</figure>
 <p>其中url是自己的订阅地址，也能在配置文件中找到。具体路径如下（就是URL）：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119170213721.png" srcset="/img/loading.gif" lazyload alt="image-20220119170213721"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119170213721.png" srcset="/img/loading.gif" lazyload alt="image-20220119170213721" /><figcaption aria-hidden="true">image-20220119170213721</figcaption>
+</figure>
 <p>在prepend-rules中设置自己的规则：</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-params">parsers:</span> <span class="hljs-comment"># array</span><br>  <span class="hljs-operator">-</span> <span class="hljs-params">url:</span> https:<span class="hljs-symbol">//xxxxxxxxxxxxx</span><br>    <span class="hljs-params">yaml:</span><br>      <span class="hljs-params">prepend-rules:</span><br>        <span class="hljs-operator">-</span> DOMAIN-SUFFIX,ieeexplore.ieee.org,DIRECT<br></code></pre></td></tr></table></figure>
-
 <p>我这里设置ieee的网站都使用直连，方便使用校园网下载文献。</p>
 <p>其他的规则类型还有：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119172231945.png" srcset="/img/loading.gif" lazyload alt="image-20220119172231945"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119172231945.png" srcset="/img/loading.gif" lazyload alt="image-20220119172231945" /><figcaption aria-hidden="true">image-20220119172231945</figcaption>
+</figure>
 <ul>
 <li>DOMAIN-SUFFIX：域名后缀匹配</li>
 <li>DOMAIN：域名匹配</li>
 <li>……</li>
 </ul>
 <p>连接的策略有：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119172307480.png" srcset="/img/loading.gif" lazyload alt="image-20220119172307480"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220119172307480.png" srcset="/img/loading.gif" lazyload alt="image-20220119172307480" /><figcaption aria-hidden="true">image-20220119172307480</figcaption>
+</figure>
 <ul>
 <li>Direct：直连，不使用代理</li>
 <li>Reject：拒绝访问</li>

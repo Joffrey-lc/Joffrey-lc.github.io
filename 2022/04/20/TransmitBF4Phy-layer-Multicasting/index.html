@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          418 字
+          419 字
         
       </span>
     
@@ -324,25 +324,32 @@
             
               <div class="markdown-body">
                 
-                <hr>
-<p><strong>Transmit beamforming for physical-layer multicasting</strong>.  <em>N.D. Sidiropoulos</em> et.al.  <strong>IEEE Transactions on Signal Processing, June 2006</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/1634819">pdf</a>)  (Citations <strong>904</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>考虑MAX–MIN FAIR BEAMFORMING</p>
+                <hr />
+<p><strong>Transmit beamforming for physical-layer multicasting</strong>. <em>N.D. Sidiropoulos</em> et.al. <strong>IEEE Transactions on Signal Processing, June 2006</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/1634819">pdf</a>) (Citations <strong>904</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<p>考虑MAX–MIN FAIR BEAMFORMING</p>
 <ul>
 <li>将 Precoder原先的非凸优化问题松弛到SDP问题</li>
-<li>考虑松弛后，对结果进行再优化<ul>
+<li>考虑松弛后，对结果进行再优化
+<ul>
 <li>如果解出来的矩阵是rank-one，那么就是这个原始问题的最优结果</li>
 <li>如果解出来的矩阵不是rank-one，那么这个解就是满足约束的下限</li>
-</ul>
-</li>
+</ul></li>
 <li>在非rank-one的前提下，给出三种 based on <em>randomization</em>的方法，选择出最优的结果</li>
 </ul>
-<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><h3 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220420210025213.png" srcset="/img/loading.gif" lazyload alt="建模" style="zoom: 50%;" />
-
-<p>值得注意的一个等价形式：<br>$$<br>\tilde{\mathbf{h}}<em>{i}^{H} \mathbf{w} \mathbf{w}^{H} \tilde{\mathbf{h}}</em>{i}&#x3D;\Tr(\tilde{\mathbf{h}}<em>{i}^{H} \mathbf{w} \mathbf{w}^{H} \tilde{\mathbf{h}}</em>{i})&#x3D;\Tr(\mathbf{w} \mathbf{w}^{H}\tilde{\mathbf{h}}<em>{i}\tilde{\mathbf{h}}</em>{i}^{H})&#x3D;\Tr(\textbf{XQ}_i)<br>$$<br>Drop rank-one constraint 会得到一个松弛结果。</p>
-<p>由松弛结果可以得到$\textbf{X}_{\text{opt}}$，然后得到a set of candidate weight vectors，再根据某种判别条件（好像不同文章中的从set中选择最优的条件不同）选择最优结果。</p>
-<h3 id="randA"><a href="#randA" class="headerlink" title="randA"></a>randA</h3><p>对解得的$\textbf{X}<em>{\text{opt}}$有$\textbf{X}</em>{\text{opt}}&#x3D;\textbf{U}\Sigma\textbf{U}^H$，可以得到a set of candidate weight vectors $\textbf{w}_l&#x3D;\textbf{U}\Sigma^{1&#x2F;2}\textbf{e}_l$，其中$[\textbf{e}<em>l]<em>i&#x3D;e^{j\theta</em>{l,j}}$，且$\theta</em>{l,j}\sim U[0,2\pi)$。以保证有$\textbf{w}_l^H\textbf{w}<em>l&#x3D;\Tr(\textbf{X}</em>{\text{opt}})$</p>
-<h3 id="randB"><a href="#randB" class="headerlink" title="randB"></a>randB</h3><p>对解得的$\textbf{X}_{\text{opt}}$做$[\textbf{w}_l]<em>i&#x3D;\sqrt{[\textbf{X}]</em>{ii}}[\textbf{e}_l]<em>i$，以保证有$|[\textbf{w}<em>l]<em>i|^2&#x3D;[\textbf{X}</em>{\text{opt}}]</em>{ii}$，其中$\textbf{e}</em>{l}$同<em>randA</em>。</p>
-<h3 id="randC"><a href="#randC" class="headerlink" title="randC"></a>randC</h3><p>类似于<em>randA</em>，有$\textbf{w}_l&#x3D;\textbf{U}\Sigma^{1&#x2F;2}\textbf{v}_l$，其中$\textbf{v}_l\sim\mathcal{CN}(0,1)$，以保证有$\text{E}[\textbf{w}<em>l\textbf{w}^H]&#x3D;\textbf{X}</em>{\text{opt}}$</p>
+<h2 id="主要内容">主要内容</h2>
+<h3 id="建模">建模</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220420210025213.png" srcset="/img/loading.gif" lazyload alt="建模" style="zoom: 50%;" /></p>
+<p>值得注意的一个等价形式： <span class="math display">\[
+\tilde{\mathbf{h}}_{i}^{H} \mathbf{w} \mathbf{w}^{H} \tilde{\mathbf{h}}_{i}=\Tr(\tilde{\mathbf{h}}_{i}^{H} \mathbf{w} \mathbf{w}^{H} \tilde{\mathbf{h}}_{i})=\Tr(\mathbf{w} \mathbf{w}^{H}\tilde{\mathbf{h}}_{i}\tilde{\mathbf{h}}_{i}^{H})=\Tr(\textbf{XQ}_i)
+\]</span> Drop rank-one constraint 会得到一个松弛结果。</p>
+<p>由松弛结果可以得到<span class="math inline">\(\textbf{X}_{\text{opt}}\)</span>，然后得到a set of candidate weight vectors，再根据某种判别条件（好像不同文章中的从set中选择最优的条件不同）选择最优结果。</p>
+<h3 id="randa">randA</h3>
+<p>对解得的<span class="math inline">\(\textbf{X}_{\text{opt}}\)</span>有<span class="math inline">\(\textbf{X}_{\text{opt}}=\textbf{U}\Sigma\textbf{U}^H\)</span>，可以得到a set of candidate weight vectors <span class="math inline">\(\textbf{w}_l=\textbf{U}\Sigma^{1/2}\textbf{e}_l\)</span>，其中<span class="math inline">\([\textbf{e}_l]_i=e^{j\theta_{l,j}}\)</span>，且<span class="math inline">\(\theta_{l,j}\sim U[0,2\pi)\)</span>。以保证有<span class="math inline">\(\textbf{w}_l^H\textbf{w}_l=\Tr(\textbf{X}_{\text{opt}})\)</span></p>
+<h3 id="randb">randB</h3>
+<p>对解得的<span class="math inline">\(\textbf{X}_{\text{opt}}\)</span>做<span class="math inline">\([\textbf{w}_l]_i=\sqrt{[\textbf{X}]_{ii}}[\textbf{e}_l]_i\)</span>，以保证有<span class="math inline">\(|[\textbf{w}_l]_i|^2=[\textbf{X}_{\text{opt}}]_{ii}\)</span>，其中<span class="math inline">\(\textbf{e}_{l}\)</span>同<em>randA</em>。</p>
+<h3 id="randc">randC</h3>
+<p>类似于<em>randA</em>，有<span class="math inline">\(\textbf{w}_l=\textbf{U}\Sigma^{1/2}\textbf{v}_l\)</span>，其中<span class="math inline">\(\textbf{v}_l\sim\mathcal{CN}(0,1)\)</span>，以保证有<span class="math inline">\(\text{E}[\textbf{w}_l\textbf{w}^H]=\textbf{X}_{\text{opt}}\)</span></p>
 
                 
               </div>

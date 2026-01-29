@@ -254,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          629 字
+          644 字
         
       </span>
     
@@ -327,59 +327,74 @@
               <div class="markdown-body">
                 
                 <p>aplayer是一个非常漂亮好用的HTML5音乐播放器，和dplayer师出同门。我用的主题是fluid，记录一下添加音乐插件的过程。</p>
-<p>我的<a href="https://lcjoffrey.top/">HEXO博客</a></p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212140343669.png" srcset="/img/loading.gif" lazyload alt="整体效果"></p>
-<h1 id="安装aplayer"><a href="#安装aplayer" class="headerlink" title="安装aplayer"></a>安装aplayer</h1><p>npm和github两种方式二选一，拿到dist文件夹就可以了。</p>
-<h2 id="npm安装"><a href="#npm安装" class="headerlink" title="npm安装"></a>npm安装</h2><p>在hexo博客的文件夹根目录打开git bash，并输入:</p>
+<p>我的<a href="https://lcjoffrey.top">HEXO博客</a></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212140343669.png" srcset="/img/loading.gif" lazyload alt="整体效果" /><figcaption aria-hidden="true">整体效果</figcaption>
+</figure>
+<h1 id="安装aplayer">安装aplayer</h1>
+<p>npm和github两种方式二选一，拿到dist文件夹就可以了。</p>
+<h2 id="npm安装">npm安装</h2>
+<p>在hexo博客的文件夹根目录打开git bash，并输入:</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install <span class="hljs-comment">--save hexo-tag-aplayer</span><br></code></pre></td></tr></table></figure>
-
 <p>可以看到在node_module文件夹中多出来一个aplayer文件夹即可</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212133506777.png" srcset="/img/loading.gif" lazyload alt="dist路径"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212133506777.png" srcset="/img/loading.gif" lazyload alt="dist路径" /><figcaption aria-hidden="true">dist路径</figcaption>
+</figure>
 <p>为了方便，将这个dist文件夹复制一份到主题目录下的source文件夹中。</p>
-<h2 id="Github下载源码"><a href="#Github下载源码" class="headerlink" title="Github下载源码"></a>Github下载源码</h2><p><a target="_blank" rel="noopener" href="https://github.com/DIYgod/APlayer">去github clone源码</a>，并复制dist文件夹到主题下的source。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212133806994.png" srcset="/img/loading.gif" lazyload alt="github下载dist"></p>
-<h1 id="配置js组件"><a href="#配置js组件" class="headerlink" title="配置js组件"></a>配置js组件</h1><p>这一步可以根据<a target="_blank" rel="noopener" href="https://blog.yleao.com/2018/0902/hexo%E4%B8%8A%E7%9A%84aplayer%E5%BA%94%E7%94%A8.html">教程</a>选择自己喜欢的模式。新建一个music.js（名字随便起），放到主题的source文件夹里（我放在source&#x2F;js&#x2F;diy&#x2F;music.js）例如：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212135433717.png" srcset="/img/loading.gif" lazyload alt="我的music.js路径"></p>
+<h2 id="github下载源码">Github下载源码</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/DIYgod/APlayer">去github clone源码</a>，并复制dist文件夹到主题下的source。</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212133806994.png" srcset="/img/loading.gif" lazyload alt="github下载dist" /><figcaption aria-hidden="true">github下载dist</figcaption>
+</figure>
+<h1 id="配置js组件">配置js组件</h1>
+<p>这一步可以根据<a target="_blank" rel="noopener" href="https://blog.yleao.com/2018/0902/hexo%E4%B8%8A%E7%9A%84aplayer%E5%BA%94%E7%94%A8.html">教程</a>选择自己喜欢的模式。新建一个music.js（名字随便起），放到主题的source文件夹里（我放在source/js/diy/music.js）例如：</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212135433717.png" srcset="/img/loading.gif" lazyload alt="我的music.js路径" /><figcaption aria-hidden="true">我的music.js路径</figcaption>
+</figure>
 <ul>
 <li>和我选择一样的跟随模式</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> ap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">APlayer</span>(&#123;<br>    <span class="hljs-attr">container</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;aplayer&#x27;</span>),<br>    <span class="hljs-attr">fixed</span>: <span class="hljs-literal">true</span>,<br>	<span class="hljs-attr">autoplay</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//自动播放</span><br>    <span class="hljs-attr">audio</span>: [<br>	&#123;<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">artist</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">cover</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>    &#125;, <br>	]<br>&#125;);<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>选择普通模式</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> ap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">APlayer</span>(&#123;<br>    <span class="hljs-attr">container</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;aplayer&#x27;</span>),<br>    <span class="hljs-attr">audio</span>: [&#123;<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">artist</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-attr">cover</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>    &#125;]<br>&#125;);<br></code></pre></td></tr></table></figure>
-
 <p>等等</p>
-<h1 id="搞音乐外链"><a href="#搞音乐外链" class="headerlink" title="搞音乐外链"></a>搞音乐外链</h1><ul>
-<li>在一些网站上搜索，例如：<a target="_blank" rel="noopener" href="https://www.ytmp3.cn/">https://www.ytmp3.cn/</a></li>
+<h1 id="搞音乐外链">搞音乐外链</h1>
+<ul>
+<li>在一些网站上搜索，例如：https://www.ytmp3.cn/</li>
 </ul>
 <p>好用是好用，但是没有cover，逼格不够；包含的音乐也有点少。</p>
 <ul>
 <li>自己动手薅</li>
 </ul>
-<ol>
+<ol type="1">
 <li><p>比如说找<a target="_blank" rel="noopener" href="https://music.163.com/#/song?id=483378334">deca joins的浴室</a>，在页面按F12进入开发者模式，选择Network。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212134814313.png" srcset="/img/loading.gif" lazyload alt="Network"></p>
-</li>
-<li><p>点击播放，找media类型的Request URL就是音乐的URL。<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212135032005.png" srcset="/img/loading.gif" lazyload alt="media"></p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212134955263.png" srcset="/img/loading.gif" lazyload alt="URL"></p>
-</li>
-<li><p>同样的找到想要的cover图片的URL，然后一起填到之前的music.js中。</p>
-</li>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212134814313.png" srcset="/img/loading.gif" lazyload alt="Network" /><figcaption aria-hidden="true">Network</figcaption>
+</figure></li>
+<li><p>点击播放，找media类型的Request URL就是音乐的URL。<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212135032005.png" srcset="/img/loading.gif" lazyload alt="media" /></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212134955263.png" srcset="/img/loading.gif" lazyload alt="URL" /><figcaption aria-hidden="true">URL</figcaption>
+</figure></li>
+<li><p>同样的找到想要的cover图片的URL，然后一起填到之前的music.js中。</p></li>
 </ol>
 <p>例如我的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> ap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">APlayer</span>(&#123;<br>    <span class="hljs-attr">container</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;aplayer&#x27;</span>),<br>    <span class="hljs-attr">fixed</span>: <span class="hljs-literal">true</span>,<br>	<span class="hljs-attr">autoplay</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//自动播放</span><br>    <span class="hljs-attr">audio</span>: [<br>	&#123;<br>        <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;浴室&quot;</span>,<br>        <span class="hljs-attr">artist</span>: <span class="hljs-string">&#x27;deca joins&#x27;</span>,<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://m704.music.126.net/20211212133437/6298f876daf4b3a20b984659f71f8968/jdyyaac/000c/560b/5153/7f43625368aa52c4fbb0f968fa2007d2.m4a?authSecret=0000017dad0be60506550aa4681408a0&#x27;</span>,<br>        <span class="hljs-attr">cover</span>: <span class="hljs-string">&#x27;https://p1.music.126.net/byjfkEIOWI_RmxSKEWTPyw==/18910500486297525.jpg?param=200y200&#x27;</span>,	<br>    &#125;,<br>	]<br>&#125;);<br></code></pre></td></tr></table></figure>
-
-<h1 id="布置到想要的页面中"><a href="#布置到想要的页面中" class="headerlink" title="布置到想要的页面中"></a>布置到想要的页面中</h1><p>因为我用的是fluid主题，作者在_config.yml文件中预留了修改html的接口，所以我就直接添加在</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212135816276.png" srcset="/img/loading.gif" lazyload alt="_config.yml中添加"></p>
+<h1 id="布置到想要的页面中">布置到想要的页面中</h1>
+<p>因为我用的是fluid主题，作者在_config.yml文件中预留了修改html的接口，所以我就直接添加在</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212135816276.png" srcset="/img/loading.gif" lazyload alt="_config.yml中添加" /><figcaption aria-hidden="true">_config.yml中添加</figcaption>
+</figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/dist/APlayer.min.css&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;aplayer&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/dist/APlayer.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/js/diy/music.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>值得注意的是，这里的<code>id=&quot;aplayer&quot;</code>要和上面music.js中的<code>container: document.getElementById(&#39;aplayer&#39;)</code>填的Id相同。</p>
+<p>值得注意的是，这里的<code>id=“aplayer”</code>要和上面music.js中的<code>container: document.getElementById(‘aplayer’)</code>填的Id相同。</p>
 <p>然后就保存发布即可！</p>
 <p>最终效果：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212140311292.png" srcset="/img/loading.gif" lazyload alt="整体效果"></p>
-<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p>如何获取歌词lrc，有哪位老哥知道可以和我分享一下。感谢！</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211212140311292.png" srcset="/img/loading.gif" lazyload alt="整体效果" /><figcaption aria-hidden="true">整体效果</figcaption>
+</figure>
+<h1 id="todo">TODO</h1>
+<p>如何获取歌词lrc，有哪位老哥知道可以和我分享一下。感谢！</p>
 
                 
               </div>

@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          211 字
+          213 字
         
       </span>
     
@@ -325,20 +325,26 @@
               <div class="markdown-body">
                 
                 <p>原文<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9110849">Intelligent Reflecting Surface Aided MIMO Broadcasting for Simultaneous Wireless Information and Power Transfer</a></p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220313155156040.png" srcset="/img/loading.gif" lazyload alt="IRS辅助SWIPT"></p>
-<h2 id="缩写说明"><a href="#缩写说明" class="headerlink" title="缩写说明"></a>缩写说明</h2><ul>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20220313155156040.png" srcset="/img/loading.gif" lazyload alt="IRS辅助SWIPT" /><figcaption aria-hidden="true">IRS辅助SWIPT</figcaption>
+</figure>
+<h2 id="缩写说明">缩写说明</h2>
+<ul>
 <li>WSR: Weighted sum rate</li>
 <li>TPC: Transmit precoding matrices</li>
 <li>WMMSE: weighted minimum mean-square error</li>
 </ul>
-<h2 id="主要挑战"><a href="#主要挑战" class="headerlink" title="主要挑战"></a>主要挑战</h2><p>通过IRS辅助SWIPT。联合优化BS、的发射预编码（波束赋形）矩阵TPC和IRS被动波束赋形的TPC，来描述WSR最大化问题，并满足EHS的能量需求。挑战在于引入能量捕获阈值后，是一个非凸约束。</p>
-<h2 id="算法内容"><a href="#算法内容" class="headerlink" title="算法内容"></a>算法内容</h2><ol>
+<h2 id="主要挑战">主要挑战</h2>
+<p>通过IRS辅助SWIPT。联合优化BS、的发射预编码（波束赋形）矩阵TPC和IRS被动波束赋形的TPC，来描述WSR最大化问题，并满足EHS的能量需求。挑战在于引入能量捕获阈值后，是一个非凸约束。</p>
+<h2 id="算法内容">算法内容</h2>
+<ol type="1">
 <li>通过WMMSE转化问题，方便应用BCD</li>
 <li>通过BCD算法将原优化问题分解为多个子问题</li>
 <li>基于每个子问题提出一种低复杂度的迭代算法，交替优化TPC矩阵和相移矩阵，并证明BCD算法收敛于原问题的KKT点</li>
 <li>设计可行性检查方法来探究其可行性</li>
 </ol>
-<h2 id="Future-work"><a href="#Future-work" class="headerlink" title="Future work"></a>Future work</h2><ul>
+<h2 id="future-work">Future work</h2>
+<ul>
 <li>本文考虑的是perfect CSI，imperfect CSI是一个极大地挑战</li>
 <li>为了优化方便选取的是continued phase shift，实际中应该是discrete phase shift</li>
 </ul>

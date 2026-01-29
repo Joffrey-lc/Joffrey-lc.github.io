@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          612 字
+          583 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          6 分钟
+          5 分钟
         
       </span>
     
@@ -324,83 +324,62 @@
             
               <div class="markdown-body">
                 
-                <h1 id="hexo本地文件同步到github"><a href="#hexo本地文件同步到github" class="headerlink" title="hexo本地文件同步到github"></a>hexo本地文件同步到github</h1><ol>
-<li><p>github新建分支，必须新建分支，血泪教训</p>
-</li>
-<li><p>将新分支设置为默认分支</p>
-</li>
-<li><p>将新分支clone到本地新文件夹A中</p>
-</li>
-<li><p>删除除了.git之外的所有文件。.git文件夹是隐藏文件夹</p>
-</li>
-<li><p>将本地文件除了.deploy_git和.git两个文件之外的所有文件全部复制，并粘贴到A</p>
-</li>
-<li><p>修改.gitignore文件中忽略的文件夹。因为我用的主题决定了我需要保留node_modules，所以将其中的&#x2F;node_modules删除</p>
-</li>
-<li></li>
+                <h1 id="hexo本地文件同步到github">hexo本地文件同步到github</h1>
+<ol type="1">
+<li><p>github新建分支，必须新建分支，血泪教训</p></li>
+<li><p>将新分支设置为默认分支</p></li>
+<li><p>将新分支clone到本地新文件夹A中</p></li>
+<li><p>删除除了.git之外的所有文件。.git文件夹是隐藏文件夹</p></li>
+<li><p>将本地文件除了.deploy_git和.git两个文件之外的所有文件全部复制，并粘贴到A</p></li>
+<li><p>修改.gitignore文件中忽略的文件夹。因为我用的主题决定了我需要保留node_modules，所以将其中的/node_modules删除</p></li>
+<li><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> <span class="hljs-keyword">add</span> .<br><span class="hljs-symbol">git</span> commit -m <span class="hljs-string">&quot;add branch&quot;</span><br><span class="hljs-symbol">git</span> <span class="hljs-keyword">push</span><br><br></code></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> <span class="hljs-keyword">add</span> .<br><span class="hljs-symbol">git</span> commit -m <span class="hljs-string">&quot;add branch&quot;</span><br><span class="hljs-symbol">git</span> <span class="hljs-keyword">push</span><br><br></code></pre></td></tr></table></figure>
-
 <p>之后每次更新完博客，记得重复<code>步骤7</code></p>
-<h1 id="在新电脑上clone博客文件"><a href="#在新电脑上clone博客文件" class="headerlink" title="在新电脑上clone博客文件"></a>在新电脑上clone博客文件</h1><p>安装git，安装nodejs，配置ssh key，安装hexo</p>
-<ol>
-<li><p>clone github 上的仓库</p>
-</li>
-<li></li>
+<h1 id="在新电脑上clone博客文件">在新电脑上clone博客文件</h1>
+<p>安装git，安装nodejs，配置ssh key，安装hexo</p>
+<ol type="1">
+<li><p>clone github 上的仓库</p></li>
+<li><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">cd xxx<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><br>npm install<br>npm install hexo-deployer-git <span class="hljs-attr">--save</span><br></code></pre></td></tr></table></figure></li>
+<li><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">hexo <span class="hljs-selector-tag">g</span><br>hexo d<br></code></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">cd xxx<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><br>npm install<br>npm install hexo-deployer-git <span class="hljs-attr">--save</span><br></code></pre></td></tr></table></figure>
-
-<p>3. </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">hexo <span class="hljs-selector-tag">g</span><br>hexo d<br></code></pre></td></tr></table></figure>
-
 <p>每次打开博客文件夹，都需要同步一下。</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git pull</span><br></code></pre></td></tr></table></figure>
-
-<h1 id="创建新文档"><a href="#创建新文档" class="headerlink" title="创建新文档"></a>创建新文档</h1><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">hexo <span class="hljs-keyword">new</span> [layout] &lt;<span class="hljs-built_in">title</span>&gt;<br></code></pre></td></tr></table></figure>
-
+<h1 id="创建新文档">创建新文档</h1>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">hexo <span class="hljs-keyword">new</span> [layout] &lt;<span class="hljs-built_in">title</span>&gt;<br></code></pre></td></tr></table></figure>
 <p>例如 hexo new mypage utils</p>
 <p>意思是创建一个以mypage为模板的博客文件，名字叫做utils.md</p>
 <p>注意 <code>mypage</code>是我自己定义的，自带的只有<code>post</code>,<code>draft</code>,<code>page</code>三种，默认是<code>post</code></p>
-<h1 id="创建草稿不发布"><a href="#创建草稿不发布" class="headerlink" title="创建草稿不发布"></a>创建草稿不发布</h1><ol>
+<h1 id="创建草稿不发布">创建草稿不发布</h1>
+<ol type="1">
 <li><p>创建草稿mydraft.md</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">hexo <span class="hljs-keyword">new</span> draft mydraft<br></code></pre></td></tr></table></figure>
-</li>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">hexo <span class="hljs-keyword">new</span> draft mydraft<br></code></pre></td></tr></table></figure></li>
 <li><p>预览草稿</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">hexo <span class="hljs-keyword">server</span> <span class="hljs-comment">--draft</span><br></code></pre></td></tr></table></figure>
-</li>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">hexo <span class="hljs-keyword">server</span> <span class="hljs-comment">--draft</span><br></code></pre></td></tr></table></figure></li>
 <li><p>发布草稿mydraft.md</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo publish draft mydraft</span><br></code></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="创建文章资源文件夹"><a href="#创建文章资源文件夹" class="headerlink" title="创建文章资源文件夹"></a>创建文章资源文件夹</h1><p>在根目录下的＿config.yml中设置：</p>
+<p>#　创建文章资源文件夹</p>
+<p>在根目录下的＿config.yml中设置：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">post<span class="hljs-emphasis">_asset_</span>folder: true<br></code></pre></td></tr></table></figure>
-
 <p>然后新建post时就会产生资源文件夹</p>
-<h1 id="添加PDF页面"><a href="#添加PDF页面" class="headerlink" title="添加PDF页面"></a>添加PDF页面</h1><p>新建一个html文件在post的资源文件夹中，写入：</p>
+<h1 id="添加pdf页面">添加PDF页面</h1>
+<p>新建一个html文件在post的资源文件夹中，写入：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./paper.pdf&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100%&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100%&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
 <p>然后再资源文件夹中放入<strong>paper.pdf</strong>，并在文章中用超链接引用这个html文件。<strong>注意，在文章中默认路径在资源文件夹中</strong>。</p>
-<hr>
-<h1 id="hexo-报错"><a href="#hexo-报错" class="headerlink" title="hexo 报错"></a>hexo 报错</h1><p>最近更新了CV page，然后在</p>
+<hr />
+<h1 id="hexo-报错">hexo 报错</h1>
+<p>最近更新了CV page，然后在</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">hexo clean<br></code></pre></td></tr></table></figure>
-
 <p>时会报错：</p>
 <blockquote>
-<p>err: Error: Cannot find module ‘.&#x2F;db.json’<br> Require stack:</p>
-<ul>
-<li>D:\Myblog\Joffrey-lc.github.io\node_modules\mime-db\index.js</li>
-<li>D:\Myblog\Joffrey-lc.github.io\node_modules\compressible\index.js</li>
-<li>D:\Myblog\Joffrey-lc.github.io\node_modules\compression\index.js</li>
-<li>D:\Myblog\Joffrey-lc.github.io\node_modules\hexo-server\lib\middlewares\gzip<br>.js</li>
-<li>D:\Myblog\Joffrey-lc.github.io\node_modules\hexo-server\index.js</li>
-</ul>
+<p>err: Error: Cannot find module ‘./db.json’ Require stack: - D:-lc.github.io_modules-db.js - D:-lc.github.io_modules.js - D:-lc.github.io_modules.js - D:-lc.github.io_modules-server .js - D:-lc.github.io_modules-server.js</p>
 </blockquote>
 <p>Chat老师说是：</p>
 <blockquote>
-<p>真正坏掉的不是 <code>hexo clean</code>，而是 <strong><code>hexo-server</code> 依赖链里的 <code>mime-db</code> 包缺了 <code>db.json</code></strong>：<code>mime-db/index.js</code> 会 <code>require(&#39;./db.json&#39;)</code>，但你的 <code>node_modules\mime-db\db.json</code> 不存在，于是触发 <code>MODULE_NOT_FOUND</code>，进而导致 <code>hexo-server</code> 插件加载失败。这个现象在 Hexo 的 issue 里也有同款（并且同样会出现“报错但后面仍然 Deleted database&#x2F;public folder”）</p>
+<p>真正坏掉的不是 <code>hexo clean</code>，而是 <strong><code>hexo-server</code> 依赖链里的 <code>mime-db</code> 包缺了 <code>db.json</code></strong>：<code>mime-db/index.js</code> 会 <code>require('./db.json')</code>，但你的 <code>node_modules\mime-db\db.json</code> 不存在，于是触发 <code>MODULE_NOT_FOUND</code>，进而导致 <code>hexo-server</code> 插件加载失败。这个现象在 Hexo 的 issue 里也有同款（并且同样会出现“报错但后面仍然 Deleted database/public folder”）</p>
 </blockquote>
 <p>解决办法是，根目录下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">npm install mime-db mime-types accepts compression hexo-server --save<br></code></pre></td></tr></table></figure>
-
 <p>如果还是不行，我建议直接复制工程到目标电脑上，保留.git文件夹</p>
 
                 

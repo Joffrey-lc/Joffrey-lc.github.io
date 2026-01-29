@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.5k 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          14 分钟
+          13 分钟
         
       </span>
     
@@ -324,62 +324,66 @@
               <div class="markdown-body">
                 
                 <p>两篇文章一起总结了</p>
-<hr>
-<p><strong>Foundations of Wireless Information and Power Transfer: Theory, Prototypes, and Experiments</strong>.  <em>Bruno Clerckx</em> et.al.  <strong>Proceedings of the IEEE, Jan.  2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9675011">pdf</a>)  (Citations <strong>0</strong>)</p>
+<hr />
+<p><strong>Foundations of Wireless Information and Power Transfer: Theory, Prototypes, and Experiments</strong>. <em>Bruno Clerckx</em> et.al. <strong>Proceedings of the IEEE, Jan. 2022</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9675011">pdf</a>) (Citations <strong>0</strong>)</p>
 <p>只整理了WET，WIET暂时未关注…</p>
 <div>
             <input type="checkbox"  checked="checked">WET部分
 
-          </div> 
-
+          </div>
 <div>
             <input type="checkbox"  >WIET部分
 
-          </div> 
-
-<h1 id="WET1"><a href="#WET1" class="headerlink" title="WET1"></a>WET1</h1><h2 id="整体"><a href="#整体" class="headerlink" title="整体"></a>整体</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000189.png" srcset="/img/loading.gif" lazyload alt="image-20220824163157533" style="zoom:50%;" />
-
-
-
-<p>上述的整个流程，对应于end-to-end能量转换效率：<br>$$<br>e&#x3D;\frac{P_{\mathrm{dc}}^{s}}{P_{\mathrm{dc}}^{t}}&#x3D;\underbrace{\frac{P_{\mathrm{rf}}^{t}}{P_{\mathrm{dc}}^{t}}}<em>{e</em>{1}} \underbrace{\frac{P_{\mathrm{rf}}^{r}}{P_{\mathrm{rf}}^{t}}}<em>{e</em>{2}} \underbrace{\frac{P_{\mathrm{dc}}^{r}}{P_{\mathrm{rf}}^{r}}}<em>{e</em>{3}} \underbrace{\frac{P_{\mathrm{dc}}^{s}}{P_{\mathrm{dc}}^{r}}}<em>{e</em>{4}}<br>$$</p>
+          </div>
+<h1 id="wet1">WET1</h1>
+<h2 id="整体">整体</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000189.png" srcset="/img/loading.gif" lazyload alt="image-20220824163157533" style="zoom:50%;" /></p>
+<p>上述的整个流程，对应于end-to-end能量转换效率： <span class="math display">\[
+e=\frac{P_{\mathrm{dc}}^{s}}{P_{\mathrm{dc}}^{t}}=\underbrace{\frac{P_{\mathrm{rf}}^{t}}{P_{\mathrm{dc}}^{t}}}_{e_{1}} \underbrace{\frac{P_{\mathrm{rf}}^{r}}{P_{\mathrm{rf}}^{t}}}_{e_{2}} \underbrace{\frac{P_{\mathrm{dc}}^{r}}{P_{\mathrm{rf}}^{r}}}_{e_{3}} \underbrace{\frac{P_{\mathrm{dc}}^{s}}{P_{\mathrm{dc}}^{r}}}_{e_{4}}
+\]</span></p>
 <ul>
-<li>$e_1$：DC-to-RF</li>
-<li>$e_2$：RF-to-RF</li>
-<li>$e_3$：RF-to-DC</li>
-<li>$e_4$：DC-to-DC</li>
+<li><span class="math inline">\(e_1\)</span>：DC-to-RF</li>
+<li><span class="math inline">\(e_2\)</span>：RF-to-RF</li>
+<li><span class="math inline">\(e_3\)</span>：RF-to-DC</li>
+<li><span class="math inline">\(e_4\)</span>：DC-to-DC</li>
 </ul>
 <p>总结：</p>
-<ol>
+<ol type="1">
 <li><span class="label label-success">高效的高功率放大器（HPA, high Power Amplifiers）可以实现较大的$e_1$</span></li>
-<li>增加发射机天线和Q（DC combining整流器个数（天线数）），可以增大$e_2$</li>
+<li>增加发射机天线和Q（DC combining整流器个数（天线数）），可以增大<span class="math inline">\(e_2\)</span></li>
 <li><span class="label label-success">在低Input power时，Multisine和CW的$e_3$都很小，但是随着Input power的增大，$e_3$增大，而且Multisine的$e_3$大于CW。（主要体现在四阶矩上）</span></li>
-<li>DC-to-DC converter控制$e_4$</li>
+<li>DC-to-DC converter控制<span class="math inline">\(e_4\)</span></li>
 </ol>
-<h2 id="能量传输"><a href="#能量传输" class="headerlink" title="能量传输"></a>能量传输</h2><p>多正弦波，频率为$f_n&#x3D;f_0+n\Delta_f$：<br>$$<br>\mathbf{x}<em>{\mathrm{rf}}(t)&#x3D;\sqrt{2} \Re\left{\sum</em>{n&#x3D;0}^{N-1} \mathbf{x}<em>{n} e^{j 2 \pi f</em>{n} t}\right}<br>$$<br>其中$\mathbf{x}<em>{n} \triangleq\left[x</em>{1, n}, \ldots, x_{M, n}\right]^{T}$表示$f_n$频率上，天线发射的信号，$x_{m, n}&#x3D;s_{m, n} e^{j \phi_{m, n}}$，$s_{m,n}$是幅度，$e^{j\phi_{m,n}}$是相位。（其实主要针对频率选择信道，根据信道的频率响应进行设计）</p>
+<h2 id="能量传输">能量传输</h2>
+<p>多正弦波，频率为<span class="math inline">\(f_n=f_0+n\Delta_f\)</span>： <span class="math display">\[
+\mathbf{x}_{\mathrm{rf}}(t)=\sqrt{2} \Re\left\{\sum_{n=0}^{N-1} \mathbf{x}_{n} e^{j 2 \pi f_{n} t}\right\}
+\]</span> 其中<span class="math inline">\(\mathbf{x}_{n} \triangleq\left[x_{1, n}, \ldots, x_{M, n}\right]^{T}\)</span>表示<span class="math inline">\(f_n\)</span>频率上，天线发射的信号，<span class="math inline">\(x_{m, n}=s_{m, n} e^{j \phi_{m, n}}\)</span>，<span class="math inline">\(s_{m,n}\)</span>是幅度，<span class="math inline">\(e^{j\phi_{m,n}}\)</span>是相位。（其实主要针对频率选择信道，根据信道的频率响应进行设计）</p>
 <blockquote>
 <p>在Bruno他们的文章中，做CSI-free时，使用的是等功率分配，也有效果</p>
 </blockquote>
 <span class="label label-success">高效的高功率放大器（HPA, high Power Amplifiers）可以实现较大的$e_1$</span>
-
 <p>It is the general understanding that single-diode rectififiers</p>
 <p>are more suited for <strong>low</strong> input power and multiple-diode rectififiers for a <strong>higher</strong> power.</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000200.png" srcset="/img/loading.gif" lazyload alt="image-20220824200627951" style="zoom:50%;" />
-
-<p>单二极管模型情况下，$e_3$在low Input Power时，两种type（CW，Multisine）相似，都比较低。但是随着Input Power增大而增大，且Multisine 转换率大于CW，<span class="label label-success">因为传递能量的突发性，有助于开启二极管</span>，并在低功率状态下提高整流器的灵敏度；到达击穿区，又逐渐减小。To operate beyond such input power and eliminate the saturation problem, a multiple-diode rectififier is recommended.</p>
-<p>有输出的电压$v_{out}$</p>
-<p>$$<br>v_{\text {out }}&#x3D;f_{\mathrm{EH}}\left(y_{\mathrm{rf}}(t)\right)&#x3D;\beta_{2} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{2}\right]+\beta_{4} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{4}\right]<br>$$<br>而且由Jesen不等式，有$\mathbb{E}\left[y_{\mathrm{rf}}(t)^{i}\right] \geq\left(\mathbb{E}\left[y_{\mathrm{rf}}(t)^{2}\right]\right)^{\frac{i}{2}}&#x3D;\left(P_{\mathrm{rf}}^{r}\right)^{\frac{i}{2}}$，即有：<br>$$<br>v_{\text {out }} \geq \beta_{2} P_{\mathrm{rf}}^{r}+\beta_{4}\left(P_{\mathrm{rf}}^{r}\right)^{2}<br>$$<br>则$e_3$随着$P_{\text{rf}}^r$增大而增大（击穿区前）。<span class="label label-danger">最大化$P_\text{rf}^r$ 仅最大化下界而不是其本身</span></p>
-<p>如果假设Multisine不同频率功率均匀分配，则$\mathbb{E}\left[y_{\mathrm{rf}}(t)^{4}\right]$正比于$N(P_{\text{rf}}^r)$，所以Multisine（$N&#x3D;8$）优于CW（$N&#x3D;1$）。<span class="label label-danger">二者(may have)相同的二阶矩(功率)，但是不同的四阶矩</span></p>
-<h2 id="DC-combining-and-RF-combining"><a href="#DC-combining-and-RF-combining" class="headerlink" title="DC combining and RF combining"></a>DC combining and RF combining</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000133.png" srcset="/img/loading.gif" lazyload alt="image-20220824205017878" style="zoom:50%;" />
-
-<p>整体而言，RF combining 效果更好。（更大$e_3$）</p>
-<p>局部而言，增加发射机天线和Q（DC combining整流器个数（天线数）），可以增大$e_2$</p>
-<p>DC-to-DC converter控制$e_4$</p>
-<p>值得注意的是$e_1,e_2,e_3,e_4$之间是耦合的，单独最大化某一个并不一定整体$e$最大化。</p>
-<h2 id="多正弦波优化"><a href="#多正弦波优化" class="headerlink" title="多正弦波优化"></a>多正弦波优化</h2><p>根据信道频率响应进行优化。频率响应大的分配多功率。这种非平均的功率分配是最大化$\beta_{2} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{2}\right]+\beta_{4} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{4}\right]$第一项和第二项的trade-off</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000202.png" srcset="/img/loading.gif" lazyload alt="image-20220824210122547" style="zoom:50%;" />
-
-<h2 id="信道估计"><a href="#信道估计" class="headerlink" title="信道估计"></a>信道估计</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000197.png" srcset="/img/loading.gif" lazyload alt="image-20220824210236629" style="zoom:50%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000200.png" srcset="/img/loading.gif" lazyload alt="image-20220824200627951" style="zoom:50%;" /></p>
+<p>单二极管模型情况下，<span class="math inline">\(e_3\)</span>在low Input Power时，两种type（CW，Multisine）相似，都比较低。但是随着Input Power增大而增大，且Multisine 转换率大于CW，<span class="label label-success">因为传递能量的突发性，有助于开启二极管</span>，并在低功率状态下提高整流器的灵敏度；到达击穿区，又逐渐减小。To operate beyond such input power and eliminate the saturation problem, a multiple-diode rectififier is recommended.</p>
+<p>有输出的电压<span class="math inline">\(v_{out}\)</span></p>
+<p><span class="math display">\[
+v_{\text {out }}=f_{\mathrm{EH}}\left(y_{\mathrm{rf}}(t)\right)=\beta_{2} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{2}\right]+\beta_{4} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{4}\right]
+\]</span> 而且由Jesen不等式，有<span class="math inline">\(\mathbb{E}\left[y_{\mathrm{rf}}(t)^{i}\right] \geq\left(\mathbb{E}\left[y_{\mathrm{rf}}(t)^{2}\right]\right)^{\frac{i}{2}}=\left(P_{\mathrm{rf}}^{r}\right)^{\frac{i}{2}}\)</span>，即有： <span class="math display">\[
+v_{\text {out }} \geq \beta_{2} P_{\mathrm{rf}}^{r}+\beta_{4}\left(P_{\mathrm{rf}}^{r}\right)^{2}
+\]</span> 则<span class="math inline">\(e_3\)</span>随着<span class="math inline">\(P_{\text{rf}}^r\)</span>增大而增大（击穿区前）。<span class="label label-danger">最大化$P_\text{rf}^r$ 仅最大化下界而不是其本身</span></p>
+<p>如果假设Multisine不同频率功率均匀分配，则<span class="math inline">\(\mathbb{E}\left[y_{\mathrm{rf}}(t)^{4}\right]\)</span>正比于<span class="math inline">\(N(P_{\text{rf}}^r)\)</span>，所以Multisine（<span class="math inline">\(N=8\)</span>）优于CW（<span class="math inline">\(N=1\)</span>）。<span class="label label-danger">二者(may have)相同的二阶矩(功率)，但是不同的四阶矩</span></p>
+<h2 id="dc-combining-and-rf-combining">DC combining and RF combining</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000133.png" srcset="/img/loading.gif" lazyload alt="image-20220824205017878" style="zoom:50%;" /></p>
+<p>整体而言，RF combining 效果更好。（更大<span class="math inline">\(e_3\)</span>）</p>
+<p>局部而言，增加发射机天线和Q（DC combining整流器个数（天线数）），可以增大<span class="math inline">\(e_2\)</span></p>
+<p>DC-to-DC converter控制<span class="math inline">\(e_4\)</span></p>
+<p>值得注意的是<span class="math inline">\(e_1,e_2,e_3,e_4\)</span>之间是耦合的，单独最大化某一个并不一定整体<span class="math inline">\(e\)</span>最大化。</p>
+<h2 id="多正弦波优化">多正弦波优化</h2>
+<p>根据信道频率响应进行优化。频率响应大的分配多功率。这种非平均的功率分配是最大化<span class="math inline">\(\beta_{2} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{2}\right]+\beta_{4} \mathbb{E}\left[y_{\mathrm{rf}}(t)^{4}\right]\)</span>第一项和第二项的trade-off</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000202.png" srcset="/img/loading.gif" lazyload alt="image-20220824210122547" style="zoom:50%;" /></p>
+<h2 id="信道估计">信道估计</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202208250000197.png" srcset="/img/loading.gif" lazyload alt="image-20220824210236629" style="zoom:50%;" /></p>
 <ul>
 <li>第一种需要节点进行信号处理（信道估计）</li>
 <li>第二种依赖于导频传输（pilot transmission）</li>
@@ -389,47 +393,63 @@
 <ul>
 <li>（胡老师的想法，ET-to-ER-to-ET，需要对信号进行设计）<span class="label label-primary">The fourth one is also encouraging due to the low energy consumption at the device and relies on the idea that the ET can exploit the backscatter signals to estimate the backscatter channel (i.e., ET-to-ER-to-ET) state informa tion, from which the transmit signal needs to be designed.</span></li>
 </ul>
-<hr>
-<p><strong>Wireless Power Transfer for Future Networks: Signal Processing, Machine Learning, Computing, and Sensing</strong>.  <em>Bruno Clerckx</em> et.al.  <strong>IEEE Journal of Selected Topics in Signal Processing, Aug.  2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9502719">pdf</a>)  (Citations <strong>8</strong>)</p>
-<h1 id="WET2"><a href="#WET2" class="headerlink" title="WET2"></a>WET2</h1><p>与之前的那篇Invited paper差不多，目前WET的主要关注点</p>
+<hr />
+<p><strong>Wireless Power Transfer for Future Networks: Signal Processing, Machine Learning, Computing, and Sensing</strong>. <em>Bruno Clerckx</em> et.al. <strong>IEEE Journal of Selected Topics in Signal Processing, Aug. 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9502719">pdf</a>) (Citations <strong>8</strong>)</p>
+<h1 id="wet2">WET2</h1>
+<p>与之前的那篇Invited paper差不多，目前WET的主要关注点</p>
 <ul>
-<li><strong>Range:</strong> Deliver wireless power at distances of 5-100 s meters (m) for energizing low-power devices in in door&#x2F;outdoor settings</li>
-<li><strong>Efficiency:</strong> Boost the end-to-end power transfer  efficiency (up to a fraction of a percent&#x2F;a few percent) or equivalently the DC power level at the energy harvester for a given transmit power; </li>
-<li><strong>Non-line of sight (NLoS):</strong> Support Line of sight (LoS) and NLoS to widen real-world applications of future WIPT networks; </li>
+<li><strong>Range:</strong> Deliver wireless power at distances of 5-100 s meters (m) for energizing low-power devices in in door/outdoor settings</li>
+<li><strong>Efficiency:</strong> Boost the end-to-end power transfer efficiency (up to a fraction of a percent/a few percent) or equivalently the DC power level at the energy harvester for a given transmit power;</li>
+<li><strong>Non-line of sight (NLoS):</strong> Support Line of sight (LoS) and NLoS to widen real-world applications of future WIPT networks;</li>
 <li><strong>Mobility support:</strong> Support mobile devices at least for those at pedestrian speed;</li>
-<li><strong>Ubiquitous accessibility:</strong> Provide power ubiquitously within the network coverage area; </li>
-<li><strong>Safety and health:</strong> Make RF system safe and comply with the regulations; </li>
-<li><strong>Energy consumption:</strong> Limit the energy consumption of wireless powered devices; </li>
+<li><strong>Ubiquitous accessibility:</strong> Provide power ubiquitously within the network coverage area;</li>
+<li><strong>Safety and health:</strong> Make RF system safe and comply with the regulations;</li>
+<li><strong>Energy consumption:</strong> Limit the energy consumption of wireless powered devices;</li>
 <li><strong>Seamless integration of wireless communication and wireless power:</strong> Unify wireless communication and wireless power into WIPT;</li>
-<li><strong>Integrated WPT, sensing, computing, and communication:</strong> Integrate WPT with sensing&#x2F;computing and communication in 5G-and-beyond systems with virtualization and network slicing</li>
+<li><strong>Integrated WPT, sensing, computing, and communication:</strong> Integrate WPT with sensing/computing and communication in 5G-and-beyond systems with virtualization and network slicing</li>
 </ul>
 <p><strong>SWIPT</strong>: Energy and information are simultaneously transmitted from one or multiple transmitter(s) to one or multiple receiver(s).</p>
-<p>**Wirelessly Powered Communication Networks (WPCNs):**Energy is transmitted in the downlink from an access point to a receiver and information is transmitted in the uplink.</p>
-<p><em><strong>Wirelessly Powered Backscatter Communication (WPBC):</strong></em> Energy is transmitted in the downlink and information is transmitted in the uplink using backscatter modulation at a tag to reflect and modulate the incoming RF signal for communication with a reader.</p>
-<h2 id="Multisine"><a href="#Multisine" class="headerlink" title="Multisine"></a>Multisine</h2><p>单纯从WET的角度考虑，Multisine可以只用sin，如果要更好地结合WIT，需要考虑sinc;</p>
-<p>对于Multisine和CW，结论和上一篇Invited Paper相同，有相同的功率（二阶矩$\mathbb{E}[y_\text{rf}(t)^2]&#x3D;P_{\text{rf}}^r$），但是四阶矩（$\mathbb{E}[y_\text{rf}(t)^4]$）完全不同；最大化$P_{\text{rf}}^r$只是最大化收获能量下界（由Jensen不等式得到的下界）。</p>
-<h2 id="IRS"><a href="#IRS" class="headerlink" title="IRS"></a>IRS</h2><p>关于IRS，作者提到了三种不同的形式：</p>
+<p><strong>Wirelessly Powered Communication Networks (WPCNs):</strong>Energy is transmitted in the downlink from an access point to a receiver and information is transmitted in the uplink.</p>
+<p><strong><em>Wirelessly Powered Backscatter Communication (WPBC):</em></strong> Energy is transmitted in the downlink and information is transmitted in the uplink using backscatter modulation at a tag to reflect and modulate the incoming RF signal for communication with a reader.</p>
+<h2 id="multisine">Multisine</h2>
+<p>单纯从WET的角度考虑，Multisine可以只用sin，如果要更好地结合WIT，需要考虑sinc;</p>
+<p>对于Multisine和CW，结论和上一篇Invited Paper相同，有相同的功率（二阶矩<span class="math inline">\(\mathbb{E}[y_\text{rf}(t)^2]=P_{\text{rf}}^r\)</span>），但是四阶矩（<span class="math inline">\(\mathbb{E}[y_\text{rf}(t)^4]\)</span>）完全不同；最大化<span class="math inline">\(P_{\text{rf}}^r\)</span>只是最大化收获能量下界（由Jensen不等式得到的下界）。</p>
+<h2 id="irs">IRS</h2>
+<p>关于IRS，作者提到了三种不同的形式：</p>
 <ul>
-<li>Single connected：diagonal $\Theta$</li>
-<li>Group connected：block diagonal $\Theta&#x3D;\text{diag}{\Theta_1,\Theta_2,\cdots,\Theta_G}$，分$G$组，每组$L&#x2F;G&#x3D;L_G$个</li>
-<li>Full connected：a full $\Theta$</li>
+<li>Single connected：diagonal <span class="math inline">\(\Theta\)</span></li>
+<li>Group connected：block diagonal <span class="math inline">\(\Theta=\text{diag}\{\Theta_1,\Theta_2,\cdots,\Theta_G\}\)</span>，分<span class="math inline">\(G\)</span>组，每组<span class="math inline">\(L/G=L_G\)</span>个</li>
+<li>Full connected：a full <span class="math inline">\(\Theta\)</span></li>
 </ul>
-<p>三种形式都满足：$\Theta&#x3D;\Theta^T$ and $\Theta^H\Theta&#x3D;\mathbf{I}_L$</p>
+<p>三种形式都满足：<span class="math inline">\(\Theta=\Theta^T\)</span> and <span class="math inline">\(\Theta^H\Theta=\mathbf{I}_L\)</span></p>
 <p><strong>结论是full &gt; Group &gt; Single</strong>，同时运算复杂度也是<strong>full &gt; Group &gt; Single</strong></p>
 <blockquote>
 <p>意思是，考虑全耦合的element，效果是最好的？？？</p>
 </blockquote>
-<h2 id="Other-Methods"><a href="#Other-Methods" class="headerlink" title="Other Methods"></a>Other Methods</h2><ul>
-<li><p><strong>time-reversal:</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”M. -L. Ku, Y. Han, H. -Q. Lai, Y. Chen and K. J. R. Liu, “Power Waveforming: Wireless Power Transfer Beyond Time Reversal,” in IEEE Transactions on Signal Processing, vol. 64, no. 22, pp. 5819-5834, 15 Nov.15, 2016, doi: 10.1109&#x2F;TSP.2016.2601283.”&gt;[1]</span></a></sup><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”M. -L. Ku, Y. Han, B. Wang and K. J. R. Liu, “Joint Power Waveforming and Beamforming for Wireless Power Transfer,” in IEEE Transactions on Signal Processing, vol. 65, no. 24, pp. 6409-6422, 15 Dec.15, 2017, doi: 10.1109&#x2F;TSP.2017.2755582.”&gt;[2]</span></a></sup> 多径当作虚拟天线，增强$e_2$。需要large bandwidth in order to distinguish as many paths in channel as possible. </p>
-</li>
-<li><p>(有点久远)<strong>retrodirective arrays:</strong> <sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”R. Y. Miyamoto and T. Itoh, “Retrodirective arrays for wireless communications,” in IEEE Microwave Magazine, vol. 3, no. 1, pp. 71-79, March 2002, doi: 10.1109&#x2F;6668.990692.”&gt;[3]</span></a></sup><sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”C. Pon, “Retrodirective array using the heterodyne technique,” in IEEE Transactions on Antennas and Propagation, vol. 12, no. 2, pp. 176-180, March 1964, doi: 10.1109&#x2F;TAP.1964.1138191.”&gt;[4]</span></a></sup> Upon receiving a signal from any direction, retrodirective arrays exploit channel reciprocity to transmit a signal response, in the form of a phase-conjugated version of the received signal, back to the same direction without the need of knowing the source direction or performing explicit channel estimation&#x2F;feedback</p>
-</li>
+<h2 id="other-methods">Other Methods</h2>
+<ul>
+<li><p><strong>time-reversal:</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote">&lt;span class=“hint–top hint–rounded” aria-label=“M. -L. Ku, Y. Han, H. -Q. Lai, Y. Chen and K. J. R. Liu,”Power Waveforming: Wireless Power Transfer Beyond Time Reversal," in IEEE Transactions on Signal Processing, vol. 64, no. 22, pp. 5819-5834, 15 Nov.15, 2016, doi: 10.1109/TSP.2016.2601283.“&gt;[1]</span></a></sup><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class=”hint–top hint–rounded" aria-label=“M. -L. Ku, Y. Han, B. Wang and K. J. R. Liu,”Joint Power Waveforming and Beamforming for Wireless Power Transfer," in IEEE Transactions on Signal Processing, vol. 65, no. 24, pp. 6409-6422, 15 Dec.15, 2017, doi: 10.1109/TSP.2017.2755582."&gt;[2]</span></a></sup> 多径当作虚拟天线，增强<span class="math inline">\(e_2\)</span>。需要large bandwidth in order to distinguish as many paths in channel as possible.</p></li>
+<li><p>(有点久远)<strong>retrodirective arrays:</strong> <sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote">&lt;span class=“hint–top hint–rounded” aria-label=“R. Y. Miyamoto and T. Itoh,”Retrodirective arrays for wireless communications," in IEEE Microwave Magazine, vol. 3, no. 1, pp. 71-79, March 2002, doi: 10.1109/6668.990692.“&gt;[3]</span></a></sup><sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote">&lt;span class=”hint–top hint–rounded" aria-label=“C. Pon,”Retrodirective array using the heterodyne technique," in IEEE Transactions on Antennas and Propagation, vol. 12, no. 2, pp. 176-180, March 1964, doi: 10.1109/TAP.1964.1138191."&gt;[4]</span></a></sup> Upon receiving a signal from any direction, retrodirective arrays exploit channel reciprocity to transmit a signal response, in the form of a phase-conjugated version of the received signal, back to the same direction without the need of knowing the source direction or performing explicit channel estimation/feedback</p></li>
 </ul>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>M. -L. Ku, Y. Han, H. -Q. Lai, Y. Chen and K. J. R. Liu, “Power Waveforming: Wireless Power Transfer Beyond Time Reversal,” in IEEE Transactions on Signal Processing, vol. 64, no. 22, pp. 5819-5834, 15 Nov.15, 2016, doi: 10.1109&#x2F;TSP.2016.2601283.
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>M. -L. Ku, Y. Han, B. Wang and K. J. R. Liu, “Joint Power Waveforming and Beamforming for Wireless Power Transfer,” in IEEE Transactions on Signal Processing, vol. 65, no. 24, pp. 6409-6422, 15 Dec.15, 2017, doi: 10.1109&#x2F;TSP.2017.2755582.
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>R. Y. Miyamoto and T. Itoh, “Retrodirective arrays for wireless communications,” in IEEE Microwave Magazine, vol. 3, no. 1, pp. 71-79, March 2002, doi: 10.1109&#x2F;6668.990692.
-<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>C. Pon, “Retrodirective array using the heterodyne technique,” in IEEE Transactions on Antennas and Propagation, vol. 12, no. 2, pp. 176-180, March 1964, doi: 10.1109&#x2F;TAP.1964.1138191.
-<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>M. -L. Ku, Y. Han, H. -Q. Lai, Y. Chen and K. J. R. Liu, “Power Waveforming: Wireless Power Transfer Beyond Time Reversal,” in IEEE Transactions on Signal Processing, vol. 64, no. 22, pp. 5819-5834, 15 Nov.15, 2016, doi: 10.1109/TSP.2016.2601283. <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>M. -L. Ku, Y. Han, B. Wang and K. J. R. Liu, “Joint Power Waveforming and Beamforming for Wireless Power Transfer,” in IEEE Transactions on Signal Processing, vol. 65, no. 24, pp. 6409-6422, 15 Dec.15, 2017, doi: 10.1109/TSP.2017.2755582. <a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:3" class="footnote-text"><span>R. Y. Miyamoto and T. Itoh, “Retrodirective arrays for wireless communications,” in IEEE Microwave Magazine, vol. 3, no. 1, pp. 71-79, March 2002, doi: 10.1109/6668.990692. <a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:4" class="footnote-text"><span>C. Pon, “Retrodirective array using the heterodyne technique,” in IEEE Transactions on Antennas and Propagation, vol. 12, no. 2, pp. 176-180, March 1964, doi: 10.1109/TAP.1964.1138191. <a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
                 
               </div>
             

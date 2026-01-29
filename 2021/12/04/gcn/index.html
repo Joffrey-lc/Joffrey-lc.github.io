@@ -323,165 +323,122 @@
             
               <div class="markdown-body">
                 
-                <h1 id="入门必看"><a href="#入门必看" class="headerlink" title="入门必看"></a>入门必看</h1><p>推荐顺序由简到难：</p>
-<ol>
-<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/71200936">何时能懂你的心——图卷积神经网络（GCN）</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54504471">知乎Johnny Richards和superbrother的回答</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yyl424525/article/details/100058264">CSDN文章</a></p>
-</li>
-<li><p>清华大学综述文章：Graph Neural Networks：A Review of Methods and Applications</p>
-</li>
-<li><p>GCN开山之作：Semi-Supervised Classification With Graph Convolutional Networks</p>
-</li>
+                <h1 id="入门必看">入门必看</h1>
+<p>推荐顺序由简到难：</p>
+<ol type="1">
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/71200936">何时能懂你的心——图卷积神经网络（GCN）</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54504471">知乎Johnny Richards和superbrother的回答</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yyl424525/article/details/100058264">CSDN文章</a></p></li>
+<li><p>清华大学综述文章：Graph Neural Networks：A Review of Methods and Applications</p></li>
+<li><p>GCN开山之作：Semi-Supervised Classification With Graph Convolutional Networks</p></li>
 </ol>
-<h1 id="提出思想及发展"><a href="#提出思想及发展" class="headerlink" title="提出思想及发展"></a>提出思想及发展</h1><h2 id="提出"><a href="#提出" class="headerlink" title="提出"></a>提出</h2><p>对于图（pictures）的处理，CNN是一件大法宝；但是由于CNN处理的对象都是Euclidean Structure，无法对Non Euclidean Structure数据进行处理。图（graph）就是典型的Non Euclidean Structure数据。所以GCN（Graph Convolutional Network）应运而生。</p>
-<p>研究GCN的原因，主要可以简答概括为三点（参考知乎<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54504471">superbrother</a> 的回答）：</p>
-<ol>
-<li>CNN无法处理Non Euclidean Structure数据（传统的离散卷积在Non Euclidean Structure数据上无法保持平移不变性）</li>
-<li>希望在拓扑图结构上有效地提取空间特征来进行机器学习</li>
-<li>拓扑连接是一种广义的数据结构，可应用范围广</li>
-</ol>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>因为在Non Euclidean Structure数据中，传统的图像卷积操作（图像上的数据点的加权求和）不能适用，所以要想完成GCN，就需要重新定义卷积操作。<br>现在的卷积思路有两种：</p>
-<h3 id="谱域图卷积"><a href="#谱域图卷积" class="headerlink" title="谱域图卷积"></a>谱域图卷积</h3><ul>
+<h1 id="提出思想及发展">提出思想及发展</h1>
+<h2 id="提出">提出</h2>
+<p>对于图（pictures）的处理，CNN是一件大法宝；但是由于CNN处理的对象都是Euclidean Structure，无法对Non Euclidean Structure数据进行处理。图（graph）就是典型的Non Euclidean Structure数据。所以GCN（Graph Convolutional Network）应运而生。</p>
+<p>研究GCN的原因，主要可以简答概括为三点（参考知乎<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54504471">superbrother</a> 的回答）： 1. CNN无法处理Non Euclidean Structure数据（传统的离散卷积在Non Euclidean Structure数据上无法保持平移不变性） 2. 希望在拓扑图结构上有效地提取空间特征来进行机器学习 3. 拓扑连接是一种广义的数据结构，可应用范围广</p>
+<h2 id="解决方案">解决方案</h2>
+<p>因为在Non Euclidean Structure数据中，传统的图像卷积操作（图像上的数据点的加权求和）不能适用，所以要想完成GCN，就需要重新定义卷积操作。 现在的卷积思路有两种：</p>
+<h3 id="谱域图卷积">谱域图卷积</h3>
+<ul>
 <li>根据图谱理论和卷积定理，将数据从空（间）域转换到谱域进行处理</li>
 <li>有较强的理论基础</li>
 </ul>
-<p>因为傅里叶变换的一个重要性质：<br><em>函数$f_1(t)$和函数$f_2(t)$的傅里叶变换，等于二者傅里叶变换的乘积的逆变换</em>,即：<br>$f_1(x)*f_2(x)&#x3D;\mathcal{F^{-1}[\mathcal{F_1(w)}\mathcal{F_2(w)}]}$</p>
+<p>因为傅里叶变换的一个重要性质： <em>函数<span class="math inline">\(f_1(t)\)</span>和函数<span class="math inline">\(f_2(t)\)</span>的傅里叶变换，等于二者傅里叶变换的乘积的逆变换</em>,即： <span class="math inline">\(f_1(x)*f_2(x)=\mathcal{F^{-1}[\mathcal{F_1(w)}\mathcal{F_2(w)}]}\)</span></p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>符号</th>
 <th>定义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>$f_1(x)$、$f_2(x)$</td>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f_1(x)\)</span>、<span class="math inline">\(f_2(x)\)</span></td>
 <td>函数</td>
 </tr>
-<tr>
-<td>$\mathcal{F_1(w)}$、$\mathcal{F_2(w)}$</td>
+<tr class="even">
+<td><span class="math inline">\(\mathcal{F_1(w)}\)</span>、<span class="math inline">\(\mathcal{F_2(w)}\)</span></td>
 <td>对应函数的傅里叶变换</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>也就是说只要定义了图（graph）的频域变换，就可以推导出图的卷积计算</td>
 <td></td>
 </tr>
-</tbody></table>
-<h4 id="空域图卷积"><a href="#空域图卷积" class="headerlink" title="空域图卷积"></a>空域图卷积</h4><ul>
+</tbody>
+</table>
+<h4 id="空域图卷积">空域图卷积</h4>
+<ul>
 <li>不依靠图谱卷积理论，直接在空间上定义卷积操作（有点CNN那味儿了）</li>
 <li>定义直观，灵活性强</li>
 </ul>
 <p>本周主要了解的是谱域卷积。</p>
-<h2 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20200806105645321.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<center><b><font size ='2'>Fig1.发展时间线</font></b></center></font>
-上图时间轴中，红色的是谱域卷积，蓝色的是空域卷积。
-
-<h1 id="重要的结论"><a href="#重要的结论" class="headerlink" title="重要的结论"></a>重要的结论</h1><p>ChebNet到GCN的转变是重点。<br>因为推导过程有点复杂，在此只介绍结论：</p>
+<h2 id="发展">发展</h2>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20200806105645321.png" srcset="/img/loading.gif" lazyload title="fig:" alt="在这里插入图片描述" />
+<center>
+<b><font size ='2'>Fig1.发展时间线</font></b>
+</center>
+<p></font> 上图时间轴中，红色的是谱域卷积，蓝色的是空域卷积。</p>
+<h1 id="重要的结论">重要的结论</h1>
+<p>ChebNet到GCN的转变是重点。 因为推导过程有点复杂，在此只介绍结论： | 符号 | 定义 | | ———————- | ————————————– | | <span class="math inline">\(L=D-A\)</span> | 分别是拉普拉斯矩阵、度矩阵、邻接矩阵 | | <span class="math inline">\(U\)</span> | 拉普拉斯矩阵的特征向量（特征分解得到） | | <span class="math inline">\(\boldsymbol{\Lambda}\)</span> | 拉普拉斯矩阵的特征值（特征分解得到） | | <span class="math inline">\(\hat{X}\)</span> | 傅里叶变换结果 | * 结论一： 经过一系列复杂证明，我们可以知道Laplacian Matrix 的特征向量<span class="math inline">\(U=(\bar{u}_1,\bar{u}_2,\bar{u}_3,...,\bar{u}_n,)\)</span>是n维空间的n个线性无关的正交向量。<span class="math inline">\(U\)</span>可以构成一组正交基，且任意信号都可以由此基表示。 * 结论二： <span class="math inline">\(U\)</span>（拉普拉斯矩阵的特征向量）担任了基函数的位置；拉普拉斯矩阵的特征值担任了频率的位置。</p>
+<p>由此二结论，可以推导拓展到谱域的傅里叶变换： Fourier transform ：<span class="math inline">\(\hat{X}=U^TX\)</span> Inverse Fourier transform : <span class="math inline">\(X=U\hat{X}\)</span></p>
+<p>由此定义了图卷积： <span class="math inline">\(X*_G g = \mathcal{F^{-1}( \mathcal{F}(x)\odot\mathcal{F}(g))}=U(U^Tx\odot U^Tg)\)</span> 其中，<span class="math inline">\(\odot\)</span>是hamand积。 # 从ChebNet 到GCN 因为按上式计算，每次都要进行特征值分解，计算量很大。所以使用Chebyshev（切比雪夫）多项式代替谱域的卷积核： &gt;详见:Convolutional neural networks on graphs with fast localized spectral filtering 一文 &gt; &gt;<span class="math inline">\(g_{\theta}=diag(U^Tg)\)</span> —–&gt;<span class="math inline">\(g_{\theta}(\boldsymbol{\Lambda})=\sum^R_{k=0}\beta_kT_k \hat{(\boldsymbol{\Lambda}})\)</span></p>
+<p>此方法有以下特点： 1）卷积核只有K+1个可学习的参数，一般 K远小于n，参数的复杂度被大大降低 2）采用Chebyshev多项式代替谱域的卷积核后，经过公示推导，ChebNet不需要对拉普拉斯矩阵做特征分解了。省略了最耗时的步骤。 3）卷积核具有严格的空间局部性。同时，K就是卷积核的“感受野半径”。即将中心顶点K阶近邻节点作为邻域节点。</p>
+<p>关键在于GCN丢ChebNet进行了进一步的简化，它仅考虑一阶的ChebNet,得到一个非常简洁的表达式： <span class="math inline">\(x*_G g_\theta=\theta(I_N+D^{-1/2}AD^{-1/2})x\)</span> &gt; 详见 Semi-Supervised Classification With Graph Convolutional Networks 一文</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>符号</th>
 <th>定义</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>$L&#x3D;D-A$</td>
-<td>分别是拉普拉斯矩阵、度矩阵、邻接矩阵</td>
-</tr>
-<tr>
-<td>$U$</td>
-<td>拉普拉斯矩阵的特征向量（特征分解得到）</td>
-</tr>
-<tr>
-<td>$\boldsymbol{\Lambda}$</td>
-<td>拉普拉斯矩阵的特征值（特征分解得到）</td>
-</tr>
-<tr>
-<td>$\hat{X}$</td>
-<td>傅里叶变换结果</td>
-</tr>
-</tbody></table>
-<ul>
-<li>结论一：<br>经过一系列复杂证明，我们可以知道Laplacian Matrix 的特征向量$U&#x3D;(\bar{u}_1,\bar{u}_2,\bar{u}_3,…,\bar{u}_n,)$是n维空间的n个线性无关的正交向量。$U$可以构成一组正交基，且任意信号都可以由此基表示。</li>
-<li>结论二：<br>$U$（拉普拉斯矩阵的特征向量）担任了基函数的位置；拉普拉斯矩阵的特征值担任了频率的位置。</li>
-</ul>
-<p>由此二结论，可以推导拓展到谱域的傅里叶变换：<br>Fourier transform ：$\hat{X}&#x3D;U^TX$<br>Inverse Fourier transform : $X&#x3D;U\hat{X}$</p>
-<p>由此定义了图卷积：<br>$X*_G g &#x3D; \mathcal{F^{-1}( \mathcal{F}(x)\odot\mathcal{F}(g))}&#x3D;U(U^Tx\odot U^Tg)$<br>其中，$\odot$是hamand积。</p>
-<h1 id="从ChebNet-到GCN"><a href="#从ChebNet-到GCN" class="headerlink" title="从ChebNet 到GCN"></a>从ChebNet 到GCN</h1><p>因为按上式计算，每次都要进行特征值分解，计算量很大。所以使用Chebyshev（切比雪夫）多项式代替谱域的卷积核：</p>
-<blockquote>
-<p>详见:Convolutional neural networks on graphs with fast localized spectral filtering 一文 </p>
-<p>$g_{\theta}&#x3D;diag(U^Tg)$ —–&gt;$g_{\theta}(\boldsymbol{\Lambda})&#x3D;\sum^R_{k&#x3D;0}\beta_kT_k \hat{(\boldsymbol{\Lambda}})$</p>
-</blockquote>
-<p>此方法有以下特点：<br>1）卷积核只有K+1个可学习的参数，一般 K远小于n，参数的复杂度被大大降低<br>2）采用Chebyshev多项式代替谱域的卷积核后，经过公示推导，ChebNet不需要对拉普拉斯矩阵做特征分解了。省略了最耗时的步骤。<br>3）卷积核具有严格的空间局部性。同时，K就是卷积核的“感受野半径”。即将中心顶点K阶近邻节点作为邻域节点。</p>
-<p>关键在于GCN丢ChebNet进行了进一步的简化，它仅考虑一阶的ChebNet,得到一个非常简洁的表达式：<br>$x*<em>G g</em>\theta&#x3D;\theta(I_N+D^{-1&#x2F;2}AD^{-1&#x2F;2})x$</p>
-<blockquote>
-<p>详见 Semi-Supervised Classification With Graph Convolutional Networks 一文</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>符号</th>
-<th>定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>$I_N$</td>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(I_N\)</span></td>
 <td>单位矩阵</td>
 </tr>
-<tr>
-<td>$D$、$A$</td>
+<tr class="even">
+<td><span class="math inline">\(D\)</span>、<span class="math inline">\(A\)</span></td>
 <td>度矩阵、邻接矩阵</td>
 </tr>
-<tr>
-<td>$\theta$</td>
+<tr class="odd">
+<td><span class="math inline">\(\theta\)</span></td>
 <td>可学习参数</td>
 </tr>
-</tbody></table>
-<p>现在还有一个问题，$I_N+D^{-1&#x2F;2}AD^{-1&#x2F;2}$的特征值范围[0,2]，在训练过程中可能会出现梯度消失或梯度爆炸，所以要进行归一化：<br>$Z &#x3D; \tilde{D}^{-1&#x2F;2} \tilde{A}\tilde{D}^{-1&#x2F;2} X\Theta$<br>这就是最终的表达式。其中符号$\tilde{D}&#x3D;\sum_j \tilde{A}_{ij}$，$\tilde{A}&#x3D;A+I_N$(可以理解为再归一化的邻接矩阵和度矩阵)</p>
-<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><p>在Semi-Supervised Classification With Graph Convolutional Networks一文中，提出一个具有两层的GCN模型：<br>$Z&#x3D;f(X,A)&#x3D;softmax(\tilde{A} ReLU（\tilde{A}XW^0）W^1)$<br>其中$X$是节点特征矩阵，A是邻接矩阵。此GCN模型可以在很少的节点具有标签的情况下，完成节点的分类。</p>
-<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ol>
+</tbody>
+</table>
+<p>现在还有一个问题，<span class="math inline">\(I_N+D^{-1/2}AD^{-1/2}\)</span>的特征值范围[0,2]，在训练过程中可能会出现梯度消失或梯度爆炸，所以要进行归一化： <span class="math inline">\(Z = \tilde{D}^{-1/2} \tilde{A}\tilde{D}^{-1/2} X\Theta\)</span> 这就是最终的表达式。其中符号<span class="math inline">\(\tilde{D}=\sum_j \tilde{A}_{ij}\)</span>，<span class="math inline">\(\tilde{A}=A+I_N\)</span>(可以理解为再归一化的邻接矩阵和度矩阵) # 应用 在Semi-Supervised Classification With Graph Convolutional Networks一文中，提出一个具有两层的GCN模型： <span class="math inline">\(Z=f(X,A)=softmax(\tilde{A} ReLU（\tilde{A}XW^0）W^1)\)</span> 其中<span class="math inline">\(X\)</span>是节点特征矩阵，A是邻接矩阵。此GCN模型可以在很少的节点具有标签的情况下，完成节点的分类。</p>
+<h1 id="缺点">缺点</h1>
+<ol type="1">
 <li>谱域图卷积不能做有向图（无法特征分解）</li>
 <li>模型训练期间，图结构不能变</li>
 <li>复杂度问题</li>
 <li>层数太高会出现Over-Smoothing现象</li>
 </ol>
-<h1 id="TODO-LIST"><a href="#TODO-LIST" class="headerlink" title="TODO LIST"></a>TODO LIST</h1><p>空域图卷积</p>
+<h1 id="todo-list">TODO LIST</h1>
+<p>空域图卷积 * GNN + 构建邻域（Random Walk） + 对邻域节点进行内积</p>
+<pre><code class="hljs">&gt;详见：A Generalization of Convolutional Neural Networks to Graph-Structured Data</code></pre>
 <ul>
-<li><p>GNN</p>
+<li>GraphSAGE
 <ul>
-<li>构建邻域（Random Walk）</li>
-<li>对邻域节点进行内积</li>
-</ul>
-<blockquote>
-<p>详见：A Generalization of Convolutional Neural Networks to Graph-Structured Data</p>
-</blockquote>
-</li>
-<li><p>GraphSAGE</p>
-<ul>
-<li>卷积&#x3D;采样+信息聚合</li>
+<li>卷积=采样+信息聚合</li>
 </ul>
 <blockquote>
 <p>详见:Inductive representation learning on large graphs</p>
-</blockquote>
-</li>
-<li><p>GAT</p>
+</blockquote></li>
+<li>GAT
 <ul>
 <li>卷积定义为利用注意力机制对邻域节点有区别的聚合</li>
 </ul>
 <blockquote>
 <p>详见：GRAPH ATTENTION NETWORKS</p>
-</blockquote>
-</li>
-<li><p>PGC</p>
+</blockquote></li>
+<li>PGC
 <ul>
 <li>卷积认为是特定的取样函数与特定的权重函数相乘后求和</li>
 </ul>
 <blockquote>
 <p>详见：Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ul>
 
                 

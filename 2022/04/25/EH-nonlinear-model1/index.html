@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          473 字
+          468 字
         
       </span>
     
@@ -324,50 +324,60 @@
             
               <div class="markdown-body">
                 
-                <p>Date: 2022.04.22  17:07<br>Author: Joffrey LC</p>
-<hr>
-<p><strong>Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems</strong>.  <em>Elena Boshkovska</em> et.al.  <strong>IEEE Communications Letters, Dec.  2015</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7264986">pdf</a>)  (Citations <strong>551</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+                <p>Date: 2022.04.22 17:07 Author: Joffrey LC</p>
+<hr />
+<p><strong>Practical Non-Linear Energy Harvesting Model and Resource Allocation for SWIPT Systems</strong>. <em>Elena Boshkovska</em> et.al. <strong>IEEE Communications Letters, Dec. 2015</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7264986">pdf</a>) (Citations <strong>551</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<ul>
 <li>提出Energy Harvesting Model 是 non-linear的，并给出模型（需要根据具体测量值，拟合得到具体参数）</li>
 <li>给出一种双重循环的快速解决方案（这部分简单看了一下）</li>
 </ul>
 <div class="note note-success">
-            <p>如果噪声是矩阵形式，应该表示为$\textbf{n}\sim\mathcal{CN}(\textbf{0},\sigma^2\textbf{I})$，其中$\sigma^2$表示噪声的功率</p>
+            <p>如果噪声是矩阵形式，应该表示为<span class="math inline">\(\textbf{n}\sim\mathcal{CN}(\textbf{0},\sigma^2\textbf{I})\)</span>，其中<span class="math inline">\(\sigma^2\)</span>表示噪声的功率</p>
           </div>
-
-<h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><h3 id="Energy-Harvesting-Model"><a href="#Energy-Harvesting-Model" class="headerlink" title="Energy Harvesting Model"></a>Energy Harvesting Model</h3><p>Proposed a Non- Linear EH model based on the logistic (sigmoid) function:<br>$$<br>\begin{aligned}<br>\Phi_{\mathrm{ER}<em>{j}}^{\text {Practical }} &amp;&#x3D;\frac{\left[\Psi</em>{\mathrm{ER}<em>{j}}^{\text {Practical }}-M</em>{j} \Omega_{j}\right]}{1-\Omega_{j}}, \Omega_{j}&#x3D;\frac{1}{1+\exp \left(a_{j} b_{j}\right)} \<br>\Psi_{\mathrm{ER}<em>{j}}^{\text {Practical }} &amp;&#x3D;\frac{M</em>{j}}{1+\exp \left(-a_{j}\left(P_{\mathrm{ER}<em>{j}}-b</em>{j}\right)\right)}<br>\end{aligned}<br>$$<br>其中，$\Phi_{\mathrm{ER}<em>{j}}^{\text {Practical }}$代表$j$-th ER 接受到的总能量；$\Psi</em>{\mathrm{ER}<em>{j}}^{\text {Practical }}$代表logistic function with respect to the receive RF power $P</em>{\mathrm{ER}_{j}}$。<span class="label label-primary">其他参数例如$a_j,b_j,M_j$都是通过对实际电路模型的测量值进行拟合得到</span></p>
+<h2 id="主要内容">主要内容</h2>
+<h3 id="energy-harvesting-model">Energy Harvesting Model</h3>
+<p>Proposed a Non- Linear EH model based on the logistic (sigmoid) function: <span class="math display">\[
+\begin{aligned}
+\Phi_{\mathrm{ER}_{j}}^{\text {Practical }} &amp;=\frac{\left[\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}-M_{j} \Omega_{j}\right]}{1-\Omega_{j}}, \Omega_{j}=\frac{1}{1+\exp \left(a_{j} b_{j}\right)} \\
+\Psi_{\mathrm{ER}_{j}}^{\text {Practical }} &amp;=\frac{M_{j}}{1+\exp \left(-a_{j}\left(P_{\mathrm{ER}_{j}}-b_{j}\right)\right)}
+\end{aligned}
+\]</span> 其中，<span class="math inline">\(\Phi_{\mathrm{ER}_{j}}^{\text {Practical }}\)</span>代表<span class="math inline">\(j\)</span>-th ER 接受到的总能量；<span class="math inline">\(\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}\)</span>代表logistic function with respect to the receive RF power <span class="math inline">\(P_{\mathrm{ER}_{j}}\)</span>。<span class="label label-primary">其他参数例如$a_j,b_j,M_j$都是通过对实际电路模型的测量值进行拟合得到</span></p>
 <div class="note note-success">
-            <p>**并且由于$\Omega_j$并不影响$\textbf{w}$的设计，所以一般采用$\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}$表示接收到的能量。**有典型值<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in *IEEE Journal of Solid-State Circuits*, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109&#x2F;JSSC.2008.920318. ↩”&gt;[1]</span></a></sup>：</p><p>$M_j&#x3D;20\text{mW},a_j&#x3D;6400,b_j&#x3D;0.003$</p>
+            <p><strong>并且由于<span class="math inline">\(\Omega_j\)</span>并不影响<span class="math inline">\(\textbf{w}\)</span>的设计，所以一般采用<span class="math inline">\(\Psi_{\mathrm{ER}_{j}}^{\text {Practical }}\)</span>表示接收到的能量。</strong>有典型值<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote">&lt;span class=“hint–top hint–rounded” aria-label=“T. Le, K. Mayaram and T. Fiez,”Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks," in <em>IEEE Journal of Solid-State Circuits</em>, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318. ↩︎"&gt;[1]</span></a></sup>：</p><p><span class="math inline">\(M_j=20\text{mW},a_j=6400,b_j=0.003\)</span></p>
           </div>
-
-<h3 id="双循环解法"><a href="#双循环解法" class="headerlink" title="双循环解法"></a>双循环解法</h3><h4 id="原始问题建模："><a href="#原始问题建模：" class="headerlink" title="原始问题建模："></a>原始问题建模：</h4><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153130097.png" srcset="/img/loading.gif" lazyload alt="原始问题建模" style="zoom: 80%;" />
-
+<h3 id="双循环解法">双循环解法</h3>
+<h4 id="原始问题建模">原始问题建模：</h4>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153130097.png" srcset="/img/loading.gif" lazyload alt="原始问题建模" style="zoom: 80%;" /></p>
 <p>C1：功率约束</p>
 <p>C2：SINR约束</p>
-<h4 id="Proposal-流程"><a href="#Proposal-流程" class="headerlink" title="Proposal 流程"></a>Proposal 流程</h4><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153239885.png" srcset="/img/loading.gif" lazyload alt="提出算法流程" style="zoom: 60%;" />
-
+<h4 id="proposal-流程">Proposal 流程</h4>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153239885.png" srcset="/img/loading.gif" lazyload alt="提出算法流程" style="zoom: 60%;" /></p>
 <div class="note note-success">
             <p>另外有一个重要理论（没有证明）：</p>
           </div>
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153355034.png" srcset="/img/loading.gif" lazyload alt="重要理论" style="zoom:60%;" />
-
-
-
-<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153919035.png" srcset="/img/loading.gif" lazyload alt="exp1" style="zoom:60%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153355034.png" srcset="/img/loading.gif" lazyload alt="重要理论" style="zoom:60%;" /></p>
+<h2 id="result">Result</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153919035.png" srcset="/img/loading.gif" lazyload alt="exp1" style="zoom:60%;" /></p>
 <ul>
 <li>Harvested Energy 随着Minimum required SINR 增大而减小</li>
-<li>Harvested Energy 随着单个ER的天线数量$N_T$的增大而增大：因为更多的天线带来更高的自由度，会得到更高效的资源分配方案</li>
+<li>Harvested Energy 随着单个ER的天线数量<span class="math inline">\(N_T\)</span>的增大而增大：因为更多的天线带来更高的自由度，会得到更高效的资源分配方案</li>
 </ul>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153946764.png" srcset="/img/loading.gif" lazyload alt="exp2" style="zoom:60%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220425153946764.png" srcset="/img/loading.gif" lazyload alt="exp2" style="zoom:60%;" /></p>
 <ul>
 <li>Harvested Energy 随着ERs数量增大而增大，而且性能增益（Performance Gap between Non-Linear Model with Linear Model）增大：因为ERs数量增大，Baseline（Performance with Linear Model）的失配（mismatch）更严重</li>
 </ul>
-<hr>
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in <em>IEEE Journal of Solid-State Circuits</em>, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109&#x2F;JSSC.2008.920318. ↩
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<hr />
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>T. Le, K. Mayaram and T. Fiez, “Efficient Far-Field Radio Frequency Energy Harvesting for Passively Powered Sensor Networks,” in <em>IEEE Journal of Solid-State Circuits</em>, vol. 43, no. 5, pp. 1287-1302, May 2008, doi: 10.1109/JSSC.2008.920318. ↩︎ <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
                 
               </div>
             

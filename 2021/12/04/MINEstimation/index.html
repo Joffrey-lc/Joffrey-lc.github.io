@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          466 字
+          463 字
         
       </span>
     
@@ -323,25 +323,33 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Mutual-Information-Neural-Estimation"><a href="#Mutual-Information-Neural-Estimation" class="headerlink" title="Mutual Information Neural Estimation"></a>Mutual Information Neural Estimation</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.04062">原文</a><br>参考：<a target="_blank" rel="noopener" href="https://ruihongqiu.github.io/posts/2020/07/mine/">https://ruihongqiu.github.io/posts/2020/07/mine/</a></p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>互信息可以衡量两个随机变量之间的相关性：</p>
-<p>$I(X;Z)&#x3D;H(X)-H(X|Z)&#x3D;H(Z)-H(Z|X)&#x3D;H(X)+H(Z)-H(X,Z)$</p>
+                <h1 id="mutual-information-neural-estimation">Mutual Information Neural Estimation</h1>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.04062">原文</a> 参考：https://ruihongqiu.github.io/posts/2020/07/mine/</p>
+<h2 id="背景">背景</h2>
+<p>互信息可以衡量两个随机变量之间的相关性：</p>
+<p><span class="math inline">\(I(X;Z)=H(X)-H(X|Z)=H(Z)-H(Z|X)=H(X)+H(Z)-H(X,Z)\)</span></p>
 <p>互信息量和KL散度的关系如下：</p>
-<p>$I(X;Z)&#x3D;\sum_{x\in \mathcal{X}}\sum_{z\in \mathcal{Z}}p(x,z)log\frac{p(x,y)}{p(x)p(y)}&#x3D;D(p(x,y)||p(x)p(y))$</p>
-<p>但实际计算中，特别是对于高维空间来说，其边缘熵$H(X)$、$H(Z)$和条件熵$H(X|Z)$难以计算。<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/6caf0ece6feba752f03bdf353c8859f5.png" srcset="/img/loading.gif" lazyload alt="f89025089ec5c780a5d7a6df7c0193e"></p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>作者给出了两种利用梯度下降算法逼近的互信息估计，分别是<strong>The Donsker-Varadhan representation</strong>和<strong>The f-divergence representation</strong>。</p>
-<h3 id="The-Donsker-Varadhan-representation"><a href="#The-Donsker-Varadhan-representation" class="headerlink" title="The Donsker-Varadhan representation"></a>The Donsker-Varadhan representation</h3><p>$D_{KL}(\mathbb{P}||\mathbb{Q})&#x3D;\sup\limits_{T:\Omega \rightarrow \mathbb{R}}\mathbb{E_{\mathbb{P}}}[T]-log(\mathbb{E_{\mathbb{Q}}}[e^T])$</p>
-<p>其中$\mathbb{P}$和$\mathbb{Q}$是两个任意分布，$T$是从样本空间$\Omega$映射到实数$\mathbb{R}$的任意函数。</p>
+<p><span class="math inline">\(I(X;Z)=\sum_{x\in \mathcal{X}}\sum_{z\in \mathcal{Z}}p(x,z)log\frac{p(x,y)}{p(x)p(y)}=D(p(x,y)||p(x)p(y))\)</span></p>
+<p>但实际计算中，特别是对于高维空间来说，其边缘熵<span class="math inline">\(H(X)\)</span>、<span class="math inline">\(H(Z)\)</span>和条件熵<span class="math inline">\(H(X|Z)\)</span>难以计算。<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/6caf0ece6feba752f03bdf353c8859f5.png" srcset="/img/loading.gif" lazyload alt="f89025089ec5c780a5d7a6df7c0193e" /></p>
+<h2 id="解决方案">解决方案</h2>
+<p>作者给出了两种利用梯度下降算法逼近的互信息估计，分别是<strong>The Donsker-Varadhan representation</strong>和<strong>The f-divergence representation</strong>。</p>
+<h3 id="the-donsker-varadhan-representation">The Donsker-Varadhan representation</h3>
+<p><span class="math inline">\(D_{KL}(\mathbb{P}||\mathbb{Q})=\sup\limits_{T:\Omega \rightarrow \mathbb{R}}\mathbb{E_{\mathbb{P}}}[T]-log(\mathbb{E_{\mathbb{Q}}}[e^T])\)</span></p>
+<p>其中<span class="math inline">\(\mathbb{P}\)</span>和<span class="math inline">\(\mathbb{Q}\)</span>是两个任意分布，<span class="math inline">\(T\)</span>是从样本空间<span class="math inline">\(\Omega\)</span>映射到实数<span class="math inline">\(\mathbb{R}\)</span>的任意函数。</p>
 <p>证明见大佬<a target="_blank" rel="noopener" href="https://ruihongqiu.github.io/posts/2020/07/mine/">Ruihong Qiu</a>中2.2节</p>
-<h3 id="The-f-divergence-representation"><a href="#The-f-divergence-representation" class="headerlink" title="The f-divergence representation"></a>The f-divergence representation</h3><p>The f-divergence representation可以看做是The Donsker-Varadhan representation的弱化版本，由2.1和不等式$\frac{x}{e}&gt; log\mathcal{x}$易得。</p>
-<h3 id="最终形式"><a href="#最终形式" class="headerlink" title="最终形式"></a>最终形式</h3><p>$I(X;Z)\geq I_{\Theta}(X,Z)&#x3D;\sup\limits_{\theta\in\Theta}\mathbb{E}<em>{\mathbb{P}</em>{XZ}}[T_{\theta}]-log(\mathbb{E}_{\mathbb{P}_X\mathbb{P}<em>Z}[e^{T</em>{\mathbb{\theta}}}])$</p>
+<h3 id="the-f-divergence-representation">The f-divergence representation</h3>
+<p>The f-divergence representation可以看做是The Donsker-Varadhan representation的弱化版本，由2.1和不等式<span class="math inline">\(\frac{x}{e}&gt; log\mathcal{x}\)</span>易得。</p>
+<h3 id="最终形式">最终形式</h3>
+<p><span class="math inline">\(I(X;Z)\geq I_{\Theta}(X,Z)=\sup\limits_{\theta\in\Theta}\mathbb{E}_{\mathbb{P}_{XZ}}[T_{\theta}]-log(\mathbb{E}_{\mathbb{P}_X\mathbb{P}_Z}[e^{T_{\mathbb{\theta}}}])\)</span></p>
 <p>我们希望用一个可以利用梯度更新的神经网络模型来计算上式，则有：</p>
-<p>$\hat{I(X;Z)<em>n}&#x3D;\sup\limits</em>{\theta\in\Theta}\mathbb{E}<em>{\mathbb{P}^{(n)}</em>{XZ}}[T_{\theta}]-log(\mathbb{E}_{\mathbb{P}^{(n)}_X\mathbb{\hat{P}}^{(n)}<em>Z}[e^{T</em>{\mathbb{\theta}}}])$</p>
-<p>其中$T$是一个神经网络；$X$、$Z$是两个样本集。得到估计的梯度为：</p>
-<p>$\hat{G}<em>B&#x3D;\mathbb{E}<em>B[\nabla</em>{\theta}T</em>{\theta}]-\frac{\mathbb{E}<em>B[\nabla</em>{\theta}T_{\theta}e^{T_{\theta}}]}{\mathbb{E}<em>B[e^{T</em>{\theta}}]}$</p>
-<p>但是这种方式是有偏的。可以通过滑动平均来估计$\mathbb{E}<em>B[e^{T</em>\theta}]$</p>
+<p><span class="math inline">\(\hat{I(X;Z)_n}=\sup\limits_{\theta\in\Theta}\mathbb{E}_{\mathbb{P}^{(n)}_{XZ}}[T_{\theta}]-log(\mathbb{E}_{\mathbb{P}^{(n)}_X\mathbb{\hat{P}}^{(n)}_Z}[e^{T_{\mathbb{\theta}}}])\)</span></p>
+<p>其中<span class="math inline">\(T\)</span>是一个神经网络；<span class="math inline">\(X\)</span>、<span class="math inline">\(Z\)</span>是两个样本集。得到估计的梯度为：</p>
+<p><span class="math inline">\(\hat{G}_B=\mathbb{E}_B[\nabla_{\theta}T_{\theta}]-\frac{\mathbb{E}_B[\nabla_{\theta}T_{\theta}e^{T_{\theta}}]}{\mathbb{E}_B[e^{T_{\theta}}]}\)</span></p>
+<p>但是这种方式是有偏的。可以通过滑动平均来估计<span class="math inline">\(\mathbb{E}_B[e^{T_\theta}]\)</span></p>
 <p>完整的过程如下：</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/2478fae70b9b63793c0df71f8beabd17.png" srcset="/img/loading.gif" lazyload alt="image-20210906185214958"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/2478fae70b9b63793c0df71f8beabd17.png" srcset="/img/loading.gif" lazyload alt="image-20210906185214958" /><figcaption aria-hidden="true">image-20210906185214958</figcaption>
+</figure>
 
                 
               </div>

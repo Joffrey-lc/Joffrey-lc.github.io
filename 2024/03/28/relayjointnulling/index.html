@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          411 字
+          401 字
         
       </span>
     
@@ -324,45 +324,48 @@
             
               <div class="markdown-body">
                 
-                <p>Date: 2024.03.26  21:20<br>Author: Joffrey LC</p>
-<hr>
-<p><strong>A Spatial-Domain Joint-Nulling Method of Self-Interference in Full-Duplex Relays</strong>.  <em>Byungjin Chun</em> et.al.  <strong>IEEE Communications Letters, April 2012</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6151763">pdf</a>)  (Citations <strong>64</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709621.png" srcset="/img/loading.gif" lazyload alt="image-20240328154857037"></p>
+                <p>Date: 2024.03.26 21:20 Author: Joffrey LC</p>
+<hr />
+<p><strong>A Spatial-Domain Joint-Nulling Method of Self-Interference in Full-Duplex Relays</strong>. <em>Byungjin Chun</em> et.al. <strong>IEEE Communications Letters, April 2012</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6151763">pdf</a>) (Citations <strong>64</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709621.png" srcset="/img/loading.gif" lazyload alt="image-20240328154857037" /><figcaption aria-hidden="true">image-20240328154857037</figcaption>
+</figure>
 <ul>
 <li><p>两种中继（Relay）转发结构：</p>
 <ul>
 <li>amplify-and-forward (AF)</li>
 <li>decode-and-forward (DF)</li>
-</ul>
-</li>
+</ul></li>
 <li><p>两种中继方案的解调信噪比：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709637.png" srcset="/img/loading.gif" lazyload alt="image-20240328161139883" style="zoom:33%;" /></li>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709637.png" srcset="/img/loading.gif" lazyload alt="image-20240328161139883" style="zoom:33%;" /></p></li>
 </ul>
-<p>​	AF: 算信噪比，并且结合两段$\mathbf{d}^H$，$\mathbf{b}$的增益</p>
-<p>​	DF: 取min，relay不行解码就不行</p>
+<p>​ AF: 算信噪比，并且结合两段<span class="math inline">\(\mathbf{d}^H\)</span>，<span class="math inline">\(\mathbf{b}\)</span>的增益</p>
+<p>​ DF: 取min，relay不行解码就不行</p>
 <p>假设echo signals 延迟足够大，就变成了一个干扰信号，所以需要消除干扰：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709768.png" srcset="/img/loading.gif" lazyload alt="image-20240328162140743" style="zoom:33%;" />
-
-<h2 id="SVD-based"><a href="#SVD-based" class="headerlink" title="SVD based"></a>SVD based</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709185.png" srcset="/img/loading.gif" lazyload alt="image-20240328162201418" style="zoom:33%;" />
-
-<p>有意思的是，通过$\mathbf{U}^{(1)}$和$\mathbf{U}^{(2)}$的正交性（$\mathbf{V}^{(1)}$和$\mathbf{V}^{(2)}$同理），当$\mathbf{d}&#x3D;\mathbf{U}^{(1)} \mathbf{b}$，&#x3D;&#x3D;且$\mathbf{b}$可以任意取值，只要满足功率约束就可&#x3D;&#x3D;，同理$\mathbf{p}&#x3D;\mathbf{V}^{(2)} \mathbf{c}$</p>
-<p>则有：<br>$$<br>\begin{align}<br>\mathbf{d}^H\mathbf{H}\mathbf{p}&#x3D;&amp;\mathbf{b}^H\mathbf{U}^{(1),H}\left(\mathbf{U}^{(1)} \boldsymbol{\Sigma}^{(1)} \mathbf{V}^{(1) H}+\mathbf{U}^{(2)} \boldsymbol{\Sigma}^{(2)} \mathbf{V}^{(2) H}\right)\mathbf{V}^{(2)} \mathbf{c},\<br>&#x3D;&amp;\mathbf{0}<br>\end{align}<br>$$<br>&#x3D;&#x3D;因为$\mathbf{U}^{(1)}$消掉了$\mathbf{U}^{(2)}$项，因为$\mathbf{V}^{(2)}$消掉了$\mathbf{V}^{(1)}$项&#x3D;&#x3D;</p>
-<p>然后再选择最大化的$\mathbf{b}$和$\mathbf{c}$。</p>
-<h2 id="Continuous-domain-based"><a href="#Continuous-domain-based" class="headerlink" title="Continuous domain based"></a>Continuous domain based</h2><p>核心思想是，通过正交投影，使得其中一个一定是正交的，这样就只用优化一个，并使得整个最大化。</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709260.png" srcset="/img/loading.gif" lazyload alt="image-20240328165659696" style="zoom:33%;" />
-
-
-
-<ol>
-<li>由$\mathbf{p}&#x3D;\mathbf{P}_{\mathbf{z}}^{\perp} \mathbf{k}$，则一定使得$\mathbf{d}^H\mathbf{H}\mathbf{p}&#x3D;\mathbf{0}$成立。</li>
-<li>取$\mathbf{k}&#x3D;\frac{\left(\mathbf{h}<em>{r d}^H \mathbf{P}</em>{\mathbf{z}}^{\perp}\right)^H}{\left|\mathbf{h}<em>{r d}^H \mathbf{P}</em>{\mathbf{z}}^{\perp}\right|}$，从而使得$\mathbf{p}$完全固定由$\mathbf{H}^H\mathbf{d}$求出。</li>
-<li>将问题转换为只与$\mathbf{d}$相关的问题</li>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709768.png" srcset="/img/loading.gif" lazyload alt="image-20240328162140743" style="zoom:33%;" /></p>
+<h2 id="svd-based">SVD based</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709185.png" srcset="/img/loading.gif" lazyload alt="image-20240328162201418" style="zoom:33%;" /></p>
+<p>有意思的是，通过<span class="math inline">\(\mathbf{U}^{(1)}\)</span>和<span class="math inline">\(\mathbf{U}^{(2)}\)</span>的正交性（<span class="math inline">\(\mathbf{V}^{(1)}\)</span>和<span class="math inline">\(\mathbf{V}^{(2)}\)</span>同理），当<span class="math inline">\(\mathbf{d}=\mathbf{U}^{(1)} \mathbf{b}\)</span>，==且<span class="math inline">\(\mathbf{b}\)</span>可以任意取值，只要满足功率约束就可==，同理<span class="math inline">\(\mathbf{p}=\mathbf{V}^{(2)} \mathbf{c}\)</span></p>
+<p>则有： <span class="math display">\[
+\begin{align}
+\mathbf{d}^H\mathbf{H}\mathbf{p}=&amp;\mathbf{b}^H\mathbf{U}^{(1),H}\left(\mathbf{U}^{(1)} \boldsymbol{\Sigma}^{(1)} \mathbf{V}^{(1) H}+\mathbf{U}^{(2)} \boldsymbol{\Sigma}^{(2)} \mathbf{V}^{(2) H}\right)\mathbf{V}^{(2)} \mathbf{c},\\
+=&amp;\mathbf{0}
+\end{align}
+\]</span> ==因为<span class="math inline">\(\mathbf{U}^{(1)}\)</span>消掉了<span class="math inline">\(\mathbf{U}^{(2)}\)</span>项，因为<span class="math inline">\(\mathbf{V}^{(2)}\)</span>消掉了<span class="math inline">\(\mathbf{V}^{(1)}\)</span>项==</p>
+<p>然后再选择最大化的<span class="math inline">\(\mathbf{b}\)</span>和<span class="math inline">\(\mathbf{c}\)</span>。</p>
+<h2 id="continuous-domain-based">Continuous domain based</h2>
+<p>核心思想是，通过正交投影，使得其中一个一定是正交的，这样就只用优化一个，并使得整个最大化。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709260.png" srcset="/img/loading.gif" lazyload alt="image-20240328165659696" style="zoom:33%;" /></p>
+<ol type="1">
+<li>由<span class="math inline">\(\mathbf{p}=\mathbf{P}_{\mathbf{z}}^{\perp} \mathbf{k}\)</span>，则一定使得<span class="math inline">\(\mathbf{d}^H\mathbf{H}\mathbf{p}=\mathbf{0}\)</span>成立。</li>
+<li>取<span class="math inline">\(\mathbf{k}=\frac{\left(\mathbf{h}_{r d}^H \mathbf{P}_{\mathbf{z}}^{\perp}\right)^H}{\left\|\mathbf{h}_{r d}^H \mathbf{P}_{\mathbf{z}}^{\perp}\right\|}\)</span>，从而使得<span class="math inline">\(\mathbf{p}\)</span>完全固定由<span class="math inline">\(\mathbf{H}^H\mathbf{d}\)</span>求出。</li>
+<li>将问题转换为只与<span class="math inline">\(\mathbf{d}\)</span>相关的问题</li>
 </ol>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709766.png" srcset="/img/loading.gif" lazyload alt="image-20240328170527488" style="zoom:33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709766.png" srcset="/img/loading.gif" lazyload alt="image-20240328170527488" style="zoom:33%;" /></p>
 <p>用梯度下降法求解。</p>
-<h2 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281710140.png" srcset="/img/loading.gif" lazyload alt="image-20240328170759254" style="zoom:33%;" />
-
+<h2 id="numerical-results">Numerical Results</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281710140.png" srcset="/img/loading.gif" lazyload alt="image-20240328170759254" style="zoom:33%;" /></p>
 <ul>
 <li>DF比AF好</li>
 <li>Proposed 比 SVD-based 好</li>

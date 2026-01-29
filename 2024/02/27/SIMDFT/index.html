@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          764 字
+          761 字
         
       </span>
     
@@ -325,70 +325,85 @@
               <div class="markdown-body">
                 
                 <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2402.08224.pdf">Two-Dimensional Direction-of-Arrival Estimation Using Stacked Intelligent Metasurfaces</a></p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136868.png" srcset="/img/loading.gif" lazyload alt="image-20240226165509429"></p>
+<h2 id="quick-overview">Quick Overview</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136868.png" srcset="/img/loading.gif" lazyload alt="image-20240226165509429" /><figcaption aria-hidden="true">image-20240226165509429</figcaption>
+</figure>
 <ul>
-<li><p>Stacked Intelligent Metasurfaces: 多个RIS堆叠，densely integrating multiple metasurface layers</p>
-</li>
-<li><p>An advanced SIM in front of the receiver array <span class="label label-primary">automatically carries out the 2D discrete Fourier transform (DFT)</span> as the incident waves propagate through it. </p>
-</li>
-<li><span class="label label-primary">configure the phase shift pattern in the zeroth layer of the SIM to generate a set of 2D DFT matrices associated with orthogonal spatial frequency bins to improve the DOA estimation accuracy further.</span>（没怎么懂）
-</li>
-<li><p>evaluate the performance of the proposed SIM-based DOA estimator by deriving a tight upper bound for the mean square error (MSE)</p>
-</li>
-<li><span class="label label-primary">空中计算</span>
-
-
-</li>
+<li><p>Stacked Intelligent Metasurfaces: 多个RIS堆叠，densely integrating multiple metasurface layers</p></li>
+<li><p>An advanced SIM in front of the receiver array <span class="label label-primary">automatically carries out the 2D discrete Fourier transform (DFT)</span> as the incident waves propagate through it.</p></li>
+<li><span class="label label-primary">configure the phase shift pattern in the zeroth layer of the SIM to generate a set of 2D DFT matrices associated with orthogonal spatial frequency bins to improve the DOA estimation accuracy further.</span>
+<p>（没怎么懂）</p></li>
+<li><p>evaluate the performance of the proposed SIM-based DOA estimator by deriving a tight upper bound for the mean square error (MSE)</p></li>
+<li><span class="label label-primary">空中计算</span></li>
 <li><p>SIM的四个关键参数</p>
 <ul>
-<li>The thickness TSIM of the SIM；（总共厚度，总厚度&#x2F;层数&#x3D;间隔）</li>
+<li>The thickness TSIM of the SIM；（总共厚度，总厚度/层数=间隔）</li>
 <li>The number L of metasurface layers; （多少层）</li>
 <li>The number M of meta-atoms per layer; （每层多少个element）</li>
 <li>The spacing between elements in the x and y directions, namely sx and sy; 单元间隔</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>传统的DOA估计方案，受到瑞利准则限定，入射角度需要大于波束宽度才能被区分。</p>
-<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136939.png" srcset="/img/loading.gif" lazyload alt="image-20240226151521239"></p>
-<p>充当ANN&#x2F;fully connected neural network.</p>
+<h2 id="基本原理">基本原理</h2>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136939.png" srcset="/img/loading.gif" lazyload alt="image-20240226151521239" /><figcaption aria-hidden="true">image-20240226151521239</figcaption>
+</figure>
+<p>充当ANN/fully connected neural network.</p>
 <p>在最初的文章<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="C. Liu, Q. Ma, Z. J. Luo, Q. R. Hong, Q. Xiao, H. C. Zhang, L. Miao, W. M. Yu, Q. Cheng, L. Li *et al.*, “A programmable diffractive deep neural network based on a digital-coding metasurface array,” *Nature Electronics*, vol. 5, no. 2, pp. 113–122, Feb. 2022.">[1]</span></a></sup>中，作者通过5块SIM来进行手写数字识别</p>
 <ul>
 <li>第一个超表面层充当DAC，灰度转换。其余四层是fully connected neural network.</li>
 </ul>
-<hr>
+<hr />
 <ul>
-<li>本文将SIM集成到接收端，在接收端进行自然地计算（2D-DFT）从而使得能量在<span class="label label-primary">最后一层</span>的某个点汇集，通过检测不同接收器探头的能量水平（每个探头对应一个独特的 DOA），我们可以<span class="label label-primary">从具有最强能量的探头</span>读取信号的方向。<ul>
+<li>本文将SIM集成到接收端，在接收端进行自然地计算（2D-DFT）从而使得能量在<span class="label label-primary">最后一层</span>的某个点汇集，通过检测不同接收器探头的能量水平（每个探头对应一个独特的 DOA），我们可以<span class="label label-primary">从具有最强能量的探头</span>读取信号的方向。
+<ul>
 <li>自然计算，没有任何延迟</li>
-</ul>
-</li>
+</ul></li>
 <li>Adjust the phase shift in the zeroth layer of the SIM for each snapshot to generate a set of 2D DFT matrices having mutually orthogonal spatial frequency bins to improve the accuracy of estimation.</li>
 </ul>
-<h2 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h2><h3 id="SIM-model"><a href="#SIM-model" class="headerlink" title="SIM model"></a>SIM model</h3><ul>
+<h2 id="system-model">System model</h2>
+<h3 id="sim-model">SIM model</h3>
+<ul>
 <li>每一层的信道建模为：</li>
 </ul>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136112.png" srcset="/img/loading.gif" lazyload alt="image-20240226155932718"></p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136112.png" srcset="/img/loading.gif" lazyload alt="image-20240226155932718" /><figcaption aria-hidden="true">image-20240226155932718</figcaption>
+</figure>
 <p>值得注意的是，输入层和输出层单元数不是那么多，距离计算方式有点变化。</p>
-<p>记$\boldsymbol{v}<em>0&#x3D;\left[v</em>{0,1}, v_{0,2}, \cdots, v_{0, N}\right]^T \in \mathbb{C}^{N \times 1}$和$\boldsymbol{\Upsilon}_0&#x3D;\operatorname{diag}\left(\boldsymbol{v}_0\right) \in \mathbb{C}^{N \times N}$​分别为 complex-valued transmission coefficient vector and the corresponding matrix for the input layer (i.e., the zeroth layer)，所以整个系统模型被建模为：<br>$$<br>\boldsymbol{G}&#x3D;\boldsymbol{W}_L \boldsymbol{\Upsilon}<em>L \boldsymbol{W}</em>{L-1} \cdots \boldsymbol{W}_2 \Upsilon_2 \boldsymbol{W}_1 \boldsymbol{\Upsilon}_1 \boldsymbol{W}_0<br>$$</p>
-<h3 id="Received-model"><a href="#Received-model" class="headerlink" title="Received model"></a>Received model</h3><p>Received model和正常的RIS类似：<br>$$<br>\boldsymbol{r}&#x3D;\sqrt{\varrho} \boldsymbol{G} \Upsilon_0 \boldsymbol{x}+\boldsymbol{u}&#x3D;\sqrt{\varrho} \boldsymbol{G} \Upsilon_0 \boldsymbol{a}\left(\psi_{\mathbf{x}}, \psi_{\mathrm{y}}\right) s+\boldsymbol{u}<br>$$</p>
+<p>记<span class="math inline">\(\boldsymbol{v}_0=\left[v_{0,1}, v_{0,2}, \cdots, v_{0, N}\right]^T \in \mathbb{C}^{N \times 1}\)</span>和<span class="math inline">\(\boldsymbol{\Upsilon}_0=\operatorname{diag}\left(\boldsymbol{v}_0\right) \in \mathbb{C}^{N \times N}\)</span>​分别为 complex-valued transmission coefficient vector and the corresponding matrix for the input layer (i.e., the zeroth layer)，所以整个系统模型被建模为： <span class="math display">\[
+\boldsymbol{G}=\boldsymbol{W}_L \boldsymbol{\Upsilon}_L \boldsymbol{W}_{L-1} \cdots \boldsymbol{W}_2 \Upsilon_2 \boldsymbol{W}_1 \boldsymbol{\Upsilon}_1 \boldsymbol{W}_0
+\]</span></p>
+<h3 id="received-model">Received model</h3>
+<p>Received model和正常的RIS类似： <span class="math display">\[
+\boldsymbol{r}=\sqrt{\varrho} \boldsymbol{G} \Upsilon_0 \boldsymbol{x}+\boldsymbol{u}=\sqrt{\varrho} \boldsymbol{G} \Upsilon_0 \boldsymbol{a}\left(\psi_{\mathbf{x}}, \psi_{\mathrm{y}}\right) s+\boldsymbol{u}
+\]</span></p>
 <ul>
-<li>虽然$\mathbf{G}$包含大量矩阵乘法，但是这些矩阵乘法都是在传播过程中自动发生， 即以光速进行运算的。</li>
+<li>虽然<span class="math inline">\(\mathbf{G}\)</span>包含大量矩阵乘法，但是这些矩阵乘法都是在传播过程中自动发生， 即以光速进行运算的。</li>
 </ul>
-<h2 id="Problem-and-Solution"><a href="#Problem-and-Solution" class="headerlink" title="Problem and Solution"></a>Problem and Solution</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136108.png" srcset="/img/loading.gif" lazyload alt="image-20240226161303214" style="zoom:33%;" />
-
-<p>其中$\mathbf{F}$是2D DFT matrix，目的是将$\mathbf{G}$搞成和$\mathbf{F}$相同功能的东西，然后通过传播过程中自动计算</p>
+<h2 id="problem-and-solution">Problem and Solution</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136108.png" srcset="/img/loading.gif" lazyload alt="image-20240226161303214" style="zoom:33%;" /></p>
+<p>其中<span class="math inline">\(\mathbf{F}\)</span>是2D DFT matrix，目的是将<span class="math inline">\(\mathbf{G}\)</span>搞成和<span class="math inline">\(\mathbf{F}\)</span>相同功能的东西，然后通过传播过程中自动计算</p>
 <p>（空中计算）。</p>
 <p>设计梯度下降算法进行求解。</p>
-<h2 id="Accuracy-Improvement"><a href="#Accuracy-Improvement" class="headerlink" title="Accuracy Improvement"></a>Accuracy Improvement</h2><p>没读懂</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136342.png" srcset="/img/loading.gif" lazyload alt="image-20240226170233474" style="zoom:33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136393.png" srcset="/img/loading.gif" lazyload alt="image-20240226170135008" style="zoom:33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136422.png" srcset="/img/loading.gif" lazyload alt="image-20240226170219434" style="zoom:33%;" />
-
+<h2 id="accuracy-improvement">Accuracy Improvement</h2>
+<p>没读懂</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136342.png" srcset="/img/loading.gif" lazyload alt="image-20240226170233474" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136393.png" srcset="/img/loading.gif" lazyload alt="image-20240226170135008" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202402272136422.png" srcset="/img/loading.gif" lazyload alt="image-20240226170219434" style="zoom:33%;" /></p>
 <p>SIM实现了一个维度很小的DFT，这样只能返回一个很粗糙的on-grid 的离散估计值。通过在不同时刻调第 0 层的相移，这样可以生成一个不同频率格子DFT，每个时刻的频率格子是”正交“的，这样，可以通过增加快拍数，返回一个更精细的on-grid 估计值，</p>
 <p>比如只关注一个俯仰角维度，2-point DFT，它划的格子对应的空间频率是0度，90度，比较空间谱能量，只能把来波方向（比如35度）测到0或者90这两个中的一个，但是可以通过调0层相移，把格子的频率给改了，改成1，91，再下一个时刻2，92，这样靠时间堆出来一个分辨率更高的格子，最后就能测出是35度。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>C. Liu, Q. Ma, Z. J. Luo, Q. R. Hong, Q. Xiao, H. C. Zhang, L. Miao, W. M. Yu, Q. Cheng, L. Li <em>et al.</em>, “A programmable diffractive deep neural network based on a digital-coding metasurface array,” <em>Nature Electronics</em>, vol. 5, no. 2, pp. 113–122, Feb. 2022.
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<h2 id="reference">Reference</h2>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>C. Liu, Q. Ma, Z. J. Luo, Q. R. Hong, Q. Xiao, H. C. Zhang, L. Miao, W. M. Yu, Q. Cheng, L. Li <em>et al.</em>, “A programmable diffractive deep neural network based on a digital-coding metasurface array,” <em>Nature Electronics</em>, vol. 5, no. 2, pp. 113–122, Feb. 2022. <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
                 
               </div>
             

@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          818 字
+          824 字
         
       </span>
     
@@ -324,28 +324,33 @@
               <div class="markdown-body">
                 
                 <p>一种通用的无监督学习方法——对比预测编码。通过自回归模型预测潜在空间（高维空间）的未来，以学习高级表征。在训练阶段不涉及具体下游任务。</p>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1807.03748.pdf">原文</a><br>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/129076690">https://zhuanlan.zhihu.com/p/129076690</a></p>
-<h2 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h2><ol>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1807.03748.pdf">原文</a> 参考：https://zhuanlan.zhihu.com/p/129076690</p>
+<h2 id="主要贡献">主要贡献</h2>
+<ol type="1">
 <li>将高维数据压缩到更加紧密的潜在嵌入空间，这个空间中条件预测更容易建模。</li>
 <li>在这个潜在空间中使用强大的<strong>自回归</strong>模型来做多步未来预测。</li>
 <li>损失函数依靠噪声对比估计，这是与自然语言模型中用于学习词嵌入类似的方式，需要整个模型以端到端的形式进行训练。将最终的模型（对比预测编码，CPC）用在了很多不同的数据模态中，包括图像、语音、自然语言和强化学习，结果表明同样的机制在每一个领域中都学到了有趣的高级表征，而且优于其他方法。</li>
 </ol>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/be8d1c3abdacb2f159997d74695c8d11.png" srcset="/img/loading.gif" lazyload alt="image-20210908124633513"></p>
-<p>对于输入样本$x_t$，有一个非线性编码器$g_{enc}$将其映射为潜在表示序列$z_t&#x3D;g_{enc}(x_t)$；对于$t$时刻之前的所有$z_{t’},t’&lt;t$有一个自回归模型(e.g. GRU)$g_{ar}$推断得到当前时刻的$c_t$，利用对当前时刻的推测$c_t$，推断(用一个矩阵$W_k$进行映射)得到后面几个时刻的潜在表示序列的映射**（预测值）<strong>$z’<em>{t+1}$、$z’</em>{t+2}$、$z’<em>{t+3}…$；将真实的$x</em>{t+1}$、$x_{t+2}$、$x_{t+3}…$通过$g_{enc}$得到的潜在表示序列</strong>（真实值）**做损失函数，达到收敛。最后利用$c_t$完成下游任务。</p>
-<h2 id="衡量-x-和-c-的相关性"><a href="#衡量-x-和-c-的相关性" class="headerlink" title="衡量$x$和$c$的相关性"></a>衡量$x$和$c$的相关性</h2><p>互信息可以很好的衡量相关性：</p>
-<p>$I(x;c)&#x3D;\sum\limits_{x,c}p(x,c)log\frac{p(x|c)}{p(x)}$</p>
-<p>但是由于不方便计算（可见MINE.md），作者采用一个正比于$\frac{p(x|c)}{p(x)}$的函数$f_k(x,c)$来代替，即：</p>
-<p>$f_k(x_{t+k}, c_t)\propto \frac{p(x_{t+k}|c_t)}{p(x_{t+k})}$</p>
-<p>然后这个$f_k(x_{t+k}, c_t)$函数的具体计算表达式为:</p>
-<p>$f_k(x_{t+k}, c_t)&#x3D;exp(z^T_{t+k}W_kc_t)$</p>
-<p>我觉得应该才开看，第一步是$W_k^Tz_{t+k}$，用一个Linear层将$z_{t+k}$映射到与$c_t$同Size；第二步做$W_k^Tz_{t+k}$和$c_t$的内积，即$(W_k^Tz_{t+k})^T$$c_t$，展开为$z^T_{t+k}W_kc_t$；第三步做指数运算。</p>
-<h2 id="衡量互信息"><a href="#衡量互信息" class="headerlink" title="衡量互信息"></a>衡量互信息</h2><p>经过一系列证明，可以得到：</p>
-<p>$I(x_{t+k};c_t)\geq log(N)-\mathcal{L}_N$</p>
-<p>其中$\mathcal{L}_N$为：</p>
-<p>$\mathcal{L}<em>N&#x3D;-\mathop{\mathbb{E}}\limits</em>{X}[log\frac{f_k(x_{t+k}, c_t)}{\sum_{x_j\in X}f_k(x_j,c_t)}]$</p>
-<p>可见最小化$\mathcal{L}_N$即可完成最大化互信息量的下界。</p>
-<p>其中，$p(x_{t+k},c_t)$ 指的是正在选用信号的片段$x_t$（正样本），而$p(x_j)$指的是我们可以随便从其他的声音信号里选择一个片段（负样本）。这就是<strong>对比</strong>的体现。</p>
-<p>对$\mathcal{L}_N$反向梯度传播即可完成整个算法。</p>
+<figure>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/be8d1c3abdacb2f159997d74695c8d11.png" srcset="/img/loading.gif" lazyload alt="image-20210908124633513" /><figcaption aria-hidden="true">image-20210908124633513</figcaption>
+</figure>
+<p>对于输入样本<span class="math inline">\(x_t\)</span>，有一个非线性编码器<span class="math inline">\(g_{enc}\)</span>将其映射为潜在表示序列<span class="math inline">\(z_t=g_{enc}(x_t)\)</span>；对于<span class="math inline">\(t\)</span>时刻之前的所有<span class="math inline">\(z_{t&#39;},t&#39;&lt;t\)</span>有一个自回归模型(e.g. GRU)<span class="math inline">\(g_{ar}\)</span>推断得到当前时刻的<span class="math inline">\(c_t\)</span>，利用对当前时刻的推测<span class="math inline">\(c_t\)</span>，推断(用一个矩阵<span class="math inline">\(W_k\)</span>进行映射)得到后面几个时刻的潜在表示序列的映射<strong>（预测值）</strong><span class="math inline">\(z&#39;_{t+1}\)</span>、<span class="math inline">\(z&#39;_{t+2}\)</span>、<span class="math inline">\(z&#39;_{t+3}...\)</span>；将真实的<span class="math inline">\(x_{t+1}\)</span>、<span class="math inline">\(x_{t+2}\)</span>、<span class="math inline">\(x_{t+3}...\)</span>通过<span class="math inline">\(g_{enc}\)</span>得到的潜在表示序列<strong>（真实值）</strong>做损失函数，达到收敛。最后利用<span class="math inline">\(c_t\)</span>完成下游任务。</p>
+<h2 id="衡量x和c的相关性">衡量<span class="math inline">\(x\)</span>和<span class="math inline">\(c\)</span>的相关性</h2>
+<p>互信息可以很好的衡量相关性：</p>
+<p><span class="math inline">\(I(x;c)=\sum\limits_{x,c}p(x,c)log\frac{p(x|c)}{p(x)}\)</span></p>
+<p>但是由于不方便计算（可见MINE.md），作者采用一个正比于<span class="math inline">\(\frac{p(x|c)}{p(x)}\)</span>的函数<span class="math inline">\(f_k(x,c)\)</span>来代替，即：</p>
+<p><span class="math inline">\(f_k(x_{t+k}, c_t)\propto \frac{p(x_{t+k}|c_t)}{p(x_{t+k})}\)</span></p>
+<p>然后这个<span class="math inline">\(f_k(x_{t+k}, c_t)\)</span>函数的具体计算表达式为:</p>
+<p><span class="math inline">\(f_k(x_{t+k}, c_t)=exp(z^T_{t+k}W_kc_t)\)</span></p>
+<p>我觉得应该才开看，第一步是<span class="math inline">\(W_k^Tz_{t+k}\)</span>，用一个Linear层将<span class="math inline">\(z_{t+k}\)</span>映射到与<span class="math inline">\(c_t\)</span>同Size；第二步做<span class="math inline">\(W_k^Tz_{t+k}\)</span>和<span class="math inline">\(c_t\)</span>的内积，即<span class="math inline">\((W_k^Tz_{t+k})^T\)</span><span class="math inline">\(c_t\)</span>，展开为<span class="math inline">\(z^T_{t+k}W_kc_t\)</span>；第三步做指数运算。</p>
+<h2 id="衡量互信息">衡量互信息</h2>
+<p>经过一系列证明，可以得到：</p>
+<p><span class="math inline">\(I(x_{t+k};c_t)\geq log(N)-\mathcal{L}_N\)</span></p>
+<p>其中<span class="math inline">\(\mathcal{L}_N\)</span>为：</p>
+<p><span class="math inline">\(\mathcal{L}_N=-\mathop{\mathbb{E}}\limits_{X}[log\frac{f_k(x_{t+k}, c_t)}{\sum_{x_j\in X}f_k(x_j,c_t)}]\)</span></p>
+<p>可见最小化<span class="math inline">\(\mathcal{L}_N\)</span>即可完成最大化互信息量的下界。</p>
+<p>其中，<span class="math inline">\(p(x_{t+k},c_t)\)</span> 指的是正在选用信号的片段<span class="math inline">\(x_t\)</span>（正样本），而<span class="math inline">\(p(x_j)\)</span>指的是我们可以随便从其他的声音信号里选择一个片段（负样本）。这就是<strong>对比</strong>的体现。</p>
+<p>对<span class="math inline">\(\mathcal{L}_N\)</span>反向梯度传播即可完成整个算法。</p>
 <p>文章中还涉及了对图像、自然语言、语音的不同形式的信号的建模，有需要可以查看原文。</p>
 
                 

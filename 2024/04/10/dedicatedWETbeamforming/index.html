@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          300 字
+          296 字
         
       </span>
     
@@ -323,63 +323,45 @@
             
               <div class="markdown-body">
                 
-                <p>Date: 2024.04.10  11:29<br>Author: Joffrey LC</p>
-<hr>
-<p><strong>Multiuser MISO Beamforming for Simultaneous Wireless Information and Power Transfer</strong>.  <em>Jie Xu</em> et.al.  <strong>IEEE Transactions on Signal Processing, September 2014</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6860253">pdf</a>)  (Citations <strong>387</strong>)</p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351506.png" srcset="/img/loading.gif" lazyload alt="image-20240410234946862" style="zoom:33%;" />
-
-<p>&#x3D;&#x3D;Note that all the analysis is under the assumption of independently distributed user channels.&#x3D;&#x3D;</p>
+                <p>Date: 2024.04.10 11:29 Author: Joffrey LC</p>
+<hr />
+<p><strong>Multiuser MISO Beamforming for Simultaneous Wireless Information and Power Transfer</strong>. <em>Jie Xu</em> et.al. <strong>IEEE Transactions on Signal Processing, September 2014</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6860253">pdf</a>) (Citations <strong>387</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351506.png" srcset="/img/loading.gif" lazyload alt="image-20240410234946862" style="zoom:33%;" /></p>
+<p>==Note that all the analysis is under the assumption of independently distributed user channels.==</p>
 <ul>
 <li>Type I: without the capability of cancelling the interference from energy signals.</li>
 <li>Type II: with the capability of cancelling the interference from energy signals.</li>
 <li>No dedicated energy beam is used for the case of Type I; and employing no more than one energy beam is optimal.</li>
 <li>Establish a new form of the celebrated uplink-downlink duality for the downlink beamforming problems and thereby develop alternative algorithms to obtain the same optimal solutions as by SDR</li>
 </ul>
-<h2 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h2><p>the SINR of two types:</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351509.png" srcset="/img/loading.gif" lazyload alt="image-20240410192508020" style="zoom:33%;" />
-
+<h2 id="system-model">System model</h2>
+<p>the SINR of two types:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351509.png" srcset="/img/loading.gif" lazyload alt="image-20240410192508020" style="zoom:33%;" /></p>
 <p>The two types can be formulated as:</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351497.png" srcset="/img/loading.gif" lazyload alt="image-20240410192754113" style="zoom:33%;" />
-
-<p>Both problems can be shown to maximize a convex quadratic function with $\mathbf{G}$ being positive semidefinite, subject to various quadratic constrains; thus they are both non-convex QCQPs.</p>
-<h3 id="Check-on-their-feasibility"><a href="#Check-on-their-feasibility" class="headerlink" title="Check on their feasibility"></a>Check on their feasibility</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351571.png" srcset="/img/loading.gif" lazyload alt="image-20240410193858013" style="zoom:33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351497.png" srcset="/img/loading.gif" lazyload alt="image-20240410192754113" style="zoom:33%;" /></p>
+<p>Both problems can be shown to maximize a convex quadratic function with <span class="math inline">\(\mathbf{G}\)</span> being positive semidefinite, subject to various quadratic constrains; thus they are both non-convex QCQPs.</p>
+<h3 id="check-on-their-feasibility">Check on their feasibility</h3>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351571.png" srcset="/img/loading.gif" lazyload alt="image-20240410193858013" style="zoom:33%;" /></p>
 <p>code varify</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>P = <span class="hljs-number">1</span>;<br>M = <span class="hljs-number">10</span>;<br>K = <span class="hljs-number">4</span>;<br>los = generate_channel_simple(M, K, -<span class="hljs-built_in">pi</span>+<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">rand</span>, -<span class="hljs-built_in">pi</span>+<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">rand</span>, -<span class="hljs-built_in">pi</span>+<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">rand</span>);<br>nlos = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(K, M)+<span class="hljs-number">1</span><span class="hljs-built_in">j</span>*<span class="hljs-built_in">randn</span>(K, M));<br>kappa = <span class="hljs-number">0</span>;<br>G_all = <span class="hljs-built_in">sqrt</span>(kappa/(<span class="hljs-number">1</span>+kappa))*los+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/(<span class="hljs-number">1</span>+kappa))*nlos;<br><br>G = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> k=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:K<br>    G = G + G_all(k, :)&#x27;*G_all(k, :);<br><span class="hljs-keyword">end</span><br><br>[U, S] = eig(G);<br>optimal_w = U(:, <span class="hljs-number">1</span>);<br>optimal_w = optimal_w/norm(optimal_w)*P;<br><br><br>trace(optimal_w*optimal_w&#x27;*G)<br><br>close_form = S(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)*P<br><br><br>cvx_begin quiet<br>    variable V(M,M) hermitian semidefinite<br>    rece_power = <span class="hljs-number">0</span>;<br>    rece_power = rece_power+ <span class="hljs-built_in">real</span>(trace(V*G));<br>    maximise rece_power<br>    subject to<br>    total_power = <span class="hljs-number">0</span>;<br>    trace(V)&lt;= P;<br>cvx_end<br><br><br>[U2, S2] = eig(V);<br>re_w = U2(:, <span class="hljs-keyword">end</span>);<br>re_w = re_w/norm(re_w)*P;<br>re_power = trace(re_w*re_w&#x27;*G)<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="问题的等价"><a href="#问题的等价" class="headerlink" title="问题的等价"></a>问题的等价</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351501.png" srcset="/img/loading.gif" lazyload alt="image-20240410231200966" style="zoom:33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351538.png" srcset="/img/loading.gif" lazyload alt="image-20240410231413232" style="zoom: 33%;" />
-
-
-
-
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351000.png" srcset="/img/loading.gif" lazyload alt="image-20240410231523192" style="zoom:33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351008.png" srcset="/img/loading.gif" lazyload alt="image-20240410231613204" style="zoom:33%;" />
-
-
-
+<h2 id="问题的等价">问题的等价</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351501.png" srcset="/img/loading.gif" lazyload alt="image-20240410231200966" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351538.png" srcset="/img/loading.gif" lazyload alt="image-20240410231413232" style="zoom: 33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351000.png" srcset="/img/loading.gif" lazyload alt="image-20240410231523192" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351008.png" srcset="/img/loading.gif" lazyload alt="image-20240410231613204" style="zoom:33%;" /></p>
 <p>根据等价问题二，可以通过对偶来解决这个问题：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351071.png" srcset="/img/loading.gif" lazyload alt="image-20240410232427626" style="zoom:33%;" />
-
-
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351071.png" srcset="/img/loading.gif" lazyload alt="image-20240410232427626" style="zoom:33%;" /></p>
 <p>有意思的是，作者还对比了分离式设计：</p>
 <ul>
 <li>Type I: 先设计信息用户，再把剩下的功率全部用给能量。由于此时IDs不具备能量信号干扰消除，所以需要在发射端进行消除，所以使用了Null space方案。</li>
 </ul>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351119.png" srcset="/img/loading.gif" lazyload alt="image-20240410234551396" style="zoom:33%;" />
-
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351119.png" srcset="/img/loading.gif" lazyload alt="image-20240410234551396" style="zoom:33%;" /></p>
 <ul>
 <li>Type II: 和上面类似，先满足信息用户，然后把剩下的功率全部给能量。由于此时IDs可以消除能量干扰，所以可以直接用OeBF方案。</li>
 </ul>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351241.png" srcset="/img/loading.gif" lazyload alt="image-20240410234718045" style="zoom:33%;" />
-
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351352.png" srcset="/img/loading.gif" lazyload alt="image-20240410234901762" style="zoom:33%;" />
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351241.png" srcset="/img/loading.gif" lazyload alt="image-20240410234718045" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404102351352.png" srcset="/img/loading.gif" lazyload alt="image-20240410234901762" style="zoom:33%;" /></p>
 
                 
               </div>

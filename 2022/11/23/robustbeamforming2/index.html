@@ -323,17 +323,18 @@
             
               <div class="markdown-body">
                 
-                <p>Date: 2022.11.21  16:15<br>Author: Joffrey LC</p>
-<hr>
-<p><strong>Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication</strong>.  <em>Ming-Min Zhao</em> et.al.  <strong>IEEE Transactions on Signal Processing, 2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9352530">pdf</a>)  (Citations <strong>16</strong>)</p>
-<p>记录一下，zhougui等人的robust beamforming  github code ：<a target="_blank" rel="noopener" href="https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications">https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications</a></p>
-<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>在用户最大CSI错误中断概率约束的前提下，联合优化AP和IRS以最小化AP处的发射功率。</p>
+                <p>Date: 2022.11.21 16:15 Author: Joffrey LC</p>
+<hr />
+<p><strong>Outage-Constrained Robust Beamforming for Intelligent Reflecting Surface Aided Wireless Communication</strong>. <em>Ming-Min Zhao</em> et.al. <strong>IEEE Transactions on Signal Processing, 2021</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9352530">pdf</a>) (Citations <strong>16</strong>)</p>
+<p>记录一下，zhougui等人的robust beamforming github code ：https://github.com/ken0225/Framework-of-Robust-Transmission-Design-for-IRS-Aided-MISO-Communications</p>
+<h2 id="quick-overview">Quick Overview</h2>
+<p>在用户最大CSI错误中断概率约束的前提下，联合优化AP和IRS以最小化AP处的发射功率。</p>
 <ul>
 <li>先考虑单用户情况，计算单用户的平均信号的功率和方差来计算中断概率（功率和方差是trade-off）</li>
 <li>多用户情况，很难求出闭式解，通过优化算法解决</li>
 </ul>
 <p>现有的robust beamforming的算法，可以分为方向：</p>
-<ol>
+<ol type="1">
 <li>假设部分信道不确定性（有界的CSI误差模型），联合设计precoder和IRS reflection matrix</li>
 <li>假设统计信号误差模型（高斯分布等）</li>
 <li>设计中断概率下界高于某个阈值</li>
@@ -343,17 +344,59 @@
 <li>对单用户，讨论MSP（mean signal power）的均值和方差的trade-off，通过一维搜索搞定</li>
 <li>对多用户，SCA，并且先将离散的相位变化放缩到连续，进行优化后，放回离散值并固定，再对precoder进行优化，以补偿IRS相位从连续到离散的损失</li>
 </ul>
-<h2 id="单用户（过程很有意思）"><a href="#单用户（过程很有意思）" class="headerlink" title="单用户（过程很有意思）"></a>单用户（过程很有意思）</h2><p>有意思的是，其约束是一个概率：<br>$$<br>\begin{aligned}<br>\min _{\left{\mathbf{w}<em>k\right}, \boldsymbol{\Theta}} &amp; \sum</em>{k \in \mathcal{K}}\left|\mathbf{w}_k\right|^2 \<br>\text { s.t. } &amp; \operatorname{Pr}\left(\operatorname{SINR}_k&lt;\eta_k\right) \leq \epsilon_k, \forall k \in \mathcal{K}, \<br>&amp; \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .<br>\end{aligned}<br>$$<br>即优化目标为最小化发射功率，约束（6b）指中断概率小于一个阈值,（6c）指IRS相位的可行域</p>
-<p>单用户的时候，可以丢掉下标$k$，然后写成矩阵形式有：<br>$$<br>\begin{aligned}<br>\min _{\mathbf{w}, \boldsymbol{\Theta}} &amp;|\mathbf{w}|^2 \<br>\text { s.t. } &amp; \operatorname{Pr}\left(\left|\left(\mathbf{h}_r^H \boldsymbol{\Theta} \mathbf{G}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2&lt;\sigma^2 \eta\right) \leq \epsilon, \<br>&amp; \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .<br>\end{aligned}<br>$$<br>并且由变量替换：<br>$$<br>\mathbf{H}<em>k \triangleq \operatorname{diag}\left(\mathbf{h}</em>{r, k}^H\right) \mathbf{G}<br>$$<br>上式等于：<br>$$<br>\begin{aligned}<br>\min _{\mathbf{w}, \mathbf{v}} &amp;|\mathbf{w}|^2 \<br>\text { s.t. } &amp; \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2&lt;\sigma^2 \eta\right) \leq \epsilon, \<br>&amp; v_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .<br>\end{aligned}<br>$$<br>由于发射功率越大中断概率肯定越小，所以可以交换一下：<br>$$<br>\begin{aligned}<br>&amp;\min _{\mathbf{w}, \mathbf{v}} \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2&lt;\sigma^2 \eta\right) \<br>&amp;\text { s.t. }|\mathbf{w}|^2 \leq p, \<br>&amp;v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},<br>\end{aligned}<br>$$</p>
+<h2 id="单用户过程很有意思">单用户（过程很有意思）</h2>
+<p>有意思的是，其约束是一个概率： <span class="math display">\[
+\begin{aligned}
+\min _{\left\{\mathbf{w}_k\right\}, \boldsymbol{\Theta}} &amp; \sum_{k \in \mathcal{K}}\left\|\mathbf{w}_k\right\|^2 \\
+\text { s.t. } &amp; \operatorname{Pr}\left(\operatorname{SINR}_k&lt;\eta_k\right) \leq \epsilon_k, \forall k \in \mathcal{K}, \\
+&amp; \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
+\end{aligned}
+\]</span> 即优化目标为最小化发射功率，约束（6b）指中断概率小于一个阈值,（6c）指IRS相位的可行域</p>
+<p>单用户的时候，可以丢掉下标<span class="math inline">\(k\)</span>，然后写成矩阵形式有： <span class="math display">\[
+\begin{aligned}
+\min _{\mathbf{w}, \boldsymbol{\Theta}} &amp;\|\mathbf{w}\|^2 \\
+\text { s.t. } &amp; \operatorname{Pr}\left(\left|\left(\mathbf{h}_r^H \boldsymbol{\Theta} \mathbf{G}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2&lt;\sigma^2 \eta\right) \leq \epsilon, \\
+&amp; \phi_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
+\end{aligned}
+\]</span> 并且由变量替换： <span class="math display">\[
+\mathbf{H}_k \triangleq \operatorname{diag}\left(\mathbf{h}_{r, k}^H\right) \mathbf{G}
+\]</span> 上式等于： <span class="math display">\[
+\begin{aligned}
+\min _{\mathbf{w}, \mathbf{v}} &amp;\|\mathbf{w}\|^2 \\
+\text { s.t. } &amp; \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2&lt;\sigma^2 \eta\right) \leq \epsilon, \\
+&amp; v_n \in \mathcal{F}_d, \forall n \in \mathcal{N} .
+\end{aligned}
+\]</span> 由于发射功率越大中断概率肯定越小，所以可以交换一下： <span class="math display">\[
+\begin{aligned}
+&amp;\min _{\mathbf{w}, \mathbf{v}} \operatorname{Pr}\left(\left|\left(\mathbf{v}^H \mathbf{H}+\mathbf{h}_d^H\right) \mathbf{w}\right|^2&lt;\sigma^2 \eta\right) \\
+&amp;\text { s.t. }\|\mathbf{w}\|^2 \leq p, \\
+&amp;v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
+\end{aligned}
+\]</span></p>
 <p>然后，加法形式可以再次写成矩阵乘法形式：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png" srcset="/img/loading.gif" lazyload alt="image-20221123105539827" style="zoom: 50%;" />
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118600.png" srcset="/img/loading.gif" lazyload alt="image-20221123105539827" style="zoom: 50%;" /></p>
+<p>进一步，上述优化目标等于求CDF： <span class="math display">\[
+\begin{aligned}
+\min _{\mathbf{w}, \mathbf{v}} &amp; \iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\
+\text { s.t. } &amp;\|\mathbf{w}\|^2 \leq p, \\
+&amp; v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
+\end{aligned}
+\]</span> 因为其CDF为： <span class="math display">\[
+\begin{aligned}
+&amp;\iint_{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \\
+&amp;=\mathcal{P}\left(\left.\frac{\eta \sigma^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right|_2, \frac{\left|\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}\right|^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right)
+\end{aligned}
+\]</span> 意思是，服从自由度为2，参数为<span class="math inline">\(\lambda\)</span>的卡方：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png" srcset="/img/loading.gif" lazyload alt="image-20221123105944569" style="zoom: 50%;" /></p>
+<p>需要同时最大化<span class="math inline">\(\frac{\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}}{\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\)</span>和<span class="math inline">\(\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\)</span>，<span class="math inline">\(\mathcal{P}\left[\left.\chi^2\right|_2, \lambda\right]\)</span>是<span class="math inline">\(\chi\)</span>的递增函数，是<span class="math inline">\(\lambda\)</span>的递减函数。</p>
+<p>但是同时最大化感觉是不合理的。只能在最大化二者之间找一个平衡： <span class="math display">\[
+\begin{gathered}
+\max _{\mathbf{v}} \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}+\omega \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}} \\
+\text { s.t. } v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},
+\end{gathered}
+\]</span> 怎么解得，看不懂。</p>
+<h2 id="多用户">多用户</h2>
 
-<p>进一步，上述优化目标等于求CDF：<br>$$<br>\begin{aligned}<br>\min <em>{\mathbf{w}, \mathbf{v}} &amp; \iint</em>{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \<br>\text { s.t. } &amp;|\mathbf{w}|^2 \leq p, \<br>&amp; v_n \in \mathcal{F}<em>d, \forall n \in \mathcal{N},<br>\end{aligned}<br>$$<br>因为其CDF为：<br>$$<br>\begin{aligned}<br>&amp;\iint</em>{\mathbf{D}} \mathcal{C N}\left(z ; \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}, p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}\right) \<br>&amp;&#x3D;\mathcal{P}\left(\left.\frac{\eta \sigma^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right|_2, \frac{\left|\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \mathbf{w}\right|^2}{\frac{1}{2} p \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}\right)<br>\end{aligned}<br>$$<br>意思是，服从自由度为2，参数为$\lambda$的卡方：</p>
-<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211231118668.png" srcset="/img/loading.gif" lazyload alt="image-20221123105944569" style="zoom: 50%;" />
-
-<p>需要同时最大化$\frac{\tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}}{\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}}$和$\tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}}$，$\mathcal{P}\left[\left.\chi^2\right|_2, \lambda\right]$是$\chi$的递增函数，是$\lambda$的递减函数。</p>
-<p>但是同时最大化感觉是不合理的。只能在最大化二者之间找一个平衡：<br>$$<br>\begin{gathered}<br>\max _{\mathbf{v}} \tilde{\mathbf{v}}^H \overline{\mathbf{H}} \overline{\mathbf{H}}^H \tilde{\mathbf{v}}+\omega \tilde{\mathbf{v}}^H \overline{\mathbf{V}} \tilde{\mathbf{v}} \<br>\text { s.t. } v_n \in \mathcal{F}_d, \forall n \in \mathcal{N},<br>\end{gathered}<br>$$<br>怎么解得，看不懂。</p>
-<h2 id="多用户"><a href="#多用户" class="headerlink" title="多用户"></a>多用户</h2>
                 
               </div>
             
