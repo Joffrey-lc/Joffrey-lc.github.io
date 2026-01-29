@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.25, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
+
+<script>
+/* Mobile viewport fix: some host themes/in-app browsers can end up with a desktop-like viewport.
+   We force a device-width viewport early and mark the page for mobile CSS hardening. */
+(function(){
+  var ua = navigator.userAgent || "";
+  var isMobile = /Mobi|Android|iPhone|iPad|iPod|Mobile|MicroMessenger/i.test(ua);
+  try{
+    if (window.matchMedia){
+      var hasCoarse = window.matchMedia("(any-pointer: coarse)").matches;
+      var hasFine = window.matchMedia("(pointer: fine)").matches;
+      if (hasCoarse && !hasFine) isMobile = true;
+    }
+  }catch(e){}
+  if (!isMobile) return;
+
+  var content = "width=device-width, initial-scale=1, minimum-scale=0.25, maximum-scale=5, user-scalable=yes, viewport-fit=cover";
+  try{
+    var metas = document.querySelectorAll('meta[name="viewport"]');
+    for (var i=0;i<metas.length;i++){
+      metas[i].setAttribute("content", content);
+    }
+  }catch(e){}
+  try{
+    var de = document.documentElement;
+    de.classList.add("cv-mobile");
+    // Clear any accidental scaling injected elsewhere
+    de.style.zoom = "";
+    de.style.transform = "";
+    de.style.transformOrigin = "";
+    de.style.width = "";
+  }catch(e){}
+})();
+</script>
+  <title>Joffrey&#x27;s CV</title>
+  <meta name="description" content="CV" />
+  <!-- CV_SHELL_GENERATED -->
+  <style>
+:root{
+  --bg:#f4f6f9;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --primary:#2563eb;
+  --primary-weak:#dbeafe;
+  --shadow:0 10px 30px rgba(17,24,39,.08);
+  --radius:16px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+          "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
+}
+*{ box-sizing:border-box; }
+html{ overflow-y:auto; scrollbar-gutter: stable; }
+body{ overflow-y:auto; }
+@supports not (scrollbar-gutter: stable){ html{ overflow-y: scroll; } body{ overflow-y: scroll; } }
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--text);
+  background: radial-gradient(1200px 500px at 10% 0%, #eef2ff 0%, transparent 60%),
+              radial-gradient(1200px 500px at 90% 10%, #ecfeff 0%, transparent 60%),
+              var(--bg);
+  line-height:1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Mobile hardening: ensure the CV always fits the screen width on phones/in-app browsers */
+html.cv-mobile, html.cv-mobile body{ width:100%; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+html.cv-mobile .wrap{ max-width:100%; margin:12px auto; padding:0 12px 20px; gap:14px; }
+html.cv-mobile .sidebar{ position:relative; top:auto; }
+html.cv-mobile .navbar{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+html.cv-mobile .navbar::-webkit-scrollbar{ display:none; }
+html.cv-mobile .wrap{ grid-template-columns:1fr !important; }
+html.cv-mobile .main, html.cv-mobile .sidebar{ width:100%; min-width:0; }
+html.cv-mobile .topbar .meta{ text-align:left; white-space:normal; }
+html.cv-mobile p, html.cv-mobile li, html.cv-mobile .pub, html.cv-mobile .ext-content{ overflow-wrap:anywhere; word-break:break-word; }
+html.cv-mobile .pub{ flex-direction:column; }
+html.cv-mobile .pub .idx{ width:auto; text-align:left; padding-top:0; }
+
+a{ color:var(--primary); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.wrap{
+  max-width:1100px;
+  margin:28px auto;
+  padding:0 16px 32px;
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:18px;
+  align-items:start;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* Sidebar */
+.sidebar{
+  position:sticky;
+  top:18px;
+  padding:18px 18px 14px;
+}
+.profile{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line);
+}
+.avatar{
+  width:76px; height:76px;
+  border-radius:18px;
+  background:#ddd;
+  overflow:hidden;
+  flex:0 0 auto;
+  border:1px solid var(--line);
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+.name{ font-size:20px; font-weight:750; margin:0; line-height:1.2; }
+.title{ margin:6px 0 0; color:var(--muted); font-size:13px; }
+.tags{ margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
+.tag{ font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--line); background:#fafafa; color:#334155; }
+
+.contact{
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.contact .item{
+  display:flex; gap:10px; align-items:center;
+  padding:7px 0; font-size:14px;
+}
+.contact .k{ color:var(--muted); width:72px; flex:0 0 auto; line-height:1.2; }
+.contact .v{ flex:1; min-width:0; overflow-wrap:anywhere; }
+.contact .v a{
+  display:block;
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.actions{ padding-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:9px 12px; border-radius:12px;
+  border:1px solid var(--line);
+  background:#fff; color:var(--text);
+  font-weight:650; font-size:13px;
+  cursor:pointer; user-select:none;
+}
+.btn.primary{ background:var(--primary); border-color:var(--primary); color:#fff; }
+.btn:hover{ filter:brightness(.98); }
+
+.hint{ margin:12px 0 0; color:var(--muted); font-size:12px; }
+
+/* WeChat QR */
+.wechat{
+  margin-top:14px;
+  padding:12px 12px 10px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background: linear-gradient(135deg, rgba(37,99,235,.08), rgba(245,158,11,.10));
+}
+.wechat .wechat-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:13px;
+  color:#0f172a;
+}
+.wechat .wechat-badge{
+  font-size:11px;
+  font-weight:900;
+  padding:2px 8px;
+  border-radius:999px;
+  border:1px solid rgba(37,99,235,.25);
+  background: rgba(37,99,235,.10);
+  color:#1e40af;
+}
+.wechat a{ text-decoration:none; }
+.wechat img{
+  width:100%;
+  max-width:210px;
+  display:block;
+  margin:10px auto 6px;
+  border-radius:14px;
+  border:1px solid rgba(37,99,235,.18);
+  background:#fff;
+  box-shadow:0 12px 26px rgba(17,24,39,.10);
+}
+.wechat .wechat-name{
+  text-align:center;
+  font-size:12px;
+  font-weight:900;
+  color:#0f172a;
+  margin-top:2px;
+}
+.wechat .wechat-hint{
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:1px;
+}
+
+/* Main */
+.main{ padding:18px 18px 20px; }
+
+/* Navbar */
+.navbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  margin-bottom:14px;
+}
+.navbar .navlink{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  font-weight:750;
+  font-size:13px;
+}
+.navbar .navlink:hover{
+  text-decoration:none;
+  filter:brightness(.98);
+  border-color: rgba(37,99,235,.35);
+  box-shadow:0 0 0 4px var(--primary-weak);
+}
+
+.navbar .navlink.active{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 0 0 4px var(--primary-weak);
+}
+
+.ext-content{ font-size:13px; color:#374151; }
+.ext-content img{ max-width:100%; height:auto; }
+.ext-content table{ border-collapse:collapse; max-width:100%; }
+.ext-content th,.ext-content td{ border:1px solid var(--line); padding:6px 8px; }
+.ext-content code{ font-family:var(--mono); font-size:12px; background:#f3f4f6; padding:2px 4px; border-radius:6px; }
+
+/* Callouts */
+.callout{
+  margin:12px 0;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-left:6px solid var(--primary);
+  border-radius:14px;
+  background: linear-gradient(90deg, rgba(37,99,235,.12), rgba(16,185,129,.08));
+}
+.callout .callout-title{
+  margin:0 0 6px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:13px;
+  color:#0f172a;
+}
+.callout .callout-body p{ margin:6px 0; }
+.callout .callout-body ul{ margin-top:6px; }
+.callout.recruit{
+  border-left-color:#f59e0b;
+  background: linear-gradient(90deg, rgba(245,158,11,.18), rgba(37,99,235,.08));
+}
+.callout.success{
+  border-left-color:#10b981;
+  background: linear-gradient(90deg, rgba(16,185,129,.16), rgba(37,99,235,.06));
+}
+.callout.warn{
+  border-left-color:#ef4444;
+  background: linear-gradient(90deg, rgba(239,68,68,.14), rgba(245,158,11,.06));
+}
+mark.hl{
+  padding:1px 4px;
+  border-radius:6px;
+  background: rgba(245,158,11,.28);
+}
+
+
+
+
+
+
+
+
+.topbar{
+  display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+  padding-bottom:10px; border-bottom:1px solid var(--line); margin-bottom:14px;
+}
+.topbar h1{ margin:0; font-size:22px; line-height:1.25; }
+.topbar .meta{
+  text-align:right; color:var(--muted); font-size:12px;
+  font-family:var(--mono); white-space:nowrap;
+}
+
+section{ padding:14px 0; border-bottom:1px dashed var(--line); }
+section:last-child{ border-bottom:none; }
+.sec-title{
+  display:flex; align-items:center; gap:10px;
+  margin:0 0 10px; font-size:15px; font-weight:800;
+}
+.dot{
+  width:10px; height:10px; border-radius:999px;
+  background:var(--primary);
+  box-shadow:0 0 0 6px var(--primary-weak);
+  flex:0 0 auto;
+}
+.lead{ margin:0; font-size:14px; color:#111827; }
+.muted{ color:var(--muted); }
+
+ul{ margin:8px 0 0 18px; padding:0; color:#374151; font-size:13px; }
+li{ margin:6px 0; }
+p{ margin:8px 0; color:#374151; font-size:13px; }
+
+/* Publications */
+.pub{
+  display:flex; gap:12px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  margin-top:10px;
+}
+.pub .idx{
+  font-family:var(--mono);
+  color:var(--muted);
+  width:28px;
+  flex:0 0 auto;
+  text-align:right;
+  padding-top:2px;
+}
+.pub .content{ flex:1; min-width:0; }
+.pub .ptitle{ margin:0; font-weight:800; color:#111827; font-size:13px; }
+.pub .meta-line{
+  margin:4px 0 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  font-size:12px;
+  color:#374151;
+}
+.pub .authors-text{ min-width:0; }
+.pub .venue-badge{
+  display:inline-flex;
+  align-items:center;
+  padding:2px 10px;
+  border-radius:999px;
+  border:1px solid rgba(37,99,235,.25);
+  background: linear-gradient(90deg, rgba(37,99,235,.14), rgba(16,185,129,.10));
+  color:#0f172a;
+  font-weight:800;
+}
+.pub .authors{ margin:4px 0 0; font-size:12px; color:#374151; }
+.pub .venue{ margin:4px 0 0; font-size:12px; color:var(--muted); }
+.links{ margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+.pill{
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+
+.footer{ margin-top:10px; color:var(--muted); font-size:12px; text-align:center; }
+
+
+/* Layout lock (keeps layout consistent across pages at the same zoom) */
+html.cv-layout-1 .wrap{ grid-template-columns:1fr; }
+html.cv-layout-1 .sidebar{ position:relative; top:auto; }
+html.cv-layout-1 .topbar .meta{ text-align:left; white-space:normal; }
+html.cv-layout-2 .wrap{ grid-template-columns: 320px 1fr; }
+html.cv-layout-2 .sidebar{ position:sticky; top:18px; }
+@media (max-width: 940px){
+  .wrap{ grid-template-columns:1fr; }
+  .sidebar{ position:relative; top:auto; }
+  .topbar .meta{ text-align:left; white-space:normal; }
+}
+  </style>
+<script>
+(function(){
+  var PREFIX = "CV_ZOOM=";
+  var KEY_ZOOM = "cv_zoom_desired";
+  var KEY_LAYOUT = "cv_layout_mode";
+  var LAYOUT_BREAKPOINT = 940;
+
+  // --- Mobile safeguard ---
+  // Mobile/touch browsers manage pinch-zoom/viewport scaling themselves.
+  // This DPR-based zoom helper can make the first render look over-zoomed on mobile.
+  // To keep mobile always "fit-to-screen", we disable it on mobile/touch devices.
+  // Desktop behavior (including remembered zoom across navbar pages) is unchanged.
+  var mq = window.matchMedia ? window.matchMedia.bind(window) : null;
+  var hasFine = false, hasCoarse = false;
+  try{
+    if (mq){
+      hasFine = mq("(pointer: fine)").matches;
+      hasCoarse = mq("(any-pointer: coarse)").matches;
+    }
+  }catch(e){}
+  var ua = (navigator.userAgent || "");
+  var uaMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+  var isMobile = (hasCoarse && !hasFine) || uaMobile;
+  if (isMobile){
+    // Avoid carrying a desktop-stored zoom value into mobile rendering.
+    try{ if (window.name && window.name.indexOf(PREFIX) === 0) window.name = ""; }catch(e){}
+    try{ sessionStorage.removeItem(KEY_ZOOM); sessionStorage.removeItem(KEY_LAYOUT); }catch(e){}
+    return;
+  }
+
+  function ssGet(key){
+    try{ return sessionStorage.getItem(key); }catch(e){}
+    return null;
+  }
+  function ssSet(key, val){
+    try{ sessionStorage.setItem(key, String(val)); }catch(e){}
+  }
+
+  function parseDesiredFromName(){
+    try{
+      if (window.name && window.name.indexOf(PREFIX) === 0){
+        var v = parseFloat(window.name.slice(PREFIX.length));
+        if (isFinite(v) && v > 0) return v;
+      }
+    }catch(e){}
+    return null;
+  }
+
+  function readDesired(){
+    var v = ssGet(KEY_ZOOM);
+    if (v != null){
+      var n = parseFloat(v);
+      if (isFinite(n) && n > 0) return n;
+    }
+    return parseDesiredFromName();
+  }
+
+  function saveDesired(){
+    ssSet(KEY_ZOOM, desired);
+    // Keep legacy behavior if window.name is already used for CV_ZOOM.
+    // Avoid overwriting other pages' window.name payloads in the same tab.
+    try{
+      if (!window.name || window.name.indexOf(PREFIX) === 0){
+        window.name = PREFIX + String(desired);
+      }
+    }catch(e){}
+  }
+
+  function round6(x){
+    return Math.round(x * 1000000) / 1000000;
+  }
+
+  var lastDpr = window.devicePixelRatio || 1;
+  var desired = readDesired();
+  if (!desired) desired = lastDpr;
+
+  function applyZoom(){
+    var cur = window.devicePixelRatio || 1;
+    if (!cur) cur = 1;
+    var factor = desired / cur;
+    factor = round6(factor);
+    if (isFinite(factor) && factor > 0.1 && factor < 10){
+      var de = document.documentElement;
+      if ('zoom' in de.style){
+        de.style.zoom = factor;
+      }else{
+        de.style.transformOrigin = '0 0';
+        de.style.transform = 'scale(' + factor + ')';
+        de.style.width = (100 / factor) + '%';
+      }
+    }
+  }
+
+  // --- Layout lock ---
+  function computeLayoutMode(){
+    // Use clientWidth to reduce sensitivity to scrollbars.
+    var w = document.documentElement.clientWidth || window.innerWidth || 0;
+    return (w <= LAYOUT_BREAKPOINT) ? '1' : '2';
+  }
+
+  function applyLayoutMode(mode){
+    var html = document.documentElement;
+    html.classList.remove('cv-layout-1', 'cv-layout-2');
+    if (mode === '1') html.classList.add('cv-layout-1');
+    else html.classList.add('cv-layout-2');
+    ssSet(KEY_LAYOUT, mode);
+  }
+
+  var storedLayout = ssGet(KEY_LAYOUT);
+  if (storedLayout !== '1' && storedLayout !== '2') storedLayout = null;
+  var layoutMode = storedLayout || computeLayoutMode();
+  applyLayoutMode(layoutMode);
+
+  var lastW = document.documentElement.clientWidth || window.innerWidth || 0;
+
+  // Apply ASAP
+  applyZoom();
+
+  // If user changes browser zoom (devicePixelRatio changes), adopt it and avoid double scaling.
+  window.addEventListener('resize', function(){
+    var dpr = window.devicePixelRatio || 1;
+    var w = document.documentElement.clientWidth || window.innerWidth || 0;
+
+    // 1) Keep original zoom persistence behavior based on DPR changes
+    if (Math.abs(dpr - lastDpr) > 0.001){
+      desired = dpr;
+      lastDpr = dpr;
+      applyZoom();
+      saveDesired();
+      // DPR change likely alters effective width => recompute layout mode
+      applyLayoutMode(computeLayoutMode());
+      lastW = w;
+      return;
+    }
+
+    // 2) Window resize (user resizing) can change layout; ignore tiny width changes
+    if (Math.abs(w - lastW) > 60){
+      lastW = w;
+      applyLayoutMode(computeLayoutMode());
+    }
+  });
+
+  window.addEventListener('pagehide', function(){
+    saveDesired();
+  });
+  window.addEventListener('beforeunload', function(){
+    saveDesired();
+  });
+})();
+</script>
+</head>
+
+<body>
+  <div class="wrap">
+    <aside class="card sidebar">
+      <div class="profile">
+        <div class="avatar"><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601142156575.jpeg" alt="avatar" /></div>
+        <div>
+          <h2 class="name">罗程 / Luo Cheng</h2>
+          <p class="title">Assistant Researcher, Yuxiu Young Scholars Program | Ph.D.</p>
+          <div class="tags"><span class="tag">深度学习</span><span class="tag">内生智能</span><span class="tag">通信物理层</span><span class="tag">RIS</span><span class="tag">SWIPT</span></div>
+          
+        </div>
+      </div>
+
+      <div class="contact">
+<div class="item"><div class="k">E-mail</div><div class="v"><a href="mailto:chengluo@nju.edu.cn" title="mailto:chengluo@nju.edu.cn" target="_blank" rel="noopener noreferrer">chengluo@nju.edu.cn</a></div></div>
+<div class="item"><div class="k">Google Scholar</div><div class="v"><a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=Kpnwv-MAAAAJ" title="https://scholar.google.com/citations?hl=zh-CN&amp;user=Kpnwv-MAAAAJ" target="_blank" rel="noopener noreferrer">scholar.google.com/citations?user=Kpnwv-MAAAAJ</a></div></div>
+<div class="item"><div class="k">GitHub</div><div class="v"><a href="https://github.com/Joffrey-lc" title="https://github.com/Joffrey-lc" target="_blank" rel="noopener noreferrer">github.com/Joffrey-lc</a></div></div>
+<div class="item"><div class="k">Location</div><div class="v">Suzhou/Chengdu, China</div></div>
+      </div>
+
+<div class="wechat"><div class="wechat-title"><span class="wechat-badge">WeChat</span><span>公众号</span></div><a href="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601202221014.png" target="_blank" rel="noopener noreferrer"><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601202221014.png" alt="PHY Insight" loading="lazy" /></a><div class="wechat-name">PHY Insight</div><div class="wechat-hint">微信扫一扫，关注公众号</div></div>
+
+      <div class="actions">
+<a class="btn primary" href="https://lcjoffrey.top/blog/" target="_blank" rel="noopener">Research Blog</a>
+      </div>
+
+
+    </aside>
+
+    <main class="card main">
+<nav class="navbar"><a class="navlink" href="index.html" target="_self">Home</a><a class="navlink" href="papers.html" target="_self">Papers</a><a class="navlink active" href="honors.html" target="_self">Honors</a></nav>
+      <div class="topbar">
+        <div>
+          <h1></h1>
+          <div class="muted"></div>
+        </div>
+        <div class="meta">
+          <div>Last updated: 2026-01-29</div>
+        </div>
+      </div>
+
+<section>
+<h3 class="sec-title"><span class="dot"></span>Honors &amp; Awards\荣誉</h3>
+<ul>
+<li>2025 ICSSIP Best Paper Award</li>
+<li>2024 IEEE WCL Exemplary Reviewer</li>
+</ul>
+</section>
+
+      <div class="footer">© 2026 罗程 / Luo Cheng</div>
+    </main>
+  </div>
+</body>
+</html>

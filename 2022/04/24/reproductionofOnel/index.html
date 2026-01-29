@@ -1,0 +1,971 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="复现AA-IS&#x2F;AA_SA&#x2F;AA-SS_minVar&#x2F;AA-SS_maxE&#x2F;APS-EMW&#x2F;CSI-Based">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSI-Free相关文献代码复现">
+<meta property="og:url" content="https://lcjoffrey.top/2022/04/24/reproductionofOnel/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="复现AA-IS&#x2F;AA_SA&#x2F;AA-SS_minVar&#x2F;AA-SS_maxE&#x2F;APS-EMW&#x2F;CSI-Based">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20211203212547096.png">
+<meta property="article:published_time" content="2022-04-24T09:55:37.000Z">
+<meta property="article:modified_time" content="2022-04-25T08:09:49.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="Reproduction">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20211203212547096.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>CSI-Free相关文献代码复现 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CSI-Free相关文献代码复现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-24 17:55" pubdate>
+          2022年4月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CSI-Free相关文献代码复现</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-04-25T16:09:49+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="OneL’s-CSI-Free-and-CSI-Based-Wireless-Energy-Transfer-Method-Reproduction"><a href="#OneL’s-CSI-Free-and-CSI-Based-Wireless-Energy-Transfer-Method-Reproduction" class="headerlink" title="OneL’s CSI-Free and CSI-Based Wireless Energy Transfer Method Reproduction"></a>OneL’s CSI-Free and CSI-Based Wireless Energy Transfer Method Reproduction</h1><p>参考OneL’s Github<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://github.com/onel2428/WEToverview">[1]</span></a></sup>源码复现。</p>
+<h2 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h2><h3 id="Done"><a href="#Done" class="headerlink" title="Done"></a>Done</h3><div>
+            <input type="checkbox"  checked="checked">fix the bug of EH_Transfer_Funtion.m
+
+          </div>
+
+<div>
+            <input type="checkbox"  checked="checked">build code by formula derivation
+
+          </div>
+
+<div>
+            <input type="checkbox"  checked="checked">improve the CSI-based algorithm according to Reference 6
+
+          </div> 
+
+<h3 id="ToDo"><a href="#ToDo" class="headerlink" title="ToDo"></a>ToDo</h3><div>
+            <input type="checkbox"  >Change the EH-Transfer-Function
+
+          </div>
+
+<div>
+            <input type="checkbox"  >Change the Channel Path loss
+
+          </div>
+
+<h2 id="Channel-Path-Loss"><a href="#Channel-Path-Loss" class="headerlink" title="Channel Path Loss"></a>Channel Path Loss</h2><p>直接搬用OneL的log-distance model：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beta</span> = <span class="hljs-title">channel_path_loss</span><span class="hljs-params">(x1, x2, y1, y2)</span></span><br><span class="hljs-comment">%Channel path-loss between device at position (x1,y1) and another device at position (x2,y2)</span><br><br><span class="hljs-comment">%% Input parameters:</span><br><span class="hljs-comment">% (x1,y1) -&gt; coordinates of the first node</span><br><span class="hljs-comment">% (x2,y2) -&gt; coordinates of the second node</span><br><br><span class="hljs-comment">%% Output parameters:</span><br><span class="hljs-comment">% beta    -&gt; path-loss between the two nodes at (x1,y1) and (x2,y2)</span><br><br><span class="hljs-comment">%% The path loss is comupted using the log-distance model</span><br><span class="hljs-comment">% Setting path-loss exponent and attenuation at reference distance of 1m</span><br>exponent = <span class="hljs-number">2.7</span>;         <span class="hljs-comment">%path loss exponent</span><br>attenuation1m = <span class="hljs-number">1e-3</span>;   <span class="hljs-comment">%average power attenuation at 1m</span><br><span class="hljs-comment">% Path loss computation</span><br><span class="hljs-built_in">beta</span> = <span class="hljs-built_in">min</span>(attenuation1m*<span class="hljs-built_in">sqrt</span>((x1 - x2).^<span class="hljs-number">2</span> + (y1 - y2).^<span class="hljs-number">2</span>).^-exponent, <span class="hljs-number">1</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>返回一个系数beta作为路径衰落。随相对距离Distance的指数衰减（但是我没有找到论文或者表述来描述这个所谓的log-distance model）</p>
+<p>防止在Distance&#x3D;0时beta&gt;1，所以有一个$\min(\cdot)$。</p>
+<h2 id="Channel-Model"><a href="#Channel-Model" class="headerlink" title="Channel Model"></a>Channel Model</h2><h3 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h3><p>准静态信道，也是几乎所有OneL文章使用的模型<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109&#x2F;JIOT.2020.3003114.”&gt;[2]</span></a></sup>，分为直射信道（LoS）和非直射信道（NLoS）:<br>$$<br>\begin{aligned}<br>\textbf{h}&#x3D;\sqrt{\frac{\kappa}{1+\kappa}}e^{\text{i}\varphi_0}\textbf{h}<em>{\text{los}}+\sqrt{\frac{1}{\kappa+1}}\textbf{h}</em>{\text{nlos}}<br>\end{aligned}<br>$$</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">h</span> = <span class="hljs-title">RicianFadingChannel</span><span class="hljs-params">(kappa,M,x,y, choice)</span> </span><br>    phi = <span class="hljs-built_in">atan</span>(y/x); <span class="hljs-comment">% 发射角度</span><br>    Phi = -(<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:M<span class="hljs-number">-1</span>)*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">sin</span>(phi);<br>    h_los = PreventiveAdjustmentofMeanShift(<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>.*Phi.&#x27;), M, choice);<br>    hnlos = <span class="hljs-number">1</span>/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(M,<span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(M,<span class="hljs-number">1</span>));<br>    h = <span class="hljs-built_in">sqrt</span>(kappa/(<span class="hljs-number">1</span>+kappa))*h_los*<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">pi</span>/<span class="hljs-number">4</span>)+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/(<span class="hljs-number">1</span>+kappa))*hnlos;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Preventive-Adjustment-of-Mean-Shift"><a href="#Preventive-Adjustment-of-Mean-Shift" class="headerlink" title="Preventive Adjustment of Mean Shift"></a>Preventive Adjustment of Mean Shift</h3><p>同时考虑到Preventive Adjustment of Mean Shift，有：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">h</span> = <span class="hljs-title">PreventiveAdjustmentofMeanShift</span><span class="hljs-params">(h, M, choice)</span></span><br><span class="hljs-comment">% M: Antennas</span><br>    <span class="hljs-keyword">switch</span> choice<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;mean&#x27;</span><br>            varphi = <span class="hljs-built_in">mod</span>((<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:M<span class="hljs-number">-1</span>),<span class="hljs-number">2</span>)*<span class="hljs-built_in">pi</span>;<br>            h = h.*(<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*varphi)).&#x27;;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;variance&#x27;</span><br>            h = h;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;none&#x27;</span><br>            h = h;<br>        <span class="hljs-keyword">otherwise</span><br>            error(<span class="hljs-string">&#x27;not implement, only mean or variance&#x27;</span>) <br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>choice可以选择：</p>
+<ul>
+<li>mean: 即文章<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109&#x2F;JIOT.2020.3003114.”&gt;[2]</span></a></sup>中介绍的max-E的优化策略，相邻天线之间相移$\pi$</li>
+<li>variance: 即文章<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109&#x2F;JIOT.2020.3003114.”&gt;[2]</span></a></sup>中介绍的min-variance的优化策略，相邻天线之间没有相移</li>
+</ul>
+<h2 id="EH-Transfer-Function"><a href="#EH-Transfer-Function" class="headerlink" title="EH Transfer Function"></a>EH Transfer Function</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">harvested_energy</span> = <span class="hljs-title">EH_transfer_function</span><span class="hljs-params">(RF_energy,sensitivity,saturation,efficiency)</span></span><br><span class="hljs-comment">%EH transfer function given RF energy input and EH hardware parameters [REF]</span><br><br><span class="hljs-comment">%% Input parameters:</span><br><span class="hljs-comment">% RF_energy    -&gt; RF energy available at the input of the EH circuit </span><br><span class="hljs-comment">% sensitivity  -&gt; RF sensitivity level of the EH circuit</span><br><span class="hljs-comment">% saturation   -&gt; RF saturation level of the EH circuit</span><br><span class="hljs-comment">% efficiency   -&gt; EH conversion efficiency of the EH circuit (scalar between 0 and 1)</span><br><br><span class="hljs-comment">%% Output parameters:</span><br><span class="hljs-comment">% harvested_energy    -&gt; harvested energy</span><br><br><span class="hljs-comment">%% Main code</span><br><span class="hljs-comment">%A linear EH transfer function but including sensitivity and saturation phenomena is used here [REF]</span><br>harvested_energy = efficiency*(RF_energy.*(RF_energy&gt;=sensitivity &amp; RF_energy&lt;saturation)+saturation*(RF_energy&gt;=saturation));<br><br><span class="hljs-comment">%Other, more evolved, EH transfer functions can be tested by modifying line 15</span><br><br><span class="hljs-comment">%[REF]    - O. L. A. L髉ez, et al., &quot;Statistical Analysis of Multiple Antenna</span><br><span class="hljs-comment">%           Strategies for Wireless Energy Transfer,&quot; in IEEE Transactions on </span><br><span class="hljs-comment">%           Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019.</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OneL少考虑了Energy&#x3D;saturation的特殊情况</p>
+</blockquote>
+<h2 id="CSI-Free"><a href="#CSI-Free" class="headerlink" title="CSI-Free"></a>CSI-Free</h2><h3 id="AA-IS"><a href="#AA-IS" class="headerlink" title="AA-IS"></a>AA-IS</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs MATLAB"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">energy</span> = <span class="hljs-title">AA_IS</span><span class="hljs-params">(kappa, M, x, y, sensitivity, saturation, efficiency)</span></span><br>    h = RicianFadingChannel(kappa, M, x, y, <span class="hljs-string">&#x27;none&#x27;</span>);<br>    RF_energy = channel_path_loss(x, <span class="hljs-number">0</span>, y, <span class="hljs-number">0</span>)/M*norm(<span class="hljs-built_in">conj</span>(h), <span class="hljs-number">2</span>)^<span class="hljs-number">2</span>;<br>    energy = EH_Transfer_Function(RF_energy, sensitivity, saturation, efficiency);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>如参考文献<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109&#x2F;JIOT.2020.3003114.”&gt;[2]</span></a></sup>中建模<strong>eqn:10</strong>，假设所有发射机的能量：<br>$$<br>E&#x3D;g(\frac{\beta}{M}||\textbf{h}^*||^2)<br>$$<br>其中，$\beta$是考虑路径损耗和总发射功率后，在接收端可用的功率，$M$是总的天线个数，$h_i$是第$i$个天线到EH的信道。</p>
+<h3 id="SA"><a href="#SA" class="headerlink" title="SA"></a>SA</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">energy</span> = <span class="hljs-title">AA_SA</span><span class="hljs-params">(kappa, M, x, y, sensitivity, saturation, efficiency)</span></span><br>    h = RicianFadingChannel(kappa, M, x, y, <span class="hljs-string">&#x27;none&#x27;</span>);<br>    energy = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> ii=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:M<br>        energy = energy+EH_Transfer_Function(channel_path_loss(x, <span class="hljs-number">0</span>, y, <span class="hljs-number">0</span>)*<span class="hljs-built_in">abs</span>(h(ii))^<span class="hljs-number">2</span>, sensitivity, saturation, efficiency);<br>    <span class="hljs-keyword">end</span><br>    energy = <span class="hljs-number">1</span>/M*energy;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>如参考文献<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109&#x2F;JIOT.2020.3003114.”&gt;[2]</span></a></sup>中建模<strong>eqn:12</strong>或者参考文献<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109&#x2F;TCOMM.2019.2928542.”&gt;[3]</span></a></sup>中的<strong>eqn:15</strong>，假设所有发射机的能量：<br>$$<br>E &#x3D; \frac{1}{M}\sum\limits_{i&#x3D;1}^Mg(\beta|h^*_i|^2)<br>$$</p>
+<p>值得注意的是，因为每根天线的持续时间为原始的$1&#x2F;M$，所以其求和和平均在Energy Transfer Function $g(\cdot)$之外。</p>
+<h3 id="AA-SS"><a href="#AA-SS" class="headerlink" title="AA-SS"></a>AA-SS</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">energy</span> = <span class="hljs-title">AA_SS_maxE</span><span class="hljs-params">(kappa, M, x, y, sensitivity, saturation, efficiency)</span></span><br>    h = RicianFadingChannel(kappa, M, x, y, <span class="hljs-string">&#x27;mean&#x27;</span>);<br>    RF_energy = channel_path_loss(x, <span class="hljs-number">0</span>, y, <span class="hljs-number">0</span>)/M*<span class="hljs-built_in">abs</span>(sum(h))^<span class="hljs-number">2</span>;<br>    energy = EH_Transfer_Function(RF_energy, sensitivity, saturation, efficiency);<br><span class="hljs-keyword">end</span><br><br><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">energy</span> = <span class="hljs-title">AA_SS_minVar</span><span class="hljs-params">(kappa, M, x, y, sensitivity, saturation, efficiency)</span></span><br>    h = RicianFadingChannel(kappa, M, x, y, <span class="hljs-string">&#x27;variance&#x27;</span>);<br>    RF_energy = channel_path_loss(x, <span class="hljs-number">0</span>, y, <span class="hljs-number">0</span>)/M*<span class="hljs-built_in">abs</span>(sum(h))^<span class="hljs-number">2</span>;<br>    energy = EH_Transfer_Function(RF_energy, sensitivity, saturation, efficiency);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>根据参考文献<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109&#x2F;JIOT.2020.3003114.”&gt;[2]</span></a></sup><strong>eqn:8</strong>或者参考文献<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109&#x2F;TCOMM.2019.2928542.”&gt;[3]</span></a></sup>的<strong>eqn:14</strong>：<br>$$<br>E &#x3D; g(\frac{\beta}{M}|\sum\limits_{i&#x3D;1}^Mh_i|^2)&#x3D;g(\frac{\beta}{M}|\textbf{1}^T\textbf{h}^*|^2)<br>$$</p>
+<h3 id="APS-EMW"><a href="#APS-EMW" class="headerlink" title="APS-EMW"></a>APS-EMW</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">energy</span> = <span class="hljs-title">APS_EMW</span><span class="hljs-params">(kappa, M, x, y, sensitivity, saturation, efficiency)</span></span><br>    h = RicianFadingChannel(kappa, M, x, y, <span class="hljs-string">&#x27;none&#x27;</span>);   <br>    h = h.*<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(M,<span class="hljs-number">1</span>)*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>).*<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>); <span class="hljs-comment">% 幅度和相位都要乘一个随机数，且幅度随机数以用户为单位，相位随机数以天线为单位</span><br>    RF_energy = channel_path_loss(x, <span class="hljs-number">0</span>, y, <span class="hljs-number">0</span>)/M*<span class="hljs-built_in">abs</span>(sum(h)).^<span class="hljs-number">2</span>;<br>    energy = EH_Transfer_Function(RF_energy, sensitivity, saturation, efficiency);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>根据参考文献<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”B. Clerckx and J. Kim, “On the Beneficial Roles of Fading and Transmit Diversity in Wireless Power Transfer With Nonlinear Energy Harvesting,” in IEEE Transactions on Wireless Communications, vol. 17, no. 11, pp. 7731-7743, Nov. 2018, doi: 10.1109&#x2F;TWC.2018.2870377.”&gt;[4]</span></a></sup><strong>eqn:14</strong>，有：<br>$$<br>y(t)&#x3D;\sqrt{\frac{2P}{M}}\Re{\varLambda^{-\frac{1}{2}}h(t)e^{jw_0t}}<br>$$<br>其中的时变信道$h(t)$有：<br>$$<br>h(t)&#x3D;\sum\limits_{m&#x3D;1}^Mh_me^{j\psi_m(t)}<br>$$<br>其中的$\psi_m(t)$是一个时变的相位，控制信道的时变。</p>
+<blockquote>
+<p>快衰信道体现在幅度和相位的变化，所以在信道幅度上乘一个randn(N,1)，因为假设对N个用户中任意一个用户而言信道是准静态的；对于相位则是每根天线有一个随机相位randn(M,1)</p>
+</blockquote>
+<h3 id="Plot-Space"><a href="#Plot-Space" class="headerlink" title="Plot Space"></a>Plot Space</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>M = <span class="hljs-number">4</span>;<br>kappa = <span class="hljs-number">10</span>;<br>kappa = <span class="hljs-number">10.</span>^(kappa./<span class="hljs-number">10</span>); <br>R = <span class="hljs-number">15</span>;<br>sensitivity = <span class="hljs-number">10.</span>^((<span class="hljs-number">-22</span><span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>); <span class="hljs-comment">%-22dBm</span><br>saturation = <span class="hljs-number">10.</span>^((<span class="hljs-number">-8</span><span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);   <span class="hljs-comment">%-8dBm</span><br>efficiency = <span class="hljs-number">0.35</span>;               <span class="hljs-comment">%35%</span><br><br><br>mtkl_epoch = <span class="hljs-number">100</span>;<br><br><br>delta = <span class="hljs-number">0.2</span>;<br>x = -R:delta:R;<br>y = -R:delta:R;<br><br>E_AA_SS_maxE_all = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>E_AA_SS_minVar_all = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>E_AA_IS_all = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>E_AA_SA_all = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>E_APS_EMW_all = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br><br><span class="hljs-keyword">for</span> m =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:mtkl_epoch <br>    E_AA_SS_maxE = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>    E_AA_SS_minVar = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>    E_AA_IS = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>    E_AA_SA = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>    E_APS_EMW = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(x),<span class="hljs-built_in">length</span>(y));<br>    <br>    <span class="hljs-keyword">for</span> idx_x = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(x)<br>        <span class="hljs-keyword">for</span> idx_y = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(y)<br>            E_AA_SS_maxE(idx_x,idx_y) = AA_SS_maxE(kappa, M, x(idx_x), y(idx_y), sensitivity, saturation, efficiency);<br>            E_AA_SS_minVar(idx_x,idx_y) = AA_SS_minVar(kappa, M, x(idx_x), y(idx_y), sensitivity, saturation, efficiency);<br>            E_AA_IS(idx_x,idx_y) = AA_IS(kappa, M, x(idx_x), y(idx_y), sensitivity, saturation, efficiency);<br>            E_AA_SA(idx_x,idx_y) = AA_SA(kappa, M, x(idx_x), y(idx_y), sensitivity, saturation, efficiency);<br>            E_APS_EMW(idx_x,idx_y) = APS_EMW(kappa, M, x(idx_x), y(idx_y), sensitivity, saturation, efficiency);<br>            <br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    E_AA_SS_maxE_all = E_AA_SS_maxE_all+E_AA_SS_maxE;<br>    E_AA_SS_minVar_all = E_AA_SS_minVar_all+E_AA_SS_minVar;<br>    E_AA_IS_all = E_AA_IS_all+E_AA_IS;<br>    E_AA_SA_all = E_AA_SA_all+E_AA_SA;<br>    E_APS_EMW_all = E_APS_EMW_all+E_APS_EMW;<br>    <br>    clc;<br>    fprintf(<span class="hljs-string">&#x27;monte carlo running %d ...&#x27;</span>, m);<br><br><span class="hljs-keyword">end</span><br>harvest_energy_AA_maxE = <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(E_AA_SS_maxE_all/mtkl_epoch)+<span class="hljs-number">30</span>;<br>harvest_energy_AA_minVar = <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(E_AA_SS_minVar_all/mtkl_epoch)+<span class="hljs-number">30</span>;<br>harvest_energy_IS = <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(E_AA_IS_all/mtkl_epoch)+<span class="hljs-number">30</span>;<br>harvest_energy_SA = <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(E_AA_SA_all/mtkl_epoch)+<span class="hljs-number">30</span>;<br>harvest_energy_APS_EMW = <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(E_APS_EMW_all/mtkl_epoch)+<span class="hljs-number">30</span>;<br><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br>imagesc(x, y, harvest_energy_AA_maxE.&#x27;)<br>colormap(<span class="hljs-built_in">flipud</span>(hot))<br>xlabel(<span class="hljs-string">&#x27;Distance X /m&#x27;</span>)<br>ylabel(<span class="hljs-string">&#x27;Distance Y /m&#x27;</span>)<br>zlabel(<span class="hljs-string">&#x27;Energy /dBW&#x27;</span>)<br>title(<span class="hljs-string">&#x27;AA-SS_&#123;maxE&#125;  Strategy&#x27;</span>)<br><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">2</span>)<br>imagesc(x, y, harvest_energy_AA_minVar.&#x27;)<br>colormap(<span class="hljs-built_in">flipud</span>(hot))<br>xlabel(<span class="hljs-string">&#x27;Distance X /m&#x27;</span>)<br>ylabel(<span class="hljs-string">&#x27;Distance Y /m&#x27;</span>)<br>zlabel(<span class="hljs-string">&#x27;Energy /dBW&#x27;</span>)<br>title(<span class="hljs-string">&#x27;AA-SS_&#123;minVar&#125;  Strategy&#x27;</span>)<br><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">3</span>)<br>imagesc(x, y, harvest_energy_IS.&#x27;)<br>colormap(<span class="hljs-built_in">flipud</span>(hot))<br>xlabel(<span class="hljs-string">&#x27;Distance X /m&#x27;</span>)<br>ylabel(<span class="hljs-string">&#x27;Distance Y /m&#x27;</span>)<br>zlabel(<span class="hljs-string">&#x27;Energy /dBW&#x27;</span>)<br>title(<span class="hljs-string">&#x27;AA-IS  Strategy&#x27;</span>)<br><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">4</span>)<br>imagesc(x, y, harvest_energy_SA.&#x27;)<br>colormap(<span class="hljs-built_in">flipud</span>(hot))<br>xlabel(<span class="hljs-string">&#x27;Distance X /m&#x27;</span>)<br>ylabel(<span class="hljs-string">&#x27;Distance Y /m&#x27;</span>)<br>zlabel(<span class="hljs-string">&#x27;Energy /dBW&#x27;</span>)<br>title(<span class="hljs-string">&#x27;AA-SA  Strategy&#x27;</span>)<br><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">5</span>)<br>imagesc(x, y, harvest_energy_APS_EMW.&#x27;)<br>colormap(<span class="hljs-built_in">flipud</span>(hot))<br>xlabel(<span class="hljs-string">&#x27;Distance X /m&#x27;</span>)<br>ylabel(<span class="hljs-string">&#x27;Distance Y /m&#x27;</span>)<br>zlabel(<span class="hljs-string">&#x27;Energy /dBW&#x27;</span>)<br>title(<span class="hljs-string">&#x27;APS_EMW  Strategy&#x27;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220424145451687.png" srcset="/img/loading.gif" lazyload alt="image-20220424145451687"></p>
+<ul>
+<li>AA-IS和AA-SA还是不太一样，这个主要原因是因为EH-Transfer-Function是非线性造成的。</li>
+</ul>
+<h2 id="CSI-Based"><a href="#CSI-Based" class="headerlink" title="CSI-Based"></a>CSI-Based</h2><h3 id="Optimizer"><a href="#Optimizer" class="headerlink" title="Optimizer"></a>Optimizer</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">W</span> = <span class="hljs-title">CSI_EB_optimizer</span><span class="hljs-params">(h, beta)</span></span><br>    [M, N] = <span class="hljs-built_in">size</span>(h);<br>    cvx_startup<br>    cvx_begin sdp quiet<br>        variable W(M,M) hermitian semidefinite<br>        variable t<br>        minimize(-t)   <br>        subject to<br>            <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:N           <br>                <span class="hljs-built_in">beta</span>(<span class="hljs-built_in">i</span>)*<span class="hljs-built_in">real</span>(trace(W*(h(:,<span class="hljs-built_in">i</span>)*h(:,<span class="hljs-built_in">i</span>)&#x27;))) &gt;= t;<br>            <span class="hljs-keyword">end</span><br>            trace(W)==<span class="hljs-number">1</span>;<br>    cvx_end<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>完全按照参考文献<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote">&lt;span class&#x3D;”hint–top hint–rounded” aria-label&#x3D;”O. L. A. López, F. A. Monteiro, H. Alves, R. Zhang and M. Latva-Aho, “A Low-Complexity Beamforming Design for Multiuser Wireless Energy Transfer,” in IEEE Wireless Communications Letters, vol. 10, no. 1, pp. 58-62, Jan. 2021, doi: 10.1109&#x2F;LWC.2020.3020576.”&gt;[5]</span></a></sup>进行设计</p>
+<h3 id="Compute-Energy"><a href="#Compute-Energy" class="headerlink" title="Compute Energy"></a>Compute Energy</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">E</span> = <span class="hljs-title">compute_energy</span><span class="hljs-params">(W, h, beta)</span></span><br>    [M , N] = <span class="hljs-built_in">size</span>(h); <br>    [U, S] = eig(W);<br>    S(S&lt;<span class="hljs-number">10e-5</span>)=<span class="hljs-number">0</span>;<br>    r = rank(S);<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:r    <br>        w(:, <span class="hljs-built_in">j</span>)=U(:, M-r+<span class="hljs-built_in">j</span>).&#x27;;<br>        w(:, <span class="hljs-built_in">j</span>) = w(:, <span class="hljs-built_in">j</span>)/norm(w(:, <span class="hljs-built_in">j</span>));<br>    <span class="hljs-keyword">end</span><br>    E = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>, N);<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:N<br>       <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:r<br>           E(<span class="hljs-built_in">i</span>) = E(<span class="hljs-built_in">i</span>)+<span class="hljs-built_in">beta</span>(<span class="hljs-built_in">i</span>)*<span class="hljs-built_in">abs</span>(S(M-r+<span class="hljs-built_in">j</span>, M-r+<span class="hljs-built_in">j</span>)*h(:, <span class="hljs-built_in">i</span>)&#x27;*w(:,<span class="hljs-built_in">j</span>)*w(:,<span class="hljs-built_in">j</span>)&#x27;*h(:,<span class="hljs-built_in">i</span>));<br>       <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>注意这里用特征值代表对应$\textbf{w}$持续的时间，能量为：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220424175207762.png" srcset="/img/loading.gif" lazyload alt="image-20220424175207762" style="zoom: 67%;" />
+
+<h3 id="Plot-Space-1"><a href="#Plot-Space-1" class="headerlink" title="Plot Space"></a>Plot Space</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>M = <span class="hljs-number">32</span>;<br>N = <span class="hljs-number">16</span>;<br>R = <span class="hljs-number">10</span>;<br>Kappa_dB = <span class="hljs-number">10</span>:<span class="hljs-number">5</span>:<span class="hljs-number">30</span>;         <span class="hljs-comment">%LOS factor (in dB) of the Rician fading</span><br>Kappa = <span class="hljs-number">10.</span>^(Kappa_dB./<span class="hljs-number">10</span>);<br><br><span class="hljs-comment">% 假设用户均匀分布在半径为R的圆周上。</span><br>phi = (<span class="hljs-number">0</span>:<span class="hljs-number">1</span>/N:<span class="hljs-number">1</span><span class="hljs-number">-1</span>/N)*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>;<br>Phi = -(<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:M<span class="hljs-number">-1</span>)&#x27;.*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">sin</span>(phi);<br>x = R*<span class="hljs-built_in">cos</span>(phi);<br>y = R*<span class="hljs-built_in">sin</span>(phi);<br><br>mtkl_epoch = <span class="hljs-number">100</span>;<br>E_full_performance = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">length</span>(Kappa));<br>E_Statistical_performance = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">length</span>(Kappa));<br><br><br><span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(Kappa) <br>    kappa = Kappa(k);<br>    E_full_min = <span class="hljs-number">0</span>;<br>    E_Statistical_min = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> m=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:mtkl_epoch<br>        clc;<br>        fprintf(<span class="hljs-string">&#x27;\nkappa = %d, epoch: %d/%d\n&#x27;</span>, kappa, m, mtkl_epoch);<br>        <span class="hljs-comment">% channel</span><br>        h_los = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>.*Phi);<br>        h_nlos = <span class="hljs-number">1</span>/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(M,N)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(M,N)); <br><br>        h_bar = <span class="hljs-built_in">sqrt</span>(kappa/(<span class="hljs-number">1</span>+kappa)).*h_los.*<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">pi</span>/<span class="hljs-number">4</span>);<br>        h_hat = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/(<span class="hljs-number">1</span>+kappa)).*h_nlos;<br>        h = h_hat+h_bar;<br>        <span class="hljs-comment">% compute the path loss</span><br>        <span class="hljs-built_in">beta</span> = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,N);<br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:N<br>            <span class="hljs-built_in">beta</span>(<span class="hljs-built_in">i</span>) = channel_path_loss(x(<span class="hljs-built_in">i</span>),<span class="hljs-number">0</span>,y(<span class="hljs-built_in">i</span>),<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">end</span><br><br>        <span class="hljs-comment">% W=ww&#x27; with full CSI</span><br>        W_full = CSI_EB_optimizer(h_hat+h_bar, <span class="hljs-built_in">beta</span>);<br>        <span class="hljs-comment">% W=ww&#x27; with statistical CSI</span><br>        W_Statistical= CSI_EB_optimizer(h_bar, <span class="hljs-built_in">beta</span>);<br><br>        <span class="hljs-comment">% compute energy by W1</span><br>        E_full = compute_energy(W_full, h, <span class="hljs-built_in">beta</span>);<br>        E_full_min = E_full_min + <span class="hljs-built_in">min</span>(E_full);<br>        <span class="hljs-comment">% compute energy by W2</span><br>        E_Statistical = compute_energy(W_Statistical, h, <span class="hljs-built_in">beta</span>);<br>        E_Statistical_min = E_Statistical_min + <span class="hljs-built_in">min</span>(E_Statistical);<br>    <span class="hljs-keyword">end</span><br>    E_full_performance(k) = E_full_min/mtkl_epoch;<br>    E_Statistical_performance(k) = E_Statistical_min/mtkl_epoch;<br><span class="hljs-keyword">end</span><br>fCSI = <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(E_Statistical_performance)+<span class="hljs-number">30</span>;<br>aCSI = <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(E_full_performance)+<span class="hljs-number">30</span>;<br><br><span class="hljs-comment">%% Figure generation</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br>set(gcf, <span class="hljs-string">&#x27;Units&#x27;</span>, <span class="hljs-string">&#x27;centimeters&#x27;</span>); <br>axesFontSize = <span class="hljs-number">16</span>;<br>legendFontSize = <span class="hljs-number">16</span>;<br>afFigurePosition = [<span class="hljs-number">2</span> <span class="hljs-number">7</span> <span class="hljs-number">19</span> <span class="hljs-number">12</span>]; <br>set(gcf, <span class="hljs-string">&#x27;Position&#x27;</span>, afFigurePosition,<span class="hljs-string">&#x27;PaperSize&#x27;</span>,[<span class="hljs-number">18</span> <span class="hljs-number">8</span>],<span class="hljs-string">&#x27;PaperPositionMode&#x27;</span>,<span class="hljs-string">&#x27;auto&#x27;</span>); <br><br><span class="hljs-built_in">plot</span>(Kappa_dB, fCSI,<span class="hljs-string">&#x27;-ok&#x27;</span>,<span class="hljs-string">&#x27;MarkerSize&#x27;</span>,<span class="hljs-number">6</span>,<span class="hljs-string">&#x27;LineWidth&#x27;</span>,<span class="hljs-number">2.5</span>)<br><span class="hljs-built_in">hold</span> on<br><span class="hljs-built_in">plot</span>(Kappa_dB, aCSI,<span class="hljs-string">&#x27;-sk&#x27;</span>,<span class="hljs-string">&#x27;MarkerSize&#x27;</span>,<span class="hljs-number">6</span>,<span class="hljs-string">&#x27;LineWidth&#x27;</span>,<span class="hljs-number">2.5</span>)<br><span class="hljs-built_in">hold</span> on<br><br>xlabel(<span class="hljs-string">&#x27;$\kappa$ (dB)&#x27;</span>,<span class="hljs-string">&#x27;Interpreter&#x27;</span>, <span class="hljs-string">&#x27;latex&#x27;</span>,<span class="hljs-string">&#x27;fontsize&#x27;</span>,axesFontSize)<br>ylabel(<span class="hljs-string">&#x27;average worst-case RF energy (dBm)&#x27;</span>,<span class="hljs-string">&#x27;Interpreter&#x27;</span>, <span class="hljs-string">&#x27;latex&#x27;</span>,<span class="hljs-string">&#x27;fontsize&#x27;</span>,axesFontSize)<br>hl=<span class="hljs-built_in">legend</span>(<span class="hljs-string">&#x27;full CSI EB&#x27;</span>,<span class="hljs-string">&#x27;LOS-based CSI&#x27;</span>);<br>set(hl,<span class="hljs-string">&#x27;FontSize&#x27;</span>,legendFontSize,<span class="hljs-string">&#x27;interpreter&#x27;</span>,<span class="hljs-string">&#x27;latex&#x27;</span>)<br><br>set(gca,<span class="hljs-string">&#x27;FontSize&#x27;</span>,<span class="hljs-number">12</span>)<br>box on<br>grid on<br></code></pre></td></tr></table></figure>
+
+<p>与Onel在论文中的设置不一样，由于Onel在论文中的设置是，在$R$为半径的圆内EH Receiver 随机分布，取其中最差的结果作为性能指标。这样随机性太大了</p>
+<p>我的想法是以$R$为半径，均匀分布在圆周上，并取其中最差的结果作为衡量指标，这样结果比较稳定。结果见下节。</p>
+<h3 id="Result-1"><a href="#Result-1" class="headerlink" title="Result"></a>Result</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/result2.jpg" srcset="/img/loading.gif" lazyload alt="result2" style="zoom:50%;" />
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://github.com/onel2428/WEToverview">https://github.com/onel2428/WEToverview</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>O. L. A. López, S. Montejo-Sánchez, R. D. Souza, C. B. Papadias and H. Alves, “On CSI-Free Multiantenna Schemes for Massive RF Wireless Energy Transfer,” in IEEE Internet of Things Journal, vol. 8, no. 1, pp. 278-296, 1 Jan.1, 2021, doi: 10.1109&#x2F;JIOT.2020.3003114.
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>O. L. A. López, H. Alves, R. D. Souza and S. Montejo-Sánchez, “Statistical Analysis of Multiple Antenna Strategies for Wireless Energy Transfer,” in IEEE Transactions on Communications, vol. 67, no. 10, pp. 7245-7262, Oct. 2019, doi: 10.1109&#x2F;TCOMM.2019.2928542.
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>B. Clerckx and J. Kim, “On the Beneficial Roles of Fading and Transmit Diversity in Wireless Power Transfer With Nonlinear Energy Harvesting,” in IEEE Transactions on Wireless Communications, vol. 17, no. 11, pp. 7731-7743, Nov. 2018, doi: 10.1109&#x2F;TWC.2018.2870377.
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span>O. L. A. López, F. A. Monteiro, H. Alves, R. Zhang and M. Latva-Aho, “A Low-Complexity Beamforming Design for Multiuser Wireless Energy Transfer,” in IEEE Wireless Communications Letters, vol. 10, no. 1, pp. 58-62, Jan. 2021, doi: 10.1109&#x2F;LWC.2020.3020576.
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span>A. Thudugalage, S. Atapattu and J. Evans, “Beamformer design for wireless energy transfer with fairness,” 2016 IEEE International Conference on Communications (ICC), 2016, pp. 1-6, doi: 10.1109&#x2F;ICC.2016.7511170.
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading/" class="category-chain-item">Paper Reading</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Paper-Reading/Channel-State-Information/" class="category-chain-item">Channel State Information</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Reproduction/" class="print-no-link">#Reproduction</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CSI-Free相关文献代码复现</div>
+      <div>https://lcjoffrey.top/2022/04/24/reproductionofOnel/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月24日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年4月25日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/25/PandNPandNPhard/" title="知识储备-P/NP/NPC/NP-hard问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">知识储备-P/NP/NPC/NP-hard问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/20/BF4WETwithFair/" title="Max-Min Fair Beamforming-&gt;Single &amp; Multiple BF">
+                        <span class="hidden-mobile">Max-Min Fair Beamforming-&gt;Single &amp; Multiple BF</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

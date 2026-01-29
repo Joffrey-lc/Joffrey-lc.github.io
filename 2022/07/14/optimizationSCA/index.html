@@ -1,0 +1,927 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Le-Nam Tran et.al.--Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell MISO Downlink">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Weighted Sum Rate Maximization-SCA">
+<meta property="og:url" content="https://lcjoffrey.top/2022/07/14/optimizationSCA/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="Le-Nam Tran et.al.--Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell MISO Downlink">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/simulationofSCA.jpg">
+<meta property="article:published_time" content="2022-07-14T08:03:13.000Z">
+<meta property="article:modified_time" content="2022-07-14T08:07:07.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="Optimization">
+<meta property="article:tag" content="SCA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/simulationofSCA.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Weighted Sum Rate Maximization-SCA - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Weighted Sum Rate Maximization-SCA"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-14 16:03" pubdate>
+          2022年7月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Weighted Sum Rate Maximization-SCA</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-07-14T16:07:07+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell MISO Downlink</strong>.  <em>Le-Nam Tran</em> et.al.  <strong>IEEE Signal Processing Letters, December 2012</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6327333">pdf</a>)  (Citations <strong>112</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><ul>
+<li>Weighted sum rate maximization</li>
+<li>Successive Convex Approximation</li>
+</ul>
+<h2 id="Main-Idea"><a href="#Main-Idea" class="headerlink" title="Main Idea"></a>Main Idea</h2><p>compare these two equation:</p>
+<p>the <strong>original</strong> object is formed as follows:</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220713161428895.png" srcset="/img/loading.gif" lazyload alt="image-20220713161428895" style="zoom: 67%;" />
+
+<p>and <strong>finally</strong>, we get: </p>
+<p> ignore (11b) and (11c) in (11):</p>
+<p>(11f)  is equivalent to (6d)</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220713161513169.png" srcset="/img/loading.gif" lazyload alt="image-20220713161513169"></p>
+<p>(11d) is equivalent to (6b) based on the following equations:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714151240972.png" srcset="/img/loading.gif" lazyload alt="image-20220714151240972"></p>
+<p>and:</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714151314162.png" srcset="/img/loading.gif" lazyload alt="image-20220714151314162"></p>
+<p>其实到这里，已经可以做了。用$G(\cdot)$代替eqn7(a)中的$f(\cdot)&#x3D;\sqrt{x_k}\beta_k$，就是Algorithm 1 7(b) not approximation.(upper bound) </p>
+<p>但是作者还将(7b)再次展开得到（11e）（upper bound）</p>
+<p>得到<strong>最终</strong>的Algorithm 1 7(b) approximation. </p>
+<h2 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h2><p>首先由香农公式得到并利用log的特点：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714153124002.png" srcset="/img/loading.gif" lazyload alt="image-20220714153124002"></p>
+<p>因为是maximization 问题，所以有upper bound，然后变量替换转换为上述形式。</p>
+<p>进一步因为本来就需要$t_k$都越大越好，所以(5b)是<span class="label label-primary">active</span>的。然后在进行一个变量替换。同样的(6d)也是active 的。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714153242474.png" srcset="/img/loading.gif" lazyload alt="image-20220714153242474"></p>
+<p>然后把（6b）用（7a）和（7b）替换，值得注意的是，<span class="label label-primary">都是将小的部分放大</span></p>
+<p>然后精髓在于：</p>
+<p>利用算数和不等式，找到了一个$f(\cdot)$的 convex upper bound $G(\cdot)$，然后用$G(\cdot)$替换$f(\cdot)$。约束(7a)就是一个SOC约束。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714155130326.png" srcset="/img/loading.gif" lazyload alt="image-20220714155130326"></p>
+<p>同样的找$t_k^{1&#x2F;{\alpha_k}}$的upper bound（first order Taylor expansion）来对（7b）近似：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714155653666.png" srcset="/img/loading.gif" lazyload alt="image-20220714155653666"></p>
+<h2 id="Simulation-Result"><a href="#Simulation-Result" class="headerlink" title="Simulation Result"></a>Simulation Result</h2><h3 id="my-Algorithm-1-7-b-approximation"><a href="#my-Algorithm-1-7-b-approximation" class="headerlink" title="my Algorithm 1 (7(b) approximation)"></a>my Algorithm 1 (7(b) approximation)</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br><br>NumCells = <span class="hljs-number">2</span>;<br><br>Pb_dB = [<span class="hljs-number">12</span>, <span class="hljs-number">12</span>];<br>Pb = <span class="hljs-number">10.</span>^(Pb_dB/<span class="hljs-number">10</span>);<br><br>NumUes = <span class="hljs-number">4</span>; <span class="hljs-comment">%2 cells times 2</span><br>NumAntennas = <span class="hljs-number">8</span>; <span class="hljs-comment">% Num of each BS</span><br>sigma_2 = <span class="hljs-number">1</span>;<br><br>BS2Ue = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ]; <span class="hljs-comment">% it means the first BS serve the 1th and 2th User while the second BS serve the 3th and 4th User</span><br>load(<span class="hljs-string">&#x27;channel.mat&#x27;</span>)<br>h = <span class="hljs-built_in">zeros</span>(NumCells, NumAntennas, NumUes);<br>h(<span class="hljs-number">1</span>, :, :) = channel(:, :, <span class="hljs-number">1</span>);<br>h(<span class="hljs-number">2</span>, :, :) = channel(:, :, <span class="hljs-number">2</span>);<br><br><span class="hljs-comment">% h = sqrt(1/2)*(randn(NumCells, NumAntennas, NumUes)+1j*randn(NumCells, NumAntennas, NumUes));</span><br><span class="hljs-comment">% weights = ones(NumUes, 1); % real</span><br>weights = [<span class="hljs-number">0.14</span>;<span class="hljs-number">0.21</span>;<span class="hljs-number">0.28</span>;<span class="hljs-number">0.36</span>]; <span class="hljs-comment">% weights in Fig. 2</span><br><span class="hljs-comment">% parameters initial  都取临界值</span><br>wK_init = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(NumAntennas, NumUes)+<span class="hljs-number">1</span><span class="hljs-built_in">j</span>*<span class="hljs-built_in">randn</span>(NumAntennas, NumUes));<br><span class="hljs-comment">% meet the constrain of BS power.</span><br><span class="hljs-keyword">for</span> iCell = <span class="hljs-number">1</span>:NumCells<br>    wK_init(:,BS2Ue==iCell) = <span class="hljs-built_in">sqrt</span>(Pb(iCell))/norm(wK_init(:,BS2Ue==iCell))*wK_init(:,BS2Ue==iCell); <span class="hljs-comment">% scalling to meet the power constraint</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">% tK_init = abs(randn(NumUes, 1)); % real</span><br>betaK_init = <span class="hljs-built_in">zeros</span>(NumUes, <span class="hljs-number">1</span>); <span class="hljs-comment">% complex</span><br>xK_init = <span class="hljs-built_in">zeros</span>(NumUes, <span class="hljs-number">1</span>); <span class="hljs-comment">% real</span><br><span class="hljs-keyword">for</span> iU =<span class="hljs-number">1</span>:NumUes<br>   interfere = <span class="hljs-number">0</span>;<br>   otherUes = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:NumUes~=iU);<br>   interfere = interfere + sigma_2;<br>   <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(otherUes)<br>       interfere = interfere+<span class="hljs-built_in">abs</span>(h(BS2Ue(otherUes(<span class="hljs-built_in">i</span>)), :, iU)*wK_init(:, otherUes(<span class="hljs-built_in">i</span>)))^<span class="hljs-number">2</span>;<br>   <span class="hljs-keyword">end</span>  <br>   betaK_init(iU) = <span class="hljs-built_in">sqrt</span>(interfere);<br>   <br>   xK_init(iU) = (h(BS2Ue(iU), :, iU)*wK_init(:, iU)/betaK_init(iU))^<span class="hljs-number">2</span>;<br><span class="hljs-keyword">end</span><br>phiK_init = <span class="hljs-built_in">sqrt</span>(xK_init)./betaK_init; <span class="hljs-comment">% complex</span><br>tK_init = (xK_init+<span class="hljs-number">1</span>).^(weights);<br>tol = <span class="hljs-number">1e-2</span>;<br><br>max_itern = <span class="hljs-number">20</span>;<br>sumrate = <span class="hljs-built_in">zeros</span>(max_itern, <span class="hljs-number">1</span>);<br><span class="hljs-keyword">for</span> iter =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:max_itern<br>    cvx_begin   quiet<br>    variables tK(NumUes, <span class="hljs-number">1</span>) xK(NumUes, <span class="hljs-number">1</span>) betaK(NumUes, <span class="hljs-number">1</span>)<br>    variable wK(NumAntennas, NumUes) <span class="hljs-built_in">complex</span> <br>    maximize(geo_mean(tK))<br>    subject to<br>    <span class="hljs-keyword">for</span> iU = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes<br>        b = h(BS2Ue(iU), :, iU)*wK(:, iU)<span class="hljs-number">-1</span>/(<span class="hljs-number">2</span>*phiK_init(iU, :))*xK(iU, :);<br>        norm([<span class="hljs-number">1</span>/<span class="hljs-number">2</span>*(b<span class="hljs-number">-1</span>) <span class="hljs-built_in">sqrt</span>(phiK_init(iU)/<span class="hljs-number">2</span>)*betaK(iU)]) &lt;= <span class="hljs-built_in">real</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>*(b+<span class="hljs-number">1</span>)) <span class="hljs-comment">%因为要更新wK，所以wK是在约束中的</span><br><span class="hljs-comment">%         imag(h(BS2Ue(iU), :, iU)*wK(:, iU)) == 0; %(6c)</span><br>        <span class="hljs-built_in">real</span>(tK_init(iU)^(<span class="hljs-number">1</span>/weights(iU))+<span class="hljs-number">1</span>/weights(iU)*tK_init(iU)^(<span class="hljs-number">1</span>/weights(iU)<span class="hljs-number">-1</span>)*(tK(iU)-tK_init(iU))) &lt;= xK(iU)+<span class="hljs-number">1</span><br>        <br>        other_Ues = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes ~=iU);<br>        interfere = [];<br>        interfere = [interfere sigma_2];<br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(other_Ues)<br>            interfere = [interfere h(BS2Ue(other_Ues(<span class="hljs-built_in">i</span>)), :, iU)*wK(:, other_Ues(<span class="hljs-built_in">i</span>))];<br>        <span class="hljs-keyword">end</span><br>        norm(interfere) &lt;= betaK(iU, <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">end</span><br>    <br><span class="hljs-comment">%     tK &gt;= 1;</span><br>    <br>    <span class="hljs-keyword">for</span> iC=<span class="hljs-number">1</span>:NumCells<br>        norm(vec(wK(:,BS2Ue==iC))) &lt;= <span class="hljs-built_in">sqrt</span>(Pb(iC));<br>    <span class="hljs-keyword">end</span><br><br>    cvx_end;<br>    <br>    <span class="hljs-comment">% update parameters</span><br>    phiK_init = <span class="hljs-built_in">sqrt</span>(xK)./betaK;<br>    tK_init = tK;<br>    <br>    beamformer = wK; <span class="hljs-comment">%保存当前最优的beamformer，绘制achievable rate</span><br>    <br>    SINR = <span class="hljs-built_in">zeros</span>(NumUes,<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span> iU =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes<br>        User_power = <span class="hljs-built_in">abs</span>(h(BS2Ue(iU), :, iU)*beamformer(:, iU))^<span class="hljs-number">2</span>;<br>        <br>        other_Ues = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes ~=iU);<br>        interfere = [];<br>        interfere = [interfere sigma_2];<br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(other_Ues)<br>            interfere = [interfere h(BS2Ue(other_Ues(<span class="hljs-built_in">i</span>)), :, iU)*wK(:, other_Ues(<span class="hljs-built_in">i</span>))];<br>        <span class="hljs-keyword">end</span><br>        <br>        SINR(iU) = User_power/norm(interfere)^<span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">end</span><br>    <br>    <span class="hljs-keyword">for</span> iU =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes<br>        sumrate(iter) = sumrate(iter)+weights(iU)*<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SINR(iU));<br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">if</span> iter&gt;=<span class="hljs-number">2</span> &amp;&amp; (sumrate(iter)-sum(iter<span class="hljs-number">-1</span>))&lt;tol<br>        sumrate(iter:<span class="hljs-keyword">end</span>) = [];<br>        <span class="hljs-keyword">break</span>   <br>    <span class="hljs-keyword">end</span><br>    <br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">figure</span>()<br><span class="hljs-built_in">plot</span>(sumrate)<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="my-Algorithm-1-7-b-not-approximation"><a href="#my-Algorithm-1-7-b-not-approximation" class="headerlink" title="my Algorithm 1 (7(b) not approximation)"></a>my Algorithm 1 (7(b) not approximation)</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br><br>NumCells = <span class="hljs-number">2</span>;<br><br>Pb_dB = [<span class="hljs-number">12</span>, <span class="hljs-number">12</span>];<br>Pb = <span class="hljs-number">10.</span>^(Pb_dB/<span class="hljs-number">10</span>);<br><br>NumUes = <span class="hljs-number">4</span>; <span class="hljs-comment">%2 cells times 2</span><br>NumAntennas = <span class="hljs-number">8</span>; <span class="hljs-comment">% Num of each BS</span><br>sigma_2 = <span class="hljs-number">1</span>;<br><br>BS2Ue = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ]; <span class="hljs-comment">% it means the first BS serve the 1th and 2th User while the second BS serve the 3th and 4th User</span><br>load(<span class="hljs-string">&#x27;channel.mat&#x27;</span>)<br>h = <span class="hljs-built_in">zeros</span>(NumCells, NumAntennas, NumUes);<br>h(<span class="hljs-number">1</span>, :, :) = channel(:, :, <span class="hljs-number">1</span>);<br>h(<span class="hljs-number">2</span>, :, :) = channel(:, :, <span class="hljs-number">2</span>);<br><br><span class="hljs-comment">% h = sqrt(1/2)*(randn(NumCells, NumAntennas, NumUes)+1j*randn(NumCells, NumAntennas, NumUes));</span><br><span class="hljs-comment">% weights = ones(NumUes, 1); % real</span><br>weights = [<span class="hljs-number">0.14</span>;<span class="hljs-number">0.21</span>;<span class="hljs-number">0.28</span>;<span class="hljs-number">0.36</span>]; <span class="hljs-comment">% weights in Fig. 2</span><br><span class="hljs-comment">% parameters initial  都取临界值</span><br>wK_init = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(NumAntennas, NumUes)+<span class="hljs-number">1</span><span class="hljs-built_in">j</span>*<span class="hljs-built_in">randn</span>(NumAntennas, NumUes));<br><span class="hljs-comment">% meet the constrain of BS power.</span><br><span class="hljs-keyword">for</span> iCell = <span class="hljs-number">1</span>:NumCells<br>    wK_init(:,BS2Ue==iCell) = <span class="hljs-built_in">sqrt</span>(Pb(iCell))/norm(wK_init(:,BS2Ue==iCell))*wK_init(:,BS2Ue==iCell); <span class="hljs-comment">% scalling to meet the power constraint</span><br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">% tK_init = abs(randn(NumUes, 1)); % real</span><br>betaK_init = <span class="hljs-built_in">zeros</span>(NumUes, <span class="hljs-number">1</span>); <span class="hljs-comment">% complex</span><br>xK_init = <span class="hljs-built_in">zeros</span>(NumUes, <span class="hljs-number">1</span>); <span class="hljs-comment">% real</span><br><span class="hljs-keyword">for</span> iU =<span class="hljs-number">1</span>:NumUes<br>   interfere = <span class="hljs-number">0</span>;<br>   otherUes = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:NumUes~=iU);<br>   interfere = interfere + sigma_2;<br>   <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(otherUes)<br>       interfere = interfere+<span class="hljs-built_in">abs</span>(h(BS2Ue(otherUes(<span class="hljs-built_in">i</span>)), :, iU)*wK_init(:, otherUes(<span class="hljs-built_in">i</span>)))^<span class="hljs-number">2</span>;<br>   <span class="hljs-keyword">end</span>  <br>   betaK_init(iU) = <span class="hljs-built_in">sqrt</span>(interfere);<br>   <br>   xK_init(iU) = (h(BS2Ue(iU), :, iU)*wK_init(:, iU)/betaK_init(iU))^<span class="hljs-number">2</span>;<br><span class="hljs-keyword">end</span><br>phiK_init = <span class="hljs-built_in">sqrt</span>(xK_init)./betaK_init; <span class="hljs-comment">% complex</span><br>tK_init = (xK_init+<span class="hljs-number">1</span>).^(weights);<br>tol = <span class="hljs-number">1e-2</span>;<br><br>max_itern = <span class="hljs-number">20</span>;<br>sumrate = <span class="hljs-built_in">zeros</span>(max_itern, <span class="hljs-number">1</span>);<br><span class="hljs-keyword">for</span> iter =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:max_itern<br>    cvx_begin   quiet<br>    variable tK(NumUes, <span class="hljs-number">1</span>) <br>    variable xK(NumUes, <span class="hljs-number">1</span>)<br>    variable betaK(NumUes, <span class="hljs-number">1</span>)<br>    variable wK(NumAntennas, NumUes) <span class="hljs-built_in">complex</span> <br>    maximize(geo_mean(tK))<br>    subject to<br>    <span class="hljs-keyword">for</span> iU = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes<br>        <br>        b = h(BS2Ue(iU), :, iU)*wK(:, iU)<span class="hljs-number">-1</span>/(<span class="hljs-number">2</span>*phiK_init(iU, :))*xK(iU, :);<br>        norm([<span class="hljs-number">1</span>/<span class="hljs-number">2</span>*(b<span class="hljs-number">-1</span>) <span class="hljs-built_in">sqrt</span>(phiK_init(iU)/<span class="hljs-number">2</span>)*betaK(iU)]) &lt;= <span class="hljs-built_in">real</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>*(b+<span class="hljs-number">1</span>)) <span class="hljs-comment">%因为要更新wK，所以wK是在约束中的</span><br>        xK(iU)+<span class="hljs-number">1</span> &gt;= tK(iU)^(<span class="hljs-number">1</span>/weights(iU));<br>        <span class="hljs-built_in">imag</span>(h(BS2Ue(iU), :, iU)*wK(:, iU)) == <span class="hljs-number">0</span>; <span class="hljs-comment">%(6c)</span><br>        <br>        other_Ues = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes ~=iU);<br>        interfere = [];<br>        interfere = [interfere sigma_2];<br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(other_Ues)<br>            interfere = [interfere h(BS2Ue(other_Ues(<span class="hljs-built_in">i</span>)), :, iU)*wK(:, other_Ues(<span class="hljs-built_in">i</span>))];<br>        <span class="hljs-keyword">end</span><br>        norm(interfere) &lt;= betaK(iU, <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">end</span><br>    <br>    tK &gt;= <span class="hljs-number">1</span>;<br>    <br>    <span class="hljs-keyword">for</span> iC=<span class="hljs-number">1</span>:NumCells<br>        norm(vec(wK(:,BS2Ue==iC))) &lt;= <span class="hljs-built_in">sqrt</span>(Pb(iC));<br>    <span class="hljs-keyword">end</span><br><br>    cvx_end;<br>    <br>    <span class="hljs-comment">% update parameters</span><br>    phiK_init = <span class="hljs-built_in">sqrt</span>(xK)./betaK;<br>    tK_init = tK;<br>    <br>    beamformer = wK; <span class="hljs-comment">%保存当前最优的beamformer，绘制achievable rate</span><br>    <br>    SINR = <span class="hljs-built_in">zeros</span>(NumUes,<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span> iU =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes<br>        User_power = <span class="hljs-built_in">abs</span>(h(BS2Ue(iU), :, iU)*beamformer(:, iU))^<span class="hljs-number">2</span>;<br>        <br>        other_Ues = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes ~=iU);<br>        interfere = [];<br>        interfere = [interfere sigma_2];<br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(other_Ues)<br>            interfere = [interfere h(BS2Ue(other_Ues(<span class="hljs-built_in">i</span>)), :, iU)*wK(:, other_Ues(<span class="hljs-built_in">i</span>))];<br>        <span class="hljs-keyword">end</span><br>        <br>        SINR(iU) = User_power/norm(interfere)^<span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">end</span><br>    <br>    <span class="hljs-keyword">for</span> iU =<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:NumUes<br>        sumrate(iter) = sumrate(iter)+weights(iU)*<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SINR(iU));<br>    <span class="hljs-keyword">end</span><br><span class="hljs-comment">%     if iter&gt;=2 &amp;&amp; (sumrate(iter)-sum(iter-1))&lt;tol</span><br><span class="hljs-comment">%         sumrate(iter:end) = [];</span><br><span class="hljs-comment">%         break   </span><br><span class="hljs-comment">%     end</span><br>    <br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">figure</span>()<br><span class="hljs-built_in">plot</span>(sumrate)<br><br></code></pre></td></tr></table></figure>
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/simulationofSCA.jpg" srcset="/img/loading.gif" lazyload alt="simulationofSCA" style="zoom:33%;" />
+
+<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%&#123;</span><br><span class="hljs-comment"> Simulation code for for Algorithm 1 presented in the following scientific paper:</span><br><span class="hljs-comment"> &quot;Fast Converging Algorithm for Weighted Sum Rate Maximization in Multicell </span><br><span class="hljs-comment"> MISO Downlink by Le-Nam Tran, Muhammad Fainan Hanif,Antti Tolli, Markku Juntti,</span><br><span class="hljs-comment"> IEEE Signal Processing Letters 19.12 (2012): 872-875</span><br><span class="hljs-comment">%&#125;</span><br>clear variables<br>clc<br>clear<br>close all;<br><br><span class="hljs-comment">% Number of RX antennas</span><br>M=<span class="hljs-number">1</span>;<br><br><span class="hljs-comment">% Number of antennas for each BS</span><br>nTx=<span class="hljs-number">8</span>;<br><br><span class="hljs-comment">% total users</span><br>nUsers=<span class="hljs-number">4</span>;<br><br><span class="hljs-comment">% No. of cells</span><br>nCells=<span class="hljs-number">2</span>;<br><br><span class="hljs-comment">% for nUsers=4, usercellindex = [1 1 2 2], the first two elements give the users served</span><br><span class="hljs-comment">% by BS 1 and the other two elements give indeces of users served by BS 2</span><br>usercellindex=[<span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">2</span>];<br><br>noise_power = <span class="hljs-number">1</span>; <span class="hljs-comment">% noise power</span><br>powerpercell = <span class="hljs-number">12</span>; <span class="hljs-comment">% maximum tx power per cell in dB (i.e., normalized with noise power)</span><br><br>powerpercell = <span class="hljs-number">10.</span>^(powerpercell./<span class="hljs-number">10</span>)*<span class="hljs-built_in">ones</span>(nCells,<span class="hljs-number">1</span>); <br><br>nIterations = <span class="hljs-number">40</span>;<span class="hljs-comment">% maximum # of iterations</span><br><br>weights = [<span class="hljs-number">1</span>; <span class="hljs-number">1</span>; <span class="hljs-number">1</span>; <span class="hljs-number">1</span>]; <span class="hljs-comment">% for sum rate maximization</span><br><br><span class="hljs-comment">% generate channels</span><br>channel = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(M, nTx, nUsers, nCells)+ ...<br>                    <span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(M, nTx, nUsers, nCells));<br><br><span class="hljs-comment">%% Generate a feasible initial point</span><br><span class="hljs-comment">% Procedure: first generate  beamformers that stisfy the power constraints </span><br><span class="hljs-comment">% and calculate \phi </span><br>winit = <span class="hljs-built_in">rand</span>(nTx,nUsers) + <span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">rand</span>(nTx,nUsers); <span class="hljs-comment">% randn can also be used here</span><br><span class="hljs-keyword">for</span> iCell = <span class="hljs-number">1</span>:nCells<br>    winit(:,usercellindex==iCell) = <span class="hljs-built_in">sqrt</span>(powerpercell(iCell))/norm(winit(:,usercellindex==iCell))*winit(:,usercellindex==iCell); <span class="hljs-comment">% scalling to meet the power constraint</span><br><span class="hljs-keyword">end</span><br>mybetaInit = <span class="hljs-built_in">zeros</span>(nUsers,<span class="hljs-number">1</span>);<br>xInit = <span class="hljs-built_in">zeros</span>(nUsers,<span class="hljs-number">1</span>);<br><span class="hljs-keyword">for</span> iUser=<span class="hljs-number">1</span>:nUsers<br>    <span class="hljs-comment">% find the index of the other users</span><br>    otherusers = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:nUsers ~= iUser);<br>    mybetaInit(iUser) = norm([noise_power;<span class="hljs-built_in">diag</span>(((<span class="hljs-built_in">reshape</span>(channel(:,:,iUser,usercellindex(otherusers)),nTx,[])).&#x27;)*(winit(:,otherusers)))]); <span class="hljs-comment">% set (6d) to equality</span><br>    xInit(iUser) = (<span class="hljs-built_in">abs</span>(channel(:,:,iUser,usercellindex(iUser))*winit(:,iUser))/mybetaInit(iUser))^<span class="hljs-number">2</span>;  <br><span class="hljs-keyword">end</span><br>phi = <span class="hljs-built_in">sqrt</span>(xInit)./mybetaInit;<br>tNext = (<span class="hljs-number">1</span>+xInit).^weights;<br><br><span class="hljs-comment">%% To generate Fig. 2, uncomment the following four lines</span><br><span class="hljs-comment">% load(&#x27;channel.mat&#x27;)</span><br><span class="hljs-comment">% tNext=ones(nUsers,1);        </span><br><span class="hljs-comment">% phi = 1./[0.14285714 2857143;0.214285714285714;0.285714285714286;0.357142857142857];</span><br>weights = [<span class="hljs-number">0.14</span>;<span class="hljs-number">0.21</span>;<span class="hljs-number">0.28</span>;<span class="hljs-number">0.36</span>]; <span class="hljs-comment">% weights in Fig. 2</span><br><br><span class="hljs-comment">% scale the weights so that all are larger than 1 </span><br><span class="hljs-comment">% scalecoeff = 1.1/min(weights);</span><br><span class="hljs-comment">% weights = scalecoeff*weights;</span><br>scalecoeff = <span class="hljs-number">1</span>;<br><br><span class="hljs-comment">% error tolerance. Algorithm terminates if the increase between two iterations &lt; tol</span><br>tol = <span class="hljs-number">1e-2</span>;   <br><span class="hljs-comment">% memory allocation</span><br>sumrate = <span class="hljs-built_in">zeros</span>(nIterations,<span class="hljs-number">1</span>); <span class="hljs-comment">% the sequence of sum rate</span><br>weightedsumrate = <span class="hljs-built_in">zeros</span>(nIterations,<span class="hljs-number">1</span>); <span class="hljs-comment">% the sequence of weighted sum rate</span><br>seqobj = <span class="hljs-built_in">zeros</span>(nIterations,<span class="hljs-number">1</span>); <span class="hljs-comment">% the sequence of the objective of subproblems</span><br><span class="hljs-comment">%% main loop</span><br><span class="hljs-keyword">for</span> iIteration=<span class="hljs-number">1</span>:nIterations<br>    cvx_begin   quiet<br>    variables   t(nUsers) mybeta(nUsers) x(nUsers) ;<br>    variable    w(nTx,nUsers) <span class="hljs-built_in">complex</span>;<br>    maximize(geo_mean(t)) <span class="hljs-comment">% CVX automatically implements (11b) and (11c)</span><br>    subject to<br>    <span class="hljs-keyword">for</span> iUser=<span class="hljs-number">1</span>:nUsers<br>        b = (channel(:,:,iUser,usercellindex(iUser))*w(:,iUser)) - <span class="hljs-number">1</span>/(phi(iUser)*<span class="hljs-number">2</span>)*(x(iUser));<br>        <span class="hljs-built_in">imag</span>(channel(:,:,iUser,usercellindex(iUser))*w(:,iUser)) == <span class="hljs-number">0</span>; <span class="hljs-comment">%(6c)</span><br>        <br>        <span class="hljs-comment">% constraint (11d) in the paper</span><br>        norm([<span class="hljs-number">0.5</span>*(b<span class="hljs-number">-1</span>);<span class="hljs-built_in">sqrt</span>(phi(iUser)/<span class="hljs-number">2</span>)*(mybeta(iUser))]) &lt;= <span class="hljs-number">0.5</span>*<span class="hljs-built_in">real</span>(b+<span class="hljs-number">1</span>) ;<br>        <br>        <span class="hljs-comment">% constraint (11e)</span><br>        x(iUser) &gt;= tNext(iUser)^(<span class="hljs-number">1</span>/weights(iUser))<span class="hljs-number">-1</span> + <span class="hljs-number">1</span>/weights(iUser)*(tNext(iUser)^(<span class="hljs-number">1</span>/weights(iUser)<span class="hljs-number">-1</span>))*(t(iUser)-tNext(iUser));<br>        <br>        <span class="hljs-comment">% find the index of the other users</span><br>        otherusers = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:nUsers ~= iUser);<br>        <br>        interference = [noise_power;<span class="hljs-built_in">diag</span>(((<span class="hljs-built_in">reshape</span>(channel(:,:,iUser,usercellindex(otherusers)),nTx,[])).&#x27;)*(w(:,otherusers)))];<br>        <br>        <span class="hljs-comment">% constraint (11f)</span><br>        norm(interference) &lt;= mybeta(iUser);<br>    <span class="hljs-keyword">end</span><br>    <br>    <span class="hljs-comment">% implicit constraints in t (refer to (6b))</span><br>    t &gt;= <span class="hljs-number">1</span>;<br>    <br>    <span class="hljs-comment">% constraint (11g)</span><br>    <span class="hljs-keyword">for</span> iCell=<span class="hljs-number">1</span>:nCells<br>        norm(vec(w(:,usercellindex==iCell))) &lt;= <span class="hljs-built_in">sqrt</span>(powerpercell(iCell));<br>    <span class="hljs-keyword">end</span><br>    cvx_end;<br>    <br>    <span class="hljs-keyword">if</span>(contains(cvx_status,<span class="hljs-string">&#x27;Solved&#x27;</span>))<br>        <br>        <span class="hljs-comment">% Step 3 of Algorithm 1 in the paper</span><br>        phi = x.^(<span class="hljs-number">0.5</span>)./mybeta;<br>        tNext = t;<br>        <br>        <span class="hljs-comment">%compute objective sequence returned by the solver after each iteration</span><br>        seqobj(iIteration) = sum(<span class="hljs-built_in">log2</span>(t));<br>        <br>        <span class="hljs-comment">% save the current values of beamformers</span><br>        beamformer = w;<br>        <br>        <span class="hljs-comment">% compute the WSR and SR for each iteration</span><br>        <span class="hljs-keyword">for</span> iUser=<span class="hljs-number">1</span>:nUsers<br>            otherusers = <span class="hljs-built_in">find</span>(<span class="hljs-number">1</span>:nUsers ~= iUser);<br>            interference = [noise_power;<span class="hljs-built_in">diag</span>(((<span class="hljs-built_in">reshape</span>(channel(:,:,iUser,...<br>                usercellindex(otherusers)),nTx,[])).&#x27;)*((beamformer(:,otherusers))))];<br>            <br>            <span class="hljs-comment">% compute SINR for each user</span><br>            SINR=<span class="hljs-built_in">abs</span>(channel(:,:,iUser,usercellindex(iUser))*beamformer(:,iUser))^<span class="hljs-number">2</span>/((norm(interference))^<span class="hljs-number">2</span>);<br>            <br>            <span class="hljs-comment">% WSR and SR calculation</span><br>            weightedsumrate(iIteration) = weightedsumrate(iIteration) + weights(iUser)*<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SINR);<br>            sumrate(iIteration)  = sumrate(iIteration)+<span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SINR);<br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-comment">% check stopping criterion</span><br>        <span class="hljs-keyword">if</span> (iIteration&gt;<span class="hljs-number">1</span>)&amp;&amp;(<span class="hljs-built_in">abs</span>(weightedsumrate(iIteration)-weightedsumrate(iIteration<span class="hljs-number">-1</span>)) &lt; tol)<br>            seqobj(<span class="hljs-built_in">min</span>(iIteration+<span class="hljs-number">1</span>,nIterations):<span class="hljs-keyword">end</span>)=[];<br>            sumrate(<span class="hljs-built_in">min</span>(iIteration+<span class="hljs-number">1</span>,nIterations):<span class="hljs-keyword">end</span>)=[];<br>            weightedsumrate(<span class="hljs-built_in">min</span>(iIteration+<span class="hljs-number">1</span>,nIterations):<span class="hljs-keyword">end</span>)=[];<br>            <span class="hljs-keyword">break</span>; <span class="hljs-comment">%  converge, break</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-comment">% numerical issue</span><br>        <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;There may be a numerical issue in the solver. Early termination&#x27;</span>);<br>        <span class="hljs-keyword">break</span>; <br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><span class="hljs-comment">% rescale the objectives</span><br>seqobj = seqobj/scalecoeff; <br>weightedsumrate = weightedsumrate/scalecoeff;<br>sumrate = sumrate/scalecoeff;<br><br><span class="hljs-built_in">plot</span>(<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(weightedsumrate),weightedsumrate,<span class="hljs-string">&#x27;-rs&#x27;</span>,<span class="hljs-string">&#x27;MarkerEdgeColor&#x27;</span>,<span class="hljs-string">&#x27;r&#x27;</span>,...<br>                <span class="hljs-string">&#x27;MarkerFaceColor&#x27;</span>,<span class="hljs-string">&#x27;r&#x27;</span>);<br><span class="hljs-built_in">hold</span> on<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(seqobj),seqobj,<span class="hljs-string">&#x27;-bd&#x27;</span>,<span class="hljs-string">&#x27;MarkerEdgeColor&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,...<br>                <span class="hljs-string">&#x27;MarkerFaceColor&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>);<br>grid on            <br>xlim([<span class="hljs-number">1</span><span class="hljs-number">-0.1</span> <span class="hljs-built_in">length</span>(seqobj)]);<br><br>xlabel(<span class="hljs-string">&#x27;Iteration index&#x27;</span>);<br>ylabel(<span class="hljs-string">&#x27;Weighted sum rate (b/s/Hz)&#x27;</span>);<br>h=<span class="hljs-built_in">legend</span>( <span class="hljs-string">&#x27;Weighted sum rate&#x27;</span>,<span class="hljs-string">&#x27;The objective sequence of convex approximate subproblems&#x27;</span>,<span class="hljs-string">&#x27;Location&#x27;</span>,<span class="hljs-string">&#x27;SouthEast&#x27;</span>);<br>set(h,<span class="hljs-string">&#x27;Color&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>,<span class="hljs-string">&#x27;box&#x27;</span>,<span class="hljs-string">&#x27;on&#x27;</span>,<span class="hljs-string">&#x27;EdgeColor&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>);<br>saveas(gcf, <span class="hljs-string">&#x27;./ConvergencePlot.png&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><ul>
+<li><p>变量比较多，首先得确定哪些是需要迭代的。这篇文章中需要迭代$\phi_k$和$t_k$，但是$\phi_k$和$t_k$需要$\beta_k$和$x_k$。所以首先得先给出一个$\phi_{k-init}$和$t_{k-init}$来进行迭代。</p>
+</li>
+<li><p>有些东西还不能直接求，得转换为一个SOC（二阶锥优化问题）约束去做。</p>
+</li>
+<li><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220714152754044.png" srcset="/img/loading.gif" lazyload alt="image-20220714152754044"></p>
+</li>
+<li><p>放缩的时候都是大于符号右端放大。</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Optimization/" class="category-chain-item">Optimization</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Optimization/" class="print-no-link">#Optimization</a>
+      
+        <a href="/tags/SCA/" class="print-no-link">#SCA</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Weighted Sum Rate Maximization-SCA</div>
+      <div>https://lcjoffrey.top/2022/07/14/optimizationSCA/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年7月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/16/gaussianrandomization/" title="优化基础-高斯随机化">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">优化基础-高斯随机化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/11/convexofmultiBS/" title="多个WET Stations情况下非线性EHmodel的凸性">
+                        <span class="hidden-mobile">多个WET Stations情况下非线性EHmodel的凸性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

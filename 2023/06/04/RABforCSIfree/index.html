@@ -1,0 +1,965 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CSI-Free Rotary Antenna Beamforming for Massive RF Wireless Energy Transfer.--Onel L. A. L&#x00F3;pez et.al">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSI-FREE&#x2F;Massive IoT Beam rotation scheme">
+<meta property="og:url" content="https://lcjoffrey.top/2023/06/04/RABforCSIfree/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="CSI-Free Rotary Antenna Beamforming for Massive RF Wireless Energy Transfer.--Onel L. A. L&#x00F3;pez et.al">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154618.png">
+<meta property="article:published_time" content="2023-06-04T13:54:21.000Z">
+<meta property="article:modified_time" content="2023-06-04T14:05:00.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="CSI Free">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154618.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>CSI-FREE/Massive IoT Beam rotation scheme - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CSI-FREE/Massive IoT Beam rotation scheme"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-04 21:54" pubdate>
+          2023年6月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          996 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CSI-FREE/Massive IoT Beam rotation scheme</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2023-06-04T22:05:00+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <hr>
+<p><strong>CSI-Free Rotary Antenna Beamforming for Massive RF Wireless Energy Transfer</strong>.  <em>Onel L. A. L&#x00F3;pez</em> et.al.  <strong>IEEE Internet of Things Journal, May15, 15 2022</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9520826">pdf</a>)  (Citations <strong>1</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p>M antennas BS (ULA), single antenna IoT device.</p>
+<blockquote>
+<p>在EH中，噪声可以忽略。根据引用文章中，噪声为0。</p>
+</blockquote>
+<ul>
+<li>提出RAB (Rotary Antenna Beamforming) 的无CSI方案，全方面覆盖并提供$0.85\sqrt{M}$的增益。</li>
+<li>说明至少使用$M$等间距步进转子，可以提供准全向的方向图。</li>
+<li>在已知用户位置信息的情况下，进行功率分配。给出了LP（线性规划）的解决方案和另外一个封闭的闭式结果。</li>
+<li>考虑其他约束例如SAR（specific absorption rate），避免人体受害。</li>
+<li>RAB对NLoS的鲁棒性以及不同天线拓扑结构的可行性。</li>
+</ul>
+<h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><p>用户在角度域上均匀分析，距离随机。</p>
+<p>AA-SS-1：在ULA的视线&#x2F;法线方向</p>
+<p>AA-SS-2：在ULA的水平方向</p>
+<h2 id="Design-of-Precoder"><a href="#Design-of-Precoder" class="headerlink" title="Design of Precoder"></a>Design of Precoder</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154986.png" srcset="/img/loading.gif" lazyload alt="image-20230604155451194" style="zoom:33%;" />
+
+<p>考虑的beamforming是在整个角度空间中能量最大化的beamforming。其实就是AA-SS-2。&#x3D;&#x3D;说是在Rician信道上能也能实现最大化&#x3D;&#x3D;</p>
+<blockquote>
+<p>在实际上，因为天线都具有一定的方向性，所以在ULA水平方向上的波束其实是有很大衰减的。</p>
+</blockquote>
+<p>以下说明了类似于CSCG的循环对称性，即precoder只改变LoS部分，并不会改变NLoS部分的统计特性。</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154040.png" srcset="/img/loading.gif" lazyload alt="image-20230604160445516" style="zoom:33%;" />
+
+
+
+<p>maxima只有一个且在90度位置，增益等于$M$；&#x3D;&#x3D;minima有$M-1$个&#x3D;&#x3D;</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154963.png" srcset="/img/loading.gif" lazyload alt="image-20230604160754803" style="zoom:33%;" />
+
+<h2 id="Average-EH-gain"><a href="#Average-EH-gain" class="headerlink" title="Average EH gain"></a>Average EH gain</h2><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154987.png" srcset="/img/loading.gif" lazyload alt="image-20230604160745284" style="zoom:33%;" />
+
+<p>算出来的天线的平均增益，即上面的$G(\theta_i)$在$2\pi$范围内积分的平均<br>$$<br>\frac{1}{2 \pi} \int_0^{2 \pi} G\left(\theta_i\right) \mathrm{d} \theta_i,<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154971.png" srcset="/img/loading.gif" lazyload alt="image-20230604162049469" style="zoom:33%;" /></p>
+<p>然后再进一步近似为：<br>$$<br>\bar{G} \approx 0.85 \sqrt{M}<br>$$</p>
+<blockquote>
+<p>这点要是我不是90度的波束，可以近似吗？积分能求吗？</p>
+</blockquote>
+<p>下图的结论说明在波束对准正面方向的时候反而平均增益是最低的，&#x3D;&#x3D;这个有点不符合常理。&#x3D;&#x3D;</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154966.png" srcset="/img/loading.gif" lazyload alt="image-20230604164547248" style="zoom:33%;" />
+
+<p>实际上，这个平均增益是无法被所有用户享受到的，因为存在非常不公平的WET:</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154963.png" srcset="/img/loading.gif" lazyload alt="image-20230604160754803" style="zoom:33%;" />
+
+<p>所以OneL等人想要用步进电机进行旋转，使得这个平均的增益被所有用户享受到。</p>
+<blockquote>
+<p>他们文章中也说明了，如果选择旋转电机，很有可能导致旋转电机消耗的能量大于发射机的能量。这又是很大的开销。也是我们相控波束旋转的优势。</p>
+</blockquote>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154439.png" srcset="/img/loading.gif" lazyload alt="image-20230604171051789" style="zoom:33%;" />
+
+<p>&#x3D;&#x3D;这个式子代表在一个周期内的平均收益。$\theta_i$代表用户的角度，$G(\theta_i)$表示在还没有旋转的时候，该用户收到的收益。$\frac{j\pi}{M}$代表开始旋转的时候，第$j$次旋转带来的收益。&#x3D;&#x3D;</p>
+<h2 id="Optimization-based-on-location-information"><a href="#Optimization-based-on-location-information" class="headerlink" title="Optimization based on location information"></a>Optimization based on location information</h2><p>因为他们的旋转，在角度上已经是均匀的了，所以只需要考虑在功率分配上-&gt;等价于时间分配上。</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154474.png" srcset="/img/loading.gif" lazyload alt="image-20230604205509911" style="zoom:33%;" />
+
+<p>就是按距离的分配，最大化最小接收能量：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154548.png" srcset="/img/loading.gif" lazyload alt="image-20230604205738104" style="zoom:33%;" />
+
+<p>Close form不好求，但是可以通过近似来获取：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154587.png" srcset="/img/loading.gif" lazyload alt="image-20230604210044972" style="zoom:33%;" />
+
+<p>这个思路很好理解，其实就是说最大化最小的接收能量。pathloss最大的，就是性能最差的，此时保证这个最差的收到的来自主波束的能量一定，就&#x3D;&#x3D;保证了在不同旋转过程中，最低的能量收获下界一定。&#x3D;&#x3D;</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154579.png" srcset="/img/loading.gif" lazyload alt="image-20230604210701348" style="zoom:33%;" />
+
+<p>所以其实就是和所有用户中，在每个beam中最差的那个（path-loss最大），进行功率分配。</p>
+<hr>
+<p>需要知道用户的location，也就是距离。如果不知道距离，就不好进行。只能多个站进行交叉定位。</p>
+<h2 id="Robustness-of-NLoS"><a href="#Robustness-of-NLoS" class="headerlink" title="Robustness of NLoS"></a>Robustness of NLoS</h2><p>就画了个图</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154618.png" srcset="/img/loading.gif" lazyload alt="image-20230604212723971" style="zoom:33%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154869.png" srcset="/img/loading.gif" lazyload alt="image-20230604212315021" style="zoom:33%;" />
+
+<p>$M$增多，可以提供：</p>
+<ul>
+<li>更大能量的波束</li>
+<li>分辨率（更小的波束宽度）</li>
+<li>更多的旋转角度</li>
+</ul>
+<p>使得可控因素增多，性能应该更好，但是复杂度应该会上升。这说明了其Closed form的重要性。</p>
+<blockquote>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154888.png" srcset="/img/loading.gif" lazyload alt="image-20230604213853606" style="zoom:33%;" />
+
+<p>全CSI的旋转方案？一次性只给有限个用户进行传能？</p>
+</blockquote>
+<p>超大规模用户的时候，location信息无用。</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154103.png" srcset="/img/loading.gif" lazyload alt="image-20230604214849429" style="zoom:33%;" />
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading/" class="category-chain-item">Paper Reading</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Paper-Reading/Channel-State-Information/" class="category-chain-item">Channel State Information</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CSI-Free/" class="print-no-link">#CSI Free</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CSI-FREE/Massive IoT Beam rotation scheme</div>
+      <div>https://lcjoffrey.top/2023/06/04/RABforCSIfree/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年6月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/05/BDRIS/" title="Beyond Diagonal Reconfigurable intelligent surface">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Beyond Diagonal Reconfigurable intelligent surface</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/29/grantbasedandgrantfree/" title="知识储备-Grant-based versus Grant-free">
+                        <span class="hidden-mobile">知识储备-Grant-based versus Grant-free</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

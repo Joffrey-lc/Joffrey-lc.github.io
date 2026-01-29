@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="自适应波束合成MVDR、LCMV、RAB实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自适应波束合成">
+<meta property="og:url" content="https://lcjoffrey.top/2022/01/14/beamforming/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="自适应波束合成MVDR、LCMV、RAB实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20211203212547096.png">
+<meta property="article:published_time" content="2022-01-14T07:05:29.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="array signal processing">
+<meta property="article:tag" content="radar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20211203212547096.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>自适应波束合成 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="自适应波束合成"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-14 15:05" pubdate>
+          2022年1月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">自适应波束合成</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-03-19T18:09:20+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>自适应波束合成的<strong>自适应</strong>三个字体现在针对不同数据，波束的合成不仅对期望方向有增益，还对干扰方向有一定的抑制。</p>
+<h2 id="信号数据"><a href="#信号数据" class="headerlink" title="信号数据"></a>信号数据</h2><p>因为都要计算自相关矩阵，而不同的信号之间应该是非相干的，噪声之间也是非相干的。所以可以直接用随机数代替信号。并且由于采样率和信号频率之间只决定了快拍数，而信号频率假设已知(因为要计算理想情况下的$d&#x3D;\frac{\lambda}{2}$)，所以采样率也忽略了。如果认为噪声的信号为单位1，则信号的功率也为1，所以需要根据snr反算信号的幅度$A_s$，得到接收信号。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs matlab">M = <span class="hljs-number">40</span>;<br>c = <span class="hljs-number">3e8</span>;<br>N=<span class="hljs-number">300</span>;<br>f = <span class="hljs-number">4.5</span>*<span class="hljs-number">1e6</span>;<br>lambda = c./f;<br>SNR = [<span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>];<br>R_circ = <span class="hljs-number">175</span>;<br>thetaK = [<span class="hljs-number">50</span>, <span class="hljs-number">20</span>, <span class="hljs-number">40</span>]/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br>phiK = [<span class="hljs-number">120</span>, <span class="hljs-number">240</span>, <span class="hljs-number">140</span>]/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;         <br>As = <span class="hljs-number">10.</span>^(SNR./<span class="hljs-number">20</span>); <br>A = [<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">1</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">1</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M));<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">2</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">2</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M));<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">3</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">3</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M))].&#x27;;<br>signal=<span class="hljs-built_in">randn</span>(<span class="hljs-built_in">length</span>(thetaK),N);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(SNR)<br>    signal(<span class="hljs-built_in">i</span>, :) = signal(<span class="hljs-built_in">i</span>, :)*As(<span class="hljs-built_in">i</span>);<br><span class="hljs-keyword">end</span><br>noise = (<span class="hljs-built_in">randn</span>(M, N)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(M, N))/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span>);<br>xn = A*signal+noise;<br></code></pre></td></tr></table></figure>
+
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><h3 id="MVDR"><a href="#MVDR" class="headerlink" title="MVDR"></a>MVDR</h3><p>原理导出都有，简单的说就是使期望方向增益不变的前提下，总功率最小的。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs matlab">R = xn*xn&#x27;/N;<br>expect_n=<span class="hljs-number">1</span>;<br>noise_n=<span class="hljs-number">2</span>;<br>noise_nn=<span class="hljs-number">3</span>;<br>A_expect = A(:, expect_n);<br>w0 = inv(R)*A_expect/(A_expect&#x27;*inv(R)*A_expect);<br><br>dis = <span class="hljs-number">1</span>;<br>theta_scan = (<span class="hljs-number">0</span>:dis:<span class="hljs-number">90</span><span class="hljs-number">-1</span>)/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br>phi_scan = (<span class="hljs-number">0</span>:dis:<span class="hljs-number">360</span><span class="hljs-number">-1</span>)/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br><br><br>F = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(theta_scan), <span class="hljs-built_in">length</span>(phi_scan));<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(theta_scan)<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(phi_scan)<br>        a = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda(expect_n)*R_circ*<span class="hljs-built_in">sin</span>(theta_scan(<span class="hljs-built_in">i</span>))*<span class="hljs-built_in">cos</span>(phi_scan(<span class="hljs-built_in">j</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M).&#x27;);<br>        F(<span class="hljs-built_in">i</span>, <span class="hljs-built_in">j</span>) = w0&#x27;*a;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>F_abs = <span class="hljs-number">20</span>*<span class="hljs-built_in">log</span>(<span class="hljs-built_in">abs</span>(F));<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_1.jpg" srcset="/img/loading.gif" lazyload alt="MVDR_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/MVDR_2.jpg" srcset="/img/loading.gif" lazyload alt="MVDR_2" style="zoom: 25%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_1.jpg" srcset="/img/loading.gif" lazyload alt="LCMV_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/LCMV_2.jpg" srcset="/img/loading.gif" lazyload alt="LCMV_2" style="zoom:25%;" /></p>
+<h3 id="LCMV"><a href="#LCMV" class="headerlink" title="LCMV"></a>LCMV</h3><p>LCMV是MVDR的直接扩展，由一个约束变为多个约束，将约束条件变为让多个方向（一个也可以）的增益不变，另外的干扰方向的增益为0。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs matlab">M = <span class="hljs-number">40</span>;<br>c = <span class="hljs-number">3e8</span>;<br>N=<span class="hljs-number">300</span>;<br>f = <span class="hljs-number">4.5</span>*<span class="hljs-number">1e6</span>;<br>lambda = c./f;<br>SNR = [<span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>];<br>R_circ = <span class="hljs-number">175</span>;<br>thetaK = [<span class="hljs-number">50</span>, <span class="hljs-number">20</span>, <span class="hljs-number">40</span>]/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br>phiK = [<span class="hljs-number">120</span>, <span class="hljs-number">240</span>, <span class="hljs-number">140</span>]/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;         <br>As = <span class="hljs-number">10.</span>^(SNR./<span class="hljs-number">20</span>); <br>A = [<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">1</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">1</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M));<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">2</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">2</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M));<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">3</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">3</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M))].&#x27;;<br>signal=<span class="hljs-built_in">randn</span>(<span class="hljs-built_in">length</span>(thetaK),N);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(SNR)<br>    signal(<span class="hljs-built_in">i</span>, :) = signal(<span class="hljs-built_in">i</span>, :)*As(<span class="hljs-built_in">i</span>);<br><span class="hljs-keyword">end</span><br>noise = (<span class="hljs-built_in">randn</span>(M, N)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(M, N))/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span>);<br>xn = A*signal+noise;<br><br>R = xn*xn&#x27;/N;<br>dis = <span class="hljs-number">1</span>;<br>theta_scan = (<span class="hljs-number">0</span>:dis:<span class="hljs-number">90</span><span class="hljs-number">-1</span>)/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br>phi_scan = (<span class="hljs-number">0</span>:dis:<span class="hljs-number">360</span><span class="hljs-number">-1</span>)/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br>C_matrix = A;<br>matrix_f = [<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>].&#x27;; <span class="hljs-comment">%约束向量</span><br>F = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(theta_scan), <span class="hljs-built_in">length</span>(phi_scan));<br><br>w0 = inv(R)*C_matrix/(C_matrix&#x27;*inv(R)*C_matrix)*matrix_f;<br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(theta_scan)<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(phi_scan)<br>        a = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda(<span class="hljs-number">1</span>)*R_circ* <span class="hljs-built_in">sin</span>(theta_scan(<span class="hljs-built_in">i</span>))*<span class="hljs-built_in">cos</span>(phi_scan(<span class="hljs-built_in">j</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M).&#x27;);<br>        F(<span class="hljs-built_in">i</span>, <span class="hljs-built_in">j</span>) = w0&#x27;*a;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>F_abs = <span class="hljs-number">20</span>*<span class="hljs-built_in">log</span>(<span class="hljs-built_in">abs</span>(F));<br></code></pre></td></tr></table></figure>
+
+<h3 id="RAB"><a href="#RAB" class="headerlink" title="RAB"></a>RAB</h3><p>RAB是鲁棒自适应波束合成，目的是通过导向矢量在信号-干扰子空间上的投影，得到一个更为精确的导向矢量。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs matlab">M = <span class="hljs-number">40</span>;<br>c = <span class="hljs-number">3e8</span>;<br>N=<span class="hljs-number">300</span>;<br>f = <span class="hljs-number">4.5</span>*<span class="hljs-number">1e6</span>;<br>lambda = c./f;<br>SNR = [<span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>];<br>R_circ = <span class="hljs-number">175</span>;<br>thetaK = [<span class="hljs-number">50</span>, <span class="hljs-number">20</span>, <span class="hljs-number">40</span>]/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br>phiK = [<span class="hljs-number">120</span>, <span class="hljs-number">240</span>, <span class="hljs-number">140</span>]/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;         <br>As = <span class="hljs-number">10.</span>^(SNR./<span class="hljs-number">20</span>); <br>A = [<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">1</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">1</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M));<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">2</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">2</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M));<span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda*R_circ*<span class="hljs-built_in">sin</span>(thetaK(<span class="hljs-number">3</span>))*<span class="hljs-built_in">cos</span>(phiK(<span class="hljs-number">3</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M))].&#x27;;<br>signal=<span class="hljs-built_in">randn</span>(<span class="hljs-built_in">length</span>(thetaK),N);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(SNR)<br>    signal(<span class="hljs-built_in">i</span>, :) = signal(<span class="hljs-built_in">i</span>, :)*As(<span class="hljs-built_in">i</span>);<br><span class="hljs-keyword">end</span><br>noise = (<span class="hljs-built_in">randn</span>(M, N)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(M, N))/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span>);<br>xn = A*signal+noise;<br>R = xn*xn&#x27;/N;<br>dis = <span class="hljs-number">1</span>;<span class="hljs-comment">% 扫描间隔</span><br>theta_scan = (<span class="hljs-number">0</span>:dis:<span class="hljs-number">90</span><span class="hljs-number">-1</span>)/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br>phi_scan = (<span class="hljs-number">0</span>:dis:<span class="hljs-number">360</span><span class="hljs-number">-1</span>)/<span class="hljs-number">180</span>*<span class="hljs-built_in">pi</span>;<br><br>[E_all, lambda_all] = eig(R) ;<br>Es = E_all(:, <span class="hljs-keyword">end</span>:<span class="hljs-number">-1</span>:<span class="hljs-keyword">end</span>-<span class="hljs-built_in">length</span>(thetaK)+<span class="hljs-number">1</span>);<br>C_matrix = A(:, <span class="hljs-number">1</span>);<br>F = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">length</span>(theta_scan), <span class="hljs-built_in">length</span>(phi_scan));<br>C_matrix = Es*Es&#x27;*C_matrix;<br>w0 = inv(R)*C_matrix/(C_matrix&#x27;*inv(R)*C_matrix);<br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(theta_scan)<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(phi_scan)<br>        a = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span>/lambda(<span class="hljs-number">1</span>)*R_circ*<span class="hljs-built_in">sin</span>(theta_scan(<span class="hljs-built_in">i</span>))*<span class="hljs-built_in">cos</span>(phi_scan(<span class="hljs-built_in">j</span>)<span class="hljs-number">-2</span>*<span class="hljs-built_in">pi</span>*(<span class="hljs-number">0</span>:M<span class="hljs-number">-1</span>)/M).&#x27;);<br>        F(<span class="hljs-built_in">i</span>, <span class="hljs-built_in">j</span>) = w0&#x27;*a;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br>F_abs = <span class="hljs-number">20</span>*<span class="hljs-built_in">log</span>(<span class="hljs-built_in">abs</span>(F));<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_1.jpg" srcset="/img/loading.gif" lazyload alt="RAB_1" style="zoom:25%;" /><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/RAB_2.jpg" srcset="/img/loading.gif" lazyload alt="RAB_2" style="zoom:25%;" /></p>
+<h2 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 画图</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br>mesh(phi_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,theta_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,F_abs)<br>colorbar;<br>xlabel(<span class="hljs-string">&#x27;方位角 \phi °&#x27;</span>);<br>ylabel(<span class="hljs-string">&#x27;俯仰角 \theta ° &#x27;</span>);<br>zlabel(<span class="hljs-string">&#x27;波束增益 (dB)&#x27;</span>);<br>title([<span class="hljs-string">&#x27;M=&#x27;</span>,num2str(M),<span class="hljs-string">&#x27;阵元 环阵CBF三维视图 来波f=&#x27;</span>,num2str(f/<span class="hljs-number">1e6</span>),<span class="hljs-string">&#x27;MHz&#x27;</span>]);<br>set(gca,<span class="hljs-string">&#x27;fontsize&#x27;</span>,<span class="hljs-number">12</span>);<br>axis([<span class="hljs-number">0</span> <span class="hljs-number">360</span> <span class="hljs-number">0</span> <span class="hljs-number">90</span> <span class="hljs-built_in">min</span>(<span class="hljs-built_in">min</span>(F_abs))<span class="hljs-number">-20</span> <span class="hljs-built_in">max</span>(<span class="hljs-built_in">max</span>(F_abs))+<span class="hljs-number">20</span>])<br>set(gca,<span class="hljs-string">&#x27;XTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">60</span>:<span class="hljs-number">360</span>);<br>set(gca,<span class="hljs-string">&#x27;YTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">15</span>:<span class="hljs-number">90</span>);<br>set(gca,<span class="hljs-string">&#x27;ZTick&#x27;</span>,(<span class="hljs-built_in">round</span>(<span class="hljs-built_in">min</span>(<span class="hljs-built_in">min</span>(F_abs))/<span class="hljs-number">10</span>)*<span class="hljs-number">10</span><span class="hljs-number">-10</span>):<span class="hljs-number">20</span>:<span class="hljs-number">20</span>);<br><br>expect_n=<span class="hljs-number">1</span>;<br>noise_n=<span class="hljs-number">2</span>;<br>noise_nn=<span class="hljs-number">3</span>;<br><span class="hljs-built_in">figure</span>(<span class="hljs-number">2</span>)<br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)<br><span class="hljs-built_in">plot</span>(theta_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,F_abs(:, phi_scan==phiK(expect_n)),  <span class="hljs-string">&#x27;HandleVisibility&#x27;</span>, <span class="hljs-string">&#x27;off&#x27;</span>)<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>([thetaK(expect_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>, thetaK(expect_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>], [<span class="hljs-built_in">min</span>(F_abs(:,phi_scan==phiK(expect_n))),<span class="hljs-number">40</span>])<br><span class="hljs-built_in">hold</span> off;<br>title(<span class="hljs-string">&#x27;期望方向俯仰角切片&#x27;</span>)<br>axis([<span class="hljs-number">0</span> <span class="hljs-number">90</span> <span class="hljs-built_in">min</span>(F_abs(:,phi_scan==phiK(expect_n))) <span class="hljs-built_in">max</span>(F_abs(:,phi_scan==phiK(expect_n)))+<span class="hljs-number">20</span>])<br>set(gca,<span class="hljs-string">&#x27;XTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">15</span>:<span class="hljs-number">90</span>);<br><span class="hljs-built_in">legend</span>([<span class="hljs-string">&#x27;\theta=&#x27;</span>,num2str(thetaK(expect_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>),<span class="hljs-string">&#x27;°&#x27;</span>]);<br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)<br><span class="hljs-built_in">plot</span>(phi_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,F_abs(theta_scan==thetaK(expect_n), :),  <span class="hljs-string">&#x27;HandleVisibility&#x27;</span>, <span class="hljs-string">&#x27;off&#x27;</span>)<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>([phiK(expect_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>, phiK(expect_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>], [<span class="hljs-built_in">min</span>(F_abs(theta_scan==thetaK(expect_n), :)),<span class="hljs-number">40</span>])<br><span class="hljs-built_in">hold</span> off;<br>title(<span class="hljs-string">&#x27;期望方向方位角切片&#x27;</span>)<br>axis([<span class="hljs-number">0</span> <span class="hljs-number">360</span> <span class="hljs-built_in">min</span>(F_abs(theta_scan==thetaK(expect_n), :)) <span class="hljs-built_in">max</span>(F_abs(theta_scan==thetaK(expect_n), :))+<span class="hljs-number">20</span>])<br>set(gca,<span class="hljs-string">&#x27;XTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">60</span>:<span class="hljs-number">360</span>);<br><span class="hljs-built_in">legend</span>([<span class="hljs-string">&#x27;\phi=&#x27;</span>,num2str(phiK(expect_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>),<span class="hljs-string">&#x27;°&#x27;</span>]);<br><br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)<br><span class="hljs-built_in">plot</span>(theta_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,F_abs(:,phi_scan==phiK(noise_n)), <span class="hljs-string">&#x27;HandleVisibility&#x27;</span>, <span class="hljs-string">&#x27;off&#x27;</span>)<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>([thetaK(noise_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>, thetaK(noise_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>], [<span class="hljs-built_in">min</span>(F_abs(:,phi_scan==phiK(noise_n))),<span class="hljs-number">40</span>])<br><span class="hljs-built_in">hold</span> off;<br>title(<span class="hljs-string">&#x27;干扰方向1俯仰角切片&#x27;</span>)<br>axis([<span class="hljs-number">0</span> <span class="hljs-number">90</span> <span class="hljs-built_in">min</span>(F_abs(:,phi_scan==phiK(noise_n))) <span class="hljs-built_in">max</span>(F_abs(:,phi_scan==phiK(noise_n)))+<span class="hljs-number">20</span>])<br>set(gca,<span class="hljs-string">&#x27;XTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">15</span>:<span class="hljs-number">90</span>);<br><span class="hljs-built_in">legend</span>([<span class="hljs-string">&#x27;\theta=&#x27;</span>,num2str(thetaK(noise_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>),<span class="hljs-string">&#x27;°&#x27;</span>]);<br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>)<br><span class="hljs-built_in">plot</span>(phi_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,F_abs(theta_scan==thetaK(noise_n), :), <span class="hljs-string">&#x27;HandleVisibility&#x27;</span>, <span class="hljs-string">&#x27;off&#x27;</span>)<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>([phiK(noise_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>, phiK(noise_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>], [<span class="hljs-built_in">min</span>(F_abs(theta_scan==thetaK(noise_n), :)),<span class="hljs-number">40</span>])<br><span class="hljs-built_in">hold</span> off;<br>title(<span class="hljs-string">&#x27;干扰方向1方位角切片&#x27;</span>)<br>axis([<span class="hljs-number">0</span> <span class="hljs-number">360</span> <span class="hljs-built_in">min</span>(F_abs(theta_scan==thetaK(noise_n), :)) <span class="hljs-built_in">max</span>(F_abs(theta_scan==thetaK(noise_n), :))+<span class="hljs-number">20</span>])<br>set(gca,<span class="hljs-string">&#x27;XTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">60</span>:<span class="hljs-number">360</span>);<br><span class="hljs-built_in">legend</span>([<span class="hljs-string">&#x27;\phi=&#x27;</span>,num2str(phiK(noise_n)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>),<span class="hljs-string">&#x27;°&#x27;</span>]);<br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>)<br><span class="hljs-built_in">plot</span>(theta_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,F_abs(:,phi_scan==phiK(noise_nn)), <span class="hljs-string">&#x27;HandleVisibility&#x27;</span>, <span class="hljs-string">&#x27;off&#x27;</span>)<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>([thetaK(noise_nn)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>, thetaK(noise_nn)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>], [<span class="hljs-built_in">min</span>(F_abs(:,phi_scan==phiK(noise_nn))),<span class="hljs-number">40</span>])<br><span class="hljs-built_in">hold</span> off;<br>title(<span class="hljs-string">&#x27;干扰方向2俯仰角切片&#x27;</span>)<br>axis([<span class="hljs-number">0</span> <span class="hljs-number">90</span> <span class="hljs-built_in">min</span>(F_abs(:,phi_scan==phiK(noise_nn))) <span class="hljs-built_in">max</span>(F_abs(:,phi_scan==phiK(noise_nn)))+<span class="hljs-number">20</span>])<br>set(gca,<span class="hljs-string">&#x27;XTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">15</span>:<span class="hljs-number">90</span>);<br><span class="hljs-built_in">legend</span>([<span class="hljs-string">&#x27;\theta=&#x27;</span>,num2str(thetaK(noise_nn)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>),<span class="hljs-string">&#x27;°&#x27;</span>]);<br><br>subplot(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>)<br><span class="hljs-built_in">plot</span>(phi_scan*<span class="hljs-number">180</span>/<span class="hljs-built_in">pi</span>,F_abs(theta_scan==thetaK(noise_nn), :), <span class="hljs-string">&#x27;HandleVisibility&#x27;</span>, <span class="hljs-string">&#x27;off&#x27;</span>)<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>([phiK(noise_nn)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>, phiK(noise_nn)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>], [<span class="hljs-built_in">min</span>(F_abs(theta_scan==thetaK(noise_nn), :)),<span class="hljs-number">40</span>])<br><span class="hljs-built_in">hold</span> off;<br>title(<span class="hljs-string">&#x27;干扰方向2方位角切片&#x27;</span>)<br>axis([<span class="hljs-number">0</span> <span class="hljs-number">360</span> <span class="hljs-built_in">min</span>(F_abs(theta_scan==thetaK(noise_nn), :)) <span class="hljs-built_in">max</span>(F_abs(theta_scan==thetaK(noise_nn), :))+<span class="hljs-number">20</span>])<br>set(gca,<span class="hljs-string">&#x27;XTick&#x27;</span>,<span class="hljs-number">0</span>:<span class="hljs-number">60</span>:<span class="hljs-number">360</span>);<br><span class="hljs-built_in">legend</span>([<span class="hljs-string">&#x27;\phi=&#x27;</span>,num2str(phiK(noise_nn)/<span class="hljs-built_in">pi</span>*<span class="hljs-number">180</span>),<span class="hljs-string">&#x27;°&#x27;</span>]);<br>suptitle([<span class="hljs-string">&#x27;M=&#x27;</span>,num2str(M),<span class="hljs-string">&#x27;阵元 环阵CBF二维切片 来波f=&#x27;</span>, num2str(f(<span class="hljs-number">1</span>)/<span class="hljs-number">1e6</span>),<span class="hljs-string">&#x27;MHz&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/radar/" class="category-chain-item">radar</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/array-signal-processing/" class="print-no-link">#array signal processing</a>
+      
+        <a href="/tags/radar/" class="print-no-link">#radar</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>自适应波束合成</div>
+      <div>https://lcjoffrey.top/2022/01/14/beamforming/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/19/rule4clash/" title="设置CLASH规则">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">设置CLASH规则</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/21/moreisbetter/" title="More is Better 信道建模扩增方法解读">
+                        <span class="hidden-mobile">More is Better 信道建模扩增方法解读</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

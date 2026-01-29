@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算连续&#x2F;离散输入连续输出的无记忆信道下的信道容量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识储备-Channel-Capacity DCMC and CCMC">
+<meta property="og:url" content="https://lcjoffrey.top/2024/11/07/CDMC/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="计算连续&#x2F;离散输入连续输出的无记忆信道下的信道容量">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202411131219607.jpg">
+<meta property="article:published_time" content="2024-11-07T13:57:56.000Z">
+<meta property="article:modified_time" content="2026-01-28T18:37:09.787Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="Information Theory">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202411131219607.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>知识储备-Channel-Capacity DCMC and CCMC - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="知识储备-Channel-Capacity DCMC and CCMC"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-07 21:57" pubdate>
+          2024年11月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">知识储备-Channel-Capacity DCMC and CCMC</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2026-01-29T02:37:09+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>最近项目需求计算CCMC和DCMC，</p>
+<ul>
+<li>CCMC：Continuous-input Continuous-output Memoryless Channel</li>
+<li>DCMC：Discrete-input Continuous-output Memoryless Channel</li>
+</ul>
+<h2 id="CCMC"><a href="#CCMC" class="headerlink" title="CCMC"></a>CCMC</h2><p>首先CCMC的一般计算形式是：<br>$$<br>C&#x3D;B\log_2(1+\text{SINR})<br>$$<br>其中，考虑的是复数信道。并且这个capacity需要</p>
+<ul>
+<li>在没有任何约束下</li>
+<li>输入服从连续高斯分布</li>
+</ul>
+<p>才能达到。</p>
+<p>但是不管是DCMC还是CCMC，核心的东西都在于：</p>
+<blockquote>
+<p>信道容量&#x3D;通过调整输入的分布，经过信道传输后消除的最大不确定性，即</p>
+<p>$C&#x3D;\max_{p(x_i)}\left(I(X;Y)\right)$</p>
+<p>而互信息$I(X;Y)&#x3D;H(X)-H(X;Y)$，即$X$原有的不确定性-收到$Y$之后$X$仍有的不确定性&#x3D;通过传输$Y$获得的不确定性的减少。</p>
+</blockquote>
+<h2 id="DCMC"><a href="#DCMC" class="headerlink" title="DCMC"></a>DCMC</h2><h3 id="一般情况"><a href="#一般情况" class="headerlink" title="一般情况"></a>一般情况</h3><p>在考虑调制之后，输入变为离散的，例如QPSK就是离散的四个符号，可以假设这些符号服从均匀分布。</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202411131208427.jpg" srcset="/img/loading.gif" lazyload alt="b5378988bb25fd83ca39d7a8662f7f9"></p>
+<h3 id="复杂情况-Beamforming-多用户"><a href="#复杂情况-Beamforming-多用户" class="headerlink" title="复杂情况-Beamforming&#x2F;多用户"></a>复杂情况-Beamforming&#x2F;多用户</h3><p>值得注意的是更复杂的情况：</p>
+<ul>
+<li>考虑多用户：星座图的叠加</li>
+<li>考虑beamforming：星座图的平移、旋转、缩放等</li>
+</ul>
+<p>假设有两个单天线用户，$N_t$发射天线，形成一个MISO系统，则用户1接收到的信号为：<br>$$<br>Y_1&#x3D;h_1w^H_1x_1+h_1w^H_2x_2+n<br>$$<br>如果$N_t&#x3D;1$，那么beamforming的唯一作用就是调相，因为可以写成$w_1&#x3D;e^{j\theta_1}$的形式。此时，两个用户的星座图就会通过旋转进行叠加。</p>
+<p>以此类推，当$N_t&gt;1$时，两个用户的星座图不进会相移（旋转），还会缩放（幅度），最后构成叠加态：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202411131217973.jpg" srcset="/img/loading.gif" lazyload alt="bb497d9be1aa0a71fbe4024dda16cfd"></p>
+<p>最后再考虑信道的影响，即完成。</p>
+<p>参考这段代码进行星座图叠加：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% Calculate the stacked constellation</span><br>       result_with_N_t = <span class="hljs-built_in">zeros</span>(possible,N_t);<br>       <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:possible<br>           <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:K<br>               result_with_N_t(<span class="hljs-built_in">j</span>, :) = result_with_N_t(<span class="hljs-built_in">j</span>, :)+W(:, k).&#x27;*modulation(all(<span class="hljs-built_in">j</span>,k));<br>           <span class="hljs-keyword">end</span><br>       <span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Matlab-Simulation"><a href="#Matlab-Simulation" class="headerlink" title="Matlab Simulation"></a>Matlab Simulation</h2><p>一般的DCMC计算如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br><br><span class="hljs-comment">% +---------------------------------------------+</span><br><span class="hljs-comment">% | Choose the SNR, modulation and channel here |</span><br><span class="hljs-comment">% +---------------------------------------------+</span><br><br><span class="hljs-comment">% Affects the accuracy and duration of the simulation</span><br>symbol_count = <span class="hljs-number">1000</span>;<span class="hljs-comment">%00000;</span><br><span class="hljs-comment">% Modulation scheme</span><br><span class="hljs-comment">% -----------------</span><br><br><span class="hljs-comment">% 2PSK</span><br><span class="hljs-comment">% modulation = [+1, -1];</span><br><br><span class="hljs-comment">% 4PSK</span><br><span class="hljs-comment">%modulation = [+1, +i, -1, -i];</span><br><br><span class="hljs-comment">% 8PSK</span><br><span class="hljs-comment">%modulation = [+1, sqrt(1/2)*(+1+i), +i, sqrt(1/2)*(-1+i), -1, sqrt(1/2)*(-1-i), -i, sqrt(1/2)*(+1-i)];</span><br><br><span class="hljs-comment">% 16QAM</span><br>modulation = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">10</span>)*[<span class="hljs-number">-3</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-3</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-3</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-3</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>];<br><br><span class="hljs-comment">% Channel</span><br><br><span class="hljs-comment">% Uncorrelated Rayleigh fading channel</span><br><span class="hljs-comment">% channel = sqrt(1/2)*(randn(1,symbol_count)+1i*randn(1,symbol_count));</span><br><br><span class="hljs-comment">% AWGN channel</span><br>channel = <span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,symbol_count);<br><br><span class="hljs-comment">% +------------------------+</span><br><span class="hljs-comment">% | Simulation starts here |</span><br><span class="hljs-comment">% +------------------------+</span><br>snrs = <span class="hljs-number">-10</span>:<span class="hljs-number">1</span>:<span class="hljs-number">30</span>;<br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(snrs)<br>    snr=snrs(<span class="hljs-built_in">i</span>);<br><br>    <span class="hljs-comment">% Generate some random symbols</span><br>    symbols = <span class="hljs-built_in">ceil</span>(<span class="hljs-built_in">length</span>(modulation)*<span class="hljs-built_in">rand</span>(<span class="hljs-number">1</span>,symbol_count));<br><br>    <span class="hljs-comment">% Generate the transmitted signal</span><br>    tx = modulation(symbols);<br><br>    <span class="hljs-comment">% Generate some noise</span><br>    N0 = <span class="hljs-number">1</span>/(<span class="hljs-number">10</span>^(snr/<span class="hljs-number">10</span>));<br>    noise = <span class="hljs-built_in">sqrt</span>(N0/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>,symbol_count)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>,symbol_count));<br>                        <br>    <span class="hljs-comment">% Generate the received signal</span><br>    rx = tx.*channel+noise;<br><br>    <span class="hljs-comment">% Calculate the symbol probabilities</span><br>    probabilities = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">exp</span>(-(<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">length</span>(modulation),<span class="hljs-number">1</span>)*rx - modulation.&#x27;*channel).^<span class="hljs-number">2</span>)/N0),<span class="hljs-built_in">realmin</span>);<br><br>    <span class="hljs-comment">% Normalise the symbol probabilities</span><br>    probabilities = probabilities ./ (<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">length</span>(modulation),<span class="hljs-number">1</span>)*sum(probabilities));<br><br>    <span class="hljs-comment">% Calculate the capacity</span><br>    channel_capacity(<span class="hljs-built_in">i</span>) = <span class="hljs-built_in">log2</span>(<span class="hljs-built_in">length</span>(modulation))+<span class="hljs-built_in">mean</span>(sum(probabilities.*<span class="hljs-built_in">log2</span>(probabilities)));<br><br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br><span class="hljs-built_in">plot</span>(snrs,channel_capacity)<br></code></pre></td></tr></table></figure>
+
+<p>如果考虑调制方式、星座图、多用户，如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>symbol_count = <span class="hljs-number">1000</span>;<span class="hljs-comment">%</span><br>K = <span class="hljs-number">1</span>; <span class="hljs-comment">% No. of Users</span><br>N_t = <span class="hljs-number">1</span>; <span class="hljs-comment">% No. of Tx</span><br><span class="hljs-comment">% 2PSK</span><br><span class="hljs-comment">% modulation = [+1, -1];</span><br><span class="hljs-comment">% 4PSK</span><br><span class="hljs-comment">% modulation = [+1, +i, -1, -i];</span><br><span class="hljs-comment">% 8PSK</span><br><span class="hljs-comment">% modulation = [+1, sqrt(1/2)*(+1+i), +i, sqrt(1/2)*(-1+i), -1, sqrt(1/2)*(-1-i), -i, sqrt(1/2)*(+1-i)];</span><br><span class="hljs-comment">% 16QAM</span><br>modulation = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">10</span>)*[<span class="hljs-number">-3</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span>+<span class="hljs-number">3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-3</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span>+<span class="hljs-number">1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-3</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span><span class="hljs-number">-1</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-3</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, <span class="hljs-number">-1</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">1</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>, +<span class="hljs-number">3</span><span class="hljs-number">-3</span>*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>];<br><br>MT_count = <span class="hljs-number">100</span>;<br><br><span class="hljs-comment">% Channel</span><br><span class="hljs-comment">% Uncorrelated Rayleigh fading channel</span><br>channel_K_all = <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(K, N_t, MT_count)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(K, N_t, MT_count));<br><br><span class="hljs-comment">% Calculate all possible constellation</span><br>all = possible_generator(<span class="hljs-built_in">length</span>(modulation),K);<br><br>possible=<span class="hljs-built_in">length</span>(all);<br><span class="hljs-comment">% channel_K_all = ones(K, N_t, MT_count); % AWGN</span><br><span class="hljs-keyword">for</span> mt = <span class="hljs-number">1</span>:MT_count<br>    snrs = <span class="hljs-number">-10</span>:<span class="hljs-number">1</span>:<span class="hljs-number">30</span>;<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(snrs)<br>        channel_K = <span class="hljs-built_in">repmat</span>(channel_K_all(:, :, mt), [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, symbol_count]);<br>        <span class="hljs-comment">% Beamforming</span><br>        W_LS = <span class="hljs-built_in">zeros</span>(N_t, K); <span class="hljs-comment">% LS 波束赋形</span><br>        W_MRT = <span class="hljs-built_in">zeros</span>(N_t, K); <span class="hljs-comment">% MRT 波束赋形</span><br>        H = <span class="hljs-built_in">squeeze</span>(channel_K(:, :, <span class="hljs-number">1</span>)).&#x27;; <span class="hljs-comment">% 取任意一组都行, N_t \times K</span><br>        <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:K<br>            W_LS(:, k) = H(:, k) / norm(H(:, k)); <span class="hljs-comment">% LS 波束赋形向量</span><br>            W_MRT(:, k) = <span class="hljs-built_in">conj</span>(H(:, k)) / norm(H(:, k))^<span class="hljs-number">2</span>; <span class="hljs-comment">% MRT 波束赋形向量</span><br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-comment">% ZF 波束赋形</span><br>        W_ZF = H / (H&#x27; * H);<br>        <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:K<br>            W_ZF(:, k) = W_ZF(:, k) / norm(W_ZF(:, k)); <span class="hljs-comment">% 归一化</span><br>        <span class="hljs-keyword">end</span><br>        W_LS = W_LS./norm(W_LS, <span class="hljs-string">&#x27;fro&#x27;</span>);<br>        W_MRT = W_MRT./norm(W_MRT, <span class="hljs-string">&#x27;fro&#x27;</span>);<br>        W_ZF = W_ZF./norm(W_ZF, <span class="hljs-string">&#x27;fro&#x27;</span>);<br><br>        W = W_ZF;<br><br>        <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:K<br>            <span class="hljs-comment">% Generate some random symbols</span><br>            symbols_K(k, :) = <span class="hljs-built_in">ceil</span>(<span class="hljs-built_in">length</span>(modulation)*<span class="hljs-built_in">rand</span>(<span class="hljs-number">1</span>,symbol_count));<br>            <span class="hljs-comment">% Generate the transmitted signal</span><br>            tx_K(k, :) = modulation(symbols_K(k, :));<br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:K<br>            <span class="hljs-comment">% Generate some noise</span><br>            N0 = <span class="hljs-number">1</span>/(<span class="hljs-number">10</span>^(snrs(<span class="hljs-built_in">i</span>)/<span class="hljs-number">10</span>));<br>            noise = <span class="hljs-built_in">sqrt</span>(N0/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>,symbol_count)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>,symbol_count));<br>            <span class="hljs-comment">% Generate the received signal</span><br>            rx_k(k, :) = tx_K(k, :).*<span class="hljs-built_in">reshape</span>(<span class="hljs-built_in">squeeze</span>(channel_K(k, :, :)).&#x27;*W(:, k), <span class="hljs-built_in">size</span>(tx_K(k, :)))+noise;<br>            <span class="hljs-keyword">for</span> kk=<span class="hljs-number">1</span>:K<br>                <span class="hljs-keyword">if</span> kk ~= k<br>                    rx_k(k, :) = rx_k(k, :) + tx_K(kk, :).*<span class="hljs-built_in">reshape</span>(<span class="hljs-built_in">squeeze</span>(channel_K(k, :, :)).&#x27;*W(:, kk), <span class="hljs-built_in">size</span>(tx_K(k, :)));<br>                <span class="hljs-keyword">end</span><br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-comment">% Calculate the stacked constellation</span><br>        result_with_N_t = <span class="hljs-built_in">zeros</span>(possible,N_t);<br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:possible<br>            <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:K<br>                result_with_N_t(<span class="hljs-built_in">j</span>, :) = result_with_N_t(<span class="hljs-built_in">j</span>, :)+W(:, k).&#x27;*modulation(all(<span class="hljs-built_in">j</span>,k));<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-comment">% Calculate the symbol probabilities</span><br>        probabilities = <span class="hljs-built_in">zeros</span>(possible, symbol_count);<br>        <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:K<br>            probabilities = <span class="hljs-built_in">max</span>(probabilities, <span class="hljs-built_in">max</span>(<span class="hljs-built_in">exp</span>(-(<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">ones</span>(possible,<span class="hljs-number">1</span>)*rx_k(k, :) - result_with_N_t*<span class="hljs-built_in">reshape</span>(<span class="hljs-built_in">squeeze</span>(channel_K(k, :, :)), [], symbol_count)).^<span class="hljs-number">2</span>)/N0),<span class="hljs-built_in">realmin</span>));<br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-comment">% Normalise the symbol probabilities</span><br>        probabilities = probabilities ./ sum(probabilities, <span class="hljs-number">1</span>);<br>        <span class="hljs-comment">% Calculate the capacity</span><br>        mt_channel_capacity(<span class="hljs-built_in">i</span>, mt) = (<span class="hljs-built_in">log2</span>(possible)+<span class="hljs-built_in">mean</span>(sum(probabilities.*<span class="hljs-built_in">log2</span>(probabilities))))/K;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>channel_capacity = <span class="hljs-built_in">mean</span>(mt_channel_capacity, <span class="hljs-number">2</span>);<br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br><span class="hljs-built_in">plot</span>(snrs,channel_capacity)<br><span class="hljs-built_in">hold</span> off;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">all</span>=<span class="hljs-title">possible_generator</span><span class="hljs-params">(M,dc)</span></span><br>    number =(<span class="hljs-number">0</span>:M^dc<span class="hljs-number">-1</span>);<br>    p_unsort=<span class="hljs-built_in">zeros</span>(M^dc,dc);<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:dc<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">i</span>==<span class="hljs-number">1</span><br>            p_unsort(:,<span class="hljs-built_in">i</span>)=<span class="hljs-built_in">floor</span>(number./M^(dc-<span class="hljs-built_in">i</span>))&#x27;;<br>        <span class="hljs-keyword">else</span><br>            temp=<span class="hljs-built_in">zeros</span>(M^dc,<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">i</span><span class="hljs-number">-1</span><br>                temp=p_unsort(:,<span class="hljs-built_in">j</span>).*M^(dc-<span class="hljs-built_in">j</span>)+temp;<br>            <span class="hljs-keyword">end</span><br>            p_unsort(:,<span class="hljs-built_in">i</span>)=<span class="hljs-built_in">floor</span>((number&#x27;-temp)./M^(dc-<span class="hljs-built_in">i</span>));<br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    all=p_unsort+<span class="hljs-number">1</span>;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>重点在于计算多个用户星座图的叠加</p>
+<ul>
+<li>单天线的时候等于是旋转星座图</li>
+<li>多天线的时候考虑beamforming来实现多用户分集</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-knowledge/" class="category-chain-item">basic knowledge</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Information-Theory/" class="print-no-link">#Information Theory</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>知识储备-Channel-Capacity DCMC and CCMC</div>
+      <div>https://lcjoffrey.top/2024/11/07/CDMC/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2026年1月29日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/27/recuPulseandtrapezoidPulse/" title="知识储备-三角波/矩形波和梯形波频谱">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">知识储备-三角波/矩形波和梯形波频谱</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/28/AFDM-tutorial/" title="AFDM_tutorial">
+                        <span class="hidden-mobile">AFDM_tutorial</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

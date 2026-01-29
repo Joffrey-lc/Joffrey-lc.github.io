@@ -1,0 +1,1033 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="武庆庆-Intelligent Reflecting Surface-Aided Wireless Communications-A Tutorial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IRS综述阅读（一）">
+<meta property="og:url" content="https://lcjoffrey.top/2022/03/07/introductionofIRS/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="武庆庆-Intelligent Reflecting Surface-Aided Wireless Communications-A Tutorial">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307223950922.png">
+<meta property="article:published_time" content="2022-03-07T06:55:43.000Z">
+<meta property="article:modified_time" content="2022-06-24T05:29:37.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="IRS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307223950922.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>IRS综述阅读（一） - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="IRS综述阅读（一）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-07 14:55" pubdate>
+          2022年3月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">IRS综述阅读（一）</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-06-24T13:29:37+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>Intelligent Reflecting Surface-Aided Wireless Communications: A Tutorial</strong>.  <em>Qingqing Wu</em> et.al.  <strong>IEEE Transactions on Communications, May  2021</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9326394">pdf</a>)  (Citations <strong>210</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><p><em>Intelligent Reflflecting Surface-Aided Wireless Communications: A Tutorial</em>文章的整理。</p>
+<div>
+            <input type="checkbox"  checked="checked">IRS基础部分及建模
+
+          </div> 
+
+<div>
+            <input type="checkbox"  checked="checked">IRS优化
+
+          </div> 
+
+<div>
+            <input type="checkbox"  checked="checked">IRS信道估计
+
+          </div> 
+
+<div>
+            <input type="checkbox"  checked="checked">IRS部署
+
+          </div> 
+
+<h2 id="IRS介绍"><a href="#IRS介绍" class="headerlink" title="IRS介绍"></a>IRS介绍</h2><p><strong>IRS</strong>: Intelligent reflecting surface</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li>6G存在的需求，例如超高数据速率和能源效率，极高的可靠性和低延迟等</li>
+<li>解决来自用户的时变无线信道</li>
+</ul>
+<h3 id="什么是IRS"><a href="#什么是IRS" class="headerlink" title="什么是IRS"></a>什么是IRS</h3><p>Generally speaking, IRS is a planar surface comprising a large number of <strong>passive reflecting elements</strong>, each of which is able to induce a controllable amplitude and&#x2F;or phase change to the incident signal independently</p>
+<ul>
+<li>IRS elements 是<strong>无源的</strong>（虽然后面会讲到还是需要一定的能源（用来调整幅度反射和相位反射），但是相比其他设备，这些能源是微乎其微的，还是可以认为是无源的）</li>
+</ul>
+<h3 id="IRS作用及优势"><a href="#IRS作用及优势" class="headerlink" title="IRS作用及优势"></a>IRS作用及优势</h3><p><strong>从概念上：</strong></p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307143040521.png" srcset="/img/loading.gif" lazyload alt="IRS在无线信道重配置中额主要功能" style="zoom: 33%;" />
+
+<ul>
+<li>(a): 创建虚拟视距(LoS)链接以通过智能反射面绕过收发器之间的障碍物</li>
+<li>(b): 在期望的方向添加额外的信号路径以提升信道等级条件</li>
+<li>(c): 改善信道分布，例如将瑞利&#x2F;快衰落转换为Rician&#x2F;慢衰落以实现超高可靠性</li>
+<li>(d): 抑制一些干扰</li>
+</ul>
+<p><strong>在实施上</strong></p>
+<ul>
+<li>因为是无缘的（仅被动反射信号），所以不需要任何发射射频反射链，硬件要求低（与传统有源中继相比）。</li>
+<li>全双工工作模式，没有任何天线噪声放大和自干扰。</li>
+<li>安装拆除简单</li>
+<li>极大的灵活性和与现有无线系统的兼容性</li>
+</ul>
+<h3 id="IRS挑战"><a href="#IRS挑战" class="headerlink" title="IRS挑战"></a>IRS挑战</h3><ul>
+<li>无源反射原件需要适当设计，实现IRS element之间的协同信号聚焦或干扰消除。考虑与基站、用户的传输联合设计。</li>
+<li>由于IRS没有发射射频链，所以要考虑如何获得IRS与其用户之间的信道状态信息。</li>
+<li>IRS在无线网络中最大化网络容量的最佳部署策略需要重新设计。</li>
+</ul>
+<h3 id="IRS建模"><a href="#IRS建模" class="headerlink" title="IRS建模"></a>IRS建模</h3><p>以$x(t)$表示等效复值基带发射信号，对于一个有$N$个反射单元的IRS，以$n$代表单元，即$n\in{1, \cdots, N}$，用$\alpha_{1, n}e^{-j\xi_{1, n}}$表示基带信号从发射机到IRS的反射单元$n$的复信道系数，其中$\alpha_{1, n}$表示幅度衰减（amplitude attenuation），$e^{-j\xi_{1,n}}$表示窄带系统平坦信道的相移。所以其带通信号（经过上变频）可以表示为：<br>$$<br>\begin{align}<br>y_{in,n}(t)&#x3D;Re{\alpha_{1, n}e^{-j\xi_{1, n}}x(t)e^{j2\pi f_ct}}$<br>\end{align}<br>$$<br>其中，$f_c$是载波频率；该单元（第$n$个单元）的幅度衰减和时间延迟分别用$\beta_n\in[0, 1]$（因为是无源的）和$t_n\in[0, 1&#x2F;f_c]$表示。忽略电路非线性和相位噪声等硬件缺陷，IRS单元$n$的反射信号表示为：<br>$$<br>\begin{align}<br>y_{out,n}(t)&amp;&#x3D;\beta_ny_{in,n}(t-t_n)\<br>&amp;&#x3D;Re{\beta_n\alpha_{1,n}e^{-j\xi_{1,n}}x(t-t_n)e^{j2\pi f_c(t-t_n)}}<br>\&amp;\approx Re{[\beta_ne^{-j\theta^{‘}<em>n}\alpha</em>{1,n}e^{-j\xi_{1,n}}x(t)]e^{j2\pi f_ct}}<br>\end{align}<br>$$<br>其中，在$t_n\leq1&#x2F;f_c\ll1&#x2F;B$的前提下，假设$x(t-t_n)\approx x(t)$；并有$-\theta_n^{‘}\triangleq-2\pi f_ct_n\in[-2\pi,0]$是单元$n$引起的相移。由$s_{in,n}(t)\triangleq \alpha_{1, n}e^{-j\xi_{1, n}}x(t)$并且有$s_{out,n}\triangleq\beta_ne^{-j\theta^{‘}<em>n}\alpha</em>{1,n}e^{-j\xi_{1,n}}x(t)$</p>
+<p>进一步，由于$\theta^{‘}<em>n$是以$2\pi$为周期的，所以为方便后续部分，取$\theta_n\in [0,2\pi]$，有：<br>$$<br>\begin{align}<br>s</em>{out,n}(t)&#x3D;\beta_ne^{-j\theta^{‘}<em>n}s</em>{in,n}(t)&#x3D;\beta_ne^{j\theta_n}s_{in,n}(t)<br>\end{align}<br>$$<br><strong>所以在基带信号模型中，IRS单元$n$的输出&#x2F;反射信号是通过将相应的输入&#x2F;入射信号乘以复反射系数$\beta_ne^{-j\theta_n}$得到的</strong>。</p>
+<p>再接上从IRS单元$n$到接收端的信号（与前面相似的等效窄带平坦频率信道），则有接收端的表达式：<br>$$<br>\begin{align}<br>y_{r,n}(t)&#x3D;Re{[\alpha_{1,n}e^{-j\xi_{1,n}}\beta_ne^{j\theta_n}\alpha_{2,n}e^{-j\xi_{2,n}}x(t)]e^{j2\pi f_ct}}<br>\end{align}<br>$$<br>用$h^<em><em>{r,n}\triangleq\alpha</em>{1,n}e^{-j\xi_{1,n}}$（发射端到IRS的信道），并用$g_n\triangleq\alpha_{2,n}e^{-j\xi_{2,n}}$（IRS到接收端的信道），上式变为：<br>$$<br>y_n(t)&#x3D;\beta_ne^{j\theta_n}h^</em>_{r,n}g_nx(t)<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/3328208a299ddde470516df2ab995f6.jpg" srcset="/img/loading.gif" lazyload alt="IRS模型示意图" style="zoom:33%;" /></p>
+<p>假设没有信号耦合，即所有IRS单元独立地反射入射信号。并忽略多次反射（因为路径损失较大），则有考虑$N$个单元时，有接收端：<br>$$<br>\begin{align}<br>y(t)&#x3D;(\sum_{n&#x3D;1}^N\beta_ne^{j\theta_n}h^<em>_{r,n}g_n)x(t)&#x3D;\textbf{h}_r^H\Theta\textbf{g}x(t)<br>\end{align}<br>$$<br>其中$\textbf{h}_r^H&#x3D;[h^</em><em>{r, 1},\cdots,h^*</em>{r,N}]$，$\textbf{g}&#x3D;[g_1,\cdots,g_N]^T$，$\Theta&#x3D;diag(\beta_1e^{j\theta_1},\cdots,\beta_Ne^{j\theta_N})$因为每个IRS单元独立地反射信号，且没有信号耦合，所以$\Theta$是对角阵。</p>
+<h3 id="IRS硬件实现"><a href="#IRS硬件实现" class="headerlink" title="IRS硬件实现"></a>IRS硬件实现</h3><h4 id="硬件结构"><a href="#硬件结构" class="headerlink" title="硬件结构"></a>硬件结构</h4><p>由于发射机、接收机以及周围物体的移动性，信道通常是时变的，因此需要基于信道变化的IRS实时可调。所以需要联网以进行自适应反射。</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307220020933.png" srcset="/img/loading.gif" lazyload alt="IRS结构" style="zoom:33%;" />
+
+<ul>
+<li><p>智能控制器，FPGA，总的控制端</p>
+</li>
+<li><p>第一层，调整层，控制层，也可以布置一些传感器（感知周围感兴趣的无线电信号，以方便智能控制器设计反射系数）</p>
+</li>
+<li><p>第二层，铜，减少信号能量损失</p>
+</li>
+<li><p>第三层，可调整的单元</p>
+</li>
+</ul>
+<p>为了实现重新配置IRS单元以实现高度可控反射，有三种主要方法被提出：</p>
+<ul>
+<li>机械驱动（机械旋转、平移）</li>
+<li>功能材料（液晶、石墨烯等）</li>
+<li>电子设备（PIN二极管等）</li>
+</ul>
+<p>第三种电子设备（PIN二极管等）是最常用的。</p>
+<h4 id="实际限制"><a href="#实际限制" class="headerlink" title="实际限制"></a>实际限制</h4><h5 id="离散的反射幅度和相移"><a href="#离散的反射幅度和相移" class="headerlink" title="离散的反射幅度和相移"></a>离散的反射幅度和相移</h5><p>用固定的PIN二极管，需要大数量才能控制精细相移，例如$\log_28&#x3D;3$，即8级相移需要3个PIN二极管；使用变容二极管则需要更大范围的偏置电压，成本更高。</p>
+<p>顺便提出了两个特殊结构：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221743796.png" srcset="/img/loading.gif" lazyload alt="两种特殊结构" style="zoom: 67%;" />
+
+<h5 id="耦合的反射幅度和相移"><a href="#耦合的反射幅度和相移" class="headerlink" title="耦合的反射幅度和相移"></a>耦合的反射幅度和相移</h5><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220307221921769.png" srcset="/img/loading.gif" lazyload alt="实际IRS中反射幅度和相移之间的关系" style="zoom:50%;" />
+
+<p>有人提出反射的幅度和相移之间存在非线性耦合，所以不能单独调节。</p>
+<p>产生这种现象的原因是因为：<strong>0相移时</strong>，反射电流与单元电流同相（in-phase），电流强度增加，导致<strong>发热增多</strong>，<strong>反射幅度下降</strong>；当<strong>电流反相</strong>时（out-of-phase），电流强度<strong>减弱</strong>，<strong>发热变少</strong>，<strong>反射幅度增加</strong>。</p>
+<p>此外，IRS理论上是无源的（passive），但是例如控制PIN二极管时，需要消耗一部分能量。只是说这部分能量相对较小。</p>
+<h3 id="其他相关内容及未来研究方向"><a href="#其他相关内容及未来研究方向" class="headerlink" title="其他相关内容及未来研究方向"></a>其他相关内容及未来研究方向</h3><ul>
+<li><strong>IRS单元之间的耦合</strong>目前是被忽略的。考虑在增大IRS单元密度以提高性能时，可能会使耦合更严重，以至于不能忽略。<strong>考虑耦合反射系数</strong>或者<strong>开发有效的去耦、隔离技术</strong>。</li>
+<li>目前考虑的模型对信号的<strong>入射角不敏感</strong>。目前的部分实现证明IRS反射系数，特别是相移，对<strong>入射角非常敏感</strong>。同时这也意味着<strong>信道互易假设可能不再有效</strong>，即上行链路的信道估计不再适用于下行链路的信道估计，vice versa。</li>
+<li>对于<strong>宽带信号</strong>的建模以及<strong>频率&#x2F;时间偏移</strong>、<strong>相位噪声</strong>等。</li>
+</ul>
+<h2 id="System-Model"><a href="#System-Model" class="headerlink" title="System Model"></a>System Model</h2><h3 id="有IRS的系统的接收信号"><a href="#有IRS的系统的接收信号" class="headerlink" title="有IRS的系统的接收信号"></a>有IRS的系统的接收信号</h3><p>$$<br>y(t)&#x3D;\left(\sum_{n&#x3D;1}^{N} \beta_{n} e^{\jmath \theta_{n}} h_{r, n}^{*} g_{n}\right) x(t)&#x3D;\boldsymbol{h}_{r}^{H} \boldsymbol{\Theta} \boldsymbol{g} x(t)<br>$$</p>
+<p>其中<br>$$<br>\mathbb{E}\left(\left|h_{r, n}\right|^{2}\right) \propto c_{1}\left(\frac{d_{1}}{d_{0}}\right)^{-a_{1}}<br>$$</p>
+<p>$$<br>\mathbb{E}\left(\left|g_n\right|^{2}\right) \propto c_{2}\left(\frac{d_{2}}{d_{0}}\right)^{-a_{2}}<br>$$</p>
+<p>where <em>c</em>1(<em>c</em>2) denotes the corresponding path loss at the reference distance <em>d</em>0, while <em>a</em>1(<em>a</em>2) denotes the corresponding path loss exponent with typical values from 2 (in free-space propagation) to 6</p>
+<p>意味着如果是free-space，path loss exponent 取2。</p>
+<p>所以Average Received Power：<br>$$<br>P_{r, n} \propto \frac{1}{d_{1}^{a_{1}} d_{2}^{a_{2}}}<br>$$<br>称之为<em>product distance path loss model</em>，另外还有<em>sum-distance path loss model</em>，但是作者认为不是很适用。</p>
+<h3 id="调整幅度和相位"><a href="#调整幅度和相位" class="headerlink" title="调整幅度和相位"></a>调整幅度和相位</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220617154210815.png" srcset="/img/loading.gif" lazyload alt="image-20220617154210815" style="zoom:33%;" />
+
+<p>不能单独调整幅度或相位，二者之间存在一定的耦合</p>
+<h2 id="IRS反射优化"><a href="#IRS反射优化" class="headerlink" title="IRS反射优化"></a>IRS反射优化</h2><p>single-user single-input-single-output<br>$$<br>y&#x3D;\left(\boldsymbol{h}<em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{g}+h</em>{d}^{*}\right) \sqrt{P_{t}} x+z<br>$$<br>$P_t$ is the transmit power at the AP</p>
+<p>所以信噪比SNR表示为:<br>$$<br>\begin{aligned}<br>\gamma &amp;&#x3D;\frac{P_{t}\left|\boldsymbol{h}<em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{g}+h</em>{d}^{<em>}\right|^{2}}{\sigma^{2}} \<br>&amp;&#x3D;\frac{P_{t}\left|\sum_{n&#x3D;1}^{N} h_{r, n}^{</em>} \beta_{n} e^{\jmath \theta_{n}} g_{n}+h_{d}^{<em>}\right|^{2}}{\sigma^{2}}<br>\end{aligned}<br>$$<br>其achievable rate由$\log_2(1+\gamma)$给出。最大化achievable rate等效于最大化SNR，并且丢掉常数$P_t$和$\sigma^2$。<br>$$<br>\begin{aligned}<br>\max <em>{\boldsymbol{\theta}, \boldsymbol{\beta}} &amp;\left|\sum</em>{n&#x3D;1}^{N} h_{r, n}^{</em>} g_{n} \beta_{n} e^{\jmath \theta_{n}}+h_{d}^{*}\right|^{2} \<br>\text { s.t. } 0 &amp; \leq \theta_{n}&lt;2 \pi, \quad n&#x3D;1, \cdots, N \<br>0 &amp; \leq \beta_{n} \leq 1, \quad n&#x3D;1, \cdots, N<br>\end{aligned}\label{eqn:1}<br>$$<br>由于最终的目的，希望信号在接收端同相叠加，（而不是相消），所以<br>$$<br>\theta_{n}^{\star}&#x3D;\mod \left[\zeta-\left(\phi_{n}+\psi_{n}\right), 2 \pi\right], \quad n&#x3D;1, \cdots, N<br>$$<br>就只剩下了模值：<br>$$<br>\begin{aligned}<br>&amp;\max <em>{\boldsymbol{\beta}}\left|\sum</em>{n&#x3D;1}^{N}|h_{r, n}|| g_{n}\left|\beta_{n}+\right| h_{d}|\right|^{2} \<br>&amp;\text { s.t. } 0 \leq \beta_{n} \leq 1, \quad n&#x3D;1, \cdots, N .<br>\end{aligned}<br>$$<br>由复高斯和瑞利的关系，如果$\textbf{h}<em>r^H$和$\textbf{g}$服从CSCG，且功率为$\varrho_h^2$和$\varrho_g^2$，则接收端总功率：<br>$$<br>P</em>{r} \approx N^{2} \frac{P_{t} \pi^{2} \varrho_{h}^{2} \varrho_{g}^{2}}{16}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220619_1.jpg" srcset="/img/loading.gif" lazyload alt="20220619_1" style="zoom:33%;" /></p>
+<p>可以在不增加AP发射功率的前提下，增大$N$，就可以实现覆盖范围的增加。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>c0_dB = <span class="hljs-number">-30</span>;<br>c0 = <span class="hljs-number">10</span>^(c0_dB/<span class="hljs-number">10</span>);<br>Pt = <span class="hljs-number">50e-3</span>;<br>sigma_2_dBm = <span class="hljs-number">-90</span>;<br>sigma_2 =  <span class="hljs-number">10</span>^((sigma_2_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br>d0= <span class="hljs-number">50</span>;<br>d2 = <span class="hljs-number">5</span>;<br>pathloss_free_space_los = c0*d0^(<span class="hljs-number">-2</span>);<br>pathloss_free_space_los_2 = c0*d2^(<span class="hljs-number">-2</span>);<br><br>pathloss_Rician = c0*d0^(<span class="hljs-number">-2.4</span>);<br>pathloss_Rician_2 = c0*d2^(<span class="hljs-number">-2.4</span>);<br><br>varrho_h_2 = c0*d0^(<span class="hljs-number">-2.8</span>);<br>varrho_g_2 = c0*d2^(<span class="hljs-number">-2.8</span>);<br><br>phi = <span class="hljs-number">0</span>;<br>SNR_free_space = [];<br><span class="hljs-keyword">for</span> N=<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span><br>    Phi = -(<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:N<span class="hljs-number">-1</span>)*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">sin</span>(phi);<br>    h_los = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>.*Phi.&#x27;);<br><br>    h_free_space_1 = <span class="hljs-built_in">sqrt</span>(pathloss_free_space_los)*h_los;<br>    h_free_space_2 = <span class="hljs-built_in">sqrt</span>(pathloss_free_space_los_2)*h_los;<br>    S_free = Pt*<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(h_free_space_1).&#x27;*<span class="hljs-built_in">abs</span>(h_free_space_2))^<span class="hljs-number">2</span>;<br>    <br>    SNR_free_space = [SNR_free_space S_free/sigma_2];<br><span class="hljs-keyword">end</span><br><br>kappa = <span class="hljs-number">3</span>;<br>SNR_all = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,<span class="hljs-number">481</span>);<br>mtkl_a = <span class="hljs-number">1000</span>;<br><span class="hljs-keyword">for</span> mtkl=<span class="hljs-number">1</span>:mtkl_a<br>    <br>    SNR_Rician = [];<br>    <span class="hljs-keyword">for</span> N=<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span><br>        Phi = -(<span class="hljs-number">0</span>:<span class="hljs-number">1</span>:N<span class="hljs-number">-1</span>)*<span class="hljs-built_in">pi</span>*<span class="hljs-built_in">sin</span>(phi);<br>        h_los = <span class="hljs-built_in">exp</span>(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>.*Phi.&#x27;);<br>        h_Rician_1 = <span class="hljs-built_in">sqrt</span>(pathloss_Rician)*(<span class="hljs-built_in">sqrt</span>(kappa/(kappa+<span class="hljs-number">1</span>))*h_los+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/(kappa+<span class="hljs-number">1</span>))*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>)));<br>        h_Rician_2 = <span class="hljs-built_in">sqrt</span>(pathloss_Rician_2)*(<span class="hljs-built_in">sqrt</span>(kappa/(kappa+<span class="hljs-number">1</span>))*h_los+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/(kappa+<span class="hljs-number">1</span>))*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>)));<br><br>        S_R = Pt*<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(h_Rician_1).&#x27;*<span class="hljs-built_in">abs</span>(h_Rician_2))^<span class="hljs-number">2</span>;<br>        SNR_Rician = [SNR_Rician S_R/sigma_2]; <br>    <span class="hljs-keyword">end</span><br>    SNR_all = SNR_all + SNR_Rician;<br><span class="hljs-keyword">end</span><br>SNR_Rician = SNR_all/mtkl_a;<br><span class="hljs-comment">% 瑞利信道，就可以用文章中的结论Pr=N^2*Pt*pi^2*varrho_h^2*varrho_g^2/16</span><br>SNR_Rayleigh = [];<br><span class="hljs-keyword">for</span> N=<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span><br>    h = <span class="hljs-built_in">sqrt</span>(varrho_h_2)*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>));<br>    g = <span class="hljs-built_in">sqrt</span>(varrho_g_2)*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)*(<span class="hljs-built_in">randn</span>(N, <span class="hljs-number">1</span>)+<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*<span class="hljs-built_in">randn</span>(N,<span class="hljs-number">1</span>));<br>    S_Ray = N^<span class="hljs-number">2</span>*varrho_h_2*varrho_g_2*<span class="hljs-built_in">pi</span>^<span class="hljs-number">2</span>*Pt/<span class="hljs-number">16</span>;<br>    S_Ray2 = Pt*<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">abs</span>(h).&#x27;*<span class="hljs-built_in">abs</span>(g))^<span class="hljs-number">2</span>;<br><span class="hljs-comment">%     eta = S_Ray/S_Ray2</span><br>    SNR_Rayleigh = [SNR_Rayleigh S_Ray/sigma_2];<br><span class="hljs-keyword">end</span><br><br><br><span class="hljs-built_in">plot</span>(<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_free_space))<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_Rician))<br><span class="hljs-built_in">hold</span> on;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">20</span>:<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, <span class="hljs-built_in">log2</span>(<span class="hljs-number">1</span>+SNR_Rayleigh))<br><span class="hljs-built_in">hold</span> off;<br>grid on;<br></code></pre></td></tr></table></figure>
+
+<h2 id="MISO-System"><a href="#MISO-System" class="headerlink" title="MISO System"></a>MISO System</h2><p>发射机多天线，downlink是MISO Uplink是SIMO。</p>
+<p>则需要联合优化的问题是：<br>$$<br>\begin{aligned}<br>&amp;\max <em>{\boldsymbol{w}, \boldsymbol{\theta}}\left|\left(\boldsymbol{h}</em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{G}+\boldsymbol{h}<em>{d}^{H}\right) \boldsymbol{w}\right|^{2} \<br>&amp;\text { s.t. }|\boldsymbol{w}|^{2} \leq P</em>{t}, \<br>&amp;\quad 0 \leq \theta_{n}&lt;2 \pi, \quad n&#x3D;1, \cdots, N,<br>\end{aligned}<br>$$</p>
+<h3 id="AO-求解"><a href="#AO-求解" class="headerlink" title="AO 求解"></a>AO 求解</h3><p>这个问题是非凸的。可以通过固定其中一个参数：</p>
+<ul>
+<li>固定参数$\textbf{w}$，和式$\ref{eqn:1}$是相同的</li>
+<li>固定参数$\theta$，则最佳precoder可以由Maximum-ratio transmission （MRT）给出：</li>
+</ul>
+<p>$$<br>\boldsymbol{w}<em>{\mathrm{MRT}}&#x3D;\sqrt{P</em>{t}} \frac{\left(\boldsymbol{h}<em>{r}^{H} \Theta \boldsymbol{G}+\boldsymbol{h}</em>{d}^{H}\right)^{H}}{\left|\boldsymbol{h}<em>{r}^{H} \Theta \boldsymbol{G}+\boldsymbol{h}</em>{d}^{H}\right|}<br>$$</p>
+<p>重复交替求解（Alternating Optimization）</p>
+<h3 id="直接带入-textbf-w-MRT"><a href="#直接带入-textbf-w-MRT" class="headerlink" title="直接带入$\textbf{w}_{MRT}$"></a>直接带入$\textbf{w}_{MRT}$</h3><p>直接带入$\textbf{w}<em>{MRT}$就可以得到一个只有参数$\mathbf{\theta}$的表达式：<br>$$<br>\begin{aligned}<br>&amp;\max <em>{\boldsymbol{\theta}}\left|\boldsymbol{h}</em>{r}^{H} \boldsymbol{\Theta} \boldsymbol{G}+\boldsymbol{h}</em>{d}^{H}\right|^{2} \<br>&amp;\text { s.t. } 0 \leq \theta_{n} \leq 2 \pi, \quad n&#x3D;1, \cdots, N .<br>\end{aligned}<br>$$<br>是NP-hard的。可以用一些例如</p>
+<ul>
+<li>半松弛（SDR）+高斯随机化</li>
+<li>AO</li>
+</ul>
+<p>等来求解</p>
+<h3 id="AP-User距离影响"><a href="#AP-User距离影响" class="headerlink" title="AP-User距离影响"></a>AP-User距离影响</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619152753102.png" srcset="/img/loading.gif" lazyload alt="image-20220619152753102"></p>
+<ul>
+<li>AO：如4.1所示的AO求解</li>
+<li>AP-User MRT： $\boldsymbol{w}&#x3D;\sqrt{P_{t}} \frac{\boldsymbol{h}<em>{d}}{\left|\boldsymbol{h}</em>{d}\right|}$，等于说是部分Beamforming，只对直射信道进行Beamforming。可以看到，当d比较小，AP-User距离近，这个Beamformer效果很好，但是随着距离增加，AP-IRS-User的作用更大，所以效果随着d增大而于AO产生了差距。</li>
+<li>AP-IRS MRT：$\boldsymbol{w}&#x3D;\sqrt{P_{t}} \frac{g}{|\boldsymbol{g}|}$，和上面类似。当AP-User距离远，则等于AP-IRS进，AP-IRS信道贡献大，这个时候性能随着d增大逼近AO</li>
+<li>MRT without IRS： 只有AP-User MRT，没有IRS，所以性能一开始和AP-User MRT相似，然后随着d增大，性能变差。</li>
+</ul>
+<h3 id="TODO…"><a href="#TODO…" class="headerlink" title="TODO…"></a>TODO…</h3><h2 id="IRS-Channel-Estimation"><a href="#IRS-Channel-Estimation" class="headerlink" title="IRS Channel Estimation"></a>IRS Channel Estimation</h2><p>现在有两种可以能的信道估计方案：</p>
+<ul>
+<li>Semi-Passive IRS</li>
+<li>Passive IRS</li>
+</ul>
+<h3 id="Semi-Passive-iRS"><a href="#Semi-Passive-iRS" class="headerlink" title="Semi-Passive iRS"></a>Semi-Passive iRS</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619153914505.png" srcset="/img/loading.gif" lazyload alt="semi-passive IRS"></p>
+<p>用一些有源element做信道估计。问题在于这些element（sensing device）的信道和reflecting element的信道其实不一样，但是有一定关联性。由这些有关联性的信道估计其他的信道也是一个研究点<span class="label label-success">压缩感知、机器学习等</span></p>
+<h3 id="Passive-IRS"><a href="#Passive-IRS" class="headerlink" title="Passive IRS"></a>Passive IRS</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619154545950.png" srcset="/img/loading.gif" lazyload alt="Passive IRS"></p>
+<p> 估计级联信道。</p>
+<h2 id="IRS-Deployment"><a href="#IRS-Deployment" class="headerlink" title="IRS Deployment"></a>IRS Deployment</h2><p>IRS需要部署接近AP or User以减小path-loss</p>
+<h3 id="在链路层级讨论IRS部署"><a href="#在链路层级讨论IRS部署" class="headerlink" title="在链路层级讨论IRS部署"></a>在链路层级讨论IRS部署</h3><h4 id="Single-IRS"><a href="#Single-IRS" class="headerlink" title="Single IRS"></a>Single IRS</h4><p>只考虑AP-IRS-User路径：</p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619155443385.png" srcset="/img/loading.gif" lazyload alt="Single IRS"></p>
+<p>接收端的SNR可以表示为：<br>$$<br>\rho_{\mathrm{S}}&#x3D;\frac{P \beta_{0}^{2} N^{2}}{\left(d^{2}+H^{2}\right)\left((D-d)^{2}+H^{2}\right) \sigma^{2}}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220619160730564.png" srcset="/img/loading.gif" lazyload alt="Proof" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620103728273.png" srcset="/img/loading.gif" lazyload alt="image-20220620103728273"></p>
+<p>从结果看，IRS应该near user &#x2F; near AP</p>
+<h4 id="Multiple-Cooperative-IRSs"><a href="#Multiple-Cooperative-IRSs" class="headerlink" title="Multiple Cooperative IRSs"></a>Multiple Cooperative IRSs</h4><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620104345370.png" srcset="/img/loading.gif" lazyload alt="image-20220620104345370"></p>
+<p>一个IRS可以分为多个小尺寸的IRSs。IRS多，path-loss大，但是可以收到多IRS的被动波束形成增益。以如上图所示的placement，路径服从自由空间LoS，则接收端的SNR为：<br>$$<br>\rho_{\mathrm{D}}&#x3D;\frac{P \beta_{0}^{3} N^{4}}{16 H^{4} D^{2} \sigma^{2}}<br>$$<br>所以当满足：<br>$$<br>N&gt;\frac{4 H}{\sqrt{\beta_{0}}}<br>$$<br>时，这种Multiple cooperative IRSs效果更好。</p>
+<h3 id="在网络层级讨论IRS部署"><a href="#在网络层级讨论IRS部署" class="headerlink" title="在网络层级讨论IRS部署"></a>在网络层级讨论IRS部署</h3><p>分为两种：</p>
+<ul>
+<li>分布式</li>
+<li>集中式</li>
+</ul>
+<p>分布式就是多个IRS参与工作，但是每个用户只能收到距离其最近的部分elements的反射。</p>
+<p>集中式就是单个IRS，使AP的SNR最大化。</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220620105955701.png" srcset="/img/loading.gif" lazyload alt="cen vs dis" style="zoom:33%;" />
+
+<p>结论是集中式效果好，但是有时候分布式的布置更为灵活。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading/" class="category-chain-item">Paper Reading</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Paper-Reading/Intelligent-Reflecting-Surface/" class="category-chain-item">Intelligent Reflecting Surface</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/IRS/" class="print-no-link">#IRS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>IRS综述阅读（一）</div>
+      <div>https://lcjoffrey.top/2022/03/07/introductionofIRS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年6月24日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/11/IRSaidedSWIPT1/" title="IRS辅助SWIPT（一）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">IRS辅助SWIPT（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/01/introductionofOFDM/" title="知识储备-OFDM">
+                        <span class="hidden-mobile">知识储备-OFDM</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

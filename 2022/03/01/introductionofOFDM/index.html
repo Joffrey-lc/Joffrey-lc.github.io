@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="了解OFDM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识储备-OFDM">
+<meta property="og:url" content="https://lcjoffrey.top/2022/03/01/introductionofOFDM/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="了解OFDM">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301165741533.png">
+<meta property="article:published_time" content="2022-03-01T08:55:58.000Z">
+<meta property="article:modified_time" content="2025-03-27T08:00:52.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="OFDM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301165741533.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>知识储备-OFDM - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="知识储备-OFDM"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-01 16:55" pubdate>
+          2022年3月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">知识储备-OFDM</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-03-27T16:00:52+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="OFDM"><a href="#OFDM" class="headerlink" title="OFDM"></a>OFDM</h1><ul>
+<li>宽带系统： 发送信号通过<strong>多条有显著时间的路径</strong>到达接收端， 产生干扰（也就是著名的<strong>多径干扰</strong>）。</li>
+<li>窄带系统： 发送信号通过一条或多条没有时间差的路径到达接收端， 没有干扰（相当于简单的叠加）。</li>
+</ul>
+<p>可以简单认为，系统带宽为$B&#x3D;1&#x2F;T_B$，即系统带宽约等于码元周期的倒数；而发射的信号，由于多经，最大的延时时间为$\tau_{max}$，当$\tau_{max}&lt;T_B$时，即在第二个码元发射时，第一个码元已经完全接收，所以不会产生多径干扰和码间干扰，<span class="label label-primary">认为是窄带系统</span></p>
+<p><strong>为了提高传输速率，$1&#x2F;T_B$会增大</strong>，即会出现$\tau_{max}&gt;T_B$。当前数据还没接收完毕，那么当前数据的最后一条径和下一个数据的第一条径就会重叠，产生多径干扰和码间干扰。数据的一部分会加强，一部分会减弱，在频域内表现为频率选择性衰落，<span class="label label-primary">认为是宽带系统</span></p>
+<div class="note note-success">
+            <p><strong>对于相同的场景， 相同的时延， 传输带宽不同， 决定了系统到底有没有多径干扰</strong>。</p>
+          </div>
+
+
+
+<p>为了将宽带系统$\to$窄带系统，速率不公$\to$频分复用，所以推出OFDM调制</p>
+<h2 id="OFDM介绍-5"><a href="#OFDM介绍-5" class="headerlink" title="OFDM介绍[5]"></a>OFDM介绍<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuyulab.blog.csdn.net/article/details/109907244">[5]</span></a></sup></h2><p>是一种多载波的传输方法，将频带划分为多个子带（子信道）进行并行传输，将高速数据流分为多个并行的低速数据流，然后调制到每个信道的子载波上进行传输。</p>
+<ul>
+<li>各个子载波之间相互正交，以便接收端能够完全地分离各路信号。</li>
+<li>为了提高频谱利用率和增大传输速率，各路子载波的<strong>已调信号</strong>频谱有部分重叠。</li>
+<li>每路子载波的调制是多进制调制，而且每路子载波的调制制度可以不同。<strong>可以根据各个子载波处信道特性的优劣不同采用不同的体制。</strong></li>
+</ul>
+<div class="note note-success">
+            <p>主要优势：OFDM能很好地对抗频率选择性衰落和窄带干扰。在多载波系统中，每一时刻只会有少部分的子信道收到深衰落的影响。</p>
+          </div>
+
+<h2 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h2><h3 id="OFDM子带信号形式"><a href="#OFDM子带信号形式" class="headerlink" title="OFDM子带信号形式"></a>OFDM子带信号形式</h3><p>假设在一个OFDM系统中有$N$个子信道，每个子信道采用信号为：<br>$$<br>x_k(t)&#x3D;B_kcos(2\pi f_kt+\varphi_k)\quad\quad k&#x3D;0,1,\cdots,N-1<br>$$<br>式中：$B_k$为第$k$路子载波的振幅，它受基带码元的调制；$f_k$为第$k$路子载波的频率；$\varphi_k$为第$k$路子载波的初始相位，则在此系统中$N$路子信号之和可以表示为：<br>$$<br>\begin{align}<br>e(t)&#x3D;\sum\limits_{k&#x3D;1}^{N-1}x_k(t)&#x3D;\sum\limits_{k&#x3D;1}^{N-1}B_kcos(2\pi f_kt+\varphi_k)<br>&#x3D;\sum\limits_{k&#x3D;1}^{N-1}\textbf{B}_ke^{j(2\pi f_kt+\varphi_k)}<br>\end{align}<br>$$<br>其中，$\textbf{B}_k$是一个复数，为第$k$路子信道中的复输入数据。</p>
+<h3 id="正交化"><a href="#正交化" class="headerlink" title="正交化"></a>正交化</h3><p>为了使这$N$路子信道信号在接收时能够完全分离，要求他们满足正交条件。在<strong>码元持续时间</strong>$T_B$内任意两个子载波都正交：<br>$$<br>\int^{T_B}_0\cos(2\pi f_kt+\varphi_k)\cos(2\pi f_it+\varphi_i)&#x3D;0<br>$$<br>具体推导见书本<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="P243-P244 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.">[1]</span></a></sup>。</p>
+<p>结果是要求子载频满足<br>$$<br>f_k&#x3D;k&#x2F;2T_B<br>$$<br>且要求子载频间隔：<br>$$<br>\Delta f&#x3D;f_k-f_i&#x3D;n&#x2F;T_B<br>$$<br>即最小子载频间隔为：<br>$$<br>\Delta f_{min}&#x3D;1&#x2F;T_B<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301162046926.png" srcset="/img/loading.gif" lazyload alt="多路子载波频谱的模" style="zoom: 33%;" /></p>
+<p>看起来各路子载波的频谱重叠，但是实际上在<strong>一个码元持续时间内它们是正交的</strong>。所以可以用此正交特性将各路子载波分离开。</p>
+<p>采用不同的调制方式，<strong>仅幅度和相位有变化</strong>，不破坏其正交性。</p>
+<p>其总带宽为：<br>$$<br>B_{OFDM}&#x3D;\frac{N+1}{T_B}(Hz)<br>$$<br>为什么是$(N+1)$而不是$N$？？</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163409959.png" srcset="/img/loading.gif" lazyload alt="MQAM的OFDM实现" style="zoom:33%;" />
+
+<p>以MQAM为例。<strong>由于OFDM信号表示式的形式如同逆离散傅里叶变换式(IDFT)</strong>，所以可以用计算IDFT和DFT的方式进行OFDM的调制和解调<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="P245-P245 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.">[2]</span></a></sup>。还可以参考blog<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuyulab.blog.csdn.net/article/details/111075990">[6]</span></a></sup></p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163850059.png" srcset="/img/loading.gif" lazyload alt="OFDM数字化处理框图-发射端" style="zoom:33%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301163929060.png" srcset="/img/loading.gif" lazyload alt="OFDM数字化处理框图-接收端" style="zoom:33%;" />
+
+<p>详细推导及实现结构可以参考资料<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuanlan.zhihu.com/p/30538458">[4]</span></a></sup>，简而言之就是$N$路用$N$个正交子载波进行调制，最后在时域相加，则有：<br>$$<br>s(t)&#x3D;\sum\limits_{n&#x3D;0}^{N-1}s_ie^{j2\pi f_it}<br>$$<br>这不和离散傅立叶变换差不多嘛。</p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><p>由于多径效应，可能会产生干扰（信号经过不同的信道，所带来的延时不同）</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220301164040842.png" srcset="/img/loading.gif" lazyload alt="多径干扰的示意图" style="zoom:33%;" />
+
+<p>引入<strong>保护间隔</strong>：</p>
+<ul>
+<li>补零</li>
+<li>插入循环前缀（cp）或循环后缀（cs）</li>
+</ul>
+<p>一般采用循环前缀，即将OFDM的后部的采样复制到前面，长度为$T_{cp}$，故每个符号的长度为$T_{sym}&#x3D;T_{B}+T_{cp}$且$T_{cp}$大于等于多径时延。</p>
+<h2 id="符号之间的关系-3"><a href="#符号之间的关系-3" class="headerlink" title="符号之间的关系[3]"></a>符号之间的关系<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="https://zhuanlan.zhihu.com/p/57967971">[3]</span></a></sup></h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$T_B$</td>
+<td align="center">有效数据部分时间</td>
+</tr>
+<tr>
+<td align="center">$T_{cp}$</td>
+<td align="center">循环前缀长度</td>
+</tr>
+<tr>
+<td align="center">$T_{sym}$</td>
+<td align="center">OFDM符号长度，$T_s&#x3D;T_B+T_{cp}$</td>
+</tr>
+<tr>
+<td align="center">$N$</td>
+<td align="center">子载波数</td>
+</tr>
+<tr>
+<td align="center">$\Delta f$</td>
+<td align="center">子载波间隔，$\Delta f&#x3D;\frac{1}{T_B}$</td>
+</tr>
+<tr>
+<td align="center">$B$</td>
+<td align="center">带宽，$B&#x3D;(N+1)\Delta f$</td>
+</tr>
+<tr>
+<td align="center">$T_{sample}$</td>
+<td align="center">采样时间间隔，$T_{sample}&#x3D;\frac{1}{B}&#x3D;\frac{T_B}{N+1}$</td>
+</tr>
+<tr>
+<td align="center">$F_s$</td>
+<td align="center">采样频率，$F_s&#x3D;\frac{1}{T_{sample}}&#x3D;\frac{N+1}{T_B}$</td>
+</tr>
+</tbody></table>
+<h2 id="OFDM的特性补充"><a href="#OFDM的特性补充" class="headerlink" title="OFDM的特性补充"></a>OFDM的特性补充</h2><ul>
+<li>抗频率选择性衰落信道：由于串转并，将高码率的数据流转换为低码率的，使得每个子载波等价于窄带系统。从而对于每个子载波而言（调制和解调都可以认为是在子载波上的操作），频率选择性衰落影响不大（在窄带面前都可以认为是频率衰落平坦的），从而说明了OFDM的抗频率选择性衰落。</li>
+</ul>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401231635282.png" srcset="/img/loading.gif" lazyload alt="image-20240123163514071" style="zoom: 25%;" />
+
+<ul>
+<li>Others todo…</li>
+</ul>
+<h2 id="20240118-update"><a href="#20240118-update" class="headerlink" title="20240118 update"></a>20240118 update</h2><p>Diagram of legacy OFDM PHY</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649041.png" srcset="/img/loading.gif" lazyload alt="image-20240118153805786" style="zoom:33%;" />
+
+<p>Exemplary OFDM coherence slot and time-domain waveform</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202401181649047.png" srcset="/img/loading.gif" lazyload alt="image-20240118153824808" style="zoom:33%;" />
+
+<p>An OFDM symbol contains $N&#x3D;32$ subcarriers, and $G&#x3D;10$ DC guard band and edge guard band among the subcarriers. </p>
+<p>A subcarrier in an OFDM symbol (the yellow column) is refereed to as a resource element (RE). And a coherence slot contains $F&#x3D;8$ OFDM symbols, with $P&#x3D;7\times 8&#x3D;56$ pilot REs and $D&#x3D;16\times8&#x3D;128$ data REs, respectively. </p>
+<p>The length of a time-domain full OFDM symbol is $S&#x3D;N+N_{CP}$​.</p>
+<h2 id="20250327-Update"><a href="#20250327-Update" class="headerlink" title="20250327 Update"></a>20250327 Update</h2><h3 id="OFDM的格式"><a href="#OFDM的格式" class="headerlink" title="OFDM的格式"></a>OFDM的格式</h3><p>OFDM调制完后，是按一个完整OFDM的纬度去<span class="label label-primary">并转串</span>的。</p>
+<h3 id="OFDM的正交性"><a href="#OFDM的正交性" class="headerlink" title="OFDM的正交性"></a>OFDM的正交性</h3><p>OFDM一直给我了一个误区，就是正交性似乎是成型滤波&#x2F;FFT这些带来的。但是实际上，是由于发射基带信号是一个矩形波，在频域上是sinc函数，所以有周期性的零点。参考[<a target="_blank" rel="noopener" href="https://blog.csdn.net/madongchunqiu/article/details/18614233]">https://blog.csdn.net/madongchunqiu/article/details/18614233]</a></p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554176.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:33%;" />
+
+<p>再来一个：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271554386.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:33%;" />
+
+<p>叠在一起后是：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202503271556087.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:33%;" />
+
+<p>可以观察到本身就存在零点。然后，成型滤波可以加强这个零点（因为可能存在非完美矩形波形，导致子载波泄露，可以参考<a href="https://lcjoffrey.top/2025/03/27/recuPulseandtrapezoidPulse/%EF%BC%89">https://lcjoffrey.top/2025/03/27/recuPulseandtrapezoidPulse/）</a></p>
+<p>然后，通过上采样，成型滤波，将带宽限。构成OFDM。</p>
+<p>但是在实际工程中，还需要在时域加窗，可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/a2145565/article/details/139580022">https://blog.csdn.net/a2145565/article/details/139580022</a></p>
+<h1 id="OFDM-IM-OFDM-with-Index-Modulation"><a href="#OFDM-IM-OFDM-with-Index-Modulation" class="headerlink" title="OFDM-IM ( OFDM with Index Modulation)"></a>OFDM-IM ( OFDM with Index Modulation)</h1><p>OFDM-IM, OFDM with Index Modulation</p>
+<p>OFDM-IM技术的核心思想是子载波在发送端被分成两部分，一部分子载波是激活的，称为有效子载波。&#x3D;&#x3D;这部分载波来传输星座点&#x3D;&#x3D;，而另一部分并不传输信号，&#x3D;&#x3D;将载波的非激活和激活的状态信息作为额外信息进行传输&#x3D;&#x3D;</p>
+<p>OFDM-IM系统在整体的信号处理过程与OFDM系统基本一致。而两者的主要区别主要为：在OFDM系统中，所有的子载波都用来传输调制好的信号，所有比特信息都承载在载波所发送的信号上。但在加入了索引思想之后，OFDM-IM系统在发送端会先将所有的子载波分为若干个块，而所需传输的比特信息也相应的被分成了相同数量的分组，并且每个分组中比特又被划分为了两部分：索引比特和调制比特。其中，索引比特的部分是用来确定有效载波在子块中的位置信息，调制比特是用来生成调制符号并通过有效子载波进行发送。 </p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949667.png" srcset="/img/loading.gif" lazyload alt="image-20240418183904747" style="zoom: 50%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949629.png" srcset="/img/loading.gif" lazyload alt="image-20240418183935551" style="zoom:50%;" />
+
+<p>当$\eta\neq\mathbf{I}<em>\beta$时，$x</em>\beta(\eta)&#x3D;0$，等于是在该子载波上静默。</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949847.png" srcset="/img/loading.gif" lazyload alt="image-20240418184214775" style="zoom:50%;" />
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949877.png" srcset="/img/loading.gif" lazyload alt="image-20240418184226034" style="zoom:50%;" />
+
+<p>传输信息量由两部分组成。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>P243-P244 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>P245-P245 樊昌信, and 曹丽娜. 通信原理.第7版. 国防工业出版社, 2012.
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57967971">https://zhuanlan.zhihu.com/p/57967971</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30538458">https://zhuanlan.zhihu.com/p/30538458</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:5" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuyulab.blog.csdn.net/article/details/109907244">https://zhuyulab.blog.csdn.net/article/details/109907244</a>
+<a href="#fnref:5" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:6" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuyulab.blog.csdn.net/article/details/111075990">https://zhuyulab.blog.csdn.net/article/details/111075990</a>
+<a href="#fnref:6" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/basic-knowledge/" class="category-chain-item">basic knowledge</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OFDM/" class="print-no-link">#OFDM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>知识储备-OFDM</div>
+      <div>https://lcjoffrey.top/2022/03/01/introductionofOFDM/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月1日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年3月27日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/07/introductionofIRS/" title="IRS综述阅读（一）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">IRS综述阅读（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/01/spatialmodulation/" title="知识储备-空间调制">
+                        <span class="hidden-mobile">知识储备-空间调制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

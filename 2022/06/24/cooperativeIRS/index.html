@@ -1,0 +1,932 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Yitao Han et.al-Cooperative Double-IRS Aided Communication——Beamforming Design and Power Scaling.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="合作IRS-一个IRS拆分为两个">
+<meta property="og:url" content="https://lcjoffrey.top/2022/06/24/cooperativeIRS/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="Yitao Han et.al-Cooperative Double-IRS Aided Communication——Beamforming Design and Power Scaling.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png">
+<meta property="article:published_time" content="2022-06-24T04:53:19.000Z">
+<meta property="article:modified_time" content="2022-06-24T04:57:13.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="IRS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>合作IRS-一个IRS拆分为两个 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="合作IRS-一个IRS拆分为两个"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-24 12:53" pubdate>
+          2022年6月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          817 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">合作IRS-一个IRS拆分为两个</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-06-24T12:57:13+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>Cooperative Double-IRS Aided Communication: Beamforming Design and Power Scaling</strong>.  <em>Yitao Han</em> et.al.  <strong>IEEE Wireless Communications Letters, Aug.  2020</strong>  (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9060923">pdf</a>)  (Citations <strong>37</strong>)</p>
+<h2 id="Quick-Overview"><a href="#Quick-Overview" class="headerlink" title="Quick Overview"></a>Quick Overview</h2><span class="label label-success">BS单天线、USER单天线</span>
+
+<span class="label label-warning">对IRS每一个element单元进行建模</span>
+
+<p>作者讨论了将一个拥有$K$个elements的IRS分解为两个分别拥有$K_1$和$K_2$(且$K_1+K_2&#x3D;K$)的IRS1和IRS2</p>
+<ul>
+<li><p>当$K$足够大的时候，分割为两个IRS性能比一个IRS(有$K$个elements)要好。是因为其虽然受到了一共三段path-loss（BS-IRS1 IRS1-IRS2 IRS2-USER）但是其性能随$K^4$增长</p>
+</li>
+<li><p>为了简化IRS1-IRS2的channel，作者利用了IRS1-IRS2 channel 的rank-one性质，即IRS1如果对准IRS2中任意一个element，则IRS2中其他elements收到相同增益。</p>
+</li>
+</ul>
+<h2 id="Main-work"><a href="#Main-work" class="headerlink" title="Main work"></a>Main work</h2><h3 id="System-model"><a href="#System-model" class="headerlink" title="System model"></a>System model</h3><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623133719071.png" srcset="/img/loading.gif" lazyload alt="system model" style="zoom: 80%;" />
+
+<p>假设上图所示的模型。则有$\mathbf{t}\in\mathbb{C}^{K_1\times1}$,$\mathbf{S}\in\mathbb{C}^{K_1\times K_2}$,$\mathbf{r}^T\in\mathbb{C}^{1\times K_2}$，两个IRS的反射系数为$\Phi_1$和$\Phi_2$，则信道为：<br>$$<br>h&#x3D;\mathbf{r}^T\Phi_2\mathbf{S}\Phi_1\mathbf{t}<br>$$</p>
+<div class="note note-warning">
+            <p>作者引入了三维坐标系，对每个IRS element进行位置建模</p>
+          </div>
+
+<p>将上述三个信道建模为LoS，有：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134524678.png" srcset="/img/loading.gif" lazyload alt="image-20220623134524678" style="zoom: 80%;" />
+
+<p>然后利用$\mathbf{S}$的Rank-one性质，简化$\mathbf{S}$为：</p>
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623134629042.png" srcset="/img/loading.gif" lazyload alt="image-20220623134629042" style="zoom:80%;" />
+
+<div class="note note-success">
+            <p>这意味着只要知道位置信息，就可以对IRS1-IRS2的channel进行建模</p>
+          </div>
+
+<h3 id="Design-of-Joint-Passive-Beamforming"><a href="#Design-of-Joint-Passive-Beamforming" class="headerlink" title="Design of Joint Passive Beamforming"></a>Design of Joint Passive Beamforming</h3><p>取$\Phi_1$的元素$\phi_{1,k_1}$为：</p>
+<p>$$<br>\phi_{1, k_{1}}&#x3D;\left(\frac{\left(\mathbf{g}<em>{1}\right)</em>{k_{1}}(\mathbf{t})<em>{k</em>{1}}}{\left|(\mathbf{t})<em>{k</em>{1}}\right|}\right)^{*}, \quad k_{1} \in \mathcal{K}_{1}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623140628698.png" srcset="/img/loading.gif" lazyload alt="image-20220623140628698" style="zoom: 33%;" /></p>
+<p>对于$\Phi_2$中的元素$\phi_{2,k_2}$同理。</p>
+<p>此时的接收端：<br>$$<br>|h|^{2}&#x3D;\left|\mathbf{r}^{T} \mathbf{\Phi}<em>{2} \mathbf{S} \boldsymbol{\Phi}</em>{1} \mathbf{t}\right|^{2} \approx \frac{\alpha^{3}}{\left(d_{\mathbf{r}} d_{\mathbf{S}} d_{\mathbf{t}}\right)^{2}}\left(K_{1} K_{2}\right)^{2}<br>$$<br><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20220623141955322.png" srcset="/img/loading.gif" lazyload alt="image-20220623141955322" style="zoom: 33%;" /></p>
+<h2 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h2><p>我只仿真了2.2节中推导的近似表达式的结果，因为实际的结果需要对每个IRS element建模，有点复杂，而且不知道作者怎么将IRS elements进行排布的。所以这里就没有仿真。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc;clear;close all;<br>u1 = [<span class="hljs-number">0.87</span>, <span class="hljs-number">0.50</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% location of BS</span><br>u2 = [<span class="hljs-number">13</span>, <span class="hljs-number">92.50</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% location of USER</span><br>v1 = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% element(0, 0) on IRS1</span><br>v2 = [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>]; <span class="hljs-comment">% element(0, 0) on IRS2</span><br>dt = caculate_dis_3d(u1, v1); <span class="hljs-comment">% distance between BS and IRS1</span><br>ds = caculate_dis_3d(v1, v2); <span class="hljs-comment">% distance between IRS1 and IRS2</span><br>dr = caculate_dis_3d(v2, u2); <span class="hljs-comment">% distance between IRS2 and USER</span><br>n1a = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>];<br>n1b = [<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>)/<span class="hljs-number">2</span>, <span class="hljs-number">-1</span>/<span class="hljs-number">2</span>, <span class="hljs-number">0</span>];<br><br><span class="hljs-comment">% proof that IRS 1 faces towards the BS</span><br>n1a*u1.&#x27;<br>n1b*u1.&#x27; <span class="hljs-comment">% 垂直于n1a</span><br><br>n2a = [<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>)/<span class="hljs-number">2</span>, <span class="hljs-number">1</span>/<span class="hljs-number">2</span>, <span class="hljs-number">0</span>];<br>n2b = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>];<br><br>f = <span class="hljs-number">5e9</span>;<br>lambda = <span class="hljs-number">3e8</span>/f;<br><br>alpha_dB = <span class="hljs-number">-46</span>;<span class="hljs-comment">% reference_path_loss_dB</span><br>alpha = <span class="hljs-number">10</span>^(alpha_dB/<span class="hljs-number">10</span>);<br>l = lambda/<span class="hljs-number">2</span>;<br>Pt_dBm = <span class="hljs-number">43</span>;<br>Pt = <span class="hljs-number">10</span>^((Pt_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>); <span class="hljs-comment">% W</span><br>sigma_dBm = <span class="hljs-number">-60</span>;<br>sigma = <span class="hljs-number">10</span>^((sigma_dBm<span class="hljs-number">-30</span>)/<span class="hljs-number">10</span>);<br><br>K = <span class="hljs-number">1600</span>;<br><br>SNR_coop = [];<br><span class="hljs-keyword">for</span> K1 = <span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">1530</span><br>    SNR_coop = [SNR_coop Pt*alpha^<span class="hljs-number">3</span>/(ds*dr*dt)^<span class="hljs-number">2</span>*K1^<span class="hljs-number">2</span>*(K-K1)^<span class="hljs-number">2</span>/sigma];<br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">1530</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_coop))<br>ylim([<span class="hljs-number">-8</span> <span class="hljs-number">18</span>])<br><span class="hljs-built_in">hold</span> on;<br><br>SNR_single =  Pt*alpha^<span class="hljs-number">2</span>/(dr*ds)^<span class="hljs-number">2</span>*K^<span class="hljs-number">2</span>/sigma;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">1530</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_single)*<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">length</span>(SNR_coop)), <span class="hljs-string">&#x27;r--&#x27;</span>);<br><span class="hljs-built_in">hold</span> on;<br><br><br>K = <span class="hljs-number">800</span>;<br><br>SNR_coop_2 = [];<br><span class="hljs-keyword">for</span> K1 = <span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">800</span><span class="hljs-number">-70</span><br>    SNR_coop_2 = [SNR_coop_2 Pt*alpha^<span class="hljs-number">3</span>/(ds*dr*dt)^<span class="hljs-number">2</span>*K1^<span class="hljs-number">2</span>*(K-K1)^<span class="hljs-number">2</span>/sigma];<br><span class="hljs-keyword">end</span><br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">800</span><span class="hljs-number">-70</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_coop_2))<br>ylim([<span class="hljs-number">-8</span> <span class="hljs-number">18</span>])<br><span class="hljs-built_in">hold</span> on;<br><br>SNR_single_2 =  Pt*alpha^<span class="hljs-number">2</span>/(dr*ds)^<span class="hljs-number">2</span>*K^<span class="hljs-number">2</span>/sigma;<br><span class="hljs-built_in">plot</span>(<span class="hljs-number">70</span>:<span class="hljs-number">10</span>:<span class="hljs-number">800</span><span class="hljs-number">-70</span>, <span class="hljs-number">10</span>*<span class="hljs-built_in">log10</span>(SNR_single_2)*<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">length</span>(SNR_coop_2)), <span class="hljs-string">&#x27;r--&#x27;</span>);<br><span class="hljs-built_in">hold</span> off;<br>grid on;<br></code></pre></td></tr></table></figure>
+
+<p>需要用到一个function：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dis</span> = <span class="hljs-title">caculate_dis_3d</span><span class="hljs-params">(loc1, loc2)</span></span><br>    dis = <span class="hljs-built_in">sqrt</span>((loc1(<span class="hljs-number">1</span>)-loc2(<span class="hljs-number">1</span>))^<span class="hljs-number">2</span>+(loc1(<span class="hljs-number">2</span>)-loc2(<span class="hljs-number">2</span>))^<span class="hljs-number">2</span>+(loc1(<span class="hljs-number">3</span>)-loc2(<span class="hljs-number">3</span>))^<span class="hljs-number">2</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20220623_1.jpg" srcset="/img/loading.gif" lazyload alt="20220623_1" style="zoom: 67%;" />
+
+<div class="note note-warning">
+            <p>结果和作者文中的结果有一定的出入，但是在相对的增益上是相同的：</p><ul><li>800 elements 和1600 elements 的benchmark case之间差约6dB</li><li>800 elements 和1600 elements 的two IRS cooperation case之间差约12dB</li></ul><p>说明仿真问题应该是在某些稀疏上进行了整体的缩放。</p>
+          </div>
+
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><ul>
+<li>作者提出这个模型，前提条件是inner IRS信道是rank-one的。这个rank-one到底决定了$\textbf{S}$推导的哪一步？</li>
+</ul>
+<p>if IRS 1 beams towards one element on IRS 2, the rest elements on IRS 2 can enjoy the same power gain</p>
+<ul>
+<li>这种对每一个element建模的方法是否是主流？有没有必要？</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading/" class="category-chain-item">Paper Reading</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Paper-Reading/Intelligent-Reflecting-Surface/" class="category-chain-item">Intelligent Reflecting Surface</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/IRS/" class="print-no-link">#IRS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>合作IRS-一个IRS拆分为两个</div>
+      <div>https://lcjoffrey.top/2022/06/24/cooperativeIRS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月24日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年6月24日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/11/convexofmultiBS/" title="多个WET Stations情况下非线性EHmodel的凸性">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多个WET Stations情况下非线性EHmodel的凸性</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/13/activeIRS-1/" title="Active IRS versus Passive IRS">
+                        <span class="hidden-mobile">Active IRS versus Passive IRS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

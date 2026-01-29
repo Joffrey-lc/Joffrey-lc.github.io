@@ -1,0 +1,928 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="python工具箱，持续更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python工具箱">
+<meta property="og:url" content="https://lcjoffrey.top/2021/12/04/pythonutils/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="python工具箱，持续更新">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204140733338.png">
+<meta property="article:published_time" content="2021-12-04T06:04:37.000Z">
+<meta property="article:modified_time" content="2022-06-28T07:20:09.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="utils">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204140733338.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>python工具箱 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="python工具箱"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-04 14:04" pubdate>
+          2021年12月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">python工具箱</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-06-28T15:20:09+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="记录常用的一些工具代码"><a href="#记录常用的一些工具代码" class="headerlink" title="记录常用的一些工具代码"></a>记录常用的一些工具代码</h1><h2 id="遍历某文件夹下的所有文件路径（递归）"><a href="#遍历某文件夹下的所有文件路径（递归）" class="headerlink" title="遍历某文件夹下的所有文件路径（递归）"></a>遍历某文件夹下的所有文件路径（递归）</h2><p>可以用来对某个数据集进行批量处理。这里只返回所有文件的路径， 并存储到一个list.txt文件中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_file_path</span>(<span class="hljs-params">path, txt: <span class="hljs-built_in">list</span></span>):<br>    dir_path = os.listdir(path)<br>    <span class="hljs-keyword">for</span> dp <span class="hljs-keyword">in</span> dir_path:<br>        <span class="hljs-keyword">if</span> os.path.isdir(os.path.join(path, dp)):<br>            get_file_path(os.path.join(path, dp), txt)<br>        <span class="hljs-keyword">else</span>:<br>            txt.append(os.path.join(path, dp))<br></code></pre></td></tr></table></figure>
+
+<h2 id="np-savez保存后的读取"><a href="#np-savez保存后的读取" class="headerlink" title="np.savez保存后的读取"></a>np.savez保存后的读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">val_set_all = <span class="hljs-built_in">dict</span>(np.load(<span class="hljs-string">&#x27;savemodel/fine_tune_test_set.npz&#x27;</span>, allow_pickle=<span class="hljs-literal">True</span>))<br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> val_set_all.keys():<br>    val_set_all[name] = val_set_all[name][()]<br></code></pre></td></tr></table></figure>
+
+<h2 id="JS散度"><a href="#JS散度" class="headerlink" title="JS散度"></a>JS散度</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">loss_js</span>(<span class="hljs-params">p_output, q_output, get_softmax=<span class="hljs-literal">True</span></span>):<br>    KLDivLoss = nn.KLDivLoss(reduction=<span class="hljs-string">&#x27;batchmean&#x27;</span>)<br>    <span class="hljs-keyword">if</span> get_softmax:<br>        p_output = F.softmax(p_output, dim=<span class="hljs-number">1</span>)<br>        q_output = F.softmax(q_output, dim=<span class="hljs-number">1</span>)<br>    mean_output = (p_output + q_output)/<span class="hljs-number">2</span><br>    <span class="hljs-keyword">return</span> (KLDivLoss(p_output.log(), mean_output) + KLDivLoss(q_output.log(), mean_output))/<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<h2 id="pytorch-设置随机种子"><a href="#pytorch-设置随机种子" class="headerlink" title="pytorch 设置随机种子"></a>pytorch 设置随机种子</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">seed_torch</span>(<span class="hljs-params">seed=<span class="hljs-number">1029</span></span>):<br>    random.seed(seed)<br>    os.environ[<span class="hljs-string">&#x27;PYTHONHASHSEED&#x27;</span>] = <span class="hljs-built_in">str</span>(seed) <span class="hljs-comment"># 为了禁止hash随机化，使得实验可复现</span><br>    np.random.seed(seed)<br>    torch.manual_seed(seed)<br>    torch.cuda.manual_seed(seed)<br>    torch.cuda.manual_seed_all(seed)  <span class="hljs-comment"># if you are using multi-GPU.</span><br>    torch.backends.cudnn.benchmark = <span class="hljs-literal">False</span><br>    torch.backends.cudnn.deterministic = <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+<h2 id="Pytorch梯度裁剪"><a href="#Pytorch梯度裁剪" class="headerlink" title="Pytorch梯度裁剪"></a>Pytorch梯度裁剪</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">loss.backward()<br>nn.utils.clip_grad_norm_(net1.parameters(), max_norm=<span class="hljs-number">20</span>, norm_type=<span class="hljs-number">2</span>)<br>nn.utils.clip_grad_norm_(net2.parameters(), max_norm=<span class="hljs-number">20</span>, norm_type=<span class="hljs-number">2</span>)<br>optimizer.step()<br></code></pre></td></tr></table></figure>
+<h2 id="matplotlib写中文"><a href="#matplotlib写中文" class="headerlink" title="matplotlib写中文"></a>matplotlib写中文</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]<br>plt.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span> <br></code></pre></td></tr></table></figure>
+<h2 id="多个list按其中一个排序，其余的跟着变"><a href="#多个list按其中一个排序，其余的跟着变" class="headerlink" title="多个list按其中一个排序，其余的跟着变"></a>多个list按其中一个排序，其余的跟着变</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">u_idx = [<span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br>label = [<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]<br><span class="hljs-built_in">print</span>([<span class="hljs-built_in">list</span>(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(*<span class="hljs-built_in">sorted</span>(<span class="hljs-built_in">zip</span>(u_idx, label), key=<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">0</span>]))][<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+
+<h2 id="绘制混淆矩阵"><a href="#绘制混淆矩阵" class="headerlink" title="绘制混淆矩阵"></a>绘制混淆矩阵</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> confusion_matrix<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">plot_confusion_matrix</span>(<span class="hljs-params">cm, labels, title=<span class="hljs-string">&#x27;Confusion Matrix&#x27;</span>, cmap=plt.cm.Blues</span>):<br>    plt.imshow(cm, interpolation=<span class="hljs-string">&#x27;nearest&#x27;</span>, cmap=cmap)<br>    plt.title(title)<br>    plt.colorbar()<br>    xlocations = np.array(<span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(labels)))<br>    plt.xticks(xlocations, labels, rotation=<span class="hljs-number">90</span>)<br>    plt.yticks(xlocations, labels)<br>    plt.ylabel(<span class="hljs-string">&#x27;True label&#x27;</span>)<br>    plt.xlabel(<span class="hljs-string">&#x27;Predicted label&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">showmatrix</span>(<span class="hljs-params">y_true, y_pred, labels, titlename</span>):<br>    tick_marks = np.array(<span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(labels))) + <span class="hljs-number">0.5</span><br>    plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]<br>    plt.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span><br>    cm = confusion_matrix(y_true, y_pred)<br>    np.set_printoptions(precision=<span class="hljs-number">2</span>)<br>    cm_normalized = cm.astype(<span class="hljs-string">&#x27;float&#x27;</span>) / cm.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>)[:, np.newaxis]<br>    <span class="hljs-comment"># 混淆矩阵</span><br>    <span class="hljs-built_in">print</span>(cm_normalized)<br>    dd = np.zeros(<span class="hljs-built_in">len</span>(cm_normalized))<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(dd)):<br>        dd[i] = cm_normalized[i, i]<br>    <span class="hljs-built_in">print</span>(dd)<br>    max_c = cm_normalized.<span class="hljs-built_in">max</span>()<br>    min_c = cm_normalized.<span class="hljs-built_in">min</span>()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">sum</span>(dd)/<span class="hljs-built_in">len</span>(dd))<br>    np.save(<span class="hljs-string">&#x27;result/matrixdata.npy&#x27;</span>, dd)<br>    plt.figure(figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">8</span>), dpi=<span class="hljs-number">120</span>)<br>    ind_array = np.arange(<span class="hljs-built_in">len</span>(labels))<br>    x, y = np.meshgrid(ind_array, ind_array)<br>    <span class="hljs-keyword">for</span> x_val, y_val <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(x.flatten(), y.flatten()):<br>        c = cm_normalized[y_val][x_val]<br>        <span class="hljs-keyword">if</span> c &gt; <span class="hljs-number">0.01</span>:<br>            <span class="hljs-keyword">if</span> c &gt; <span class="hljs-number">0.5</span>*(max_c+min_c):<br>                plt.text(x_val, y_val, <span class="hljs-string">&quot;%0.2f&quot;</span> % (c,), color=<span class="hljs-string">&#x27;white&#x27;</span>, fontsize=<span class="hljs-number">10</span>, va=<span class="hljs-string">&#x27;center&#x27;</span>, ha=<span class="hljs-string">&#x27;center&#x27;</span>)<br>            <span class="hljs-keyword">else</span>:<br>                plt.text(x_val, y_val, <span class="hljs-string">&quot;%0.2f&quot;</span> % (c,), color=<span class="hljs-string">&#x27;black&#x27;</span>, fontsize=<span class="hljs-number">10</span>, va=<span class="hljs-string">&#x27;center&#x27;</span>, ha=<span class="hljs-string">&#x27;center&#x27;</span>)<br>    plt.gca().set_xticks(tick_marks, minor=<span class="hljs-literal">True</span>)<br>    plt.gca().set_yticks(tick_marks, minor=<span class="hljs-literal">True</span>)<br>    plt.gca().xaxis.set_ticks_position(<span class="hljs-string">&#x27;none&#x27;</span>)<br>    plt.gca().yaxis.set_ticks_position(<span class="hljs-string">&#x27;none&#x27;</span>)<br>    plt.grid(<span class="hljs-literal">True</span>, which=<span class="hljs-string">&#x27;minor&#x27;</span>, linestyle=<span class="hljs-string">&#x27;-&#x27;</span>)<br>    plt.gcf().subplots_adjust(bottom=<span class="hljs-number">0.15</span>)<br>    plot_confusion_matrix(cm=cm_normalized, title=titlename, labels=labels)<br>    plt.savefig(<span class="hljs-string">&#x27;result/confusionmatrix.svg&#x27;</span>, <span class="hljs-built_in">format</span>=<span class="hljs-string">&#x27;svg&#x27;</span>)<br>    plt.show()<br><br></code></pre></td></tr></table></figure>
+
+<p>然后在需要绘制的地方</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">showmatrix(val_label.cpu(), y_pred.cpu(), [<span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;2&#x27;</span>], <span class="hljs-string">&#x27;Confusion matrix&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="字典数据读取-分割数据集"><a href="#字典数据读取-分割数据集" class="headerlink" title="字典数据读取&#x2F;分割数据集"></a>字典数据读取&#x2F;分割数据集</h2><p>数据分割，可以根据输入的proportion维度自定义分割组数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">mysplit_n</span>(<span class="hljs-params">dataset: <span class="hljs-type">Dict</span>[<span class="hljs-built_in">str</span>, np.ndarray], proportion: <span class="hljs-type">Tuple</span>[<span class="hljs-built_in">int</span>, ...]</span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-type">Any</span>]:<br>    out_list = []<br>    <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(proportion)):<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(n)+<span class="hljs-string">&#x27; = &#123;&#125;&#x27;</span>)<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;index_&#x27;</span>+<span class="hljs-built_in">str</span>(n)+<span class="hljs-string">&#x27; = np.arange(sum(proportion[:n]), sum(proportion[:n+1]))&#x27;</span>)<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;out_list.append(dataset_&#x27;</span> + <span class="hljs-built_in">str</span>(n)+<span class="hljs-string">&#x27;)&#x27;</span>)<br>    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> dataset:<br>        <span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(proportion)):<br>            <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span> + <span class="hljs-built_in">str</span>(n) + <span class="hljs-string">&#x27;[name] = dataset[name][index_&#x27;</span>+<span class="hljs-built_in">str</span>(n)+<span class="hljs-string">&#x27;]&#x27;</span>)<br>    <span class="hljs-keyword">return</span> out_list<br></code></pre></td></tr></table></figure>
+
+<p>先读取数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">dataset = shuffle(<span class="hljs-built_in">dict</span>(np.load(<span class="hljs-string">f&#x27;./datasets/&#x27;</span>+<span class="hljs-string">&#x27;RML2016_&#x27;</span>+<span class="hljs-built_in">str</span>(args.SNR)+<span class="hljs-string">&#x27;dB_normalize_power.npz&#x27;</span>, allow_pickle=<span class="hljs-literal">True</span>)))<br></code></pre></td></tr></table></figure>
+
+<p>再对数据进行划分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">dataset = <span class="hljs-built_in">dict</span>(<span class="hljs-built_in">zip</span>([<span class="hljs-string">&#x27;training&#x27;</span>, <span class="hljs-string">&#x27;unlabeled&#x27;</span>, <span class="hljs-string">&#x27;valid&#x27;</span>, <span class="hljs-string">&#x27;test&#x27;</span>], mysplit_n(dataset,<br>                                                                         (args.num_labeled,<br>                                                                          args.num_unlabeled,<br>                                                                          args.num_valid,<br>                                                                          args.num_test<br>                                                                          ))))<br></code></pre></td></tr></table></figure>
+
+<p>取出分割的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">make</span>(<span class="hljs-params">dataset: <span class="hljs-type">Dict</span>[<span class="hljs-built_in">str</span>, np.ndarray]</span>) -&gt; <span class="hljs-type">Tuple</span>[np.ndarray, np.ndarray]:<br>    xs, ys = [], []<br>    nclass = <span class="hljs-built_in">len</span>(dataset.keys())<br>    <span class="hljs-keyword">for</span> k, name <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dataset):<br>        xs.append(dataset[name])<br>        label = np.zeros((<span class="hljs-built_in">len</span>(dataset[name]), nclass))<br>        label[:, k] = <span class="hljs-number">1.0</span><br>        ys.append(label)<br>    xs = np.vstack(xs)<br>    ys = np.vstack(ys)<br>    index = np.arange(<span class="hljs-built_in">len</span>(xs))<br>    np.random.shuffle(index)<br>    xs = xs[index]<br>    ys = ys[index]<br>    <span class="hljs-keyword">return</span> xs, ys<br><br>labeled_dataset, labeled_label = make(dataset[<span class="hljs-string">&#x27;training&#x27;</span>])<br>unlabeled_dataset, unlabeled_label = make(dataset[<span class="hljs-string">&#x27;unlabeled&#x27;</span>])<br>valid_dataset, valid_label = make(dataset[<span class="hljs-string">&#x27;valid&#x27;</span>])<br>test_dataset, test_label = make(dataset[<span class="hljs-string">&#x27;test&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<h2 id="指定返回值类型"><a href="#指定返回值类型" class="headerlink" title="指定返回值类型"></a>指定返回值类型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">List</span>, <span class="hljs-type">Tuple</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">a: <span class="hljs-built_in">int</span>, b: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-type">Tuple</span>[<span class="hljs-built_in">int</span>, <span class="hljs-built_in">str</span>]:<br>    <span class="hljs-built_in">print</span>(a, b)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1000</span>, <span class="hljs-string">&#x27;11&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="自动给文章建好文件夹并创建-md"><a href="#自动给文章建好文件夹并创建-md" class="headerlink" title="自动给文章建好文件夹并创建.md"></a>自动给文章建好文件夹并创建.md</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> glob<br><span class="hljs-keyword">import</span> shutil<br><span class="hljs-keyword">import</span> time<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mymkdirs</span>(<span class="hljs-params">path_dir</span>):<br>    <span class="hljs-keyword">if</span> os.path.exists(path_dir) <span class="hljs-keyword">is</span> <span class="hljs-literal">False</span>:<br>        os.makedirs(path_dir)<br>        <span class="hljs-built_in">print</span>(path_dir+<span class="hljs-string">&#x27;已创建&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mypaperspace</span>(<span class="hljs-params">path_paper</span>):<br>    shutil.move(src=path_paper + <span class="hljs-string">&#x27;.pdf&#x27;</span>, dst=os.path.join(path_paper, <span class="hljs-string">&#x27;paper.pdf&#x27;</span>))<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(path_paper + <span class="hljs-string">&#x27;\\notes.md&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>        f.write(<span class="hljs-string">&#x27;Date: &#x27;</span> + time.strftime(<span class="hljs-string">&#x27;%Y.%m.%d  %H:%M&#x27;</span>, time.localtime(time.time())))<br>        f.write(<span class="hljs-string">&#x27;\n&#x27;</span>)<br>        f.write(<span class="hljs-string">&#x27;Author: Joffrey LC&#x27;</span>)<br>        f.write(<span class="hljs-string">&#x27;\n&#x27;</span>)<br>        f.write(<span class="hljs-string">&#x27;\n------------------------------------------------&#x27;</span>)<br><br><br>cwd_path = <span class="hljs-string">&#x27;H:\学习\阅读\面向智能反射面数能系统的波形设计\\test&#x27;</span><br>mymkdirs(os.path.join(cwd_path, <span class="hljs-string">&#x27;文章备份&#x27;</span>))<br><span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> glob.glob(cwd_path+<span class="hljs-string">&#x27;/*.pdf&#x27;</span>):<br>    shutil.copy(src=os.path.join(cwd_path, filename), dst=os.path.join(cwd_path, <span class="hljs-string">&#x27;文章备份&#x27;</span>))<br>    path_dir = filename.split(<span class="hljs-string">&#x27;.pdf&#x27;</span>)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27;\\&#x27;</span>)[-<span class="hljs-number">1</span>]<br>    mymkdirs(os.path.join(cwd_path, path_dir))<br>    mypaperspace(os.path.join(cwd_path, path_dir))<br><br><span class="hljs-comment"># To do:</span><br><span class="hljs-comment"># shutil.move 移动文件名较长的文件时会发生错误，有时间的话尝试自己写一个移动文件的代码</span><br><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="python调制识别数据集读取"><a href="#python调制识别数据集读取" class="headerlink" title="python调制识别数据集读取"></a>python调制识别数据集读取</h2><h3 id="RML2016a"><a href="#RML2016a" class="headerlink" title="RML2016a"></a>RML2016a</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> pickle<br><br>dataset = pickle.load(<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;dataset/RML2016.10a_dict.pkl&quot;</span>, <span class="hljs-string">&quot;rb&quot;</span>), encoding=<span class="hljs-string">&#x27;bytes&#x27;</span>)<br>save_path = <span class="hljs-string">&#x27;dataset/split_dB_rml2016a&#x27;</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(save_path):<br>    os.mkdir(save_path)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;processing&#x27;</span>)<br><br>all_type: <span class="hljs-built_in">set</span> = <span class="hljs-built_in">set</span>()<br>all_snr: <span class="hljs-built_in">set</span> = <span class="hljs-built_in">set</span>()<br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> dataset.keys():<br>    type_name, snr = name[<span class="hljs-number">0</span>], name[<span class="hljs-number">1</span>]<br>    all_type.add(type_name)<br>    all_snr.add(snr)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;调制形式为：&#x27;</span>, all_type)<br>list_snr = <span class="hljs-built_in">list</span>(all_snr)<br>list_snr.sort()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;信噪比为：&#x27;</span>, list_snr)<br><br>total = <span class="hljs-built_in">len</span>(all_type)<br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> dataset.keys():<br>    type_name, snr = name[<span class="hljs-number">0</span>], name[<span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(snr) &lt; <span class="hljs-number">0</span>:<br>        snr = <span class="hljs-string">&#x27;b&#x27;</span>+<span class="hljs-built_in">str</span>(-snr)<br>    <span class="hljs-keyword">try</span>:<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB&#x27;</span>)<br>    <span class="hljs-keyword">except</span> NameError:<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB = &#123;&#125;&#x27;</span>)<br>    data = dataset[name]<br>    <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB[type_name] = dataset[name]&#x27;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;len(dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB) == total&#x27;</span>):<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(save_path+<span class="hljs-string">&#x27;/RML_2016_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB.pkl&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            pickle.dump(<span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB&#x27;</span>), f, pickle.HIGHEST_PROTOCOL)<br></code></pre></td></tr></table></figure>
+
+<h3 id="RML2016c"><a href="#RML2016c" class="headerlink" title="RML2016c"></a>RML2016c</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> pickle<br><br>dataset = pickle.load(<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;dataset/2016.04C.multisnr.pkl&quot;</span>, <span class="hljs-string">&quot;rb&quot;</span>), encoding=<span class="hljs-string">&#x27;bytes&#x27;</span>)<br>save_path = <span class="hljs-string">&#x27;dataset/split_dB_rml2016c&#x27;</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(save_path):<br>    os.mkdir(save_path)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;processing&#x27;</span>)<br><br>all_type: <span class="hljs-built_in">set</span> = <span class="hljs-built_in">set</span>()<br>all_snr: <span class="hljs-built_in">set</span> = <span class="hljs-built_in">set</span>()<br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> dataset.keys():<br>    type_name, snr = name[<span class="hljs-number">0</span>], name[<span class="hljs-number">1</span>]<br>    all_type.add(type_name)<br>    all_snr.add(snr)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;调制形式为：&#x27;</span>, all_type)<br>list_snr = <span class="hljs-built_in">list</span>(all_snr)<br>list_snr.sort()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;信噪比为：&#x27;</span>, list_snr)<br><br>total = <span class="hljs-built_in">len</span>(all_type)<br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> dataset.keys():<br>    type_name, snr = name[<span class="hljs-number">0</span>], name[<span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">int</span>(snr) &lt; <span class="hljs-number">0</span>:<br>        snr = <span class="hljs-string">&#x27;b&#x27;</span>+<span class="hljs-built_in">str</span>(-snr)<br>    <span class="hljs-keyword">try</span>:<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB&#x27;</span>)<br>    <span class="hljs-keyword">except</span> NameError:<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB = &#123;&#125;&#x27;</span>)<br>    data = dataset[name]<br>    <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB[type_name] = dataset[name]&#x27;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;len(dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB) == total&#x27;</span>):<br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(save_path+<span class="hljs-string">&#x27;/RML_2016_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB.pkl&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>            pickle.dump(<span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;dataset_&#x27;</span>+<span class="hljs-built_in">str</span>(snr)+<span class="hljs-string">&#x27;dB&#x27;</span>), f, pickle.HIGHEST_PROTOCOL)<br></code></pre></td></tr></table></figure>
+
+<h3 id="RML2018"><a href="#RML2018" class="headerlink" title="RML2018"></a>RML2018</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> h5py<br><span class="hljs-keyword">import</span> pickle <span class="hljs-keyword">as</span> pkl<br><span class="hljs-keyword">import</span> os<br><span class="hljs-comment"># file[&#x27;X&#x27;]是数据， file[&#x27;Y&#x27;]是one-hot 一类一类的  file[&#x27;Z&#x27;]是snr 一类的-20-30dB在一起</span><br><br>classes = [<span class="hljs-string">&#x27;OOK&#x27;</span>, <span class="hljs-string">&#x27;4ASK&#x27;</span>, <span class="hljs-string">&#x27;8ASK&#x27;</span>, <span class="hljs-string">&#x27;BPSK&#x27;</span>, <span class="hljs-string">&#x27;QPSK&#x27;</span>,<br><span class="hljs-string">&#x27;8PSK&#x27;</span>, <span class="hljs-string">&#x27;16PSK&#x27;</span>, <span class="hljs-string">&#x27;32PSK&#x27;</span>, <span class="hljs-string">&#x27;16APSK&#x27;</span>, <span class="hljs-string">&#x27;32APSK&#x27;</span>, <span class="hljs-string">&#x27;64APSK&#x27;</span>,<br><span class="hljs-string">&#x27;128APSK&#x27;</span>, <span class="hljs-string">&#x27;16QAM&#x27;</span>, <span class="hljs-string">&#x27;32QAM&#x27;</span>, <span class="hljs-string">&#x27;64QAM&#x27;</span>, <span class="hljs-string">&#x27;128QAM&#x27;</span>,<br><span class="hljs-string">&#x27;256QAM&#x27;</span>, <span class="hljs-string">&#x27;AM-SSB-WC&#x27;</span>, <span class="hljs-string">&#x27;AM-SSB-SC&#x27;</span>, <span class="hljs-string">&#x27;AM-DSB-WC&#x27;</span>,<br><span class="hljs-string">&#x27;AM-DSB-SC&#x27;</span>, <span class="hljs-string">&#x27;FM&#x27;</span>, <span class="hljs-string">&#x27;GMSK&#x27;</span>, <span class="hljs-string">&#x27;OQPSK&#x27;</span>]<br><br>save_path = <span class="hljs-string">&#x27;dataset/split_dB_rml2018&#x27;</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(save_path):<br>    os.mkdir(save_path)<br><br>need_snr = [<span class="hljs-number">20</span>]<br><br>file = h5py.File(<span class="hljs-string">&#x27;H:/DATASETS/RML/GOLD_XYZ_OSC.0001_1024.hdf5&#x27;</span>, <span class="hljs-string">&#x27;r+&#x27;</span>)<br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> file.keys():<br>    <span class="hljs-built_in">print</span>(name, file[name].shape)<br>num_per_class = <span class="hljs-built_in">int</span>(file[<span class="hljs-string">&#x27;Y&#x27;</span>].shape[<span class="hljs-number">0</span>]/file[<span class="hljs-string">&#x27;Y&#x27;</span>].shape[<span class="hljs-number">1</span>])<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;每类所有dB信号总数:&#x27;</span>, num_per_class)<br>num_per_snr = <span class="hljs-number">4096</span><br><br>data_list = file[<span class="hljs-string">&#x27;X&#x27;</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(data_list))<br><span class="hljs-comment"># name_idx = [i for i in range(len(classes)) if classes[i] in [&#x27;BPSK&#x27;, &#x27;QPSK&#x27;, &#x27;8PSK&#x27;, &#x27;16QAM&#x27;, &#x27;32QAM&#x27;, &#x27;64QAM&#x27;]]</span><br>name_idx = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(classes)) <span class="hljs-keyword">if</span> classes[i] <span class="hljs-keyword">in</span> classes]<br><br><span class="hljs-built_in">print</span>(name_idx)<br><br>snr_list = file[<span class="hljs-string">&#x27;Z&#x27;</span>][:num_per_class]<br><span class="hljs-comment"># print(snr_list, len(snr_list))</span><br>idx_snr = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(need_snr)):<br>    idx_part = [j <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_per_class) <span class="hljs-keyword">if</span> snr_list[j] == need_snr[i]]<br>    idx_snr.append(idx_part)<br><br><span class="hljs-keyword">for</span> snr_iidx <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(need_snr)):<br>    <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dict_out_&#x27;</span>+<span class="hljs-built_in">str</span>(need_snr[snr_iidx])+<span class="hljs-string">&#x27;dB = &#123;&#125;&#x27;</span>)<br>    <span class="hljs-keyword">for</span> idx <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(name_idx)):<br>        start = name_idx[idx]*num_per_class<br>        end = (name_idx[idx]+<span class="hljs-number">1</span>)*num_per_class<br>        out_one_class_all_snr = data_list[start:end]<br>        <span class="hljs-built_in">exec</span>(<span class="hljs-string">&#x27;dict_out_&#x27;</span>+<span class="hljs-built_in">str</span>(need_snr[snr_iidx])+<span class="hljs-string">&#x27;dB[classes[name_idx[idx]]] = out_one_class_all_snr[idx_snr[snr_iidx]]&#x27;</span>)<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(save_path+<span class="hljs-string">&#x27;\RML_2018_&#x27;</span> + <span class="hljs-built_in">str</span>(need_snr[snr_iidx])+<span class="hljs-string">&#x27;dB.pkl&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>        pkl.dump(<span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;dict_out_&#x27;</span> + <span class="hljs-built_in">str</span>(need_snr[snr_iidx]) + <span class="hljs-string">&#x27;dB&#x27;</span>), f, pkl.HIGHEST_PROTOCOL)<br></code></pre></td></tr></table></figure>
+
+<p>重新更新了一下，速度更快</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> h5py<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pickle<br>classes = [<span class="hljs-string">&#x27;OOK&#x27;</span>, <span class="hljs-string">&#x27;4ASK&#x27;</span>, <span class="hljs-string">&#x27;8ASK&#x27;</span>, <span class="hljs-string">&#x27;BPSK&#x27;</span>, <span class="hljs-string">&#x27;QPSK&#x27;</span>,<br><span class="hljs-string">&#x27;8PSK&#x27;</span>, <span class="hljs-string">&#x27;16PSK&#x27;</span>, <span class="hljs-string">&#x27;32PSK&#x27;</span>, <span class="hljs-string">&#x27;16APSK&#x27;</span>, <span class="hljs-string">&#x27;32APSK&#x27;</span>, <span class="hljs-string">&#x27;64APSK&#x27;</span>,<br><span class="hljs-string">&#x27;128APSK&#x27;</span>, <span class="hljs-string">&#x27;16QAM&#x27;</span>, <span class="hljs-string">&#x27;32QAM&#x27;</span>, <span class="hljs-string">&#x27;64QAM&#x27;</span>, <span class="hljs-string">&#x27;128QAM&#x27;</span>,<br><span class="hljs-string">&#x27;256QAM&#x27;</span>, <span class="hljs-string">&#x27;AM-SSB-WC&#x27;</span>, <span class="hljs-string">&#x27;AM-SSB-SC&#x27;</span>, <span class="hljs-string">&#x27;AM-DSB-WC&#x27;</span>,<br><span class="hljs-string">&#x27;AM-DSB-SC&#x27;</span>, <span class="hljs-string">&#x27;FM&#x27;</span>, <span class="hljs-string">&#x27;GMSK&#x27;</span>, <span class="hljs-string">&#x27;OQPSK&#x27;</span>]<br><br>file = h5py.File(<span class="hljs-string">&#x27;H:/DATASETS/RML/GOLD_XYZ_OSC.0001_1024.hdf5&#x27;</span>, <span class="hljs-string">&#x27;r+&#x27;</span>)<br><span class="hljs-comment"># for name in file.keys():</span><br><span class="hljs-comment">#     print(name, file[name].shape)</span><br><span class="hljs-comment"># num_per_class = int(file[&#x27;Y&#x27;].shape[0]/file[&#x27;Y&#x27;].shape[1])</span><br><span class="hljs-comment"># print(&#x27;每类所有dB信号总数:&#x27;, num_per_class)</span><br><span class="hljs-comment"># num_per_snr = 4096</span><br><br><span class="hljs-comment"># file[&#x27;X&#x27;]是数据， file[&#x27;Y&#x27;]是one-hot 一类一类的  file[&#x27;Z&#x27;]是snr 一类的-20-30dB在一起</span><br><br>data_all = file[<span class="hljs-string">&#x27;X&#x27;</span>]<br>label_all = np.array(file[<span class="hljs-string">&#x27;Y&#x27;</span>]).argmax(axis=<span class="hljs-number">1</span>)<br>snr_all = file[<span class="hljs-string">&#x27;Z&#x27;</span>]<br><br><br>need_snr = <span class="hljs-number">20</span><br><br><br>need_idx = [idx <span class="hljs-keyword">for</span> idx <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">int</span>(<span class="hljs-built_in">len</span>(label_all)/<span class="hljs-number">24</span>)) <span class="hljs-keyword">if</span> snr_all[idx] == need_snr]<br><br>need_idx_all = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">24</span>):<br>    need_idx_all.append([a+<span class="hljs-built_in">int</span>(i*<span class="hljs-built_in">len</span>(label_all)/<span class="hljs-number">24</span>) <span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> need_idx])<br><br><span class="hljs-comment"># for i in range(24):</span><br><span class="hljs-comment">#     exec(&#x27;snr_&#x27;+str(i)+&#x27; = snr_all[need_idx_all[i]]&#x27;)</span><br><br>data_out = &#123;&#125;<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">24</span>):<br>    data_out[classes[i]] = data_all[need_idx_all[i], :, :]<br><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;datasets/dict_out_&#x27;</span> + <span class="hljs-built_in">str</span>(need_snr) + <span class="hljs-string">&#x27;dB.pkl&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    pickle.dump(data_out, f, pickle.HIGHEST_PROTOCOL)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;11&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="load-data"><a href="#load-data" class="headerlink" title="load data"></a>load data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pickle <span class="hljs-keyword">as</span> pkl<br><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\nloading 2016c ... &#x27;</span>)<br><span class="hljs-comment"># 读取2016c</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;dataset/split_dB_rml2016c/RML_2016_0dB.pkl&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    data_2016c = pkl.load(f)<br><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> data_2016c.keys():<br>    <span class="hljs-built_in">print</span>(k, data_2016c[k].shape)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\nloading 2016a ... &#x27;</span>)<br><span class="hljs-comment"># 读取2016a</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;dataset/split_dB_rml2016a/RML_2016_0dB.pkl&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    data_2016a = pkl.load(f)<br><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> data_2016a.keys():<br>    <span class="hljs-built_in">print</span>(k, data_2016a[k].shape)<br><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\nloading 2018 ... &#x27;</span>)<br><span class="hljs-comment"># 读取2016a</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;dataset/split_dB_rml2018/RML_2018_20dB.pkl&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    data_2018 = pkl.load(f)<br><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> data_2018.keys():<br>    <span class="hljs-built_in">print</span>(k, data_2018[k].shape)<br><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\nloading WIDEFT-A2197_1 ... &#x27;</span>)<br>data_WIDEFT = np.load(<span class="hljs-string">&#x27;dataset/A2197_1/1.npy&#x27;</span>)<br><span class="hljs-built_in">print</span>(data_WIDEFT.real.shape, data_WIDEFT.imag.shape)<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/utils/" class="category-chain-item">utils</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/utils/python/" class="category-chain-item">python</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+        <a href="/tags/utils/" class="print-no-link">#utils</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>python工具箱</div>
+      <div>https://lcjoffrey.top/2021/12/04/pythonutils/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年6月28日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/04/wordlatex2pdf/" title="word/latex插入矢量图">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">word/latex插入矢量图</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/03/hexoutils/" title="hexo 工具箱">
+                        <span class="hidden-mobile">hexo 工具箱</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

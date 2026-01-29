@@ -1,0 +1,1040 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Joffrey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="没有添加摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCN小结">
+<meta property="og:url" content="https://lcjoffrey.top/2021/12/04/gcn/index.html">
+<meta property="og:site_name" content="Joffrey&#39;s Blog">
+<meta property="og:description" content="没有添加摘要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204153907427.png">
+<meta property="article:published_time" content="2021-12-04T07:37:47.000Z">
+<meta property="article:modified_time" content="2022-03-19T10:09:20.000Z">
+<meta property="article:author" content="Joffrey">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204153907427.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>GCN小结 - Joffrey&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/diy/shubiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lcjoffrey.top","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>花看半开，酒饮微醺</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Blog</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>Overview</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>CV</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/1638523690670.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GCN小结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-04 15:37" pubdate>
+          2021年12月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GCN小结</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2022-03-19T18:09:20+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="入门必看"><a href="#入门必看" class="headerlink" title="入门必看"></a>入门必看</h1><p>推荐顺序由简到难：</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/71200936">何时能懂你的心——图卷积神经网络（GCN）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54504471">知乎Johnny Richards和superbrother的回答</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yyl424525/article/details/100058264">CSDN文章</a></p>
+</li>
+<li><p>清华大学综述文章：Graph Neural Networks：A Review of Methods and Applications</p>
+</li>
+<li><p>GCN开山之作：Semi-Supervised Classification With Graph Convolutional Networks</p>
+</li>
+</ol>
+<h1 id="提出思想及发展"><a href="#提出思想及发展" class="headerlink" title="提出思想及发展"></a>提出思想及发展</h1><h2 id="提出"><a href="#提出" class="headerlink" title="提出"></a>提出</h2><p>对于图（pictures）的处理，CNN是一件大法宝；但是由于CNN处理的对象都是Euclidean Structure，无法对Non Euclidean Structure数据进行处理。图（graph）就是典型的Non Euclidean Structure数据。所以GCN（Graph Convolutional Network）应运而生。</p>
+<p>研究GCN的原因，主要可以简答概括为三点（参考知乎<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54504471">superbrother</a> 的回答）：</p>
+<ol>
+<li>CNN无法处理Non Euclidean Structure数据（传统的离散卷积在Non Euclidean Structure数据上无法保持平移不变性）</li>
+<li>希望在拓扑图结构上有效地提取空间特征来进行机器学习</li>
+<li>拓扑连接是一种广义的数据结构，可应用范围广</li>
+</ol>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>因为在Non Euclidean Structure数据中，传统的图像卷积操作（图像上的数据点的加权求和）不能适用，所以要想完成GCN，就需要重新定义卷积操作。<br>现在的卷积思路有两种：</p>
+<h3 id="谱域图卷积"><a href="#谱域图卷积" class="headerlink" title="谱域图卷积"></a>谱域图卷积</h3><ul>
+<li>根据图谱理论和卷积定理，将数据从空（间）域转换到谱域进行处理</li>
+<li>有较强的理论基础</li>
+</ul>
+<p>因为傅里叶变换的一个重要性质：<br><em>函数$f_1(t)$和函数$f_2(t)$的傅里叶变换，等于二者傅里叶变换的乘积的逆变换</em>,即：<br>$f_1(x)*f_2(x)&#x3D;\mathcal{F^{-1}[\mathcal{F_1(w)}\mathcal{F_2(w)}]}$</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$f_1(x)$、$f_2(x)$</td>
+<td>函数</td>
+</tr>
+<tr>
+<td>$\mathcal{F_1(w)}$、$\mathcal{F_2(w)}$</td>
+<td>对应函数的傅里叶变换</td>
+</tr>
+<tr>
+<td>也就是说只要定义了图（graph）的频域变换，就可以推导出图的卷积计算</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="空域图卷积"><a href="#空域图卷积" class="headerlink" title="空域图卷积"></a>空域图卷积</h4><ul>
+<li>不依靠图谱卷积理论，直接在空间上定义卷积操作（有点CNN那味儿了）</li>
+<li>定义直观，灵活性强</li>
+</ul>
+<p>本周主要了解的是谱域卷积。</p>
+<h2 id="发展"><a href="#发展" class="headerlink" title="发展"></a>发展</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/20200806105645321.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<center><b><font size ='2'>Fig1.发展时间线</font></b></center></font>
+上图时间轴中，红色的是谱域卷积，蓝色的是空域卷积。
+
+<h1 id="重要的结论"><a href="#重要的结论" class="headerlink" title="重要的结论"></a>重要的结论</h1><p>ChebNet到GCN的转变是重点。<br>因为推导过程有点复杂，在此只介绍结论：</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$L&#x3D;D-A$</td>
+<td>分别是拉普拉斯矩阵、度矩阵、邻接矩阵</td>
+</tr>
+<tr>
+<td>$U$</td>
+<td>拉普拉斯矩阵的特征向量（特征分解得到）</td>
+</tr>
+<tr>
+<td>$\boldsymbol{\Lambda}$</td>
+<td>拉普拉斯矩阵的特征值（特征分解得到）</td>
+</tr>
+<tr>
+<td>$\hat{X}$</td>
+<td>傅里叶变换结果</td>
+</tr>
+</tbody></table>
+<ul>
+<li>结论一：<br>经过一系列复杂证明，我们可以知道Laplacian Matrix 的特征向量$U&#x3D;(\bar{u}_1,\bar{u}_2,\bar{u}_3,…,\bar{u}_n,)$是n维空间的n个线性无关的正交向量。$U$可以构成一组正交基，且任意信号都可以由此基表示。</li>
+<li>结论二：<br>$U$（拉普拉斯矩阵的特征向量）担任了基函数的位置；拉普拉斯矩阵的特征值担任了频率的位置。</li>
+</ul>
+<p>由此二结论，可以推导拓展到谱域的傅里叶变换：<br>Fourier transform ：$\hat{X}&#x3D;U^TX$<br>Inverse Fourier transform : $X&#x3D;U\hat{X}$</p>
+<p>由此定义了图卷积：<br>$X*_G g &#x3D; \mathcal{F^{-1}( \mathcal{F}(x)\odot\mathcal{F}(g))}&#x3D;U(U^Tx\odot U^Tg)$<br>其中，$\odot$是hamand积。</p>
+<h1 id="从ChebNet-到GCN"><a href="#从ChebNet-到GCN" class="headerlink" title="从ChebNet 到GCN"></a>从ChebNet 到GCN</h1><p>因为按上式计算，每次都要进行特征值分解，计算量很大。所以使用Chebyshev（切比雪夫）多项式代替谱域的卷积核：</p>
+<blockquote>
+<p>详见:Convolutional neural networks on graphs with fast localized spectral filtering 一文 </p>
+<p>$g_{\theta}&#x3D;diag(U^Tg)$ —–&gt;$g_{\theta}(\boldsymbol{\Lambda})&#x3D;\sum^R_{k&#x3D;0}\beta_kT_k \hat{(\boldsymbol{\Lambda}})$</p>
+</blockquote>
+<p>此方法有以下特点：<br>1）卷积核只有K+1个可学习的参数，一般 K远小于n，参数的复杂度被大大降低<br>2）采用Chebyshev多项式代替谱域的卷积核后，经过公示推导，ChebNet不需要对拉普拉斯矩阵做特征分解了。省略了最耗时的步骤。<br>3）卷积核具有严格的空间局部性。同时，K就是卷积核的“感受野半径”。即将中心顶点K阶近邻节点作为邻域节点。</p>
+<p>关键在于GCN丢ChebNet进行了进一步的简化，它仅考虑一阶的ChebNet,得到一个非常简洁的表达式：<br>$x*<em>G g</em>\theta&#x3D;\theta(I_N+D^{-1&#x2F;2}AD^{-1&#x2F;2})x$</p>
+<blockquote>
+<p>详见 Semi-Supervised Classification With Graph Convolutional Networks 一文</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$I_N$</td>
+<td>单位矩阵</td>
+</tr>
+<tr>
+<td>$D$、$A$</td>
+<td>度矩阵、邻接矩阵</td>
+</tr>
+<tr>
+<td>$\theta$</td>
+<td>可学习参数</td>
+</tr>
+</tbody></table>
+<p>现在还有一个问题，$I_N+D^{-1&#x2F;2}AD^{-1&#x2F;2}$的特征值范围[0,2]，在训练过程中可能会出现梯度消失或梯度爆炸，所以要进行归一化：<br>$Z &#x3D; \tilde{D}^{-1&#x2F;2} \tilde{A}\tilde{D}^{-1&#x2F;2} X\Theta$<br>这就是最终的表达式。其中符号$\tilde{D}&#x3D;\sum_j \tilde{A}_{ij}$，$\tilde{A}&#x3D;A+I_N$(可以理解为再归一化的邻接矩阵和度矩阵)</p>
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><p>在Semi-Supervised Classification With Graph Convolutional Networks一文中，提出一个具有两层的GCN模型：<br>$Z&#x3D;f(X,A)&#x3D;softmax(\tilde{A} ReLU（\tilde{A}XW^0）W^1)$<br>其中$X$是节点特征矩阵，A是邻接矩阵。此GCN模型可以在很少的节点具有标签的情况下，完成节点的分类。</p>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ol>
+<li>谱域图卷积不能做有向图（无法特征分解）</li>
+<li>模型训练期间，图结构不能变</li>
+<li>复杂度问题</li>
+<li>层数太高会出现Over-Smoothing现象</li>
+</ol>
+<h1 id="TODO-LIST"><a href="#TODO-LIST" class="headerlink" title="TODO LIST"></a>TODO LIST</h1><p>空域图卷积</p>
+<ul>
+<li><p>GNN</p>
+<ul>
+<li>构建邻域（Random Walk）</li>
+<li>对邻域节点进行内积</li>
+</ul>
+<blockquote>
+<p>详见：A Generalization of Convolutional Neural Networks to Graph-Structured Data</p>
+</blockquote>
+</li>
+<li><p>GraphSAGE</p>
+<ul>
+<li>卷积&#x3D;采样+信息聚合</li>
+</ul>
+<blockquote>
+<p>详见:Inductive representation learning on large graphs</p>
+</blockquote>
+</li>
+<li><p>GAT</p>
+<ul>
+<li>卷积定义为利用注意力机制对邻域节点有区别的聚合</li>
+</ul>
+<blockquote>
+<p>详见：GRAPH ATTENTION NETWORKS</p>
+</blockquote>
+</li>
+<li><p>PGC</p>
+<ul>
+<li>卷积认为是特定的取样函数与特定的权重函数相乘后求和</li>
+</ul>
+<blockquote>
+<p>详见：Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action</p>
+</blockquote>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading/" class="category-chain-item">Paper Reading</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Paper-Reading/Graph-Convolutional-Network/" class="category-chain-item">Graph Convolutional Network</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GCN小结</div>
+      <div>https://lcjoffrey.top/2021/12/04/gcn/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Joffrey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月4日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年3月19日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/04/signalDetectionwithGraph/" title="Novel Robust Band-Limited Signal Detection Approach Using Graph梳理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Novel Robust Band-Limited Signal Detection Approach Using Graph梳理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/04/spi-git/" title="树莓派+Git——GitPi启动（树莓派搭建git服务器）并解决git bash中文英文乱码的问题">
+                        <span class="hidden-mobile">树莓派+Git——GitPi启动（树莓派搭建git服务器）并解决git bash中文英文乱码的问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"tmPe0DnmjGqXjaxtJTQB0oVL-gzGzoHsz","appKey":"HN1Lyqbf2l1GoVxq9cSBDzWq","path":"window.location.pathname","placeholder":"说点什么...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://tmpe0dnm.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('12/1/2021 00:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 🚀&小破站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/diy/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
