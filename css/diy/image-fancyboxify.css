@@ -1,0 +1,15 @@
+/* 让 fancybox 包裹层负责“居中” */
+.markdown-body a.img-zoom-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* 让图片“像 Fluid 一样”自适应 + 圆角阴影 */
+.markdown-body a.img-zoom-wrapper > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}

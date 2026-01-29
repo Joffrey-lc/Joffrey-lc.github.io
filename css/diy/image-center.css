@@ -1,0 +1,15 @@
+/* 让 Markdown 图片 + HTML <img> 都居中（正文区域） */
+.markdown-body p > img,
+.markdown-body p > a > img,
+.markdown-body figure img,
+.markdown-body img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 防止图片过宽撑破布局 */
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+}
