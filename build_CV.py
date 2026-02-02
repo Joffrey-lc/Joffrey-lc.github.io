@@ -183,6 +183,9 @@ a:hover{ text-decoration:underline; }
   box-shadow:var(--shadow);
 }
 
+/* Allow grid children to shrink so inner scroll areas work correctly */
+.sidebar, .main{ min-height:0; }
+
 /* Sidebar */
 .sidebar{
   position:sticky;
@@ -469,12 +472,44 @@ p{ margin:8px 0; color:#374151; font-size:13px; }
 html.cv-layout-1 .wrap{ grid-template-columns:1fr; }
 html.cv-layout-1 .sidebar{ position:relative; top:auto; }
 html.cv-layout-1 .topbar .meta{ text-align:left; white-space:normal; }
-html.cv-layout-2 .wrap{ grid-template-columns: 320px 1fr; }
-html.cv-layout-2 .sidebar{ position:sticky; top:18px; }
+html.cv-layout-2, html.cv-layout-2 body{ height:100%; }
+html.cv-layout-2 body{ overflow:hidden; }
+
+/* Two-column mode: keep left sidebar visible while scrolling the right pane */
+html.cv-layout-2 .wrap{
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: 1fr;
+  height: calc(100vh - 56px); /* 28px top + 28px bottom margin */
+  align-items:start;           /* avoid stretching sidebar to full height */
+  overflow:hidden;             /* keep the page itself from scrolling */
+}
+
+/* Only the right pane scrolls; the left pane stays visible and sizes to its content */
+html.cv-layout-2 .main{
+  height:100%;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  min-height:0;
+}
+html.cv-layout-2 .sidebar{
+  align-self:start;
+  height:auto;
+  max-height:100%;
+  overflow-y:auto;             /* if sidebar ever becomes long, it can scroll within itself */
+  -webkit-overflow-scrolling:touch;
+  min-height:0;
+}
 @media (max-width: 940px){
   .wrap{ grid-template-columns:1fr; }
   .sidebar{ position:relative; top:auto; }
   .topbar .meta{ text-align:left; white-space:normal; }
+
+  /* On small screens we go back to normal page scrolling */
+  html.cv-layout-2, html.cv-layout-2 body{ height:auto; }
+  html.cv-layout-2 body{ overflow:auto; }
+  html.cv-layout-2 .wrap{ height:auto; overflow:visible; }
+  html.cv-layout-2 .main{ height:auto; overflow:visible; }
+  html.cv-layout-2 .sidebar{ max-height:none; overflow:visible; }
 }
 """
 
