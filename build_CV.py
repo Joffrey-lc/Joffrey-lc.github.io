@@ -7,6 +7,10 @@ CV.md -> index.html
 - Sidebar: remove Print/Copy buttons (only keep optional PDF download)
 - Publications: PDF / BibTeX / Code pills
 - No third-party dependencies
+- [FIX 3.0]
+  1. Sticky Sidebar: Fixed CSS overflow issues preventing sidebar from sticking.
+  2. Zoom Persistence: Prevents zoom reset when navigating between pages.
+  3. Anti-Clipping: Ensures layout fills viewport to prevent cutoff.
 """
 
 from __future__ import annotations
@@ -34,14 +38,7 @@ bibtex_autogen = True
 PUB_META_CACHE: Dict[str, Dict[str, str]] = {}
 
 def parse_pubdate_to_tuple(s: str) -> Optional[Tuple[int, int, int]]:
-    """Parse IEEE-like publicationDate into (year, month, day).
-
-    Supports:
-    - YYYY-MM-DD / YYYY/MM/DD / YYYY.MM.DD
-    - '29 December 2025' / '29 Dec 2025'
-    - 'December 29, 2025' / 'Dec 29, 2025'
-    - 'Early Access' -> None (handled separately)
-    """
+    """Parse IEEE-like publicationDate into (year, month, day)."""
     if not s:
         return None
     ss = str(s).strip()
@@ -104,12 +101,7 @@ PUB_SECTION_TITLE = "Selected Publications\部分成果"
 
 
 def ieee_bibtex_export_url(doc_id: str) -> str:
-    """Return an online BibTeX export URL for an IEEE Xplore document id.
-
-    IEEE Xplore's "Download Citations" supports exporting BibTeX using:
-      recordIds=<id>&citations-format=citation-only&download-format=download-bibtex
-    (See an example captured request payload.)
-    """
+    """Return an online BibTeX export URL for an IEEE Xplore document id."""
     doc_id = (doc_id or "").strip()
     if not doc_id:
         return ""
@@ -137,25 +129,31 @@ STYLE = r"""
           "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
 }
 *{ box-sizing:border-box; }
-html{ overflow-y:auto; scrollbar-gutter: stable; }
-body{ overflow-y:auto; }
-@supports not (scrollbar-gutter: stable){ html{ overflow-y: scroll; } body{ overflow-y: scroll; } }
-body{
-  margin:0;
-  font-family:var(--sans);
-  color:var(--text);
+
+/* FIX: Ensure html/body allow sticky positioning (no overflow hidden on parents) */
+html {
+  overflow-y: auto; /* Let browser handle scroll */
+  height: auto;
+  min-height: 100%;
+}
+body {
+  margin: 0;
+  /* overflow-x: hidden;  <-- REMOVED: This often breaks sticky in some browsers */
+  font-family: var(--sans);
+  color: var(--text);
   background: radial-gradient(1200px 500px at 10% 0%, #eef2ff 0%, transparent 60%),
               radial-gradient(1200px 500px at 90% 10%, #ecfeff 0%, transparent 60%),
               var(--bg);
-  line-height:1.6;
+  line-height: 1.6;
   -webkit-text-size-adjust: 100%;
+  min-height: 100vh;
 }
 
-/* Mobile hardening: ensure the CV always fits the screen width on phones/in-app browsers */
+/* Mobile hardening */
 html.cv-mobile, html.cv-mobile body{ width:100%; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-html.cv-mobile .wrap{ max-width:100%; margin:12px auto; padding:0 12px 20px; gap:14px; }
-html.cv-mobile .sidebar{ position:relative; top:auto; }
-html.cv-mobile .navbar{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+html.cv-mobile .wrap{ max-width:100%; margin:12px auto; padding:0 12px 20px; gap:14px; display:block; }
+html.cv-mobile .sidebar{ position:relative; top:auto; max-height:none; overflow:visible; width:100%; margin-bottom:20px; }
+html.cv-mobile .navbar{ overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; }
 html.cv-mobile .navbar::-webkit-scrollbar{ display:none; }
 html.cv-mobile .wrap{ grid-template-columns:1fr !important; }
 html.cv-mobile .main, html.cv-mobile .sidebar{ width:100%; min-width:0; }
@@ -169,12 +167,13 @@ a:hover{ text-decoration:underline; }
 
 .wrap{
   max-width:1100px;
-  margin:28px auto;
-  padding:0 16px 32px;
+  margin:0 auto;
+  padding:28px 16px 32px; 
   display:grid;
   grid-template-columns: 320px 1fr;
   gap:18px;
-  align-items:start;
+  align-items:start; /* Crucial for sticky: prevents sidebar from stretching */
+  min-height: 100vh; /* FIX: Prevents bottom clipping */
 }
 .card{
   background:var(--card);
@@ -183,15 +182,23 @@ a:hover{ text-decoration:underline; }
   box-shadow:var(--shadow);
 }
 
-/* Allow grid children to shrink so inner scroll areas work correctly */
-.sidebar, .main{ min-height:0; }
-
 /* Sidebar */
 .sidebar{
-  position:sticky;
-  top:18px;
-  padding:18px 18px 14px;
+  /* FIX: -webkit-sticky for Safari/iOS compatibility */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 18px;
+  padding: 18px 18px 14px;
+  /* FIX: Ensure it fits in viewport so it can actually stick */
+  max-height: calc(100vh - 36px); 
+  overflow-y: auto; /* Internal scroll if content is too long */
+  z-index: 10;
+  /* Hide scrollbar for cleaner look */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.sidebar::-webkit-scrollbar { display: none; }
+
 .profile{
   display:flex;
   gap:14px;
@@ -472,44 +479,12 @@ p{ margin:8px 0; color:#374151; font-size:13px; }
 html.cv-layout-1 .wrap{ grid-template-columns:1fr; }
 html.cv-layout-1 .sidebar{ position:relative; top:auto; }
 html.cv-layout-1 .topbar .meta{ text-align:left; white-space:normal; }
-html.cv-layout-2, html.cv-layout-2 body{ height:100%; }
-html.cv-layout-2 body{ overflow:hidden; }
-
-/* Two-column mode: keep left sidebar visible while scrolling the right pane */
-html.cv-layout-2 .wrap{
-  grid-template-columns: 320px 1fr;
-  grid-template-rows: 1fr;
-  height: calc(100vh - 56px); /* 28px top + 28px bottom margin */
-  align-items:start;           /* avoid stretching sidebar to full height */
-  overflow:hidden;             /* keep the page itself from scrolling */
-}
-
-/* Only the right pane scrolls; the left pane stays visible and sizes to its content */
-html.cv-layout-2 .main{
-  height:100%;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-  min-height:0;
-}
-html.cv-layout-2 .sidebar{
-  align-self:start;
-  height:auto;
-  max-height:100%;
-  overflow-y:auto;             /* if sidebar ever becomes long, it can scroll within itself */
-  -webkit-overflow-scrolling:touch;
-  min-height:0;
-}
+html.cv-layout-2 .wrap{ grid-template-columns: 320px 1fr; }
+html.cv-layout-2 .sidebar{ position:sticky; position:-webkit-sticky; top:18px; }
 @media (max-width: 940px){
   .wrap{ grid-template-columns:1fr; }
-  .sidebar{ position:relative; top:auto; }
+  .sidebar{ position:relative; top:auto; max-height:none; overflow:visible; }
   .topbar .meta{ text-align:left; white-space:normal; }
-
-  /* On small screens we go back to normal page scrolling */
-  html.cv-layout-2, html.cv-layout-2 body{ height:auto; }
-  html.cv-layout-2 body{ overflow:auto; }
-  html.cv-layout-2 .wrap{ height:auto; overflow:visible; }
-  html.cv-layout-2 .main{ height:auto; overflow:visible; }
-  html.cv-layout-2 .sidebar{ max-height:none; overflow:visible; }
 }
 """
 
@@ -521,8 +496,7 @@ HTML_DOC = Template("""<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.25, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
 
 <script>
-/* Mobile viewport fix: some host themes/in-app browsers can end up with a desktop-like viewport.
-   We force a device-width viewport early and mark the page for mobile CSS hardening. */
+/* Mobile viewport fix */
 (function(){
   var ua = navigator.userAgent || "";
   var isMobile = /Mobi|Android|iPhone|iPad|iPod|Mobile|MicroMessenger/i.test(ua);
@@ -555,106 +529,68 @@ HTML_DOC = Template("""<!doctype html>
 </script>
   <title>$PAGE_TITLE</title>
   <meta name="description" content="CV" />
-  <!-- CV_SHELL_GENERATED -->
   <style>
 $STYLE
   </style>
 <script>
 (function(){
-  var PREFIX = "CV_ZOOM=";
+  /* FIX: Robust Zoom Persistence to prevent jumping */
   var KEY_ZOOM = "cv_zoom_desired";
   var KEY_LAYOUT = "cv_layout_mode";
   var LAYOUT_BREAKPOINT = 940;
 
-  // --- Mobile safeguard ---
-  // Mobile/touch browsers manage pinch-zoom/viewport scaling themselves.
-  // This DPR-based zoom helper can make the first render look over-zoomed on mobile.
-  // To keep mobile always "fit-to-screen", we disable it on mobile/touch devices.
-  // Desktop behavior (including remembered zoom across navbar pages) is unchanged.
-  var mq = window.matchMedia ? window.matchMedia.bind(window) : null;
-  var hasFine = false, hasCoarse = false;
-  try{
-    if (mq){
-      hasFine = mq("(pointer: fine)").matches;
-      hasCoarse = mq("(any-pointer: coarse)").matches;
-    }
-  }catch(e){}
-  var ua = (navigator.userAgent || "");
-  var uaMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
-  var isMobile = (hasCoarse && !hasFine) || uaMobile;
-  if (isMobile){
-    // Avoid carrying a desktop-stored zoom value into mobile rendering.
-    try{ if (window.name && window.name.indexOf(PREFIX) === 0) window.name = ""; }catch(e){}
-    try{ sessionStorage.removeItem(KEY_ZOOM); sessionStorage.removeItem(KEY_LAYOUT); }catch(e){}
-    return;
-  }
+  function ssGet(key){ try{ return sessionStorage.getItem(key); }catch(e){} return null; }
+  function ssSet(key, val){ try{ sessionStorage.setItem(key, String(val)); }catch(e){} }
 
-  function ssGet(key){
-    try{ return sessionStorage.getItem(key); }catch(e){}
-    return null;
-  }
-  function ssSet(key, val){
-    try{ sessionStorage.setItem(key, String(val)); }catch(e){}
-  }
-
-  function parseDesiredFromName(){
-    try{
-      if (window.name && window.name.indexOf(PREFIX) === 0){
-        var v = parseFloat(window.name.slice(PREFIX.length));
-        if (isFinite(v) && v > 0) return v;
-      }
-    }catch(e){}
-    return null;
-  }
-
-  function readDesired(){
-    var v = ssGet(KEY_ZOOM);
-    if (v != null){
-      var n = parseFloat(v);
-      if (isFinite(n) && n > 0) return n;
-    }
-    return parseDesiredFromName();
-  }
-
-  function saveDesired(){
-    ssSet(KEY_ZOOM, desired);
-    // Keep legacy behavior if window.name is already used for CV_ZOOM.
-    // Avoid overwriting other pages' window.name payloads in the same tab.
-    try{
-      if (!window.name || window.name.indexOf(PREFIX) === 0){
-        window.name = PREFIX + String(desired);
-      }
-    }catch(e){}
-  }
-
-  function round6(x){
-    return Math.round(x * 1000000) / 1000000;
-  }
-
-  var lastDpr = window.devicePixelRatio || 1;
-  var desired = readDesired();
-  if (!desired) desired = lastDpr;
+  // 1. Priority: Read session storage first. If null, use current device ratio.
+  var stored = ssGet(KEY_ZOOM);
+  var desired = stored ? parseFloat(stored) : (window.devicePixelRatio || 1);
+  if (!desired || !isFinite(desired)) desired = 1;
 
   function applyZoom(){
+    // Disable on mobile to avoid fighting native behavior
+    if (document.documentElement.classList.contains("cv-mobile")) return;
+
     var cur = window.devicePixelRatio || 1;
-    if (!cur) cur = 1;
+    if(!cur) cur = 1;
+    
     var factor = desired / cur;
-    factor = round6(factor);
-    if (isFinite(factor) && factor > 0.1 && factor < 10){
+    factor = Math.round(factor * 1000000) / 1000000;
+    
+    if(isFinite(factor) && factor > 0.1 && factor < 10){
       var de = document.documentElement;
-      if ('zoom' in de.style){
+      if('zoom' in de.style){
         de.style.zoom = factor;
       }else{
+        // Firefox fallback
         de.style.transformOrigin = '0 0';
         de.style.transform = 'scale(' + factor + ')';
         de.style.width = (100 / factor) + '%';
+        // Note: we do NOT set height here to avoid cutting off bottom
       }
     }
   }
 
+  // Apply immediately
+  applyZoom();
+
+  // 2. Listener: Only update storage if user explicitly changes zoom (ctrl +/-)
+  var lastDpr = window.devicePixelRatio || 1;
+  window.addEventListener('resize', function(){
+    var dpr = window.devicePixelRatio || 1;
+    // Threshold to ignore rounding errors
+    if(Math.abs(dpr - lastDpr) > 0.001){
+      desired = dpr; 
+      lastDpr = dpr;
+      ssSet(KEY_ZOOM, desired);
+      applyZoom();
+    }
+    // Also re-check layout mode
+    applyLayoutMode(computeLayoutMode());
+  });
+
   // --- Layout lock ---
   function computeLayoutMode(){
-    // Use clientWidth to reduce sensitivity to scrollbars.
     var w = document.documentElement.clientWidth || window.innerWidth || 0;
     return (w <= LAYOUT_BREAKPOINT) ? '1' : '2';
   }
@@ -668,45 +604,10 @@ $STYLE
   }
 
   var storedLayout = ssGet(KEY_LAYOUT);
-  if (storedLayout !== '1' && storedLayout !== '2') storedLayout = null;
   var layoutMode = storedLayout || computeLayoutMode();
   applyLayoutMode(layoutMode);
 
-  var lastW = document.documentElement.clientWidth || window.innerWidth || 0;
-
-  // Apply ASAP
-  applyZoom();
-
-  // If user changes browser zoom (devicePixelRatio changes), adopt it and avoid double scaling.
-  window.addEventListener('resize', function(){
-    var dpr = window.devicePixelRatio || 1;
-    var w = document.documentElement.clientWidth || window.innerWidth || 0;
-
-    // 1) Keep original zoom persistence behavior based on DPR changes
-    if (Math.abs(dpr - lastDpr) > 0.001){
-      desired = dpr;
-      lastDpr = dpr;
-      applyZoom();
-      saveDesired();
-      // DPR change likely alters effective width => recompute layout mode
-      applyLayoutMode(computeLayoutMode());
-      lastW = w;
-      return;
-    }
-
-    // 2) Window resize (user resizing) can change layout; ignore tiny width changes
-    if (Math.abs(w - lastW) > 60){
-      lastW = w;
-      applyLayoutMode(computeLayoutMode());
-    }
-  });
-
-  window.addEventListener('pagehide', function(){
-    saveDesired();
-  });
-  window.addEventListener('beforeunload', function(){
-    saveDesired();
-  });
+  window.addEventListener('pagehide', function(){ ssSet(KEY_ZOOM, desired); });
 })();
 </script>
 </head>
