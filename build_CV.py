@@ -23,7 +23,7 @@ from string import Template
 from urllib.parse import urlparse, parse_qsl, urlencode
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
-from typing import Dict, List, Tuple, Optional
+from typing import Any, Dict, List, Tuple, Optional
 
 
 # Keep generated right-pane content fragments in a folder (keeps root tidy)
@@ -470,6 +470,30 @@ p{ margin:8px 0; color:#374151; font-size:13px; }
   border-radius:999px;
   border:1px solid var(--line);
   background:#fff;
+}
+.pub-note{
+  margin-top:8px;
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  padding:8px 10px;
+  border:1px solid rgba(245,158,11,.30);
+  border-left:5px solid #f59e0b;
+  border-radius:10px;
+  background:linear-gradient(90deg, rgba(245,158,11,.16), rgba(255,251,235,.86));
+  color:#78350f;
+  font-size:12px;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+.pub-note-label{
+  flex:0 0 auto;
+  font-weight:900;
+  color:#92400e;
+}
+.pub-note-text{
+  flex:1;
+  min-width:0;
 }
 
 .footer{ margin-top:10px; color:var(--muted); font-size:12px; text-align:center; }
@@ -1738,13 +1762,44 @@ def autofill_publications(md_text: str, section_title: str = PUB_SECTION_TITLE) 
 
     return fm + new_body, changed
 
-def parse_pub_line(line: str) -> Dict[str, str]:
+def parse_pub_line(line: str) -> Dict[str, Any]:
     """
     Format:
-      - Title | Authors(optional) | Venue Year(optional) | PDF: url | BibTeX: url | Code: url
+      - Title | Authors(optional) | Venue Year(optional) | Label: url | Note: text
     """
     s = re.sub(r"^\s*[-*]\s+", "", line.strip())
     parts = [p.strip() for p in s.split("|") if p.strip()]
+
+    def normalize_link_label(label: str) -> str:
+        label = re.sub(r"\s+", " ", (label or "").strip())
+        key = re.sub(r"[\s_-]+", "", label).lower()
+        if key == "pdf":
+            return "PDF"
+        if key in ("bib", "bibtex"):
+            return "BibTeX"
+        if key == "code":
+            return "Code"
+        return label
+
+    def parse_link_field(part: str) -> Optional[Tuple[str, str]]:
+        if ":" not in part:
+            return None
+        raw_label, raw_url = part.split(":", 1)
+        label = normalize_link_label(raw_label)
+        url = sanitize_url(raw_url)
+        if not label or not url:
+            return None
+        return label, url
+
+    def parse_note_field(part: str) -> Optional[str]:
+        if ":" not in part:
+            return None
+        raw_label, raw_note = part.split(":", 1)
+        key = re.sub(r"[\s_-]+", "", (raw_label or "").strip()).lower()
+        if key not in ("note", "notes"):
+            return None
+        note = raw_note.strip()
+        return note or None
 
     # Allow a minimal form: '- https://...'
     # (If auto-fill failed or for non-IEEE links, we still render a usable PDF button.)
@@ -1758,6 +1813,8 @@ def parse_pub_line(line: str) -> Dict[str, str]:
             "pdf": url_only,
             "bib": "",
             "code": "",
+            "links": [("PDF", url_only)],
+            "notes": [],
         }
 
     title = parts[0] if parts else ""
@@ -1766,18 +1823,28 @@ def parse_pub_line(line: str) -> Dict[str, str]:
     pdf = ""
     bib = ""
     code = ""
+    links: List[Tuple[str, str]] = []
+    notes: List[str] = []
 
     info: List[str] = []
     for p in parts[1:]:
-        pl = p.lower()
-        if pl.startswith("pdf:"):
-            pdf = p.split(":", 1)[1].strip()
-        elif pl.startswith("bibtex:") or pl.startswith("bib:"):
-            bib = p.split(":", 1)[1].strip()
-        elif pl.startswith("code:"):
-            code = p.split(":", 1)[1].strip()
-        else:
-            info.append(p)
+        note = parse_note_field(p)
+        if note:
+            notes.append(note)
+            continue
+        link = parse_link_field(p)
+        if link:
+            label, url = link
+            links.append((label, url))
+            key = re.sub(r"[\s_-]+", "", label).lower()
+            if key == "pdf":
+                pdf = url
+            elif key == "bibtex":
+                bib = url
+            elif key == "code":
+                code = url
+            continue
+        info.append(p)
 
     if len(info) == 1:
         venue_year = info[0]
@@ -1801,11 +1868,13 @@ def parse_pub_line(line: str) -> Dict[str, str]:
         "pdf": pdf,
         "bib": bib,
         "code": code,
+        "links": links,
+        "notes": notes,
     }
 
 
 
-def pub_sort_key(p: Dict[str, str]) -> Tuple[int, int, int]:
+def pub_sort_key(p: Dict[str, Any]) -> Tuple[int, int, int]:
     """Sort key for publications: newer first.
 
     Priority:
@@ -1814,7 +1883,7 @@ def pub_sort_key(p: Dict[str, str]) -> Tuple[int, int, int]:
       3) If marked as Early Access, push it ahead of non-early-access entries within the same year.
     Returns (year, month, day), used with reverse=True.
     """
-    pdf_url = (p.get("pdf") or "").strip()
+    pdf_url = str(p.get("pdf") or "").strip()
 
     # 1) Cached IEEE metadata
     meta = PUB_META_CACHE.get(pdf_url) if pdf_url else None
@@ -1842,7 +1911,7 @@ def pub_sort_key(p: Dict[str, str]) -> Tuple[int, int, int]:
         if m:
             y = int(m.group(0))
         if y == 0:
-            year_s = (p.get("year") or "").strip()
+            year_s = str(p.get("year") or "").strip()
             if year_s.isdigit():
                 y = int(year_s)
         if is_ea:
@@ -1854,12 +1923,12 @@ def pub_sort_key(p: Dict[str, str]) -> Tuple[int, int, int]:
     mo = 0
     d = 0
 
-    year_s = (p.get("year") or "").strip()
+    year_s = str(p.get("year") or "").strip()
     if year_s.isdigit():
         y = int(year_s)
 
     # Try to parse a full date if the venue text contains one
-    venue_text = " ".join([(p.get("venue") or ""), (p.get("year") or "")]).strip()
+    venue_text = " ".join([str(p.get("venue") or ""), str(p.get("year") or "")]).strip()
     dt2 = parse_pubdate_to_tuple(venue_text)
     if dt2:
         y, mo, d = dt2
@@ -1888,12 +1957,22 @@ def render_publications(md: str) -> str:
 
     for i, p in enumerate(pubs, start=1):
         links = []
-        if p["pdf"]:
-            links.append('<a class="pill" href="{0}" target="_blank" rel="noopener">PDF</a>'.format(esc(p["pdf"])))
-        if p["bib"]:
-            links.append('<a class="pill" href="{0}" target="_blank" rel="noopener">BibTeX</a>'.format(esc(p["bib"])))
-        if p.get("code"):
-            links.append('<a class="pill" href="{0}" target="_blank" rel="noopener">Code</a>'.format(esc(p["code"])))
+        for label, url in p.get("links", []):
+            links.append(
+                '<a class="pill" href="{0}" target="_blank" rel="noopener">{1}</a>'.format(
+                    esc(url),
+                    esc(label),
+                )
+            )
+        notes = [str(n).strip() for n in p.get("notes", []) if str(n).strip()]
+        note_html = ""
+        if notes:
+            note_html = (
+                '<div class="pub-note">'
+                '<span class="pub-note-label">Note</span>'
+                '<span class="pub-note-text">{}</span>'
+                '</div>'
+            ).format("<br />".join(md_inline_to_html(n) for n in notes))
 
         venue_text = ""
         if p["venue"] and p["year"]:
@@ -1913,6 +1992,7 @@ def render_publications(md: str) -> str:
                  + '</div>'
                  if (p["authors"] or venue_text) else ''),
                 ('    <div class="links">{}</div>'.format("".join(links)) if links else ""),
+                ('    {}'.format(note_html) if note_html else ""),
                 "  </div>",
                 "</div>",
             ])
