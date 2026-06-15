@@ -1,0 +1,13 @@
+.markdown-body mark:not(.hl) {
+  background: #e9e1f5;
+  color: inherit;
+  padding: 0.08em 0.32em;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+html[data-user-color-scheme="dark"] .markdown-body mark:not(.hl) {
+  background: rgba(190, 166, 255, 0.28);
+  color: inherit;
+}
