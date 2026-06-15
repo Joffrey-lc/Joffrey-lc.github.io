@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          997 字
+          996 字
         
       </span>
     
@@ -334,11 +334,11 @@
 <p>BD-RIS会增加额外的电路复杂性，但是会提高RIS的灵活性和性能（相比于D-RIS）。</p>
 <p>信道估计会更困难，目前而言需要分别知道两个信道</p>
 <ul>
-<li>BD-RIS控制幅度和相位：==幅度控制体现在，不损失信号的情况下进行能量分配==</li>
-<li>BD-RIS可以透射、混合式、扇区工作、==Non-diagonal==。产生高方向性波束并实现全空间覆盖</li>
-<li>==考虑调整相位离散时，BD-RIS分辨率更高==</li>
+<li>BD-RIS控制幅度和相位：<mark>幅度控制体现在，不损失信号的情况下进行能量分配</mark></li>
+<li>BD-RIS可以透射、混合式、扇区工作、<mark>Non-diagonal</mark>。产生高方向性波束并实现全空间覆盖</li>
+<li><mark>考虑调整相位离散时，BD-RIS分辨率更高</mark></li>
 <li>相同性能下，BD-RIS需要的单元数更少（相较于D-RIS）</li>
-<li>==i.i.d fading情况下，fully- 优于 single-connected；在LoS下fully- 和 single- 性能相同==</li>
+<li><mark>i.i.d fading情况下，fully- 优于 single-connected；在LoS下fully- 和 single- 性能相同</mark></li>
 </ul>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306051553185.png" srcset="/img/loading.gif" lazyload alt="image-20230605135001776" /><figcaption aria-hidden="true">image-20230605135001776</figcaption>
@@ -351,7 +351,7 @@
 <li>single connected RIS</li>
 <li>fully connected RIS</li>
 </ul>
-<p>==因为约束不再和single-connected一样：single-要求每个element反射幅度为1，但是fully-要求总的，所以存在了可控的幅度==</p>
+<p><mark>因为约束不再和single-connected一样：single-要求每个element反射幅度为1，但是fully-要求总的，所以存在了可控的幅度</mark></p>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306051553244.png" srcset="/img/loading.gif" lazyload alt="image-20230605135853521" /><figcaption aria-hidden="true">image-20230605135853521</figcaption>
 </figure>
@@ -366,13 +366,13 @@
 <li>Fully-connected</li>
 <li>group-connected</li>
 </ul>
-<p>==最上面的是一般化的模型，比较少人再研究，因为考虑了硬件的耦合等因素，比较复杂。==</p>
+<p><mark>最上面的是一般化的模型，比较少人再研究，因为考虑了硬件的耦合等因素，比较复杂。</mark></p>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306051553222.png" srcset="/img/loading.gif" lazyload alt="image-20230605140713918" /><figcaption aria-hidden="true">image-20230605140713918</figcaption>
 </figure>
 <hr />
 <p>接收功率的好处：</p>
-<p>==目前他们的设计方案都是简单的MRC等，没有过多的考虑优化问题==</p>
+<p><mark>目前他们的设计方案都是简单的MRC等，没有过多的考虑优化问题</mark></p>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306051553213.png" srcset="/img/loading.gif" lazyload alt="image-20230605141105995" /><figcaption aria-hidden="true">image-20230605141105995</figcaption>
 </figure>
@@ -394,7 +394,7 @@
 <ul>
 <li>CG：受到相同/相关的衰落的被分到一起</li>
 <li>UG：受到不同的被分在一起</li>
-<li>OG：==最大化接收功率？？？？==这个和分组有什么关系？？</li>
+<li>OG：<mark>最大化接收功率？？？？</mark>这个和分组有什么关系？？</li>
 </ul>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306051553273.png" srcset="/img/loading.gif" lazyload alt="image-20230605142156811" /><figcaption aria-hidden="true">image-20230605142156811</figcaption>
@@ -404,7 +404,7 @@
 </figure>
 <p>所以说就是在研究那些elements，怎么连接性能最好。</p>
 <h2 id="离散">离散</h2>
-<p>==在离散的时候，fully-connected可以实现与连续的相同的性能。（蓝色线是连续，即离散的upper bound）==</p>
+<p><mark>在离散的时候，fully-connected可以实现与连续的相同的性能。（蓝色线是连续，即离散的upper bound）</mark></p>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306051553739.png" srcset="/img/loading.gif" lazyload alt="image-20230605143235447" /><figcaption aria-hidden="true">image-20230605143235447</figcaption>
 </figure>
@@ -447,7 +447,7 @@
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306051554983.png" srcset="/img/loading.gif" lazyload alt="image-20230605150604709" /><figcaption aria-hidden="true">image-20230605150604709</figcaption>
 </figure>
-<p>==可以用来很好地解决幅度和相位耦合的问题：灵活地调整反射的相位，以实现反射相位幅度的最大化==</p>
+<p><mark>可以用来很好地解决幅度和相位耦合的问题：灵活地调整反射的相位，以实现反射相位幅度的最大化</mark></p>
 <ul>
 <li>先计算每个单元+理想相位后的反射相位</li>
 <li>然后对于设计好的波束赋形码本，进行最小化的量化误差的优化</li>

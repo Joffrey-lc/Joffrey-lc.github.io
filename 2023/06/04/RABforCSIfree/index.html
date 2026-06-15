@@ -343,13 +343,13 @@
 <p>AA-SS-2：在ULA的水平方向</p>
 <h2 id="design-of-precoder">Design of Precoder</h2>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154986.png" srcset="/img/loading.gif" lazyload alt="image-20230604155451194" style="zoom:33%;" /></p>
-<p>考虑的beamforming是在整个角度空间中能量最大化的beamforming。其实就是AA-SS-2。==说是在Rician信道上能也能实现最大化==</p>
+<p>考虑的beamforming是在整个角度空间中能量最大化的beamforming。其实就是AA-SS-2。<mark>说是在Rician信道上能也能实现最大化</mark></p>
 <blockquote>
 <p>在实际上，因为天线都具有一定的方向性，所以在ULA水平方向上的波束其实是有很大衰减的。</p>
 </blockquote>
 <p>以下说明了类似于CSCG的循环对称性，即precoder只改变LoS部分，并不会改变NLoS部分的统计特性。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154040.png" srcset="/img/loading.gif" lazyload alt="image-20230604160445516" style="zoom:33%;" /></p>
-<p>maxima只有一个且在90度位置，增益等于<span class="math inline">\(M\)</span>；==minima有<span class="math inline">\(M-1\)</span>个==</p>
+<p>maxima只有一个且在90度位置，增益等于<span class="math inline">\(M\)</span>；<mark>minima有<span class="math inline">\(M-1\)</span>个</mark></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154963.png" srcset="/img/loading.gif" lazyload alt="image-20230604160754803" style="zoom:33%;" /></p>
 <h2 id="average-eh-gain">Average EH gain</h2>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154987.png" srcset="/img/loading.gif" lazyload alt="image-20230604160745284" style="zoom:33%;" /></p>
@@ -362,7 +362,7 @@
 <blockquote>
 <p>这点要是我不是90度的波束，可以近似吗？积分能求吗？</p>
 </blockquote>
-<p>下图的结论说明在波束对准正面方向的时候反而平均增益是最低的，==这个有点不符合常理。==</p>
+<p>下图的结论说明在波束对准正面方向的时候反而平均增益是最低的，<mark>这个有点不符合常理。</mark></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154966.png" srcset="/img/loading.gif" lazyload alt="image-20230604164547248" style="zoom:33%;" /></p>
 <p>实际上，这个平均增益是无法被所有用户享受到的，因为存在非常不公平的WET:</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154963.png" srcset="/img/loading.gif" lazyload alt="image-20230604160754803" style="zoom:33%;" /></p>
@@ -371,7 +371,7 @@
 <p>他们文章中也说明了，如果选择旋转电机，很有可能导致旋转电机消耗的能量大于发射机的能量。这又是很大的开销。也是我们相控波束旋转的优势。</p>
 </blockquote>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154439.png" srcset="/img/loading.gif" lazyload alt="image-20230604171051789" style="zoom:33%;" /></p>
-<p>==这个式子代表在一个周期内的平均收益。<span class="math inline">\(\theta_i\)</span>代表用户的角度，<span class="math inline">\(G(\theta_i)\)</span>表示在还没有旋转的时候，该用户收到的收益。<span class="math inline">\(\frac{j\pi}{M}\)</span>代表开始旋转的时候，第<span class="math inline">\(j\)</span>次旋转带来的收益。==</p>
+<p><mark>这个式子代表在一个周期内的平均收益。<span class="math inline">\(\theta_i\)</span>代表用户的角度，<span class="math inline">\(G(\theta_i)\)</span>表示在还没有旋转的时候，该用户收到的收益。<span class="math inline">\(\frac{j\pi}{M}\)</span>代表开始旋转的时候，第<span class="math inline">\(j\)</span>次旋转带来的收益。</mark></p>
 <h2 id="optimization-based-on-location-information">Optimization based on location information</h2>
 <p>因为他们的旋转，在角度上已经是均匀的了，所以只需要考虑在功率分配上-&gt;等价于时间分配上。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154474.png" srcset="/img/loading.gif" lazyload alt="image-20230604205509911" style="zoom:33%;" /></p>
@@ -379,7 +379,7 @@
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154548.png" srcset="/img/loading.gif" lazyload alt="image-20230604205738104" style="zoom:33%;" /></p>
 <p>Close form不好求，但是可以通过近似来获取：</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154587.png" srcset="/img/loading.gif" lazyload alt="image-20230604210044972" style="zoom:33%;" /></p>
-<p>这个思路很好理解，其实就是说最大化最小的接收能量。pathloss最大的，就是性能最差的，此时保证这个最差的收到的来自主波束的能量一定，就==保证了在不同旋转过程中，最低的能量收获下界一定。==</p>
+<p>这个思路很好理解，其实就是说最大化最小的接收能量。pathloss最大的，就是性能最差的，此时保证这个最差的收到的来自主波束的能量一定，就<mark>保证了在不同旋转过程中，最低的能量收获下界一定。</mark></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202306042154579.png" srcset="/img/loading.gif" lazyload alt="image-20230604210701348" style="zoom:33%;" /></p>
 <p>所以其实就是和所有用户中，在每个beam中最差的那个（path-loss最大），进行功率分配。</p>
 <hr />

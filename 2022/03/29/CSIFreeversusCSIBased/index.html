@@ -349,7 +349,7 @@
 <p>CSI-available：MRT is close to optimum whenever the</p>
 <p>WET长时间的，WIT零星的。所以WPCN可能更实际。</p>
 <p>例如SA的上行解码，一根天线下行传输能量，其余的都进行信息解码（收信号），使用ZF或者MMSE。MMSE比ZF好。</p>
-<p>==Periodic traffic 和 Poisson traffic都不适用于表征突发任务==(我理解中的Poisson是表述突发任务的)</p>
+<p><mark>Periodic traffic 和 Poisson traffic都不适用于表征突发任务</mark>(我理解中的Poisson是表述突发任务的)</p>
 <p>MRT的最佳体现在，知道信道信息的情况下，当最差的性能比其他差3dB时，MRT是最优的（最公平的）。</p>
 <p>周期性或者Poisson流，Poisson流下的性能会下降。提出了优化问题来找到最佳的导频重复使用因子。</p>
 <p>对比CSI-based和CSI-free：CSI-free在Poisson下不行，在周期下不错。</p>
@@ -372,7 +372,7 @@
 <p>gain from EB decrease quickly as the number of ERs increases, and this hold even without accounting for the considerable energy resources demanded by CSI acquisition.</p>
 <p>所以进行广播式的无线能量传输是可行的。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202918.png" srcset="/img/loading.gif" lazyload alt="image-20230704111603425" style="zoom:33%;" /></p>
-<p>这个模型可以参考，一部分天线用作传能，一部分天线用作通信解码。==不考虑天线之间的干扰？==原文中假设可以干扰消除。</p>
+<p>这个模型可以参考，一部分天线用作传能，一部分天线用作通信解码。<mark>不考虑天线之间的干扰？</mark>原文中假设可以干扰消除。</p>
 <h3 id="evaluation-of-outage-probability">Evaluation of outage probability</h3>
 <p>定义outage probability:</p>
 <ol type="1">
@@ -393,17 +393,17 @@
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202915.png" srcset="/img/loading.gif" lazyload alt="image-20230706202243172" style="zoom: 33%;" /></p>
 <h4 id="mrt的最优性">MRT的最优性</h4>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202252.png" srcset="/img/loading.gif" lazyload alt="image-20230706155110231" style="zoom:33%;" /></p>
-<p>==We resorted to simulation and standard fitting procedures, and found out that==</p>
+<p><mark>We resorted to simulation and standard fitting procedures, and found out that</mark></p>
 <p>根据(9)，只有<span class="math inline">\(\mathbf{w}_1\neq \mathbf{0}\)</span>,</p>
 <p>通过分析对最差的node使用MRT，对其他node的影响发现（求不出来用拟合），得到<span class="math inline">\(\Omega=\inf _{s_i \in \mathcal{S} \backslash s_{i^{\prime}}}\left\{\mathbb{E}\left[E_i^{\mathrm{rf}}\right]\right\} / \mathbb{E}\left[E_{i^{\prime}}^{\mathrm{rf}}\right]\)</span>，这个表达式的意义在于，除去<span class="math inline">\(s_{i&#39;}\)</span>后，最差的下界与<span class="math inline">\(\mathbb{E}[E_{i^{\prime}}^{\mathrm{rf}}]\)</span>的比值大于1，则说明没有比<span class="math inline">\(\mathbb{E}[E_{i^{\prime}}^{\mathrm{rf}}]\)</span>差的了，那么MRT并没有使得其他的变得更差，并且还使得对于<span class="math inline">\(s_{i&#39;}\)</span>更好，那么MRT就是最佳的。</p>
 <p>但是值得说明的是，由于这里是均值，所以对于实际的真实值而言，不一定是最佳的，而是至少有一半的时间是最佳的。换句话说，即使<span class="math inline">\(\inf _{s_i \in \mathcal{S} \backslash s_{i^{\prime}}}\left\{\mathbb{E}\left[E_i^{\mathrm{rf}}\right]\right\} / \mathbb{E}\left[E_{i^{\prime}}^{\mathrm{rf}}\right]&gt;1\)</span>，但是<span class="math inline">\(\inf _{s_i \in \mathcal{S} \backslash s_{i^{\prime}}}\left\{E_i^{\mathrm{rf}}\right\} / E_{i^{\prime}}^{\mathrm{rf}}&gt;1\)</span>不一定都满足，但可以肯定的是，至少有一半的时间是满足的（PDF的角度而言）。</p>
 <hr />
-<p>==我可以求一个精确解，求概率分布==</p>
+<p><mark>我可以求一个精确解，求概率分布</mark></p>
 <hr />
 <p>对于LoS channel，</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202446.png" srcset="/img/loading.gif" lazyload alt="image-20230705144733339" style="zoom:33%;" /></p>
 <p>当worst node path-loss至少比其他的多3dB，则MRT在一半以上的时间是最优的。</p>
-<p>==在LoS信道下的结果可以作为我后面文章的主体==</p>
+<p><mark>在LoS信道下的结果可以作为我后面文章的主体</mark></p>
 <h3 id="csi-free">CSI-free</h3>
 <h4 id="outage-probability-1">outage probability</h4>
 <p>CSI-free的outage probability可以由CSI-based的推导得到，分别取</p>
@@ -411,7 +411,7 @@
 <p>而且这是一个准确解，而不是下界。</p>
 <h4 id="performance-versus-csi-based">performance versus CSI-based</h4>
 <p>从mean来看，CSI-based比CSI-free大<span class="math inline">\(M\)</span>倍</p>
-<p>但是对于大规模用户，CSI-based的结果会接近与CSI-free。==解释的角度和我们之前的不一样==</p>
+<p>但是对于大规模用户，CSI-based的结果会接近与CSI-free。<mark>解释的角度和我们之前的不一样</mark></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202307062202635.png" srcset="/img/loading.gif" lazyload alt="image-20230706201428493" style="zoom:33%;" /></p>
 <h2 id="wireless-information-transfer">Wireless Information Transfer</h2>
 <p>Successive Interference Cancellation (SIC)消除天线之间的干扰。导频正交（orthogonal pilot）</p>

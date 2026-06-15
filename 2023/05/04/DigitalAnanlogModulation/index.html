@@ -334,7 +334,7 @@
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514179.jpeg" srcset="/img/loading.gif" lazyload alt="d53b5853c39d163163f835c4059b947" style="zoom: 33%;" /></p>
 <h3 id="fsk">2FSK</h3>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202305041514186.jpeg" srcset="/img/loading.gif" lazyload alt="da402ee4c27ddd3f2e27e562eb6b8b1" style="zoom:33%;" /></p>
-<p>==(No longer envelope detection)==</p>
+<p><mark>(No longer envelope detection)</mark></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab"> <span class="hljs-keyword">for</span> p=<span class="hljs-number">1</span>:<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(st1)/sps<br>    <span class="hljs-keyword">for</span> is = sps*(p<span class="hljs-number">-1</span>):sps*(p)<span class="hljs-number">-1</span><br>        st1_sum(p) = st1_sum(p)+st1(is+<span class="hljs-number">1</span>);<br>        st2_sum(p) = st2_sum(p)+st2(is+<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>rx_data = (st1_sum-st2_sum);<br></code></pre></td></tr></table></figure>
 <h3 id="qam">4QAM</h3>
 <figure>

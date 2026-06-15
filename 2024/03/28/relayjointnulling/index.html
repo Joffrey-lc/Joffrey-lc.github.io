@@ -346,13 +346,13 @@
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709768.png" srcset="/img/loading.gif" lazyload alt="image-20240328162140743" style="zoom:33%;" /></p>
 <h2 id="svd-based">SVD based</h2>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202403281709185.png" srcset="/img/loading.gif" lazyload alt="image-20240328162201418" style="zoom:33%;" /></p>
-<p>有意思的是，通过<span class="math inline">\(\mathbf{U}^{(1)}\)</span>和<span class="math inline">\(\mathbf{U}^{(2)}\)</span>的正交性（<span class="math inline">\(\mathbf{V}^{(1)}\)</span>和<span class="math inline">\(\mathbf{V}^{(2)}\)</span>同理），当<span class="math inline">\(\mathbf{d}=\mathbf{U}^{(1)} \mathbf{b}\)</span>，==且<span class="math inline">\(\mathbf{b}\)</span>可以任意取值，只要满足功率约束就可==，同理<span class="math inline">\(\mathbf{p}=\mathbf{V}^{(2)} \mathbf{c}\)</span></p>
+<p>有意思的是，通过<span class="math inline">\(\mathbf{U}^{(1)}\)</span>和<span class="math inline">\(\mathbf{U}^{(2)}\)</span>的正交性（<span class="math inline">\(\mathbf{V}^{(1)}\)</span>和<span class="math inline">\(\mathbf{V}^{(2)}\)</span>同理），当<span class="math inline">\(\mathbf{d}=\mathbf{U}^{(1)} \mathbf{b}\)</span>，<mark>且<span class="math inline">\(\mathbf{b}\)</span>可以任意取值，只要满足功率约束就可</mark>，同理<span class="math inline">\(\mathbf{p}=\mathbf{V}^{(2)} \mathbf{c}\)</span></p>
 <p>则有： <span class="math display">\[
 \begin{align}
 \mathbf{d}^H\mathbf{H}\mathbf{p}=&amp;\mathbf{b}^H\mathbf{U}^{(1),H}\left(\mathbf{U}^{(1)} \boldsymbol{\Sigma}^{(1)} \mathbf{V}^{(1) H}+\mathbf{U}^{(2)} \boldsymbol{\Sigma}^{(2)} \mathbf{V}^{(2) H}\right)\mathbf{V}^{(2)} \mathbf{c},\\
 =&amp;\mathbf{0}
 \end{align}
-\]</span> ==因为<span class="math inline">\(\mathbf{U}^{(1)}\)</span>消掉了<span class="math inline">\(\mathbf{U}^{(2)}\)</span>项，因为<span class="math inline">\(\mathbf{V}^{(2)}\)</span>消掉了<span class="math inline">\(\mathbf{V}^{(1)}\)</span>项==</p>
+\]</span> <mark>因为<span class="math inline">\(\mathbf{U}^{(1)}\)</span>消掉了<span class="math inline">\(\mathbf{U}^{(2)}\)</span>项，因为<span class="math inline">\(\mathbf{V}^{(2)}\)</span>消掉了<span class="math inline">\(\mathbf{V}^{(1)}\)</span>项</mark></p>
 <p>然后再选择最大化的<span class="math inline">\(\mathbf{b}\)</span>和<span class="math inline">\(\mathbf{c}\)</span>。</p>
 <h2 id="continuous-domain-based">Continuous domain based</h2>
 <p>核心思想是，通过正交投影，使得其中一个一定是正交的，这样就只用优化一个，并使得整个最大化。</p>

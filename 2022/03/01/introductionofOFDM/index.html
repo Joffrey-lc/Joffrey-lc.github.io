@@ -461,7 +461,7 @@ s(t)=\sum\limits_{n=0}^{N-1}s_ie^{j2\pi f_it}
 <p>但是在实际工程中，还需要在时域加窗，可以参考https://blog.csdn.net/a2145565/article/details/139580022</p>
 <h1 id="ofdm-im-ofdm-with-index-modulation">OFDM-IM ( OFDM with Index Modulation)</h1>
 <p>OFDM-IM, OFDM with Index Modulation</p>
-<p>OFDM-IM技术的核心思想是子载波在发送端被分成两部分，一部分子载波是激活的，称为有效子载波。==这部分载波来传输星座点==，而另一部分并不传输信号，==将载波的非激活和激活的状态信息作为额外信息进行传输==</p>
+<p>OFDM-IM技术的核心思想是子载波在发送端被分成两部分，一部分子载波是激活的，称为有效子载波。<mark>这部分载波来传输星座点</mark>，而另一部分并不传输信号，<mark>将载波的非激活和激活的状态信息作为额外信息进行传输</mark></p>
 <p>OFDM-IM系统在整体的信号处理过程与OFDM系统基本一致。而两者的主要区别主要为：在OFDM系统中，所有的子载波都用来传输调制好的信号，所有比特信息都承载在载波所发送的信号上。但在加入了索引思想之后，OFDM-IM系统在发送端会先将所有的子载波分为若干个块，而所需传输的比特信息也相应的被分成了相同数量的分组，并且每个分组中比特又被划分为了两部分：索引比特和调制比特。其中，索引比特的部分是用来确定有效载波在子块中的位置信息，调制比特是用来生成调制符号并通过有效子载波进行发送。</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949667.png" srcset="/img/loading.gif" lazyload alt="image-20240418183904747" style="zoom: 50%;" /></p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202404181949629.png" srcset="/img/loading.gif" lazyload alt="image-20240418183935551" style="zoom:50%;" /></p>

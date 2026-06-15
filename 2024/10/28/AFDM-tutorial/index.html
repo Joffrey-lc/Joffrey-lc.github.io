@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          653 字
+          643 字
         
       </span>
     
@@ -332,10 +332,10 @@
 <ul>
 <li>chirp-based multicarrier transceiver</li>
 <li>based on discrete affline Fourier transform (DAFT)</li>
-<li>Adjust the ==two parameters== to better cope with the doubly dispersive channels. And avoid the time domain channel paths with distinct delays or Doppler frequency shifts overlap in DAFT domain.</li>
+<li>Adjust the <mark>two parameters</mark> to better cope with the doubly dispersive channels. And avoid the time domain channel paths with distinct delays or Doppler frequency shifts overlap in DAFT domain.</li>
 <li>Achieved full diversity of linear time-varying (LTV) channel.</li>
 </ul>
-<p>OFDM/single-carrier FDMA (SC-FDMA) achieved even optimal performance in ==time-invariant== frequency selective channels.</p>
+<p>OFDM/single-carrier FDMA (SC-FDMA) achieved even optimal performance in <mark>time-invariant</mark> frequency selective channels.</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282135029.png" srcset="/img/loading.gif" lazyload alt="image-20241028213541914" style="zoom:33%;" /></p>
 <hr />
 <h2 id="afdm-for-communication">AFDM for communication</h2>
@@ -369,7 +369,7 @@
 </figure>
 <p>信道模型：双色散信道， multiple paths, each of which has its own delay and Doppler shift</p>
 <p>大频率间隔或者大持续时间下， 这两个现象可以被忽略（观察分母）</p>
-<p>==时延和多普勒被分为整数部分和分数部分？？==</p>
+<p><mark>时延和多普勒被分为整数部分和分数部分？？</mark></p>
 <ul>
 <li>分数部分的delay处理起来比较困难，而且如上图所示有个取模的现象（增大到边界后下降到0再增加），这点很多文章都没注意。</li>
 </ul>
@@ -385,7 +385,7 @@
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138338.png" srcset="/img/loading.gif" lazyload alt="image-20241025161641074" /><figcaption aria-hidden="true">image-20241025161641074</figcaption>
 </figure>
 <p>有了分数的Doppler shift之后，他们可能会重叠，如左侧图所示；或者如右图所示不重叠</p>
-<p>==峰值的位置取决于C1==</p>
+<p><mark>峰值的位置取决于C1</mark></p>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138344.png" srcset="/img/loading.gif" lazyload alt="image-20241025161801275" /><figcaption aria-hidden="true">image-20241025161801275</figcaption>
 </figure>
@@ -442,9 +442,9 @@
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138797.png" srcset="/img/loading.gif" lazyload alt="image-20241028152311550" /><figcaption aria-hidden="true">image-20241028152311550</figcaption>
 </figure>
-<p>Number of guard: AFDM需要更==少==的Guards，几乎是OTFS的一半</p>
+<p>Number of guard: AFDM需要更<mark>少</mark>的Guards，几乎是OTFS的一半</p>
 <ul>
-<li>粉色和紫色是OTFS和AFDM的==共同的/重叠的==guard位</li>
+<li>粉色和紫色是OTFS和AFDM的<mark>共同的/重叠的</mark>guard位</li>
 <li>所有颜色的和是OTFS的guards</li>
 <li>红色的等于是OTFS的额外开销（减小了channel capacity）</li>
 </ul>
@@ -506,7 +506,7 @@
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138425.png" srcset="/img/loading.gif" lazyload alt="image-20241025164956647" /><figcaption aria-hidden="true">image-20241025164956647</figcaption>
 </figure>
-<p>Down-sampling for ADFM: generate another chirp signal, with length N/O, and ==C1== becomes to ==OC1==</p>
+<p>Down-sampling for ADFM: generate another chirp signal, with length N/O, and <mark>C1</mark> becomes to <mark>OC1</mark></p>
 <figure>
 <img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202410282138479.png" srcset="/img/loading.gif" lazyload alt="image-20241025165017363" /><figcaption aria-hidden="true">image-20241025165017363</figcaption>
 </figure>

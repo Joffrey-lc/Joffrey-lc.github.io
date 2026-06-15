@@ -327,7 +327,7 @@
 <h2 id="quick-overview">Quick Overview</h2>
 <ul>
 <li>设计了一种单独发射基站，IRS（反射+接收信号和处理），目标的结构。与传统的单基站感知定位（收发两种天线or全双工形式）相比，没有干扰（干扰很小）</li>
-<li>用MUSIC估计角度，最小化其MSE很难，==所以等价于最大化接收端（IRS controller）的接收平均信号功率==（有参考文献证明）</li>
+<li>用MUSIC估计角度，最小化其MSE很难，<mark>所以等价于最大化接收端（IRS controller）的接收平均信号功率</mark>（有参考文献证明）</li>
 <li>基于离散傅里叶变换（DFT）的IRS被动反射是最优的。（主要是进行全向波束的扫描，对我而言不应该是这样）</li>
 <li>推导了CRB</li>
 </ul>
@@ -356,7 +356,7 @@
 \]</span> 假设没有target，对环境背景噪声进行估计，注意这里是有个<span class="math inline">\(\tilde{\mathbf{z}}\sim\mathcal{CN}(0,\sigma_0^2)\)</span>。</p>
 <p>online阶段：</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032050302.png" srcset="/img/loading.gif" lazyload alt="image-20230403202452280" style="zoom: 33%;" /></p>
-<p>这个时候由接受到的信号减去background channel，就得到了期望信号。==但是得注意，此时的噪声<span class="math inline">\(\mathbf{z}[t]\sim\mathcal{CN}(0,\sigma^2)\)</span>，此时<span class="math inline">\(\sigma^2=2\sigma^2_0\)</span>，因为两个noise的减法，方差相加==。</p>
+<p>这个时候由接受到的信号减去background channel，就得到了期望信号。<mark>但是得注意，此时的噪声<span class="math inline">\(\mathbf{z}[t]\sim\mathcal{CN}(0,\sigma^2)\)</span>，此时<span class="math inline">\(\sigma^2=2\sigma^2_0\)</span>，因为两个noise的减法，方差相加</mark>。</p>
 <p>最后把信号写成了</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202304032050377.png" srcset="/img/loading.gif" lazyload alt="image-20230403203332821" style="zoom:33%;" /></p>
 <p>因为作者只假设了一个二维的角度估计，所以只有一个水平的角度需要估计，然后竖直方向的角度认为是固定的（常量），所以把常量写到一起，整理为（13）的形式，最后拿这个做MUSIC：</p>

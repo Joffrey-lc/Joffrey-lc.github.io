@@ -330,8 +330,8 @@
 <h2 id="quick-overview">Quick Overview</h2>
 <p>那天健完身和王佬吃饭的时候，聊到了一种unlimited sampling，感觉非常适合应用到数能上。先找了一篇文章看一下，作为以后可能的拓展方向。</p>
 <hr />
-<p>主要的思想是，在一般的ADCs中，会存在限幅的问题。可以使用==self-reset ADCs==来避免。</p>
-<p>但是self-reset ADCs又引入了新的问题：self-reset ADCs等于是对信号一直取模，但是==怎么恢复==是难点。</p>
+<p>主要的思想是，在一般的ADCs中，会存在限幅的问题。可以使用<mark>self-reset ADCs</mark>来避免。</p>
+<p>但是self-reset ADCs又引入了新的问题：self-reset ADCs等于是对信号一直取模，但是<mark>怎么恢复</mark>是难点。</p>
 <ul>
 <li>推导了完美恢复的条件</li>
 <li>需要的采样密度独立于限幅电压（意思是电压再大，都可以恢复），只与信号的带宽相关</li>
@@ -346,7 +346,7 @@
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516055.png" srcset="/img/loading.gif" lazyload alt="image-20221117142303547" style="zoom:33%;" /></p>
 <p>self-reset ADCs会对信号取模，即将信号进行折叠：</p>
 <p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202211171516116.png" srcset="/img/loading.gif" lazyload alt="image-20221117142405802" style="zoom:33%;" /></p>
-<p>但是恢复困难。==这就是作者研究的重点==</p>
+<p>但是恢复困难。<mark>这就是作者研究的重点</mark></p>
 <p>对平滑信号的截断导致突变和非平滑，对应于信号中的高频失真</p>
 <h2 id="算法">算法</h2>
 <figure>
