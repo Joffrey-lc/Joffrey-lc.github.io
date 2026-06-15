@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Watermark使用</title>
+    <link href="/2026/06/15/Watermark/"/>
+    <url>/2026/06/15/Watermark/</url>
+    
+    <content type="html"><![CDATA[<hr /><p><strong>The Watermark Benchmark for Underwater Acoustic Modulation Schemes</strong>. <em>Paul A. van Walree</em> et.al. <strong>IEEE Journal of Oceanic Engineering, October 2017</strong> (<a href="https://ieeexplore.ieee.org/document/7932436">pdf</a>) (Citations <strong>182</strong>)</p><h2 id="quick-overview">Quick Overview</h2><ul><li>Time-varying impluse response</li><li>Three places</li><li>Three frequency bands</li><li>play time need to equal the measurement time</li><li>Ocean noise can be colored</li></ul><hr /><h2 id="condition-and-environment">Condition and environment</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140138901.png" alt="image-20260612140138901" style="zoom:33%;" /></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140211208.png" alt="image-20260612140211208" style="zoom:33%;" /></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140229572.png" alt="image-20260612140229572" style="zoom: 33%;" /></p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140243016.png" alt="image-20260612140243016" style="zoom: 27%;" /></p><hr /><h2 id="details-in-nof1">Details in NOF1</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612145049428.png" alt="image-20260612145049428" style="zoom:25%;" /></p><p>First arrival has no Doppler spread.</p><hr /><p>NCS1 and others scenario are more complicated.</p><h2 id="principles-of-operation">PRINCIPLES OF OPERATION</h2><ul><li>Passband signal, not Baseband.</li><li>Time and frequency requirement.</li><li>Matlab Platform</li></ul><h2 id="performance">Performance</h2><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612155507893.png" alt="image-20260612155507893" style="zoom: 25%;" /></p><ul><li><p>都是单载波</p></li><li><p>DNSS效果还不错？但是效率很低；</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Underwater Communications</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Underwater Communications</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>雷达通信频谱共享及一体化：综述与展望</title>
     <link href="/2026/01/29/radarandcommunication/"/>
     <url>/2026/01/29/radarandcommunication/</url>

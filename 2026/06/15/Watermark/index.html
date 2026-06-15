@@ -21,26 +21,26 @@
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
   
-    <meta name="description" content="雷达通信感知一体化综述">
+    <meta name="description" content="水下通信-Watermark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雷达通信频谱共享及一体化：综述与展望">
-<meta property="og:url" content="https://lcjoffrey.top/2026/01/29/radarandcommunication/index.html">
+<meta property="og:title" content="Watermark使用">
+<meta property="og:url" content="https://lcjoffrey.top/2026/06/15/Watermark/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="雷达通信感知一体化综述">
+<meta property="og:description" content="水下通信-Watermark">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204140733338.png">
-<meta property="article:published_time" content="2026-01-29T05:34:56.346Z">
-<meta property="article:modified_time" content="2026-01-28T17:27:41.312Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260615110841308.png">
+<meta property="article:published_time" content="2026-06-15T03:06:27.000Z">
+<meta property="article:modified_time" content="2026-06-15T03:09:28.003Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="Radar">
+<meta property="article:tag" content="Underwater Communications">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img441/image-20211204140733338.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260615110841308.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>雷达通信频谱共享及一体化：综述与展望 - Joffrey&#39;s Blog</title>
+  <title>Watermark使用 - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="雷达通信频谱共享及一体化：综述与展望"></span>
+            <span id="subtitle" data-typed-text="Watermark使用"></span>
           
         </div>
 
@@ -239,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-29 13:34" pubdate>
-          2026年1月29日 下午
+        <time datetime="2026-06-15 11:06" pubdate>
+          2026年6月15日 上午
         </time>
       </span>
     
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          797 字
+          31 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          7 分钟
+          1 分钟
         
       </span>
     
@@ -308,12 +308,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">雷达通信频谱共享及一体化：综述与展望</h1>
+            <h1 id="seo-header">Watermark使用</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-01-29T01:27:41+08:00
+                    本文最后更新于 2026-06-15T11:09:28+08:00
                   
                   
 
@@ -323,69 +323,40 @@
             
               <div class="markdown-body">
                 
-                <p><a target="_blank" rel="noopener" href="https://radars.ac.cn/article/doi/10.12000/JR20113?viewType=HTML">原文链接</a></p>
-<h2 id="缩写说明">缩写说明</h2>
+                <hr />
+<p><strong>The Watermark Benchmark for Underwater Acoustic Modulation Schemes</strong>. <em>Paul A. van Walree</em> et.al. <strong>IEEE Journal of Oceanic Engineering, October 2017</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7932436">pdf</a>) (Citations <strong>182</strong>)</p>
+<h2 id="quick-overview">Quick Overview</h2>
 <ul>
-<li>RCSS：雷达与通信的频谱共享 Radar and Communication Spectrum Sharing</li>
-<li>RCC：雷达与通信系统的同频共存 Radar-Communication Coexistence</li>
-<li>DFRC：雷达通信一体化系统设计 Dual-Functional Radar-Communication</li>
-<li>V2X：车联网 Vehicle to everything</li>
-<li>GNSS：全球卫星导航系统 Global Navigation Satellite System</li>
-<li>WPS：WiFi室内 定位系统 WiFi-based Positioning System</li>
+<li>Time-varying impluse response</li>
+<li>Three places</li>
+<li>Three frequency bands</li>
+<li>play time need to equal the measurement time</li>
+<li>Ocean noise can be colored</li>
 </ul>
-<h2 id="rcss研究路径">RCSS研究路径</h2>
-<ol type="1">
-<li>雷达与通信频谱共享（RCC）：考虑分立的雷达与通信系统共同用同一频谱</li>
-<li>雷达通信一体化（DFRC）：除了共享同一频谱外，还共用同一硬件平台，如何设计一体化信号处理方案来同时实现通信与雷达感知功能（<strong>重要</strong>：不仅在于对频谱资源利用率的提升，还扩展到包括车联网、室内定位和隐蔽通信在内的多种新兴的民用与军用场景）</li>
-</ol>
-<h2 id="研究内容">研究内容</h2>
-<ol type="1">
-<li><p>5G车联网毫米波定位</p>
-<p>​ 可以预见，5G通信技术能够利用大规模MIMO天线阵列和毫米波频谱赖满足V2X的高分辨率和低时延要求。</p>
+<hr />
+<h2 id="condition-and-environment">Condition and environment</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140138901.png" srcset="/img/loading.gif" lazyload alt="image-20260612140138901" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140211208.png" srcset="/img/loading.gif" lazyload alt="image-20260612140211208" style="zoom:33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140229572.png" srcset="/img/loading.gif" lazyload alt="image-20260612140229572" style="zoom: 33%;" /></p>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612140243016.png" srcset="/img/loading.gif" lazyload alt="image-20260612140243016" style="zoom: 27%;" /></p>
+<hr />
+<h2 id="details-in-nof1">Details in NOF1</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612145049428.png" srcset="/img/loading.gif" lazyload alt="image-20260612145049428" style="zoom:25%;" /></p>
+<p>First arrival has no Doppler spread.</p>
+<hr />
+<p>NCS1 and others scenario are more complicated.</p>
+<h2 id="principles-of-operation">PRINCIPLES OF OPERATION</h2>
 <ul>
-<li>毫米波段具有充裕的可用带宽，不仅可以实现更高的数据传输效率，也可以显著提升距离分辨率。</li>
-<li>大规模MIMO可以形成“铅笔式”的窄波束。补偿毫米波信号的路径损失，同时提高方位角的估计精度。</li>
-<li>由于毫米波的稀疏性，包含的多径分量少，毫米波信道中雷达目标回波受到的杂波干扰小。</li>
-</ul></li>
-<li><p>WiFi室内定位及动作识别</p>
-<ol type="1">
-<li>根据用户端发射的信号进行TOA或者AOA，利用信号强度和其他信息来获取定位信息。</li>
-<li>WiFi路由能从信道状态信息提取因人体动作所引起的微多普勒频移，从而识别人的行为。</li>
-</ol></li>
-<li><p>无人机感知与通信</p></li>
-<li><p>多功能射频系统</p></li>
-<li><p>雷达辅助的低截获率通信</p></li>
-<li><p>无源雷达</p></li>
-</ol>
-<h2 id="主要研究问题">主要研究问题</h2>
-<h3 id="rcc">RCC</h3>
-<ol type="1">
-<li>干扰信道估计：非合作式的干扰信道估计方法</li>
-<li>发射机设计：同时考虑雷达探测与通信的性能指标</li>
-<li>接收抗干扰设计：接收机会同时收到雷达回波和通信信号</li>
-</ol>
-<h2 id="dfrc">DFRC</h2>
-<ol type="1">
-<li>雷达通信一体化信息论</li>
-<li>雷达通信一体化信号处理（<strong>国内外研究重要</strong>）</li>
-<li>雷达通信一体化协议及系统架构设计</li>
-</ol>
-<h2 id="研究现状">研究现状</h2>
-<h3 id="rcc-1">RCC</h3>
-<ol type="1">
-<li>机会频谱共享：要求次级用户（通信系统）感知频谱，在未占用时进行传输</li>
-<li>干扰信道估计</li>
-<li>具有闭式解的预编码方案</li>
-<li>基于凸优化方法的预编码设计</li>
-<li>接收机设计：接收机在雷达干扰的情况下解调通信信号，或者是在通信干扰的情况下对雷达目标进行估计</li>
-</ol>
-<h3 id="dfrc-1">DFRC</h3>
-<ol type="1">
-<li>雷达通信一体化系统的信息论研究</li>
-<li>雷达通信一体化系统的时频域信号处理：设计一种新型复用波形，使之既能携带通信信号，又能用于雷达目标探测</li>
-<li>雷达通信一体化系统的空频域信号处理</li>
-<li>5G时代的雷达通信一体化</li>
-</ol>
+<li>Passband signal, not Baseband.</li>
+<li>Time and frequency requirement.</li>
+<li>Matlab Platform</li>
+</ul>
+<h2 id="performance">Performance</h2>
+<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260612155507893.png" srcset="/img/loading.gif" lazyload alt="image-20260612155507893" style="zoom: 25%;" /></p>
+<ul>
+<li><p>都是单载波</p></li>
+<li><p>DNSS效果还不错？但是效率很低；</p></li>
+</ul>
 
                 
               </div>
@@ -404,15 +375,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Paper-Reading/" class="category-chain-item">Paper Reading</a>
+  <a href="/categories/Underwater-Communications/" class="category-chain-item">Underwater Communications</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/Paper-Reading/Radar-and-Communication/" class="category-chain-item">Radar and Communication</a>
-  
-  
-
   
 
       </span>
@@ -426,7 +390,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Radar/" class="print-no-link">#Radar</a>
+        <a href="/tags/Underwater-Communications/" class="print-no-link">#Underwater Communications</a>
       
     </div>
   
@@ -438,8 +402,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>雷达通信频谱共享及一体化：综述与展望</div>
-      <div>https://lcjoffrey.top/2026/01/29/radarandcommunication/</div>
+      <div>Watermark使用</div>
+      <div>https://lcjoffrey.top/2026/06/15/Watermark/</div>
     </div>
     <div class="license-meta">
       
@@ -451,13 +415,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月29日</div>
+          <div>2026年6月15日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月29日</div>
+          <div>2026年6月15日</div>
         </div>
       
       
@@ -488,18 +452,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/06/15/Watermark/" title="Watermark使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Watermark使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/27/recuPulseandtrapezoidPulse/" title="知识储备-三角波/矩形波和梯形波频谱">
-                        <span class="hidden-mobile">知识储备-三角波/矩形波和梯形波频谱</span>
+                      <a href="/2026/01/29/radarandcommunication/" title="雷达通信频谱共享及一体化：综述与展望">
+                        <span class="hidden-mobile">雷达通信频谱共享及一体化：综述与展望</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
