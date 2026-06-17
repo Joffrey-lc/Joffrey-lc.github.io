@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>CP-OFDM for ISAC</title>
+    <link href="/2026/06/17/ISACOFDMopt/"/>
+    <url>/2026/06/17/ISACOFDMopt/</url>
+    
+    <content type="html"><![CDATA[<hr /><p><strong>CP-OFDM Achieves the Lowest Average Ranging Sidelobe Under QAM/PSK Constellations</strong>. <em>Fan Liu</em> et.al. <strong>IEEE Transactions on Information Theory, September 2025</strong> (<a href="https://ieeexplore.ieee.org/document/11087656">pdf</a>) (Citations <strong>2</strong>)</p><h2 id="quick-overview">Quick Overview</h2><ul><li>收发一体，所以知道导频、数据等波形全信息。但是数据是random</li><li>有CP-需要用periodic convolution自相关计算模糊函数；无CP-需要用aperiodic convolution 计算模糊函数</li><li><mark>给出了测距的性能指标</mark></li><li>给出了不同调制方式（QAM、PSK）以及超高斯（APSK等）下的性能指标</li><li>给出结论：OFDM最优。从<mark>平均谱线（EISL）的角度</mark>，还是从其P-ACF的<mark>每个单独旁瓣指数来看 都是最优</mark>；CP-SC波形实现了最低的多普勒旁瓣电平</li><li>在无CP的情况下，OFDM局部最优</li></ul><hr /><p>通信中加CP是惯例，雷达中加CP不一定</p><hr /><p>从信息论的角度出发，说明了为什么酉矩阵不会降低通信效率</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081705471.png" alt="image-20260108170534384" style="zoom:25%;" /></p><hr /><p>在LTE中，</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081709015.png" alt="image-20260108170936949" style="zoom:25%;" /></p><h2 id="acf-定义">ACF 定义</h2><p>ACF被定义为无周期、周期性自卷积，取决于是否有CP；</p><p><mark>需要注意</mark>：</p><blockquote><p>P-ACF的场景适用于：有CP，且CP&gt;最大时延扩展；此时去掉CP之后，等价于循环卷积；</p><ul><li>e.g., 近距离的感知，此时合理的CP可以覆盖掉最大时延扩展区间；</li></ul></blockquote><blockquote><p>A-ACF的场景适用于：无CP，但是前后要补很多0，从而形成一个较低的占空比，此时仍然可以避免信号叠在一起；</p><ul><li>e.g., 远距离的感知，此时CP需要超长，浪费功率和时间，所以一般补0；</li></ul></blockquote><hr /><h2 id="核心观点">核心观点</h2><h3 id="考虑带cp的情况">考虑带CP的情况</h3><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081954916.png" alt="image-20260108195438884" style="zoom:25%;" /></p><p>这个结论很有意思，假设星座图没变，也就是<span class="math inline">\(\mu_4\)</span>没有变，此时想要旁瓣期望低，就要使<span class="math inline">\(\left\|\mathbf{F}_N \mathbf{U}\right\|_4^4\)</span>大；那么我们设计的酉矩阵有可以操作了。</p><blockquote><p>在delay估计，<span class="math inline">\(\mu_4&lt;2\)</span>，带CP的前提下，OFDM是整体EISL最有的，同时，也是单个delay tap上最优的（这个结论有点让人失望）</p></blockquote><blockquote><p>在delay估计，<span class="math inline">\(\mu_4&lt;2\)</span>，带CP的前提下，达到最优的族，是OFDM的子载波交换和相位旋转版本</p></blockquote><blockquote><p>通过对偶，可以推出在doppler估计上，CP-SC是最优的。</p><p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081958784.png" alt="image-20260108195802708" style="zoom: 25%;" /></p></blockquote><p>如果<span class="math inline">\(\mu_4&gt;2\)</span> 情况会翻转。但是显而易见的，这种情况下的通信性能不会很好。</p><hr /><p><mark>需要注意的是，这里的模糊函数是0-doppler切片，而且可以想象的是，delay旁瓣低了，能量都到doppler轴上了。等于是把橡皮泥左右捏扁了。</mark></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ISAC</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ISAC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Channel-Aware Adaptive Modem for Underwater Acoustic Communications</title>
     <link href="/2026/06/15/underwaterdesignAccess/"/>
     <url>/2026/06/15/underwaterdesignAccess/</url>
@@ -2883,9 +2908,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
     </tags>
     
@@ -2910,9 +2935,9 @@
     
     <tags>
       
-      <tag>signal processing</tag>
-      
       <tag>communication</tag>
+      
+      <tag>signal processing</tag>
       
       <tag>matlab</tag>
       
