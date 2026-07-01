@@ -21,26 +21,26 @@
   <meta name="author" content="Joffrey">
   <meta name="keywords" content="">
   
-    <meta name="description" content="没有添加摘要">
+    <meta name="description" content="AI-RAN &#x2F; O-RAN &#x2F; NPU 技术讨论笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CP-OFDM for ISAC">
-<meta property="og:url" content="https://lcjoffrey.top/2026/06/17/ISACOFDMopt/index.html">
+<meta property="og:title" content="AI-RAN &#x2F; O-RAN &#x2F; NPU 技术讨论笔记">
+<meta property="og:url" content="https://lcjoffrey.top/2026/07/01/RANandNPU/index.html">
 <meta property="og:site_name" content="Joffrey&#39;s Blog">
-<meta property="og:description" content="没有添加摘要">
+<meta property="og:description" content="AI-RAN &#x2F; O-RAN &#x2F; NPU 技术讨论笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260617184951513.png">
-<meta property="article:published_time" content="2026-06-17T10:43:27.000Z">
-<meta property="article:modified_time" content="2026-06-17T10:52:06.921Z">
+<meta property="og:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20211203212547096.png">
+<meta property="article:published_time" content="2026-07-01T06:36:26.000Z">
+<meta property="article:modified_time" content="2026-07-01T06:37:36.200Z">
 <meta property="article:author" content="Joffrey">
-<meta property="article:tag" content="ISAC">
+<meta property="article:tag" content="Radio Access Network">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/image-20260617184951513.png">
+<meta name="twitter:image" content="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img/image-20211203212547096.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>CP-OFDM for ISAC - Joffrey&#39;s Blog</title>
+  <title>AI-RAN / O-RAN / NPU 技术讨论笔记 - Joffrey&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CP-OFDM for ISAC"></span>
+            <span id="subtitle" data-typed-text="AI-RAN / O-RAN / NPU 技术讨论笔记"></span>
           
         </div>
 
@@ -240,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-06-17 18:43" pubdate>
-          2026年6月17日 晚上
+        <time datetime="2026-07-01 14:36" pubdate>
+          2026年7月1日 下午
         </time>
       </span>
     
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          610 字
+          2.1k 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          6 分钟
+          18 分钟
         
       </span>
     
@@ -309,12 +309,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CP-OFDM for ISAC</h1>
+            <h1 id="seo-header">AI-RAN / O-RAN / NPU 技术讨论笔记</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2026-06-17T18:52:06+08:00
+                    本文最后更新于 2026-07-01T14:37:36+08:00
                   
                   
 
@@ -324,58 +324,218 @@
             
               <div class="markdown-body">
                 
-                <hr />
-<p><strong>CP-OFDM Achieves the Lowest Average Ranging Sidelobe Under QAM/PSK Constellations</strong>. <em>Fan Liu</em> et.al. <strong>IEEE Transactions on Information Theory, September 2025</strong> (<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/11087656">pdf</a>) (Citations <strong>2</strong>)</p>
-<h2 id="quick-overview">Quick Overview</h2>
+                <h1 id="ai-ran-o-ran-npu-技术讨论笔记">AI-RAN / O-RAN / NPU 技术讨论笔记</h1>
+<h2 id="核心结论">核心结论</h2>
 <ul>
-<li>收发一体，所以知道导频、数据等波形全信息。但是数据是random</li>
-<li>有CP-需要用periodic convolution自相关计算模糊函数；无CP-需要用aperiodic convolution 计算模糊函数</li>
-<li><mark>给出了测距的性能指标</mark></li>
-<li>给出了不同调制方式（QAM、PSK）以及超高斯（APSK等）下的性能指标</li>
-<li>给出结论：OFDM最优。从<mark>平均谱线（EISL）的角度</mark>，还是从其P-ACF的<mark>每个单独旁瓣指数来看 都是最优</mark>；CP-SC波形实现了最低的多普勒旁瓣电平</li>
-<li>在无CP的情况下，OFDM局部最优</li>
+<li>AI-RAN 的本质是通信计算与 AI 计算共平台、共算力、共编排。</li>
+<li>O-RAN 是开放架构，AI-RAN 是通智融合技术路线，二者可以结合但不等同。</li>
+<li>在 O-RAN 上加入 AI 算法不一定就是完整 AI-RAN，只有涉及 RAN 与 AI workloads 共平台承载时，才更接近 AI-RAN。</li>
+<li>GPU 是当前 AI-RAN 最成熟的实现路线。</li>
+<li>NPU 是面向国产化、边缘化、AI 推理和 Comm + AI 共平台的重要路线。</li>
+<li>NPU 的价值不是全面替代 GPU，而是验证国产 AI 加速器能否成为通信-AI融合计算载体。GPU更看通用性，NPU更看专用优化。</li>
+<li>通信 L1 链路张量化、算子图化后，有机会发挥 NPU 在能效、稳定时延、片上数据复用和系统级集成方面的优势。</li>
+<li>将完整 L1 部署到 NPU，并通过 USRP 实现真实空口收发，可以作为 NPU-based AI-RAN 的关键系统验证成果。</li>
 </ul>
-<hr />
-<p>通信中加CP是惯例，雷达中加CP不一定</p>
-<hr />
-<p>从信息论的角度出发，说明了为什么酉矩阵不会降低通信效率</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081705471.png" srcset="/img/loading.gif" lazyload alt="image-20260108170534384" style="zoom:25%;" /></p>
-<hr />
-<p>在LTE中，</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081709015.png" srcset="/img/loading.gif" lazyload alt="image-20260108170936949" style="zoom:25%;" /></p>
-<h2 id="acf-定义">ACF 定义</h2>
-<p>ACF被定义为无周期、周期性自卷积，取决于是否有CP；</p>
-<p><mark>需要注意</mark>：</p>
-<blockquote>
-<p>P-ACF的场景适用于：有CP，且CP&gt;最大时延扩展；此时去掉CP之后，等价于循环卷积；</p>
+<h2 id="ai-ran-的核心逻辑">AI-RAN 的核心逻辑</h2>
+<p>AI-RAN 的核心不是简单地“在通信系统里加入 AI 算法”，<strong>而是将 RAN workloads 和 AI workloads 放在统一的加速计算基础设施上共同承载。</strong></p>
+<p>未来 6G 网络有两类算力需求：</p>
 <ul>
-<li>e.g., 近距离的感知，此时合理的CP可以覆盖掉最大时延扩展区间；</li>
+<li>RAN 本身需要 AI-native 技术提升频谱效率、能效、覆盖、调度、感知、运维等能力。</li>
+<li>网络边缘需要承载大量非通信 AI 应用，对低时延、高可靠、边缘算力提出需求。</li>
 </ul>
-</blockquote>
-<blockquote>
-<p>A-ACF的场景适用于：无CP，但是前后要补很多0，从而形成一个较低的占空比，此时仍然可以避免信号叠在一起；</p>
+<p>因此，传统 RAN 基础设施会从单一通信设备演进为 <strong>通信 + AI + 边缘云</strong> 的统一平台。</p>
+<p>AI-RAN 的关键目标：</p>
 <ul>
-<li>e.g., 远距离的感知，此时CP需要超长，浪费功率和时间，所以一般补0；</li>
+<li>通信计算与 AI 计算共平台。</li>
+<li>RAN workloads 与 AI workloads 共算力。</li>
+<li>在满足通信实时性和 SLA 的前提下进行资源动态编排。</li>
+<li>将基站侧/边缘侧基础设施从通信专用设备升级为通智融合算力平台。</li>
 </ul>
-</blockquote>
-<hr />
-<h2 id="核心观点">核心观点</h2>
-<h3 id="考虑带cp的情况">考虑带CP的情况</h3>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081954916.png" srcset="/img/loading.gif" lazyload alt="image-20260108195438884" style="zoom:25%;" /></p>
-<p>这个结论很有意思，假设星座图没变，也就是<span class="math inline">\(\mu_4\)</span>没有变，此时想要旁瓣期望低，就要使<span class="math inline">\(\left\|\mathbf{F}_N \mathbf{U}\right\|_4^4\)</span>大；那么我们设计的酉矩阵有可以操作了。</p>
+<h2 id="在-o-ran-上加入-ai-是否可以称为-ai-ran">在 O-RAN 上加入 AI 是否可以称为 AI-RAN</h2>
+<p>较严谨的划分如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>情况</th>
+<th>更准确表述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>只是在 xApp/rApp 中加入 AI 算法</td>
+<td>AI-enabled O-RAN</td>
+</tr>
+<tr class="even">
+<td>用 AI 优化通信性能</td>
+<td>O-RAN-based AI-for-RAN</td>
+</tr>
+<tr class="odd">
+<td>通信链路与 AI workload 共平台部署</td>
+<td>O-RAN-based AI-RAN</td>
+</tr>
+<tr class="even">
+<td>同一基础设施同时承载 RAN 与边缘 AI 应用</td>
+<td>AI-and-RAN / AI-on-RAN</td>
+</tr>
+</tbody>
+</table>
+<p>结论：</p>
+<ul>
+<li>单纯加入 AI 优化算法，最好称为 <strong>AI-enabled O-RAN</strong> 或 <strong>AI-for-RAN</strong>。</li>
+<li>如果涉及通信与 AI 共平台、共算力、共编排，则可以更有底气称为 <strong>AI-RAN</strong>。</li>
+</ul>
+<h2 id="ai-ran-的三类内涵">AI-RAN 的三类内涵</h2>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>含义</th>
+<th>核心关注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AI-for-RAN</td>
+<td>用 AI 优化 RAN 本身</td>
+<td>信道估计、均衡、波束管理、调度、功控、节能、干扰管理</td>
+</tr>
+<tr class="even">
+<td>AI-and-RAN</td>
+<td>RAN 和 AI workloads 共享同一加速基础设施</td>
+<td>资源编排、算力共享、负载动态分配</td>
+</tr>
+<tr class="odd">
+<td>AI-on-RAN</td>
+<td>RAN 边缘基础设施承载 AI 应用</td>
+<td>机器人、XR、工业视觉、边缘推理、车联网</td>
+</tr>
+</tbody>
+</table>
+<p>推荐表述：</p>
 <blockquote>
-<p>在delay估计，<span class="math inline">\(\mu_4&lt;2\)</span>，带CP的前提下，OFDM是整体EISL最有的，同时，也是单个delay tap上最优的（这个结论有点让人失望）</p>
+<p>未来 6G 网络不仅需要用 AI 优化无线通信本身，还需要承载大量边缘 AI 应用。因此，RAN 基础设施不再只是通信设备，而会逐渐演进为通信与 AI 融合的边缘智能算力平台。AI-RAN 的核心思想，就是在同一套加速计算基础设施上同时承载 RAN workloads 和 AI workloads，并通过智能编排在通信需求和 AI 计算需求之间动态分配资源。</p>
 </blockquote>
+<p>需要强调的边界：</p>
+<ul>
+<li>RAN workload 具有强实时性，资源不能被 AI 任务随意抢占。</li>
+<li>AI-RAN 的资源共享必须以满足通信实时性、可靠性和 SLA 为前提。</li>
+<li>更严谨的说法是：<strong>在保障通信实时性的基础上，对可弹性算力进行动态编排。</strong></li>
+</ul>
+<h2 id="gpu-npu-tpu-对比">GPU / NPU / TPU 对比</h2>
+<table>
+
+<thead>
+<tr class="header">
+<th>平台</th>
+<th>主要优势</th>
+<th>主要不足</th>
+<th>更适合的任务</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GPU</td>
+<td>通用并行计算强，软件生态成熟，峰值性能高</td>
+<td>功耗、成本、国产化、边缘部署压力较大</td>
+<td>Cloud RAN、vRAN、AI-RAN 原型、大规模并行计算、AI 训练/推理</td>
+</tr>
+<tr class="even">
+<td>NPU</td>
+<td><strong>能效高</strong>，适合张量/矩阵/向量计算，适合边缘 AI，<strong>国产生态优势</strong>明显</td>
+<td>通用性和软件生态通常不如 GPU，传统通信算子需要重构适配</td>
+<td>AI 推理、AI-for-RAN、张量化 L1 链路、国产 AI-RAN</td>
+</tr>
+<tr class="odd">
+<td>TPU</td>
+<td>面向机器学习训练/推理的大规模矩阵计算</td>
+<td>生态主要绑定 Google Cloud，不适合本地实时通信链路</td>
+<td>云端 AI 训练/推理、大规模机器学习 workload</td>
+</tr>
+</tbody>
+</table>
+<p>总体排序：</p>
+<ul>
+<li>如果做通用通信链路原型：<strong>GPU 最成熟</strong>。</li>
+<li>如果做国产化、边缘化、Comm + AI 共平台验证：<strong>NPU 有独特价值</strong>。</li>
+<li>如果做本地实时 L1 + USRP 链路：<strong>TPU 不合适</strong>。</li>
+</ul>
+<h2 id="为什么选择-npu而不是-gpu-tpu">为什么选择 NPU，而不是 GPU / TPU</h2>
+<p>核心回答：</p>
 <blockquote>
-<p>在delay估计，<span class="math inline">\(\mu_4&lt;2\)</span>，带CP的前提下，达到最优的族，是OFDM的子载波交换和相位旋转版本</p>
+<p>我们选择 NPU，并不是认为 NPU 在所有场景下全面优于 GPU，而是为了验证国产 AI 加速平台是否能够从单纯 AI 推理加速器扩展为通信-AI融合计算载体，从而形成 NPU-based AI-RAN 的底层实现路线。</p>
 </blockquote>
+<p>主要理由：</p>
+<ul>
+<li><p>GPU-based AI-RAN 是当前国际主流路线，尤其以 NVIDIA 为代表；<strong>NPU-based AI-RAN 是面向国产 AI 算力生态的重要补充路线。</strong></p></li>
+<li><p>通信 L1 链路包含大量并行向量、矩阵、张量计算，<strong>具备映射到 NPU 的计算基础</strong>。将 L1 链路部署到 NPU，本质是探索 <strong>communication as tensor computing</strong>。</p></li>
+<li><p><strong>NPU 更贴近国产化</strong>、边缘部署、AI 推理和未来通信-AI共平台的目标。</p></li>
+</ul>
+<h2 id="npu-的性能优势与边界">NPU 的性能优势与边界</h2>
+<p>NPU 的优势不应表述为“所有通信算子都比 GPU 快”。更准确的说法是：</p>
 <blockquote>
-<p>通过对偶，可以推出在doppler估计上，CP-SC是最优的。</p>
-<p><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/202601081958784.png" srcset="/img/loading.gif" lazyload alt="image-20260108195802708" style="zoom: 25%;" /></p>
+<p>NPU 的性能优势主要体现在通信链路被张量化、算子图化之后，在系统级能效、端到端时延稳定性、边缘部署和 Comm + AI 共平台运行方面可能形成优势。</p>
 </blockquote>
-<p>如果<span class="math inline">\(\mu_4&gt;2\)</span> 情况会翻转。但是显而易见的，这种情况下的通信性能不会很好。</p>
-<hr />
-<p><mark>需要注意的是，这里的模糊函数是0-doppler切片，而且可以想象的是，delay旁瓣低了，能量都到doppler轴上了。等于是把橡皮泥左右捏扁了。</mark></p>
+<p>NPU 可能有优势的方面：</p>
+<ul>
+<li>性能/功耗比。</li>
+<li>性能/成本比。</li>
+<li>性能/体积比。</li>
+<li>固定算子流水线效率。</li>
+<li>静态计算图下的稳定执行时延。</li>
+<li>片上数据复用。</li>
+<li>算子融合。</li>
+<li>低精度/混合精度计算。</li>
+<li>通信和 AI workload 共平台执行。</li>
+</ul>
+<p>需要承认的边界：</p>
+<ul>
+<li>GPU 的通用性、软件生态、成熟库和峰值吞吐更强。</li>
+<li>FFT 等传统 DSP 算子在 GPU 上可能更成熟。</li>
+<li>NPU 的优势依赖通信链路是否被合理张量化、算子化和图优化。</li>
+<li>不应说 NPU 全面优于 GPU，应强调 NPU 在特定系统目标下的独特价值。</li>
+</ul>
+<h2 id="npu-为什么可能在能效和时延上有优势">NPU 为什么可能在能效和时延上有优势</h2>
+<p>能效优势来源：</p>
+<ul>
+<li>NPU 面向张量、矩阵、向量计算进行专用设计。</li>
+<li>专用计算单元减少通用硬件开销。</li>
+<li>片上 buffer 和局部存储有利于数据复用。</li>
+<li>低精度计算有利于降低功耗、提升吞吐。</li>
+<li>边缘 AI 场景更关注长期运行下的性能功耗比。</li>
+</ul>
+<p>时延优势来源：</p>
+<ul>
+<li>通信 L1 帧结构和处理流程相对固定，适合静态图编译。</li>
+<li>静态执行模式有利于降低调度抖动。</li>
+<li>算子融合可以减少中间结果反复写回外部内存。</li>
+<li>固定流水线有利于获得稳定端到端时延。</li>
+</ul>
+<p>关键结论：</p>
+<blockquote>
+<p>NPU 的优势不是天然来自“它叫 AI 芯片”，而是来自把通信链路重构为适合 NPU 执行的静态计算图和数据流。</p>
+</blockquote>
+<h2 id="减少异构平台切换和数据搬运开销的含义">减少异构平台切换和数据搬运开销的含义</h2>
+<p>异构平台切换指数据在 CPU、GPU、NPU、FPGA、DSP、主机内存、外设接口之间反复移动和同步。</p>
+<p>每次平台切换通常带来：</p>
+<ul>
+<li>内存拷贝。</li>
+<li>DMA 传输。</li>
+<li>Runtime/驱动调用。</li>
+<li>同步等待。</li>
+<li>数据格式转换。</li>
+<li>cache / buffer 失效。</li>
+<li>中间结果写回和重读。</li>
+</ul>
+<p>降低数据搬运开销的核心目标：</p>
+<blockquote>
+<p>让 IQ 数据进入 NPU 后，在同一平台上连续完成多个 L1 模块，使中间结果尽量保留在片上 buffer 或局部存储中，减少外部内存访问和跨平台同步。</p>
+</blockquote>
+<p>系统意义：</p>
+<ul>
+<li>不只是证明 NPU 能跑某个通信模块。</li>
+<li>更重要的是证明 <strong>USRP → NPU → 完整 L1 实时解调</strong> 的端到端链路可行。</li>
+<li>这体现的是系统级时延、能效和工程实现价值。</li>
+</ul>
 
                 
               </div>
@@ -394,7 +554,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/ISAC/" class="category-chain-item">ISAC</a>
+  <a href="/categories/Radio-Access-Network/" class="category-chain-item">Radio Access Network</a>
   
   
 
@@ -409,7 +569,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/ISAC/" class="print-no-link">#ISAC</a>
+        <a href="/tags/Radio-Access-Network/" class="print-no-link">#Radio Access Network</a>
       
     </div>
   
@@ -421,8 +581,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CP-OFDM for ISAC</div>
-      <div>https://lcjoffrey.top/2026/06/17/ISACOFDMopt/</div>
+      <div>AI-RAN / O-RAN / NPU 技术讨论笔记</div>
+      <div>https://lcjoffrey.top/2026/07/01/RANandNPU/</div>
     </div>
     <div class="license-meta">
       
@@ -434,13 +594,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年6月17日</div>
+          <div>2026年7月1日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年6月17日</div>
+          <div>2026年7月1日</div>
         </div>
       
       
@@ -471,9 +631,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/07/01/RANandNPU/" title="AI-RAN / O-RAN / NPU 技术讨论笔记">
+                      <a href="/2026/07/01/ORANand5G/" title="ORANand5G">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AI-RAN / O-RAN / NPU 技术讨论笔记</span>
+                        <span class="hidden-mobile">ORANand5G</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -481,8 +641,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/06/15/underwaterdesignAccess/" title="Channel-Aware Adaptive Modem for Underwater Acoustic Communications">
-                        <span class="hidden-mobile">Channel-Aware Adaptive Modem for Underwater Acoustic Communications</span>
+                      <a href="/2026/06/17/ISACOFDMopt/" title="CP-OFDM for ISAC">
+                        <span class="hidden-mobile">CP-OFDM for ISAC</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
