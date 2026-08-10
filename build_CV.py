@@ -98,6 +98,7 @@ def parse_pubdate_to_tuple(s: str) -> Optional[Tuple[int, int, int]]:
 BIB_DIR = "bibtex"
 # Section name to auto-fill (must match your heading)
 PUB_SECTION_TITLE = "Selected Publications\部分成果"
+PLATFORM_SECTION_TITLE = "Platform Highlight"
 
 
 def ieee_bibtex_export_url(doc_id: str) -> str:
@@ -496,6 +497,65 @@ p{ margin:8px 0; color:#374151; font-size:13px; }
   min-width:0;
 }
 
+/* Platform Highlight: one 16:9 PowerPoint slide becomes one card. */
+.platform-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr);
+  gap:18px;
+  margin-top:10px;
+}
+.platform-card{
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 8px 22px rgba(17,24,39,.07);
+}
+.platform-media-shell{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+}
+.platform-media-shell video,
+.platform-media-shell img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
+}
+.platform-media-shell video{ cursor:pointer; }
+.platform-card-body{ padding:12px 14px 14px; }
+.platform-card-title{
+  margin:0;
+  color:#111827;
+  font-size:14px;
+  font-weight:850;
+  line-height:1.45;
+}
+.platform-card-description{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+.platform-card-link{
+  display:inline-flex;
+  margin-top:9px;
+  padding:5px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:12px;
+  font-weight:750;
+}
+.platform-card-link:hover{ text-decoration:none; border-color:rgba(37,99,235,.35); }
+@media (prefers-reduced-motion: reduce){
+  .platform-card{ scroll-behavior:auto; }
+}
+
 .footer{ margin-top:10px; color:var(--muted); font-size:12px; text-align:center; }
 
 
@@ -679,6 +739,83 @@ $SECTIONS
       <div class="footer">© $YEAR $NAME</div>
     </main>
   </div>
+<script>
+(function(){
+  var videos = Array.prototype.slice.call(document.querySelectorAll('.platform-media-video'));
+  var animatedImages = Array.prototype.slice.call(document.querySelectorAll('.platform-animated-image'));
+  if (!videos.length && !animatedImages.length) return;
+
+  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  var reduceMotion = !!(motionQuery && motionQuery.matches);
+  var visibleVideos = new Set();
+  var visibleImages = new Set();
+
+  function safePlay(video){
+    if (reduceMotion || document.hidden) return;
+    var result = video.play();
+    if (result && typeof result.catch === 'function') result.catch(function(){});
+  }
+  function setAnimatedImage(image, active){
+    var animated = image.getAttribute('data-animated-src') || '';
+    var poster = image.getAttribute('data-poster-src') || '';
+    if (reduceMotion || !active){
+      if (poster && image.getAttribute('src') !== poster) image.setAttribute('src', poster);
+      return;
+    }
+    if (animated && image.getAttribute('src') !== animated) image.setAttribute('src', animated);
+  }
+  function applyMotionPreference(){
+    reduceMotion = !!(motionQuery && motionQuery.matches);
+    videos.forEach(function(video){
+      video.controls = reduceMotion;
+      if (reduceMotion) video.pause();
+      else if (visibleVideos.has(video)) safePlay(video);
+    });
+    animatedImages.forEach(function(image){ setAnimatedImage(image, visibleImages.has(image)); });
+  }
+
+  if ('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var target = entry.target;
+        var visible = entry.isIntersecting && entry.intersectionRatio >= 0.20;
+        if (target.tagName === 'VIDEO'){
+          if (visible) visibleVideos.add(target); else visibleVideos.delete(target);
+          if (visible) safePlay(target); else target.pause();
+        }else{
+          if (visible) visibleImages.add(target); else visibleImages.delete(target);
+          setAnimatedImage(target, visible);
+        }
+      });
+    }, {threshold:[0, 0.20, 0.60]});
+    videos.forEach(function(video){ observer.observe(video); });
+    animatedImages.forEach(function(image){ observer.observe(image); });
+  }else{
+    videos.forEach(function(video){ visibleVideos.add(video); safePlay(video); });
+    animatedImages.forEach(function(image){ visibleImages.add(image); setAnimatedImage(image, true); });
+  }
+
+  videos.forEach(function(video){
+    video.addEventListener('click', function(){
+      if (video.paused) {
+        var old = reduceMotion;
+        reduceMotion = false;
+        safePlay(video);
+        reduceMotion = old;
+      } else video.pause();
+    });
+  });
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) videos.forEach(function(video){ video.pause(); });
+    else if (!reduceMotion) visibleVideos.forEach(safePlay);
+  });
+  if (motionQuery){
+    if (motionQuery.addEventListener) motionQuery.addEventListener('change', applyMotionPreference);
+    else if (motionQuery.addListener) motionQuery.addListener(applyMotionPreference);
+  }
+  applyMotionPreference();
+})();
+</script>
 </body>
 </html>
 """)
@@ -2001,6 +2138,116 @@ def render_publications(md: str) -> str:
     return "\n".join(blocks)
 
 
+def parse_platform_card_line(line: str) -> Dict[str, str]:
+    """Parse one generated Platform Highlight bullet.
+
+    Format:
+      - Title | WebM: ./... | MP4: ./... | Poster: ./... | Description: ...
+    """
+    text = (line or "").strip()
+    if text.startswith(("-", "*")):
+        text = text[1:].strip()
+    parts = [part.strip() for part in text.split("|") if part.strip()]
+    if not parts:
+        return {}
+    card: Dict[str, str] = {"title": parts[0]}
+    for part in parts[1:]:
+        if ":" not in part:
+            continue
+        key, value = part.split(":", 1)
+        key = re.sub(r"[^a-z0-9_-]+", "", key.strip().lower())
+        value = value.strip()
+        if key and value:
+            card[key] = value
+    return card
+
+
+def render_platform_cards(md: str) -> str:
+    lines = [line.strip() for line in (md or "").splitlines()]
+    cards = [
+        parse_platform_card_line(line)
+        for line in lines
+        if line.startswith(("-", "*"))
+    ]
+    cards = [card for card in cards if card.get("title")]
+    blocks: List[str] = []
+
+    for card in cards:
+        title = card.get("title", "Platform")
+        alt = card.get("alt", "") or (title + " platform preview")
+        poster = sanitize_url(card.get("poster", ""))
+        webm = sanitize_url(card.get("webm", ""))
+        mp4 = sanitize_url(card.get("mp4", ""))
+        gif = sanitize_url(card.get("gif", ""))
+        link = sanitize_url(card.get("link", ""))
+        description = card.get("description", "")
+
+        media_html = ""
+        if webm or mp4:
+            sources: List[str] = []
+            if webm:
+                sources.append('<source src="{}" type="video/webm" />'.format(esc(webm)))
+            if mp4:
+                sources.append('<source src="{}" type="video/mp4" />'.format(esc(mp4)))
+            poster_attr = ' poster="{}"'.format(esc(poster)) if poster else ""
+            media_html = (
+                '<video class="platform-media-video" muted loop playsinline preload="metadata"'
+                + poster_attr
+                + ' aria-label="{}">'.format(esc(alt))
+                + "".join(sources)
+                + "Your browser does not support the platform preview video."
+                + "</video>"
+            )
+        elif gif:
+            initial_src = poster or gif
+            poster_attr = ' data-poster-src="{}"'.format(esc(poster)) if poster else ""
+            media_html = (
+                '<img class="platform-animated-image" src="{}" data-animated-src="{}"{} '
+                'alt="{}" loading="lazy" decoding="async" />'
+            ).format(esc(initial_src), esc(gif), poster_attr, esc(alt))
+        elif poster:
+            media_html = (
+                '<img class="platform-static-image" src="{}" alt="{}" loading="lazy" decoding="async" />'
+            ).format(esc(poster), esc(alt))
+
+        if not media_html:
+            continue
+
+        description_html = (
+            '<p class="platform-card-description">{}</p>'.format(md_inline_to_html(description))
+            if description else ""
+        )
+        link_html = (
+            '<a class="platform-card-link" href="{}" target="_blank" rel="noopener noreferrer">View details</a>'.format(esc(link))
+            if link else ""
+        )
+        blocks.append(
+            "\n".join([
+                '<article class="platform-card">',
+                '  <div class="platform-media-shell">{}</div>'.format(media_html),
+                '  <div class="platform-card-body">',
+                '    <h4 class="platform-card-title">{}</h4>'.format(esc(title)),
+                ('    ' + description_html if description_html else ""),
+                ('    ' + link_html if link_html else ""),
+                "  </div>",
+                "</article>",
+            ])
+        )
+
+    if not blocks:
+        return '<p class="muted">Platform cards have not been generated yet.</p>'
+    return '<div class="platform-grid">\n{}\n</div>'.format("\n".join(blocks))
+
+
+def render_section_body(title: str, body: str) -> str:
+    normalized = (title or "").strip()
+    if normalized == PUB_SECTION_TITLE:
+        return render_publications(body)
+    if normalized == PLATFORM_SECTION_TITLE:
+        return render_platform_cards(body)
+    return render_simple_md(body)
+
+
 def section_html(title: str, inner_html: str) -> str:
     return "\n".join([
         "<section>",
@@ -2133,11 +2380,11 @@ def main():
                     with open(md_path, 'w', encoding='utf-8') as f:
                         f.write(md_text)
                 except Exception as e:
-                    print('⚠️ 写回 CV.md 失败：{}'.format(e))
+                    print('[WARN] 写回 CV.md 失败：{}'.format(e))
                 else:
-                    print('📝 已自动补全 Selected Publications，并写回 CV.md' + (f'（备份：{bak}）' if bak else ''))
+                    print('[OK] 已自动补全 Selected Publications，并写回 CV.md' + (f'（备份：{bak}）' if bak else ''))
             else:
-                print('📝 已自动补全 Selected Publications（未写回 CV.md；可在 front matter 设置 writeback_enabled: true 开启）')
+                print('[INFO] 已自动补全 Selected Publications（未写回 CV.md；可在 front matter 设置 writeback_enabled: true 开启）')
     meta, body = parse_front_matter(md_text)
     secs = split_sections(body)
 
@@ -2170,10 +2417,7 @@ def main():
             sec_body = secs.get(t, "")
             if not sec_body.strip():
                 continue
-            if t == PUB_SECTION_TITLE:
-                sections_out.append(section_html(t, render_publications(sec_body)))
-            else:
-                sections_out.append(section_html(t, render_simple_md(sec_body)))
+            sections_out.append(section_html(t, render_section_body(t, sec_body)))
     else:
         # Default: render everything except what is assigned to internal pages.
         for sec_title, sec_body in secs.items():
@@ -2181,10 +2425,7 @@ def main():
                 continue
             if sec_title.strip() in assigned_titles:
                 continue
-            if sec_title.strip() == PUB_SECTION_TITLE:
-                sections_out.append(section_html(sec_title, render_publications(sec_body)))
-            else:
-                sections_out.append(section_html(sec_title, render_simple_md(sec_body)))
+            sections_out.append(section_html(sec_title, render_section_body(sec_title, sec_body)))
 
     # meta
     name = str(meta.get("name", "Your Name"))
@@ -2514,7 +2755,7 @@ def main():
         with open(out_filename, 'w', encoding='utf-8') as f:
             f.write(out_html)
 
-        print('✅ 生成成功：{}'.format(out_filename))
+        print('[OK] 生成成功：{}'.format(out_filename))
 
     # 1) Home page
     render_page(out_path, sections_out)
@@ -2550,10 +2791,7 @@ def main():
                 if not sec_body.strip():
                     page_sections.append(section_html(st, '<p class="muted">（未在 CV.md 中找到该标题的内容）</p>'))
                     continue
-                if st == PUB_SECTION_TITLE:
-                    page_sections.append(section_html(st, render_publications(sec_body)))
-                else:
-                    page_sections.append(section_html(st, render_simple_md(sec_body)))
+                page_sections.append(section_html(st, render_section_body(st, sec_body)))
             if not page_sections:
                 page_sections = [section_html(title, '<p class="muted">（未配置任何可渲染的标题）</p>')]
             render_page(href, page_sections)
