@@ -98,7 +98,7 @@ def parse_pubdate_to_tuple(s: str) -> Optional[Tuple[int, int, int]]:
 BIB_DIR = "bibtex"
 # Section name to auto-fill (must match your heading)
 PUB_SECTION_TITLE = "Selected Publications\部分成果"
-PLATFORM_SECTION_TITLE = "Platform Highlight"
+PLATFORM_SECTION_TITLE = r"Selected Research Prototypes\代表性科研原型系统"
 
 
 def ieee_bibtex_export_url(doc_id: str) -> str:
@@ -497,7 +497,7 @@ p{ margin:8px 0; color:#374151; font-size:13px; }
   min-width:0;
 }
 
-/* Platform Highlight: one 16:9 PowerPoint slide becomes one card. */
+/* Selected Research Prototypes: one 16:9 PowerPoint slide becomes one card. */
 .platform-grid{
   display:grid;
   grid-template-columns:minmax(0, 1fr);
@@ -2139,7 +2139,7 @@ def render_publications(md: str) -> str:
 
 
 def parse_platform_card_line(line: str) -> Dict[str, str]:
-    """Parse one generated Platform Highlight bullet.
+    """Parse one generated Selected Research Prototypes bullet.
 
     Format:
       - Title | WebM: ./... | MP4: ./... | Poster: ./... | Description: ...

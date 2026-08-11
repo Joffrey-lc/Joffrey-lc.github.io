@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Generate homepage Platform Highlight cards from ``demo.pptx``.
+"""Generate homepage Selected Research Prototypes cards from ``demo.pptx``.
 
 The PowerPoint slide is the card editor: text, static pictures, borders and the
 placement of embedded GIFs are all taken from the slide.  For every slide this
@@ -51,7 +51,7 @@ R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 PKG_REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
 NS = {"p": P_NS, "a": A_NS, "r": R_NS, "pr": PKG_REL_NS}
 
-PLATFORM_HEADING = "Platform Highlight"
+PLATFORM_HEADING = r"Selected Research Prototypes\代表性科研原型系统"
 GENERATED_START = "<!-- PLATFORM_GEN_START -->"
 GENERATED_END = "<!-- PLATFORM_GEN_END -->"
 
@@ -560,7 +560,7 @@ def write_manifest(output_dir: Path, pptx_path: Path, cards: Sequence[Dict[str, 
 
 
 def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="将 demo.pptx 的每一页生成一张 Platform Highlight 卡片。")
+    parser = argparse.ArgumentParser(description="将 demo.pptx 的每一页生成一张 Selected Research Prototypes 卡片。")
     parser.add_argument("--pptx", default="demo.pptx", help="输入 PPTX，默认 demo.pptx")
     parser.add_argument("--output-dir", default="assets/platforms", help="卡片资源输出目录")
     parser.add_argument("--cv", default="CV.md", help="需要更新的 CV.md")
@@ -617,7 +617,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     manifest = write_manifest(output_dir, pptx_path, cards, args.width, output_height, args.fps)
     if not args.no_update_cv:
         if not cv_path.exists():
-            raise SystemExit(f"资源已生成，但找不到 {cv_path}，无法写入 Platform Highlight。")
+            raise SystemExit(f"资源已生成，但找不到 {cv_path}，无法写入 Selected Research Prototypes。")
         update_cv_markdown(cv_path, cards)
         print(f"[OK] 已更新：{cv_path}")
     print(f"[OK] 已生成 {len(cards)} 张平台卡片；清单：{manifest}")
