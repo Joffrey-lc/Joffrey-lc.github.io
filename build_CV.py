@@ -177,6 +177,7 @@ a:hover{ text-decoration:underline; }
   min-height: 100vh; /* FIX: Prevents bottom clipping */
 }
 .card{
+  min-width:0;
   background:var(--card);
   border:1px solid var(--line);
   border-radius:var(--radius);
@@ -208,7 +209,7 @@ a:hover{ text-decoration:underline; }
   border-bottom:1px solid var(--line);
 }
 .avatar{
-  width:76px; height:76px;
+  width:112px; height:112px;
   border-radius:18px;
   background:#ddd;
   overflow:hidden;
