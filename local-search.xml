@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>两种OFDM ISAC的思考</title>
+    <link href="/2026/10/21/ofdmisac2types/"/>
+    <url>/2026/10/21/ofdmisac2types/</url>
+    
+    <content type="html"><![CDATA[<p><strong>Author：Codex &amp; Joffrey lc</strong></p><blockquote><p>做OFDM-ISAC一直有个疑问，在实验室环境中，搭建的ISAC平台测试发现A：直接匹配滤波 性能不如 B：OFDM符号域感知；在实验室环境中， B：OFDM符号域感知可以实现非常高的Doppler精度（Velocity测试）；但是工程上A：直接匹配滤波 反而更多？</p></blockquote><h1 id="ofdm-感知直接匹配波形还是先解调再估计">OFDM 感知：直接匹配波形，还是先解调再估计？</h1><p>OFDM 本来就提供了一张时频网格：时延改变不同子载波的相位，多普勒改变不同符号的相位。既然如此，为什么不少通感工作仍然从时域波形相关出发？</p><p>这个问题需要先分清两条接收链：<strong>A 直接在接收波形上做感知；B 先完成 OFDM 解调，再从符号矩阵中提取感知参数。</strong> 它们的区别首先是处理阶段，其次才是具体算法。</p><figure><img src="https://mymarkdown-pic.oss-cn-chengdu.aliyuncs.com/img220/20261021211918952.png" alt="image-20261021211918807" /><figcaption aria-hidden="true">image-20261021211918807</figcaption></figure><p><em>图 1：两条链路使用同一段接收信号，目标都是估计时延和多普勒。B 中的“2D FFT / MUSIC”表示可选择的后端估计方法。</em></p><h2 id="a直接在波形上寻找目标">A：直接在波形上寻找目标</h2><p>已知发送波形 <span class="math inline">\(s(t)\)</span> 和接收信号 <span class="math inline">\(r(t)\)</span>，构造不同延迟、不同多普勒下的发送模板，与接收信号比较。典型处理可以写成</p><p><span class="math display">\[\Lambda_A(\tau,\nu)=\left|\int r(t)s^*(t-\tau)e^{-j2\pi\nu t}\,\mathrm dt\right|^2.\]</span></p><p>这里省略了归一化。扫描候选的 <span class="math inline">\(\tau\)</span> 和 <span class="math inline">\(\nu\)</span>，再结合阈值和峰值位置检测、定位目标。严格来说，这是接收信号与发送参考的<strong>互模糊处理</strong>；发送波形的自模糊函数描述了它对理想点目标的响应。</p><p>这条路线把 OFDM 当作完整波形使用，不必先提取子载波符号。它也适用于其他已知波形。若水声传播中的时间伸缩不能忽略，还可以把频移模板改成伸缩模板，但搜索和建模都会更复杂。</p><h2 id="b先解调-ofdm再估计参数">B：先解调 OFDM，再估计参数</h2><p>接收信号经过分帧、去 CP 和 FFT，得到子载波—符号矩阵。在时频同步、窗口选择合适，且符号间干扰和载波间干扰可以忽略或已得到处理时，常用模型是</p><p><span class="math display">\[Y_{k,m}\approx X_{k,m}\sum_p\alpha_pe^{-j2\pi k\Delta f\tau_p}e^{j2\pi\nu_p mT_r}+W_{k,m}.\]</span></p><p>其中，<span class="math inline">\(k\)</span> 是子载波索引，<span class="math inline">\(m\)</span> 是 OFDM 符号索引，<span class="math inline">\(T_r\)</span> 是相邻符号的起始时间间隔。<span class="math inline">\(\alpha_p\)</span> 表示观测期间近似不变的路径复增益。</p><p>利用已知的 <span class="math inline">\(X_{k,m}\)</span> 去除数据调制后，时延和多普勒就对应两个方向的相位斜率。沿子载波做 IFFT、沿符号序列做 FFT，可以形成二维谱；也可以用 MUSIC 等方法估计这些复指数的参数。</p><p>这里的“解调”只要求获得复数 FFT 输出，<strong>不要求先把弱回波中的数据判决、译码成功</strong>。发送符号可以来自本地发射端、参考链路或已知导频。感知处理应保留信道引入的变化，而不是拿已经均衡后的数据做估计。</p><h2 id="为什么不能简单说它们等价">为什么不能简单说它们等价？</h2><p>A 也可以用 FFT 加速相关运算，但这不等于 B 的 OFDM 解调。B 通常还涉及符号分块、去 CP，以及把信道简化为逐子载波相乘的关系。</p><p>区别在大多普勒下尤其明显：完整的 A 可以在模板中保留符号内部的相位变化；常规 B 的二维模型主要利用跨符号的相位变化，忽略符号内变化引起的 ICI。类似地，整段波形的线性延迟匹配，也不能直接等同于去 CP 后的循环卷积处理。</p><p><strong>只有观测样本、边界处理、信号模型和权重一致时，才有理由讨论两者的等价性。</strong> “FFT 不丢信息”或“发送符号等模”，都不足以单独证明整条接收链等价。</p><h2 id="怎么选">怎么选？</h2><p>下面比较的是正确建模的 A 与采用上述二维模型的常规 B。</p><table><thead><tr class="header"><th>关心的问题</th><th>A：直接波形域感知</th><th>B：OFDM 符号域感知</th></tr></thead><tbody><tr class="odd"><td>通用性</td><td>适用于各种已知波形，可直接建立延迟、频移或伸缩模板</td><td>充分利用 OFDM 结构，但简化模型有适用范围</td></tr><tr class="even"><td>实现代价</td><td>完整二维模板搜索可能较贵，也有快速算法</td><td>2D FFT 通常高效，并可复用通信处理；MUSIC 另需子空间估计</td></tr><tr class="odd"><td>白噪声中的孤立弱目标</td><td>正确匹配具有线性滤波输出 SNR 最优性</td><td>合理处理可接近相同性能；逐点相除可能放大噪声</td></tr><tr class="even"><td>强回波旁边的弱目标</td><td>直接匹配输出受波形模糊函数旁瓣影响</td><td>去调制、加窗或参数化估计可能改善动态范围与分辨能力</td></tr><tr class="odd"><td>外部干扰</td><td>可结合白化、抵消和空间滤波</td><td>可结合时频加权、受污染资源剔除和空间滤波</td></tr></tbody></table><p>“抗干扰”需要说明对象。白噪声、强目标的旁瓣、外部同频信号，是不同的问题。逐点相除能消除数据调制的影响，却会把噪声方差变成 <span class="math inline">\(\sigma^2/|X_{k,m}|^2\)</span>，小幅度符号因此需要特别处理。MUSIC 能在条件合适时分开近邻目标，也不代表它在低 SNR 或模型失配下更可靠。</p><p>另外，A 的优势以模板正确为前提。如果实际采用“零多普勒相关，再做慢时间 FFT”的简化实现，它同样可能受到符号内多普勒的影响。</p><p>至于谁用得更多，我没有可靠统计可以给出比例。能确认的是，<strong>B 已经是 OFDM 通感中的成熟路线，并有 LTE/NR 射频原型验证</strong>；A 则拥有更广的跨波形适用范围。论文画了模糊函数，并不能据此判断其接收机一定采用 A。</p><p>对一个原本就是 OFDM 的系统，我会先用 B 建立基线：处理链清楚，也容易复用已有接收机。当大多普勒、超出处理窗口的时延或水声伸缩使二维模型失效时，再考虑完整模板匹配，或者扩展符号域模型。先明确接收机保留了哪些观测、做了哪些近似，比争论“相关还是频率估计”更有用。</p><h2 id="延伸阅读">延伸阅读</h2><ol type="1"><li><a href="https://arxiv.org/abs/1908.03418">Full-Duplex OFDM Radar With LTE and 5G NR Waveforms: Challenges, Solutions, and Measurements</a>，IEEE TMTT，2019。符号域处理及实际射频验证，可重点看接收链和模型适用条件。</li><li><a href="https://doi.org/10.1109/TAES.2020.3003704">Comparison of Correlation-Based OFDM Radar Receivers</a>，IEEE TAES，2020。比较不同接收机的复杂度、SINR 和地杂波鲁棒性。</li><li><a href="https://doi.org/10.1109/TAES.2023.3235317">Supervised Reciprocal Filter for OFDM Radar Signal Processing</a>，IEEE TAES，2023。讨论分块方式，以及噪声损失与旁瓣控制之间的取舍。</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>basic knowledge</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ISAC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ORAN学习</title>
     <link href="/2026/07/01/ORANand5G/"/>
     <url>/2026/07/01/ORANand5G/</url>
